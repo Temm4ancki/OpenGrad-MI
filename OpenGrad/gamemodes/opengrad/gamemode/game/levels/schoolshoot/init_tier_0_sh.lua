@@ -37,6 +37,7 @@ function schoolshoot.StartRound(data)
     if CLIENT then
 		roundTimeLoot = data.roundTimeLoot
 
+        schoolshoot.StartRoundCL()
 		return
 	end
 

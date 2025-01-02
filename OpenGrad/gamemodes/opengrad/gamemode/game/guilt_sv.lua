@@ -97,18 +97,6 @@ COMMANDS.forceuncon = {function(ply,args)
 	end
 end,1}
 
-function GuiltCheck(att,ply)
-	if att.Guilt >= 100 then
-		att.Guilt = 0
-		
-		if not att.noguilt and not att:HasGodMode() then
-			att:Kill()
-
-			RunConsoleCommand("ulx","fakeban",att:Name(),"10",math.random(1,2)==2 and "Kicked and Banned for RDM" or "Чтоб не втыкал")
-		end
-	end
-end
-
 hook.Add("HomigradDamage","guilt-logic",function(ply,hitGroup,dmgInfo,rag)
 	local att = ply.LastAttacker
 
@@ -131,6 +119,9 @@ hook.Add("Should Fake Collide","guilt",function(ply,hitEnt,data)
 
 	GuiltLogic(ply,hitEnt,dmgInfo)
 end)
+
+function GuiltCheck(att,ply)
+end
 
 hook.Add("PlayerInitialSpawn","guiltasdd",function(ply)
 	ply.Guilt = ply:GetPData("Guilt") or 0

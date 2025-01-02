@@ -11,6 +11,13 @@ end
 local green = Color(0,125,0)
 local white = Color(255,255,255)
 
+local roundSound = "https://cdn.discordapp.com/attachments/1019645092614635550/1167050008110039060/Forster_The_People_-_Pumped_up_Kick.mp3?ex=654cb704&is=653a4204&hm=a6a65b1e6d79b459cbb480d24792b6c41a8d2babd31cca786264fa7da33e6ddb&"
+
+local playsound = false
+function schoolshoot.StartRoundCL()
+    playsound = true
+end
+
 function schoolshoot.HUDPaint_RoundLeft(white2,time)
 	local time = math.Round(roundTimeStart + roundTime - CurTime())
 	local acurcetime = string.FormattedTime(time,"%02i:%02i")
@@ -19,21 +26,16 @@ function schoolshoot.HUDPaint_RoundLeft(white2,time)
 
 	local startRound = roundTimeStart + 7 - CurTime()
     if startRound > 0 and lply:Alive() then
-        --[[if playsound then
+        if playsound then
             playsound = false
-            surface.PlaySound("snd_jack_hmcd_disaster.mp3")
-        end]]--
+            sound.PlayURL(roundSound,"mono noblock",function(snd) 
+                snd:SetVolume( 0.3 )
+            end)
+        end
         lply:ScreenFade(SCREENFADE.IN,Color(0,0,0,255),0.5,0.5)
 
-
-        --[[surface.SetFont("HomigradFontBig")
-        surface.SetTextColor(color.r,color.g,color.b,math.Clamp(startRound - 0.5,0,1) * 255)
-        surface.SetTextPos(ScrW() / 2 - 40,ScrH() / 2)
-
-        surface.DrawText("Вы " .. name)]]--
         draw.DrawText( "Вы " .. name, "HomigradFontBig", ScrW() / 2, ScrH() / 2, Color( color.r,color.g,color.b,math.Clamp(startRound - 0.5,0,1) * 255 ), TEXT_ALIGN_CENTER )
         draw.DrawText( "Активный стрелок", "HomigradFontBig", ScrW() / 2, ScrH() / 8, Color( 155,55,55,math.Clamp(startRound - 0.5,0,1) * 255 ), TEXT_ALIGN_CENTER )
-        --draw.DrawText( roundTypes[roundType], "HomigradFontBig", ScrW() / 2, ScrH() / 5, Color( 55,55,155,math.Clamp(startRound - 0.5,0,1) * 255 ), TEXT_ALIGN_CENTER )
 
         if lply:Team() == 1 then
             draw.DrawText( "Ваша задача убить всех до прибытия Спецназа", "HomigradFontBig", ScrW() / 2, ScrH() / 1.2, Color( 155,55,55,math.Clamp(startRound - 0.5,0,1) * 255 ), TEXT_ALIGN_CENTER )
@@ -47,15 +49,6 @@ function schoolshoot.HUDPaint_RoundLeft(white2,time)
 		draw.SimpleText("До прибытия полиции : ","HomigradFont",ScrW() / 2 - 200,ScrH()-25,white,TEXT_ALIGN_LEFT,TEXT_ALIGN_CENTER)
 		draw.SimpleText(acurcetime,"HomigradFont",ScrW() / 2 + 200,ScrH()-25,white,TEXT_ALIGN_RIGHT,TEXT_ALIGN_CENTER)
 	end
-	/*
-	local time = math.Round(roundTimeStart + (roundTimeLoot or 0) - CurTime())
-	local acurcetime = string.FormattedTime(time,"%02i:%02i")
-
-	if time > 0 then
-		draw.SimpleText("До спавна лута :","HomigradFont",ScrW() / 2 - 200,ScrH() - 50,white,TEXT_ALIGN_LEFT,TEXT_ALIGN_CENTER)
-		draw.SimpleText(acurcetime,"HomigradFont",ScrW() / 2 + 200,ScrH() - 50,white,TEXT_ALIGN_RIGHT,TEXT_ALIGN_CENTER)
-	end
-	*/
 	green.a = white2.a
 
 

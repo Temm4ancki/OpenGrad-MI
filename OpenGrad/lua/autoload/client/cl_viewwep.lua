@@ -6,7 +6,7 @@ CameraSetFOV = 120
 CreateClientConVar("hg_fov","120",true,false,nil,90,120)
 local smooth_cam = CreateClientConVar("hg_smooth_cam","1",true,false,nil,0,1)
 
-CreateClientConVar("hg_bodycam","0",true,false,nil,0,1)
+CreateClientConVar("hg_bodycam","1",true,false,nil,0,1)
 
 CreateClientConVar("hg_fakecam_mode","0",true,false,nil,0,1)
 

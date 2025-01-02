@@ -257,7 +257,7 @@ function homicide.RoundEndCheck()
                         ply:EmitSound("police_arrive")
                         playsound = false
                     end
-					ply:ConCommand("hg_bodycam 1")
+					ply:ConCommand("hg_bodycam 0")
                 end)
             end)
 			

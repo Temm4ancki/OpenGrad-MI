@@ -9,7 +9,7 @@ function schoolshoot.StartRoundSV(data)
 
     local players = team.GetPlayers(2)
 
-    for i,ply in pairs(players) do
+    for i,ply in ipairs(players) do
 		ply.exit = false
 
 		if ply.schoolshootForceT then
@@ -21,7 +21,7 @@ function schoolshoot.StartRoundSV(data)
 
 	players = team.GetPlayers(2)
 
-	local count = math.min(math.floor(#players / 8,1))
+	local count = math.min(math.Round(#players / 5))
     for i = 1,count do
         local ply,key = table.Random(players)
 		players[key] = nil
@@ -93,20 +93,22 @@ function schoolshoot.RoundEndCheck()
 
 	OAlive = tdm.GetCountLive(team.GetPlayers(3))
 
-	if CTExit > 0 and CTAlive == 0 then EndRound(2) return end
-	if OAlive == 0 and TAlive == 0 and CTAlive == 0 then EndRound() return end
-
-	if OAlive == 0 and TAlive == 0 then EndRound(2) return end
-	if CTAlive == 0 then EndRound(1) return end
-	if TAlive == 0 then EndRound(2) return end
+	if CTExit > 0 and CTAlive == 0 then EndRound(2) print("ЧЛЕН1") return end
+	if OAlive == 0 and TAlive == 0 and CTAlive == 0 then EndRound() print("ЧЛЕН2") return end
+	if OAlive == 0 and TAlive == 0 then EndRound(2) print("ЧЛЕН3") return end
+	if CTAlive == 0 then EndRound(1) print("ЧЛЕН4") return end
+	if TAlive == 0 then EndRound(2) print("ЧЛЕН5") return end
+	
 end
 
-function schoolshoot.EndRound(winner) tdm.EndRoundMessage(winner) end
+function schoolshoot.EndRound(winner) 
+	tdm.EndRoundMessage(winner) 
+end
 
 function schoolshoot.PlayerSpawn(ply,teamID)
 	local teamTbl = schoolshoot[schoolshoot.teamEncoder[teamID]]
 	local color = teamTbl[2]
-	ply:SetModel(teamTbl.models[math.random(#teamTbl.models)] or "models/player/group01/male_03.mdl")
+	ply:SetModel(teamTbl.models[math.random(#teamTbl.models)])
     ply:SetPlayerColor(color:ToVector())
 
 	for i,weapon in pairs(teamTbl.weapons) do ply:Give(weapon) end
@@ -143,13 +145,9 @@ function schoolshoot.PlayerCanJoinTeam(ply,teamID)
 
 	if teamID == 3 then
 		if ply:IsAdmin() then
-			ply:ChatPrint("Милости прошу")
 			ply:Spawn()
-
 			return true
 		else
-			ply:ChatPrint("Иди нахуй")
-
 			return false
 		end
 	end
@@ -158,11 +156,8 @@ function schoolshoot.PlayerCanJoinTeam(ply,teamID)
 		if ply:IsAdmin() then
 			ply.schoolshootForceT = true
 
-			ply:ChatPrint("Милости прошу")
-
 			return true
 		else
-			ply:ChatPrint("Пашол нахуй")
 
 			return false
 		end
@@ -171,12 +166,8 @@ function schoolshoot.PlayerCanJoinTeam(ply,teamID)
 	if teamID == 2 then
 		if ply:Team() == 1 then
 			if ply:IsAdmin() then
-				ply:ChatPrint("ладно.")
-
 				return true
 			else
-				ply:ChatPrint("Просижовай жопу до конца раунда, лох.")
-
 				return false
 			end
 		end
