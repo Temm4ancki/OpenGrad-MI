@@ -157,6 +157,7 @@ end
 hook.Add("PlayerDeath","Gib",function(ply)
 	dmgInfo = ply.LastDMGInfo
 	if not dmgInfo then return end
+	if CTakeDamage == nil then return end
 
 	--разве это не смешно когда ножом башка взрывается?
 	--не надо убирать

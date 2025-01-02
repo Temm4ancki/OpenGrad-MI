@@ -15,7 +15,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3036510525
 - NEW Temm4ancki and Unicode11 for attempt to fix
 
 TODO:
-- fix jahidka
 - Trying fix voice panel
 - Maybe add toolgun points spawn (like a new addon)
+- Fix bronya ebanaja (need testing)
 - Many other fixes

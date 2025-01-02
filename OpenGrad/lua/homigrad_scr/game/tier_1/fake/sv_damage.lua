@@ -122,7 +122,9 @@ hook.Add("EntityTakeDamage","ragdamage",function(ent,dmginfo) --урон по р
 	ply.LastAttacker = att
 	ply.LastHitGroup = hitgroup
 
-	local armors = JMod.LocationalDmgHandling(ply,hitgroup,dmginfo)
+	--local armors = JMod.LocationalDmgHandling(ent,hitgroup,dmginfo)
+	-- пока не имеем решения говна ебучего в виде жмода будем игнорить броню фиктивно
+	local armors = {}
 	local armorMul,armorDur = 1,0
 	local haveHelmet
 
@@ -227,7 +229,7 @@ hook.Add("PlayerDeath","plymessage",function(ply,hitgroup,dmginfo)
 		ply:ChatPrint(reasons[reason] or "Вы умерли при загадочных обстоятельствах.")
 	elseif att then
 		local dmgtype = "от ранения"
-	
+		if CTakeDamage == nil then dmgtype = "ХУЙ ПОЙМИ КАК" return end
 		dmgtype = dmgInfo:IsDamageType(DMG_BULLET+DMG_BUCKSHOT) and (dmgInfo:IsDamageType(DMG_BUCKSHOT) and "от ранения осколками/дробью" or "от огнестрельного ранения") or 
 			dmgInfo:IsExplosionDamage() and "от минно-взрывной травмы" or 
 			dmgInfo:IsDamageType(DMG_SLASH) and "от ножевого ранения" or 
