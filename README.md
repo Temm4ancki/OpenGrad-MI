@@ -12,3 +12,8 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3036510525
 - 0oa for shitcoding in already barely working code,
 - Mannytko for attempt to fix and optimize this gamemode (also added some new stuff as stunbaton and etc.),
 - Hari for x2 attempt to fix and add new stuff in gamemode
+- NEW Temm4ancki and Unicode1 for attempt to fix
+
+TODO:
+- fix jahidka
+- Many other fixes
