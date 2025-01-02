@@ -18,4 +18,9 @@ TODO:
 - Trying fix voice panel
 - Maybe add toolgun points spawn (like a new addon)
 - Fix bronya ebanaja (need testing)
+- Fix telephone
+- Add more gaymodes
+- Add universal govno for roundtypes (TDM, 1vsAll, Homicide)
+- Add F4 panel for admins
+- Picking up shit as weps (chairs (DAITE EMY STYL), bottles etc.)
 - Many other fixes

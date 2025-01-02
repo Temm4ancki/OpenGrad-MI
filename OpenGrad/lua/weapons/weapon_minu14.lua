@@ -2,7 +2,7 @@ SWEP.Base = 'salat_base' -- base
 
 SWEP.PrintName 				= "Mini14"
 SWEP.Instructions			= ""
-SWEP.Category 				= "Оружие"
+SWEP.Category 				= "Говно нерабочее"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false

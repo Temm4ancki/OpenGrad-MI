@@ -2,7 +2,7 @@ SWEP.Base = 'salat_base' -- base
 
 SWEP.PrintName 				= "UMP"
 SWEP.Instructions			= "Что может еще делать ПП? СТРЕЛЯТЬ В ЛИЦО!"
-SWEP.Category 				= "Оружие"
+SWEP.Category 				= "Говно нерабочее"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false

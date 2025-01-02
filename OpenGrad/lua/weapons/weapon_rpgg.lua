@@ -3,7 +3,7 @@ SWEP.Base = 'salat_base' -- base
 SWEP.PrintName 				= "РПГ"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Ручной противотанковый гранатомёт"
-SWEP.Category 				= "Оружие"
+SWEP.Category 				= "Говно нерабочее"
 SWEP.WepSelectIcon			= "pwb/sprites/m134"
 
 SWEP.Spawnable 				= true
