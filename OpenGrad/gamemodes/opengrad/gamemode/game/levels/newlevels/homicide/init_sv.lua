@@ -25,44 +25,63 @@ COMMANDS.homicide_get = {function(ply,args)
     net.Send(ply)
 end}
 
+
+
+local function SpawnEblan(ply,wep)
+    for _, wepa in ipairs(wep) do
+        local weapon = ply:Give(wepa)
+        weapon:SetClip1(weapon:GetMaxClip1())
+    end
+end
 local function makeT(ply)
     if !IsValid(ply) then return end
 	ply.roleT = true
     table.insert(homicide.t, ply)
-
     if homicide.roundType == 1 then
-        ply:Give("weapon_kabar")
-        local wep = ply:Give("weapon_hk_usps")
-        wep:SetClip1(wep:GetMaxClip1())
-
-        ply:Give("weapon_hidebomb")
-        ply:Give("weapon_hg_rgd5")
+        SpawnEblan(ply,{
+            "weapon_kabar", 
+            "weapon_hk_usps", 
+            "weapon_hidebomb", 
+            "weapon_hg_rgd5"
+        })
     elseif homicide.roundType == 2 then
-        ply:Give("weapon_kabar")
-
-        ply:Give("weapon_hg_t_syringepoison")
-        ply:Give("weapon_hg_t_vxpoison")
-
-        ply:Give("weapon_hidebomb")
-        ply:Give("weapon_hg_rgd5")
+        SpawnEblan(ply,{
+            "weapon_kabar", 
+            "weapon_hg_t_syringepoison", 
+            "weapon_hg_t_vxpoison", 
+            "weapon_hidebomb",
+            "weapon_hg_rgd5"
+        })
     elseif homicide.roundType == 3 then
-        ply:Give("weapon_kabar")
-
-        ply:Give("weapon_hg_t_syringepoison")
-        ply:Give("weapon_hg_t_vxpoison")
-        
-        ply:Give("weapon_hg_rgd5")
-    else
-        ply:Give("weapon_kabar")
-
-        ply:Give("weapon_hidebomb")
-        ply:Give("weapon_hg_rgd5")
+        SpawnEblan(ply,{
+            "weapon_kabar",
+            "weapon_hg_t_syringepoison",
+            "weapon_hg_t_vxpoison",
+            "weapon_hg_rgd5"
+        })
+    elseif homicide.roundType == 4 then
+        SpawnEblan(ply,{
+            "weapon_kabar",
+            "weapon_hidebomb",
+            "weapon_hg_rgd5"
+        })
         ply:GiveAmmo(12,5)
+    elseif homicide.roundType == 5 then
+        SpawnEblan(ply,{
+            ""
+        })
+    elseif homicide.roundType == 6 then
+        SpawnEblan(ply,{
+            "weapon_kabar",
+            "weapon_hk_usps",
+            "weapon_hidebomb",
+            "weapon_hg_rgd5"
+        })
+    elseif homicide.roundType == 7 then
+    elseif homicide.roundType == 8 then
     end
 
     timer.Simple(5,function() ply.allowFlashlights = true end)
-
-    AddNotificate( ply,"Вы предатель.")
 
     if #GetFriends(ply) >= 1 then
         timer.Simple(1,function() AddNotificate( ply,"Ваши товарищи " .. GetFriends(ply)) end)
@@ -71,21 +90,18 @@ end
 
 local function makeCT(ply)
     if !IsValid(ply) then return end
+
     ply.roleCT = true
     table.insert(homicide.ct,ply)
-    if homicide.roundType == 1 then
-        local wep = ply:Give("weapon_remington870")
-        wep:SetClip1(wep:GetMaxClip1())
-        AddNotificate( ply,"Вы невиновый с крупногабаритным огнестрельным оружием.")
-    elseif homicide.roundType == 2 then
-        local wep = ply:Give("weapon_beretta")
-        wep:SetClip1(wep:GetMaxClip1())
-        AddNotificate( ply,"Вы невиновый со скрытым огнестрельным оружием.")
-    elseif homicide.roundType == 3 then
-        --nihuya
-    else
-        --nihuya tozhe
-    end
+    if     homicide.roundType == 1 then SpawnEblan(ply,{"weapon_remington870"})
+    elseif homicide.roundType == 2 then SpawnEblan(ply,{"weapon_beretta"})
+    elseif homicide.roundType == 3 then SpawnEblan(ply,{"weapon_police_bat","weapon_taser"})
+    elseif homicide.roundType == 4 then SpawnEblan(ply,{"weapon_remington870"})
+    elseif homicide.roundType == 5 then 
+    elseif homicide.roundType == 6 then SpawnEblan(ply,{"weapon_hk_usp", "weapon_hg_stunstick"})
+    elseif homicide.roundType == 7 then
+    elseif homicide.roundType == 8 then
+    else end
 
 end
 
@@ -140,6 +156,8 @@ function homicide.StartRoundSV()
 
     if homicide.roundType == 3 then
         roundTime = roundTime / 2
+    elseif homicide.roundType == 5 then -- спидрун
+        roundTime = roundTime / 4
     end
 
     roundTimeLoot = 5

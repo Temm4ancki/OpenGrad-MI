@@ -23,4 +23,6 @@ TODO:
 - Add universal govno for roundtypes (TDM, 1vsAll, Homicide)
 - Add F4 panel for admins
 - Picking up shit as weps (chairs (DAITE EMY STYL), bottles etc.)
+- Easier ragdoll control (HUD, etc)
+- HUD for body damage indication 
 - Many other fixes
