@@ -947,6 +947,7 @@ hook.Add("Think","mouthanim",function()
 end)
 
 net.Receive("fuckfake",function(len)
+	if not LocalPlayer():GetNWEntity("Ragdoll") then return end
 	LocalPlayer():SetNWEntity("Ragdoll",nil)
 end)
 

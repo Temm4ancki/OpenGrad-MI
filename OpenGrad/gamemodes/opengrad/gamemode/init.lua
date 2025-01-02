@@ -196,6 +196,7 @@ function GM:PlayerDeathThink(ply)
 	end
 end
 
+
 function GM:PlayerDisconnected(ply) end
 
 function GM:PlayerDeathSound() return true end
@@ -333,3 +334,5 @@ net.Receive("lasertgg",function(len,ply)
 	net.WriteBool(boolen)
 	net.Broadcast()
 end)
+
+

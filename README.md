@@ -25,4 +25,5 @@ TODO:
 - Picking up shit as weps (chairs (DAITE EMY STYL), bottles etc.)
 - Easier ragdoll control (HUD, etc)
 - HUD for body damage indication 
+- Model swapping for SWAT, CSS (TDM) and etc.
 - Many other fixes

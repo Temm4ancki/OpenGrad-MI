@@ -476,3 +476,35 @@ hook.Add( "HUDShouldDraw", "RemoveThatShit", function( name )
        return false 
     end
 end )
+
+local f4Panel
+
+local function CreateF4Panel()
+    if IsValid(f4Panel) then return end
+
+    -- Main frame
+    f4Panel = vgui.Create("DFrame")
+    f4Panel:SetSize(600, 400)
+    f4Panel:Center()
+    f4Panel:SetTitle("F4 Menu")
+    f4Panel:MakePopup()
+    f4Panel:SetDraggable(true)
+    f4Panel:ShowCloseButton(true)
+
+end
+
+concommand.Add("hg_gamemodes", function()
+	if IsValid(f4Panel) then
+		f4Panel:SetVisible(not f4Panel:IsVisible())
+		if f4Panel:IsVisible() then
+			f4Panel:MakePopup()
+		end
+	else
+		CreateF4Panel()
+	end
+end)
+
+
+
+
+
