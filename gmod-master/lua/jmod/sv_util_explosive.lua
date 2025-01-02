@@ -1,3 +1,7 @@
+JMod = JMod or {}
+JMod.Config = JMod.Config or {}
+JMod.Config.Explosives = JMod.Config.Explosives or {}
+JMod.Config.Explosives.FragExplosions = JMod.Config.Explosives.FragExplosions or true -- Включено по умолчанию
 
 function JMod.FragSplosion(shooter, origin, fragNum, fragDmg, fragMaxDist, attacker, direction, spread, zReduction, doEffect)
 	-- fragmentation/shrapnel simulation
@@ -24,15 +28,14 @@ function JMod.FragSplosion(shooter, origin, fragNum, fragDmg, fragMaxDist, attac
 		ShrapnelDamageInfo:SetDamageType(DMG_BUCKSHOT)
 	end
 
-	if not JMod.Config.Explosives.FragExplosions then
-		if PreSetupDamageInfo then
-			util.BlastDamageInfo(ShrapnelDamageInfo, origin, fragMaxDist * .30)
-		else
-			util.BlastDamage(shooter, attacker, origin, fragMaxDist * .30, fragDmg)
-		end
-
-		return
-	end
+	if not (JMod.Config and JMod.Config.Explosives and JMod.Config.Explosives.FragExplosions) then
+        if PreSetupDamageInfo then
+            util.BlastDamageInfo(ShrapnelDamageInfo, origin, fragMaxDist * 0.30)
+        else
+            util.BlastDamage(shooter, attacker, origin, fragMaxDist * 0.30, fragDmg)
+        end
+        return
+    end
 
 	local WaterDivider = 1
 	for i = 1, 4 do
