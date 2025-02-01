@@ -313,7 +313,7 @@ function homicide.PlayerInitialSpawn(ply)
     ply:SetTeam(1)
 end
 
--- function homicide.PlayerCanJoinTeam(ply,teamID)
+function homicide.PlayerCanJoinTeam(ply,teamID)
 --     if ply:IsAdmin() then
 --         if teamID == 2 then ply.forceCT = nil ply.forceT = true ply:ChatPrint("Ты будешь за шерифа некст раунд") return false end
 --         if teamID == 3 then ply.forceT = nil ply.forceCT = true ply:ChatPrint("Ты будешь за предателя некст раунд") return false end
@@ -321,8 +321,8 @@ end
 --         if teamID == 2 or teamID == 3 then ply:ChatPrint("Рип бозо") return false end
 --     end
 
---     return true
--- end
+     return true
+end
 -- yummers
 
 util.AddNetworkString("homicide_roleget")
