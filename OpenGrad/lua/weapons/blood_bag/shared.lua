@@ -12,8 +12,8 @@ SWEP.Category = "Медицина"
 SWEP.Slot = 3
 SWEP.SlotPos = 3
 
-SWEP.ViewModel = "models/blood_bag/models/blood_bag.mdl"
-SWEP.WorldModel = "models/blood_bag/models/blood_bag.mdl"
+SWEP.ViewModel = "models/zcity/other/bloodbag.mdl"
+SWEP.WorldModel = "models/zcity/other/bloodbag.mdl"
 
 SWEP.dwsPos = Vector(55,55,20)
 
