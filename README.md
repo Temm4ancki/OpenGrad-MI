@@ -19,7 +19,7 @@ TODO:
 - Maybe add toolgun points spawn (like a new addon)
 - Fix telephone
 - Add more gaymodes
-- Add universal govno for roundtypes (TDM, 1vsAll, Homicide)
+- Add universal govno for roundtypes (TDM, 1vsAll, Homicide) <- actually do not i don't think it's good idea and i'll think about better solution
 - Add F4 panel for admins
 - Picking up shit as weps (chairs (DAITE EMY STYL), bottles etc.)
 - Easier ragdoll control (HUD, etc)
