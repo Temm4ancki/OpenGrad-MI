@@ -1,3 +1,24 @@
+-- ⠀⢸⠂⠀⠀⠀⠘⣧⠀⠀⣟⠛⠲⢤⡀⠀⠀⣰⠏⠀⠀⠀⠀⠀⢹⡀
+-- ⠀⡿⠀⠀⠀⠀⠀⠈⢷⡀⢻⡀⠀⠀⠙⢦⣰⠏⠀⠀⠀⠀⠀⠀⢸⠀
+-- ⠀⡇⠀⠀⠀⠀⠀⠀⢀⣻⠞⠛⠀⠀⠀⠀⠻⠀⠀⠀⠀⠀⠀⠀⢸⠀
+-- ⠀⡇⠀⠀⠀⠀⠀⠀⠛⠓⠒⠓⠓⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀
+-- ⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⠀
+-- ⠀⢿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⠀⠀⢀⡟⠀
+-- ⠀⠘⣇⠀⠘⣿⠋⢹⠛⣿⡇⠀⠀⠀⠀⣿⣿⡇⠀⢳⠉⠀⣠⡾⠁⠀
+-- ⣦⣤⣽⣆⢀⡇⠀⢸⡇⣾⡇⠀⠀⠀⠀⣿⣿⡷⠀⢸⡇⠐⠛⠛⣿⠀
+-- ⠹⣦⠀⠀⠸⡇⠀⠸⣿⡿⠁⢀⡀⠀⠀⠿⠿⠃⠀⢸⠇⠀⢀⡾⠁⠀
+-- ⠀⠈⡿⢠⢶⣡⡄⠀⠀⠀⠀⠉⠁⠀⠀⠀⠀⠀⣴⣧⠆⠀⢻⡄⠀⠀
+-- ⠀⢸⠃⠀⠘⠉⠀⠀⠀⠠⣄⡴⠲⠶⠴⠃⠀⠀⠀⠉⡀⠀⠀⢻⡄⠀
+-- ⠀⠘⠒⠒⠻⢦⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⠞⠛⠒⠛⠋⠁⠀
+-- ⠀⠀⠀⠀⠀⠀⠸⣟⠓⠒⠂⠀⠀⠀⠀⠀⠈⢷⡀⠀⠀⠀⠀⠀⠀⠀
+-- ⠀⠀⠀⠀⠀⠀⠀⠙⣦⠀⠀⠀⠀⠀⠀⠀⠀⠈⢷⠀⠀⠀⠀⠀⠀⠀
+-- ⠀⠀⠀⠀⠀⠀⠀⣼⣃⡀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣆⠀⠀⠀⠀⠀⠀
+-- ⠀⠀⠀⠀⠀⠀⠀⠉⣹⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⠀⠀⠀⠀⠀⠀
+-- ⠀⠀⠀⠀⠀⠀⠀⠀⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡆⠀⠀⠀⠀⠀
+--
+-- you like working on govno-code, don't you?
+
+
 if SERVER then
 	AddCSLuaFile()
 	SWEP.Weight = 5
@@ -402,16 +423,15 @@ function SWEP:GetCarrying()
 end
 
 hook.Add("ShouldCollide","hjuyhhy",function(ent1,ent2)
-	--[[if not ent1:IsPlayer() then return end
-	if not ent2:IsRagdoll() then return end
+	-- if not ent1:IsPlayer() and not ent2:IsRagdoll() then return end
 
-	local wep = ent1:GetActiveWeapon()
-	if wep:GetClass() == "weapon_hands" then
-		print(wep.CarryEnt,ent2)
-		if wep.CarryEnt == ent2 then
-			return false
-		end
-	end--]]
+	-- local wep = ent1:GetActiveWeapon()
+	-- if wep:GetClass() == "weapon_hands" then
+	-- 	print(wep.CarryEnt,ent2)
+	-- 	if wep.CarryEnt == ent2 then
+	-- 		return false
+	-- 	end
+	-- end
 end)
 
 function SWEP:SetCarrying(ent, bone, pos, dist)
@@ -477,9 +497,52 @@ function SWEP:Think()
 		self:DoBFSAnimation("fists_draw")
 	end
 
-	if IsValid(self.CarryEnt) or self.CarryEnt then
+	-- local ply = self:GetOwner()
+
+	-- lArm = ply:LookupBone("ValveBiped.Bip01_L_Forearm")
+	-- lHand = ply:LookupBone("ValveBiped.Bip01_L_Hand")
+	-- lUpper = ply:LookupBone("ValveBiped.Bip01_L_UpperArm")
+	-- rArm = ply:LookupBone("ValveBiped.Bip01_R_Forearm")
+	-- rHand = ply:LookupBone("ValveBiped.Bip01_R_Hand")
+	-- rUpper = ply:LookupBone("ValveBiped.Bip01_R_UpperArm")
+
+	--if (IsValid(self.CarryEnt) or self.CarryEnt) and self.CarryEnt:GetClass()~="prop_ragdoll" then
+	if (IsValid(self.CarryEnt) or self.CarryEnt) then
+		--local carryAngle = (ply:GetShootPos()-self.CarryPos):Angle()
+		--local carryAngle = (ply:GetShootPos()):Angle()
+		-- local carryPosition = self.CarryEnt:LocalToWorld(self.CarryPos)
+		-- lHandPos = ply:GetBonePosition(lHand)
+		-- rHandPos = ply:GetBonePosition(rHand)
+		-- debugoverlay.Box(carryPosition,Vector(-1,-1,-1),Vector(1,1,1),0.1,Color(255,0,0,255))
+		-- debugoverlay.Box(lHandPos,Vector(-1,-1,-1),Vector(1,1,1),0.1,Color(255,0,0,255))
+
+		-- ply:ManipulateBoneAngles(rUpper,carryAngle,true)
+		-- ply:ManipulateBoneAngles(lUpper,carryAngle,true)
+		-- ply:ManipulateBoneAngles(rArm,carryAngle,true)
+		-- ply:ManipulateBoneAngles(lArm,carryAngle,true)
+		-- ply:ManipulateBoneAngles(rHand,carryAngle,true)
+		-- ply:ManipulateBoneAngles(lHand,carryAngle,true)
+
+		-- пока эта гавнина не работает так что будем банально руки вперед выставлять и все
+		-- ply:ManipulateBonePosition(lHand,LerpVector(0.5,carryPosition-lHandPos,lHandPos-carryPosition),true)
+		-- ply:ManipulateBonePosition(rHand,LerpVector(0.5,carryPosition-rHandPos,rHandPos-carryPosition),true)
+		-- print("керрипоз |"..carryPosition.x,carryPosition.y,carryPosition.z)
+		-- print("хендпоз |"..lHandPos.x,lHandPos.y,lHandPos.z)
+		--print("изи |"..POSHELNAXUI,lHandPos.y,lHandPos.z)
+
 		HoldType = "magic"
 	end
+
+	-- if not self:GetOwner():KeyDown(IN_ATTACK2) then
+		-- self:GetOwner():ManipulateBoneAngles(lHand,Angle(0,0,0),true)
+		-- self:GetOwner():ManipulateBoneAngles(rHand,Angle(0,0,0),true)
+		-- self:GetOwner():ManipulateBoneAngles(lArm,Angle(0,0,0),true)
+		-- self:GetOwner():ManipulateBoneAngles(rArm,Angle(0,0,0),true)
+		-- self:GetOwner():ManipulateBoneAngles(lUpper,Angle(0,0,0),true)
+		-- self:GetOwner():ManipulateBoneAngles(rUpper,Angle(0,0,0),true)
+		-- ply:ManipulateBonePosition(lHand,Vector(0,0,0),true)
+		-- ply:ManipulateBonePosition(rHand,Vector(0,0,0),true)
+	-- end
 
 	if self:GetOwner():KeyDown(IN_SPEED) then
 		HoldType = "normal"

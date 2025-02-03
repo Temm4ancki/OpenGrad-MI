@@ -67,7 +67,6 @@ if SERVER then
         local entreal = ent.fakeragdoll or ent
         if not (ent:IsPlayer() or ent:IsRagdoll()) then return end
         local bone = entreal:LookupBone("ValveBiped.Bip01_Spine4")
-        print(bone)
         if not bone then return end
 
 

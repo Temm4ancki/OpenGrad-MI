@@ -221,15 +221,6 @@ function RagdollOwner(rag)
 	return IsValid(ent) and ent
 end
 
-
--- hook.Add("Think","pophead",function()
--- 	for i,ent in pairs(ents.FindByClass("prop_ragdoll")) do
--- 		if !IsValid(RagdollOwner(ent)) or !RagdollOwner(ent):Alive() then
--- 			ent:ManipulateBoneScale(6,Vector(1,1,1))
--- 		end
--- 	end
--- end)
-
 hg_cool_camera = CreateClientConVar("hg_cool_camera","1",true,false,"huy",0,1)
 
 local deathtrack = {
