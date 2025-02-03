@@ -25,14 +25,6 @@ COMMANDS.homicide_get = {function(ply,args)
     net.Send(ply)
 end}
 
-
-
-local function SpawnEblan(ply,wep)
-    for _, wepa in ipairs(wep) do
-        local weapon = ply:Give(wepa)
-        weapon:SetClip1(weapon:GetMaxClip1())
-    end
-end
 local function makeT(ply)
     if !IsValid(ply) then return end
 	ply.roleT = true
@@ -42,43 +34,66 @@ local function makeT(ply)
             "weapon_kabar", 
             "weapon_hk_usps", 
             "weapon_hidebomb", 
-            "weapon_hg_rgd5"
+            "weapon_hg_rgd5",
+            "weapon_jahidka"
         })
     elseif homicide.roundType == 2 then
         SpawnEblan(ply,{
             "weapon_kabar", 
             "weapon_hg_t_syringepoison", 
-            "weapon_hg_t_vxpoison", 
+            "weapon_hg_t_vxpoison",
             "weapon_hidebomb",
-            "weapon_hg_rgd5"
+            "weapon_hg_rgd5",
+            "weapon_jahidka"
         })
     elseif homicide.roundType == 3 then
         SpawnEblan(ply,{
             "weapon_kabar",
             "weapon_hg_t_syringepoison",
             "weapon_hg_t_vxpoison",
-            "weapon_hg_rgd5"
+            "weapon_hg_rgd5",
+            "weapon_jahidka"
         })
     elseif homicide.roundType == 4 then
         SpawnEblan(ply,{
             "weapon_kabar",
             "weapon_hidebomb",
-            "weapon_hg_rgd5"
+            "weapon_hg_rgd5",
+            "weapon_jahidka"
         })
-        ply:GiveAmmo(12,5)
-    elseif homicide.roundType == 5 then
-        SpawnEblan(ply,{
-            ""
-        })
-    elseif homicide.roundType == 6 then
-        SpawnEblan(ply,{
-            "weapon_kabar",
-            "weapon_hk_usps",
-            "weapon_hidebomb",
-            "weapon_hg_rgd5"
-        })
-    elseif homicide.roundType == 7 then
-    elseif homicide.roundType == 8 then
+    --     ply:GiveAmmo(12,5)
+    -- elseif homicide.roundType == 5 then
+    --     SpawnEblan(ply,{
+    --         ""
+    --     })
+    -- elseif homicide.roundType == 6 then
+    --     SpawnEblan(ply,{
+    --         "weapon_kabar",
+    --         "weapon_hk_usps",
+    --         "weapon_hidebomb",
+    --         "weapon_hg_rgd5"
+    --     })
+    -- elseif homicide.roundType == 7 then
+    --     SpawnEblan(ply,{
+    --         "weapon_kabar",
+    --         "weapon_hk_usps",
+    --         "weapon_hidebomb",
+    --         "weapon_hg_rgd5"
+    --     })
+    -- elseif homicide.roundType == 8 then
+    --     SpawnEblan(ply,{
+    --         "weapon_kabar",
+    --         "weapon_hk_usps",
+    --         "weapon_hidebomb",
+    --         "weapon_hg_rgd5"
+    --     })
+    -- elseif homicide.roundType == 9 then
+    --     SpawnEblan(ply,{
+    --         "weapon_kabar",
+    --         "weapon_hk_usps",
+    --         "weapon_hidebomb",
+    --         "weapon_hg_rgd5"
+    --     })
     end
 
     timer.Simple(5,function() ply.allowFlashlights = true end)
@@ -93,15 +108,33 @@ local function makeCT(ply)
 
     ply.roleCT = true
     table.insert(homicide.ct,ply)
-    if     homicide.roundType == 1 then SpawnEblan(ply,{"weapon_remington870"})
-    elseif homicide.roundType == 2 then SpawnEblan(ply,{"weapon_beretta"})
-    elseif homicide.roundType == 3 then SpawnEblan(ply,{"weapon_police_bat","weapon_taser"})
-    elseif homicide.roundType == 4 then SpawnEblan(ply,{"weapon_remington870"})
-    elseif homicide.roundType == 5 then 
-    elseif homicide.roundType == 6 then SpawnEblan(ply,{"weapon_hk_usp", "weapon_hg_stunstick"})
-    elseif homicide.roundType == 7 then
-    elseif homicide.roundType == 8 then
-    else end
+    if     homicide.roundType == 1 then 
+        SpawnEblan(ply,{
+            "weapon_remington870"
+        })
+    elseif homicide.roundType == 2 then 
+        SpawnEblan(ply,{
+            "weapon_beretta"
+        })
+    elseif homicide.roundType == 3 then 
+        SpawnEblan(ply,{
+            "weapon_police_bat",
+            "weapon_taser"
+        })
+    elseif homicide.roundType == 4 then 
+        SpawnEblan(ply,{
+            "weapon_remington870"
+        })
+    -- elseif homicide.roundType == 5 then 
+    -- elseif homicide.roundType == 6 then 
+    --     SpawnEblan(ply,{
+    --         "weapon_hk_usp", 
+    --         "weapon_hg_stunstick"
+    --     })
+    -- elseif homicide.roundType == 7 then
+    -- elseif homicide.roundType == 8 then
+    -- elseif homicide.roundType == 9 then
+    end
 
 end
 
@@ -251,35 +284,32 @@ function homicide.RoundEndCheck()
 	local TAlive = tdm.GetCountLive(homicide.t)
 	local Alive = tdm.GetCountLive(team.GetPlayers(1),function(ply) if ply.roleT or ply.isContr then return false end end)
 
-    if roundTimeStart + roundTime < CurTime() then
-		if not homicide.police then
-			homicide.police = true
-            if homicide.roundType == 1 then
-                PrintMessage(3,"Приехал спецназ.")
-            else
-                PrintMessage(3,"Приехала полиция.")
-            end
+    if roundTimeStart + roundTime < CurTime() and not homicide.police then
+        homicide.police = true
+        if homicide.roundType == 1 then
+            PrintMessage(3,"Приехал спецназ.")
+        else
+            PrintMessage(3,"Приехала полиция.")
+        end
 
-			local aviable = ReadDataMap("spawnpointsct")
-            local ctPlayers = tdm.GetListMul(player.GetAll(),1,function(ply) return not ply:Alive() and not ply.roleT and ply:Team() ~= 1002 end)
-			
-            local playsound = true
-            tdm.SpawnCommand(ctPlayers,aviable,function(ply)
-                timer.Simple(0,function()
-                    if homicide.roundType == 1 then
-                        ply:SetPlayerClass("contr")
-                    else
-                        ply:SetPlayerClass("police")
-                    end
-                    if playsound then
-                        ply:EmitSound("police_arrive")
-                        playsound = false
-                    end
-					ply:ConCommand("hg_bodycam 0")
-                end)
+        local aviable = ReadDataMap("spawnpointsct")
+        local ctPlayers = tdm.GetListMul(player.GetAll(),1,function(ply) return not ply:Alive() and not ply.roleT and ply:Team() ~= 1002 end)
+        
+        local playsound = true
+        tdm.SpawnCommand(ctPlayers,aviable,function(ply)
+            timer.Simple(0,function()
+                if homicide.roundType == 1 then
+                    ply:SetPlayerClass("contr")
+                else
+                    ply:SetPlayerClass("police")
+                end
+                if playsound then
+                    ply:EmitSound("police_arrive")
+                    playsound = false
+                end
+                ply:ConCommand("hg_bodycam 0")
             end)
-			
-		end
+        end)
 	end
 
 	if TAlive == 0 and Alive == 0 then EndRound(1) return end

@@ -159,7 +159,8 @@ local prekols = {
 	"Get a life",
 	"возможно, команда hg_disable_stoprenderunfocus 1 выключит этот прикол...",
 	"ураааа, ты свернулся... Потрогай траву, играть вечность плохо.",
-	"kys"
+	"kys",
+	"во всём виноват rock"
 }
 
 local developer = GetConVar("developer")
@@ -221,13 +222,13 @@ function RagdollOwner(rag)
 end
 
 
---hook.Add("Think","pophead",function()
-	--[[for i,ent in pairs(ents.FindByClass("prop_ragdoll")) do
-		if !IsValid(RagdollOwner(ent)) or !RagdollOwner(ent):Alive() then
-			ent:ManipulateBoneScale(6,Vector(1,1,1))
-		end
-	end]]--
---end)
+-- hook.Add("Think","pophead",function()
+-- 	for i,ent in pairs(ents.FindByClass("prop_ragdoll")) do
+-- 		if !IsValid(RagdollOwner(ent)) or !RagdollOwner(ent):Alive() then
+-- 			ent:ManipulateBoneScale(6,Vector(1,1,1))
+-- 		end
+-- 	end
+-- end)
 
 hg_cool_camera = CreateClientConVar("hg_cool_camera","1",true,false,"huy",0,1)
 
@@ -259,7 +260,10 @@ local deathtexts = {
 	"КОНЕЦ",
 	"FILINA?",
 	"DEAD",
-	"TRY AGAIN"
+	"TRY AGAIN",
+	"ВО ВСЁМ ВИНОВАТ rock",
+	"ЖИЛ-ЖИЛ УМЕР",
+	"ПРИЗЕМЛИЛСЯ В САНКТ-ПЕТЕРБУРГЕ"
 }
 net.Receive("pophead",function(len)
 	local rag = net.ReadEntity()

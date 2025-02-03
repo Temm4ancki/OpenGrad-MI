@@ -1714,7 +1714,7 @@ net.Receive("ply_take_item",function(len,ply)
 
 	if not wepInfo then return end
 
-	if prekol[wep] and not ply:IsAdmin() then ply:Kick("xd))00") return end
+	-- if prekol[wep] and not ply:IsAdmin() then ply:Kick("xd))00") return end -- тут тоже
 
 	if IsValid(wep) and ply:HasWeapon(wep) then
 		if wepInfo.Clip1~=nil and wepInfo.Clip1 > 0 then

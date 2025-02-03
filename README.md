@@ -17,7 +17,6 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3036510525
 TODO:
 - Trying fix voice panel
 - Maybe add toolgun points spawn (like a new addon)
-- Fix bronya ebanaja (need testing)
 - Fix telephone
 - Add more gaymodes
 - Add universal govno for roundtypes (TDM, 1vsAll, Homicide)

@@ -168,7 +168,7 @@ if SERVER then
         ent.parentBomb = self
         ent.owner = self:GetOwner()
         ent:CallOnRemove("homigrad-bomb",Bomb)
-        ent:EmitSound("buttons/button24.wav",75,50)
+        ent:EmitSound("buttons/button24.wav",60,50)
         self:SetNWBool("hasbomb",true)
     end
 
@@ -186,7 +186,7 @@ else
         local owner = self:GetOwner()
 
         if not IsValid(owner) then self:DrawModel() return end
-        --if self:GetNWBool("hasbomb") then return end
+        if self:GetNWBool("hasbomb") then return end
 
         self.mdl = self.mdl or false
         if not IsValid(self.mdl) then

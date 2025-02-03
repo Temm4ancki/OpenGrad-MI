@@ -65,10 +65,11 @@ if SERVER then
     function SWEP:Poison(ent)
 
         local entreal = ent.fakeragdoll or ent
-
+        if not (ent:IsPlayer() or ent:IsRagdoll()) then return end
         local bone = entreal:LookupBone("ValveBiped.Bip01_Spine4")
-
+        print(bone)
         if not bone then return end
+
 
         local matrix = entreal:GetBoneMatrix(bone)
 
@@ -88,7 +89,6 @@ if SERVER then
         local huy = util.IntersectRayWithOBB(tracePos,traceDir, pos, ang, Vector(-8,-1,-1),Vector(2,0,1))
 
         local bone = entreal:LookupBone("ValveBiped.Bip01_Spine1")
-
         if not bone then return end
 
         local matrix = entreal:GetBoneMatrix(bone)
@@ -119,7 +119,7 @@ if SERVER then
                     end
                 end)
             end)
-            self:GetOwner():EmitSound("snd_jack_hmcd_needleprick.wav",30)
+            self:GetOwner():EmitSound("snd_jack_hmcd_needleprick.wav",100)
             self:Remove()
             self:GetOwner():SelectWeapon("weapon_hands")
         end

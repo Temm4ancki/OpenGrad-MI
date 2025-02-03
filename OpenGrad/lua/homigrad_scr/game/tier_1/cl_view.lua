@@ -274,7 +274,10 @@ local deathtexts = {
 	"MISSION FAILED",
 	"МИССИЯ ПРОВАЛЕНА",
 	"PRESS R TO RESTART!",
-	"TRY AGAIN"
+	"TRY AGAIN",
+	"ВО ВСЁМ ВИНОВАТ rock",
+	"ЖИЛ-ЖИЛ УМЕР",
+	"ПРИЗЕМЛИЛСЯ В САНКТ-ПЕТЕРБУРГЕ"
 }
 net.Receive("pophead",function(len)
 	local rag = net.ReadEntity()

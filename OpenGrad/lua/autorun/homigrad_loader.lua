@@ -3,7 +3,6 @@ if engine.ActiveGamemode() != "opengrad" then return end
 hg = hg or {}
 
 include("homigrad_scr/loader.lua")
--- if SERVER then include("homigrad_scr/run_serverside.lua") end
 include("homigrad_scr/run.lua")
 
 if SERVER then
@@ -13,10 +12,8 @@ end
 hook.Add("Initialize", "Optimizon", function()
 	hook.Remove( "PlayerTick", "TickWidgets" )
 
-	if SERVER then
-		if timer.Exists( "CheckHookTimes" ) then
-			timer.Remove( "CheckHookTimes" )
-		end
+	if SERVER and timer.Exists("CheckHookTimes") then
+		timer.Remove( "CheckHookTimes" )
 	end
 
 	hook.Remove( "PlayerTick", "TickWidgets" )
@@ -46,6 +43,7 @@ hook.Add("Initialize", "Optimizon", function()
 		RunConsoleCommand( "cl_interp_npcs", "0.08" )
 		RunConsoleCommand( "cl_timeout", "2400" )
 		RunConsoleCommand( "r_flashlightdepthres", "512" )
+		RunConsoleCommand( "hg_oldcollidefake", "1")
 
 		if GetConVar( "mat_picmip" ):GetInt() < 0 then
 			RunConsoleCommand( "mat_picmip", "0" )

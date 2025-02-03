@@ -11,7 +11,7 @@ end
 local green = Color(0,125,0)
 local white = Color(255,255,255)
 
-local roundSound = "https://cdn.discordapp.com/attachments/1019645092614635550/1167050008110039060/Forster_The_People_-_Pumped_up_Kick.mp3?ex=654cb704&is=653a4204&hm=a6a65b1e6d79b459cbb480d24792b6c41a8d2babd31cca786264fa7da33e6ddb&"
+local roundSound = "" --"schoolshoot.mp3"
 
 local playsound = false
 function schoolshoot.StartRoundCL()

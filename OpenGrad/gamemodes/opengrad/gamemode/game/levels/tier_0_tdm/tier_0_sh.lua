@@ -8,12 +8,6 @@ for i = 1,9 do table.insert(models,"models/player/group01/male_0" .. i .. ".mdl"
 
 for i = 1,6 do table.insert(models,"models/player/group01/female_0" .. i .. ".mdl") end
 
---table.insert(models,"models/player/group02/male_02.mdl")
---table.insert(models,"models/player/group02/male_06.mdl")
---table.insert(models,"models/player/group02/male_08.mdl")
-
---for i = 1,9 do table.insert(models,"models/player/group01/male_0" .. i .. ".mdl") end
-
 tdm.models = models
 tdm.red = {
 	"Террористы",Color(255,75,75),
@@ -44,7 +38,6 @@ function tdm.StartRound()
 	team.SetColor(2,blue)
 
 	if CLIENT then return end
-
 	tdm.StartRoundSV()
 end
 

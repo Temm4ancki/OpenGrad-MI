@@ -303,16 +303,19 @@ function SWEP:ApplyForce()
 		end
 
 		if self.CarryEnt:GetClass() == "prop_ragdoll" then
-			mul = mul * 3
+			mul = mul * 5
 			local ply = RagdollOwner(self.CarryEnt)
 			if self:GetOwner():KeyPressed( IN_RELOAD ) then
 				if not ply then
 					self:GetOwner():ChatPrint("У него нет пульса.")
+					self:GetOwner():ChatPrint("ЗДОХ")
 				else
 					if ply.heartstop then
-						self:GetOwner():ChatPrint("У него нет пульса.")
+						self:GetOwner():ChatPrint("Нет пульса.")
+						self:GetOwner():ChatPrint("ПОЧТИ ЗДОХ")
 					else
-						self:GetOwner():ChatPrint(ply.nextPulse < 0.9 and "У него сильный пульс" or (ply.nextPulse <= 1.5 and "У него нормальный пульс") or (ply.nextPulse < 2 and "У него слабый пульс") or (ply.nextPulse >= 2 and "У него еле ощущаемый пульс."))
+						self:GetOwner():ChatPrint(ply.nextPulse < 0.9 and "Сильный пульс" or (ply.nextPulse <= 1.5 and "Нормальный пульс") or (ply.nextPulse < 2 and "Слабый пульс") or (ply.nextPulse >= 2 and "Еле ощущаемый пульс."))
+						self:GetOwner():ChatPrint(ply.Otrub and "В отрубе" or "Реакция присутствует")
 					end
 				end
 			end
@@ -579,20 +582,16 @@ function SWEP:AttackFront()
 			self:GetOwner():SetVelocity(-AimVec * SelfForce * .8)
 		end
 
-		if Ent:GetClass() == "func_breakable_surf" then
-			if math.random(1, 20) == 10 then
-				Ent:Fire("break", "", 0)
-				self:GetOwner().Bloodlosing = self:GetOwner():GetNWInt("BloodLosing") + 4
-				self:GetOwner():SetNWInt("BloodLosing",self:GetOwner().Bloodlosing)
-			end
+		if Ent:GetClass() == "func_breakable_surf" and math.random(1, 20) == 10 then
+			Ent:Fire("break", "", 0)
+			self:GetOwner().Bloodlosing = self:GetOwner():GetNWInt("BloodLosing") + 4
+			self:GetOwner():SetNWInt("BloodLosing",self:GetOwner().Bloodlosing)
 		end
 
-		if Ent:GetClass() == "func_breakable" then
-			if math.random(7, 11) == 10 then
-				Ent:Fire("break", "", 0)
-				self:GetOwner().Bloodlosing = self:GetOwner():GetNWInt("BloodLosing") + 4
-				self:GetOwner():SetNWInt("BloodLosing",self:GetOwner().Bloodlosing)
-			end
+		if Ent:GetClass() == "func_breakable" and math.random(7, 11) == 10 then
+			Ent:Fire("break", "", 0)
+			self:GetOwner().Bloodlosing = self:GetOwner():GetNWInt("BloodLosing") + 4
+			self:GetOwner():SetNWInt("BloodLosing",self:GetOwner().Bloodlosing)
 		end
 
 	end
