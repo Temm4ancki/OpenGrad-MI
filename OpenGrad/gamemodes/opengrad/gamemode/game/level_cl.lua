@@ -40,7 +40,7 @@ net.Receive("round_next",function()
 	roundActiveNameNext = net.ReadString()
 	showRoundInfo = CurTime() + 10
 
-	chat.AddText("Следущий режим : " .. TableRound(roundActiveNameNext).Name)
+	chat.AddText("Следующий режим : " .. TableRound(roundActiveNameNext).Name)
 end)
 
 showRoundInfoColor = Color(255,255,255)
@@ -73,6 +73,6 @@ hook.Add("HUDPaint","homigrad-roundstate",function()
 
 		local name,nextName = TableRound().Name,TableRound(roundActiveNameNext).Name
 		draw.SimpleText("Текущий режим : " .. name,"HomigradFont",ScrW() - 15,15,showRoundInfoColor,TEXT_ALIGN_RIGHT)
-		draw.SimpleText("Следущий режим : " .. nextName,"HomigradFont",ScrW() - 15,35,name ~= nextName and yellow or showRoundInfoColor,TEXT_ALIGN_RIGHT)
+		draw.SimpleText("Следующий режим : " .. nextName,"HomigradFont",ScrW() - 15,35,name ~= nextName and yellow or showRoundInfoColor,TEXT_ALIGN_RIGHT)
 	end
 end)

@@ -12,7 +12,6 @@ hook.Add("Player Think","ControlPlayersAdmins",function(ply,time)
 
 			Faking(enta)
 			local text = tostring(ply:Name()).." поднял игрока "..enta:Name()
-			-- DiscordSendMessage("💙" .. text)
 			print(text)
 		end
 		if !IsValid(enta:GetPhysicsObject()) then return end
@@ -24,7 +23,6 @@ hook.Add("Player Think","ControlPlayersAdmins",function(ply,time)
 		if IsValid(ply.CarryEnt) then
 			if ply:KeyPressed(IN_ATTACK) then
 				local text = tostring(ply:Name()).." поднял ентити "..tostring(RagdollOwner(ply.CarryEnt) and RagdollOwner(ply.CarryEnt):Name() or ply.CarryEnt:GetClass())
-				-- DiscordSendMessage("💙" .. text)
 				print(text)
 			end
 

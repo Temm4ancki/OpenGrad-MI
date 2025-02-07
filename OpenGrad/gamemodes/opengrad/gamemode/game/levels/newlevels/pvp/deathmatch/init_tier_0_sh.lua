@@ -1,6 +1,6 @@
 table.insert(LevelList,"dm")
 dm = {}
-dm.Name = "DeathMatch"
+dm.Name = "Superfighters Legacy"
 dm.LoadScreenTime = 5.5
 dm.CantFight = dm.LoadScreenTime
 
@@ -12,7 +12,7 @@ local red = Color(155,155,255)
 function dm.GetTeamName(ply)
     local teamID = ply:Team()
 
-     if teamID == 1 then return "Боец",red end
+     if teamID == 1 then return "Киборг-Убийца",red end
 end
 
 function dm.StartRound(data)
@@ -61,17 +61,9 @@ function dm.HUDPaint_RoundLeft(white)
         end
         lply:ScreenFade(SCREENFADE.IN,Color(0,0,0,255),0.5,0.5)
 
+        drawRoundMode("Player Vs Player",dm.Name,startRound,Color(155,155,255),Color(155,155,255))
+        drawRoundStart(name,"ПОБЕДИ",startRound,Color(155,155,155))
 
-        --[[surface.SetFont("HomigradFontBig")
-        surface.SetTextColor(color.r,color.g,color.b,math.Clamp(startRound - 0.5,0,1) * 255)
-        surface.SetTextPos(ScrW() / 2 - 40,ScrH() / 2)
-
-        surface.DrawText("Вы " .. name)]]--
-        draw.DrawText( "Ты боец", "HomigradFontBig", ScrW() / 2, ScrH() / 2, Color( 155,155,255,math.Clamp(startRound - 0.5,0,1) * 255 ), TEXT_ALIGN_CENTER )
-        draw.DrawText( "Бой Насмерть", "HomigradFontBig", ScrW() / 2, ScrH() / 8, Color( 155,155,255,math.Clamp(startRound - 0.5,0,1) * 255 ), TEXT_ALIGN_CENTER )
-        --draw.DrawText( roundTypes[roundType], "HomigradFontBig", ScrW() / 2, ScrH() / 5, Color( 55,55,155,math.Clamp(startRound - 0.5,0,1) * 255 ), TEXT_ALIGN_CENTER )
-
-        draw.DrawText( "У тебя есть оружие, уничтож всех", "HomigradFontBig", ScrW() / 2, ScrH() / 1.2, Color( 55,55,55,math.Clamp(startRound - 0.5,0,1) * 255 ), TEXT_ALIGN_CENTER )
         return
     end
 end

@@ -395,14 +395,6 @@ function homicide.ShouldSpawnLoot()
     end
 end
 
-function homicide.ShouldDiscordOutput(ply,text)
-    if ply:Team() ~= 1002 and ply:Alive() then return false end
-end
-
-function homicide.ShouldDiscordInput(ply,text)
-    if not ply:IsAdmin() then return false end
-end
-
 function homicide.GuiltLogic(ply,att,dmgInfo)
     return ply.roleT == att.roleT
 end

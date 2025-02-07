@@ -15,6 +15,14 @@ surface.CreateFont("HomigradFontBig",{
 	shadow = true
 })
 
+surface.CreateFont("HomigradFontLargeBig",{
+	font = "Roboto",
+	size = 60,
+	weight = 1100,
+	outline = false,
+	shadow = true
+})
+
 surface.CreateFont("HomigradFontLarge",{
 	font = "Roboto",
 	size = ScreenScale(30),
@@ -407,39 +415,39 @@ local clipcolorempty = Color(247, 40, 40, 255)
 local colorgray = Color(200, 200, 200)
 local shadow = color_black
 
---[[hook.Add("HUDPaint","homigrad-fancyammo",function()
-	--[[local ply = LocalPlayer()
-	local clip, maxclip, ammo = GetClipForCurrentWeapon(ply)
-	local clipstring = tostring(clip)
-	local sw, sh = ScrW(), ScrH()
-	if clip != -1 and maxclip > 0 then
-		if oldclip != clip then
-			randomx = math.random(0, 10)
-			randomy = math.random(0, 10)
-			timer.Simple(0.15, function()
-				oldclip = clip
-			end)
-		else
-			randomx = 0
-			randomy = 0
-		end
+-- hook.Add("HUDPaint","homigrad-fancyammo",function()
+-- 	local ply = LocalPlayer()
+-- 	local clip, maxclip, ammo = GetClipForCurrentWeapon(ply)
+-- 	local clipstring = tostring(clip)
+-- 	local sw, sh = ScrW(), ScrH()
+-- 	if clip != -1 and maxclip > 0 then
+-- 		if oldclip != clip then
+-- 			randomx = math.random(0, 10)
+-- 			randomy = math.random(0, 10)
+-- 			timer.Simple(0.15, function()
+-- 				oldclip = clip
+-- 			end)
+-- 		else
+-- 			randomx = 0
+-- 			randomy = 0
+-- 		end
 
-		if clip == 0 then
-			clipcolor = clipcolorempty
-		elseif maxclip / clip >= 6 or clip == 1 and maxclip != 1 then
-			clipcolor = clipcolorlow
-		else
-			clipcolor = color_white
-		end
+-- 		if clip == 0 then
+-- 			clipcolor = clipcolorempty
+-- 		elseif maxclip / clip >= 6 or clip == 1 and maxclip != 1 then
+-- 			clipcolor = clipcolorlow
+-- 		else
+-- 			clipcolor = color_white
+-- 		end
 
-		draw.SimpleText("/ " .. ammo, "HomigradFontSmall", sw * 0.9 + 2 + #clipstring * sw * 0.02, sh * 0.97 + 2, shadow)
-		draw.SimpleText("/ " .. ammo, "HomigradFontSmall", sw * 0.9 + #clipstring * sw * 0.02, sh * 0.97, colorgray)
+-- 		draw.SimpleText("/ " .. ammo, "HomigradFontSmall", sw * 0.9 + 2 + #clipstring * sw * 0.02, sh * 0.97 + 2, shadow)
+-- 		draw.SimpleText("/ " .. ammo, "HomigradFontSmall", sw * 0.9 + #clipstring * sw * 0.02, sh * 0.97, colorgray)
 
-		draw.SimpleText(clip, "HomigradFontLarge", sw * 0.89 + 5 + randomx, sh * 0.92 + 5 + randomy, shadow)
-		draw.SimpleText(clip, "HomigradFontLarge", sw * 0.89 + randomx, sh * 0.92 + randomy, clipcolor)
-	end
-end)
-]]
+-- 		draw.SimpleText(clip, "HomigradFontLarge", sw * 0.89 + 5 + randomx, sh * 0.92 + 5 + randomy, shadow)
+-- 		draw.SimpleText(clip, "HomigradFontLarge", sw * 0.89 + randomx, sh * 0.92 + randomy, clipcolor)
+-- 	end
+-- end)
+
 net.Receive("remove_jmod_effects",function(len)
 	LocalPlayer().EZvisionBlur = 0
 	LocalPlayer().EZflashbanged = 0
