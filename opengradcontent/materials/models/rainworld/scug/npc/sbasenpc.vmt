@@ -1,0 +1,5 @@
+VertexLitGeneric
+{
+	$basetexture "models/rainworld/scug/NPC/Sbase_diff"
+
+}

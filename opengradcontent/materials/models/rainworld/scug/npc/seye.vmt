@@ -1,0 +1,5 @@
+VertexLitGeneric
+{
+	$basetexture "models/rainworld/scug/Seye_diff"
+	$surfaceprop Flesh
+}

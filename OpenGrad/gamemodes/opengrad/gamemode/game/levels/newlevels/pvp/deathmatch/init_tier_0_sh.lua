@@ -35,16 +35,6 @@ end
 
 if SERVER then return end
 
-local nigger = Color(0,0,0)
-local red = Color(255,0,0)
-
-local kill = 4
-
-local white,red = Color(255,255,255),Color(255,0,0)
-
-local fuck,fuckLerp = 0,0
-
-
 local playsound = false
 function dm.StartRoundCL()
     playsound = true
