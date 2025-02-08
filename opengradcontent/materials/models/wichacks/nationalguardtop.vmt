@@ -1,0 +1,7 @@
+"VertexLitGeneric"
+{
+	// Original shader: VertexLitTexture
+	"$basetexture" "models/WICHacks/NationalGuardTop"
+	"$halflambert" 0
+        "$bumpmap"     "models/WICHacks/NationalGuardTop_n"
+}

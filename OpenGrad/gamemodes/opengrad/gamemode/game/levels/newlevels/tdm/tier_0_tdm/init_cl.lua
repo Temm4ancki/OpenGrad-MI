@@ -19,8 +19,8 @@ function tdm.HUDPaint_RoundLeft(white)
         lply:ScreenFade(SCREENFADE.IN,Color(0,0,0,255),0.5,0.5)
 
 
-        drawRoundMode("Team Death,atch",tdm.Name,startRound,Color(155,155,255),Color(155,155,255))
-        drawRoundStart(name,"ПОБЕДИТЬБ",startRound,Color(color.r,color.g,color.b))
+        drawRoundMode("Team Deathmatch",tdm.Name,startRound,Color(155,155,255))
+        drawRoundStart(name,"Задача - проиграть наоборот",startRound,Color(color.r,color.g,color.b))
         return
     end
 end

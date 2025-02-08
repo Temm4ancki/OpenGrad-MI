@@ -1,0 +1,5 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "Models/WICHacks/BREEN_HAND_black"
+        "$halflambert" 1
+}

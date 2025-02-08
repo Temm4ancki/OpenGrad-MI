@@ -1,0 +1,5 @@
+// envmaptint_fix
+"VertexLitGeneric"
+{
+	"$baseTexture" "Models/addons/sibres/rebel/sib_povyazka"
+}

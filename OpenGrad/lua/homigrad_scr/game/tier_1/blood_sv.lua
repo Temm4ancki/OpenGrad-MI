@@ -66,7 +66,11 @@ hook.Add("Player Think","homigrad-blood",function(ply,time)
 
 	local ent = IsValid(ply.fakeragdoll) and ply.fakeragdoll or ply
 
-	local neck = ent:GetBoneMatrix(ent:LookupBone("ValveBiped.Bip01_Neck1")):GetTranslation()
+	if ent:GetBoneMatrix(ent:LookupBone("ValveBiped.Bip01_Neck1")) == nil then
+		local neck = ent:GetBoneMatrix(ent:LookupBone("ValveBiped.Bip01_Head")):GetTranslation()
+	else
+		local neck = ent:GetBoneMatrix(ent:LookupBone("ValveBiped.Bip01_Neck1")):GetTranslation()
+	end
 	
 	if ply.Organs["artery"] == 0 and (ply.arteriaThink or 0) < time and ply.Blood > 0 then
 		ply.arteriaThink = time + 0.1
