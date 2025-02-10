@@ -1,0 +1,16 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models\bloocobalt\l4d\eagle/backpack_assault2"
+      	"$bumpmap" "models\bloocobalt\l4d\eagle/backpack_assault_n"
+
+	"$phong" "1"						
+	"$phongfresnelranges"	"[5 7 8]"
+	"$phongtint" 			"[0.77 0.8 1.1]"
+	"$PhongAlbedoTint" "1"
+
+	"$envmaptint" "[ 0.005 0.005 0.005]"				
+ 	"$envmapFresnel" "5 7 8"
+	$normalmapalphaenvmapmask 1
+	"$blendTintByBaseAlpha"	"1"
+	$nocull 1
+}

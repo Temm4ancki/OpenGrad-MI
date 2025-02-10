@@ -1,0 +1,16 @@
+VertexLitGeneric
+{
+	$basetexture "models/betametrocat/fur"
+	$bumpmap	"models/betametrocat/fur_n"
+
+	$envmap "env_cubemap"
+	$envmaptint "[0.11 0.11 0.11]"
+	$envmapcontrast 0.22
+	$envmapfresnel 1
+
+	$phong 1
+	$phongfresnelranges "[0.1 0.55 1]"
+	$phongtint "[0.75 0.75 0.80]"
+	$phongboost 1
+	$phongexponent 5
+}

@@ -1,0 +1,23 @@
+"VertexLitGeneric"
+{
+	"$basetexture" 	"models\bloocobalt\l4d\zuzu3\chemmask_bm"
+	"$bumpmap" 		"models\bloocobalt\l4d\zuzu\chemmask_nm"
+	"$halflambert" 1
+	$selfillum 1
+	$selfillummask "models\bloocobalt\l4d\zuzu3\aegis"
+	"$phong" 1
+	"$phongboost" "0.5"
+	"$phongalbedotint" "1"
+	"$phongexponent"	"5"
+	"$phongtint"	"[0.05 0.05 0.05]"
+ 	"Proxies"
+    {
+        "Sine"
+        {
+            "resultVar" "$selfillumtint"
+            "sineperiod" 0.1
+            "sinemin" 0.90
+            "sinemax" 1.0
+        }
+    }
+}

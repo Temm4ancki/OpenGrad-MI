@@ -5,6 +5,8 @@ hl2dm.Name = "Half-Life 2: Deathmatch"
 local models = {}
 for i = 1,9 do table.insert(models,"models/player/group03/male_0" .. i .. ".mdl") end
 
+
+
 hl2dm.red = {"Повстанец",Color(125,95,60),
 	weapons = {"weapon_hands","med_band_big","med_band_small","weapon_radio"},
 	main_weapon = {"weapon_sar2","weapon_spas12","weapon_akm","weapon_mp7"},
@@ -17,7 +19,8 @@ hl2dm.blue = {"Комбайн",Color(75,75,125),
 	weapons = {"weapon_hands"},
 	main_weapon = {"weapon_sar2","weapon_mp7"},
 	secondary_weapon = {"weapon_hk_usp"},
-	models = {"models/player/combine_soldier.mdl"}
+	--models = models_combine
+	models = ""
 }
 
 hl2dm.teamEncoder = {

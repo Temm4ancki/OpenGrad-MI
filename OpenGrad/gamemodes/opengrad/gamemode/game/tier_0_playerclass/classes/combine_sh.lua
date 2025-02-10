@@ -4,6 +4,13 @@ CLASS.main_weapons = {
     "weapon_sar2","weapon_spas12","weapon_mp7"
 }
 
+local models_combine = {
+	"models/Notifier/KomBine/TACTI_SOLDAT_PM.mdl",
+	"models/Notifier/KomBine/TACTI_SUPE_PM.mdl",
+	"models/Notifier/KomBine/TACTI_PRISO_PM.mdl",
+    "models/metrocat_beta.mdl" -- yummers ещкереее
+}
+
 function CLASS.Off(self)
     if CLIENT then return end
 
@@ -14,7 +21,7 @@ end
 function CLASS.On(self)
     if CLIENT then return end
 
-    self:SetModel("models/player/combine_soldier.mdl")
+    self:SetModel(models_combine[math.random(#models_combine)])
     self:SetWalkSpeed(250)
     self:SetRunSpeed(350)
 
