@@ -32,16 +32,17 @@ function schoolshoot.HUDPaint_RoundLeft(white2,time)
                 snd:SetVolume( 0.3 )
             end)
         end
+		
         lply:ScreenFade(SCREENFADE.IN,Color(0,0,0,255),0.5,0.5)
 
-        draw.DrawText( "Вы " .. name, "HomigradFontBig", ScrW() / 2, ScrH() / 2, Color( color.r,color.g,color.b,math.Clamp(startRound - 0.5,0,1) * 255 ), TEXT_ALIGN_CENTER )
-        draw.DrawText( "Активный стрелок", "HomigradFontBig", ScrW() / 2, ScrH() / 8, Color( 155,55,55,math.Clamp(startRound - 0.5,0,1) * 255 ), TEXT_ALIGN_CENTER )
+		drawRoundMode("Player vs Everyone",schoolshoot.Name,startRound,Color(155,155,155))
 
-        if lply:Team() == 1 then
-            draw.DrawText( "Ваша задача убить всех до прибытия Спецназа", "HomigradFontBig", ScrW() / 2, ScrH() / 1.2, Color( 155,55,55,math.Clamp(startRound - 0.5,0,1) * 255 ), TEXT_ALIGN_CENTER )
-        else
-            draw.DrawText( "В здании активный стрелок, вам нужно выжить и сбежать по приезду Спецназа", "HomigradFontBig", ScrW() / 2, ScrH() / 1.2, Color( 55,155,55,math.Clamp(startRound - 0.5,0,1) * 255 ), TEXT_ALIGN_CENTER )
+		if lply:Team() == 1 then
+        	drawRoundStart(name,"Убей их всех.",startRound,Color(color.r,color.g,color.b))
+		else
+        	drawRoundStart(name,"В здании стрелок, сбеги по приезду спецназа.",startRound,Color(color.r,color.g,color.b))
 		end
+
         return
     end
 

@@ -41,26 +41,24 @@ function schoolshoot.StartRoundSV(data)
 end
 
 function schoolshoot.RoundEndCheck()
-    if roundTimeStart + roundTime < CurTime() then
-		if not schoolshoot.police then
-			schoolshoot.police = true
-			PrintMessage(3,"Спецназ приехал.")
+    if roundTimeStart + roundTime < CurTime() and not schoolshoot.police then
+		schoolshoot.police = true
+		PrintMessage(3,"Спецназ приехал.")
 
-			local aviable = ReadDataMap("spawnpointsct")
+		local aviable = ReadDataMap("spawnpointsct")
 
-			for i,ply in pairs(tdm.GetListMul(player.GetAll(),1,function(ply) return not ply:Alive() and not ply.roleT and ply:Team() ~= 1002 end),1) do
-				ply:Spawn()
+		for i,ply in pairs(tdm.GetListMul(player.GetAll(),1,function(ply) return not ply:Alive() and not ply.roleT and ply:Team() ~= 1002 end),1) do
+			ply:Spawn()
 
-                ply:SetPlayerClass("contr")
+			ply:SetPlayerClass("contr")
 
-				ply:SetTeam(3)
-				
-                --local pos,key = table.Random(aviable)
-                --if not pos then continue end
-                --if #aviable > 1 then table.remove(aviable,key) end
+			ply:SetTeam(3)
+			
+			--local pos,key = table.Random(aviable)
+			--if not pos then continue end
+			--if #aviable > 1 then table.remove(aviable,key) end
 
-                --ply:SetPos(pos)
-			end
+			--ply:SetPos(pos)
 		end
 	end
 

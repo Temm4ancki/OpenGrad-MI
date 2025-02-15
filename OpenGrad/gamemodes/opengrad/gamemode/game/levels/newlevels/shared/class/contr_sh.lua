@@ -196,14 +196,12 @@ function CLASS:EventPoint(name,pos,radius,a1,a2)
 		end)
 	end
 
-	if name == "hitgroup killed" and a1 ~= self and a1.isContr then
-		if a2.LastHitGroup == HITGROUP_HEAD then
-			local hp = self:Health()
-			timer.Simple(math.Rand(0.75,1.75),function()
-				if not live(self,hp,self:Health()) then return end
-				EmitSound(self,ebal("bot/good_shot",2))
-			end)
-		end
+	if name == "hitgroup killed" and a1 ~= self and a1.isContr and a2.LastHitGroup == HITGROUP_HEAD then
+		local hp = self:Health()
+		timer.Simple(math.Rand(0.75,1.75),function()
+			if not live(self,hp,self:Health()) then return end
+			EmitSound(self,ebal("bot/good_shot",2))
+		end)
 	end
 end
 

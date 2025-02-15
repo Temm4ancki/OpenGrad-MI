@@ -31,28 +31,26 @@ end)
 hook.Add("Player Think","Looting",function(ply)
 	local key = ply:KeyDown(IN_USE)
 
-	if not ply.fake and ply:Alive() and ply:KeyDown(IN_ATTACK2) then
-		if ply.okeloot ~= key and key then
-			local tr = {}
-			tr.start = ply:GetAttachment(ply:LookupAttachment("eyes")).Pos
-			tr.endpos = tr.start + ply:EyeAngles():Forward() * 64
-			tr.filter = ply
-			local tracea = util.TraceLine(tr)
-			local hitEnt = tracea.Entity
+	if not ply.fake and ply:Alive() and ply:KeyDown(IN_ATTACK2) and ply.okeloot ~= key and key then
+		local tr = {}
+		tr.start = ply:GetAttachment(ply:LookupAttachment("eyes")).Pos
+		tr.endpos = tr.start + ply:EyeAngles():Forward() * 64
+		tr.filter = ply
+		local tracea = util.TraceLine(tr)
+		local hitEnt = tracea.Entity
 
-			if not IsValid(hitEnt) then return end
-			if IsValid(RagdollOwner(hitEnt)) then hitEnt = RagdollOwner(hitEnt) end
-			if IsValid(hitEnt) and hitEnt.IsJModArmor then hitEnt = hitEnt.Owner end
-			if not IsValid(hitEnt) then return end
-			if hitEnt:IsPlayer() and hitEnt:Alive() and not hitEnt.fake then return end
-			if not hitEnt.Info then return end
-			
-			hitEnt.UsersInventory = hitEnt.UsersInventory or {}
-			hitEnt.UsersInventory[ply] = true
+		if not IsValid(hitEnt) then return end
+		if IsValid(RagdollOwner(hitEnt)) then hitEnt = RagdollOwner(hitEnt) end
+		if IsValid(hitEnt) and hitEnt.IsJModArmor then hitEnt = hitEnt.Owner end
+		if not IsValid(hitEnt) then return end
+		if hitEnt:IsPlayer() and hitEnt:Alive() and not hitEnt.fake then return end
+		if not hitEnt.Info then return end
+		
+		hitEnt.UsersInventory = hitEnt.UsersInventory or {}
+		hitEnt.UsersInventory[ply] = true
 
-			send(ply,hitEnt)
-			hitEnt:CallOnRemove("fuckoff",function() send(nil,hitEnt,true) end)
-		end
+		send(ply,hitEnt)
+		hitEnt:CallOnRemove("fuckoff",function() send(nil,hitEnt,true) end)
 	end
 
 	ply.okeloot = key

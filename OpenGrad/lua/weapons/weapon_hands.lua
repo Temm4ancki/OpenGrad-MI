@@ -339,6 +339,9 @@ function SWEP:ApplyForce()
 						self:GetOwner():ChatPrint(ply.Otrub and "В отрубе" or "Реакция присутствует")
 					end
 				end
+			elseif self:GetOwner():KeyPressed(IN_ATTACK) then
+				self:GetOwner():ChatPrint("ГРАБ")
+				mul = mul * 30
 			end
 		end
 		vec:Normalize()
@@ -360,7 +363,9 @@ function SWEP:ApplyForce()
 					end
 				else
 					if not ply and self.CarryEnt:GetClass() == "prop_ragdoll" then
-						if self.firstTimePrint then self:GetOwner():PrintMessage(HUD_PRINTTALK,"Вы начинаете проводить СЛР... (держите ЛКМ зажатым до появления пульса)") end
+						if self.firstTimePrint then 
+							self:GetOwner():PrintMessage(HUD_PRINTTALK,"Вы начинаете проводить СЛР... (держите ЛКМ зажатым до появления пульса)") 
+						end
 						self.firstTimePrint = false
 						if (self.CPRThink or 0) < CurTime() then
 							self.CPRThink = CurTime() + 1

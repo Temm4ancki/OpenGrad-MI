@@ -335,4 +335,3 @@ net.Receive("lasertgg",function(len,ply)
 	net.Broadcast()
 end)
 
-

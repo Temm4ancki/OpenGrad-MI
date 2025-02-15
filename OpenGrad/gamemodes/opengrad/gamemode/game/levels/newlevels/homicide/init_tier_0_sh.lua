@@ -159,7 +159,7 @@ function homicide.HUDPaint_RoundLeft(white2)
             if lply.roleT then 
                 drawRoundStart("Убийца", "Ваша задача подебить всех", startRound, 2)
             elseif lply.roleCT then 
-                drawRoundStart("Выживший искатель", "У вас есть самопал", startRound, 1)
+                drawRoundStart("Выживший искатель", "У вас есть дробовик", startRound, 1)
             else 
                 drawRoundStart("Выживший", "Найдите убийцу", startRound, 3)
         end end

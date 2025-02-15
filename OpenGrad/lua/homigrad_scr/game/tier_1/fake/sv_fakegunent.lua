@@ -96,7 +96,7 @@ function SpawnWeapon(ply,clip1)
 
 			local vec1=rag:GetPhysicsObjectNum(rag:TranslateBoneToPhysBone(rag:LookupBone( "ValveBiped.Bip01_R_Hand" ))):GetPos()
 			local vec2 = vecZero
-			vec2:Set((Vectors[ply.curweapon] or Vector(0,0,0)))
+			vec2:Set(Vectors[ply.curweapon] or Vector(0,0,0))
 
 			vec2:Rotate(rag:GetPhysicsObjectNum(rag:TranslateBoneToPhysBone(rag:LookupBone( "ValveBiped.Bip01_R_Hand" ))):GetAngles())
 			ply.wep:SetPos(vec1+vec2)

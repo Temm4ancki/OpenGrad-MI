@@ -245,9 +245,7 @@ function homicide.StartRoundSV()
         local ply = table.Random(players)
         table.RemoveByValue(players,ply)
 
-        if homicide.roundType <= 2 then
-            makeCT(ply)
-        end
+        makeCT(ply)
     end
 
     timer.Simple(0,function()

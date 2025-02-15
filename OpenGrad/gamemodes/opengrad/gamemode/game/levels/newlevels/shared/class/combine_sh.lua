@@ -42,7 +42,11 @@ end
 function CLASS.PlayerFootstep(self,pos,foot,name,volume,filter)
     if SERVER then return true end
 
-    sound.Play(Sound("npc/combine_soldier/gear" .. math.random(1,6) .. ".wav"),pos,75,100,1)
+    if self:GetModel() == "models/metrocat_beta.mdl" then
+        sound.Play(Sound("npc/metropolice/gear".. math.random(1,6) .. ".wav"),pos,75,100,1)
+    else
+        sound.Play(Sound("npc/combine_soldier/gear" .. math.random(1,6) .. ".wav"),pos,75,100,1)
+    end
     sound.Play(name,pos,75,100,volume)
 
 	return true
@@ -73,7 +77,12 @@ end
 
 function CLASS.PlayerDeath(self)
     sound.Play(Sound("npc/overwatch/radiovoice/die" .. math.random(1,3) .. ".wav"),self:GetPos())
-    --self:EmitSound("npc/combine_soldier/die" .. math.random(1,3) .. ".wav")
+    
+    if self:GetModel() == "models/metrocat_beta.mdl" then
+        sound.Play(Sound("npc/metropolice/die"..math.random(1,4)..".wav"),self:GetPos())
+    else
+        sound.Play(Sound("npc/combine_soldier/die"..math.random(1,3)..".wav"),self:GetPos())
+    end
 
     for i,ply in RandomPairs(getList(self)) do
         ply:EmitSound(Sound("npc/combine_soldier/vo/ripcordripcord.wav"))
@@ -84,14 +93,13 @@ function CLASS.PlayerDeath(self)
     self:SetPlayerClass()
 end
 
-function CLASS.Think(self)
-end
+function CLASS.Think(self)end
 
 function CLASS.PlayerStartVoice(self)
     for i,ply in pairs(player.GetAll()) do
         if not ply.isCombine then continue end
 
-        ply:EmitSound("npc/combine_soldier/vo/on" .. math.random(1,3) .. ".wav")
+        ply:EmitSound("npc/combine_soldier/vo/on" .. math.random(1,2) .. ".wav")
     end
 end
 

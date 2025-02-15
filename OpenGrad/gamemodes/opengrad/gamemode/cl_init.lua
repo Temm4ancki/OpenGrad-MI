@@ -123,7 +123,7 @@ hook.Add("HUDPaint","spectate",function()
 		if keyOld ~= key and key then
 			SpectateHideNick = not SpectateHideNick
 
-			--chat.AddText("Ники игроков: " .. tostring(not SpectateHideNick))
+			chat.AddText("Ники игроков: " .. tostring(not SpectateHideNick))
 		end
 		keyOld = key
 
@@ -396,57 +396,9 @@ hook.Add("OnEntityCreated", "homigrad-colorragdolls", function(ent)
 	end
 end)
 
-local function GetClipForCurrentWeapon( ply )
-	if ( !IsValid( ply ) ) then return -1 end
-
-	local wep = ply:GetActiveWeapon()
-	if ( !IsValid( wep ) ) then return -1 end
-
-	return wep:Clip1(), wep:GetMaxClip1(), ply:GetAmmoCount( wep:GetPrimaryAmmoType() )
-end
-
 hook.Add("HUDShouldDraw","HideHUD_ammo",function(name)
     if name == "CHudAmmo" then return false end
 end)
-
-local clipcolor = color_white
-local clipcolorlow = Color(247, 178, 40, 255)
-local clipcolorempty = Color(247, 40, 40, 255)
-local colorgray = Color(200, 200, 200)
-local shadow = color_black
-
--- hook.Add("HUDPaint","homigrad-fancyammo",function()
--- 	local ply = LocalPlayer()
--- 	local clip, maxclip, ammo = GetClipForCurrentWeapon(ply)
--- 	local clipstring = tostring(clip)
--- 	local sw, sh = ScrW(), ScrH()
--- 	if clip != -1 and maxclip > 0 then
--- 		if oldclip != clip then
--- 			randomx = math.random(0, 10)
--- 			randomy = math.random(0, 10)
--- 			timer.Simple(0.15, function()
--- 				oldclip = clip
--- 			end)
--- 		else
--- 			randomx = 0
--- 			randomy = 0
--- 		end
-
--- 		if clip == 0 then
--- 			clipcolor = clipcolorempty
--- 		elseif maxclip / clip >= 6 or clip == 1 and maxclip != 1 then
--- 			clipcolor = clipcolorlow
--- 		else
--- 			clipcolor = color_white
--- 		end
-
--- 		draw.SimpleText("/ " .. ammo, "HomigradFontSmall", sw * 0.9 + 2 + #clipstring * sw * 0.02, sh * 0.97 + 2, shadow)
--- 		draw.SimpleText("/ " .. ammo, "HomigradFontSmall", sw * 0.9 + #clipstring * sw * 0.02, sh * 0.97, colorgray)
-
--- 		draw.SimpleText(clip, "HomigradFontLarge", sw * 0.89 + 5 + randomx, sh * 0.92 + 5 + randomy, shadow)
--- 		draw.SimpleText(clip, "HomigradFontLarge", sw * 0.89 + randomx, sh * 0.92 + randomy, clipcolor)
--- 	end
--- end)
 
 net.Receive("remove_jmod_effects",function(len)
 	LocalPlayer().EZvisionBlur = 0
@@ -464,14 +416,6 @@ concommand.Add("hg_getentity",function()
 	print(ent:GetModel())
 	print(ent:GetClass())
 end)
-
-concommand.Add("hg_prekols", function(ply,cmd,args)
-	--if not ply:IsAdmin() then return end
-	ply:PrintMessage(HUD_PRINTTALK,"⠀⠀⠀⠀⠀⠀⠀⠀⠀⡔⠠⢤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n⡴⠒⠒⠒⠒⠒⠶⠦⠄⢹⣄⠀⠀⠑⠄⣀⡠⠤⠴⠒⠒⠒⠀⠀\n⢇⠀⠀⠀⠀⠀⠀⠐⠋⠀⠒⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠")
-	ply:PrintMessage(HUD_PRINTTALK,"⠈⢆⠀⠀⠀⠀⡤⠤⣄⠀⠀⠀⠀⡤⠤⢄⠀⠀⠀⠀⠀⣠⠃⠀\n⠀⡀⠑⢄⡀⡜⠀⡜⠉⡆⠀⠀⠀⡎⠙⡄⠳⡀⢀⣀⣜⠁⠀⠀⠀\n⠀⠹⣍⠑⠀⡇⠀⢣⣰⠁⠀⠀⠀⠱⣠⠃⠀⡇⠁⣠⠞")
-	ply:PrintMessage(HUD_PRINTTALK,"⠀⠀⠀⡇⠔⣦⠀⠀⠀⠈⣉⣀⡀⠀⠀⠰⠶⠖⠘⢧⠀⠀⠀⠀\n⠀⠀⠰⠤⠐⠤⣀⡀⠀⠈⠑⣄⡁⠀⡀⣀⠴⠒⠀⠒⠃⠀⠀⠀\n⠀⠀⠀⠀⠀⠀⠘⢯⡉⠁⠀⠀⠀⠀⠉⢆")
-	ply:PrintMessage(HUD_PRINTTALK,"⠀⠀⠀⠀⠀⠀⢀⣞⡄⠀⠀⠀⠀⠀⠀⠈⡆⠀⠀⠀⠀⠀⠀⠀")
-end,nil,"Bruh wtf")
 
 gameevent.Listen("player_spawn")
 hook.Add("player_spawn","gg",function(data)
@@ -493,34 +437,16 @@ hook.Add( "HUDShouldDraw", "RemoveThatShit", function( name )
     end
 end )
 
-local f4Panel
+concommand.Add("hg_urec", function()
+	lply = LocalPlayer()
+	lply:ScreenFade(SCREENFADE.IN,Color(0,0,0,255),3,2)
+	surface.DrawText("Спустя 40 лет.","HomigradFontLarge",ScrW(),ScrH()-50,Color( 155,55,55,math.Clamp(300 - 0.5,0,1) * 255 ),TEXT_ALIGN_CENTER)
+end,nil,"Bruh wtf")
 
-local function CreateF4Panel()
-    if IsValid(f4Panel) then return end
-
-    -- Main frame
-    f4Panel = vgui.Create("DFrame")
-    f4Panel:SetSize(600, 400)
-    f4Panel:Center()
-    f4Panel:SetTitle("F4 Menu")
-    f4Panel:MakePopup()
-    f4Panel:SetDraggable(true)
-    f4Panel:ShowCloseButton(true)
-
-end
-
-concommand.Add("hg_gamemodes", function()
-	if IsValid(f4Panel) then
-		f4Panel:SetVisible(not f4Panel:IsVisible())
-		if f4Panel:IsVisible() then
-			f4Panel:MakePopup()
-		end
-	else
-		CreateF4Panel()
-	end
-end)
-
-
-
-
-
+concommand.Add("hg_prekols", function(ply)
+	--if not ply:IsAdmin() then return end
+	ply:PrintMessage(HUD_PRINTTALK,"⠀⠀⠀⠀⠀⠀⠀⠀⠀⡔⠠⢤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n⡴⠒⠒⠒⠒⠒⠶⠦⠄⢹⣄⠀⠀⠑⠄⣀⡠⠤⠴⠒⠒⠒⠀⠀\n⢇⠀⠀⠀⠀⠀⠀⠐⠋⠀⠒⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠")
+	ply:PrintMessage(HUD_PRINTTALK,"⠈⢆⠀⠀⠀⠀⡤⠤⣄⠀⠀⠀⠀⡤⠤⢄⠀⠀⠀⠀⠀⣠⠃⠀\n⠀⡀⠑⢄⡀⡜⠀⡜⠉⡆⠀⠀⠀⡎⠙⡄⠳⡀⢀⣀⣜⠁⠀⠀⠀\n⠀⠹⣍⠑⠀⡇⠀⢣⣰⠁⠀⠀⠀⠱⣠⠃⠀⡇⠁⣠⠞")
+	ply:PrintMessage(HUD_PRINTTALK,"⠀⠀⠀⡇⠔⣦⠀⠀⠀⠈⣉⣀⡀⠀⠀⠰⠶⠖⠘⢧⠀⠀⠀⠀\n⠀⠀⠰⠤⠐⠤⣀⡀⠀⠈⠑⣄⡁⠀⡀⣀⠴⠒⠀⠒⠃⠀⠀⠀\n⠀⠀⠀⠀⠀⠀⠘⢯⡉⠁⠀⠀⠀⠀⠉⢆")
+	ply:PrintMessage(HUD_PRINTTALK,"⠀⠀⠀⠀⠀⠀⢀⣞⡄⠀⠀⠀⠀⠀⠀⠈⡆⠀⠀⠀⠀⠀⠀⠀")
+end,nil,"Bruh wtf")

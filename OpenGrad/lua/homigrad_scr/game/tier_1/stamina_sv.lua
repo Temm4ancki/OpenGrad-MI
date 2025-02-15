@@ -51,7 +51,7 @@ hook.Add("Player Think","saystamina",function(ply,time)
 	end
 
 	if ply.stamina < 100 and not ply:IsSprinting() and ply:WaterLevel() <= 2  then
-		ply.stamina = ply.stamina + 3 + (ply.hungryregen / 2)
+		ply.stamina = ply.stamina + 3
 		ply:SetNWInt("stamina",ply.stamina)
 	end
 
@@ -102,23 +102,19 @@ end)
 
 hook.Add("PlayerFootstep","CustomFootstep1",function(ply,pos,foot,sound,volume,rf)
 	if ply:IsSprinting() then
-		if foot == 0 then
-			if ply.LeftLeg < 1 then
-				ply.pain = ply.pain + 25
-				if ply.firstTimeNotifiedLeftLeg then
-					ply:ChatPrint("Вы чувствуете невыносимую боль от бега на сломанной левой ноге. ")
-					ply.firstTimeNotifiedLeftLeg = false
-				end
+		if foot == 0 and ply.LeftLeg <1 then
+			ply.pain = ply.pain + 25
+			if ply.firstTimeNotifiedLeftLeg then
+				ply:ChatPrint("Вы чувствуете невыносимую боль от бега на сломанной левой ноге. ")
+				ply.firstTimeNotifiedLeftLeg = false
 			end
 		end
 
-		if foot == 1 then
-			if ply.RightLeg < 1 then
-				ply.pain = ply.pain + 25
-				if ply.firstTimeNotifiedRightLeg then
-					ply:ChatPrint("Вы чувствуете невыносимую боль от бега на сломанной правой ноге. ")
-					ply.firstTimeNotifiedRightLeg = false
-				end
+		if foot == 1 and ply.RightLeg<1 then
+			ply.pain = ply.pain + 25
+			if ply.firstTimeNotifiedRightLeg then
+				ply:ChatPrint("Вы чувствуете невыносимую боль от бега на сломанной правой ноге. ")
+				ply.firstTimeNotifiedRightLeg = false
 			end
 		end
 	end
