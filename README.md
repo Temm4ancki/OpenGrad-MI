@@ -19,7 +19,7 @@ TODO:
 - Fix food
 - Rebuild content to remove garbage
 - Russian Roulette button in C menu
-- Fix 
+- Delete garbage Jmod files (we need only explosions and armor) 
 - Maybe add toolgun points spawn (like a new addon)
 - Fix telephone (????)
 - Add more gaymodes (MOOORREEEE)
