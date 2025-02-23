@@ -109,7 +109,6 @@ function SWEP:PrimaryAttack()
 	self:GetOwner():SetAnimation(PLAYER_ATTACK1)
 
 	if(SERVER)then
-		self:GetOwner().hungryregen = self:GetOwner().hungryregen + self.HungryAmt or 1
 		self:GetOwner().adrenaline = self:GetOwner().adrenaline + self.AdrenalineAmt or 0
 		self:GetOwner().stamina = self:GetOwner().stamina + self.StaminaAmt or 10
 		local healsound = self.Drink and ("snd_jack_hmcd_drink"..math.random(1,3)..".wav") or ("snd_jack_hmcd_eat"..math.random(1,4)..".wav")

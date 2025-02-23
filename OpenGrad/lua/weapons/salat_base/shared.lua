@@ -67,7 +67,8 @@ SWEP.Suppressed = false
 local hg_show_hitposmuzzle = CreateClientConVar("hg_show_hitposmuzzle","0",false,false,"huy",0,1)
 
 hook.Add("HUDPaint","admin_hitpos",function()
-	if hg_show_hitposmuzzle:GetBool() and LocalPlayer():IsAdmin() then
+	--if hg_show_hitposmuzzle:GetBool() and LocalPlayer():IsAdmin() then
+		
 		local wep = LocalPlayer():GetActiveWeapon()
 		if not IsValid(wep) then return end
 
@@ -76,6 +77,8 @@ hook.Add("HUDPaint","admin_hitpos",function()
 
 		local att = wep:GetAttachment(att)
 		if not att then return end
+
+		if not wep.IsScope or wep:IsScope() then return end
 
 		local shootOrigin = att.Pos
 		local vec = vecZero
@@ -91,9 +94,9 @@ hook.Add("HUDPaint","admin_hitpos",function()
 		local tr = util.QuickTrace(shootOrigin,shootAngles:Forward() * 1000,LocalPlayer())
 		local hit = tr.HitPos:ToScreen()
 		
-		surface.SetDrawColor( 255, 255, 255, 255 )
+		surface.SetDrawColor( 255, 255, 255, 150 )
 		surface.DrawRect(hit.x - 2.5,hit.y - 2.5,5,5)
-	end
+	--end
 end)
 
 function SWEP:DrawHUD()

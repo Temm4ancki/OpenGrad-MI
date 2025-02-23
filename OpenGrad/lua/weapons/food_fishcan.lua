@@ -119,7 +119,7 @@ function SWEP:PrimaryAttack()
 	self:GetOwner():SetAnimation(PLAYER_ATTACK1)
 
 	if(SERVER)then
-		self:GetOwner().hungryregen = self:GetOwner().hungryregen + 2
+		self:GetOwner().stamina = self:GetOwner().stamina + 10
 		local healsound = "snd_jack_hmcd_eat"..math.random(1,4)..".wav"
 		--sound.Play(healsound, self:GetPos(),75,100,0.5)
 		self:EmitSound(healsound)
