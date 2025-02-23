@@ -365,7 +365,7 @@ net.Receive("JMod_LuaConfigSync", function(dataLength)
 	JMod.Config.WeaponSwayMult = Payload.WeaponSwayMult
 
 	if tobool(net.ReadBit()) then
-		for k, v in player.Iterator() do
+		for k, v in pairs(player.GetAll()) do
 			JMod.CopyArmorTableToPlayer(v)
 		end
 	end

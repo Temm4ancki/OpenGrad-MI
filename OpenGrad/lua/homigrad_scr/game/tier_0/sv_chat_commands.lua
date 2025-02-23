@@ -227,7 +227,7 @@ end
 
 local function getDonaters()
 	local list = {}
-	for i,ply in player.Iterator() do
+	for i,ply in pairs(player.GetAll()) do
 		local steamID = ply:SteamID()
 		local group = ULib.ucl.users[steamID]
 		if group and validUserGroup[group.group] then list[#list + 1] = ply end
@@ -293,7 +293,7 @@ function player.GetListByName(name)
 		return player.GetAll()
 	end
 
-	for i,ply in player.Iterator() do
+	for i,ply in pairs(player.GetAll()) do
 		if string.find(string.lower(ply:Name()),string.lower(name)) then list[#list + 1] = ply end
 	end
 

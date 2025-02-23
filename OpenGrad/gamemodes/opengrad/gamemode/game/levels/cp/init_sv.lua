@@ -91,7 +91,7 @@ function cp.Think()
     
         cp.SpawnVehicle()
     
-        for _, v in player.Iterator() do
+        for _, v in pairs(player.GetAll()) do
             local players = {}
             if !v:Alive() and v:Team() != 1002 then
                 v:Spawn()
@@ -215,7 +215,7 @@ end
 function cp.EndRound(winner)
 	print("End round, win '" .. tostring(winner) .. "'")
 
-	for _, ply in player.Iterator() do
+	for _, ply in ipairs(player.GetAll()) do
 		if !winner then ply:ChatPrint("Победила дружба") continue end
 		if winner == ply:Team() then ply:ChatPrint("Победа") end
 		if winner ~= ply:Team() then ply:ChatPrint("Поражение") end

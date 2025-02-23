@@ -123,7 +123,7 @@ end
 function GM:PlayerDeathThink(ply)
 	local tbl = {}
 
-	for _, ply in player.Iterator() do
+	for _, ply in ipairs(player.GetAll()) do
 		if not ply:Alive() then continue end
 
 		tbl[#tbl + 1] = ply
@@ -299,7 +299,7 @@ resource.AddWorkshop("864612139") --remove red death screen
 COMMANDS.roll = {function(ply,args)
 	local r = math.random(1,tonumber(args[1]))
 
-	for i,ply2 in player.Iterator() do
+	for i,ply2 in pairs(player.GetAll()) do
 		if GAMEMODE:PlayerCanSeePlayersChat("gg",false,ply2,ply) then
 			PrintMessageChat(ply2,r)
 		end
@@ -321,7 +321,7 @@ function GM:PlayerStartVoice(ply)
 end
 
 COMMANDS.retry = {function(ply,args)
-	for i,ply in player.Iterator() do
+	for i,ply in pairs(player.GetAll()) do
 		ply:ConCommand("retry")
 	end
 end,2}

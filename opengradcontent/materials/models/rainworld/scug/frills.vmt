@@ -1,6 +1,0 @@
-VertexLitGeneric
-{
-	$basetexture "models/rainworld/scug/frills"
-	$surfaceprop Flesh
-	$translucent 1
-}

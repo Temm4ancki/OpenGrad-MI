@@ -8,7 +8,7 @@ hook.Add("PlayerSpawn","homigrad-pain",function(ply)
 	ply.otravlen2 = false
 end)
 
---[[for i,ply in player.Iterator() do
+--[[for i,ply in pairs(player.GetAll()) do
 	--hook.Run("PlayerInitialSpawn",ply)
 end]]--
 

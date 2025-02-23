@@ -4,7 +4,7 @@ SWEP.Base = "medkit"
 
 SWEP.PrintName = "Мега Аптечка"
 SWEP.Author = "First AID"
-SWEP.Instructions = "это короче как аптечка но жесть крутая" -- Че обманываешь все юзается
+SWEP.Instructions = "на себя не юзается"
 
 SWEP.Category = "Медицина"
 SWEP.Spawnable = true

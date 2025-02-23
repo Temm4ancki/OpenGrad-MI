@@ -1,6 +1,0 @@
-"VertexLitGeneric"
-{
-	"$baseTexture" "models\bloocobalt\l4d\zuzu/mouth"
-	"$halflambert" 1
-	"$nocull" 1
-}

@@ -81,7 +81,7 @@ function homicide.StartRound(data)
     end
 
     if CLIENT then
-        for i,ply in player.Iterator() do
+        for i,ply in pairs(player.GetAll()) do
             ply.roleT = false
             ply.roleCT = false
             ply.countKick = 0
@@ -240,7 +240,7 @@ function homicide.HUDPaint_RoundLeft(white2)
 
     local lply_pos = lply:GetPos()
 
-    for i,ply in player.Iterator() do
+    for i,ply in pairs(player.GetAll()) do
         local color = ply.roleT and red or ply.roleCT and blue
         if not color or ply == lply or not ply:Alive() then continue end
 

@@ -997,7 +997,7 @@ hook.Add("AdjustMouseSensitivity", "staminasensivity", function()
 end)
 
 hook.Add("Think","mouthanim",function()
-	for i, ply in player.Iterator() do
+	for i, ply in pairs(player.GetAll()) do
 		local ent = IsValid(ply:GetNWEntity("Ragdoll")) and ply:GetNWEntity("Ragdoll") or ply
 
 		local flexes = {

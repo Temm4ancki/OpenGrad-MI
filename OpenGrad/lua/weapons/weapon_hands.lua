@@ -17,7 +17,6 @@
 -- ⠀⠀⠀⠀⠀⠀⠀⠀⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡆⠀⠀⠀⠀⠀
 --
 -- you like working on govno-code, don't you?
--- yes i do :3
 
 
 if SERVER then
@@ -304,76 +303,7 @@ function SWEP:FreezeMovement()
 	return false
 end
 
-function SWEP:ApplyForce() --!! Функция спизженная из джимода :troll:
-	local target = self.Owner:GetAimVector() * self.CarryDist + self.Owner:GetShootPos() + Vector(0, 0, 5)
-	local phys = self.CarryEnt:GetPhysicsObjectNum(self.CarryBone)
-
-	if IsValid(phys) then
-		local TargetPos = phys:GetPos()
-
-		if self.CarryPos then
-			TargetPos = self.CarryEnt:LocalToWorld(self.CarryPos)
-		end
-
-		local vec = target - TargetPos
-		local len, mul = vec:Length(), self.CarryEnt:GetPhysicsObject():GetMass()
-
-		local StandingEnt = self.Owner:GetGroundEntity()
-		local StandingOn = IsValid(StandingEnt) and ((StandingEnt == self.CarryEnt) or (StandingEnt:IsConstrained() and table.HasValue(constraint.GetAllConstrainedEntities(StandingEnt), self.CarryEnt)))
-		local PlyIn = (self.CarryEnt == self.Owner:GetVehicle())
-		if len > self.ReachDistance or StandingOn or PlyIn then
-			self:SetCarrying()
-
-			return
-		end
-
-		if self.CarryEnt:GetClass() == "prop_ragdoll" then
-			mul = mul * 10
-			self:GetOwner():ChatPrint("trogayem...") -- Это мне проверить запускается эта функция каждый тик или нет а то вдруг граб не пашет
-			-- Я кстати щяс ниче не проверяю у меня инета нет если че ну это самое
-			local ply = RagdollOwner(self.CarryEnt)
-			if self:GetOwner():KeyPressed( IN_RELOAD ) then
-				if not ply then
-					self:GetOwner():ChatPrint("У него нет пульса.")
-					self:GetOwner():ChatPrint("ЗДОХ")
-				else
-					if ply.heartstop then
-						self:GetOwner():ChatPrint("Нет пульса.")
-						self:GetOwner():ChatPrint("ПОЧТИ ЗДОХ")
-					else
-						self:GetOwner():ChatPrint(ply.nextPulse < 0.9 and "Сильный пульс" or (ply.nextPulse <= 1.5 and "Нормальный пульс") or (ply.nextPulse < 2 and "Слабый пульс") or (ply.nextPulse >= 2 and "Еле ощущаемый пульс."))
-						self:GetOwner():ChatPrint(ply.Otrub and "В отрубе" or "Реакция присутствует")
-					end
-				end
-			elseif self:GetOwner():KeyPressed(IN_ATTACK) then
-				self:GetOwner():ChatPrint("ГРАБ ТИПО СИЛЬНО")
-				mul = mul * 30
-			end
-		end
-
-		vec:Normalize()
-		local plyVel = self.Owner:GetVelocity()
-		local avec, velo = vec * len^1.5, phys:GetVelocity() - (plyVel * 2)
-		local Force = (avec - velo / 2) * mul
-		local ForceNormal = Force:GetNormalized()
-		local ForceMagnitude = Force:Length()
-		ForceMagnitude = math.Clamp(ForceMagnitude, 0, 2000 * JMod.GetPlayerStrength(self.Owner))
-		Force = ForceNormal * ForceMagnitude
-
-		local CounterDir, CounterAmt = velo:GetNormalized(), velo:Length()
-
-		if self.CarryPos then
-			phys:ApplyForceOffset(Force, self.CarryEnt:LocalToWorld(self.CarryPos))
-		else
-			phys:ApplyForceCenter(Force)
-		end
-
-		phys:ApplyForceCenter(Vector(0, 0, mul))
-		phys:AddAngleVelocity(-phys:GetAngleVelocity() / 10)
-	end
-end
-
---[[function SWEP:ApplyForce() --!! Старая функция из хомиграда тупарылово
+function SWEP:ApplyForce()
 	local target = self:GetOwner():GetAimVector() * self.CarryDist + self:GetOwner():GetShootPos()
 	local phys = self.CarryEnt:GetPhysicsObjectNum(self.CarryBone)
 
@@ -481,7 +411,7 @@ end
 		phys:ApplyForceCenter(Vector(0, 0, mul))
 		phys:AddAngleVelocity(-phys:GetAngleVelocity() / 10)
 	end
-end]]
+end
 
 function SWEP:OnRemove()
 	if IsValid(self:GetOwner()) and CLIENT and self:GetOwner():IsPlayer() then

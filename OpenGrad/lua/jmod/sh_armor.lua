@@ -1016,7 +1016,7 @@ end
 
 -- Debug
 --[[
-for _, ply in player.Iterator() do
+for _, ply in pairs(player.GetAll()) do
 	ply.NextEZarmorTableCopy=0
 end
 --]]

@@ -1,9 +1,0 @@
-"VertexLitGeneric"
-{
-	"$baseTexture" "models\WICHacks/chris_torso"
-	"$bumpmap" "models\WICHacks/chris_torso_normal"
-
-$halflambert 0
-$ambientocclusion 1
-	"$nocull" 1
-}

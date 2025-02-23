@@ -168,7 +168,7 @@ if SERVER then
 		end
 
 		---
-		for k, ply in player.Iterator() do
+		for k, ply in pairs(player.GetAll()) do
 			local Dist = ply:GetPos():Distance(SelfPos)
 
 			if (Dist > 500) and (Dist < 8000) then
