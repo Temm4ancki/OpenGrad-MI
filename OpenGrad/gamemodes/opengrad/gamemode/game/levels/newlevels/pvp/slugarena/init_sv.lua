@@ -63,7 +63,7 @@ function slugarena.PlayerSpawn(ply,teamID)
 
 
     ply:Give("weapon_hands")
-    ply:Give("weapon_hg_fubar")
+    ply:Give("weapon_hg_sperm")
     ply:SetLadderClimbSpeed(100)
 end
 
