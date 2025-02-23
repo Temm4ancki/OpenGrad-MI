@@ -4,7 +4,7 @@ function ApplySuppressionEffect(at, hit, start)
 	bruh = start or at:EyePos()
 	bruhh = hit
 
-	for _,v in pairs(player.GetAll()) do
+	for _,v in player.Iterator() do
 		local distance, sup_point = util.DistanceToLine( bruh, bruhh, v:GetPos() )
 
 		if v:IsPlayer() and v:Alive() and distance < 70 and !(v == at) then

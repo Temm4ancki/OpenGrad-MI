@@ -64,7 +64,6 @@ function SWEP:DrawWeaponSelection( x, y, wide, tall, alpha )
 
 end
 
-local healsound = Sound("snd_jack_hmcd_eat"..math.random(1,4)..".wav")
 function SWEP:Initialize()
 	self:SetHoldType( "slam" )
 	if ( CLIENT ) then return end
@@ -115,12 +114,16 @@ if(CLIENT)then
 	end
 end
 function SWEP:PrimaryAttack()
+	if not IsValid(self:GetOwner()) then return end
 	self:GetOwner():SetAnimation(PLAYER_ATTACK1)
+
 	if(SERVER)then
 		self:GetOwner().hungryregen = self:GetOwner().hungryregen + 1
-		self:Remove()
-		sound.Play(healsound, self:GetPos(),75,100,0.5)
+		local healsound = "snd_jack_hmcd_eat"..math.random(1,4)..".wav"
+		--sound.Play(healsound, self:GetPos(),75,100,0.5)
+		self:EmitSound(healsound)
 		self:GetOwner():SelectWeapon("weapon_hands")
+		self:Remove()
 	end
 end
 

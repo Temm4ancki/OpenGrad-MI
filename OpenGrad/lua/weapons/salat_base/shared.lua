@@ -67,8 +67,8 @@ SWEP.Suppressed = false
 local hg_show_hitposmuzzle = CreateClientConVar("hg_show_hitposmuzzle","0",false,false,"huy",0,1)
 
 hook.Add("HUDPaint","admin_hitpos",function()
-	if hg_show_hitposmuzzle:GetBool() and LocalPlayer():IsAdmin() then
-		local wep = LocalPlayer():GetActiveWeapon()
+	--if hg_show_hitposmuzzle:GetBool() and LocalPlayer():IsAdmin() then
+		local wep = LocalPlayer():GetActiveWeapon() --## Мод прицел для всех и каждого если ненравится вон раскоментите ифы енды
 		if not IsValid(wep) then return end
 
 		local att = wep:LookupAttachment("muzzle")
@@ -93,7 +93,7 @@ hook.Add("HUDPaint","admin_hitpos",function()
 		
 		surface.SetDrawColor( 255, 255, 255, 255 )
 		surface.DrawRect(hit.x - 2.5,hit.y - 2.5,5,5)
-	end
+	--end
 end)
 
 function SWEP:DrawHUD()
@@ -247,7 +247,7 @@ end
 
 homigrad_weapons = homigrad_weapons or {}
 
---[[local skini = {
+--[[local skini = { --!! Ксго скины в ряльной жызни
 	"sal/acc/armor01_2",
 	"sal/acc/armor01_3",
 	"sal/acc/armor01_4",
@@ -411,7 +411,7 @@ function SWEP:Reload()
 	end
 end
 
-Sound("snd_jack_hmcd_lightning.wav")
+--Sound("snd_jack_hmcd_lightning.wav") -- Ххахахаха и че это
 
 SWEP.addPos = Vector(0,0,0)
 SWEP.addAng = Angle(0,0,0)
@@ -500,7 +500,7 @@ function SWEP:FireBullet(dmg, numbul, spread)
 		effectdata:SetHitBox(tr.HitBox)
 		effectdata:SetFlags(0x0001)
 		util.Effect("Tracer",effectdata,true,true)
-		for i, ply in pairs(player.GetAll()) do
+		for i, ply in player.Iterator() do
 			net.Start("shoot_tracer")
 			net.WriteTable(tr)
 			net.WriteEntity(self)

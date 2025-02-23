@@ -96,7 +96,7 @@ end
 function CLASS.Think(self)end
 
 function CLASS.PlayerStartVoice(self)
-    for i,ply in pairs(player.GetAll()) do
+    for i,ply in player.Iterator() do
         if not ply.isCombine then continue end
 
         ply:EmitSound("npc/combine_soldier/vo/on" .. math.random(1,2) .. ".wav")
@@ -104,7 +104,7 @@ function CLASS.PlayerStartVoice(self)
 end
 
 function CLASS.PlayerEndVoice(self)
-    for i,ply in pairs(player.GetAll()) do
+    for i,ply in player.Iterator() do
         if not ply.isCombine then continue end
 
         ply:EmitSound("npc/combine_soldier/vo/off" .. math.random(1,3) .. ".wav")

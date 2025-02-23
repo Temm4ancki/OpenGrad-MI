@@ -246,7 +246,7 @@ end
 hook.Add("OnEntityCreated","hg-bullseye",function(ent)
 	ent:SetShouldPlayPickupSound(false)
 	if ent:IsNPC() then
-		for i, ply in pairs(player.GetAll()) do
+		for i, ply in player.Iterator() do
 			if ply:Team() == 2 then
 				ent:AddEntityRelationship(ply,D_LI,0)
 			end
@@ -265,7 +265,7 @@ hook.Add("OnEntityCreated","hg-bullseye",function(ent)
 end)
 
 hook.Add("Think","FakedShoot",function() --функция стрельбы лежа
-for i,ply in pairs(player.GetAll()) do
+for i,ply in player.Iterator() do
 	if IsValid(ply:GetNWEntity("Ragdoll")) and ply.FakeShooting and ply:Alive() then
 		SpawnWeapon(ply)
 	else
@@ -311,7 +311,7 @@ hook.Add("PlayerSay","huyasds",function(ply,text)
 end)
 
 function RagdollOwner(rag) --функция, определяет хозяина регдолла
-	for k, v in pairs(player.GetAll()) do
+	for k, v in player.Iterator() do
 		local ply = v
 		if ply:GetNWEntity("Ragdoll") == rag then
 			return ply
@@ -805,7 +805,7 @@ if ply.pain>(250*(ply.Blood/5000))+(ply:GetNWInt("SharpenAMT")*5) or ply.Blood<3
 end)
 
 hook.Add("PreCleanupMap","cleannoobs",function() --все игроки встают после очистки карты
-	for i, v in pairs(player.GetAll()) do
+	for i, v in player.Iterator() do
 		if v.fake then Faking(v) end
 	end
 
@@ -1515,7 +1515,7 @@ InternalBleeding = 10
 
 hook.Add("Player Think","InternalBleeding",function(ply,time)
 	if true then return end
-	for i,ply in pairs(player.GetAll()) do
+	for i,ply in player.Iterator() do
 		ply.OrgansNextThink = ply.OrgansNextThink or OrgansNextThink
 		if not(ply.OrgansNextThink>CurTime())then
 			ply.OrgansNextThink=CurTime()+0.2

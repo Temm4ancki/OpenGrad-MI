@@ -160,7 +160,7 @@ hook.Add("HUDPaint","spectate",function()
 			local func = TableRound().HUDPaint_ESP
 			if func then func() end
 
-			for _, v in ipairs(player.GetAll()) do --ESP
+			for _, v in player.Iterator() do --ESP
 				if !v:Alive() or v == ent then continue end
 
 				local ent = IsValid(v:GetNWEntity("Ragdoll")) and v:GetNWEntity("Ragdoll") or v

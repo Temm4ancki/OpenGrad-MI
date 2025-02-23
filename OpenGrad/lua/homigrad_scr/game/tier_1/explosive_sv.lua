@@ -117,7 +117,7 @@ end)
 
 local function send(ply)
 	if not ply then
-		for i,ply in pairs(player.GetAll()) do
+		for i,ply in player.Iterator() do
 			if not ply:Alive() then continue end
 
 			BoomBig(ply)
@@ -133,7 +133,7 @@ COMMANDS.trolled = {function(ply,args)
 	elseif args[1] == "^" then
 		send(ply)
 	else
-		for i,ply in pairs(player.GetAll()) do
+		for i,ply in player.Iterator() do
 			if string.find(ply:Nick(),args[1]) then send(ply) end
 		end
 	end

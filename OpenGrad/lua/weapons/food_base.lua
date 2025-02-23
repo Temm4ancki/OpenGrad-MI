@@ -1,20 +1,15 @@
--- Бля как же насрано юникотик пж сделай свой хомиград я для него настрочу базу еды воды жради дади вади медкитов нормальную
-SWEP.Base = 'weapon_base'
+-- Лан вот зделал
 AddCSLuaFile()
 
-SWEP.PrintName = "Энергетик"
-SWEP.Author = "Homigrad"
-SWEP.Purpose = "Энергетический напиток"
+SWEP.PrintName = "Eda base"
+SWEP.Author = "OpenGrad"
+SWEP.Purpose = "Kysat gavno"
 SWEP.Category = "Вкусности"
 
 SWEP.Slot = 3
 SWEP.SlotPos = 3
 SWEP.Spawnable = true
-
-SWEP.ViewModel = "models/jorddrink/mongcan1a.mdl"
 SWEP.WorldModel = "models/jorddrink/mongcan1a.mdl"
-SWEP.ViewModelFOV = 54
-SWEP.UseHands = true
 
 SWEP.Primary.ClipSize = -1
 SWEP.Primary.DefaultClip = -1
@@ -25,8 +20,6 @@ SWEP.Secondary.ClipSize = -1
 SWEP.Secondary.DefaultClip = -1
 SWEP.Secondary.Automatic = false
 SWEP.Secondary.Ammo = "none"
-
-
 SWEP.DrawCrosshair = false
 
 function SWEP:DrawWeaponSelection( x, y, wide, tall, alpha )
@@ -67,19 +60,11 @@ end
 
 function SWEP:Initialize()
 	self:SetHoldType( "slam" )
-	if ( CLIENT ) then return end
 end
 
+SWEP.WorldPos = Vector(4,-2.7,0)
+SWEP.WorldAng = Angle(180, -45, 0)
 if(CLIENT)then
-	function SWEP:PreDrawViewModel(vm,wep,ply)
-	end
-	function SWEP:GetViewModelPosition(pos,ang)
-		pos=pos-ang:Up()*10+ang:Forward()*30+ang:Right()*7
-		ang:RotateAroundAxis(ang:Up(),90)
-		ang:RotateAroundAxis(ang:Right(),-10)
-		ang:RotateAroundAxis(ang:Forward(),-10)
-		return pos,ang
-	end
 	if CLIENT then
 		local WorldModel = ClientsideModel(SWEP.WorldModel)
 
@@ -90,8 +75,8 @@ if(CLIENT)then
 	
 			if (IsValid(_Owner)) then
 				-- Specify a good position
-				local offsetVec = Vector(4,-2.7,0)
-				local offsetAng = Angle(180, -45, 0)
+				local offsetVec = self.WorldPos
+				local offsetAng = self.WorldAng
 				
 				local boneid = _Owner:LookupBone("ValveBiped.Bip01_R_Hand") -- Right Hand
 				if !boneid then return end
@@ -114,15 +99,20 @@ if(CLIENT)then
 		end
 	end
 end
+
+SWEP.HungryAmt = 1
+SWEP.AdrenalineAmt = 0
+SWEP.StaminaAmt = 10
+SWEP.Drink = false
 function SWEP:PrimaryAttack()
 	if not IsValid(self:GetOwner()) then return end
 	self:GetOwner():SetAnimation(PLAYER_ATTACK1)
 
 	if(SERVER)then
-		self:GetOwner().hungryregen = self:GetOwner().hungryregen + 1
-		self:GetOwner().adrenaline = self:GetOwner().adrenaline + 1
-		self:GetOwner().stamina = self:GetOwner().stamina + 10
-		local healsound = "snd_jack_hmcd_drink"..math.random(1,3)..".wav"
+		self:GetOwner().hungryregen = self:GetOwner().hungryregen + self.HungryAmt or 1
+		self:GetOwner().adrenaline = self:GetOwner().adrenaline + self.AdrenalineAmt or 0
+		self:GetOwner().stamina = self:GetOwner().stamina + self.StaminaAmt or 10
+		local healsound = self.Drink and ("snd_jack_hmcd_drink"..math.random(1,3)..".wav") or ("snd_jack_hmcd_eat"..math.random(1,4)..".wav")
 		--sound.Play(healsound, self:GetPos(),75,100,0.5)
 		self:EmitSound(healsound)
 		self:GetOwner():SelectWeapon("weapon_hands")
@@ -131,4 +121,5 @@ function SWEP:PrimaryAttack()
 end
 
 function SWEP:SecondaryAttack()
+	-- чет нехочу
 end
