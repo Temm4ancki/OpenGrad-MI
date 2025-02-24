@@ -33,15 +33,15 @@ hook.Add("HomigradDamage","ImpulseShock",function(ply,hitGroup,dmginfo)
 	net.Send(ply)
 
 	if hitGroup == HITGROUP_RIGHTLEG or hitGroup == HITGROUP_LEFTLEG then
-		if ply.dmgimpulse > 12 then timer.Simple(0,function() if not ply.fake then Faking(ply) end end) end
+		if ply.dmgimpulse > 30 then timer.Simple(0,function() if not ply.fake then Faking(ply) end end) end
 	end
 
 	if hitGroup == HITGROUP_CHEST then
-		if ply.dmgimpulse > 24 then timer.Simple(0,function() if not ply.fake then Faking(ply) end end) end
+		if ply.dmgimpulse > 40 then timer.Simple(0,function() if not ply.fake then Faking(ply) end end) end
 	end
 
 	if hitGroup == HITGROUP_STOMACH then
-		if ply.dmgimpulse > 48 then timer.Simple(0,function() if not ply.fake then Faking(ply) end end) end
+		if ply.dmgimpulse > 70 then timer.Simple(0,function() if not ply.fake then Faking(ply) end end) end
 	end
 end)
 
