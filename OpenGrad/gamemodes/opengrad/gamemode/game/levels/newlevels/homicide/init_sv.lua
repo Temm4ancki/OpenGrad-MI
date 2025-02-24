@@ -328,8 +328,11 @@ local empty = {}
 function homicide.PlayerSpawn(ply,teamID)
     local teamTbl = homicide[homicide.teamEncoder[teamID]]
     local color = teamID == 1 and Color(math.random(55,165),math.random(55,165),math.random(55,165)) or teamTbl[2]
-
-	ply:SetModel(teamTbl.models[math.random(#teamTbl.models)] or "models/player/group01/male_03.mdl")
+    if homicide.roundType ~= 1 then
+	    ply:SetModel(teamTbl.models[math.random(#teamTbl.models)] or "models/player/group01/male_03.mdl")
+    else
+        ply:SetModel(models_rebels[math.random(#models_rebels)] or "models/player/group03/male_10.mdl")
+    end
     ply:SetPlayerColor(color:ToVector())
 
 	ply:Give("weapon_hands")
