@@ -1,7 +1,7 @@
 
 
-SWEP.PrintName = "Байонет"
-SWEP.Instructions = "Армейский штык-нож. Клинок штыка M9 — однолезвийный с пилой на обухе."
+SWEP.PrintName = "SOG M37 Seal pup"
+SWEP.Instructions = "Тот самый нож трейтора"
 SWEP.Category = "Ближний Бой"
 
 SWEP.Spawnable= true
@@ -9,8 +9,8 @@ SWEP.AdminSpawnable= true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60
-SWEP.ViewModel = "models/weapons/w_knife_t.mdl"
-SWEP.WorldModel = "models/weapons/w_knife_t.mdl"
+SWEP.ViewModel = "models/zcity/weapons/w_sog_knife.mdl"
+SWEP.WorldModel = "models/zcity/weapons/w_sog_knife.mdl"
 SWEP.ViewModelFlip = false
 
 SWEP.AutoSwitchTo = false
@@ -230,4 +230,43 @@ function SWEP:Reload()
 end
 
 function SWEP:Think()
+end
+
+SWEP.dwmForward = 3.5
+SWEP.dwmRight = 1.5
+SWEP.dwmUp = -2
+
+SWEP.dwmAUp = -90
+SWEP.dwmARight = 10
+SWEP.dwmAForward = 180
+
+function SWEP:DrawWorldModel()
+	local model = GDrawWorldModel or ClientsideModel(SWEP.WorldModel,RENDER_GROUP_OPAQUE_ENTITY)
+	GDrawWorldModel = model
+	model:SetNoDraw(true)
+
+	local owner = self:GetOwner()
+	if not IsValid(owner) then
+		self:DrawModel()
+	end
+
+	local Pos,Ang = owner:GetBonePosition(owner:LookupBone("ValveBiped.Bip01_R_Hand"))
+	if not Pos then return end
+
+	model:SetModel(self.WorldModel)
+
+	Pos:Add(Ang:Forward() * self.dwmForward)
+	Pos:Add(Ang:Right() * self.dwmRight)
+	Pos:Add(Ang:Up() * self.dwmUp)
+
+	model:SetPos(Pos)
+
+	Ang:RotateAroundAxis(Ang:Up(),self.dwmAUp)
+	Ang:RotateAroundAxis(Ang:Right(),self.dwmARight)
+	Ang:RotateAroundAxis(Ang:Forward(),self.dwmAForward)
+	model:SetAngles(Ang)
+
+	model:SetModelScale(1.2)
+
+	model:DrawModel()
 end

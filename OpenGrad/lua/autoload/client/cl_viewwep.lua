@@ -609,8 +609,8 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 		end
 		if weaponClass == "weapon_rpgg" then
 			--Vector(7,5,1)
-			vecWep = hand.Pos + hand.Ang:Up() * 7 - hand.Ang:Forward() * 5 + hand.Ang:Right() * 1
-			angWep = hand.Ang + Angle(0,15,0)
+			vecWep = hand.Pos + hand.Ang:Up() * 10 - hand.Ang:Forward() * 5 + hand.Ang:Right() * -3
+			angWep = hand.Ang + Angle(-11,0,0)
 		end
 		if weaponClass == "weapon_beanbag" then
 			--Vector(4.41,4,0.41)

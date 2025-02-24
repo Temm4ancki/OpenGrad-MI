@@ -3,7 +3,7 @@ SWEP.Base = 'salat_base' -- base
 SWEP.PrintName 				= "РПГ"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Ручной противотанковый гранатомёт"
-SWEP.Category 				= "Говно нерабочее"
+SWEP.Category 				= "Оружие" -- Теперь работает!!
 SWEP.WepSelectIcon			= "pwb/sprites/m134"
 
 SWEP.Spawnable 				= true
@@ -30,23 +30,26 @@ SWEP.SlotPos				= 0
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/weapons/insurgency/w_rpg7.mdl"
-SWEP.WorldModel				= "models/weapons/insurgency/w_rpg7.mdl"
+SWEP.ViewModel				= "models/weapons/w_rocket_launcher.mdl"
+SWEP.WorldModel				= "models/weapons/w_rocket_launcher.mdl"
 
 function SWEP:PrimaryAttack()
+	if not IsValid(self:GetOwner()) then return end
     if self:Clip1() <= 0 then return end
+
+	self:GetOwner():SetAnimation(PLAYER_ATTACK1)
     local shotpos = self:GetOwner():GetPos()+Vector(0,0,50) + self:GetOwner():EyeAngles():Forward()*60 +self:GetOwner():EyeAngles():Right()*5
     if SERVER then 
         local rocket = ents.Create( "gb_rocket_rp3" )
+		rocket:SetAngles( self:GetOwner():EyeAngles()+Angle(-5,0,0) )
         rocket:SetPos(shotpos)
-        rocket:SetAngles( self:GetOwner():EyeAngles()+Angle(5,5,0) )
         rocket:Spawn()
         rocket:Launch()
     end
     self:TakePrimaryAmmo(1)
 end
 
---models/weapons/insurgency/w_rpg7.mdl
+--models/weapons/w_rocket_launcher.mdl
 --models/weapons/insurgency/w_rpg7_projectile.mdl
 
 SWEP.vbwPos = Vector(5,-4,-4)

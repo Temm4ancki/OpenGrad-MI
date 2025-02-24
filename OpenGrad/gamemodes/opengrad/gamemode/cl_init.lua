@@ -1,40 +1,11 @@
 include("shared.lua")
 
-surface.CreateFont("HomigradFont",{
-	font = "Roboto",
-	size = 18,
-	weight = 1100,
-	outline = false
-})
-
-surface.CreateFont("HomigradFontBig",{
-	font = "Roboto",
-	size = 25,
-	weight = 1100,
-	outline = false,
-	shadow = true
-})
-
 surface.CreateFont("HomigradFontLargeBig",{
 	font = "Roboto",
 	size = 60,
 	weight = 1100,
 	outline = false,
 	shadow = true
-})
-
-surface.CreateFont("HomigradFontLarge",{
-	font = "Roboto",
-	size = ScreenScale(30),
-	weight = 1100,
-	outline = false
-})
-
-surface.CreateFont("HomigradFontSmall",{
-	font = "Roboto",
-	size = ScreenScale(10),
-	weight = 1100,
-	outline = false
 })
 
 net.Receive("round_active",function(len)

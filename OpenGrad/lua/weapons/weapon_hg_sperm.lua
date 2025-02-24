@@ -49,10 +49,6 @@ SWEP.ShouldDecal = true
 SWEP.HoldTypeWep = "melee"
 SWEP.DamageType = DMG_SLASH
 
-local model = GDrawWorldModel or ClientsideModel(SWEP.WorldModel,RENDER_GROUP_OPAQUE_ENTITY)
-GDrawWorldModel = model
-model:SetNoDraw(true)
-
 SWEP.dwmForward = 2
 SWEP.dwmRight = 0
 SWEP.dwmUp = 0
@@ -62,6 +58,10 @@ SWEP.dwmARight = 0
 SWEP.dwmAForward = 100
 
 function SWEP:DrawWorldModel()
+	local model = GDrawWorldModel or ClientsideModel(SWEP.WorldModel,RENDER_GROUP_OPAQUE_ENTITY)
+	GDrawWorldModel = model
+	model:SetNoDraw(true)
+
 	local owner = self:GetOwner()
 	if not IsValid(owner) then
 		self:DrawModel()
@@ -82,8 +82,6 @@ function SWEP:DrawWorldModel()
 	Ang:RotateAroundAxis(Ang:Right(),self.dwmARight)
 	Ang:RotateAroundAxis(Ang:Forward(),self.dwmAForward)
 	model:SetAngles(Ang)
-
-	model:SetModelScale(0.9)
 
 	model:DrawModel()
 end

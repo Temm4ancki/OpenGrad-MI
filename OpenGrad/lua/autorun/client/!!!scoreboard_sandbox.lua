@@ -4,28 +4,32 @@ surface.CreateFont("HomigradFont",{
 	font = "Roboto", -- поставить Coolvetica
 	size = 18,
 	weight = 1100,
-	outline = false
+	outline = false,
+	shadow = true
 })
 
 surface.CreateFont("HomigradFontBig",{
 	font = "Roboto",
 	size = 25,
 	weight = 1100,
-	outline = false
+	outline = false,
+	shadow = true
 })
 
 surface.CreateFont("HomigradFontLarge",{
 	font = "Roboto",
 	size = ScreenScale(30),
 	weight = 1100,
-	outline = false
+	outline = false,
+	shadow = true
 })
 
 surface.CreateFont("HomigradFontSmall",{
 	font = "Roboto",
 	size = ScreenScale(10),
 	weight = 1100,
-	outline = false
+	outline = false,
+	shadow = true
 })
 
 local red,green = Color(255,0,0),Color(0,255,0)
@@ -117,7 +121,7 @@ local function ToggleScoreboard(toggle)
 					surface.SetMaterial(ply:IsMuted() and mutedicon or unmutedicon)
 					surface.SetDrawColor(255,255,255,255)
 					surface.DrawTexturedRect(0,0,w,h)
-					draw.SimpleText("E","HomigradFont",w / 2,h / 2,ply:IsMuted() and red or green,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
+					draw.SimpleText(".","HomigradFont",w / 2,h / 2,ply:IsMuted() and red or green,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
 				end
 
 				function button:DoClick()
