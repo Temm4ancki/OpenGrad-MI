@@ -216,12 +216,6 @@ function SWEP:SecondaryAttack()
 
                 ply:TakeDamageInfo(dmg)
                 ply.Bloodlosing = ply.Bloodlosing + 10
-
-                if GuiltLogic(att,ply,dmg) then
-                    att.Guilt = 10
-
-                    GuiltCheck(att)
-                end
             end
 
             if not IsValid(ent1:GetPhysicsObject()) or not IsValid(ent2:GetPhysicsObject()) then return end
@@ -266,10 +260,6 @@ function SWEP:SecondaryAttack()
                 dmg:SetDamageType(DMG_SLASH)
 
                 ply.Bloodlosing = ply.Bloodlosing + 10
-
-                if GuiltLogic(att,ply,dmg,true) then
-                    att.Guilt = math.max(att.Guilt - 2,0)
-                end
             end
         end
 

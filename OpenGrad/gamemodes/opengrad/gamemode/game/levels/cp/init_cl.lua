@@ -1,3 +1,4 @@
+tdm = tdm or {}
 cp.GetTeamName = tdm.GetTeamName
 
 local red, blue, gray = Color(255,75,75), Color(75,75,255), Color(200, 200, 200)
@@ -94,7 +95,7 @@ function cp.HUDPaint_RoundLeft(white2) --позиции точек и счёт
     --время раунда
     local time = math.Round(roundTimeStart + roundTime - CurTime())
     local acurcetime = string.FormattedTime( time, "%02i:%02i" )
-	if time < 0 then acurcetime = "Иди нахуй" end
+	if time < 0 then acurcetime = "Не чето нехочу пока" end
 
 	draw.SimpleText(acurcetime,"HomigradFont",ScrW()/2,ScrH()-25,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
 

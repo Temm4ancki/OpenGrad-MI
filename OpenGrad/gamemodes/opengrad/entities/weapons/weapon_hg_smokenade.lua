@@ -8,6 +8,8 @@ SWEP.Category = "Гранаты"
 SWEP.Slot = 4
 SWEP.SlotPos = 2
 SWEP.Spawnable = true
+SWEP.AutoSwitchFrom = false
+SWEP.AutoSwitchTo = false
 
 SWEP.ViewModel = "models/jmod/explosives/grenades/firenade/incendiary_grenade.mdl"
 SWEP.WorldModel = "models/jmod/explosives/grenades/firenade/incendiary_grenade.mdl"

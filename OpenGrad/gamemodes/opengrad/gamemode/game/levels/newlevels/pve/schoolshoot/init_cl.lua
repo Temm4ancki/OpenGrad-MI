@@ -1,3 +1,4 @@
+tdm = tdm or {}
 schoolshoot.GetTeamName = tdm.GetTeamName
 
 local colorSpec = ScoreboardSpec

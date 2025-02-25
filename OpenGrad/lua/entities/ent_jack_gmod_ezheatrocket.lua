@@ -159,7 +159,7 @@ if SERVER then
 		JMod.Sploom(Att, SelfPos, 10)
 		---
 		util.ScreenShake(SelfPos, 1000, 3, 2, 1500)
-		self:EmitSound("snd_jack_fragsplodeclose.wav", 90, 100)
+		self:EmitSound("snd_jack_fragsplodeclose.ogg", 90, 100)
 
 		---
 		for i = 1, 10 do

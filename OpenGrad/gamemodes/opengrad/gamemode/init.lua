@@ -312,6 +312,7 @@ COMMANDS.fullup = {function(ply,args)
 	ply.Blood = 5000
 	ply.Bloodlosing = 0
 	ply.dmgimpulse = 0
+	ply.Otrub = false
 end}
 
 function GM:DoPlayerDeath(ply) end
@@ -321,7 +322,7 @@ function GM:PlayerStartVoice(ply)
 end
 
 COMMANDS.retry = {function(ply,args)
-	for i,ply in pairs(player.GetAll()) do
+	for i,ply in player.Iterator() do
 		ply:ConCommand("retry")
 	end
 end,2}
@@ -334,4 +335,8 @@ net.Receive("lasertgg",function(len,ply)
 	net.WriteBool(boolen)
 	net.Broadcast()
 end)
-
+util.AddNetworkString("menuska")
+function GM:ShowSpare1(ply)
+	net.Start("menuska")
+	net.Send(ply)
+end

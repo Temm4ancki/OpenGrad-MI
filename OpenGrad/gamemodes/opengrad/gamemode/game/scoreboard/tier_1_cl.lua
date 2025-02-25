@@ -333,7 +333,7 @@ local function ToggleScoreboard(toggle)
 		local button = SB_CreateButton(HomigradScoreboard)
 		button:SetSize(30,30)
 		button:SetPos(HomigradScoreboard:GetWide() / 2 - button:GetWide() / 2,HomigradScoreboard:GetTall() - 15 - button:GetTall())
-		button.text = "M"
+		button.text = "М"
 		function button:DoClick()
 			OpenHomigradMenu()
             HomigradScoreboard:Remove()

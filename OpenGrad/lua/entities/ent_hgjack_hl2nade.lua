@@ -33,7 +33,7 @@ if SERVER then
 		self.Exploded = true
 		local SelfPos = self:GetPos()
 		JMod.Sploom(self:GetOwner(), self:GetPos(), math.random(10, 20))
-		self:EmitSound("weapons/m67/m67_detonate_0"..math.random(1,3)..".wav", 551, 100)
+		self:EmitSound("m67/m67_detonate_0"..math.random(1,3)..".wav", 551, 100)
 		local plooie = EffectData()
 		plooie:SetOrigin(SelfPos)
 		plooie:SetScale(.01)

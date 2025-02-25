@@ -71,7 +71,7 @@ function PANEL:TransformApply()
 	self.w = self.ww + w * self.dw
 	self.h = self.hh + h * self.dh
 
-	self.x = self.xx + w * self.dx - self.w * self.ax--WAAAAAAAAAYYYYYYYYYYYYYYYYYY.......... иди нахуй
+	self.x = self.xx + w * self.dx - self.w * self.ax--WAAAAAAAAAYYYYYYYYYYYYYYYYYY.......... Не чето нехочу пока
 	self.y = self.yy + h * self.dy - self.h * self.ay
 
 	SetSize(self,self.w,self.h)

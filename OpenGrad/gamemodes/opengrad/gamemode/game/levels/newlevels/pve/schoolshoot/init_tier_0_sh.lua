@@ -2,23 +2,29 @@ table.insert(LevelList,"schoolshoot")
 schoolshoot = {}
 schoolshoot.Name = "Active Shooter"
 
+local models = {}
+
+for i = 1,9 do table.insert(models,"models/player/group01/male_0" .. i .. ".mdl") end
+
+for i = 1,6 do table.insert(models,"models/player/group01/female_0" .. i .. ".mdl") end
+
 schoolshoot.red = {"Кибер-спортсмены",Color(255,55,55),
     weapons = {"weapon_radio","weapon_gurkha","weapon_hands","med_band_big","med_band_small","medkit","painkiller"},
     main_weapon = {"weapon_m3super","weapon_remington870","weapon_xm1014"},
     secondary_weapon = {"weapon_p220","weapon_deagle","weapon_glock"},
-    models = tdm.models
+    models = models
 }
 
 schoolshoot.green = {"Школьники",Color(55,255,55),
     weapons = {"weapon_hands"},
-    models = tdm.models
+    models = models
 }
 
 schoolshoot.blue = {"Спецназовцы",Color(55,55,255),
     weapons = {"weapon_radio","weapon_hands","weapon_kabar","med_band_big","med_band_small","medkit","painkiller","weapon_hg_f1","weapon_handcuffs","weapon_taser","weapon_hg_flashbang"},
     main_weapon = {"weapon_mk18","weapon_m4a1","weapon_m3super","weapon_mp7","weapon_xm1014","weapon_fal","weapon_galilsar","weapon_m249","weapon_mp5","weapon_mp40"},
     secondary_weapon = {"weapon_beretta","weapon_fiveseven","weapon_hk_usp"},
-    models = tdm.models
+    models = models
 }
 
 schoolshoot.teamEncoder = {

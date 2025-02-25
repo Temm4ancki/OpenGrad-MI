@@ -57,7 +57,7 @@ if SERVER then
 		if self.Exploded then return end
 		self.Exploded = true
 		self.FuelLeft = 100
-		self:EmitSound("snd_jack_fragsplodeclose.wav", 70, 150)
+		self:EmitSound("snd_jack_fragsplodeclose.ogg", 70, 150)
 	end
 
 	function ENT:CustomThink()

@@ -6,7 +6,7 @@ local nextbots = {
 }
 
 function nextbot.CanRoundNext()
-    if #ReadDataMap("points_nextbox") == 0 then return false end--пау пау пау бам мы стреляем по хохлам!11
+    if #ReadDataMap("points_nextbox") == 0 then return false end
 end
 
 function nextbot.StartRoundSV()
@@ -163,11 +163,11 @@ function nextbot.PlayerInitialSpawn(ply)
 end
 
 function nextbot.PlayerCanJoinTeam(ply,teamID)
-	if teamID == 3 then ply:ChatPrint("пашол нахуй") return false end
+	if teamID == 3 then ply:ChatPrint("не чето не хочу") return false end
 
     if not nextbot.twoteams then
         if teamID == 2 then
-            ply:ChatPrint("пашол нахуй")
+            ply:ChatPrint("не чето не хочу")
 
             return false
         end

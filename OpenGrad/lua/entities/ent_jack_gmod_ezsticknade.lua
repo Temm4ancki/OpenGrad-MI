@@ -56,7 +56,7 @@ if SERVER then
 		if self.Exploded then return end
 		self.Exploded = true
 		local SelfPos = self:GetPos()
-		self:EmitSound("snd_jack_fragsplodeclose.wav", 90, 100)
+		self:EmitSound("snd_jack_fragsplodeclose.ogg", 90, 100)
 
 		if self.Splitterring then
 			local plooie = EffectData()

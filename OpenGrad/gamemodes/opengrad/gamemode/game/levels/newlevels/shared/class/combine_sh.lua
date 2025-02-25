@@ -8,7 +8,7 @@ local models_combine = {
 	"models/Notifier/KomBine/TACTI_SOLDAT_PM.mdl",
 	"models/Notifier/KomBine/TACTI_SUPE_PM.mdl",
 	"models/Notifier/KomBine/TACTI_PRISO_PM.mdl",
-    "models/metrocat_beta.mdl" -- yummers ещкереее
+    "models/metrocat/metrocat_beta.mdl" -- yummers ещкереее
 }
 
 function CLASS.Off(self)

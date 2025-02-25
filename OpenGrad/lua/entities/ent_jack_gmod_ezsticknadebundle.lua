@@ -94,7 +94,7 @@ if SERVER then
 						sound.Play("BaseExplosionEffect.Sound", SelfPos, 120, math.random(90, 110))
 					end
 
-					self:EmitSound("snd_jack_fragsplodeclose.wav", 90, 100)
+					self:EmitSound("snd_jack_fragsplodeclose.ogg", 90, 100)
 
 					timer.Simple(.1, function()
 						for i = 1, 5 do

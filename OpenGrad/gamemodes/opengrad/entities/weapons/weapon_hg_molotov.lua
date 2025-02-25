@@ -8,6 +8,8 @@ SWEP.Category = "Гранаты"
 SWEP.Slot = 4
 SWEP.SlotPos = 2
 SWEP.Spawnable = true
+SWEP.AutoSwitchFrom = false
+SWEP.AutoSwitchTo = false
 
 SWEP.ViewModel = "models/w_models/weapons/w_eq_molotov.mdl"
 SWEP.WorldModel = "models/w_models/weapons/w_eq_molotov.mdl"

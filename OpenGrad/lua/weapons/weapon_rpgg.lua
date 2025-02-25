@@ -32,16 +32,19 @@ SWEP.DrawCrosshair			= false
 
 SWEP.ViewModel				= "models/weapons/w_rocket_launcher.mdl"
 SWEP.WorldModel				= "models/weapons/w_rocket_launcher.mdl"
+SWEP.ReloadSound			= "weapons/tfa_hl2r/rpg/rpg_reload1.wav"
 
 function SWEP:PrimaryAttack()
-	if not IsValid(self:GetOwner()) then return end
+	local ply = self:GetOwner()
+	if not IsValid(ply) then return end
     if self:Clip1() <= 0 then return end
 
-	self:GetOwner():SetAnimation(PLAYER_ATTACK1)
-    local shotpos = self:GetOwner():GetPos()+Vector(0,0,50) + self:GetOwner():EyeAngles():Forward()*60 +self:GetOwner():EyeAngles():Right()*5
+	ply:SetAnimation(PLAYER_ATTACK1)
+	ply:EmitSound("weapons/tfa_hl2r/rpg/rocketfire1.wav")
+    local shotpos = ply:GetPos()+Vector(0,0,50) + ply:EyeAngles():Forward()*60 + ply:EyeAngles():Right()*5
     if SERVER then 
         local rocket = ents.Create( "gb_rocket_rp3" )
-		rocket:SetAngles( self:GetOwner():EyeAngles()+Angle(-5,0,0) )
+		rocket:SetAngles( ply:EyeAngles()+Angle(-5,0,0) )
         rocket:SetPos(shotpos)
         rocket:Spawn()
         rocket:Launch()

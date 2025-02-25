@@ -15,7 +15,7 @@ function SWEP:SecondaryAttack()
 	self:SetNextSecondaryFire(CurTime() + self.Dealy)
 
 	local owner = self:GetOwner()
-	local ent = owner:GetEyeTrace().Entity --!! СДЕЛАТЬ ПРОВЕРКУ НА ДИСТАНЦИЮ!!!
+	local ent = owner:GetEyeTrace().Entity
 	ent = (ent:IsPlayer() and ent) or (RagdollOwner(ent)) or (ent:GetClass() == "prop_ragdoll" and ent)
 	if not ent then return end
 
@@ -24,12 +24,6 @@ function SWEP:SecondaryAttack()
 			local dmg = DamageInfo()
 			dmg:SetDamage(-5)
 			dmg:SetAttacker(self)
-
-			local att = self:GetOwner()
-				
-			if GuiltLogic(att,ent,dmg,true) then
-				att.Guilt = math.max(att.Guilt - 20,0)
-			end
 		end
 		owner:SetAnimation(PLAYER_ATTACK1)
 		self:Remove()

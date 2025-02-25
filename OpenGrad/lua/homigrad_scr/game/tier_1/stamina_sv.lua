@@ -51,16 +51,16 @@ hook.Add("Player Think","saystamina",function(ply,time)
 	end
 
 	if ply.stamina < 100 and not ply:IsSprinting() and ply:WaterLevel() <= 2  then
-		ply.stamina = ply.stamina + 3
+		ply.stamina = ply.stamina + 6
 		ply:SetNWInt("stamina",ply.stamina)
 	end
 
 	if ply:GetMoveType() == MOVETYPE_WALK and ply:IsSprinting() and ply.speeed > 1 then
-		ply.stamina = ply.stamina - 1 * ply.speeed / 70
+		ply.stamina = ply.stamina - 0.45 * ply.speeed / 70
 	end
 
 	if ply:WaterLevel() == 3 then
-		ply.stamina = ply.stamina - 10
+		ply.stamina = ply.stamina - 4
 	end
 	
 	if ply.stamina < 20 and ent:WaterLevel() == 3 then

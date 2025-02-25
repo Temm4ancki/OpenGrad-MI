@@ -1,11 +1,3 @@
-skins = {
-	megapenis = true,
-	meagsponsor = true,
-	donator = true,
-	superadmin = true,
-	microdonater = true,
-	admin = true
-}
 local vecZero = Vector(0,0,0)
 local angZero = Angle(0,0,0)
 SWEP.Base = 'weapon_base' -- base
@@ -62,11 +54,12 @@ SWEP.vbw = true
 SWEP.vbwPos = false
 SWEP.vbwAng = false
 SWEP.Suppressed = false
+SWEP.skin4ik = ""
 
--- local hg_skins = CreateClientConVar("hg_skins","1",true,false,"ubrat govno",0,1)
-local hg_show_hitposmuzzle = CreateClientConVar("hg_show_hitposmuzzle","0",false,false,"huy",0,1)
+local hg_skins = CreateClientConVar("hg_skins","0",true,false,"скини ксго",0,1)
+-- local hg_show_hitposmuzzle = CreateClientConVar("hg_show_hitposmuzzle","0",false,false,"прицел для админов",0,1)
 
-hook.Add("HUDPaint","admin_hitpos",function()
+--[[hook.Add("HUDPaint","admin_hitpos",function() -- теперь в cl_init режима
 	--if hg_show_hitposmuzzle:GetBool() and LocalPlayer():IsAdmin() then
 		
 		local wep = LocalPlayer():GetActiveWeapon()
@@ -97,7 +90,12 @@ hook.Add("HUDPaint","admin_hitpos",function()
 		surface.SetDrawColor( 255, 255, 255, 150 )
 		surface.DrawRect(hit.x - 2.5,hit.y - 2.5,5,5)
 	--end
-end)
+end)]]
+
+function SWEP:IsSprinting()
+	local owner = self:GetOwner()
+	return owner:IsSprinting() or (((self:GetNWFloat("DeployTime",0) or 0) + 0.2) > CurTime())
+end
 
 function SWEP:DrawHUD()
 	show = math.Clamp(self.AmmoChek or 0,0,1)
@@ -161,12 +159,12 @@ end
 function SWEP:DrawWorldModel()
     self:DrawModel()
 	
-	-- if not hg_skins:GetBool() then return end
+	if not hg_skins:GetBool() then return end
 
-    --[[if (IsValid(self:GetOwner()) and self:GetOwner():IsPlayer() and skins[self:GetOwner():GetUserGroup()]) then
+    if (IsValid(self:GetOwner()) and self:GetOwner():IsPlayer()) then
         self:SetSubMaterial(0, self:GetNWString("skin"))
         self:DrawModel()
-    end]]--
+    end
 end
 
 HMCD_SurfaceHardness={
@@ -250,22 +248,27 @@ end
 
 homigrad_weapons = homigrad_weapons or {}
 
---[[local skini = {
+local skini = {
 	"sal/acc/armor01_2",
 	"sal/acc/armor01_3",
 	"sal/acc/armor01_4",
 	"sal/acc/armor01_5",
 	"models/foodnhouseholditems/cj_b_plastic",
 	"models/jacky_camouflage/digi",
-	"models/jacky_camouflage/digi2"
-}]]--
+	"models/jacky_camouflage/digi2",
+	"models/chappi/moab/moabskin1",
+	"models/entities/mat_jack_firework",
+	"models/thedoctor/mat_rm/darkmatter",
+	"models/chappi/mininuq/nuq_tail",
+	"models/addons/sibres/rebel/sib_povyazka"
+}
 
 function SWEP:Initialize()
 	homigrad_weapons[self] = true
 
-	--[[if SERVER then
+	if SERVER then
 		self:SetNWString( "skin", table.Random(skini) )
-	end]]--
+	end
 
 	self.lerpClose = 0
 end
@@ -321,7 +324,7 @@ function SWEP:PrimaryAttack()
 
 	self:PrePrimaryAttack()
 
-	if self.isClose or not self:GetOwner():IsNPC() and self:GetOwner():IsSprinting() then return end
+	if self.isClose or not self:GetOwner():IsNPC() and self:IsSprinting() then return end
 
 	local ply = self:GetOwner() -- а ну да
 	self.NextShot = CurTime() + self.ShootWait
@@ -395,8 +398,8 @@ end
 function SWEP:Reload()
 	if !self:GetOwner():KeyDown(IN_WALK) then
 		self.AmmoChek = 3
-		if timer.Exists("reload"..self:EntIndex())  or self:Clip1()>=self:GetMaxClip1() or self:GetOwner():GetAmmoCount( self:GetPrimaryAmmoType() )<=0 then return nil end
-		if self:GetOwner():IsSprinting() then return nil end
+		if timer.Exists("reload"..self:EntIndex()) or self:Clip1()>=self:GetMaxClip1() or self:GetOwner():GetAmmoCount( self:GetPrimaryAmmoType() )<=0 then return nil end
+		if self:IsSprinting() then return nil end
 		if ( self.NextShot > CurTime() ) then return end
 		self:GetOwner():SetAnimation(PLAYER_RELOAD)
 		self:EmitSound(self.ReloadSound,60,100,0.8,CHAN_AUTO)
@@ -621,7 +624,7 @@ function SWEP:IsScope()
 	if ply:IsNPC() then return end
 
 	if self:IsLocal() or SERVER then
-		return not ply:IsSprinting() and ply:KeyDown(IN_ATTACK2) and not self:IsReloaded()
+		return not self:IsSprinting() and ply:KeyDown(IN_ATTACK2) and not self:IsReloaded() and not ply:GetNWBool("Suiciding")
 	else
 		return self:GetNWBool("IsScope")
 	end
@@ -684,7 +687,7 @@ function SWEP:Step()
 	local tr = util.TraceLine(t)
 	self.dist = (tr.HitPos - t.start):Length()
 
-	if not ply:IsSprinting() then
+	if not self:IsSprinting() then
 		local scope = self:IsScope()
 		if SERVER then self:SetNWBool("IsScope",scope) end
 
@@ -716,7 +719,7 @@ function SWEP:Step()
 			self.isClose = self:GetNWBool("isClose")
 		end
 		hand:Set(angZero)
-		if not self.isClose and not ply:IsSprinting() then
+		if not self.isClose and not self:IsSprinting() then
 			if not ply:GetNWBool("Suiciding") then
 				self:SetWeaponHoldType(self.HoldType)
 				hand:Set(angZero)
@@ -744,7 +747,7 @@ function SWEP:Step()
 	eyeangles:RotateAroundAxis(eyeangles:Up(),180)
 	
 	if ((CLIENT and isLocal) or SERVER) then
-		if not ply:GetNWBool("Suiciding") and not ply:IsSprinting() then
+		if not ply:GetNWBool("Suiciding") and not self:IsSprinting() then
 			local numbr = self.TwoHands and 50 or 80
 			if eyeangles[1] > numbr then
 				hand[1] = hand[1] - (eyeangles[1] - numbr)
@@ -773,6 +776,7 @@ end
 function SWEP:Holster( wep )
 	--if not IsFirstTimePredicted() then return end
 	local ply = self:GetOwner()
+	if not IsValid(ply) then return end
 
 	if not ply:LookupBone("ValveBiped.Bip01_R_Forearm") then return end--;c
 
@@ -781,6 +785,10 @@ function SWEP:Holster( wep )
 	ply:ManipulateBoneAngles( ply:LookupBone( "ValveBiped.Bip01_R_Clavicle" ),Angle( 0,0,0 ))
 
 	return true
+end
+
+function SWEP:OnRemove()
+	self:Holster()
 end
 
 hook.Add("PlayerDeath","weapons",function(ply)
@@ -793,11 +801,15 @@ function SWEP:SecondaryAttack() return end
 
 function SWEP:Deploy()
 	self:SetHoldType("normal")
+	local ply = self:GetOwner()
+	if not IsValid(ply) then return end
+	if ply:GetNWBool("Suiciding") then ply:SetNWBool("Suiciding",false) end
 	if SERVER then
 		self:GetOwner():EmitSound("snd_jack_hmcd_pistoldraw.wav", 65,(self.TwoHands and 100) or (!self.TwoHands and 110), 1, CHAN_AUTO)
 	end
 
 	self.NextShot = CurTime() + 0.5
+	self:SetNWFloat("DeployTime",CurTime())
 
 	self:SetHoldType( self.HoldType )
 end

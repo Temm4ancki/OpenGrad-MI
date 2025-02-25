@@ -14,13 +14,16 @@ ENT.EZgasParticle = true
 if SERVER then
 	function ENT:Initialize()
 		local Time = CurTime()
+		self:SetMoveType(MOVETYPE_NONE)
+		self:SetNotSolid(true)
+		self:DrawShadow(false)
+		self:SetModelScale(2)
+		self.NextDmg = Time + 5
+		self.CurVel = self.CurVel or VectorRand() * 10
+		self.AirResistance = 2
 		self.LifeTime = math.random(50, 100) * JMod.Config.PoisonGasLingerTime
 		self.DieTime = Time + self.LifeTime
-		self:SetModel("models/dav0r/hoverball.mdl")
-		self:SetMaterial("models/debug/debugwhite")
 		self:RebuildPhysics()
-		self:DrawShadow(false)
-		self.NextDmg = Time + 5
 	end
 
 	function ENT:ShouldDamage(ent)

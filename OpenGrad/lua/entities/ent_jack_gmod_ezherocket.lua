@@ -159,7 +159,7 @@ if SERVER then
 		JMod.Sploom(Att, SelfPos, 150)
 		---
 		util.ScreenShake(SelfPos, 1000, 3, 2, 1500)
-		self:EmitSound("snd_jack_fragsplodeclose.wav", 90, 100)
+		self:EmitSound("snd_jack_fragsplodeclose.ogg", 90, 100)
 		---
 		util.BlastDamage(game.GetWorld(), Att, SelfPos + Vector(0, 0, 50), 200, 200)
 

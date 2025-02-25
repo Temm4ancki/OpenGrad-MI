@@ -9,6 +9,8 @@ SWEP.Category = "Примочки убийцы"
 
 SWEP.Slot = 3
 SWEP.SlotPos = 0
+SWEP.AutoSwitchFrom = false
+SWEP.AutoSwitchTo = false
 
 SWEP.ViewModel = "models/weapons/w_models/w_jyringe_proj.mdl"
 SWEP.WorldModel = "models/weapons/w_models/w_jyringe_proj.mdl"
@@ -65,7 +67,7 @@ if SERVER then
     function SWEP:Poison(ent)
 
         local entreal = ent.fakeragdoll or ent
-        if not (ent:IsPlayer() or ent:IsRagdoll()) then return end
+        if not (ent:IsPlayer() or ent:IsRagdoll()) or not IsValid(entreal) then return end
         local bone = entreal:LookupBone("ValveBiped.Bip01_Spine4")
         if not bone then return end
 

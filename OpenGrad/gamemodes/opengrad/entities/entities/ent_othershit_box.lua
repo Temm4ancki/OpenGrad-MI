@@ -7,6 +7,7 @@ ENT.Spawnable = true
 ENT.AdminSpawnable = false
 
 if SERVER then
+	--util.AddNetworkString("Box")
 	function ENT:Initialize()
 		self:SetModel("models/Items/ammocrate_ar2.mdl")
 		self:PhysicsInit(SOLID_VPHYSICS)
@@ -14,22 +15,22 @@ if SERVER then
 		self:SetSolid(SOLID_VPHYSICS)
 	end
 
-    function ENT:Use()
-    
+    function ENT:Use(activator, caller)
+		--[[net.Start("Box")
+		net.WriteEntity(activator)
+		net.Broadcast()]]
+		activator:ChatPrint("Sharik tupoy hurrep")
+		activator:EmitSound("snd_jack_hmcd_fart.wav")
     end
 else
-    local openVgui = function(ent)
+    --[[local openVgui = function(ent)
         local panel = vgui.Create("DFrame")
         panel:SetSize(300,400)
         panel:Center()
         panel:SetTitle("Бокс")
-
-        
     end
-
-    --if LocalPlayer():UserID() == 234 then openVgui() end
 
     net.Receive("Box",function()
         openVgui(net.ReadEntity())
-    end)
+    end)]]
 end

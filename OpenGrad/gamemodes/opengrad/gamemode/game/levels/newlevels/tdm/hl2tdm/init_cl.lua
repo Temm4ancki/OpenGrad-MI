@@ -17,7 +17,7 @@ function hl2dm.HUDPaint_RoundLeft(white)
         lply:ScreenFade(SCREENFADE.IN,Color(0,0,0,255),0.5,0.5)
 
         
-        if lply:GetModel() == "models/metrocat_beta.mdl" then
+        if lply:GetModel() == "models/metrocat/metrocat_beta.mdl" then
             drawRoundMode("Teaw DeawMawtcwh :3","Fur-Life 2: Deawmawtch >w<",startRound,Color(155,55,142),Color(155,55,155))
             drawRoundStart("Catbine UwU nyaaa~","ВО ВСЁМ ВИНОВАТ rock",startRound,Color(color.r,color.g,color.b))
         else

@@ -248,6 +248,7 @@ function SWEP:DrawWorldModel()
 	local owner = self:GetOwner()
 	if not IsValid(owner) then
 		self:DrawModel()
+		return
 	end
 
 	local Pos,Ang = owner:GetBonePosition(owner:LookupBone("ValveBiped.Bip01_R_Hand"))

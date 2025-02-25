@@ -10,11 +10,22 @@ riot.red = {"Полиция",Color(55,55,150),
 }
 
 
+local modeli = {
+	"models/player/Group01/male_04.mdl",
+	"models/player/Group01/male_01.mdl",
+	"models/player/Group01/male_02.mdl",
+	"models/player/Group01/male_08.mdl",
+	"models/player/group02/male_02.mdl",
+	"models/player/group02/male_04.mdl",
+	"models/player/group02/male_06.mdl",
+	"models/player/group02/male_08.mdl"
+}
+
 riot.blue = {"Бунтующие",Color(75,45,45),
 	weapons = {"weapon_hands","med_band_small"},
 	main_weapon = {"weapon_glock18","weapon_molotok","med_band_big","med_band_small","weapon_hg_molotov","weapon_per4ik","weapon_molotok","med_band_big","med_band_small","weapon_per4ik"},
 	secondary_weapon = {"weapon_hg_metalbat", "weapon_bat","weapon_pipe"},
-	models = {"models/player/Group01/male_04.mdl","models/player/Group01/male_01.mdl","models/player/Group01/male_02.mdl","models/player/Group01/male_08.mdl"}
+	models = modeli
 }
 
 riot.teamEncoder = {

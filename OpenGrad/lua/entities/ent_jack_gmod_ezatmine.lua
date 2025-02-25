@@ -142,7 +142,7 @@ if SERVER then
 			end
 
 			util.ScreenShake(SelfPos, 99999, 99999, 1, 1000)
-			self:EmitSound("snd_jack_fragsplodeclose.wav", 90, 100)
+			self:EmitSound("snd_jack_fragsplodeclose.ogg", 90, 100)
 			sound.Play("ambient/explosions/explode_" .. math.random(1, 9) .. ".wav", SelfPos, 100, 130)
 			JMod.Sploom(self:GetOwner(), SelfPos, 10)
 			local Att = self:GetOwner() or game.GetWorld()

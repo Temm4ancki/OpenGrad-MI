@@ -29,14 +29,6 @@ function CLASS:Off()
 		return
 	end
 
-	/*local guilt = (self.contrGuilt or 0)
-
-	if guilt >= 40 then
-		self.Guilt = self.Guilt + guilt
-
-		GuiltCheck(ply)
-	end*/
-
 	self.isContr = nil
 end
 

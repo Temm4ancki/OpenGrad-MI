@@ -166,7 +166,7 @@ hook.Add("PlayerDeath","Gib",function(ply)
 		local rag = ply:GetNWEntity("Ragdoll")
 		local bone = rag:LookupBone(ply.LastHitBoneName)
 
-		if not IsValid(rag) or not bone then return end--неебу как пашол нахуй
+		if not IsValid(rag) or not bone then return end--неебу как не чето не хочу
 
 		Gib_Input(rag,bone,dmgInfo)
 	end

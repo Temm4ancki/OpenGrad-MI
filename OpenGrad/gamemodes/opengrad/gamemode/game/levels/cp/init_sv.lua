@@ -228,7 +228,7 @@ end
 function cp.PlayerInitialSpawn(ply) ply:SetTeam(math.random(2)) end
 
 function cp.PlayerCanJoinTeam(ply, teamID)
-    if teamID == 3 then ply:ChatPrint("Иди нахуй") return false end
+    if teamID == 3 then ply:ChatPrint("Не чето нехочу пока") return false end
 end
 
 local function max(a)

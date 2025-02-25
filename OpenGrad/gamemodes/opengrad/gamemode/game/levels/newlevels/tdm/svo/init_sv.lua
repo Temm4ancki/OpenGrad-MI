@@ -53,7 +53,7 @@ function svo.PlayerSpawn(ply,teamID)
 end
 
 function svo.PlayerCanJoinTeam(ply,teamID)
-    if teamID == 3 then ply:ChatPrint("Иди нахуй") return false end
+    if teamID == 3 then ply:ChatPrint("Не чето нехочу пока") return false end
 end
 
 local common = {"food_lays","weapon_pipe","weapon_bat","medkit","food_monster","food_fishcan","food_spongebob_home"}

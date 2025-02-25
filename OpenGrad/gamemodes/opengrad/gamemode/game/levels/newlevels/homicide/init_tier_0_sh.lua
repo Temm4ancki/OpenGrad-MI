@@ -185,7 +185,7 @@ function homicide.HUDPaint_RoundLeft(white2)
             elseif lply.roleCT then 
                 drawRoundStart("Шериф", "У вас есть револьвер и дробовик", startRound, 1)
             else 
-                drawRoundStart("Ковбой", "Найдите убийцу", startRound, 3)
+                drawRoundStart(math.random(1, 100) == 99 and "Фембой" or "Ковбой", "Найдите убийцу", startRound, 3)
         end end
         -- if homicide.roundType == 5 then
         --     if lply.roleT then 

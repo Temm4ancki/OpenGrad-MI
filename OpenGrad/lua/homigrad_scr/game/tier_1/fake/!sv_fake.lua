@@ -1221,7 +1221,7 @@ hook.Add("Player Think","FakeControl",function(ply,time) --управление 
 			angs:RotateAroundAxis(angs:Up(),90)
 			local shadowparams = {
 				secondstoarrive=0.5,
-				pos=head:GetPos()+vector_up*(20/math.Clamp(rag:GetVelocity():Length()/300,1,12)),
+				pos=head:GetPos()+vector_up*(20/math.Clamp(rag:GetVelocity():Length()/300,1,12)) * 15,
 				angle=angs,
 				maxangulardamp=10,
 				maxspeeddamp=10,

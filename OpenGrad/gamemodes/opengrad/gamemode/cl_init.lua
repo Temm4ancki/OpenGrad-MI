@@ -174,7 +174,6 @@ local laserweps = {
 	["weapon_fiveseven"] = true,
 	["weapon_hk_usp"] = true,
 	["weapon_mk18"] = true,
-	["weapon_fiveseven"] = true,
 	["weapon_hk_usp"] = true,
 	["weapon_m4a1"] = true,
 	["weapon_ar15"] = true,
@@ -192,7 +191,7 @@ local mat2 = Material("Sprites/light_glow02_add_noz")
 hook.Add("PostDrawOpaqueRenderables", "laser", function()
 	--local ply = (LocalPlayer():Alive() and LocalPlayer()) or (!LocalPlayer():Alive() and LocalPlayer():GetNWEntity("SpectateGuy"))
 	--if !IsValid(ply) then return end
-	for i,ply in pairs(laserplayers) do
+	for i,ply in ipairs(laserplayers) do
 		if not IsValid(ply) then laserplayers[i] = nil end
 		ply.Laser = ply.Laser or false
 		local actwep = (IsValid(ply:GetActiveWeapon()) and ply:GetActiveWeapon():GetClass()) or (ply:GetNWString("curweapon")!=nil and ply:GetNWString("curweapon"))
@@ -242,6 +241,39 @@ hook.Add("PostDrawOpaqueRenderables", "laser", function()
 	end
 end)
 
+hook.Add("HUDPaint","hitpos",function()
+	local ply = LocalPlayer()
+	local actwep = (IsValid(ply:GetActiveWeapon()) and ply:GetActiveWeapon():GetClass()) or (ply:GetNWString("curweapon")!=nil and ply:GetNWString("curweapon"))
+	if IsValid(ply) and !ply:GetNWInt("Otrub") and not (ply.Laser and laserweps[IsValid(ply:GetActiveWeapon()) and ply:GetActiveWeapon():GetClass() or ply.curweapon]) then
+		local wep = IsValid(ply:GetActiveWeapon()) and ply:GetActiveWeapon() or (IsValid(ply:GetNWEntity('wep')) and ply:GetNWEntity('wep'))
+		if not wep then return end
+		
+		local att = wep:GetAttachment(wep:LookupAttachment("muzzle"))
+		if not att then return end
+
+		if wep.IsScope and wep:IsScope() then return end
+		
+		local pos = att.Pos
+		local ang = att.Ang
+
+		local t = {}
+
+		t.start = pos+ang:Right()*2+ang:Forward()*-5+ang:Up()*-0.5
+		
+		t.endpos = t.start + ang:Forward()*9000
+		
+		t.filter = {ply,wep,LocalPlayer()}
+		t.mask = MASK_SOLID
+		local tr = util.TraceLine(t)
+
+		local angle = (tr.StartPos - tr.HitPos):Angle()
+		local hit = tr.HitPos:ToScreen()
+
+		surface.SetDrawColor( 255, 255, 255, 150 )
+		surface.DrawRect(hit.x - 2.5,hit.y - 2.5,5,5)
+	end
+end)
+
 local function ToggleMenu(toggle)
     if toggle then
         local w,h = ScrW(), ScrH()
@@ -267,28 +299,34 @@ local function ToggleMenu(toggle)
 			wepMenu:AddOption("Суицид",function()
 				LocalPlayer():ConCommand("suicide")
 			end)
-		else
+		--[[else
 			wepMenu:AddOption("Запросить патроны",function()
 				LocalPlayer():ConCommand("hg_needbullets")
-			end)
+			end)]]
 		end
 		if laserweps[wep:GetClass()] then
-        wepMenu:AddOption("Вкл/Выкл Лазер",function()
-            if LocalPlayer().Laser then
-				LocalPlayer().Laser = false
-				net.Start("lasertgg")
+			wepMenu:AddOption("Вкл/Выкл Лазер",function()
+				if LocalPlayer().Laser then
+					LocalPlayer().Laser = false
+					net.Start("lasertgg")
 
-				net.WriteBool(false)
-				net.SendToServer()
-				LocalPlayer():EmitSound("items/nvg_off.wav")
-			else
-				LocalPlayer().Laser = true
-				net.Start("lasertgg")
-				net.WriteBool(true)
-				net.SendToServer()
-				LocalPlayer():EmitSound("items/nvg_on.wav")
-			end
-        end)
+					net.WriteBool(false)
+					net.SendToServer()
+					LocalPlayer():EmitSound("items/nvg_off.wav")
+				else
+					LocalPlayer().Laser = true
+					net.Start("lasertgg")
+					net.WriteBool(true)
+					net.SendToServer()
+					LocalPlayer():EmitSound("items/nvg_on.wav")
+				end
+			end)
+		end
+		
+		if wep:GetClass() == "weapon_deagle" then
+			wepMenu:AddOption("Крутануть барабан",function()
+				LocalPlayer():ConCommand("hg_rolldrum")
+			end)
 		end
 
 		plyMenu = vgui.Create("DMenu")

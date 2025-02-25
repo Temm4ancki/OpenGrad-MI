@@ -569,13 +569,14 @@ concommand.Add("fake",function(ply)
 end)
 
 hook.Add("PreCleanupMap","cleannoobs",function() --все игроки встают после очистки карты
-	for i, v in pairs(player.GetAll()) do
+	for i, v in player.Iterator() do
 		if v.fake then Faking(v) end
 	end
 
 	BleedingEntities = {}
-
 end)
+
+util.AddNetworkString("nodraw_helmet")
 
 local function CreateArmor(ragdoll,info)
 	local item = JMod.ArmorTable[info.name]
@@ -609,7 +610,18 @@ local function CreateArmor(ragdoll,info)
 	if IsValid(ent:GetPhysicsObject()) then
 		ent:GetPhysicsObject():SetMaterial("plastic")
 	end
-	constraint.Weld(ent,ragdoll,0,ragdoll:TranslateBoneToPhysBone(Index),0,true,false)
+
+	timer.Simple(0.1,function()
+		local ply = RagdollOwner(ragdoll)
+		if item.bon == "ValveBiped.Bip01_Head1" and ply and IsValid(ply) and  ply:IsPlayer() then
+			net.Start("nodraw_helmet")
+			net.WriteEntity(ent)
+			net.Send(ply)
+		end
+	end)
+	ragdoll.constraints = ragdoll.constraints or {}
+
+	ragdoll.constraints[item.bon] = constraint.Weld(ent,ragdoll,0,ragdoll:TranslateBoneToPhysBone(Index),0,true,false)
 
 	ragdoll:DeleteOnRemove(ent)
 
@@ -1026,7 +1038,7 @@ hook.Add("Player Think","FakeControl",function(ply,time) --управление 
 			angs:RotateAroundAxis(angs:Forward(),90)
 			local shadowparams = {
 				secondstoarrive=0.5,
-				pos=head:GetPos()+vector_up*(20/math.Clamp(rag:GetVelocity():Length()/300,1,12)),
+				pos=head:GetPos()+vector_up*(20/math.Clamp(rag:GetVelocity():Length()/300,1,12)) * 15,
 				angle=angs,
 				maxangulardamp=10,
 				maxspeeddamp=10,
@@ -1063,7 +1075,6 @@ hook.Add("Player Think","FakeControl",function(ply,time) --управление 
 				end
 			end
 			if(!IsValid(rag.ZacConsLH) and (!rag.ZacNextGrLH || rag.ZacNextGrLH<=CurTime()))then
-				rag.ZacNextGrLH=CurTime()+0.1
 				for i=1,3 do
 					local offset = phys:GetAngles():Up()*-5
 					if(i==2)then
@@ -1083,6 +1094,7 @@ hook.Add("Player Think","FakeControl",function(ply,time) --управление 
 						local cons = constraint.Weld(rag,trace.Entity,bone,trace.PhysicsBone,0,false,false)
 						if(IsValid(cons))then
 							rag.ZacConsLH=cons
+							rag:EmitSound("physics/body/body_medium_impact_soft"..math.random(7)..".wav", 50, math.random(95, 105))
 						end
 						break
 					end
@@ -1119,6 +1131,7 @@ hook.Add("Player Think","FakeControl",function(ply,time) --управление 
 						local cons = constraint.Weld(rag,trace.Entity,bone,trace.PhysicsBone,0,false,false)
 						if(IsValid(cons))then
 							rag.ZacConsRH=cons
+							rag:EmitSound("physics/body/body_medium_impact_soft"..math.random(7)..".wav", 50, math.random(95, 105))
 						end
 						break
 					end
@@ -1136,7 +1149,7 @@ hook.Add("Player Think","FakeControl",function(ply,time) --управление 
 			local angs = ply:EyeAngles()
 			angs:RotateAroundAxis(angs:Forward(),90)
 			angs:RotateAroundAxis(angs:Up(),90)
-			local speed = 30
+			local speed = 45
 			
 			if(rag.ZacConsLH.Ent2:GetVelocity():LengthSqr()<1000) then
 				local shadowparams = {
@@ -1160,7 +1173,7 @@ hook.Add("Player Think","FakeControl",function(ply,time) --управление 
 			local angs = ply:EyeAngles()
 			angs:RotateAroundAxis(angs:Forward(),90)
 			angs:RotateAroundAxis(angs:Up(),90)
-			local speed = 30
+			local speed = 45
 			
 			if(rag.ZacConsRH.Ent2:GetVelocity():LengthSqr()<1000)then
 				local shadowparams = {

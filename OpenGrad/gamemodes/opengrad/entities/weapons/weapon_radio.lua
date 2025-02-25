@@ -7,6 +7,8 @@ SWEP.Category 				= "Разное"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
+SWEP.AutoSwitchFrom = false
+SWEP.AutoSwitchTo = false
 
 SWEP.Primary.ClipSize		= -1
 SWEP.Primary.DefaultClip	= -1

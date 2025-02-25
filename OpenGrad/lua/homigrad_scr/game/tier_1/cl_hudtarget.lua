@@ -3,7 +3,7 @@ nodraw_players = nodraw_players or {}
 hook.Add("Think","ShouldDrawNoclipe",function()
 	local lply = LocalPlayer()
 
-	for i,ply in pairs(player.GetAll()) do
+	for i,ply in player.Iterator() do
 		if ply == lply then continue end
 
 		if ply:GetNWBool("scared") or (ply:Alive() and not ply:InVehicle() and ply:GetMoveType() == MOVETYPE_NOCLIP) then
@@ -24,7 +24,7 @@ end)
 
 local red = Color(125,0,0)
 
-local hg_customname = CreateClientConVar("hg_customname","",true)
+local hg_customname = CreateClientConVar("hg_customname","Кастомное имя",true)
 
 cvars.AddChangeCallback("hg_customname",function(_,_,value)
     net.Start("custom name")

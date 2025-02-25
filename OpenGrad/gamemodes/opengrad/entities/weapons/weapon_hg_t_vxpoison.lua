@@ -9,6 +9,8 @@ SWEP.Category = "Примочки убийцы"
 
 SWEP.Slot = 3
 SWEP.SlotPos = 0
+SWEP.AutoSwitchFrom = false
+SWEP.AutoSwitchTo = false
 
 SWEP.ViewModel = "models/props_lab/jar01b.mdl"
 SWEP.WorldModel = "models/props_lab/jar01b.mdl"

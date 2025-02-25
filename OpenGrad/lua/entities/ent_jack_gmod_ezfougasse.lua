@@ -137,7 +137,7 @@ if SERVER then
 		util.BlastDamage(self, self:GetOwner() or self, SelfPos, 150 * JMod.Config.MinePower, math.random(50, 100) * JMod.Config.MinePower)
 		util.ScreenShake(SelfPos, 99999, 99999, 1, 500)
 		self:EmitSound("BaseExplosionEffect.Sound")
-		--self:EmitSound("snd_jack_fragsplodeclose.wav",90,100)
+		--self:EmitSound("snd_jack_fragsplodeclose.ogg",90,100)
 		local Pos = self:GetPos()
 
 		if self then

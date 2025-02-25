@@ -174,9 +174,9 @@ end
 function basedefence.PlayerInitialSpawn(ply) ply:SetTeam(1) end
 
 function basedefence.PlayerCanJoinTeam(ply,teamID)
-	if teamID == 3 then ply:ChatPrint("пашол нахуй") return false end
+	if teamID == 3 then ply:ChatPrint("не чето не хочу") return false end
     if teamID == 2 then
-        ply:ChatPrint("пашол нахуй")
+        ply:ChatPrint("не чето не хочу")
 
         return false
     end

@@ -208,7 +208,7 @@ if SERVER then
 					sound.Play("ambient/explosions/explode_" .. math.random(1, 9) .. ".wav", SelfPos + VectorRand() * 1000, 140, math.random(80, 110))
 				end
 
-				self:EmitSound("snd_jack_fragsplodeclose.wav", 90, 100)
+				self:EmitSound("snd_jack_fragsplodeclose.ogg", 90, 100)
 
 				timer.Simple(.1, function()
 					for i = 1, 5 do

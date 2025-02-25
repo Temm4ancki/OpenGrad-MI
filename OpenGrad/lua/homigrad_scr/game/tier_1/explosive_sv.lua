@@ -139,7 +139,10 @@ COMMANDS.trolled = {function(ply,args)
 	end
 end}
 
+local govnocd = 0
 hook.Add("PlayerSay","trolled",function(ply,text)
+	local time = CurTime()
+	if govnocd > time then return end
     if ply:Alive() and string.find(text,"сервер") and string.find(text,"говно") then
         local SelfPos = ply:GetPos()
 
@@ -161,4 +164,5 @@ hook.Add("PlayerSay","trolled",function(ply,text)
             end
         end)
     end
+	govnocd = time + 5
 end)

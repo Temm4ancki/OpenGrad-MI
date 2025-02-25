@@ -43,7 +43,7 @@ SWEP.Secondary.Automatic = false
 SWEP.Secondary.Ammo = "none"
 
 SWEP.DrawSound = "weapons/melee/holster_in_light.wav"
-SWEP.HitSound = "physics/metal/metal_sheet_impact_hard2.wav"
+SWEP.HitSound = "phx/epicmetal_hard.wav"
 SWEP.FlashHitSound = "weapons/melee/flesh_impact_blunt_03.wav"
 SWEP.ShouldDecal = false
 SWEP.HoldTypeWep = "melee2"

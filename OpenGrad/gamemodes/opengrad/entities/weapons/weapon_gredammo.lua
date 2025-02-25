@@ -52,6 +52,7 @@ homigrad_weapons = homigrad_weapons or {}
 
 function SWEP:Initialize()
     homigrad_weapons[self] = true
+	self:SetHoldType("slam")
 end
 
 if SERVER then
@@ -68,8 +69,7 @@ if SERVER then
         ent:SetPos(pos)
         ent:GetPhysicsObject():EnableMotion(false)
 
-        owner:EmitSound("garrysmod/balloon_pop_cute.wav")
-
+        owner:EmitSound("physics/metal/metal_barrel_impact_hard"..math.random(5,6)..".wav")
         self:Remove()
     end
 
@@ -92,8 +92,6 @@ else
     end
 
     function SWEP:DrawWorldModel()
-        self:SetWeaponHoldType("normal")
-
         local owner = self:GetOwner()
         if not IsValid(owner) then self:DrawModel() return end
 

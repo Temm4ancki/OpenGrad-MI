@@ -6,7 +6,6 @@ SWEP.Category = "Вкусности"
 SWEP.WorldModel = "models/jordfood/atun.mdl"
 SWEP.WorldPos = Vector(4,-1,0)
 SWEP.WorldAng = Angle(180, -45, 90)
-SWEP.HungryAmt = 3
 SWEP.AdrenalineAmt = 0
 SWEP.StaminaAmt = 10
 SWEP.Drink = false

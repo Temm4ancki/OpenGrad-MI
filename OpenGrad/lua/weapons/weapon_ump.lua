@@ -2,7 +2,7 @@ SWEP.Base = 'salat_base' -- base
 
 SWEP.PrintName 				= "UMP"
 SWEP.Instructions			= "Что может еще делать ПП? СТРЕЛЯТЬ В ЛИЦО!"
-SWEP.Category 				= "Говно нерабочее"
+SWEP.Category 				= "Оружие"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
@@ -16,7 +16,8 @@ SWEP.Primary.Ammo			= "357"
 SWEP.Primary.Cone = 0
 SWEP.Primary.Damage = 30
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "weapons/elite/elite-1.wav"
+SWEP.Primary.Sound = "mp5k/mp5k_fp.wav"
+SWEP.Primary.SoundFar = "mp5k/mp5k_dist.wav"
 SWEP.Primary.Force = 85/3
 SWEP.ReloadTime = 2
 SWEP.ShootWait = 0.11
@@ -42,8 +43,8 @@ SWEP.SlotPos				= 0
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/weapons/insurgency/w_ump45.mdl"
-SWEP.WorldModel				= "models/weapons/insurgency/w_ump45.mdl"
+SWEP.ViewModel				= "models/weapons/w_smg_ump45.mdl"
+SWEP.WorldModel				= "models/weapons/w_smg_ump45.mdl"
 
 SWEP.vbwPos = Vector(-2,-4,-4)
 SWEP.vbwRifle = true

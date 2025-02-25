@@ -1,12 +1,14 @@
 SWEP.Base                   = "medkit"
 
-SWEP.PrintName 				= "Заказчик"
+SWEP.PrintName 				= "Мобила"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Закажи все вещи из JMOD!"
+SWEP.Instructions			= "Закажи все вещи из JMOD!\nЛКМ - вкл выкл\nПКМ - открыть радио если включено\nR - проверка состояния"
 SWEP.Category 				= "Разное"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
+SWEP.AutoSwitchFrom = false
+SWEP.AutoSwitchTo = false
 
 SWEP.Slot					= 0
 SWEP.SlotPos				= 3
@@ -26,8 +28,9 @@ SWEP.dwsPos = Vector(10,10,7)
 SWEP.dwsItemPos = Vector(0,3,0)
 
 SWEP.dwmARight = 90
-SWEP.dwmForward = 2
-SWEP.dwmRight = -1
+SWEP.dwmAForward = -90
+SWEP.dwmForward = 6
+SWEP.dwmRight = 5
 
 local STATE_BROKEN,STATE_OFF,STATE_CONNECTING=-1,0,1
 function SWEP:SetupDataTables()
@@ -36,6 +39,8 @@ function SWEP:SetupDataTables()
 end
 
 function SWEP:PrimaryAttack() end
+
+JMod = JMod or {}
 
 if SERVER then
 	function SWEP:Initialize()
@@ -46,11 +51,12 @@ if SERVER then
         self.NextRealThink = 0
 		self.ConnectionlessThinks = 0
         self:SetState(STATE_OFF)
+		self:SetHoldType("normal")
 	end
 
 	function SWEP:Speak(msg, parrot)
 		if parrot then
-			for _, ply in pairs(player.GetAll()) do
+			for _, ply in player.Iterator() do
 				if ply:Alive() and (ply:GetPos():DistToSqr(self:GetPos()) <= 200 * 200 or (self:UserIsAuthorized(ply) and ply.EZarmor and ply.EZarmor.effects.teamComms)) then
 					net.Start("JMod_EZradio")
 					net.WriteBool(true)
@@ -74,7 +80,7 @@ if SERVER then
 
 		timer.Simple(.5, function()
 			if IsValid(self) then
-				for _, ply in pairs(player.GetAll()) do
+				for _, ply in player.Iterator() do
 					if ply:Alive() and (ply:GetPos():DistToSqr(self:GetPos()) <= 200 * 200 or (self:UserIsAuthorized(ply) and ply.EZarmor and ply.EZarmor.effects.teamComms)) then
 						net.Start("JMod_EZradio")
 						net.WriteBool(true)
@@ -88,20 +94,60 @@ if SERVER then
 		end)
 	end
 
-	function SWEP:TurnOn(activator)
-		local OldOwner = self:GetOwner()
-		JMod.SetOwner(self, activator)
+	local bratki = {
+		"ЧЕЧНЯ",
+		"ВАСЯ СВАРКА",
+		"МАГА ДАГЕСТАН",
+		"ЛЕХА ДЖЕКСОН",
+		"МИХАЛЫЧ ЗАВОД",
+		"МИХА СТЕПАНОВ",
+		"РОДСТВЕННИКИ ИЗ АЗЕРБАЙДЖАНА",
+		"ЮРА ТАКСИСТ",
+		"ЛЕНА МАЛЯРША",
+		"КАБАН",
+		"ОЛЕГ ПАХАН",
+		"АЛИК",
+		"РОДСТВЕННИКИ ИЗ БАШКИРИИ",
+		"САХАЛИН",
+		"мадинат ингуш",
+		"брательник",
+		"Стасян (авито)",
+		"Брат 2",
+		"Мама 2",
+		"егор",
+		"Ильяс азер",
+		"Гриша Молочник",
+		"Кореша (щёлково)",
+		"В. Власов свадебный фотограф",
+		"Егор (аватария)",
+		"КОЛЯ КАБАН",
+		"КРИПЕР2004",
+		"КАЗАХСТАН",
+		"гнилой лицемер"
+	}
+	local ringtone = {
+		"gbombs_5/tvirus_infection/gaben.mp3",
+		"snd_jack_hmcd_phone_dial.wav",
+		"snd_jack_hmcd_islam.mp3",
+		"snd_jack_hmcd_halloween.mp3",
+		"snds_jack_gmod/johncena.ogg"
+	}
 
+	function SWEP:TurnOn(activator)
 		self:SetState(STATE_CONNECTING)
-		self:EmitSound("snds_jack_gmod/ezsentry_startup.wav", 65, 100)
+		self:GetOwner():EmitSound("snds_jack_gmod/ezsentry_startup.ogg", 50, 100)
 		self.ConnectionAttempts = 0
+		self:GetOwner():ChatPrint("включаемся...")
+		self:SetHoldType("slam")
 	end
 
 	function SWEP:TurnOff()
 		local State = self:GetState()
 		if State == STATE_OFF then return end
 		self:SetState(STATE_OFF)
-		self:EmitSound("snds_jack_gmod/ezsentry_shutdown.wav", 65, 100)
+		self:GetOwner():EmitSound("snds_jack_gmod/ezsentry_shutdown.ogg", 50, 100)
+		self:GetOwner():ChatPrint("выключаемся...")
+		self:SetHoldType("normal")
 	end
 
 	function SWEP:Connect(ply)
@@ -116,34 +162,76 @@ if SERVER then
 
 		JMod.EZradioEstablish(self, tostring(Team)) -- we store team indices as strings because they might be huge (if it's a player's acct id)
 		local OutpostID = self:GetOutpostID()
+		JMod.EZ_RADIO_STATIONS = JMod.EZ_RADIO_STATIONS or {}
 		local Station = JMod.EZ_RADIO_STATIONS[OutpostID]
 		self:SetState(Station.state)
 
 		timer.Simple(1, function()
 			if IsValid(self) then
 				self:Speak("Comm line established with J.I. Radio Outpost " .. OutpostID)
+				self.ConnectionAttempts = 0
+				timer.Simple(math.random(2), function()
+					if not IsValid(ply) or not ply:Alive() then return end
+					if math.random(1, 2) == 2 then
+						ply:EmitSound(table.Random(ringtone), 60)
+						ply:ChatPrint("ЗВОНОК ОТ: ".. table.Random(bratki))
+					end
+				end)
 			end
 		end)
 	end
 
     function SWEP:Deploy()
         if self:GetState() == STATE_OFF then self:TurnOn() end
+		local ply = self:GetOwner()
+		if not IsValid(ply) then return end
+		if self:GetState() == JMod.EZ_STATION_STATE_READY then
+			timer.Simple(math.random(2), function()
+				if not IsValid(ply) or not ply:Alive() then return end
+				if math.random(1, 2) == 2 then
+					ply:EmitSound(table.Random(ringtone), 60)
+					ply:ChatPrint("ЗВОНОК ОТ: ".. table.Random(bratki))
+				end
+			end)
+		end
     end
 
     function SWEP:Holster()
         return true
     end
 
-    function SWEP:PrimaryAttack() end
+    function SWEP:PrimaryAttack()
+		if self:GetState() == STATE_OFF then
+			self:TurnOn()
+		elseif self:GetState() == JMod.EZ_STATION_STATE_READY then
+			self:TurnOff()
+		end
+	end
+
+	local statetranslate = {
+		[0] = "OFF",
+		[1] = "CONNECTING...",
+		[2] = "CONNECTED"
+	}
+	SWEP.checkcd = 0
+	function SWEP:Reload()
+		local ply = self:GetOwner()
+		if not IsValid(ply) then return end
+		local time = CurTime()
+		if self.checkcd > time then return end
+		ply:ChatPrint("STATE: "..statetranslate[self:GetState()] )
+		ply:EmitSound("snds_jack_gmod/radio_chk.ogg")
+		self.checkcd = time + 1
+	end
 
     function SWEP:SecondaryAttack()
-		print(self:GetState(),JMod.EZ_STATION_STATE_READY )
         if self:GetState() == JMod.EZ_STATION_STATE_READY then
             net.Start("JMod_EZradio")
             net.WriteBool(false)
             net.WriteEntity(self)
             net.WriteTable(JMod.Config.RadioSpecs.AvailablePackages)
             net.Send(self:GetOwner())
+			self:GetOwner():EmitSound("snds_jack_gmod/radio_chk.ogg")
         end
     end
 
@@ -158,6 +246,18 @@ if SERVER then
 				if self:TryFindSky() then
 					self:Speak("Broadcast received, establishing comm line...")
 					self:Connect(self:GetOwner())
+					self.ConnectionAttempts = self.ConnectionAttempts + 1
+
+					if self.ConnectionAttempts >= 2 then
+						self:Speak("Чето нихя не получилось братан давай заного все")
+
+						timer.Simple(1, function()
+							if IsValid(self) then
+								self:TurnOff()
+								self.ConnectionAttempts = 0
+							end
+						end)
+					end
 				else
 					JMod.Hint(self:GetOwner(), "aid sky")
 					self.ConnectionAttempts = self.ConnectionAttempts + 1
@@ -195,7 +295,7 @@ if SERVER then
 	end
 
 	function SWEP:TryFindSky()
-		local SelfPos = self:LocalToWorld(Vector(10, 0, 45))
+		--[[local SelfPos = self:LocalToWorld(Vector(10, 0, 45))
 
 		for i = 1, 3 do
 			local Dir = self:LocalToWorldAngles(Angle(-50 + i * 5, 0, 0)):Forward()
@@ -208,9 +308,9 @@ if SERVER then
 			}).HitSky
 
 			if HitSky then return true end
-		end
+		end]]
 
-		return false
+		return true -- По рп придумали радиовышки
 	end
 
 	function SWEP:UserIsAuthorized(ply)

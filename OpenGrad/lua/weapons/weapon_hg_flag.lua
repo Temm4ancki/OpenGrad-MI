@@ -1,16 +1,16 @@
 SWEP.Base = "weapon_hg_melee_base"
 
-SWEP.PrintName = "копье"
+SWEP.PrintName = "флаг"
 SWEP.Category = "Ближний Бой"
-SWEP.Instructions = "копе кидац."
+SWEP.Instructions = "ЗА АФРИКАНИСТАН"
 
 SWEP.Spawnable= true
 SWEP.AdminSpawnable= true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60
-SWEP.ViewModel = "models/distac/pro_spear.mdl"
-SWEP.WorldModel = "models/distac/pro_spear.mdl"
+SWEP.ViewModel = "models/addons/flag_sib_resp.mdl"
+SWEP.WorldModel = "models/addons/flag_sib_resp.mdl"
 SWEP.ViewModelFlip = false
 
 SWEP.AutoSwitchTo = false
@@ -29,25 +29,25 @@ SWEP.DrawCrosshair = false
 
 SWEP.DrawAmmo = true
 
-SWEP.Primary.Damage = 10
+SWEP.Primary.Damage = 20
 SWEP.Primary.Ammo = "none"
 SWEP.Primary.DefaultClip = -1
 SWEP.Primary.Automatic = true
 SWEP.Primary.Recoil = 0.5
 SWEP.Primary.Delay = 0.7
-SWEP.Primary.Force = 60
+SWEP.Primary.Force = 50
 
 SWEP.Secondary.ClipSize = 0
 SWEP.Secondary.DefaultClip = 0
 SWEP.Secondary.Automatic = false
 SWEP.Secondary.Ammo = "none"
 
-SWEP.DrawSound = "snd_jack_hmcd_knifedraw.wav"
-SWEP.HitSound = "physics/metal/metal_canister_impact_hard3.wav"
-SWEP.FlashHitSound = "snd_jack_hmcd_axehit.wav"
+SWEP.DrawSound = "physics/metal/metal_box_impact_soft2.wav"
+SWEP.HitSound = "phx/epicmetal_hard.wav"
+SWEP.FlashHitSound = "physics/body/body_medium_impact_hard3.wav"
 SWEP.ShouldDecal = true
 SWEP.HoldTypeWep = "melee"
-SWEP.DamageType = DMG_SLASH
+SWEP.DamageType = DMG_CLUB
 
 SWEP.dwmForward = 2
 SWEP.dwmRight = 0

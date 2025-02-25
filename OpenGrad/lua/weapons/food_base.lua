@@ -65,42 +65,39 @@ end
 SWEP.WorldPos = Vector(4,-2.7,0)
 SWEP.WorldAng = Angle(180, -45, 0)
 if(CLIENT)then
-	if CLIENT then
-		local WorldModel = ClientsideModel(SWEP.WorldModel)
+	local WorldModel = ClientsideModel(SWEP.WorldModel)
 
-		WorldModel:SetNoDraw(true)
-	
-		function SWEP:DrawWorldModel()
-			local _Owner = self:GetOwner()
-	
-			if (IsValid(_Owner)) then
-				-- Specify a good position
-				local offsetVec = self.WorldPos
-				local offsetAng = self.WorldAng
-				
-				local boneid = _Owner:LookupBone("ValveBiped.Bip01_R_Hand") -- Right Hand
-				if !boneid then return end
-	
-				local matrix = _Owner:GetBoneMatrix(boneid)
-				if !matrix then return end
-	
-				local newPos, newAng = LocalToWorld(offsetVec, offsetAng, matrix:GetTranslation(), matrix:GetAngles())
-	
-				WorldModel:SetPos(newPos)
-				WorldModel:SetAngles(newAng)
-	
-				WorldModel:SetupBones()
-			else
-				WorldModel:SetPos(self:GetPos())
-				WorldModel:SetAngles(self:GetAngles())
-			end
-	
-			WorldModel:DrawModel()
+	WorldModel:SetNoDraw(true)
+
+	function SWEP:DrawWorldModel()
+		local _Owner = self:GetOwner()
+
+		if (IsValid(_Owner)) then
+			-- Specify a good position
+			local offsetVec = self.WorldPos
+			local offsetAng = self.WorldAng
+			
+			local boneid = _Owner:LookupBone("ValveBiped.Bip01_R_Hand") -- Right Hand
+			if !boneid then return end
+
+			local matrix = _Owner:GetBoneMatrix(boneid)
+			if !matrix then return end
+
+			local newPos, newAng = LocalToWorld(offsetVec, offsetAng, matrix:GetTranslation(), matrix:GetAngles())
+
+			WorldModel:SetPos(newPos)
+			WorldModel:SetAngles(newAng)
+
+			WorldModel:SetupBones()
+		else
+			WorldModel:SetPos(self:GetPos())
+			WorldModel:SetAngles(self:GetAngles())
 		end
+
+		WorldModel:DrawModel()
 	end
 end
 
-SWEP.HungryAmt = 1
 SWEP.AdrenalineAmt = 0
 SWEP.StaminaAmt = 10
 SWEP.Drink = false
@@ -113,7 +110,7 @@ function SWEP:PrimaryAttack()
 		self:GetOwner().stamina = self:GetOwner().stamina + self.StaminaAmt or 10
 		local healsound = self.Drink and ("snd_jack_hmcd_drink"..math.random(1,3)..".wav") or ("snd_jack_hmcd_eat"..math.random(1,4)..".wav")
 		--sound.Play(healsound, self:GetPos(),75,100,0.5)
-		self:EmitSound(healsound)
+		self:GetOwner():EmitSound(healsound)
 		self:GetOwner():SelectWeapon("weapon_hands")
 		self:Remove()
 	end

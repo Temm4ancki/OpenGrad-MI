@@ -1,96 +1,45 @@
--- food_spongebob_home :skull:
-SWEP.Base = 'weapon_base'
 AddCSLuaFile()
-
+SWEP.Base = "food_base"
 SWEP.PrintName = "Банка ананасов"
-SWEP.Author = "Homigrad"
-SWEP.Purpose = "Консервированные ананасы"
+SWEP.Purpose = "Дом спанчбоба"
 SWEP.Category = "Вкусности"
-
-SWEP.Slot = 3
-SWEP.SlotPos = 3
-SWEP.Spawnable = true
-
-SWEP.ViewModel = "models/jordfood/can.mdl"
 SWEP.WorldModel = "models/jordfood/can.mdl"
-SWEP.ViewModelFOV = 54
-SWEP.UseHands = true
-
-SWEP.Primary.ClipSize = -1
-SWEP.Primary.DefaultClip = -1
-SWEP.Primary.Automatic = false
-SWEP.Primary.Ammo = "none"
-
-SWEP.Secondary.ClipSize = -1
-SWEP.Secondary.DefaultClip = -1
-SWEP.Secondary.Automatic = false
-SWEP.Secondary.Ammo = "none"
-
-SWEP.DrawCrosshair = false
-
-function SWEP:Initialize()
-	self:SetHoldType( "slam" )
-	if ( CLIENT ) then return end
-end
+SWEP.WorldPos = Vector(3.5,-2.5, 0)
+SWEP.WorldAng = Angle(-180, 0, 0)
+SWEP.AdrenalineAmt = 0
+SWEP.StaminaAmt = 8
+SWEP.Drink = false
 
 if(CLIENT)then
-	function SWEP:PreDrawViewModel(vm,wep,ply)
-	end
-	function SWEP:GetViewModelPosition(pos,ang)
-		pos=pos-ang:Up()*10+ang:Forward()*30+ang:Right()*7
-		ang:RotateAroundAxis(ang:Up(),90)
-		ang:RotateAroundAxis(ang:Right(),-10)
-		ang:RotateAroundAxis(ang:Forward(),-10)
-		return pos,ang
-	end
-	if CLIENT then
-		local WorldModel = ClientsideModel(SWEP.WorldModel)
-	
-		WorldModel:SetNoDraw(true)
-	
-		function SWEP:DrawWorldModel()
-			local _Owner = self:GetOwner()
-	
-			if (IsValid(_Owner)) then
-				-- Specify a good position
-				local offsetVec = Vector(4,-1,0)
-				local offsetAng = Angle(180, -45, 90)
-				
-				local boneid = _Owner:LookupBone("ValveBiped.Bip01_R_Hand") -- Right Hand
-				if !boneid then return end
-	
-				local matrix = _Owner:GetBoneMatrix(boneid)
-				if !matrix then return end
-	
-				local newPos, newAng = LocalToWorld(offsetVec, offsetAng, matrix:GetTranslation(), matrix:GetAngles())
-	
-				WorldModel:SetPos(newPos)
-				WorldModel:SetAngles(newAng)
-	
-				WorldModel:SetupBones()
-			else
-				WorldModel:SetPos(self:GetPos())
-				WorldModel:SetAngles(self:GetAngles())
-			end
-	
-			WorldModel:DrawModel()
+	local WorldModel = ClientsideModel(SWEP.WorldModel)
+
+	WorldModel:SetNoDraw(true)
+
+	function SWEP:DrawWorldModel()
+		local _Owner = self:GetOwner()
+
+		if (IsValid(_Owner)) then
+			-- Specify a good position
+			local offsetVec = self.WorldPos
+			local offsetAng = self.WorldAng
+			
+			local boneid = _Owner:LookupBone("ValveBiped.Bip01_R_Hand") -- Right Hand
+			if !boneid then return end
+
+			local matrix = _Owner:GetBoneMatrix(boneid)
+			if !matrix then return end
+
+			local newPos, newAng = LocalToWorld(offsetVec, offsetAng, matrix:GetTranslation(), matrix:GetAngles())
+
+			WorldModel:SetPos(newPos)
+			WorldModel:SetAngles(newAng)
+
+			WorldModel:SetupBones()
+		else
+			WorldModel:SetPos(self:GetPos())
+			WorldModel:SetAngles(self:GetAngles())
 		end
+
+		WorldModel:DrawModel()
 	end
 end
-function SWEP:PrimaryAttack()
-	if not IsValid(self:GetOwner()) then return end
-	self:GetOwner():SetAnimation(PLAYER_ATTACK1)
-
-	if(SERVER)then
-		self:GetOwner().stamina = self:GetOwner().stamina + 10
-		local healsound = "snd_jack_hmcd_eat"..math.random(1,4)..".wav"
-		--sound.Play(healsound, self:GetPos(),75,100,0.5)
-		self:EmitSound(healsound)
-		self:GetOwner():SelectWeapon("weapon_hands")
-		self:Remove()
-	end
-end
-
-function SWEP:SecondaryAttack()
-end
-

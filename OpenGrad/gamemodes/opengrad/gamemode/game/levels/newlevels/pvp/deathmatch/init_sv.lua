@@ -100,7 +100,7 @@ function dm.PlayerInitialSpawn(ply)
 end
 
 function dm.PlayerCanJoinTeam(ply,teamID)
-	if teamID == 2 or teamID == 3 then ply:ChatPrint("пашол нахуй") return false end
+	if teamID == 2 or teamID == 3 then ply:ChatPrint("не чето не хочу") return false end
 
     return true
 end

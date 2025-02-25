@@ -210,7 +210,7 @@ end
 function tdm.PlayerInitialSpawn(ply) ply:SetTeam(math.random(2)) end
 
 function tdm.PlayerCanJoinTeam(ply,teamID)
-    if teamID == 3 then ply:ChatPrint("Иди нахуй") return false end
+    if teamID == 3 then ply:ChatPrint("Не чето нехочу пока") return false end
 end
 
 function tdm.PlayerDeath(ply,inf,att) return false end

@@ -7,6 +7,8 @@ SWEP.Category 				= "Разное"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
+SWEP.AutoSwitchFrom = false
+SWEP.AutoSwitchTo = false
 
 SWEP.Primary.ClipSize		= 300
 SWEP.Primary.DefaultClip	= 300
@@ -83,8 +85,6 @@ if SERVER then
                         dmgInfo:SetAttacker(owner)
                         dmgInfo:SetInflictor(self)
                         dmgInfo:SetDamage(5)
-
-                        GuiltLogic(ent,owner,dmgInfo)
 
                         net.Start("JMod_VisionBlur")
                         net.WriteFloat(5)

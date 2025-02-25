@@ -152,3 +152,7 @@ function OpenHomigradMenu()
         end
     end
 end
+
+net.Receive("menuska", function()
+	OpenHomigradMenu()
+end)

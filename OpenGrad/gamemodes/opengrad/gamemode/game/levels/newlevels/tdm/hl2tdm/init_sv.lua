@@ -68,7 +68,7 @@ function hl2dm.PlayerSpawn(ply,teamID)
 end
 
 function hl2dm.PlayerCanJoinTeam(ply,teamID)
-    if teamID == 3 then ply:ChatPrint("Иди нахуй") return false end
+    if teamID == 3 then ply:ChatPrint("Не чето нехочу пока") return false end
 end
 
 function hl2dm.ShouldSpawnLoot() return false end
