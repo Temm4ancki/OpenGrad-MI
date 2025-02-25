@@ -129,8 +129,8 @@ function tdm.StartRoundSV()
 
 	tdm.CenterInit()
 
-    --tdm.SelectRandomPlayers(team.GetPlayers(1),2,tdm.GiveAidPhone)
-    --tdm.SelectRandomPlayers(team.GetPlayers(2),2,tdm.GiveAidPhone)
+    tdm.SelectRandomPlayers(team.GetPlayers(1),2,tdm.GiveAidPhone)
+    tdm.SelectRandomPlayers(team.GetPlayers(2),2,tdm.GiveAidPhone)
 end
 
 function tdm.GetCountLive(list,func)
@@ -196,9 +196,6 @@ function tdm.PlayerSpawn(ply,teamID)
 	if math.random(1,4) == 4 then ply:Give("adrenaline") end
 
 	if math.random(1,4) == 4 then ply:Give("morphine") end
-
-	--local r = math.random(1,3)
-	--ply:Give(r == 1 and "food_fishcan" or r == 2 and "food_spongebob_home" or r == 3 and "food_lays")
 
 	if math.random(1,3) == 3 then if ply:Team() == 1 then ply:Give("weapon_hg_f1") else ply:Give("weapon_hg_rgd5") end end
 

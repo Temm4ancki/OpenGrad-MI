@@ -4,6 +4,10 @@ homicide.Name = "Homicide"
 
 models = {}
 for i = 1,9 do table.insert(models,"models/player/group01/male_0" .. i .. ".mdl") end
+
+models_rebels = {}
+for i = 1,9 do table.insert(models_rebels,"models/player/Group03/male_0"..i..".mdl") end
+
 --table.insert(models,"models/player/group01/male_07.mdl")
 homicide.models = models
 homicide.red = {"Невиновный",Color(125,125,125),

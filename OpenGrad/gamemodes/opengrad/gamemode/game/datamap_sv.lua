@@ -64,8 +64,9 @@ SpawnPointsList = {
 
 	sim_fphys_tank3 = {"sim_fphys_tank3",Color(165,165,165)},
 	sim_fphys_tank4 = {"sim_fphys_tank4",Color(165,165,165)},
-	sim_fphys_conscriptapc_armed = {"sim_fphys_conscriptapc_armed",Color(165,165,165)}
+	sim_fphys_conscriptapc_armed = {"sim_fphys_conscriptapc_armed",Color(165,165,165)},
 
+	bomb_site = {"bomb_site",Color(161,121,61)}
 }
 
 function GetDataMapName(name) return "homigrad/maps/" .. name .. "/" .. game.GetMap() .. (SpawnPointsPage == 1 and "" or SpawnPointsPage) ..".txt" end

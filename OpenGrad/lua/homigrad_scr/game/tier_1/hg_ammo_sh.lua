@@ -195,7 +195,6 @@ local ammoents = {
     },
 }
 
-print("yea!")
 for k,v in pairs(ammotypes) do
     --PrintTable(v)
     game.AddAmmoType( v )
