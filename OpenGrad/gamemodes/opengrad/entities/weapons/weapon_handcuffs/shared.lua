@@ -57,16 +57,14 @@ end
 
 local cuffTime = 2
 function SWEP:Think()
-    if SERVER then
-        if self.CuffPly then
-            local pos1 = self.CuffPly:GetPos()
-            local pos2 = self:GetOwner():GetPos()
+    if SERVER and self.CuffPly then
+        local pos1 = self.CuffPly:GetPos()
+        local pos2 = self:GetOwner():GetPos()
 
-            if pos1:Distance(pos2) >= 100 then
-                self.CuffPly = nil
-            elseif self.CuffTime + cuffTime <= CurTime() then
-                self:Cuff(self.CuffPly)
-            end
+        if pos1:Distance(pos2) >= 100 then
+            self.CuffPly = nil
+        elseif self.CuffTime + cuffTime <= CurTime() then
+            self:Cuff(self.CuffPly)
         end
     end
 end

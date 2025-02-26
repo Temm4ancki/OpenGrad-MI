@@ -129,8 +129,8 @@ function tdm.StartRoundSV()
 
 	tdm.CenterInit()
 
-    tdm.SelectRandomPlayers(team.GetPlayers(1),2,tdm.GiveAidPhone)
-    tdm.SelectRandomPlayers(team.GetPlayers(2),2,tdm.GiveAidPhone)
+    -- tdm.SelectRandomPlayers(team.GetPlayers(1),2,tdm.GiveAidPhone)
+    -- tdm.SelectRandomPlayers(team.GetPlayers(2),2,tdm.GiveAidPhone)
 end
 
 function tdm.GetCountLive(list,func)

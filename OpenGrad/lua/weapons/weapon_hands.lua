@@ -264,6 +264,12 @@ function SWEP:CanPickup(ent)
 	return false
 end
 
+net.Receive("huyvalues",function(len) -- net receive xnj,s hfccreafnm xtkjdtrf tckb jy d yfhexybrf[]
+	local self = net.ReadEntity()
+	self.CuffPly = net.ReadEntity()
+	self.CuffTime = net.ReadFloat()
+end)
+
 function SWEP:SecondaryAttack()
 	if not IsFirstTimePredicted() then return end
 	if self:GetFists() then return end
@@ -348,6 +354,17 @@ function SWEP:ApplyForce() --!! Функция спизженная из джи�
 			elseif self:GetOwner():KeyPressed(IN_ATTACK) then
 				self:GetOwner():ChatPrint("ГРАБ ТИПО СИЛЬНО")
 				mul = mul * 20
+			end
+
+			if PlayerIsCuffs(self.CarryEnt) then
+				local frac = traceResult.Fraction
+				surface.SetDrawColor(Color(255, 255, 255, 255))
+				draw.NoTexture()
+				Circle(x, y, 5 / frac, 32)
+				draw.DrawText(ply and ("раzсвязать "..ply:Nick()) or "", "TargetID", x, y - 40, color_white, TEXT_ALIGN_CENTER )
+				if self.CuffTime then
+					surface.DrawRect(x - 50,y + 50,100 - math.max((self.CuffTime - CurTime() + cuffTime) * 100,0),25)
+				end
 			end
 		end
 

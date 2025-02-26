@@ -1,10 +1,10 @@
 ﻿-- Jackarunda 2021
-AddCSLuaFile()
+--AddCSLuaFile()
 ENT.Type = "anim"
 ENT.Author = "Jackarunda"
 ENT.Category = "JMod - EZ Weapons"
 ENT.Information = "glhfggwpezpznore"
-ENT.PrintName = "EZ Weapon"
+--ENT.PrintName = "EZ Weapon"
 ENT.NoSitAllowed = true
 ENT.Spawnable = false
 ENT.AdminSpawnable = false

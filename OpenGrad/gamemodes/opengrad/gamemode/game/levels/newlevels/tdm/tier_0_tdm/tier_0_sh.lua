@@ -1,6 +1,6 @@
 table.insert(LevelList,"tdm")
 tdm = {}
-tdm.Name = "Битва Нормесоу"
+tdm.Name = "Я не придумал название этому режиму пускай кто-то за меня его придумает потом"
 
 local models = {}
 
@@ -10,7 +10,7 @@ for i = 1,6 do table.insert(models,"models/player/group01/female_0" .. i .. ".md
 
 tdm.models = models
 tdm.red = {
-	"Такуси",Color(221,221,221),
+	"Повстанцы",Color(255,180,69),
 	weapons = {"weapon_binokle","weapon_radio","weapon_gurkha","weapon_hands","med_band_big","med_band_small","medkit","painkiller"},
 	main_weapon = {"weapon_ak74u","weapon_akm","weapon_remington870","weapon_galil","weapon_rpk","weapon_galilsar","weapon_mp40"},
 	secondary_weapon = {"weapon_p220","weapon_deagle","weapon_glock"},
@@ -19,7 +19,7 @@ tdm.red = {
 
 
 tdm.blue = {
-	"Нетакуси",Color(83,83,83),
+	"Повстанцы",Color(245,255,99),
 	weapons = {"weapon_binokle","weapon_radio","weapon_hands","weapon_kabar","med_band_big","med_band_small","medkit","painkiller","weapon_handcuffs","weapon_taser"},
 	main_weapon = {"weapon_mk18","weapon_m4a1","weapon_m3super","weapon_mp7","weapon_xm1014","weapon_fal","weapon_galilsar","weapon_m249","weapon_mp40"},
 	secondary_weapon = {"weapon_beretta","weapon_fiveseven","weapon_hk_usp"},
@@ -42,8 +42,6 @@ function tdm.StartRound()
 end
 
 if SERVER then return end
-
-local colorRed = Color(255,0,0)
 
 function tdm.GetTeamName(ply)
 	local game = TableRound()

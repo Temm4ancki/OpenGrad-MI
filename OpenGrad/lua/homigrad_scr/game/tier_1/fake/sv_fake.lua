@@ -1035,22 +1035,40 @@ hook.Add("Player Think","FakeControl",function(ply,time) --управление 
 		if(ply:KeyDown(IN_USE))then
 			local phys = head
 			local angs = ply:EyeAngles()
-			angs:RotateAroundAxis(angs:Forward(),90)
-			local shadowparams = {
-				secondstoarrive=0.5,
-				pos=head:GetPos()+vector_up*(20/math.Clamp(rag:GetVelocity():Length()/300,1,12)) * 15,
-				angle=angs,
-				maxangulardamp=10,
-				maxspeeddamp=10,
-				maxangular=370,
-				maxspeed=40,
-				teleportdistance=0,
-				deltatime=deltatime,
-			}
-			head:Wake()
-			head:ComputeShadowControl(shadowparams)
+			if ply:GetActiveWeapon() == "weapon_hands" then
+				angs:RotateAroundAxis(angs:Forward(),90)
+				local shadowparams = {
+					secondstoarrive=0.5,
+					pos=head:GetPos()+vector_up*(20/math.Clamp(rag:GetVelocity():Length()/300,1,12)) * 45,
+					angle=angs,
+					maxangulardamp=10,
+					maxspeeddamp=30,
+					maxangular=500,
+					maxspeed=40,
+					teleportdistance=0,
+					deltatime=deltatime,
+				}
+				head:Wake()
+				head:ComputeShadowControl(shadowparams)
+			else
+				angs:RotateAroundAxis(angs:Up(),90)
+				angs:RotateAroundAxis(angs:Right(),90)
+				local shadowparams = {
+					secondstoarrive=0.1,
+					pos=head:GetPos()+vector_up*(20/math.Clamp(rag:GetVelocity():Length()/300,1,12)) * 45,
+					angle=angs,
+					maxangulardamp=10,
+					maxspeeddamp=30,
+					maxangular=500,
+					maxspeed=40,
+					teleportdistance=0,
+					deltatime=deltatime,
+				}
+				head:Wake()
+				head:ComputeShadowControl(shadowparams)
+			end
 		end
-		end
+	end
 		if (ply:KeyDown(IN_SPEED)) and (RagdollOwner(rag) and !RagdollOwner(rag).Otrub) and !timer.Exists("StunTime" .. ply:EntIndex()) then
 			local bone = rag:TranslateBoneToPhysBone(rag:LookupBone( "ValveBiped.Bip01_L_Hand" ))
 			local phys = rag:GetPhysicsObjectNum( rag:TranslateBoneToPhysBone(rag:LookupBone( "ValveBiped.Bip01_L_Hand" )) )
