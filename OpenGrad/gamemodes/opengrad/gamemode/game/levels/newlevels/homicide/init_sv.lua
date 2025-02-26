@@ -51,8 +51,6 @@ local function makeT(ply)
             "weapon_kabar",
             "weapon_hg_t_syringepoison",
             "weapon_hg_t_vxpoison",
-            "weapon_hg_rgd5",
-            "weapon_jahidka"
         })
     elseif homicide.roundType == 4 then
         SpawnEblan(ply,{
@@ -61,39 +59,13 @@ local function makeT(ply)
             "weapon_hg_rgd5",
             "weapon_jahidka"
         })
-    --     ply:GiveAmmo(12,5)
-    -- elseif homicide.roundType == 5 then
-    --     SpawnEblan(ply,{
-    --         ""
-    --     })
-    -- elseif homicide.roundType == 6 then
-    --     SpawnEblan(ply,{
-    --         "weapon_kabar",
-    --         "weapon_hk_usps",
-    --         "weapon_hidebomb",
-    --         "weapon_hg_rgd5"
-    --     })
-    -- elseif homicide.roundType == 7 then
-    --     SpawnEblan(ply,{
-    --         "weapon_kabar",
-    --         "weapon_hk_usps",
-    --         "weapon_hidebomb",
-    --         "weapon_hg_rgd5"
-    --     })
-    -- elseif homicide.roundType == 8 then
-    --     SpawnEblan(ply,{
-    --         "weapon_kabar",
-    --         "weapon_hk_usps",
-    --         "weapon_hidebomb",
-    --         "weapon_hg_rgd5"
-    --     })
-    -- elseif homicide.roundType == 9 then
-    --     SpawnEblan(ply,{
-    --         "weapon_kabar",
-    --         "weapon_hk_usps",
-    --         "weapon_hidebomb",
-    --         "weapon_hg_rgd5"
-    --     })
+        ply:GiveAmmo(12,5)
+    elseif homicide.roundType == 5 then
+        SpawnEblan(ply,{
+            "weapon_kabar",
+            "weapon_hidebomb",
+            "weapon_hg_usps"
+        })
     end
 
     timer.Simple(5,function() ply.allowFlashlights = true end)
@@ -125,17 +97,11 @@ local function makeCT(ply)
         SpawnEblan(ply,{
             "weapon_remington870"
         })
-    -- elseif homicide.roundType == 5 then 
-    -- elseif homicide.roundType == 6 then 
-    --     SpawnEblan(ply,{
-    --         "weapon_hk_usp", 
-    --         "weapon_hg_stunstick"
-    --     })
-    -- elseif homicide.roundType == 7 then
-    -- elseif homicide.roundType == 8 then
-    -- elseif homicide.roundType == 9 then
+    elseif homicide.roundType == 5 then
+        SpawnEblan(ply,{
+            "weapon_beretta"
+        }) 
     end
-
 end
 
 COMMANDS.russian_roulette = {function(ply,args)
@@ -189,14 +155,11 @@ function homicide.StartRoundSV()
 
     if homicide.roundType == 3 then
         roundTime = roundTime / 2
-    elseif homicide.roundType == 5 then -- спидрун
-        roundTime = roundTime / 4
     end
 
     roundTimeLoot = 5
 
     for i,ply in pairs(team.GetPlayers(2)) do ply:SetTeam(1) end
-    --for i,ply in pairs(team.GetPlayers(2)) do ply:SetTeam(1) end
 
     homicide.ct = {}
     homicide.t = {}
@@ -331,7 +294,7 @@ function homicide.PlayerSpawn(ply,teamID)
     if homicide.roundType ~= 1 then
 	    ply:SetModel(teamTbl.models[math.random(#teamTbl.models)] or "models/player/group01/male_03.mdl")
     else
-        ply:SetModel(models_rebels[math.random(#models_rebels)] or "models/player/group03/male_10.mdl")
+        ply:SetModel(models_rebels[math.random(#models_rebels)] or "models/player/group03/male_01.mdl")
     end
     ply:SetPlayerColor(color:ToVector())
 

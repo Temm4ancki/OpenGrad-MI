@@ -57,11 +57,12 @@ if SERVER then
     local function Bomb(ent)
         local SelfPos,PowerMult,Model = ent:LocalToWorld(ent:OBBCenter()),6,ent:GetModel()
 
-        ent:EmitSound("snds_jack_gmod/plunger.wav")
+
+        ent:EmitSound("nokia.mp3",100)
 
 		timer.Simple(math.Rand(0.3,0.4),function()
             ParticleEffect("pcf_jack_groundsplode_large",SelfPos,vector_up:Angle())
-            util.ScreenShake(SelfPos,99999,99999,1,3000)
+            util.ScreenShake(SelfPos,999,999,1,3000)
             sound.Play("BaseExplosionEffect.Sound", SelfPos,120,math.random(90,110))
 
             for i = 1,4 do

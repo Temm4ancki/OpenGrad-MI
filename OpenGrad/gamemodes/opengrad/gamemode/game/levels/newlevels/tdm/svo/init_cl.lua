@@ -26,10 +26,10 @@ function svo.HUDPaint_RoundLeft(white)
 
 
         drawRoundMode("Team Deathmatch",svo.Name,startRound,Color(155,155,155))
-        if name == "ВС Сепаратистов" then
-            drawRoundStart(name,"Уничтожь оккупантов, защищай своих.",startRound,Color(color.r,color.g,color.b))
+        if lply:Team() == 1 then
+            drawRoundStart(name,"Уничтожь оккупантов, защищай сво.",startRound,Color(color.r,color.g,color.b))
         else
-            drawRoundStart(name,"Уничтожь сепаратистов, защищай своих.",startRound,Color(color.r,color.g,color.b))
+            drawRoundStart(name,"Уничтожь сепаратистов, защищай сво.",startRound,Color(color.r,color.g,color.b))
         end
         return
     end

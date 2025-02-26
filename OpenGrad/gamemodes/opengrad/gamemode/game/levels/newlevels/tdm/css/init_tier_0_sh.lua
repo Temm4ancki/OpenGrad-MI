@@ -1,4 +1,5 @@
-table.insert(LevelList,"css")
+--table.insert(LevelList,"css")
+-- недодеано пока не включаем
 css = {}
 css.Name = "Контер Стрике Сурс: Гомд едитион"
 
