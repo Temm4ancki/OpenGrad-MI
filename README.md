@@ -16,17 +16,13 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3036510525
 
 TODO:
 - Trying fix voice panel
-- Fix food
 - Rebuild content to remove garbage
-- Russian Roulette button in C menu
 - Delete garbage Jmod files (we need only explosions and armor) 
 - Maybe add toolgun points spawn (like a new addon)
-- Fix telephone (????)
 - Add more gaymodes (MOOORREEEE)
 - Add universal govno for roundtypes (TDM, 1vsAll, Homicide) <- actually do not i don't think it's good idea and i'll think about better solution
 - Add F4 panel for admins
 - Picking up shit as weps (chairs (DAITE EMY STYL), bottles etc.)
-- Easier ragdoll control (HUD, etc)
+- Easier ragdoll control (HUD, etc) (50% done)
 - HUD for body damage indication 
-- Model swapping for SWAT, CSS (TDM) and etc. (Implemented?)
-- Many other fixes
+- Many other fixes (???% done)
