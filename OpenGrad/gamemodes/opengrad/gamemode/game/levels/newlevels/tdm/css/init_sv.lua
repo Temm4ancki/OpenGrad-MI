@@ -51,15 +51,28 @@ function css.PlayerSpawn(ply,teamID)
 	tdm.GiveSwep(ply,teamTbl.main_weapon,0)
 	tdm.GiveSwep(ply,teamTbl.secondary_weapon)
 
-	JMod.EZ_Equip_Armor(ply,(math.random(1,2) == 1 and "Medium-Light-Vest") or (math.random(1,2) and "Light-Vest"),Color(65,65,65))
+	JMod.EZ_Equip_Armor(ply,(math.random(1,2) == 1 and "Medium-Light-Vest") or (math.random(1,2) and "Light-Vest"))
 
 	if roundStarter then
 		ply.allowFlashlights = false
 	end
 end
 
+function css.GetBombSites()
+	local avaible = ReadDataMap("bomb_site")
+	local sites = {}
+
+	for i,_ in ipairs(avaible) do
+		debugoverlay.Sphere(avaible[i][1],70)
+		table.insert(sites,avaible[i])
+	end
+	
+	return sites
+end
+
+
 function css.PlayerCanJoinTeam(ply,teamID)
-    if teamID == 3 then ply:ChatPrint("Иди нахуй") return false end
+    if teamID == 3 then ply:ChatPrint("yummers") return false end
 end
 
 local common = {"food_lays","weapon_pipe","weapon_bat","medkit","food_monster","food_fishcan","food_spongebob_home"}

@@ -16,7 +16,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3036510525
 
 TODO:
 - Trying fix voice panel
-- Rebuild content to remove garbage
+- Rebuild content to remove garbage <- sam
 - Delete garbage Jmod files (we need only explosions and armor) 
 - Maybe add toolgun points spawn (like a new addon)
 - Add more gaymodes (MOOORREEEE)
@@ -25,4 +25,6 @@ TODO:
 - Picking up shit as weps (chairs (DAITE EMY STYL), bottles etc.)
 - Easier ragdoll control (HUD, etc) (50% done)
 - HUD for body damage indication 
-- Many other fixes (???% done)
+- Many other fixes (1488% done)
+
+############# pluv

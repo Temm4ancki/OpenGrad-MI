@@ -1,7 +1,7 @@
---table.insert(LevelList,"css")
+table.insert(LevelList,"css")
 -- недодеано пока не включаем
 css = {}
-css.Name = "Контер Стрике Сурс: Гомд едитион"
+css.Name = "Couynter-Strike: Source"
 
 css.red = {"КОНТЕРЫ",Color(53,53,179),
 	weapons = {"weapon_binokle","weapon_radio","weapon_hands","weapon_kabar","med_band_big","med_band_small","medkit","painkiller","weapon_handcuffs","weapon_taser"},
@@ -36,6 +36,7 @@ function css.StartRound()
 	end
 
 	css.StartRoundSV()
+	css.GetBombSites()
 end
 
 css.SupportCenter = true
