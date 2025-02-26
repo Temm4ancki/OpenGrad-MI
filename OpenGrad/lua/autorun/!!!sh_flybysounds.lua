@@ -55,17 +55,17 @@ else
 	hook.Add("Think","FlyBySound_Think",function()
 		if not cl_flybysound_enable:GetBool() then return end
 
-		local minspeed = sv_flybysound_minspeed:GetInt()
-		local maxspeed = sv_flybysound_maxspeed:GetInt()
-		local minshapevolume = sv_flybysound_minshapevolume:GetInt()
-		local maxshapevolume = sv_flybysound_maxshapevolume:GetInt()
-		local minvol = sv_flybysound_minvol:GetInt()
-		local applytoplayer = sv_flybysound_playersounds:GetBool()
+		local minspeed = 95
+		local maxspeed = 1000
+		local minshapevolume = 1
+		local maxshapevolume = 400
+		local minvol = 30
+		local applytoplayer = 1
 
 		local eyePos = EyePos()
 		local lply = LocalPlayer()
 
-		for ent in pairs(flybysound_entities) do
+		for ent in ipairs(flybysound_entities) do
 			if ent:GetMoveType() == MOVETYPE_NOCLIP then
 				if ent.FlyBySound:IsPlaying() then ent.FlyBySound:Stop() end
 

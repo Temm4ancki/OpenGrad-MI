@@ -44,10 +44,11 @@ function SWEP:PrimaryAttack()
     local shotpos = ply:GetPos()+Vector(0,0,50) + ply:EyeAngles():Forward()*60 + ply:EyeAngles():Right()*5
     if SERVER then 
         local rocket = ents.Create( "gb_rocket_rp3" )
-		rocket:SetAngles( ply:EyeAngles()+Angle(-5,0,0) )
         rocket:SetPos(shotpos)
+		rocket:SetAngles( ply:EyeAngles()+Angle(-5,0,0) )
         rocket:Spawn()
         rocket:Launch()
+		rocket:SetModel("models/weapons/w_missile_closed.mdl")
     end
     self:TakePrimaryAmmo(1)
 end

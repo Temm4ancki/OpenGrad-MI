@@ -35,7 +35,7 @@ SWEP.Weight					= 5
 SWEP.AutoSwitchTo			= false
 SWEP.AutoSwitchFrom			= false
 
-SWEP.HoldType = "smg"
+SWEP.HoldType = "ar2"
 
 ------------------------------------------
 

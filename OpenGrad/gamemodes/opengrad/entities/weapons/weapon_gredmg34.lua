@@ -1,8 +1,8 @@
 SWEP.Base                   = "weapon_base"
 
-SWEP.PrintName 				= "Установка миномёта"
+SWEP.PrintName 				= "Установка пулемета"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Установить миномёт"
+SWEP.Instructions			= "Установить пулемет"
 SWEP.Category 				= "Разное"
 
 SWEP.Spawnable 				= true
@@ -45,13 +45,22 @@ local function getModel(className)
 end
 
 local list = {}
-list.gred_emp_pm41 = Vector(0,0,26)
-list.gred_emp_3inchmortar = Vector(0,0,5)
+list.gred_emp_mg34 = Vector(0,0,50)
+list.gred_emp_mg15 = Vector(0,0,50)
+list.gred_emp_mg42 = Vector(0,0,50)
+list.gred_emp_mg81z = Vector(0,0,50)
+list.gred_emp_vickers = Vector(0,0,30)
+list.gred_emp_gau19 = Vector(0,0,55)
+list.gred_emp_m134 = Vector(0,0,50)
+list.gred_emp_dshk = Vector(0,0,10)
+list.gred_emp_m2 = Vector(0,0,60)
+list.gred_emp_kord = Vector(0,0,30)
+list.gred_emp_zpu4_1931 = Vector(0,0,30)
 
 local function getPos(ply,ent)
     local tr = {}
     tr.start = ply:EyePos()
-    local dir = Vector(80,0,0)
+    local dir = Vector(100,0,0)
     dir:Rotate(ply:EyeAngles())
     tr.endpos = tr.start + dir
     tr.filter = ply
@@ -90,11 +99,11 @@ if SERVER then
         self:Remove()
     end
 
-    hook.Add("Gred Emplacment Use","Mimomet",function(ent,ply)
+    hook.Add("Gred Emplacment Use","Mg_rule34",function(ent,ply)
         if not ply:KeyDown(IN_WALK) or not list[ent:GetClass()] then return end
-        if ply:HasWeapon("weapon_gredmimomet") then return true end
+        if ply:HasWeapon("weapon_gredmg34") then return true end
 
-        ply:Give("weapon_gredmimomet"):SetNWString("Gred",ent:GetClass())
+        ply:Give("weapon_gredmg34"):SetNWString("Gred",ent:GetClass())
 
         ent:Remove()
 
@@ -177,7 +186,6 @@ else
 
         if not hg_hint:GetBool() then return end
 
-        draw.SimpleText("Обращай внимания на калибр, выбирай 'HE'","DebugFixedSmall",ScrW() / 2,ScrH() - 150,color_white,TEXT_ALIGN_CENTER)
         draw.SimpleText("Что-бы забрать зажми 'ALT' и нажми 'E'","DebugFixedSmall",ScrW() / 2,ScrH() - 125,color_white,TEXT_ALIGN_CENTER)
         draw.SimpleText("Убрать подсказки hg_hint 0","DebugFixedSmall",ScrW() / 2,ScrH() - 100,color_white,TEXT_ALIGN_CENTER)
     end

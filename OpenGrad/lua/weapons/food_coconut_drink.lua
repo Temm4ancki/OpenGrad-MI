@@ -1,13 +1,13 @@
 AddCSLuaFile()
 SWEP.Base = "food_base"
-SWEP.PrintName = "Энергетик"
-SWEP.Purpose = "Lonely, lonely, I guess I'm lonely\nПусть всё будет, как решит монолог твоей души"
+SWEP.PrintName = "Коконат дринк"
+SWEP.Purpose = "молочко"
 SWEP.Category = "Вкусности"
 SWEP.Spawnable = true
-SWEP.WorldModel = "models/foodnhouseholditems/sodacanb01.mdl"
+SWEP.WorldModel = "models/foodnhouseholditems/coconut_drink.mdl"
 SWEP.WorldPos = Vector(4,-2,0)
 SWEP.WorldAng = Angle(180, 0, 0)
-SWEP.AdrenalineAmt = 1
+SWEP.AdrenalineAmt = 0
 SWEP.StaminaAmt = 10
 SWEP.Drink = true
 

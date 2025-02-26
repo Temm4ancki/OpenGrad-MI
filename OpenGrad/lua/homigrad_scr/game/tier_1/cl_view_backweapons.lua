@@ -1,7 +1,7 @@
 PickTable = {}
 PickLerp = {}
 hook.Add( "HUDWeaponPickedUp", "WeaponPickedUp", function( weapon )
-	table.insert( PickTable, weapon:GetPrintName() )
+	table.insert( PickTable, weapon:GetPrintName() or weapon )
 	--PrintTable(PickTable)
 	timer.Simple(5,function()
 		table.remove(PickTable,1)

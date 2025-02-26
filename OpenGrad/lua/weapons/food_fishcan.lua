@@ -3,6 +3,7 @@ SWEP.Base = "food_base"
 SWEP.PrintName = "Банка Рыбы"
 SWEP.Purpose = "Консервированная рыба"
 SWEP.Category = "Вкусности"
+SWEP.Spawnable = true
 SWEP.WorldModel = "models/jordfood/atun.mdl"
 SWEP.WorldPos = Vector(4,-2.5,-1)
 SWEP.WorldAng = Angle(180, 0, 0)

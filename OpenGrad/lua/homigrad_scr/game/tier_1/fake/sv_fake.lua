@@ -290,7 +290,7 @@ hook.Add("OnEntityCreated","hg-bullseye",function(ent)
 end)
 
 hook.Add("Think","FakedShoot",function() --функция стрельбы лежа
-for i,ply in pairs(player.GetAll()) do
+for i,ply in player.Iterator() do
 	if IsValid(ply:GetNWEntity("Ragdoll")) and ply.FakeShooting and ply:Alive() then
 		SpawnWeapon(ply)
 	else
@@ -312,7 +312,7 @@ hook.Add("PlayerSay","huyasds",function(ply,text)
 		local ent = ply:GetEyeTrace().Entity
 		if ent:IsPlayer() then
 			ply:ChatPrint(ent:Nick(),ent:EntIndex())
-			print(tostring(ply:Name()).." связал "..tostring(ent:Name()))
+			print(tostring(ply:Name()).." svyazal "..tostring(ent:Name()))
 			ent:StripWeapons()
 			ent:Give("weapon_hands")
 			ent:SetModel(table.Random(hostagemodels))
@@ -841,7 +841,7 @@ hook.Add("OnPlayerHitGround","GovnoJopa",function(ply,a,b,speed)
 end)
 
 hook.Add("Think","VelocityFakeHitPlyCheck",function() --проверка на скорость в фейке (для сбивания с ног других игроков)
-	for i,rag in pairs(ents.FindByClass("prop_ragdoll")) do
+	for i,rag in ipairs(ents.FindByClass("prop_ragdoll")) do
 		if IsValid(rag) then
 			if rag:GetVelocity():Length() > 200 then
 				rag:SetCollisionGroup(COLLISION_GROUP_NONE)
@@ -1298,7 +1298,7 @@ InternalBleeding = 20
 local player_GetAll = player.GetAll
 
 hook.Add("Player Think","InternalBleeding",function(ply,time)
-	for i,ply in pairs(player_GetAll()) do
+	for i,ply in player.Iterator() do
 		ply.OrgansNextThink = ply.OrgansNextThink or OrgansNextThink
 		if not(ply.OrgansNextThink>CurTime())then
 			ply.OrgansNextThink=CurTime() + 0.2

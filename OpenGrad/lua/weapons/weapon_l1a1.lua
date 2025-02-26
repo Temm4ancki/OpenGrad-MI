@@ -34,7 +34,7 @@ SWEP.Weight					= 5
 SWEP.AutoSwitchTo			= false
 SWEP.AutoSwitchFrom			= false
 
-SWEP.HoldType = "smg"
+SWEP.HoldType = "ar2"
 
 ------------------------------------------
 
@@ -43,7 +43,7 @@ SWEP.SlotPos				= 2
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/weapons/insurgency/w_l1a1.mdl"
-SWEP.WorldModel				= "models/weapons/insurgency/w_l1a1.mdl"
+SWEP.ViewModel				= "models/weapons/w_snip_g3sg1.mdl"
+SWEP.WorldModel				= "models/weapons/w_snip_g3sg1.mdl"
 
 SWEP.vbwPos = Vector(-6,-4,-6)

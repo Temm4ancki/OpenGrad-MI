@@ -132,7 +132,7 @@ hook.Add("PlayerCanSeePlayersChat","AddSpawn",function(text,_,_,ply)
 end)
 
 hook.Add("Think","Speak Chat Shit",function()
-	for k in pairs(speak) do speak[k] = nil end
+	for k in ipairs(speak) do speak[k] = nil end
 end)
 
 local PlayerMeta = FindMetaTable("Player")
@@ -227,7 +227,7 @@ end
 
 local function getDonaters()
 	local list = {}
-	for i,ply in pairs(player.GetAll()) do
+	for i,ply in player.Iterator() do
 		local steamID = ply:SteamID()
 		local group = ULib.ucl.users[steamID]
 		if group and validUserGroup[group.group] then list[#list + 1] = ply end

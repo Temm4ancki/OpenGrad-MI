@@ -253,14 +253,14 @@ local skini = {
 	"sal/acc/armor01_3",
 	"sal/acc/armor01_4",
 	"sal/acc/armor01_5",
-	"models/foodnhouseholditems/cj_b_plastic",
+	--"models/foodnhouseholditems/cj_b_plastic",
 	"models/jacky_camouflage/digi",
 	"models/jacky_camouflage/digi2",
 	"models/chappi/moab/moabskin1",
 	"models/entities/mat_jack_firework",
 	"models/thedoctor/mat_rm/darkmatter",
 	"models/chappi/mininuq/nuq_tail",
-	"models/addons/sibres/rebel/sib_povyazka"
+	--"models/addons/sibres/rebel/sib_povyazka"
 }
 
 function SWEP:Initialize()
@@ -402,7 +402,7 @@ function SWEP:Reload()
 		if self:IsSprinting() then return nil end
 		if ( self.NextShot > CurTime() ) then return end
 		self:GetOwner():SetAnimation(PLAYER_RELOAD)
-		self:EmitSound(self.ReloadSound,60,100,0.8,CHAN_AUTO)
+		self:EmitSound(self.ReloadSound ~= "" and self.ReloadSound or "weapons/ar2/npc_ar2_reload.wav",60,100,0.8,CHAN_AUTO)
 		timer.Create( "reload"..self:EntIndex(), self.ReloadTime, 1, function()
 			if IsValid(self) and IsValid(self:GetOwner()) and self:GetOwner():GetActiveWeapon()==self then
 				local oldclip = self:Clip1()

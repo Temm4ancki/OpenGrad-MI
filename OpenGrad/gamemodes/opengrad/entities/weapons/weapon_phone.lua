@@ -130,7 +130,14 @@ if SERVER then
 		"snd_jack_hmcd_phone_dial.wav",
 		"snd_jack_hmcd_islam.mp3",
 		"snd_jack_hmcd_halloween.mp3",
-		"snds_jack_gmod/johncena.ogg"
+		"snds_jack_gmod/johncena.ogg",
+		"simulated_vehicles/horn_4.wav",
+		"gbombs_5/tvirus_infection/infection_sign.mp3",
+		"homigradsfx/blevota/blevotalarge.mp3",
+		"helicoptervehicle/lowhealth.mp3",
+		"zbattle/criresp.mp3",
+		"zbattle/nigshit.mp3",
+		"zbattle/jihadmode.mp3"
 	}
 
 	function SWEP:TurnOn(activator)
@@ -221,6 +228,13 @@ if SERVER then
 		if self.checkcd > time then return end
 		ply:ChatPrint("STATE: "..statetranslate[self:GetState()] )
 		ply:EmitSound("snds_jack_gmod/radio_chk.ogg")
+		timer.Simple(math.random(2), function()
+			if not IsValid(ply) or not ply:Alive() then return end
+			if math.random(1, 3) == 2 then
+				ply:EmitSound(table.Random(ringtone), 60)
+				ply:ChatPrint("ЗВОНОК ОТ: ".. table.Random(bratki))
+			end
+		end)
 		self.checkcd = time + 1
 	end
 

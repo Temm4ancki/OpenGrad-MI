@@ -1,10 +1,10 @@
 SWEP.Base = 'salat_base' -- base
 
-SWEP.PrintName 				= "Combine Machinegun"
+SWEP.PrintName 				= "Winchester"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Комбин пулемет"
+SWEP.Instructions			= "kowboy pushka"
 SWEP.Category 				= "Оружие"
-SWEP.WepSelectIcon          = "pwb/sprites/akm"
+SWEP.WepSelectIcon			= "pwb2/vgui/weapons/m4a1"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
@@ -13,20 +13,18 @@ SWEP.AdminOnly 				= false
 
 SWEP.Primary.ClipSize		= 30
 SWEP.Primary.DefaultClip	= 30
-SWEP.Primary.Automatic		= true
-SWEP.Primary.Ammo			= "ar2"
+SWEP.Primary.Automatic		= false
+SWEP.Primary.Ammo			= "5.56x45 mm"
 SWEP.Primary.Cone = 0
 SWEP.Primary.Damage = 40
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "weapons/arccw/fire1.wav"
-SWEP.Primary.SoundFar = "snd_jack_hmcd_snp_far.wav"
-SWEP.Primary.Force = 270/3
+SWEP.Primary.Sound = "m4a1/m4a1_fp.wav"
+SWEP.Primary.SoundFar = "m4a1/m4a1_dist.wav"
+SWEP.Primary.Force = 160/3
 SWEP.ReloadTime = 2
-SWEP.ShootWait = 0.1
-SWEP.ReloadSound = "weapons/arccw/npc_ar2_reload.wav"
+SWEP.ShootWait = 0.2
+SWEP.ReloadSound = "weapons/ar2/ar2_reload.wav"
 SWEP.TwoHands = true
-SWEP.Efect = "AR2Impact"
-SWEP.Tracer = "AR2Tracer"
 
 SWEP.Secondary.ClipSize		= -1
 SWEP.Secondary.DefaultClip	= -1
@@ -48,7 +46,5 @@ SWEP.SlotPos				= 0
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/props_combine/bunker_gun01.mdl"
-SWEP.WorldModel				= "models/props_combine/bunker_gun01.mdl"
-
-SWEP.addAng = Angle(0.5,0.9,0)
+SWEP.ViewModel				= "models/weapons/w_jmod_levergun.mdl"
+SWEP.WorldModel				= "models/weapons/w_jmod_levergun.mdl"

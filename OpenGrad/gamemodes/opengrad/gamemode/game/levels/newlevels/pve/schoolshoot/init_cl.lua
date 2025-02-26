@@ -12,7 +12,7 @@ end
 local green = Color(0,125,0)
 local white = Color(255,255,255)
 
-local roundSound = "schoolshoot.mp3"
+local roundSound = "zbattle/criresp.mp3"
 
 local playsound = false
 function schoolshoot.StartRoundCL()

@@ -30,12 +30,8 @@ if CLIENT then
 		eblan = eblan + 0.02
 		lply_pos = LocalPlayer():GetPos()
 		dis = hg_flashlight_distance:GetFloat()
-		
-		tbl = player_GetAll()
 
-		for i = 1,#tbl do
-			ply = tbl[i]
-			
+		for _, ply in player.Iterator() do
 			if hg_flashlight_enable:GetBool() and ply:GetNWBool("DynamicFlashlight") and ply:GetPos():Distance(lply_pos) <= dis then
 				local fake = ply:GetNWEntity("Ragdoll")
 

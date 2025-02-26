@@ -32,7 +32,7 @@ net.Receive("SIX.SIDETO", function(len, pl)
 end)
 
 hook.Add("Think","SIX.SENDTOSIDE",function()
-    for k, v in pairs(SIX) do
+    for k, v in ipairs(SIX) do
 
         if not IsValid(v.pl) or SIX[k].angle == 0 then
             SIX[k] = nil

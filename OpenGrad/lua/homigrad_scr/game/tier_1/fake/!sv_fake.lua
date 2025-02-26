@@ -265,7 +265,7 @@ hook.Add("OnEntityCreated","hg-bullseye",function(ent)
 end)
 
 hook.Add("Think","FakedShoot",function() --функция стрельбы лежа
-for i,ply in pairs(player.GetAll()) do
+for i,ply in player.Iterator() do
 	if IsValid(ply:GetNWEntity("Ragdoll")) and ply.FakeShooting and ply:Alive() then
 		SpawnWeapon(ply)
 	else
@@ -276,42 +276,8 @@ for i,ply in pairs(player.GetAll()) do
 end
 end)
 
-hook.Add("PlayerSay","huyasds",function(ply,text)
-	if ply:IsAdmin() and string.lower(text)=="1" then
-		local ent = ply:GetEyeTrace().Entity
-		if ent:IsPlayer() then
-			ply:ChatPrint(ent:Nick(),ent:EntIndex())
-			--[[ChatPrint(tostring(ply:Name()).." связал "..tostring(ent:Name()))
-			ent:StripWeapons()
-			ent:Give("weapon_hands")
-			Faking(ent)
-			timer.Simple(0,function()
-				local enta = ent:GetNWEntity("Ragdoll")
-				enta:GetPhysicsObjectNum(5):SetPos(enta:GetPhysicsObjectNum(7):GetPos())
-				for i=1,3 do
-					constraint.Rope(enta,enta,5,7,Vector(0,0,0),Vector(0,0,0),-2,2,0,4,"cable/rope.vmt",false,Color(255,255,255))
-				end
-			end)
-			--ent.Hostage = true--]]
-		elseif ent:IsRagdoll() then
-			ply:ChatPrint(IsValid(RagdollOwner(ent)) and RagdollOwner(ent):Name())
-			--[[--ent:StripWeapons()
-			--ent:Give("weapon_hands")
-			--Faking(ent)
-			timer.Simple(0,function()
-				local enta = ent
-				enta:GetPhysicsObjectNum(5):SetPos(enta:GetPhysicsObjectNum(7):GetPos())
-				for i=1,3 do
-					constraint.Rope(enta,enta,5,7,Vector(0,0,0),Vector(0,0,0),-2,2,0,4,"cable/rope.vmt",false,Color(255,255,255))
-				end
-			end)--]]
-		end
-		return ""
-	end
-end)
-
 function RagdollOwner(rag) --функция, определяет хозяина регдолла
-	for k, v in pairs(player.GetAll()) do
+	for k, v in player.Iterator() do
 		local ply = v
 		if ply:GetNWEntity("Ragdoll") == rag then
 			return ply
@@ -1034,7 +1000,7 @@ hook.Add("OnPlayerHitGround","GovnoJopa",function(ply,a,b,speed)
 end)
 
 hook.Add("Think","VelocityFakeHitPlyCheck",function() --проверка на скорость в фейке (для сбивания с ног других игроков)
-	for i,rag in pairs(ents.FindByClass("prop_ragdoll")) do
+	for i,rag in ipairs(ents.FindByClass("prop_ragdoll")) do
 		if IsValid(rag) then
 			if rag:GetVelocity():Length() > 200 then
 				rag:SetCollisionGroup(COLLISION_GROUP_NONE)
@@ -1573,7 +1539,7 @@ hook.Add("PlayerUse","nouseinfake",function(ply)
 end)
 
 hook.Add("PlayerSay", "unconsay", function(ply,txt)
-if ply.Otrub then return false end
+	if ply.Otrub then return "" end
 end)
 
 hook.Add("PlayerSay","dropweaponhuy",function(ply,text)

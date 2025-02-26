@@ -29,13 +29,13 @@ SWEP.DrawCrosshair = false
 
 SWEP.DrawAmmo = true
 
-SWEP.Primary.Damage = 20
+SWEP.Primary.Damage = 40
 SWEP.Primary.Ammo = "none"
 SWEP.Primary.DefaultClip = -1
 SWEP.Primary.Automatic = true
 SWEP.Primary.Recoil = 0.5
-SWEP.Primary.Delay = 0.7
-SWEP.Primary.Force = 50
+SWEP.Primary.Delay = 1.5
+SWEP.Primary.Force = 60
 
 SWEP.Secondary.ClipSize = 0
 SWEP.Secondary.DefaultClip = 0
@@ -46,16 +46,16 @@ SWEP.DrawSound = "physics/metal/metal_box_impact_soft2.wav"
 SWEP.HitSound = "phx/epicmetal_hard.wav"
 SWEP.FlashHitSound = "physics/body/body_medium_impact_hard3.wav"
 SWEP.ShouldDecal = true
-SWEP.HoldTypeWep = "melee"
+SWEP.HoldTypeWep = "melee2"
 SWEP.DamageType = DMG_CLUB
 
-SWEP.dwmForward = 2
-SWEP.dwmRight = 0
-SWEP.dwmUp = 0
+SWEP.dwmForward = 4.5
+SWEP.dwmRight = -1.2
+SWEP.dwmUp = -17
 
-SWEP.dwmAUp = -30
-SWEP.dwmARight = 0
-SWEP.dwmAForward = 100
+SWEP.dwmAUp = 0
+SWEP.dwmARight = 5
+SWEP.dwmAForward = 180
 
 function SWEP:DrawWorldModel()
 	local model = GDrawWorldModel or ClientsideModel(SWEP.WorldModel,RENDER_GROUP_OPAQUE_ENTITY)

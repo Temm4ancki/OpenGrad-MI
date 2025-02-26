@@ -819,7 +819,7 @@ end )
 ]]--
 
 hook.Add("Think","mouthanim",function()
-	for i, ply in pairs(player.GetAll()) do
+	for i, ply in player.Iterator() do
 		local ent = IsValid(ply:GetNWEntity("Ragdoll")) and ply:GetNWEntity("Ragdoll") or ply
 
 		local flexes = {
@@ -832,7 +832,7 @@ hook.Add("Think","mouthanim",function()
 
 		local weight = ply:IsSpeaking() && math.Clamp( ply:VoiceVolume() * 6, 0, 6 ) || 0
 
-		for k, v in pairs( flexes ) do
+		for k, v in ipairs( flexes ) do
 			ent:SetFlexWeight( v, weight )
 		end
 	end

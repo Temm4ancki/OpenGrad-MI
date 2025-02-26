@@ -3,6 +3,7 @@ SWEP.Base = "food_base"
 SWEP.PrintName = "Чипсы"
 SWEP.Purpose = "Чипсики"
 SWEP.Category = "Вкусности"
+SWEP.Spawnable = true
 SWEP.WorldModel = "models/foodnhouseholditems/chipslays5.mdl"
 SWEP.WorldPos = Vector(4,-5,0)
 SWEP.WorldAng = Angle(-90, 0, 0)

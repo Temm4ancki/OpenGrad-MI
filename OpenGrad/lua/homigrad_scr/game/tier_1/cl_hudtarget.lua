@@ -24,7 +24,7 @@ end)
 
 local red = Color(125,0,0)
 
-local hg_customname = CreateClientConVar("hg_customname","Кастомное имя",true)
+local hg_customname = CreateClientConVar("hg_customname","",true)
 
 cvars.AddChangeCallback("hg_customname",function(_,_,value)
     net.Start("custom name")

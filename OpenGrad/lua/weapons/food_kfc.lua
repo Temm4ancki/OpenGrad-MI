@@ -1,15 +1,15 @@
 AddCSLuaFile()
 SWEP.Base = "food_base"
-SWEP.PrintName = "Энергетик"
-SWEP.Purpose = "Lonely, lonely, I guess I'm lonely\nПусть всё будет, как решит монолог твоей души"
+SWEP.PrintName = "Ножка кфс"
+SWEP.Purpose = "скинь ножки"
 SWEP.Category = "Вкусности"
 SWEP.Spawnable = true
-SWEP.WorldModel = "models/foodnhouseholditems/sodacanb01.mdl"
-SWEP.WorldPos = Vector(4,-2,0)
-SWEP.WorldAng = Angle(180, 0, 0)
-SWEP.AdrenalineAmt = 1
-SWEP.StaminaAmt = 10
-SWEP.Drink = true
+SWEP.WorldModel = "models/foodnhouseholditems/mcdfriedchickenleg.mdl"
+SWEP.WorldPos = Vector(3, -2.5, -4)
+SWEP.WorldAng = Angle(-90, 180, 0)
+SWEP.AdrenalineAmt = 0
+SWEP.StaminaAmt = 12
+SWEP.Drink = false
 
 if(CLIENT)then
 	local WorldModel = ClientsideModel(SWEP.WorldModel)

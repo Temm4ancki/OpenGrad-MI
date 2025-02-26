@@ -1,15 +1,34 @@
 AddCSLuaFile()
 SWEP.Base = "food_base"
-SWEP.PrintName = "Энергетик"
-SWEP.Purpose = "Lonely, lonely, I guess I'm lonely\nПусть всё будет, как решит монолог твоей души"
+SWEP.PrintName = "Отбеливатель"
+SWEP.Purpose = "вкусняшка из ссср"
 SWEP.Category = "Вкусности"
 SWEP.Spawnable = true
-SWEP.WorldModel = "models/foodnhouseholditems/sodacanb01.mdl"
-SWEP.WorldPos = Vector(4,-2,0)
-SWEP.WorldAng = Angle(180, 0, 0)
-SWEP.AdrenalineAmt = 1
-SWEP.StaminaAmt = 10
+SWEP.WorldModel = "models/foodnhouseholditems/clorox.mdl"
+SWEP.WorldPos = Vector(6,-4, 10)
+SWEP.WorldAng = Angle(-180, -50, 0)
+SWEP.AdrenalineAmt = 0
+SWEP.StaminaAmt = -20
 SWEP.Drink = true
+
+local blevotasfx = {
+    "homigradsfx/blevota/blevotahmcd.mp3",
+    "homigradsfx/blevota/blevotalarge.mp3",
+    "homigradsfx/blevota/blevotamedium.mp3",
+    "homigradsfx/blevota/blevotasmall.mp3"
+}
+
+function SWEP:CustomEat()
+	local owner = self:GetOwner()
+
+	owner.Blood = owner.Blood - 60
+	local snd = table.Random(blevotasfx)
+	owner:EmitSound(snd)
+	for i = 1, 30 do
+		BloodParticle(owner:EyePos(),owner:EyeAngles():Forward()*150+Vector(math.random(-1,1),math.random(-1,1),math.random(-1,1))*30)
+		owner.pain = math.max(owner.pain + 9,0)
+	end
+end
 
 if(CLIENT)then
 	local WorldModel = ClientsideModel(SWEP.WorldModel)

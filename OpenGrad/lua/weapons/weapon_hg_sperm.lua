@@ -9,8 +9,8 @@ SWEP.AdminSpawnable= true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60
-SWEP.ViewModel = "models/distac/pro_spear.mdl"
-SWEP.WorldModel = "models/distac/pro_spear.mdl"
+SWEP.ViewModel = "models/props_junk/harpoon002a.mdl"
+SWEP.WorldModel = "models/props_junk/harpoon002a.mdl"
 SWEP.ViewModelFlip = false
 
 SWEP.AutoSwitchTo = false
@@ -49,12 +49,12 @@ SWEP.ShouldDecal = true
 SWEP.HoldTypeWep = "melee"
 SWEP.DamageType = DMG_SLASH
 
-SWEP.dwmForward = 2
-SWEP.dwmRight = 0
-SWEP.dwmUp = 0
+SWEP.dwmForward = 3
+SWEP.dwmRight = 2
+SWEP.dwmUp = -10
 
-SWEP.dwmAUp = -30
-SWEP.dwmARight = 0
+SWEP.dwmAUp = 0
+SWEP.dwmARight = -90
 SWEP.dwmAForward = 100
 
 function SWEP:DrawWorldModel()
@@ -83,6 +83,8 @@ function SWEP:DrawWorldModel()
 	Ang:RotateAroundAxis(Ang:Right(),self.dwmARight)
 	Ang:RotateAroundAxis(Ang:Forward(),self.dwmAForward)
 	model:SetAngles(Ang)
+
+	model:SetModelScale(0.7)
 
 	model:DrawModel()
 end

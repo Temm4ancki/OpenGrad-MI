@@ -64,13 +64,18 @@ local AmmoTypes = {
 	[2] = "vgui/hud/hmcd_health",
 	[48] = "vgui/hud/hmcd_round_9",
 	[45] = "vgui/hud/hmcd_round_556",
+	[1] = "vgui/hud/hmcd_round_792",
 	[38] = "vgui/hud/hmcd_round_38",
 	[6] = "vgui/hud/hmcd_round_arrow",
 	[41] = "vgui/hud/hmcd_round_12",
 	[8] = "vgui/wep_jack_hmcd_oldgrenade",
 	[9] = "vgui/wep_jack_hmcd_oldgrenade",
 	[10] = "vgui/wep_jack_hmcd_oldgrenade",
-	[11] = "vgui/wep_jack_hmcd_ied"
+	[11] = "vgui/wep_jack_hmcd_ied",
+	[2] = "vgui/hud/hmcd_health",
+	[3] = "vgui/hud/hmcd_round_9",
+	[4] = "vgui/hud/hmcd_round_556",
+	[5] = "vgui/hud/hmcd_round_38",
 	}
 
 local black = Color(0,0,0,128)
@@ -226,7 +231,7 @@ net.Receive("inventory",function()
 			surface.SetDrawColor(255,255,255,128)
 			surface.DrawOutlinedRect(1,1,w - 2,h - 2)
 
-			local round = Material(AmmoTypes[tonumber(ammo)] or "vgui/hud/hmcd_person","noclamp smooth")
+			local round = Material(AmmoTypes[tonumber(ammo)] or "vgui/hud/hmcd_round_9","noclamp smooth")
 			surface.SetMaterial(round)
 			surface.SetDrawColor(255,255,255,255)
 			surface.DrawTexturedRect(2,2,w - 4,h - 4)

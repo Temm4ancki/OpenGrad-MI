@@ -20,7 +20,7 @@ SWEP.Primary.Sound = "mp5k/mp5k_fp.wav"
 SWEP.Primary.SoundFar = "mp5k/mp5k_dist.wav"
 SWEP.Primary.Force = 85/3
 SWEP.ReloadTime = 2
-SWEP.ShootWait = 0.11
+SWEP.ShootWait = 0.10
 SWEP.TwoHands = true
 
 SWEP.Secondary.ClipSize		= -1

@@ -1059,7 +1059,7 @@ end)
 -- Liquid Think
 hook.Add("Think", "JMod_LiquidStreams", function()
 	local FT, Time = FrameTime(), CurTime()
-	for groupID, group in pairs(JMod.LiquidParticles) do
+	for groupID, group in ipairs(JMod.LiquidParticles) do
 		for k, particle in pairs(group) do
 			local Specs = JMod.ParticleSpecs[particle.typ]
 			local Travel = particle.vel * FT

@@ -2,7 +2,7 @@ SWEP.Base = "weapon_base"
 
 SWEP.PrintName = "База Гаранаты"
 SWEP.Author = "sadsalat"
-SWEP.Purpose = "Бах Бам Бум, Бадабум!"
+SWEP.Purpose = "лкм сильно пкм слабо кинуть"
 
 SWEP.Slot = 4
 SWEP.SlotPos = 0
@@ -41,8 +41,12 @@ function TrownGranade(ply,force,granade)
 	phys:AddAngleVelocity(VectorRand() * force/2)
 end
 
+function SWEP:Initialize()
+    self:SetHoldType( "grenade" )
+end
+
 function SWEP:Deploy()
-    self:SetHoldType( "melee" )
+    self:SetHoldType( "grenade" )
 end
 
 function SWEP:PrimaryAttack()
@@ -50,7 +54,6 @@ function SWEP:PrimaryAttack()
         TrownGranade(self:GetOwner(),750,self.Granade)
         self:Remove()
         self:GetOwner():SelectWeapon("weapon_hands")
-    elseif CLIENT then
     end
     self:GetOwner():SetAnimation(PLAYER_ATTACK1)
     self:EmitSound("weapons/m67/handling/m67_throw_01.wav")
@@ -61,7 +64,6 @@ function SWEP:SecondaryAttack()
         TrownGranade(self:GetOwner(),250,self.Granade)
         self:Remove()
         self:GetOwner():SelectWeapon("weapon_hands")
-    elseif CLIENT then
     end
     self:GetOwner():SetAnimation(PLAYER_ATTACK1)
     self:EmitSound("weapons/m67/handling/m67_throw_01.wav")

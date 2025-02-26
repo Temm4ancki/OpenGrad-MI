@@ -8,7 +8,7 @@ SWEP.Category = "Вкусности"
 
 SWEP.Slot = 3
 SWEP.SlotPos = 3
-SWEP.Spawnable = true
+SWEP.Spawnable = false
 SWEP.WorldModel = "models/jorddrink/mongcan1a.mdl"
 
 SWEP.Primary.ClipSize = -1
@@ -102,18 +102,25 @@ SWEP.AdrenalineAmt = 0
 SWEP.StaminaAmt = 10
 SWEP.Drink = false
 function SWEP:PrimaryAttack()
-	if not IsValid(self:GetOwner()) then return end
-	self:GetOwner():SetAnimation(PLAYER_ATTACK1)
+	local owner = self:GetOwner()
+	if not IsValid(owner) then return end
+	owner:SetAnimation(PLAYER_ATTACK1)
 
 	if(SERVER)then
-		self:GetOwner().adrenaline = self:GetOwner().adrenaline + self.AdrenalineAmt or 0
-		self:GetOwner().stamina = self:GetOwner().stamina + self.StaminaAmt or 10
+		owner.adrenaline = owner.adrenaline + self.AdrenalineAmt or 0
+		owner.stamina = owner.stamina + self.StaminaAmt or 10
+		owner.pain = math.max(owner.pain - ((self.StaminaAmt or 10) / 10),0)
 		local healsound = self.Drink and ("snd_jack_hmcd_drink"..math.random(1,3)..".wav") or ("snd_jack_hmcd_eat"..math.random(1,4)..".wav")
 		--sound.Play(healsound, self:GetPos(),75,100,0.5)
-		self:GetOwner():EmitSound(healsound)
-		self:GetOwner():SelectWeapon("weapon_hands")
+		owner:EmitSound(healsound)
+		owner:SelectWeapon("weapon_hands")
+		self:CustomEat()
 		self:Remove()
 	end
+end
+
+function SWEP:CustomEat()
+	-- kodite
 end
 
 function SWEP:SecondaryAttack()

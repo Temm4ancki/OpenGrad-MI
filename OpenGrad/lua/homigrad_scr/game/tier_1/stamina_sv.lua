@@ -12,11 +12,10 @@ local tbl
 local hook_Run = hook.Run
 
 hook.Add("Think", "homigrad-player-thinker", function(ply)
-	tbl = player_GetAll()
 	time = CurTime()
 
-	for i = 1, #tbl do
-		hook_Run("Player Think", tbl[i], time)
+	for _, ply in player.Iterator() do
+		hook_Run("Player Think", ply, time)
 	end
 end)
 

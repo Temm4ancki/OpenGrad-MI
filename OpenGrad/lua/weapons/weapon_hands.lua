@@ -766,7 +766,7 @@ if SERVER then
 
 	hook.Add("Think","held-entities",function()
 		heldents = heldents or {}
-		for i,tbl in pairs(heldents) do
+		for i,tbl in ipairs(heldents) do
 			if not tbl or not IsValid(tbl[1]) then heldents[i] = nil continue end
 			local ent,ply,dist,target,bone,pos = tbl[1],tbl[2],tbl[3],tbl[4],tbl[5],tbl[6]
 			local phys = ent:GetPhysicsObjectNum(bone)

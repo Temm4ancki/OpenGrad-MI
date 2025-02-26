@@ -34,7 +34,7 @@ SWEP.Weight					= 5
 SWEP.AutoSwitchTo			= false
 SWEP.AutoSwitchFrom			= false
 
-SWEP.HoldType = "smg"
+SWEP.HoldType = "ar2"
 
 ------------------------------------------
 
@@ -43,5 +43,5 @@ SWEP.SlotPos				= 0
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/weapons/insurgency/w_mini14.mdl"
-SWEP.WorldModel				= "models/weapons/insurgency/w_mini14.mdl"
+SWEP.ViewModel				= "models/weapons/w_snip_sg550.mdl"
+SWEP.WorldModel				= "models/weapons/w_snip_sg550.mdl"

@@ -165,7 +165,7 @@ SolidMapVote[ 'Config' ][ 'Random Mode' ] = 2
 SolidMapVote[ 'Config' ][ 'Random Image' ] = 'http://i.imgur.com/oqeqWhl.png'
 
 -- This is the image for maps that are missing an image
-SolidMapVote[ 'Config' ][ 'Missing Image' ] = 'vgui/wep_jack_hmcd_poisoncanister'
+SolidMapVote[ 'Config' ][ 'Missing Image' ] = 'https://i.imgur.com/cLGpQpS.jpeg'
 SolidMapVote[ 'Config' ][ 'Missing Image Size' ] = { width = 1920, height = 1080 }
 
 -- In this table you can add information for the map to make it more

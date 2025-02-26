@@ -85,7 +85,6 @@ if SERVER then
 			Flame:SetPos(SelfPos + Vector(0, 0, 30))
 			Flame:SetAngles(FireVec:Angle())
 			Flame:SetOwner(game.GetWorld())
-			JMod.SetOwner(Flame, game.GetWorld())
 			Flame.SpeedMul = 0.2
 			Flame.Creator = game.GetWorld()
 			Flame.HighVisuals = true

@@ -2,7 +2,7 @@ SWEP.Base = 'salat_base' -- base
 
 SWEP.PrintName 				= "Remington870 Police"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Дробовик под калибр 12/70 beanbag"
+SWEP.Instructions			= "Дробовик под калибр 12/70 beanbag (нелетальный)"
 SWEP.Category 				= "Оружие"
 SWEP.WepSelectIcon			= "entities/weapon_insurgencymakarov.png"
 

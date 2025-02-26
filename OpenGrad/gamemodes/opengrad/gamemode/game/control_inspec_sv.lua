@@ -9,12 +9,11 @@ hook.Add("Player Think","ControlPlayersAdmins",function(ply,time)
 	if ply:KeyDown(IN_ATTACK) and not ply.EnableSpectate and ply.allowGrab then
 		local enta = ply:GetEyeTrace().Entity
 		if enta:IsPlayer() and !enta.fake and !IsValid(ply.CarryEnt) then
-
 			Faking(enta)
-			local text = tostring(ply:Name()).." поднял игрока "..enta:Name()
+			local text = tostring(ply:Name()).." podnyal igroka "..enta:Name()
 			print(text)
 		end
-		if !IsValid(enta:GetPhysicsObject()) then return end
+		if not IsValid(enta:GetPhysicsObject()) then return end
 		ply.CarryEntPhysbone = ply.CarryEntPhysbone or ply:GetEyeTrace().PhysicsBone
 		local physbone = ply.CarryEntPhysbone
 		ply.CarryEnt = IsValid(ply.CarryEnt) and ply.CarryEnt or enta
@@ -22,7 +21,7 @@ hook.Add("Player Think","ControlPlayersAdmins",function(ply,time)
 		timer.Simple(5, function() ply.AdminAttackerWithPhys = false end)
 		if IsValid(ply.CarryEnt) then
 			if ply:KeyPressed(IN_ATTACK) then
-				local text = tostring(ply:Name()).." поднял ентити "..tostring(RagdollOwner(ply.CarryEnt) and RagdollOwner(ply.CarryEnt):Name() or ply.CarryEnt:GetClass())
+				local text = tostring(ply:Name()).." podnyal entity "..tostring(RagdollOwner(ply.CarryEnt) and RagdollOwner(ply.CarryEnt):Name() or ply.CarryEnt:GetClass())
 				print(text)
 			end
 

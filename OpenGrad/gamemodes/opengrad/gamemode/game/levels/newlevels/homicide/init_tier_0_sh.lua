@@ -21,26 +21,27 @@ homicide.teamEncoder = {
 -- ДОБАВЛЯТЬ ИХ НУЖНО ПО ПОРЯДКЕ НАЧИНАЯ С ПОСЛЕДНЕГО, ПОТОМУ ЧТО РАЗРАБОТЧИКИ (не буду показывать пальцем) ДОЛБАЕБЫ И НЕ СМОГЛИ СДЕЛАТЬ НОРМАЛЬНЫЙ СПОСОБ ПОЛУЧЕНИЯ ИНДЕКСА ПО ИМЕНИ
 -- А ЕЩЁ НУЖНО ОБЯЗАТЕЛЬНО ДОБАВЛЯТЬ В ТАБЛИЦУ roundSound ЗВУК ИНАЧЕ БУДЕТ ОШИБКА
 local roundTypes = {
-"Чрезвычайное Положение", -- 1
-"Стандартный",
-"Безоружная территория",
-"Запад Запад"
--- "Спидран",
--- "HL2: RP",
--- "Мафия",
--- "Военная Оккупация",
--- "ANEURISM IV"
+	"Чрезвычайное Положение", -- 1
+	"Стандартный",
+	"Безоружная территория",
+	"Запад Запад"
+	-- "Спидран",
+	-- "HL2: RP",
+	-- "Мафия",
+	-- "Военная Оккупация",
+	-- "ANEURISM IV"
 }
 local roundSound = {
-"snd_jack_hmcd_disaster.mp3",
-"snd_jack_hmcd_shining.mp3",
-"snd_jack_hmcd_panic.mp3",
-"snd_jack_hmcd_wildwest.mp3"
--- "snd_jack_hmcd_shining.mp3",
--- "snd_jack_hmcd_shining.mp3",
--- "snd_jack_hmcd_shining.mp3",
--- "snd_jack_hmcd_shining.mp3",
--- "snd_jack_hmcd_shining.mp3"
+	"snd_jack_hmcd_disaster.mp3",
+	"snd_jack_hmcd_shining.mp3",
+	"snd_jack_hmcd_panic.mp3",
+	"snd_jack_hmcd_wildwest.mp3",
+	"snd_jack_hmcd_psycho.mp3"
+	-- "snd_jack_hmcd_shining.mp3",
+	-- "snd_jack_hmcd_shining.mp3",
+	-- "snd_jack_hmcd_shining.mp3",
+	-- "snd_jack_hmcd_shining.mp3",
+	-- "snd_jack_hmcd_shining.mp3"
 }
 homicide.RoundRandomDefalut = 9
 local playsound = false

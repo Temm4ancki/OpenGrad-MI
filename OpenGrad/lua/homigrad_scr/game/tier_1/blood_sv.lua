@@ -76,10 +76,10 @@ hook.Add("Player Think","homigrad-blood",function(ply,time)
 		ply.arteriaThink = time + 0.1
 		if not ply.holdingartery then
 			ply.Blood = math.max(ply.Blood - 10,0)
-			BloodParticle(neck,ent:GetAttachment(ent:LookupAttachment("eyes")).Ang:Forward() * 200)
+			BloodParticle(neck ~= nil and neck or ply:GetPos(),ent:GetAttachment(ent:LookupAttachment("eyes")).Ang:Forward() * 200)
 		else
 			ply.Blood = math.max(ply.Blood - 2,0)
-			BloodParticle(neck,ent:GetAttachment(ent:LookupAttachment("eyes")).Ang:Forward() * 50)
+			BloodParticle(neck ~= nil and neck or ply:GetPos(),ent:GetAttachment(ent:LookupAttachment("eyes")).Ang:Forward() * 50)
 		end
 	end
 
@@ -121,10 +121,9 @@ local tr = {}
 local randVec = Vector(0,0,-1)
 
 hook.Add("Think","homigrad-bleeding-ents",function()
-
 	time = CurTime()
 
-	for i,ent in pairs(BleedingEntities) do
+	for i,ent in ipairs(BleedingEntities) do
 		if not IsValid(ent) or ent:IsPlayer() or not ent.deadbody then continue end
 
 		ent.bloodNext = ent.bloodNext or time

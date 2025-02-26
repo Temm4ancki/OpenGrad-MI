@@ -101,22 +101,22 @@ function Gib_Input(rag,bone,dmgInfo)
 
 	local dmgPos = dmgInfo:GetDamagePosition()
 
-	if dmgInfo:GetDamage() >= 500 and dmgInfo:IsDamageType(DMG_BLAST) then
-	local bone = rag:LookupBone("ValveBiped.Bip01_Spine3")
-	if bone and rag:GetPhysicsObjectNum(bone):Distance(dmgPos) <= 75 then
-		sound.Emit(rag,"physics/flesh/flesh_squishy_impact_hard" .. math.random(2,4) .. ".wav")
-		sound.Emit(rag,"physics/body/body_medium_break3.wav")
-		sound.Emit(rag,"physics/flesh/flesh_bloody_break.wav",nil,75)
+	if dmgInfo:GetDamage() >= 300 then
+		local bone = rag:LookupBone("ValveBiped.Bip01_Spine3")
+		if bone and rag:GetPhysicsObjectNum(bone):Distance(dmgPos) <= 75 then
+			sound.Emit(rag,"physics/flesh/flesh_squishy_impact_hard" .. math.random(2,4) .. ".wav")
+			sound.Emit(rag,"physics/body/body_medium_break3.wav")
+			sound.Emit(rag,"physics/flesh/flesh_bloody_break.wav",nil,75)
 
-		BloodParticleExplode(rag:GetPhysicsObject(phys_bone):GetPos())
+			BloodParticleExplode(rag:GetPhysicsObject(phys_bone):GetPos())
 
-		--rag:Remove()
+			--rag:Remove()
 
-		return
+			return
+		end
 	end
-	end
 
-	if hitgroup == HITGROUP_HEAD and not dmgInfo:IsDamageType(DMG_CRUSH) and not gibRemove[phys_bone] then
+	if hitgroup == HITGROUP_HEAD and not gibRemove[phys_bone] then
 		sound.Emit(rag,"player/headshot" .. math.random(1,2) .. ".wav")
 		sound.Emit(rag,"physics/flesh/flesh_squishy_impact_hard" .. math.random(2,4) .. ".wav")
 		sound.Emit(rag,"physics/body/body_medium_break3.wav")
@@ -133,7 +133,7 @@ function Gib_Input(rag,bone,dmgInfo)
 		BloodParticleHeadshoot(rag:GetPhysicsObject(phys_bone):GetPos(),dmgInfo:GetDamageForce() * 2)
 	end
 
-	if dmgInfo:GetDamage() >= 100 and dmgInfo:IsDamageType(DMG_BLAST) and not gibRemove[phys_bone] then
+	if dmgInfo:GetDamage() >= 100 and not gibRemove[phys_bone] then
 		local access
 		for bonename in pairs(validBone) do
 			local bone = rag:LookupBone(bonename)
@@ -162,7 +162,7 @@ hook.Add("PlayerDeath","Gib",function(ply)
 	--разве это не смешно когда ножом башка взрывается?
 	--не надо убирать
 
-	if dmgInfo:GetDamage() >= 45 * 20 then
+	if dmgInfo:GetDamage() >= 50 or dmgInfo:GetDamage() >= 30 and (dmgInfo:GetDamageType() == DMG_SLASH or dmgInfo:GetDamageType() == DMG_CLUB) then
 		local rag = ply:GetNWEntity("Ragdoll")
 		local bone = rag:LookupBone(ply.LastHitBoneName)
 
@@ -181,9 +181,9 @@ hook.Add("EntityTakeDamage","Gib",function(ent,dmgInfo)
 	
 	local phys_bone = GetPhysicsBoneDamageInfo(ent,dmgInfo)
 	if phys_bone == 0 then return end--lol
-	if dmgInfo:GetDamage() < 45 * 5 then return end
-	
-	Gib_Input(ent,ent:TranslatePhysBoneToBone(phys_bone),dmgInfo)
+	if dmgInfo:GetDamage() >= 50 or dmgInfo:GetDamage() >= 30 and (dmgInfo:GetDamageType() == DMG_SLASH or dmgInfo:GetDamageType() == DMG_CLUB) then
+		Gib_Input(ent,ent:TranslatePhysBoneToBone(phys_bone),dmgInfo)
+	end
 end)
 
 local max = math.max
@@ -195,7 +195,7 @@ local tr = {}
 hook.Add("Think","Gib",function()
 	local time = CurTime()
 
-	for ent in pairs(gib_ragdols) do
+	for ent in ipairs(gib_ragdols) do
 		if not IsValid(ent) then gib_ragdols[ent] = nil continue end
 
 		if ent.BloodGibs and ent.Blood > 0 then
