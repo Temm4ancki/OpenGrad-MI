@@ -24,7 +24,8 @@ TODO:
 - Add F4 panel for admins
 - Picking up shit as weps (chairs (DAITE EMY STYL), bottles etc.)
 - Easier ragdoll control (HUD, etc) (50% done)
-- HUD for body damage indication 
+- HUD for body damage indication
+- Spizdit' / Sdelat' norm bazu dlya swepsov (that'll work in fake without ebka) 
 - Many other fixes (1488% done)
 
 ############# pluv

@@ -19,7 +19,7 @@ tdm.red = {
 
 
 tdm.blue = {
-	"Повстанцы",Color(245,255,99),
+	"Сопротивлянцы",Color(245,255,99),
 	weapons = {"weapon_binokle","weapon_radio","weapon_hands","weapon_kabar","med_band_big","med_band_small","medkit","painkiller","weapon_handcuffs","weapon_taser"},
 	main_weapon = {"weapon_mk18","weapon_m4a1","weapon_m3super","weapon_mp7","weapon_xm1014","weapon_fal","weapon_galilsar","weapon_m249","weapon_mp40"},
 	secondary_weapon = {"weapon_beretta","weapon_fiveseven","weapon_hk_usp"},

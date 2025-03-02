@@ -44,7 +44,10 @@ function svo.PlayerSpawn(ply,teamID)
 
 	for i,weapon in pairs(teamTbl.weapons) do ply:Give(weapon) end
 
-	tdm.GiveSwep(ply,teamTbl.main_weapon,0)
+	if ply:Team() == 1 and math.random(0,5) == 5 then
+		tdm.GiveSwep(ply,"weapon_hg_flag",0)
+	end
+	tdm.GiveSwep(ply,teamTbl.main_weapon,2)
 	tdm.GiveSwep(ply,teamTbl.secondary_weapon)
 
 	if roundStarter then
