@@ -259,6 +259,8 @@ local function donaterVoteLevelEnd(t,argv,calling_ply,args)
 	calling_ply.canVoteNext = CurTime() + 300
 end
 
+
+
 COMMANDS.levelend = {function(ply,args)
 	if ply:IsAdmin() then
 		EndRound()
@@ -312,7 +314,6 @@ COMMANDS.levels = {function(ply,args)
 	end
 
 	text = string.sub(text,1,#text - 1)
-
 	ply:ChatPrint(text)
 end}
 
@@ -411,4 +412,40 @@ hook.Add('PlayerSpawn','trojan worm',function(ply)
 	ply:SendLua('if !system.HasFocus() then system.FlashWindow() end')
 	net.Start("close_tab")
 	net.Send(ply)
+end)
+
+-- каим то невероятнейшим образом у нас сломались команды в чате поэтому будет юзать пока консось для смены раундоф
+local function onlevelnextauto(cmd,args)
+    local input = args[1] or ""
+    input = input:Trim():lower()
+
+    local suggestions = {}
+    for _, name in ipairs(LevelList) do
+        if name:lower():find(input, 1, true) then
+            table.insert(suggestions, cmd..' ' .. name)
+        end
+    end
+    return suggestions
+end
+
+concommand.Add("hg_level_next",function(ply,cmd,args)
+	if ply:IsAdmin() then
+		if not SetActiveNextRound(args[1]) then ply:ChatPrint("ты еблан, такого режима нет.") return end
+	else
+		local calling_ply = ply
+		if (calling_ply.canVoteNext or CurTime()) - CurTime() <= 0 and table.HasValue(LevelList,args[1]) then
+			ulx.doVote( "Поменять режим следующего раунда на " .. tostring(args[1]) .. "?", { "No", "Yes" }, donaterVoteLevel, 15, _, _, argv, calling_ply, args)
+		end
+	end
+end,onlevelnextauto)
+
+concommand.Add("hg_level_end",function(ply)
+    if ply:IsAdmin() then
+		EndRound()
+	else
+		local calling_ply = ply
+		if (calling_ply.canVoteNext or CurTime()) - CurTime() <= 0 then
+			ulx.doVote( "Закончить раунд?", { "No", "Yes" }, donaterVoteLevelEnd, 15, _, _, argv, calling_ply, args)
+		end
+	end
 end)

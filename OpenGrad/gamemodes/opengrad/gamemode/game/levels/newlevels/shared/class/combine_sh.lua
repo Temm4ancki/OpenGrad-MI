@@ -42,7 +42,7 @@ end
 function CLASS.PlayerFootstep(self,pos,foot,name,volume,filter)
     if SERVER then return true end
 
-    if self:GetModel() == "models/metrocat_beta.mdl" then
+    if self:GetModel() == "models/metrocat/metrocat_beta.mdl" then
         sound.Play(Sound("npc/metropolice/gear".. math.random(1,6) .. ".wav"),pos,75,100,1)
     else
         sound.Play(Sound("npc/combine_soldier/gear" .. math.random(1,6) .. ".wav"),pos,75,100,1)
@@ -78,7 +78,7 @@ end
 function CLASS.PlayerDeath(self)
     sound.Play(Sound("npc/overwatch/radiovoice/die" .. math.random(1,3) .. ".wav"),self:GetPos())
     
-    if self:GetModel() == "models/metrocat_beta.mdl" then
+    if self:GetModel() == "models/metrocat/metrocat_beta.mdl" then
         sound.Play(Sound("npc/metropolice/die"..math.random(1,4)..".wav"),self:GetPos())
     else
         sound.Play(Sound("npc/combine_soldier/die"..math.random(1,3)..".wav"),self:GetPos())

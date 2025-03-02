@@ -32,3 +32,4 @@ function SpawnEblan(ply,wep)
         ply:Give(wepa)
     end
 end
+

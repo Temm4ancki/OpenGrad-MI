@@ -17,19 +17,13 @@ homicide.red = {"Невиновный",Color(125,125,125),
 homicide.teamEncoder = {
     [1] = "red"
 }
--- ВАЖНО ПРИ ДОБАВЛЕНИИ НОВЫХ РЕДИМОВ
--- ДОБАВЛЯТЬ ИХ НУЖНО ПО ПОРЯДКЕ НАЧИНАЯ С ПОСЛЕДНЕГО, ПОТОМУ ЧТО РАЗРАБОТЧИКИ (не буду показывать пальцем) ДОЛБАЕБЫ И НЕ СМОГЛИ СДЕЛАТЬ НОРМАЛЬНЫЙ СПОСОБ ПОЛУЧЕНИЯ ИНДЕКСА ПО ИМЕНИ
--- А ЕЩЁ НУЖНО ОБЯЗАТЕЛЬНО ДОБАВЛЯТЬ В ТАБЛИЦУ roundSound ЗВУК ИНАЧЕ БУДЕТ ОШИБКА
+
 local roundTypes = {
-"Чрезвычайное Положение", -- 1
+"Чрезвычайное Положение",
 "Стандартный",
 "Безоружная территория",
 "Запад Запад",
 "Мафия"
--- "Спидран",
--- "HL2: RP",
--- "Военная Оккупация",
--- "ANEURISM IV"
 }
 local roundSound = {
 "snd_jack_hmcd_disaster.mp3",
@@ -37,11 +31,8 @@ local roundSound = {
 "snd_jack_hmcd_panic.mp3",
 "snd_jack_hmcd_wildwest.mp3",
 "snd_jack_hmcd_psycho.mp3"
--- "snd_jack_hmcd_shining.mp3",
--- "snd_jack_hmcd_shining.mp3",
--- "snd_jack_hmcd_shining.mp3",
--- "snd_jack_hmcd_shining.mp3"
 }
+
 homicide.RoundRandomDefalut = 9
 local playsound = false
 if SERVER then
@@ -85,6 +76,8 @@ function homicide.StartRound(data)
 end
 
 if SERVER then return end
+
+homicide.GetTeamName = homicide.GetTeamName
 
 local red,blue = Color(200,0,10),Color(75,75,255)
 local gray = Color(122,122,122,255)

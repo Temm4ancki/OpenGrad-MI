@@ -34,8 +34,8 @@ DEFAULT_MODELSCALE = 1
 
 local empty = {}
 
---hook.Add("Think","PlayerClass",function()
-    --[[local list = {}
+hook.Add("Think","PlayerClass",function()
+    local list = {}
 
     for i,ply in pairs(player.GetAll()) do
         local class = ply:GetPlayerClass()
@@ -55,8 +55,8 @@ local empty = {}
         for ply in pairs(list[class] or empty) do
             class.Think(ply,list)
         end
-    end]]--
---end)
+    end
+end)
 
 hook.Add("PlayerFootstep","PlayerClass",function(ply,...)
     return ply:PlayerClassEvent("PlayerFootstep",...)
