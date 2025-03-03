@@ -28,9 +28,11 @@ function SWEP:CustomEat()
 			BloodParticle(owner:EyePos(),owner:EyeAngles():Forward()*150+Vector(math.random(-1,1),math.random(-1,1),math.random(-1,1))*30)
 		end
 		owner.pain = math.max(owner.pain + 100,0)
+		owner:ChatPrint("В киндере попалась игла... Ауч.")
 	else
 		owner.Blood = owner.Blood + 25
 		owner.pain = math.max(owner.pain - 100,0)
+		owner:ChatPrint("В киндере ничего не было... Вкусненько :yum:")
 	end
 end
 
