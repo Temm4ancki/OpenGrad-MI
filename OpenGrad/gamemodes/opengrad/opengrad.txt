@@ -1,7 +1,0 @@
-"opengrad"
-{
-	"base"			"sandbox"
-	"title"			"OpenGrad"
-	"maps"			"^hmcd_|^tdm_|^dm_"
-	"menusystem"	"1"
-}
