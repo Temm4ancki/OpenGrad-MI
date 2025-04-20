@@ -3,6 +3,8 @@
 
 At the moment all bugs that broke the gamemode are fixed (script errors remain, but do not affect the gamemode in any way) <-- do not believe!!!
 
+[![forthebadge](https://forthebadge.com/images/badges/0-percent-optimized.svg)](https://forthebadge.com)
+
 # How to install?
 Just put it in addons and download the workshop collection:
 https://steamcommunity.com/sharedfiles/filedetails/?id=3036510525
