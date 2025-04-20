@@ -1,7 +1,30 @@
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
-
 include("shared.lua")
+
+if SERVER then
+	AddCSLuaFile("game/tier_0_playerclass/tier_0_sh.lua") -- suky suky
+	AddCSLuaFile("game/sh_level.lua")
+	AddCSLuaFile("game/cl_level.lua")
+	AddCSLuaFile("game/levels/newlevels/homicide/sh_init_tier_0.lua")
+	AddCSLuaFile("game/levels/newlevels/shared/sh_newlevels.lua")
+	AddCSLuaFile("game/datamap_cl.lua")
+	
+	include("game/sv_roundsystem.lua")
+	include("game/sv_datamap.lua")
+	include("game/levels/newlevels/homicide/sv_init.lua")
+	include("game/datamap_sv.lua")
+end
+
+include("game/levels/newlevels/shared/sh_newlevels.lua")
+include("game/levels/newlevels/homicide/sh_init_tier_0.lua")
+include("game/tier_0_playerclass/tier_0_sh.lua") -- suky suky
+include("game/sh_level.lua")
+
+if CLIENT then
+	include("game/datamap_cl.lua")
+	include("game/cl_level.lua")
+end
 
 util.AddNetworkString("remove_jmod_effects")
 
@@ -203,20 +226,56 @@ function GM:PlayerDeathSound() return true end
 
 --
 
-COMMANDS.afk = {function(ply,args)
-	local ent = ply:GetEyeTrace().Entity
-	local ply = RagdollOwner(ent) or ent or false
+-- COMMANDS.afk = {function(ply,args)
+-- 	local ent = ply:GetEyeTrace().Entity
+-- 	local ply = RagdollOwner(ent) or ent or false
 
-	if ply then ply:SetTeam(1002) ply:KillSilent() end
-end}
+-- 	if ply then ply:SetTeam(1002) ply:KillSilent() end
+-- end}
 
-COMMANDS.teamforce = {function(ply,args)
-	local teamID = tonumber(args[2])
+-- COMMANDS.teamforce = {function(ply,args)
+-- 	local teamID = tonumber(args[2])
 
-	for i,ply in pairs(player.GetListByName(args[1]) or {ply}) do
-		ply:SetTeam(teamID)
-	end
-end}
+-- 	for i,ply in pairs(player.GetListByName(args[1]) or {ply}) do
+-- 		ply:SetTeam(teamID)
+-- 	end
+-- end}
+-- COMMANDS.scared = {function(ply,args)
+-- 	local value = tonumber(args[1]) > 0
+-- 	ply:SetNWBool("scared",value)
+-- 	ply:ChatPrint(value and "включён" or "выключен")
+-- end}
+-- COMMANDS.nortv = {function(ply,args)
+-- 	if not validUserGroup[ply:GetUserGroup()] then return end
+
+-- 	local value = tonumber(args[1]) <= 0
+-- 	NAXYIRTV = not value
+-- 	PrintMessageChat(3,"change map: " .. tostring(value))
+-- end,2}
+
+-- COMMANDS.roll = {function(ply,args)
+-- 	local r = math.random(1,tonumber(args[1]))
+
+-- 	for i,ply2 in pairs(player.GetAll()) do
+-- 		if GAMEMODE:PlayerCanSeePlayersChat("gg",false,ply2,ply) then
+-- 			PrintMessageChat(ply2,r)
+-- 		end
+-- 	end
+-- end,nil,nil,true}
+
+-- -- COMMANDS.fullup = {function(ply,args)
+-- -- 	ply.stamina = 100
+-- -- 	ply.pain = 0
+-- -- 	ply.Blood = 5000
+-- -- 	ply.Bloodlosing = 0
+-- -- 	ply.dmgimpulse = 0
+-- -- 	ply.Otrub = false
+-- -- end}
+-- -- COMMANDS.retry = {function(ply,args)
+-- -- 	for i,ply in player.Iterator() do
+-- -- 		ply:ConCommand("retry")
+-- -- 	end
+-- -- end,2}
 
 local function PlayerCanJoinTeam(ply,teamID)
 	local addT,addCT = 0,0
@@ -246,22 +305,8 @@ function GM:PlayerCanJoinTeam(ply,teamID)
 	if result ~= nil then return result end
 end
 
-COMMANDS.scared = {function(ply,args)
-	local value = tonumber(args[1]) > 0
-	ply:SetNWBool("scared",value)
-	ply:ChatPrint(value and "включён" or "выключен")
-end}
-
 local validUserGroup = {}
 validUserGroup.superadmin = true
-
-COMMANDS.nortv = {function(ply,args)
-	if not validUserGroup[ply:GetUserGroup()] then return end
-
-	local value = tonumber(args[1]) <= 0
-	NAXYIRTV = not value
-	PrintMessageChat(3,"change map: " .. tostring(value))
-end,2}
 
 if not ulx.hvotemap then ulx.hvotemap = ulx.votemap end
 if not ulx.hvotemap2 then ulx.hvotemap2 = ulx.votemap2 end
@@ -296,36 +341,11 @@ hook.Add("Player Think","HasGodMode Rep",function(ply) ply:SetNWBool("HasGodMode
 
 resource.AddWorkshop("864612139") --remove red death screen
 
-COMMANDS.roll = {function(ply,args)
-	local r = math.random(1,tonumber(args[1]))
-
-	for i,ply2 in pairs(player.GetAll()) do
-		if GAMEMODE:PlayerCanSeePlayersChat("gg",false,ply2,ply) then
-			PrintMessageChat(ply2,r)
-		end
-	end
-end,nil,nil,true}
-
-COMMANDS.fullup = {function(ply,args)
-	ply.stamina = 100
-	ply.pain = 0
-	ply.Blood = 5000
-	ply.Bloodlosing = 0
-	ply.dmgimpulse = 0
-	ply.Otrub = false
-end}
-
 function GM:DoPlayerDeath(ply) end
 
 function GM:PlayerStartVoice(ply)
 	if ply:Alive() then return true end
 end
-
-COMMANDS.retry = {function(ply,args)
-	for i,ply in player.Iterator() do
-		ply:ConCommand("retry")
-	end
-end,2}
 
 util.AddNetworkString("lasertgg")
 net.Receive("lasertgg",function(len,ply)
