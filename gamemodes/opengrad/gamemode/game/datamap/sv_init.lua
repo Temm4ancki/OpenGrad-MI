@@ -70,7 +70,7 @@ SpawnPointsList = {
 }
 
 function GetDataMapName(name) return "homigrad/maps/" .. name .. "/" .. game.GetMap() .. (SpawnPointsPage == 1 and "" or SpawnPointsPage) ..".txt" end
-
+print("dsadsadad")
 function GetMaxDataPages(name)
 	local i = 0
 

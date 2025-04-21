@@ -1,6 +1,7 @@
 dataRound = dataRound
 endDataRound = endDataRound
 net.Receive("round_state",function()
+	dataRound = dataRound
 	roundActive = net.ReadBool()
 	local data = net.ReadTable()
 
@@ -47,7 +48,9 @@ showRoundInfoColor = Color(255,255,255)
 local yellow = Color(255,255,0)
 
 hook.Add("HUDPaint","homigrad-roundstate",function()
+	print("hudpaint")
 	if roundActive then
+		print("hudpaint roundactive")
 		local func = TableRound().HUDPaint_RoundLeft
 
 		if func then

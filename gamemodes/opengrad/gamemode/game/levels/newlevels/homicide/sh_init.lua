@@ -115,6 +115,7 @@ end
 local red,blue = Color(200,0,10),Color(75,75,255)
 
 function homicide.HUDPaint_RoundLeft(white2)
+    print("homicide.HUDPaint_RoundLeft")
     local roundType = homicide.roundType or 2
     local lply = LocalPlayer()
     local name,color = homicide.GetTeamName(lply)

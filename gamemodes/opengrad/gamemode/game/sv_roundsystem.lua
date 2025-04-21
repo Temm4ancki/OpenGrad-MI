@@ -84,47 +84,22 @@ function StartRound()
 
 	roundStarter = true
 
-	if levelrandom then
-		CountRoundRandom = CountRoundRandom + 1
+	-- if levelrandom then
+	-- 	CountRoundRandom = CountRoundRandom + 1
 
-		local diff = (TableRound().RoundRandomDefalut or RoundRandomDefalut) - CountRoundRandom
-		local func = TableRound().CanRandomNext
-		func = func and func() or true
+	-- 	local diff = (TableRound().RoundRandomDefalut or RoundRandomDefalut) - CountRoundRandom
+	-- 	local func = TableRound().CanRandomNext
+	-- 	func = func and func() or true
 		
-		if func and diff <= 0 then
-			local name = LevelRandom()
+	-- 	if func and diff <= 0 then
+	-- 		local name = LevelRandom()
 
-			SetActiveNextRound(name)
-			-- text = text .. "Следущий режим	: " .. tostring(TableRound(roundActiveNameNext).Name).. "\n"
+	-- 		SetActiveNextRound(name)
+	-- 		-- text = text .. "Следущий режим	: " .. tostring(TableRound(roundActiveNameNext).Name).. "\n"
 	
-			CountRoundRandom = 0
-		end
-	end
-
-	if not NAXYIRTV then
-		RTV_CountRound = RTV_CountRound + 1
-
-		local diff = RTV_CountRoundDefault - RTV_CountRound
-
-		if diff <= RTV_CountRoundMessage then
-			if diff <= 0 then
-				SolidMapVote.start()
-				roundActive = false
-				
-				for i,ply in pairs(player.GetAll()) do
-					if ply:Alive() then ply:Kill() end
-				end
-
-				RoundStateSync()
-
-				return
-			else
-				local content = "До принудительного голосования: " .. diff .. " раундов." .. "\n"
-				textGmod = textGmod .. content
-				-- text = text .. content
-			end
-		end
-	end
+	-- 		CountRoundRandom = 0
+	-- 	end
+	-- end
 
 	-- text = string.sub(text,1,#text - 1)
 	textGmod = string.sub(textGmod,1,#textGmod - 1)

@@ -1,28 +1,3 @@
-player.classList = player.classList or {}
-local classList = player.classList
-
-local PlayerMeta = FindMetaTable("Player")
-
-local empty = {}
-function PlayerMeta:GetPlayerClass()
-    return classList[self.PlayerClassName or ""]
-end
-
-local meta
-function PlayerMeta:PlayerClassEvent(name,...)--haha
-    meta = self:GetPlayerClass()
-    meta = meta and meta[name]
-
-    if meta then return meta(self,...) end
-end
-
-function player.RegClass(name)
-    local class = classList[name] or {}
-
-    classList[name] = class
-
-    return class
-end
 
 DEFAULT_VIEW_OFFSET = Vector(0,0,64)
 DEFAULT_VIEW_OFFSET_DUCKED = Vector(0,0,32)
@@ -31,8 +6,6 @@ DEFAULT_JUMP_POWER = 185 --284
 DEFAULT_STEP_SIZE = 18
 DEFAULT_MASS = 80
 DEFAULT_MODELSCALE = 1
-
-local empty = {}
 
 hook.Add("Think","PlayerClass",function()
     local list = {}

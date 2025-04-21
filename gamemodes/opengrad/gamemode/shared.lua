@@ -1,19 +1,16 @@
 DeriveGamemode("sandbox")
 
-GM.Name = "OpenGrad"
-GM.Author = "loh"
+GM.Name = "ClearGrad"
+GM.Author = "Roffold, AnimeAss"
 GM.Email = "N/A"
 GM.Website = "N/A"
 GM.TeamBased = true
 
---hg.includeDir("gamemodes/homigrad/game/")ебланы
-
-include("loader.lua")
-
 local start = SysTime()
 print("Start OpenGrad gamemode.")
 
-GM.includeDir("opengrad/gamemode/game/")--все файлы запускает, когда обновляем один.. можно из этого даже чо-то сделать.нахуй
+LevelList = {}
+function TableRound(name) return _G[name or roundActiveName] end
 
 print("End opengrad gamemode for " .. math.Round(SysTime() - start,4) .. "s")
 
@@ -52,4 +49,117 @@ function PlayersInGame()
     for i,ply in pairs(team_GetPlayers(3)) do newTbl[#newTbl + 1] = ply end
 
     return newTbl
+end
+
+player.classList = player.classList or {}
+classList = player.classList
+
+local PlayerMeta = FindMetaTable("Player")
+
+local empty = {}
+function PlayerMeta:GetPlayerClass()
+    return classList[self.PlayerClassName or ""]
+end
+
+local meta
+function PlayerMeta:PlayerClassEvent(name,...)--haha
+    meta = self:GetPlayerClass()
+    meta = meta and meta[name]
+
+    if meta then return meta(self,...) end
+end
+
+function player.RegClass(name)
+    local class = classList[name] or {}
+
+    classList[name] = class
+
+    return class
+end
+
+
+--------------------------
+--		LOADING SHIT	--
+--------------------------
+local ROOT = "opengrad/gamemode"
+local shInitFiles, svInitFiles, clInitFiles, otherFiles = {}, {}, {}, {}
+local function scanDir(dir)
+    local luaFiles = file.Find(dir .. "/*.lua", "LUA")
+    for _, filename in ipairs(luaFiles) do
+        local fullpath = dir .. "/" .. filename
+        if filename == "sh_init.lua" then
+            table.insert(shInitFiles, fullpath)
+        elseif filename == "sv_init.lua" then
+            table.insert(svInitFiles, fullpath)
+        elseif filename == "cl_init.lua" then
+            table.insert(clInitFiles, fullpath)
+        elseif string.StartWith(filename, "sh_") or string.StartWith(filename, "sv_") or string.StartWith(filename, "cl_") then
+            table.insert(otherFiles, fullpath)
+        end
+    end
+    local _, subdirs = file.Find(dir .. "/*", "LUA")
+    for _, sub in ipairs(subdirs) do scanDir(dir .. "/" .. sub) end
+end
+local _, topFolders = file.Find(ROOT .. "/*", "LUA")
+for _, folder in ipairs(topFolders) do scanDir(ROOT .. "/" .. folder) end
+table.sort(shInitFiles)
+table.sort(svInitFiles)
+table.sort(clInitFiles)
+table.sort(otherFiles)
+-- shared
+for _, file in ipairs(shInitFiles) do
+    if SERVER then
+        AddCSLuaFile(file)
+        print("[SERVER]sent: " .. file)
+        include(file)
+        print("[SERVER] included: " .. file)
+    elseif CLIENT then
+        include(file)
+		print("[CLIENT] included: " .. file)
+    end
+end
+-- server
+for _, file in ipairs(svInitFiles) do
+    if SERVER then
+        include(file)
+        print("[SERVER] included: " .. file)
+    end
+end
+-- client
+for _, file in ipairs(clInitFiles) do
+    if SERVER then
+        AddCSLuaFile(file)
+        print("[SERVER]sent: " .. file)
+    elseif CLIENT then
+        include(file)
+		print("[CLIENT] included: " .. file)
+    end
+end
+-- other
+for _, file in ipairs(otherFiles) do
+    local name = file:match(".*/([^/]+)%.lua$")
+    if string.StartWith(name, "sh_") then
+        if SERVER then
+            AddCSLuaFile(file)
+            print("[SERVER]sent: " .. file)
+            include(file)
+            print("[SERVER] included: " .. file)
+        elseif CLIENT then
+            include(file)
+			print("[CLIENT] included: " .. file)
+        end
+    elseif string.StartWith(name, "sv_") then
+        if SERVER then
+            include(file)
+            print("[SERVER] included: " .. file)
+        end
+    elseif string.StartWith(name, "cl_") then
+        if SERVER then
+            AddCSLuaFile(file)
+            print("[SERVER]sent: " .. file)
+        elseif CLIENT then
+            include(file)
+			print("[CLIENT] included: " .. file)
+        end
+    end
 end

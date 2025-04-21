@@ -17,52 +17,52 @@ function tdm.SpawnsTwoCommand()
 	return spawnsT,spawnsCT
 end
 
-function tdm.SpawnCommand(tbl,aviable,func,funcShould)
-	for i,ply in RandomPairs(tbl) do
-		if funcShould and funcShould(ply) ~= nil then continue end
+-- function tdm.SpawnCommand(tbl,available,func,funcShould)
+-- 	for i,ply in RandomPairs(tbl) do
+-- 		if funcShould and funcShould(ply) ~= nil then continue end
 
-		if ply:Alive() then ply:KillSilent() end
+-- 		if ply:Alive() then ply:KillSilent() end
 
-		if func then func(ply) end
+-- 		if func then func(ply) end
 
-		ply:Spawn()
-		ply.allowFlashlights = true
+-- 		ply:Spawn()
+-- 		ply.allowFlashlights = true
 
-		local point,key = table.Random(aviable)
-		point = ReadPoint(point)
-		if not point then continue end
+-- 		local point,key = table.Random(available)
+-- 		point = ReadPoint(point)
+-- 		if not point then continue end
 
-		ply:SetPos(point[1])
-		if #aviable > 1 then table.remove(aviable,key) end
-	end
-end
+-- 		ply:SetPos(point[1])
+-- 		if #available > 1 then table.remove(available,key) end
+-- 	end
+-- end
 
-function tdm.DirectOtherTeam(start,min,max)
-	if not max then max = min end
+-- function tdm.DirectOtherTeam(start,min,max)
+-- 	if not max then max = min end
 
-	for i = start,team.MaxTeams do
-		for i,ply in pairs(team.GetPlayers(i)) do
-			ply:SetTeam(math.random(min,max))
-		end
-	end
-end
+-- 	for i = start,team.MaxTeams do
+-- 		for i,ply in pairs(team.GetPlayers(i)) do
+-- 			ply:SetTeam(math.random(min,max))
+-- 		end
+-- 	end
+-- end
 
-function tdm.GetListMul(list,mul,func,max)
-	local newList = {}
-	mul = math.Round(#list * mul)
-	if max then mul = math.max(mul,max) end
+-- function tdm.GetListMul(list,mul,func,max)
+-- 	local newList = {}
+-- 	mul = math.Round(#list * mul)
+-- 	if max then mul = math.max(mul,max) end
 
-	for i = 1,mul do
-		local ply,key = table.Random(list)
-		list[key] = nil
+-- 	for i = 1,mul do
+-- 		local ply,key = table.Random(list)
+-- 		list[key] = nil
 
-		if func and func(ply) ~= true then continue end
+-- 		if func and func(ply) ~= true then continue end
 
-		newList[#newList + 1] = ply
-	end
+-- 		newList[#newList + 1] = ply
+-- 	end
 
-	return newList
-end
+-- 	return newList
+-- end
 
 changeClass = {
 	["prop_vehicle_jeep"]="vehicle_van",
@@ -133,21 +133,21 @@ function tdm.StartRoundSV()
     -- tdm.SelectRandomPlayers(team.GetPlayers(2),2,tdm.GiveAidPhone)
 end
 
-function tdm.GetCountLive(list,func)
-	local count = 0
-	local result
+-- function tdm.GetCountLive(list,func)
+-- 	local count = 0
+-- 	local result
 
-	for i,ply in pairs(list) do
-		if not IsValid(ply) then continue end
+-- 	for i,ply in pairs(list) do
+-- 		if not IsValid(ply) then continue end
 
-		result = func and func(ply)
-		if result == true then count = count + 1 continue elseif result == false then continue end
-		if ply:Alive() then count = count + 1 end
-		-- if not PlayerIsCuffs(ply) and ply:Alive() then count = count + 1 end
-	end
+-- 		result = func and func(ply)
+-- 		if result == true then count = count + 1 continue elseif result == false then continue end
+-- 		if ply:Alive() then count = count + 1 end
+-- 		-- if not PlayerIsCuffs(ply) and ply:Alive() then count = count + 1 end
+-- 	end
 
-	return count
-end
+-- 	return count
+-- end
 
 function tdm.RoundEndCheck()
 	tdm.Center()

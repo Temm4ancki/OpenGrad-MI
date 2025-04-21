@@ -1,0 +1,56 @@
+-- local function doPrint(ply, text)
+-- 	if not text then return end
+-- 	if IsValid(ply) and ply:IsPlayer() then
+-- 		ply:ChatPrint(text)
+-- 	else
+-- 		print(text)
+-- 	end
+-- end
+
+-- concommand.Add("slashco_give_item", function(_, args)
+-- 	if CLIENT then return end
+-- 	if ply:Team() ~= TEAM_SURVIVOR then
+-- 		doPrint(ply, "Only survivors can have items")
+-- 		return
+-- 	end
+
+-- 	if SlashCoItems[args[1]] then
+-- 		SlashCo.ChangeSurvivorItem(ply, args[1])
+-- 	else
+-- 		SlashCo.ChangeSurvivorItem(ply, "none")
+-- 	end
+-- end, function(cmd, args)
+-- 	--this is for autocomplete
+-- 	args = string.lower(string.Trim(args))
+-- 	local tbl = table.GetKeys(SlashCoItems)
+-- 	table.insert(tbl, "none")
+-- 	local tbl1 = {}
+-- 	for _, v in ipairs(tbl) do
+-- 		--find every item that matches what's inputted
+-- 		if string.find(string.lower(v), args) then table.insert(tbl1, cmd .. " " .. v) end
+-- 	end
+-- 	return tbl1
+-- end, "Give yourself an item", FCVAR_CHEAT)
+
+-- concommand.Add(
+--     "cg_heal",
+--     function (ply, cmd, args)
+--         for _, _ply in ipairs( player.GetAll()) do
+--             if _ply != nil and _ply:Nick():lower():find(args[1]) then
+--                 print("Healed")
+--                 _ply.stamina = 100
+--                 _ply.pain = 0
+--                 _ply.Blood = 5000
+--                 _ply.Bloodlosing = 0
+--                 _ply.dmgimpulse = 0
+--                 _ply.Otrub = false
+--             end
+--         end
+--     end,
+--     function()
+--         return {
+--             "heal PlayerNickname"
+--         }
+--     end
+-- )
+print("a")

@@ -1,26 +1,12 @@
-local classList = player.classList
+-- Чтобы анимации работали или че там, хз не шарю
+hook.Add("HandlePlayerLanding","animoverride",function()
+	return true
+end)
 
-local Player = FindMetaTable("Player")
-
-function Player:SetPlayerClass(value)
-    value = value or "none"
-
-    local old = self.PlayerClassName
-    self.PlayerClassNameOld = old
-    old = classList[old]
-    if old and old.Off then old.Off(self) end
-
-    self.PlayerClassName = value
-    self:PlayerClassEvent("On")
-
-    net.Start("setupclass")
-    net.WriteEntity(self)
-    net.WriteString(value)
-    net.WriteString(self.PlayerClassNameOld or "")
-    net.Broadcast()
-end
-
-util.AddNetworkString("setupclass")
+-- Пропуск различного кода при наличии у игрока god mode
+hook.Add("Player Think","HasGodMode Rep",function(ply)
+    ply:SetNWBool("HasGodMode",ply:HasGodMode())
+end)
 
 hook.Add("PlayerInitializeSpawn","PlayerClass",function(plySend)
     for i,ply in pairs(player.GetAll()) do
@@ -39,13 +25,6 @@ hook.Add("PlayerDeath","PlayerClass",function(ply,inf,att)
 
     ply:PlayerClassEvent("PlayerDeath",att)
 end)
-
--- COMMANDS.playerclass = {function(ply,args)
---     for i,ply2 in pairs(player.GetListByName(args[1]) or {ply}) do
---         ply2:SetPlayerClass(args[2])
---         ply:ChatPrint(ply2:Name())
---     end
--- end}
 
 hook.Add("Player Start Voice","PlayerClass",function(ply)
     ply:PlayerClassEvent("PlayerStartVoice")

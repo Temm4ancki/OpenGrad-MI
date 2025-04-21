@@ -115,25 +115,25 @@ end
 -- end}
 
 function homicide.Spawns()
-    local aviable = {}
+    local available = {}
 
     for i,ent in pairs(ents.FindByClass("info_player*")) do
-        table.insert(aviable,ent:GetPos())
+        table.insert(available,ent:GetPos())
     end
 
     for i,ent in pairs(ents.FindByClass("info_node*")) do
-        table.insert(aviable,ent:GetPos())
+        table.insert(available,ent:GetPos())
     end
 
     for i,point in pairs(ReadDataMap("spawnpointst")) do
-        table.insert(aviable,point)
+        table.insert(available,point)
     end
 
     for i,point in pairs(ReadDataMap("spawnpointsct")) do
-        table.insert(aviable,point)
+        table.insert(available,point)
     end
 
-    return aviable
+    return available
 end
 
 sound.Add({
@@ -147,7 +147,7 @@ sound.Add({
 
 function homicide.StartRoundSV()
     -- tdm.RemoveItems()
-    tdm.DirectOtherTeam(2,1,1)
+    tdm.ChangeTeams(2,1,1)
 
     homicide.police = false
 	roundTimeStart = CurTime()
@@ -167,8 +167,8 @@ function homicide.StartRoundSV()
     local countT = 0
     local countCT = 0
 
-    local aviable = homicide.Spawns()
-    tdm.SpawnCommand(PlayersInGame(),aviable,function(ply)
+    local available = homicide.Spawns()
+    tdm.SpawnCommand(PlayersInGame(),available,function(ply)
         ply.roleT = false
         ply.roleCT = false
 
@@ -225,12 +225,10 @@ function homicide.StartRoundSV()
         end
     end)
 
-    tdm.CenterInit()
-
     return {roundTimeLoot = roundTimeLoot}
 end
 
-local aviable = ReadDataMap("spawnpointsct")
+local available = ReadDataMap("spawnpointsct")
 
 -- COMMANDS.forcepolice = {function(ply)
 --     if not ply:IsAdmin() then return end
@@ -240,7 +238,6 @@ local aviable = ReadDataMap("spawnpointsct")
 -- end}
 
 function homicide.RoundEndCheck()
-    tdm.Center()
 
 	local TAlive = tdm.GetCountLive(homicide.t)
 	local Alive = tdm.GetCountLive(team.GetPlayers(1),function(ply) if ply.roleT or ply.isContr then return false end end)
@@ -253,11 +250,11 @@ function homicide.RoundEndCheck()
             PrintMessage(3,"Приехала полиция.")
         end
 
-        local aviable = ReadDataMap("spawnpointsct")
+        local available = ReadDataMap("spawnpointsct")
         local ctPlayers = tdm.GetListMul(player.GetAll(),1,function(ply) return not ply:Alive() and not ply.roleT and ply:Team() ~= 1002 end)
         
         local playsound = true
-        tdm.SpawnCommand(ctPlayers,aviable,function(ply)
+        tdm.SpawnCommand(ctPlayers,available,function(ply)
             timer.Simple(0,function()
                 if homicide.roundType == 1 then
                     ply:SetPlayerClass("contr")
@@ -361,4 +358,37 @@ end
 
 function homicide.GuiltLogic(ply,att,dmgInfo)
     return ply.roleT == att.roleT
+end
+
+function tdm.GetCountLive(list,func)
+	local count = 0
+	local result
+
+	for i,ply in pairs(list) do
+		if not IsValid(ply) then continue end
+
+		result = func and func(ply)
+		if result == true then count = count + 1 continue elseif result == false then continue end
+		if ply:Alive() then count = count + 1 end
+		-- if not PlayerIsCuffs(ply) and ply:Alive() then count = count + 1 end
+	end
+
+	return count
+end
+
+function tdm.GetListMul(list,mul,func,max)
+	local newList = {}
+	mul = math.Round(#list * mul)
+	if max then mul = math.max(mul,max) end
+
+	for i = 1,mul do
+		local ply,key = table.Random(list)
+		list[key] = nil
+
+		if func and func(ply) ~= true then continue end
+
+		newList[#newList + 1] = ply
+	end
+
+	return newList
 end

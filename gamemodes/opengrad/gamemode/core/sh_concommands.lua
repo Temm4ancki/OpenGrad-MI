@@ -1,0 +1,27 @@
+local function doPrint(ply, text)
+	if not text then return end
+	if IsValid(ply) and ply:IsPlayer() then
+		ply:ChatPrint(text)
+	else
+		print(text)
+	end
+end
+
+concommand.Add(
+    "cg_heal",
+    function (ply, cmd, args)
+        for _, _ply in ipairs( player.GetAll()) do
+            doPrint(_ply,"aaaaaaaaaaaaa")
+            if args[1] != nil and _ply != nil and _ply:Nick():lower():find(args[1]) then
+                doPrint(_ply, "Healed")
+                _ply.stamina = 100
+                _ply.pain = 0
+                _ply.Blood = 5000
+                _ply.Bloodlosing = 0
+                _ply.dmgimpulse = 0
+                _ply.Otrub = false
+            end
+        end
+    end,
+    nil, "heals the player in format > heal nickname"
+)
