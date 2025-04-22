@@ -1,9 +1,4 @@
--- TEMP
-print("opengrad/gamemode/core/player loaded")
--- TEMP
-
 -- Функции с методами игрока
-
 function GM:PlayerSpawn(ply)
     ply:SetNWEntity("HeSpectateOn",false)
 	if PLYSPAWN_OVERRIDE then

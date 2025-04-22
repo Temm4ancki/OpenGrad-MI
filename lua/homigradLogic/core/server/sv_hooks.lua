@@ -131,20 +131,6 @@ hook.Add( 'PlayerSay', 'SolidMapVote.PlayerCommands', function( ply, text, tChat
     end
 end )
 
-hook.Add( 'Think', 'SolidMapVote.ServerLoop', function()
-    -- Players called the vote through RTV
-    SolidMapVote.checkForRTV()
-
-    -- Time is up, start figuring out the winning map
-    SolidMapVote.checkForVoteEnd()
-
-    -- Post map vote time is up, change the map
-    SolidMapVote.postMapVoteChange()
-
-    -- Check to see if it is time to autostart the map vote
-    SolidMapVote.checkForAutostart()
-end )
-
 -- Checks for when players RTV to choose a new map
 -- Will start at end of round on round based gamemodes
 function SolidMapVote.checkForRTV()
@@ -165,6 +151,7 @@ function SolidMapVote.checkForRTV()
         end
     end
 end
+
 
 -- Checks to see if the vote should end
 function SolidMapVote.checkForVoteEnd()
@@ -291,3 +278,18 @@ function SolidMapVote.hackRoundBasedGamemodes()
     	end )
     end
 end
+
+
+hook.Add( 'Think', 'SolidMapVote.ServerLoop', function()
+    -- Players called the vote through RTV
+    SolidMapVote.checkForRTV()
+
+    -- Time is up, start figuring out the winning map
+    SolidMapVote.checkForVoteEnd()
+
+    -- Post map vote time is up, change the map
+    SolidMapVote.postMapVoteChange()
+
+    -- Check to see if it is time to autostart the map vote
+    SolidMapVote.checkForAutostart()
+end )

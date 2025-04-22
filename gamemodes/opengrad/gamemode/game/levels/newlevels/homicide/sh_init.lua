@@ -54,7 +54,7 @@ function homicide.StartRound(data)
     if SERVER then
         local roundType = homicide_setmode:GetInt() == 1 and 1 or false
 
-        homicide.roundType = roundType or math.random(2,4)
+        homicide.roundType = roundType or math.random(2,5)
         net.Start("roundType")
         net.WriteInt(homicide.roundType,5)
         net.Broadcast()
@@ -115,7 +115,6 @@ end
 local red,blue = Color(200,0,10),Color(75,75,255)
 
 function homicide.HUDPaint_RoundLeft(white2)
-    print("homicide.HUDPaint_RoundLeft")
     local roundType = homicide.roundType or 2
     local lply = LocalPlayer()
     local name,color = homicide.GetTeamName(lply)
@@ -135,7 +134,7 @@ function homicide.HUDPaint_RoundLeft(white2)
 
         if homicide.roundType == 1 then
             if lply.roleT then 
-                drawRoundStart("Убийца", "Ваша задача подебить всех", startRound, 2)
+                drawRoundStart("Убийца", "Ваша задача победить всех", startRound, 2)
             elseif lply.roleCT then 
                 drawRoundStart("Выживший искатель", "У вас есть дробовик", startRound, 1)
             else 
@@ -143,7 +142,7 @@ function homicide.HUDPaint_RoundLeft(white2)
         end end
         if homicide.roundType == 2 then
             if lply.roleT then 
-                drawRoundStart("Убийца", "Ваша задача подебить всех", startRound, 2)
+                drawRoundStart("Убийца", "Ваша задача победить всех", startRound, 2)
             elseif lply.roleCT then 
                 drawRoundStart("Мирный с оружием", "У вас есть скрытый пистолет", startRound, 1)
             else 
@@ -151,7 +150,7 @@ function homicide.HUDPaint_RoundLeft(white2)
         end end        
         if homicide.roundType == 3 then
             if lply.roleT then 
-                drawRoundStart("Убийца", "Ваша задача подебить всех", startRound, 2)
+                drawRoundStart("Убийца", "Ваша задача победить всех", startRound, 2)
             elseif lply.roleCT then 
                 drawRoundStart("Мирный", "У вас есть средства усмирения", startRound, 1)
             else 
@@ -159,7 +158,7 @@ function homicide.HUDPaint_RoundLeft(white2)
         end end
         if homicide.roundType == 4 then
             if lply.roleT then 
-                drawRoundStart("Убийца", "Ваша задача подебить всех", startRound, 2)
+                drawRoundStart("Убийца", "Ваша задача победить всех", startRound, 2)
             elseif lply.roleCT then 
                 drawRoundStart("Шериф", "У вас есть револьвер и дробовик", startRound, 1)
             else 
@@ -167,7 +166,7 @@ function homicide.HUDPaint_RoundLeft(white2)
         end end
         if homicide.roundType == 5 then
             if lply.roleT then 
-                drawRoundStart("Мафия", "Ваша задача подебить", startRound, 2)
+                drawRoundStart("Мафия", "Ваша задача победить", startRound, 2)
             elseif lply.roleCT then 
                 drawRoundStart("Крутой", "У вас есть а потом че-нибудь придумаю", startRound, 1)
             else 

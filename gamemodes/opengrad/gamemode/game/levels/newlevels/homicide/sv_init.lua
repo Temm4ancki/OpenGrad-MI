@@ -1,3 +1,43 @@
+changeClass = {
+	["prop_vehicle_jeep"]="vehicle_van",
+	["prop_vehcle_jeep_old"]="vehicle_van",
+	["prop_vehicle_airboat"]="vehicle_van",
+	["weapon_crowbar"]="weapon_bat",
+	["weapon_stunstick"]="weapon_knife",
+	["weapon_pistol"]="weapon_glock",
+	["weapon_357"]="weapon_deagle",
+	["weapon_shotgun"]="weapon_remington870",
+	--["weapon_crossbow"]="weapon_kar98k",
+	["weapon_ar2"]="weapon_ar15",
+	["weapon_smg1"]="weapon_ar15",
+	["weapon_frag"]="weapon_hg_f1",
+	["weapon_slam"]="weapon_hg_molotov",
+
+	["weapon_rpg"]="ent_ammo_46×30mm",
+	["item_ammo_ar2_altfire"]="ent_ammo_762x39mm",
+	["item_ammo_357"]="ent_ammo_.44magnum",
+	["item_ammo_357_large"]="ent_ammo_.44magnum",
+	["item_ammo_pistol"]="ent_ammo_9х19mm",
+	["item_ammo_pistol_large"]="ent_ammo_9х19mm",
+	["item_ammo_ar2"]="ent_ammo_556x45mm",
+	["item_ammo_ar2_large"]="ent_ammo_556x45mm",
+	["item_ammo_ar2_smg1"]="ent_ammo_545×39mm",
+	["item_ammo_ar2_large"]="ent_ammo_556x45mm",
+	["item_ammo_smg1"]="ent_ammo_545×39mm",
+	["item_ammo_smg1_large"]="ent_ammo_762x39mm",
+	["item_box_buckshot"]="ent_ammo_12/70gauge",
+	["item_box_buckshot_large"]="ent_ammo_12/70gauge",
+	["item_rpg_round"]="ent_ammo_57×28mm",
+	["item_ammo_crate"]="ent_ammo_9x39mm",
+
+	["item_healthvial"]="med_band_small",
+	["item_healthkit"]="med_band_big",
+	["item_healthcharger"]="medkit",
+	["item_suitcharger"]="painkiller",
+	["item_battery"]="blood_bag",
+	["weapon_alyxgun"]={"food_fishcan","food_lays","food_monster","food_spongebob_home"}
+}
+
 local function GetFriends(play)
     
     local huy = ""
@@ -277,6 +317,10 @@ function homicide.RoundEndCheck()
 end
 
 function homicide.EndRound(winner)
+    if #PlayersInGame() < 2 then 
+        PrintMessage(3, "Недостаточно игроков. Раунд завершен.")
+        return
+    end
     PrintMessage(3,(winner == 1 and "Победа предателей." or winner == 2 and "Победа невиновых." or "Ничья"))
     if homicide.t and #homicide.t > 0 then
         PrintMessage(3,#homicide.t > 1 and ("Трейторами были: " .. homicide.t[1]:Name() .. ", " .. GetFriends(homicide.t[1])) or ("Трейтором был: " .. homicide.t[1]:Name()))
@@ -289,8 +333,10 @@ function homicide.PlayerSpawn(ply,teamID)
     local teamTbl = homicide[homicide.teamEncoder[teamID]]
     local color = teamID == 1 and Color(math.random(55,165),math.random(55,165),math.random(55,165)) or teamTbl[2]
     if homicide.roundType ~= 1 then
+        print("give model1")
 	    ply:SetModel(teamTbl.models[math.random(#teamTbl.models)] or "models/player/group01/male_03.mdl")
     else
+        print("give model2")
         ply:SetModel(models_rebels[math.random(#models_rebels)] or "models/player/group03/male_01.mdl")
     end
     ply:SetPlayerColor(color:ToVector())
