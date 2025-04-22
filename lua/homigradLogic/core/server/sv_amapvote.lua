@@ -272,3 +272,72 @@ function SolidMapVote.selectRandomMapFairly( pool, weights )
     -- Map not found? Return nil to retry
     return nil
 end
+
+-- Checks for when players RTV to choose a new map
+-- Will start at end of round on round based gamemodes
+function SolidMapVote.checkForRTV()
+    if #SolidMapVote.RTVs >= SolidMapVote.getRTVAmount() and not SolidMapVote.isOpen and #player.GetAll() > 0 then
+        if (SolidMapVote.isTTT or
+        SolidMapVote.isDeathRun or
+        SolidMapVote.isMurder or
+        SolidMapVote.isZombieSurvival or
+        SolidMapVote.isJailBreak) and
+        not SolidMapVote.startVoteAfterRound then
+            SolidMapVote.startVoteAfterRound = true
+            SolidMapVote.RTVCompleted = true
+            SolidMapVote.sendMessage( { color_white, 'The map vote will open after the current round!' }, true )
+
+        elseif not SolidMapVote.startVoteAfterRound then
+            SolidMapVote.RTVCompleted = true
+            SolidMapVote.start()
+        end
+    end
+end
+
+
+-- Checks to see if the vote should end
+function SolidMapVote.checkForVoteEnd()
+    if SolidMapVote.endTime < RealTime() and SolidMapVote.isOpen and not SolidMapVote.finished then
+        SolidMapVote.close()
+    end
+end
+
+-- Checks if the map vote is over and changes the level
+function SolidMapVote.postMapVoteChange()
+    if SolidMapVote.changeTime < RealTime() and SolidMapVote.finished then
+        SolidMapVote.isOpen = false
+
+        if SolidMapVote.realWinner == 'extend' then
+            if SolidMapVote[ 'Config' ][ 'Enable Vote Autostart' ] then
+                -- If were using autostart, close the vote and restart the timer
+                -- requested by a user
+                SolidMapVote.close()
+                SolidMapVote.reset()
+            else
+                RunConsoleCommand( 'changelevel', game.GetMap() )
+            end
+        elseif SolidMapVote.realWinner == 'random' then
+            RunConsoleCommand( 'changelevel', SolidMapVote.fixedWinner )
+        else
+            RunConsoleCommand( 'changelevel', SolidMapVote.realWinner )
+        end
+    end
+end
+
+-- Checks to see if we should autostart the map vote
+function SolidMapVote.checkForAutostart()
+    if SolidMapVote[ 'Config' ][ 'Enable Vote Autostart' ] and not SolidMapVote.isOpen then
+        local timeRemaining = math.ceil( SolidMapVote.autoStartTime - RealTime() )
+
+        -- Give players on the server a reminder that the vote will open soon
+        if not SolidMapVote.reminded and timeRemaining < SolidMapVote[ 'Config' ][ 'Autostart Reminder' ] then
+            SolidMapVote.reminded = true
+            SolidMapVote.sendMessage( { color_white, 'The map vote will open in ', Color( 0, 177, 106 ), tostring( timeRemaining ), color_white, ' seconds!' }, true )
+        end
+
+        -- Time to open the vote
+        if timeRemaining <= 0 then
+            SolidMapVote.start()
+        end
+    end
+end

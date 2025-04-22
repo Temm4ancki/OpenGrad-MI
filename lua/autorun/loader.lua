@@ -1,82 +1,57 @@
 local ROOT = "homigradLogic"
-local shInitFiles, svInitFiles, clInitFiles, otherFiles = {}, {}, {}, {}
+local shInitFiles, svInitFiles, clInitFiles = {}, {}, {}
+local shOtherFiles, svOtherFiles, clOtherFiles = {}, {}, {}
+local function getDepth(path) return #string.Explode("/", path) - 2 end
+local function comparePaths(a, b) local da, db = getDepth(a), getDepth(b) return da < db or (da == db and a < b) end
+local function logAction(prefix, file) print(string.format("%-20s %s", prefix, file)) end
 local function scanDir(dir)
-    local luaFiles = file.Find(dir .. "/*.lua", "LUA")
-    for _, filename in ipairs(luaFiles) do
-        local fullpath = dir .. "/" .. filename
-        if filename == "sh_init.lua" then
-            table.insert(shInitFiles, fullpath)
-        elseif filename == "sv_init.lua" then
-            table.insert(svInitFiles, fullpath)
-        elseif filename == "cl_init.lua" then
-            table.insert(clInitFiles, fullpath)
-        elseif string.StartWith(filename, "sh_") or string.StartWith(filename, "sv_") or string.StartWith(filename, "cl_") then
-            table.insert(otherFiles, fullpath)
+    for _, f in ipairs(file.Find(dir .. "/*.lua", "LUA")) do
+        local path = dir .. "/" .. f
+        if f == "sh_init.lua" then table.insert(shInitFiles, path)
+        elseif f == "sv_init.lua" then table.insert(svInitFiles, path)
+        elseif f == "cl_init.lua" then table.insert(clInitFiles, path)
+        elseif f:find("^sh_") then table.insert(shOtherFiles, path)
+        elseif f:find("^sv_") then table.insert(svOtherFiles, path)
+        elseif f:find("^cl_") then table.insert(clOtherFiles, path)
         end
     end
-    local _, subdirs = file.Find(dir .. "/*", "LUA")
-    for _, sub in ipairs(subdirs) do scanDir(dir .. "/" .. sub) end
+    for _, sub in ipairs(select(2, file.Find(dir .. "/*", "LUA"))) do scanDir(dir .. "/" .. sub) end
 end
-local _, topFolders = file.Find(ROOT .. "/*", "LUA")
-for _, folder in ipairs(topFolders) do scanDir(ROOT .. "/" .. folder) end
-table.sort(shInitFiles)
-table.sort(svInitFiles)
-table.sort(clInitFiles)
-table.sort(otherFiles)
--- shared
-for _, file in ipairs(shInitFiles) do
-    if SERVER then
-        AddCSLuaFile(file)
-        print("[SERVER]sent: " .. file)
-        include(file)
-        print("[SERVER] included: " .. file)
-    elseif CLIENT then
-        include(file)
-		print("[CLIENT] included: " .. file)
+for _, folder in ipairs(select(2, file.Find(ROOT .. "/*", "LUA"))) do scanDir(ROOT .. "/" .. folder) end
+table.sort(shInitFiles, comparePaths) table.sort(svInitFiles, comparePaths) table.sort(clInitFiles, comparePaths)
+table.sort(shOtherFiles, comparePaths) table.sort(svOtherFiles, comparePaths) table.sort(clOtherFiles, comparePaths)
+if SERVER then
+    for _, f in ipairs(shInitFiles) do
+        logAction("[SERVER]sent", f) AddCSLuaFile(f)
+        logAction("[SERVER] included", f) include(f)
     end
-end
--- server
-for _, file in ipairs(svInitFiles) do
-    if SERVER then
-        include(file)
-        print("[SERVER] included: " .. file)
+    for _, f in ipairs(svInitFiles) do
+        logAction("[SERVER] included", f) include(f)
     end
-end
--- client
-for _, file in ipairs(clInitFiles) do
-    if SERVER then
-        AddCSLuaFile(file)
-        print("[SERVER]sent: " .. file)
-    elseif CLIENT then
-        include(file)
-		print("[CLIENT] included: " .. file)
+    for _, f in ipairs(clInitFiles) do
+        logAction("[SERVER]sent", f) AddCSLuaFile(f)
     end
-end
--- other
-for _, file in ipairs(otherFiles) do
-    local name = file:match(".*/([^/]+)%.lua$")
-    if string.StartWith(name, "sh_") then
-        if SERVER then
-            AddCSLuaFile(file)
-            print("[SERVER]sent: " .. file)
-            include(file)
-            print("[SERVER] included: " .. file)
-        elseif CLIENT then
-            include(file)
-			print("[CLIENT] included: " .. file)
-        end
-    elseif string.StartWith(name, "sv_") then
-        if SERVER then
-            include(file)
-            print("[SERVER] included: " .. file)
-        end
-    elseif string.StartWith(name, "cl_") then
-        if SERVER then
-            AddCSLuaFile(file)
-            print("[SERVER]sent: " .. file)
-        elseif CLIENT then
-            include(file)
-			print("[CLIENT] included: " .. file)
-        end
+    for _, f in ipairs(shOtherFiles) do
+        logAction("[SERVER]sent", f) AddCSLuaFile(f)
+        logAction("[SERVER] included", f) include(f)
+    end
+    for _, f in ipairs(svOtherFiles) do
+        logAction("[SERVER] included", f) include(f)
+    end
+    for _, f in ipairs(clOtherFiles) do
+        logAction("[SERVER]sent", f) AddCSLuaFile(f)
+    end
+else
+    for _, f in ipairs(shInitFiles) do
+        logAction("[CLIENT] included", f) include(f)
+    end
+    for _, f in ipairs(clInitFiles) do
+        logAction("[CLIENT] included", f) include(f)
+    end
+    for _, f in ipairs(shOtherFiles) do
+        logAction("[CLIENT] included", f) include(f)
+    end
+    for _, f in ipairs(clOtherFiles) do
+        logAction("[CLIENT] included", f) include(f)
     end
 end
