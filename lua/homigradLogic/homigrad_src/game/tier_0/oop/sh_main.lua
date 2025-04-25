@@ -1,5 +1,4 @@
-oop = oop or {}--sasi
---эт лиш регистрация классов
+oop = oop or {}
 
 oop.listClass = oop.listClass or {}
 local listClass = oop.listClass
@@ -11,7 +10,7 @@ function oop.Inherit(class)
 
         for i,base in pairs(oldBase) do
             base = listClass[base]
-            base.baseChildrens[class.ClassName] = nil--shut the fuck up!
+            base.baseChildrens[class.ClassName] = nil
         end
     end
 
@@ -29,7 +28,34 @@ function oop.Inherit(class)
     end
 
     util.tableLink(content,copyContent)
-end--veru simple.. maybe,я на таком чиле это делаю🤙
+end
+
+local string_sub = string.sub
+local string_split = string.Split
+local string_find = string.find
+local string_gsub = string.gsub
+
+function oop.GetPath(levelUp)
+    trace = debug.traceback()
+
+	if levelUp then levelUp = 3 + levelUp end
+
+	trace = string_split(trace,"\n")
+	trace = trace[levelUp or #trace]
+	trace = string_split(trace,":")[1]
+	trace = string_gsub(trace,"	","")
+
+	if string_sub(trace,1,7) == "addons/" then
+		trace = string_sub(trace,8,#trace)
+		s = string_find(trace,"/")
+
+		return string_sub(trace,s + 5,#trace)
+	elseif string_sub(trace,1,4) == "lua/" then
+		return string_sub(trace,5,#trace)
+	end
+
+	return trace
+end
 
 function oop.InheritChildren(base)
     local contentBase = base[1]
@@ -74,7 +100,7 @@ end
 --
 
 function oop.InsertFile(class,isFolder)
-    local pathInsert = hg.GetPath(2)
+    local pathInsert = oop.GetPath(2)
     local listFiles = class[3]
 
     if isFolder then pathInsert = string.GetPathFromFilename(pathInsert) end
@@ -111,7 +137,7 @@ end
 
 function oop.GetClassName(className)
     if not className then
-        return string.gsub(string.GetFileFromFilename(hg.GetPath(2)),".lua","")
+        return string.gsub(string.GetFileFromFilename(oop.GetPath(2)),".lua","")
     else
         return className
     end

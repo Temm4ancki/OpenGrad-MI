@@ -77,7 +77,6 @@ function GM:PlayerSpawn(ply)
 	end
 
 	ply:PlayerClassEvent("On")
-
 	TableRound().PlayerSpawn(ply,ply:Team())
 end
 

@@ -80,7 +80,7 @@ Vectors2 = {
 vecZero = Vector(0,0,0)
 function SpawnWeapon(ply,clip1)
 	--local guninfo = ply.GunInfo
-	--local guninfo = ply.GunInfo луа очень легкий
+	--local guninfo = ply.GunInfo
 
 	if !IsValid(ply.wep) and table.HasValue(Guns,ply.curweapon) then
 		local rag = ply:GetNWEntity("Ragdoll")

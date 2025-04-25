@@ -333,10 +333,8 @@ function homicide.PlayerSpawn(ply,teamID)
     local teamTbl = homicide[homicide.teamEncoder[teamID]]
     local color = teamID == 1 and Color(math.random(55,165),math.random(55,165),math.random(55,165)) or teamTbl[2]
     if homicide.roundType ~= 1 then
-        print("give model1")
 	    ply:SetModel(teamTbl.models[math.random(#teamTbl.models)] or "models/player/group01/male_03.mdl")
     else
-        print("give model2")
         ply:SetModel(models_rebels[math.random(#models_rebels)] or "models/player/group03/male_01.mdl")
     end
     ply:SetPlayerColor(color:ToVector())

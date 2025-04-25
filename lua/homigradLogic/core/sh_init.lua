@@ -1,5 +1,7 @@
 -- Time in seconds until the mapvote is over from
 -- when it starts.
+SolidMapVote = SolidMapVote or {}
+SolidMapVote[ 'Config' ] = SolidMapVote[ 'Config' ] or {}
 SolidMapVote[ 'Config' ][ 'Length' ] = 25
 
 -- The time in seconds that the vote will stay on the screen

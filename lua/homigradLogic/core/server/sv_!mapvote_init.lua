@@ -1,6 +1,4 @@
 if engine.ActiveGamemode() != "opengrad" then return end
-SolidMapVote = SolidMapVote or {}
-SolidMapVote[ 'Config' ] = SolidMapVote[ 'Config' ] or {}
 
 hook.Add( "Initialize", "AutoTTTMapVote", function()
       if GAMEMODE_NAME == "terrortown" then

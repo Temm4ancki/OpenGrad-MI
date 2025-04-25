@@ -96,7 +96,7 @@ function SavePlyInfoPreSpawn(ply) -- Сохранение игрока пере�
 	local info = ply.Info
 	info.Hp = ply:Health()
 	info.Armor = ply:Armor()
-	armorTbl = ply.EZarmor.items
+	-- armorTbl = ply.EZarmor.items
 end
 
 local function ReturnArmor(ply, armorTable)
@@ -277,16 +277,16 @@ hook.Add("OnEntityCreated","hg-bullseye",function(ent)
 
 		local pos,ang = ent:GetPos(),ent:GetAngles()
 		local exchangeEnt = changeClass[ent:GetClass()]
-		if exchangeEnt then
-			local entr = type(exchangeEnt) == "table" and table.Random(exchangeEnt) or exchangeEnt
-			local ent2 = ents.Create(entr)
+		-- if exchangeEnt then
+		-- 	local entr = type(exchangeEnt) == "table" and table.Random(exchangeEnt) or exchangeEnt
+		-- 	local ent2 = ents.Create(entr)
 
-			ent2:SetPos(pos)
-			ent2:SetAngles(ang)
-			ent2:Spawn()
+		-- 	ent2:SetPos(pos)
+		-- 	ent2:SetAngles(ang)
+		-- 	ent2:Spawn()
 
-			ent:Remove()
-		end
+		-- 	ent:Remove()
+		-- end
 	end)
 end)
 
@@ -719,15 +719,15 @@ function PlayerMeta:CreateRagdoll(attacker,dmginfo) --изменение фун�
 
 	armors = {}
 
-	for id,info in pairs(self.EZarmor.items) do
-		local ent = CreateArmor(rag,info)
-		ent.armorID = id
-		ent.ragdoll = rag
-		ent.Owner = self
-		armors[id] = ent
+	-- for id,info in pairs(self.EZarmor.items) do
+	-- 	local ent = CreateArmor(rag,info)
+	-- 	ent.armorID = id
+	-- 	ent.ragdoll = rag
+	-- 	ent.Owner = self
+	-- 	armors[id] = ent
 
-		ent:CallOnRemove("Fake",Remove,self)
-	end
+	-- 	ent:CallOnRemove("Fake",Remove,self)
+	-- end
 	
 	if IsValid(self.wep) then
 		self.wep.rag = rag
@@ -782,26 +782,26 @@ function PlayerMeta:CreateRagdoll(attacker,dmginfo) --изменение фун�
 	return rag
 end
 
-hook.Add("JMod Armor Remove","Fake",function(ply,slot,item,drop)
-	local fake = ply:GetNWEntity("Ragdoll")
-	if not IsValid(fake) then return end
+-- hook.Add("JMod Armor Remove","Fake",function(ply,slot,item,drop)
+-- 	local fake = ply:GetNWEntity("Ragdoll")
+-- 	if not IsValid(fake) then return end
 
-	local ent = fake.armors[slot.id]
-	if not IsValid(ent) then return end
+-- 	local ent = fake.armors[slot.id]
+-- 	if not IsValid(ent) then return end
 
-	ent:Remove()
-end)
+-- 	ent:Remove()
+-- end)
 
-hook.Add("JMod Armor Equip","Fake",function(ply,slot,item,drop)
-	local fake = ply:GetNWEntity("Ragdoll")
-	if not IsValid(fake) then return end
+-- hook.Add("JMod Armor Equip","Fake",function(ply,slot,item,drop)
+-- 	local fake = ply:GetNWEntity("Ragdoll")
+-- 	if not IsValid(fake) then return end
 
-	local ent = CreateArmor(fake,item)
-	ent.armorID = slot.id
-	ent.Owner = ply
-	fake.armors[slot.id] = ent
-	ent:CallOnRemove("Fake",Remove,ent,ply)
-end,2)
+-- 	local ent = CreateArmor(fake,item)
+-- 	ent.armorID = slot.id
+-- 	ent.Owner = ply
+-- 	fake.armors[slot.id] = ent
+-- 	ent:CallOnRemove("Fake",Remove,ent,ply)
+-- end,2)
 
 local gg = CreateConVar("hg_oldcollidefake","0")
 COMMANDS.oldcollidefake = {function(ply,args)
