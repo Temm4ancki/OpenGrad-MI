@@ -17,16 +17,3 @@ PANEL:Event_Add("Draw","Main",function(self,w,h,color)
     draw.RoundedBox(0,0,0,w,h,main)
     draw.Frame(0,0,w,h,color.frame1,color.frame2)
 end)
-
-/*timer.Simple(0,function()
-    if IsValid(testPanel) then testPanel:Remove() end
-
-    testPanel = vgui.XCreate("v_panel")
-    testPanel.w = 250
-    testPanel.h = 250
-    testPanel.dx = 0.5
-    testPanel.dy = 0.5
-    testPanel.ax = 0.5
-    testPanel.ay = 0.5
-    testPanel:Transform()--always need
-end)*/

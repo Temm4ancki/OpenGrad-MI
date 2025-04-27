@@ -59,7 +59,7 @@ if SERVER then return end
 
 net.Receive("setupclass",function()
     local ply = net.ReadEntity()
-    if not IsValid(ply) then return end--lol
+    if not IsValid(ply) then return end
 
     ply.PlayerClassName = net.ReadString()
     ply.PlayerClassNameOld = net.ReadString()

@@ -71,7 +71,7 @@ function PANEL:TransformApply()
 	self.w = self.ww + w * self.dw
 	self.h = self.hh + h * self.dh
 
-	self.x = self.xx + w * self.dx - self.w * self.ax--WAAAAAAAAAYYYYYYYYYYYYYYYYYY.......... Не чето нехочу пока
+	self.x = self.xx + w * self.dx - self.w * self.ax
 	self.y = self.yy + h * self.dy - self.h * self.ay
 
 	SetSize(self,self.w,self.h)
@@ -94,7 +94,7 @@ function PANEL:TransformApply()
 
 	self.contentW = x
 	self.contentH = y
-end---WAAUUUYyy
+end
 
 function PANEL:TransformEmit()
 	if self.OverrideTransform then return end
@@ -128,7 +128,7 @@ function PANEL:Transform()
 
 	if self.x2 ~= x then self.x2 = x apply = 3 end
 	if self.y2 ~= y then self.y2 = y apply = 4 end
-	if self.dx2 ~= dx then self.dx2 = dx apply = 5 end--dX
+	if self.dx2 ~= dx then self.dx2 = dx apply = 5 end
 	if self.dy2 ~= dy then self.dy2 = dy apply = 6 end
 
 	if self.w2 ~= w then self.w2 = w apply = 7 end
@@ -143,7 +143,7 @@ function PANEL:Transform()
 		self:TransformApply()
 		self:TransformEmit()
 	end
-end--ну х3.;c
+end
 
 function PANEL:TransformApplyAllTags()
 	self.x2 = self.xx

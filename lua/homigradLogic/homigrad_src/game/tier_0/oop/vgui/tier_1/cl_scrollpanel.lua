@@ -32,8 +32,6 @@ PANEL:Event_Add("Init","Main",function(self)
     self.scrollAnimDown = 0
 end)
 
---
-
 function PANEL:TransformHook() self:GetParent():Event_Call("Transform Child") end
 function PANEL:MouseWheelHook(wheel) self:GetParent():Event_Call("Mouse Wheel",wheel,true) end
 
@@ -62,7 +60,6 @@ PANEL:Event_Add("Parent","Main",function(self,parent,child)
     return self.canvasPanel
 end)
 
---
 
 local SetDrawColor = surface.SetDrawColor
 local DrawRect = surface.DrawRect
@@ -120,8 +117,6 @@ PANEL:Event_Add("Draw Over","Main",function(self,w,h,color)
     k = self.ScrollX / (self.ScrollMaxX + w)
     DrawRect(w * k,h - 1,size,1)
 end)
-
---
 
 local Clamp,Round = math.Clamp,math.Round
 local LerpFT = LerpFT

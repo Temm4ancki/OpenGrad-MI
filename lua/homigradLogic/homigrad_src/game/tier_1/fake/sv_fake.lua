@@ -129,13 +129,13 @@ function ReturnPlyInfo(ply) -- возвращение информации иг�
     if info.ActiveWeapon then
         ply:SelectWeapon(info.ActiveWeapon)
     end
-	-- JMOD ВЕРНУТЬ!!!!
-    -- if info.HasSuit then
-    --     ply:EquipSuit()
-    --     ply:SetSuitPower(info.SuitPower or 0)
-    -- else
-    --     ply:RemoveSuit()
-    -- end
+
+    if info.HasSuit then
+        ply:EquipSuit()
+        ply:SetSuitPower(info.SuitPower or 0)
+    else
+        ply:RemoveSuit()
+    end
     ply:SetHealth(info.Hp)
     ply:SetArmor(info.Armor)
 

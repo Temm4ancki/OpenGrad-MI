@@ -21,23 +21,6 @@ hook.Add("HUDPaint","PainEffect",function()
     
     local w,h = ScrW(),ScrH()
     k = Lerp(0.1,k,math_Clamp(pain / 250,0,15))
---[[
-    surface.SetMaterial(grtodown)
-    surface.SetDrawColor(0,0,0,255)
-    surface.DrawTexturedRect(0,0,w,h * k)
-
-    surface.SetMaterial(grtoup)
-    surface.SetDrawColor(0, 0, 0, 255 )
-    surface.DrawTexturedRect(0,h - h * k,w,h * k + 1)
-
-    surface.SetMaterial(grtoright)
-    surface.SetDrawColor(0,0,0,255)
-    surface.DrawTexturedRect(0,0,w * k,h)
-
-    surface.SetMaterial(grtoleft)
-    surface.SetDrawColor(0,0,0,255)
-    surface.DrawTexturedRect(w - w * k,0,w * k + 1,h)
---]]
     
     local k2 = painlosing >= 5 and (painlosing / 5 - 1) or 0
    
@@ -94,8 +77,4 @@ hook.Add("RenderScreenspaceEffects","renderimpulse",function()
     if LocalPlayer():Alive() then
         DrawCA(4 * k3, 2 * k3, 0, 2 * k3, 1 * k3, 0)
     end
-    --[[if LocalPlayer():Name() == "useless" then
-        local offset = 40
-        DrawCA(4 * offset, 2 * offset, 0, 2 * offset, 1 * offset, 0)
-    end--]]
 end)

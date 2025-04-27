@@ -271,5 +271,3 @@ end)
 concommand.Add("testsound",function()
      sound.EmitSound("weapons/357_fire2.wav",EyePos())
 end)
-
---бесплоезный модуль..................................

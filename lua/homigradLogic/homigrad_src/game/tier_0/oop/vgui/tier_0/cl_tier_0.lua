@@ -9,7 +9,7 @@ local Panels = vgui.Panels
 vgui.CreatePanels = vgui.CreatePanels or {}
 local CreatePanels = vgui.CreatePanels
 
-PANEL.IsX = true--мы люди икс
+PANEL.IsX = true
 
 PANEL:Event_Add("Construct","register",function(class)
     local content = class[1]
@@ -141,14 +141,14 @@ function Panel:SetParent(panel)
     if self.Event_Call then result = self:Event_Call("Parent",panel,self) end
     if panel.Event_Call then result2 = panel:Event_Call("Parent",panel,self) end
 
-    if result == false or result2 == false then return end--;c
+    if result == false or result2 == false then return end
 
     local parent,child = self,panel
 
     if TypeID(result) == TYPE_PANEL then parent = result end
     if TypeID(result2) == TYPE_PANEL then panel = result2 end
 
-    SetParent(parent,panel)--lol......
+    SetParent(parent,panel)
 end
 
 local MouseX,MouseY = gui.MouseX,gui.MouseY

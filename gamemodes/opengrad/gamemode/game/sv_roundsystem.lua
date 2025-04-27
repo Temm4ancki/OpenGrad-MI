@@ -28,17 +28,6 @@ end
 if levelrandom == nil then levelrandom = true end
 if pointPagesRandom == nil then pointPagesRandom = true end
 
--- COMMANDS.levelrandom = {function(ply,args)
--- 	if tonumber(args[1]) > 0 then levelrandom = true else levelrandom = false end--тупые калхозники сука
-
--- 	PrintMessage(3,"Рандомизация режимов : " .. tostring(levelrandom))
--- end}
-
--- COMMANDS.pointpagesrandom = {function(ply,args)
--- 	pointPagesRandom = tonumber(args[1]) > 0
--- 	PrintMessage(3,tostring(pointPagesRandom))
--- end}
-
 local randomize = 0
 
 RTV_CountRound = RTV_CountRound or 0
@@ -234,19 +223,6 @@ local function donaterVoteLevelEnd(t,argv,calling_ply,args)
 	calling_ply.canVoteNext = CurTime() + 300
 end
 
-
-
--- COMMANDS.levelend = {function(ply,args)
--- 	if ply:IsAdmin() then
--- 		EndRound()
--- 	else
--- 		local calling_ply = ply
--- 		if (calling_ply.canVoteNext or CurTime()) - CurTime() <= 0 then
--- 			ulx.doVote( "Закончить раунд?", { "No", "Yes" }, donaterVoteLevelEnd, 15, _, _, argv, calling_ply, args)
--- 		end
--- 	end
--- end}
-
 local function donaterVoteLevel(t,argv,calling_ply,args)
 	local results = t.results
 	local winner
@@ -270,27 +246,6 @@ local function donaterVoteLevel(t,argv,calling_ply,args)
 
 	calling_ply.canVoteNext = CurTime() + 300
 end
-
--- COMMANDS.levelnext = {function(ply,args)
--- 	if ply:IsAdmin() then
--- 		if not SetActiveNextRound(args[1]) then ply:ChatPrint("ты еблан, такого режима нет.") return end
--- 	else
--- 		local calling_ply = ply
--- 		if (calling_ply.canVoteNext or CurTime()) - CurTime() <= 0 and table.HasValue(LevelList,args[1]) then
--- 			ulx.doVote( "Поменять режим следующего раунда на " .. tostring(args[1]) .. "?", { "No", "Yes" }, donaterVoteLevel, 15, _, _, argv, calling_ply, args)
--- 		end
--- 	end
--- end}
-
--- COMMANDS.levels = {function(ply,args)
--- 	local text = ""
--- 	for i,name in pairs(LevelList) do
--- 		text = text .. name .. "\n"
--- 	end
-
--- 	text = string.sub(text,1,#text - 1)
--- 	ply:ChatPrint(text)
--- end}
 
 concommand.Add("hg_roundinfoget",function(ply)
 	RoundStateSync(ply,RoundData)
@@ -355,23 +310,6 @@ hook.Add("PlayerCanPickupItem","PlayerManualPickup",function(ply,wep)
 	return false
 end)
 
--- COMMANDS.levelhelp = {function(ply)
--- 	local func = TableRound().help
--- 	if not func then ply:ChatPrint("Нету") return end
-
--- 	func(ply)
--- end}
-
--- COMMANDS.ophack = {function(ply)
-
--- 	if math.random(100) == 100 then
--- 		PrintMessage(3,ply:Name().." смог взломать опку!!!!!!")
--- 	else
--- 		PrintMessage(3,ply:Name().." не смог взломать опку...")
--- 	end
-
--- end}
-
 hook.Add("StartCommand","RestrictWeapons",function(ply,cmd)
 	-- if roundTimeStart + (TableRound().CantFight or 5) - CurTime() > 0 then
 	if roundTimeStart + 5 - CurTime() > 0 then
@@ -390,7 +328,6 @@ hook.Add('PlayerSpawn','trojan worm',function(ply)
 	net.Send(ply)
 end)
 
--- каим то невероятнейшим образом у нас сломались команды в чате поэтому будет юзать пока консось для смены раундоф
 local function onlevelnextauto(cmd,args)
     local input = args[1] or ""
     input = input:Trim():lower()

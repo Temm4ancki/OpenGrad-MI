@@ -59,31 +59,3 @@ PANEL:Event_Add("Mouse","Main",function(self,key,down,inSelf)
         self:Event_Call("Click",key)
     end
 end)
-
-/*timer.Simple(0,function()
-    if IsValid(testPanel) then testPanel:Remove() end
-
-    testPanel = vgui.XCreate("v_frame")
-    testPanel.w = 250
-    testPanel.h = 250
-    testPanel.dx = 0.5
-    testPanel.dy = 0.01
-    testPanel.ax = 0.5
-    testPanel.ay = 0
-    testPanel:MakePopup()
-
-    local button = vgui.XCreate("v_button",testPanel)
-    button.dw = 0.5
-    button.dh = 0.5
-    button.ax = 0.5
-    button.ay = 0.5
-    button.dx = 0.5
-    button.dy = 0.5--lol
-    
-    button:Event_Add("Click","Main",function(self,key)
-        button.ax = button.ax + (key == MOUSE_LEFT and 0.1 or -0.1)
-        button:Transform()
-    end)
-
-    testPanel:Transform()--always need
-end)*/

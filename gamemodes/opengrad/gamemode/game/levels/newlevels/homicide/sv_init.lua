@@ -50,21 +50,6 @@ local function GetFriends(play)
     return huy
 end
 
--- COMMANDS.homicide_get = {function(ply,args)
---     if not ply:IsAdmin() then return end
-
---     local role = {{},{}}
-
---     for i,ply in pairs(team.GetPlayers(1)) do
---         if ply.roleT then table.insert(role[1],ply) end
---         if ply.roleCT then table.insert(role[2],ply) end
---     end
-
---     net.Start("homicide_roleget")
---     net.WriteTable(role)
---     net.Send(ply)
--- end}
-
 local function makeT(ply)
     if !IsValid(ply) then return end
 	ply.roleT = true
@@ -144,16 +129,6 @@ local function makeCT(ply)
     end
 end
 
--- COMMANDS.russian_roulette = {function(ply,args)
---     if not ply:IsAdmin() then return end
-
--- 	for i,plya in pairs(player.GetListByName(args[1]) or {ply}) do
--- 		local wep = plya:Give("weapon_deagle",true)
---         wep:SetClip1(1)
---         wep:RollDrum()
--- 	end
--- end}
-
 function homicide.Spawns()
     local available = {}
 
@@ -186,7 +161,6 @@ sound.Add({
 })
 
 function homicide.StartRoundSV()
-    -- tdm.RemoveItems()
     tdm.ChangeTeams(2,1,1)
 
     homicide.police = false
@@ -270,13 +244,6 @@ end
 
 local available = ReadDataMap("spawnpointsct")
 
--- COMMANDS.forcepolice = {function(ply)
---     if not ply:IsAdmin() then return end
---     homicide.police = false
-
---     roundTime = 0
--- end}
-
 function homicide.RoundEndCheck()
 
 	local TAlive = tdm.GetCountLive(homicide.t)
@@ -349,6 +316,7 @@ function homicide.PlayerInitialSpawn(ply)
 end
 
 function homicide.PlayerCanJoinTeam(ply,teamID)
+-- uncomment maybe
 --     if ply:IsAdmin() then
 --         if teamID == 2 then ply.forceCT = nil ply.forceT = true ply:ChatPrint("Ты будешь за шерифа некст раунд") return false end
 --         if teamID == 3 then ply.forceT = nil ply.forceCT = true ply:ChatPrint("Ты будешь за предателя некст раунд") return false end
@@ -358,7 +326,6 @@ function homicide.PlayerCanJoinTeam(ply,teamID)
 
      return true
 end
--- yummers
 
 util.AddNetworkString("homicide_roleget")
 
@@ -414,6 +381,7 @@ function tdm.GetCountLive(list,func)
 		result = func and func(ply)
 		if result == true then count = count + 1 continue elseif result == false then continue end
 		if ply:Alive() then count = count + 1 end
+        -- uncomment
 		-- if not PlayerIsCuffs(ply) and ply:Alive() then count = count + 1 end
 	end
 

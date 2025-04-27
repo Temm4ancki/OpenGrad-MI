@@ -7,9 +7,6 @@ SpawnPointsList = {
 	spawnpointst = {"red",Color(255,0,0)},
 	spawnpointsct = {"blue",Color(0,0,255)},
 
-	-- spawnpointswick = {"spawnpointswick",Color(255,0,0)},
-	-- spawnpointsnaem = {"spawnpointsnaem",Color(0,0,255)},
-
 	spawnpoints_ss_police = {"police",Color(0,0,125)},
 	spawnpoints_ss_school = {"school",Color(0,255,0)},
 
@@ -50,15 +47,6 @@ SpawnPointsList = {
 
 	jailbreak = {"jailbreak",Color(0,125,0)},
 	jailbreak_doors = {"jailbreak_doors",Color(255,0,0)},
-
-	-- darkrp_jail = {"darkrp_jail",Color(255,255,255)},
-
-	-- scp173 = {"scp173",Color(255,0,0)},
-	-- scp096 = {"scp096",Color(255,0,0)},
-
-	-- scpWhite = {"scpWhite",color_white},
-
-	-- bhop = {"bhop",Color(255,0,0)},
 
 	level_construct = {"level_construct",Color(0,0,0)},
 
@@ -105,67 +93,6 @@ function SendSpawnPoint(ply)
 	net.WriteTable(SpawnPointsList)
 	if ply then net.Send(ply) else net.Broadcast() end
 end
-
--- COMMANDS.point = {function(ply,args)
--- 	local name
-
--- 	for _name,info in pairs(SpawnPointsList) do
--- 		if info[1] == args[1] then name = _name break end
--- 	end
-
--- 	if not name then ply:ChatPrint("Ты еблан") return end
-
--- 	local tbl = ReadDataMap(name)
--- 	local point = {ply:GetPos() + Vector(0,0,5),Angle(0,ply:EyeAngles()[2],0),tonumber(args[2])}
--- 	table.insert(tbl,point)
--- 	WriteDataMap(name,tbl)
-
--- 	PrintMessage(3,"Точка " .. args[1])
--- 	SetupSpawnPointsList()
--- 	SendSpawnPoint()
--- end}
-
--- COMMANDS.pointreset = {function(ply,args)
--- 	if args[1] ~= "" then
--- 		for name,info in pairs(SpawnPointsList) do
--- 			if info[1] ~= args[1] then continue end
-
--- 			WriteDataMap(name)
-
--- 			break
--- 		end
-
--- 		PrintMessage(3,"Точки с именем " .. args[1] .. " очищены.")
--- 	else
--- 		for name,info in pairs(SpawnPointsList) do
--- 			WriteDataMap(name)
--- 		end
-
--- 		PrintMessage(3,"Все точки очищены.")
--- 	end
-
--- 	SetupSpawnPointsList()
--- 	SendSpawnPoint()
--- end}
-
--- COMMANDS.pointsync = {function(ply,args)
--- 	SendSpawnPoint()
--- end}
-
--- COMMANDS.pointpage = {function(ply,args)
--- 	SpawnPointsPage = tonumber(args[1])
--- 	SetupSpawnPointsList()
--- 	SendSpawnPoint()
--- 	PrintMessage(3,"Вариация точек номер: " .. SpawnPointsPage)
--- end}
-
--- COMMANDS.pointpages = {function(ply,args)
--- 	PrintMessage(3,GetMaxDataPages("spawnpointst"))
--- end}
-
--- COMMANDS.points = {function(ply,args)
--- 	for i,point in pairs(SpawnPointsList) do ply:ChatPrint("	" .. point[1]) end
--- end}
 
 concommand.Add("hg_points",function(ply)
 	for i,point in pairs(SpawnPointsList) do ply:ChatPrint("	" .. point[1]) end

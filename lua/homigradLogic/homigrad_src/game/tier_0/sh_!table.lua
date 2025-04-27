@@ -17,9 +17,7 @@ function util.tableCopy(obj)
 	local result = copy(obj,seen)
 
 	return result,seen
-end--https://gist.github.com/tylerneylon/81333721109155b2d244
---спать хочу
-
+end
 
 function util.tableChange(tbl,source)
 	for k in pairs(tbl) do tbl[k] = nil end
@@ -59,7 +57,7 @@ local function copy(tbl,source,seen)
 	end
 end
 
-function util.tableLink(tbl,source)--пиздец блядь было бы моя воля яб твою мать к стулу привезал и хуём ей пятки щекотал до смерти
+function util.tableLink(tbl,source)
 	local seen = {}
 
 	copy(tbl,source,seen)

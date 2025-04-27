@@ -132,7 +132,6 @@ hook.Add( 'PlayerSay', 'SolidMapVote.PlayerCommands', function( ply, text, tChat
 end )
 
 function SolidMapVote.hackRoundBasedGamemodes()
-    -- fuck ttt
     if SolidMapVote.isTTT then
         GAMEMODE.StartFrettaVote = function() end
 

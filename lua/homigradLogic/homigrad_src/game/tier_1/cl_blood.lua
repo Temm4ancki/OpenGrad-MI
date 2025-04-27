@@ -34,18 +34,7 @@ hook.Add("RenderScreenspaceEffects","ToyssssnssssEffect",function()
 	if fraction <= 0.7 then return end
 
 	DrawMotionBlur(0.2,0.9,0.03)
-	--tab["$pp_colour_contrast"] = math_Clamp(adrenaline,0.25,1)
-	--DrawColorModify(tab)
 end)
-
---[[concommand.Add("hg_organisminfo",function(ply)
-	if not ply:IsAdmin() then return end
-
-	print("blood : " .. blood)
-	print("pain : " .. pain)
-	print("painlosing : " .. painlosing)
-	print("adrenaline : " .. adrenaline)
-end)--]]
 
 net.Receive("organism_info",function(len)
 	local organs = net.ReadTable()

@@ -104,7 +104,7 @@ local constructManual = {
 
 	"zigzag",
 	"zigzag_i"
-}--сука здохни 79 обоев я в ахуе
+}
 
 
 local materials = {}

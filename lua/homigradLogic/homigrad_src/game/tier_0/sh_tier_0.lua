@@ -65,7 +65,7 @@ function util.pcall(func,...)
 
 		return true,r1,r2,r3,r4,r5,r6
 	end
-end--eeeeeeeeeeee
+end
 
 function util.error(text)
 	if _error then
@@ -129,7 +129,7 @@ function file.Exists(path,gamePath)
 	end
 
 	return false
-end--sasi xyi
+end
 
 local max,min = math.max,math.min
 
@@ -145,4 +145,4 @@ end
 
 function util.safeDiv(a,b)
 	if a == 0 and b == 0 then return 0 else return a / b end
-end--pizdes
+end

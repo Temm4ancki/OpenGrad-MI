@@ -481,21 +481,3 @@ end)
 hook.Add("PlayerStartVoice","level",function(ply)
 	if ply:Alive() then return true end
 end)
-
-
-concommand.Add("hg_urec", function()
-	lply = LocalPlayer()
-	lply:ScreenFade(SCREENFADE.IN,Color(0,0,0,255),3,2)
-	surface.DrawText("Спустя 40 лет.","HomigradFontLarge",ScrW(),ScrH()-50,Color( 155,55,55,math.Clamp(300 - 0.5,0,1) * 255 ),TEXT_ALIGN_CENTER)
-end,nil,"Bruh wtf")
-
-concommand.Add("hg_prekols", function(ply)
-	--if not ply:IsAdmin() then return end
-	ply:PrintMessage(HUD_PRINTTALK,"⠀⠀⠀⠀⠀⠀⠀⠀⠀⡔⠠⢤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n⡴⠒⠒⠒⠒⠒⠶⠦⠄⢹⣄⠀⠀⠑⠄⣀⡠⠤⠴⠒⠒⠒⠀⠀\n⢇⠀⠀⠀⠀⠀⠀⠐⠋⠀⠒⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠")
-	ply:PrintMessage(HUD_PRINTTALK,"⠈⢆⠀⠀⠀⠀⡤⠤⣄⠀⠀⠀⠀⡤⠤⢄⠀⠀⠀⠀⠀⣠⠃⠀\n⠀⡀⠑⢄⡀⡜⠀⡜⠉⡆⠀⠀⠀⡎⠙⡄⠳⡀⢀⣀⣜⠁⠀⠀⠀\n⠀⠹⣍⠑⠀⡇⠀⢣⣰⠁⠀⠀⠀⠱⣠⠃⠀⡇⠁⣠⠞")
-	ply:PrintMessage(HUD_PRINTTALK,"⠀⠀⠀⡇⠔⣦⠀⠀⠀⠈⣉⣀⡀⠀⠀⠰⠶⠖⠘⢧⠀⠀⠀⠀\n⠀⠀⠰⠤⠐⠤⣀⡀⠀⠈⠑⣄⡁⠀⡀⣀⠴⠒⠀⠒⠃⠀⠀⠀\n⠀⠀⠀⠀⠀⠀⠘⢯⡉⠁⠀⠀⠀⠀⠉⢆")
-	ply:PrintMessage(HUD_PRINTTALK,"⠀⠀⠀⠀⠀⠀⢀⣞⡄⠀⠀⠀⠀⠀⠀⠈⡆⠀⠀⠀⠀⠀⠀⠀")
-end,nil,"Bruh wtf")
-
-
-concommand.Add("cg_test", function(ply, args)  end, function () return end, "shit", 0)

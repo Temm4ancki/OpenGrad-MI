@@ -97,8 +97,6 @@ function oop.RegEx(className,base)
     return class
 end
 
---
-
 function oop.InsertFile(class,isFolder)
     local pathInsert = oop.GetPath(2)
     local listFiles = class[3]
@@ -143,8 +141,6 @@ function oop.GetClassName(className)
     end
 end
 
---
-
 function oop.Reg(className,base,isFolder)
     className = oop.GetClassName(className)
     local overrideClass = override[className]
@@ -174,7 +170,7 @@ function oop.Get(className)
     oop.Include(listClass[className],true)
 end
 
-ents.listClass = listClass--HAHA
+ents.listClass = listClass
 ents.RegEx = oop.RegEx
 ents.Reg = oop.Reg
 ents.RegConnect = oop.RegConnect

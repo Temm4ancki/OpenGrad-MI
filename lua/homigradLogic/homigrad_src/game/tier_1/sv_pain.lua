@@ -133,12 +133,11 @@ function IsUnconscious(ply)
 	else
 		ply.Otrub = false
 
-		-- JMOD ВЕРНУТЬ!!!
-		-- if ply.EZarmor.effects.earPro then
-		-- 	ply:SetDSP(58)
-		-- else
-		-- 	ply:SetDSP(1)
-		-- end
+		if ply.EZarmor.effects.earPro then
+			ply:SetDSP(58)
+		else
+			ply:SetDSP(1)
+		end
 	end
 
 	ply:SetNWInt("Otrub",ply.Otrub)

@@ -45,7 +45,7 @@ function event.Remove(class,name,prio)
 	prio = prio or 0
 
 	local list = _event.list[prio]
-	if not list then return end--eblan
+	if not list then return end
 
 	local exists = list[name]
 
@@ -74,9 +74,7 @@ function event.Remove(class,name,prio)
 	end
 
 	return exists
-end--никогда не юзал
-
---
+end
 
 local _event,r1,r2,r3,r4,r5,r6,success
 local empty = {}

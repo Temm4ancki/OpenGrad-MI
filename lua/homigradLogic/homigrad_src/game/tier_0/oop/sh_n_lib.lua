@@ -98,9 +98,7 @@ function LIB:Event_Remove(class,name,prio)
 	end
 
 	return exists
-end--никогда не юзал
-
---
+end
 
 local _event,r1,r2,r3,r4,r5,r6,success
 local empty = {}
@@ -239,8 +237,6 @@ function LIB:Event_Call12(class,callback1,callback2,...)
 	end
 end
 
---
-
 function LIB:Event_Construct()
 	for class,list in pairs(self.eventRemove) do
 		for name,list in pairs(list) do
@@ -270,13 +266,4 @@ function LIB:Construct()
 	content:Event_Construct()
 
 	content:Event_CallNoSelf("Construct",self)
-end--ну и хуета конешно
-
---[[
-	лутче избегать лишник калов, ну нахуй
-	тогда мне неты так же нужно делать раз я типо да ага
-	три заповеди блядь кек
-	event add
-	event remove
-	event call
-]]--20 09 2022 12 16: чего блядь...
+end

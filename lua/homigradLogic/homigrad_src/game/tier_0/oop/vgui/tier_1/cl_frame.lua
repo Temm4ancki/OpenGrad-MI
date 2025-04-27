@@ -55,17 +55,3 @@ end
 function PANEL:IsActive()
     return self:HasFocus() or vgui.FocusedHasParent(self)
 end
-
-/*timer.Simple(0,function()
-    if IsValid(testPanel) then testPanel:Remove() end
-
-    testPanel = vgui.XCreate("v_frame")
-    testPanel.w = 250
-    testPanel.h = 250
-    testPanel.dx = 0.5
-    testPanel.dy = 0.5
-    testPanel.ax = 0.5
-    testPanel.ay = 0.5
-    testPanel:MakePopup()
-    testPanel:Transform()--always need
-end)*/
