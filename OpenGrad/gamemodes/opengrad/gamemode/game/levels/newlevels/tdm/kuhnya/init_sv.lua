@@ -36,7 +36,7 @@ function kuhnya.PlayerInitialSpawn(ply) ply:SetTeam(math.random(1,2)) end
 function kuhnya.PlayerSpawn(ply,teamID)
 	local teamTbl = kuhnya[kuhnya.teamEncoder[teamID]]
 	local color = teamTbl[2]
-	ply:SetModel(teamTbl.models[math.random(#teamTbl.models)] or "models/player/oguzok.mdl")
+	ply:SetModel(teamTbl.models[math.random(#teamTbl.models)] or "models/kuhnya/oguzok/oguzok.mdl")
 
     ply:SetPlayerColor(color:ToVector())
 

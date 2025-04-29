@@ -6,7 +6,7 @@ kuhnya.red = {"ОГУЗКИ",Color(255,255,255),
 	weapons = {"weapon_hands","med_band_big","med_band_small","weapon_radio"},
 	main_weapon = {"weapon_sar2","weapon_spas12","weapon_akm","weapon_mp7"},
 	secondary_weapon = {"weapon_hk_usp","weapon_p220"},
-	models = {"models/kuhnya/fedya.mdl","models/kuhnya/senya.mdl","models/player/oguzok.mdl"}
+	models = {"models/kuhnya/fedya/fedya.mdl","models/kuhnya/senya/senya.mdl","models/kuhnya/oguzok/oguzok.mdl"}
 }
 
 
@@ -14,7 +14,7 @@ kuhnya.blue = {"ШЕФЫ",Color(255,0,0),
 	weapons = {"weapon_hands"},
 	main_weapon = {"weapon_sar2","weapon_mp7"},
 	secondary_weapon = {"weapon_hk_usp"},
-	models = {"models/kuhnya/barinov.mdl"}
+	models = {"models/kuhnya/barinov/barinov.mdl"}
 }
 
 kuhnya.teamEncoder = {

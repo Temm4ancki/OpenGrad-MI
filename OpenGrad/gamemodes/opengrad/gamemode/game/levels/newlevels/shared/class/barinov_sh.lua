@@ -5,8 +5,7 @@ CLASS.main_weapons = {
 }
 
 local models_barinov = {
-	"models/kuhnya/barinov.mdl",
-    "models/kuhnya/barinov.mdl"
+	"models/kuhnya/barinov/barinov.mdl"
 }
 
 function CLASS.Off(self)

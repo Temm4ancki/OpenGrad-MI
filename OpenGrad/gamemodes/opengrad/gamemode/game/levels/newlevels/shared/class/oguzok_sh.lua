@@ -5,9 +5,9 @@ CLASS.main_weapons = {
 }
 
 local models_oguzok = {
-	"models/kuhnya/fedya.mdl",
-    "models/kuhnya/senya.mdl",
-    "models/player/oguzok.mdl"
+	"models/kuhnya/fedya/fedya.mdl",
+    "models/kuhnya/senya/senya.mdl",
+    "models/kuhnya/oguzok/oguzok.mdl"
 }
 
 function CLASS.Off(self)
