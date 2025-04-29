@@ -429,23 +429,72 @@ local function onlevelnextauto(cmd,args)
 end
 
 concommand.Add("hg_level_next",function(ply,cmd,args)
-	if ply:IsAdmin() then
-		if not SetActiveNextRound(args[1]) then ply:ChatPrint("ты еблан, такого режима нет.") return end
-	else
-		local calling_ply = ply
-		if (calling_ply.canVoteNext or CurTime()) - CurTime() <= 0 and table.HasValue(LevelList,args[1]) then
-			ulx.doVote( "Поменять режим следующего раунда на " .. tostring(args[1]) .. "?", { "No", "Yes" }, donaterVoteLevel, 15, _, _, argv, calling_ply, args)
-		end
-	end
+    if not IsValid(ply) or ply:IsAdmin() then
+        if not SetActiveNextRound(args[1]) then 
+            if IsValid(ply) then
+                ply:ChatPrint("ты еблан, такого режима нет.")
+            else
+                print("level dont exist")
+            end
+            return 
+        end
+    else
+        local calling_ply = ply
+        if (calling_ply.canVoteNext or CurTime()) - CurTime() <= 0 and table.HasValue(LevelList,args[1]) then
+            ulx.doVote( "Поменять режим следующего раунда на " .. tostring(args[1]) .. "?", { "No", "Yes" }, donaterVoteLevel, 15, _, _, argv, calling_ply, args)
+        end
+    end
 end,onlevelnextauto)
 
-concommand.Add("hg_level_end",function(ply)
-    if ply:IsAdmin() then
-		EndRound()
-	else
-		local calling_ply = ply
-		if (calling_ply.canVoteNext or CurTime()) - CurTime() <= 0 then
-			ulx.doVote( "Закончить раунд?", { "No", "Yes" }, donaterVoteLevelEnd, 15, _, _, argv, calling_ply, args)
-		end
-	end
+util.AddNetworkString("SendLevelList")
+
+hook.Add("PlayerInitialSpawn", "SendLevelListToClients", function(ply)
+    net.Start("SendLevelList")
+    net.WriteTable(LevelList)
+    net.Send(ply)
+end)
+
+util.AddNetworkString("HGLEVEL_NEXT_COMMAND")
+net.Receive("HGLEVEL_NEXT_COMMAND", function(len, ply)
+    local mode = net.ReadString()
+
+    if not IsValid(ply) or ply:IsAdmin() then
+        if not SetActiveNextRound(mode) then
+            if IsValid(ply) then
+                ply:ChatPrint("ты еблан, такого режима нет.")
+            else
+                print("level dont exist")
+            end
+            return
+        end
+    else
+        local calling_ply = ply
+        if (calling_ply.canVoteNext or CurTime()) - CurTime() <= 0 and table.HasValue(LevelList, mode) then
+            ulx.doVote( "Поменять режим следующего раунда на " .. tostring(mode) .. "?", { "No", "Yes" }, donaterVoteLevel, 15, _, _, argv, calling_ply, { mode })
+        end
+    end
+end)
+
+util.AddNetworkString("HGLEVEL_END_COMMAND")
+net.Receive("HGLEVEL_END_COMMAND", function(len, ply)
+    if not IsValid(ply) or ply:IsAdmin() then
+        EndRound()
+    else
+
+        local calling_ply = ply
+        if (calling_ply.canVoteNext or CurTime()) - CurTime() <= 0 then
+            ulx.doVote("Закончить раунд?", { "No", "Yes" }, donaterVoteLevelEnd, 15, _, _, argv, calling_ply, args)
+        end
+    end
+end)
+
+concommand.Add("hg_level_end", function(ply)
+    if not IsValid(ply) or ply:IsAdmin() then
+        EndRound()
+    else
+        local calling_ply = ply
+        if (calling_ply.canVoteNext or CurTime()) - CurTime() <= 0 then
+            ulx.doVote("Закончить раунд?", { "No", "Yes" }, donaterVoteLevelEnd, 15, _, _, argv, calling_ply, args)
+        end
+    end
 end)

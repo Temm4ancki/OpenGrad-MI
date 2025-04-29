@@ -49,7 +49,13 @@ function slugarena.RoundEndCheck()
 
 end
 
-local models_slug = {"models/crusader/rainworld/scug.mdl","models/crusader/rainworld/scugARTI.mdl","models/crusader/rainworld/scugGORM.mdl","models/crusader/rainworld/scugRiv.mdl","models/crusader/rainworld/scugSaint.mdl"}
+local models_slug = {
+    "models/crusader/rainworld/scug.mdl",
+    "models/crusader/rainworld/scugARTI.mdl",
+    "models/crusader/rainworld/scugGORM.mdl",
+    "models/crusader/rainworld/scugRiv.mdl",
+    "models/crusader/rainworld/scugSaint.mdl"
+}
 
 function slugarena.EndRound(winner)
 	print("End round, win '" .. tostring(winner) .. "'")

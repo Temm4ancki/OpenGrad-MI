@@ -88,3 +88,5 @@ function SWEP:DrawWorldModel()
 
 	model:DrawModel()
 end
+
+-- почините копьё плиз

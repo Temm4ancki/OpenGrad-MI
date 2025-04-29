@@ -1,4 +1,4 @@
-table.insert(LevelList,"nextbot")
+--table.insert(LevelList,"nextbot")
 nextbot = {}
 nextbot.Name = "NextBot"
 

@@ -42,17 +42,18 @@ end
 
 function dm.HUDPaint_RoundLeft(white)
     local lply = LocalPlayer()
+    local startRound = roundTimeStart + 7 - CurTime()
+    local roleName, roleColor = dm.GetTeamName(lply)
 
-	local startRound = roundTimeStart + 7 - CurTime()
     if startRound > 0 and lply:Alive() then
         if playsound then
             playsound = false
             surface.PlaySound("snd_jack_hmcd_deathmatch.mp3")
         end
-        lply:ScreenFade(SCREENFADE.IN,Color(0,0,0,255),0.5,0.5)
+        lply:ScreenFade(SCREENFADE.IN, Color(0, 0, 0, 255), 0.5, 0.5)
 
-        drawRoundMode("Player Vs Player",dm.Name,startRound,Color(155,155,255),Color(155,155,255))
-        drawRoundStart(name,"ПОБЕДИ",startRound,Color(155,155,155))
+        drawRoundMode("Player Vs Player", dm.Name, startRound, Color(155, 155, 255), Color(155, 155, 255))
+        drawRoundStart(roleName or "Unknown", "ПОБЕДИ", startRound, Color(155, 155, 155))
 
         return
     end
