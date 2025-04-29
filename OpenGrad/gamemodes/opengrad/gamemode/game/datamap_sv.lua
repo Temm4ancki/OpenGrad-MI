@@ -4,21 +4,50 @@ file.CreateDir("homigrad/maps")
 SpawnPointsPage = SpawnPointsPage or 1
 
 SpawnPointsList = {
+	--Команды
 	spawnpointst = {"red",Color(255,0,0)},
 	spawnpointsct = {"blue",Color(0,0,255)},
 
+	--Силовики после количества времени
+	spawnpoints_ss_police = {"police",Color(0,0,125)},
+
+	--Режим CSS
+	bomb_site = {"bomb_site",Color(161,121,61)},
+
+	--Режим SchoolShooter
+	spawnpoints_ss_exit = {"exit",Color(0,125,0),true},
+	--spawnpoints_ss_school = {"school",Color(0,255,0)}, 
+	--Для чего нужен???
+
+ 	--Режим TDM (центер не используется, но нужен)
+	center = {"center",color_white},
+
+	--Режим NextBot (отключен)
+	--points_nextbox = {"nextbot",Color(0,255,255)},
+
+	--Режим CP (отключен)
+	--swo_carsct = ???
+	--swo_carst = ???
+	--gred_emp_dshk = {"gred_emp_dshk",Color(25,25,25)},
+	--gred_ammobox = {"gred_ammobox",Color(25,25,25)},
+	--controlpoint = {"control_point",Color(25,25,25)},
+	
+	--Режим Сonstruct (отключен)
+	--level_construct = {"level_construct",Color(0,0,0)},
+
+	--Режим BaseDefence (отключен)
+	--basedefencebots = {"basedefencebots",Color(155,155,155)},
+	--basedefencegred = {"basedefencegred",Color(255,255,255)},
+	--basedefencegred_ammo = {"basedefencegred_ammo",Color(25,25,25)},
+	--gred_simfphys_brdm2 = {"gred_simfphys_brdm2",Color(25,25,25)},
+	--basedefenceplayerspawns = {"basedefenceplayerspawns",Color(255,255,0)},
+	--boxspawn = {"boxspawn",Color(25,25,25)},
+
+
+	-- НЕ ИСПОЛЬЗУЕТСЯ (ДУМАЙТЕ)
 	-- spawnpointswick = {"spawnpointswick",Color(255,0,0)},
 	-- spawnpointsnaem = {"spawnpointsnaem",Color(0,0,255)},
 
-	spawnpoints_ss_police = {"police",Color(0,0,125)},
-	spawnpoints_ss_school = {"school",Color(0,255,0)},
-
-	--spawnpoints_ss_exit = {"exit",Color(0,125,0),true},
-
-	--points_nextbox = {"nextbot",Color(0,255,255)},
-
-	--gred_emp_dshk = {"gred_emp_dshk",Color(25,25,25)},
-	--gred_ammobox = {"gred_ammobox",Color(25,25,25)},
 	--gred_emp_2a65 = {"gred_emp_2a65",Color(25,25,25)},
 	--gred_emp_pak40 = {"gred_emp_pak40",Color(25,25,25)},
 	--gred_emp_breda35 = {"gred_emp_breda35",Color(25,25,25)},
@@ -28,15 +57,6 @@ SpawnPointsList = {
 	--wac_hc_mi28_havoc = {"wac_hc_mi28_havoc",Color(25,25,25)},
 	--wac_hc_blackhawk_uh60 = {"wac_hc_blackhawk_uh60",Color(25,25,25)},
 
-	controlpoint = {"control_point",Color(25,25,25)},
-
-	boxspawn = {"boxspawn",Color(25,25,25)},
-	--basedefencebots = {"basedefencebots",Color(155,155,155)},
-	--basedefencegred = {"basedefencegred",Color(255,255,255)},
-	--basedefenceplayerspawns = {"basedefenceplayerspawns",Color(255,255,0)},
-	--basedefencegred_ammo = {"basedefencegred_ammo",Color(25,25,25)},
-	--gred_simfphys_brdm2 = {"gred_simfphys_brdm2",Color(25,25,25)},
-
 	--car_red = {"car_red",Color(125,125,125)},
 	--car_blue = {"car_blue",Color(125,125,125)},
 
@@ -45,8 +65,6 @@ SpawnPointsList = {
 
 	--car_red_tank = {"car_red_tank",Color(125,125,125)},
 	--car_blue_tank = {"car_blue_tank",Color(125,125,125)},
-
-	center = {"center",color_white},
 
 	--jailbreak = {"jailbreak",Color(0,125,0)},
 	--jailbreak_doors = {"jailbreak_doors",Color(255,0,0)},
@@ -60,13 +78,9 @@ SpawnPointsList = {
 
 	-- bhop = {"bhop",Color(255,0,0)},
 
-	--level_construct = {"level_construct",Color(0,0,0)},
-
 	--sim_fphys_tank3 = {"sim_fphys_tank3",Color(165,165,165)},
 	--sim_fphys_tank4 = {"sim_fphys_tank4",Color(165,165,165)},
 	--sim_fphys_conscriptapc_armed = {"sim_fphys_conscriptapc_armed",Color(165,165,165)},
-
-	--bomb_site = {"bomb_site",Color(161,121,61)}
 }
 
 function GetDataMapName(name) return "homigrad/maps/" .. name .. "/" .. game.GetMap() .. (SpawnPointsPage == 1 and "" or SpawnPointsPage) ..".txt" end

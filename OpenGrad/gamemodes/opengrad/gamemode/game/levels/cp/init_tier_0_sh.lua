@@ -1,6 +1,7 @@
---CP от слова чайлд порн, очевидно
+--CP от слова чайлд порн, очевидно. 
+--А ты почини сначала его блять @temm4ancki
 
-table.insert(LevelList,"cp")
+--table.insert(LevelList,"cp") 
 cp = {}
 cp.Name = "Захват точек"
 cp.points = {}
