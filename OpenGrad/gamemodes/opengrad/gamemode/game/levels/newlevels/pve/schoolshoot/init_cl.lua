@@ -12,11 +12,11 @@ end
 local green = Color(0,125,0)
 local white = Color(255,255,255)
 
-local roundSound = "zbattle/criresp.mp3"
+local roundSound = ""
 
-local playsound = false
+-- local playsound = false
 function schoolshoot.StartRoundCL()
-    playsound = true
+    -- playsound = true
 end
 
 function schoolshoot.HUDPaint_RoundLeft(white2,time)

@@ -299,10 +299,6 @@ local function ToggleMenu(toggle)
 			wepMenu:AddOption("Суицид",function()
 				LocalPlayer():ConCommand("suicide")
 			end)
-		--[[else
-			wepMenu:AddOption("Запросить патроны",function()
-				LocalPlayer():ConCommand("hg_needbullets")
-			end)]]
 		end
 		if laserweps[wep:GetClass()] then
 			wepMenu:AddOption("Вкл/Выкл Лазер",function()

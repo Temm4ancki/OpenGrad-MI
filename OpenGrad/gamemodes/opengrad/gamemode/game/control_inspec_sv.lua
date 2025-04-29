@@ -10,8 +10,6 @@ hook.Add("Player Think","ControlPlayersAdmins",function(ply,time)
 		local enta = ply:GetEyeTrace().Entity
 		if enta:IsPlayer() and !enta.fake and !IsValid(ply.CarryEnt) then
 			Faking(enta)
-			local text = tostring(ply:Name()).." podnyal igroka "..enta:Name()
-			print(text)
 		end
 		if not IsValid(enta:GetPhysicsObject()) then return end
 		ply.CarryEntPhysbone = ply.CarryEntPhysbone or ply:GetEyeTrace().PhysicsBone
@@ -20,11 +18,6 @@ hook.Add("Player Think","ControlPlayersAdmins",function(ply,time)
 
 		timer.Simple(5, function() ply.AdminAttackerWithPhys = false end)
 		if IsValid(ply.CarryEnt) then
-			if ply:KeyPressed(IN_ATTACK) then
-				local text = tostring(ply:Name()).." podnyal entity "..tostring(RagdollOwner(ply.CarryEnt) and RagdollOwner(ply.CarryEnt):Name() or ply.CarryEnt:GetClass())
-				print(text)
-			end
-
 			ply.CarryEnt:SetPhysicsAttacker(ply,5)
 
 			ply.CarryEntLen = math.max(ply.CarryEntLen or ply.CarryEnt:GetPos():Distance(ply:EyePos()), 50)

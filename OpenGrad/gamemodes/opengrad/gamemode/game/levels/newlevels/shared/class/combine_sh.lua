@@ -4,10 +4,14 @@ CLASS.main_weapons = {
     "weapon_sar2","weapon_spas12","weapon_mp7"
 }
 
+CLASS.secondary_weapons = {
+    "weapon_hk_usp"
+}
+
 local models_combine = {
-	"models/Notifier/KomBine/TACTI_SOLDAT_PM.mdl",
-	"models/Notifier/KomBine/TACTI_SUPE_PM.mdl",
-	"models/Notifier/KomBine/TACTI_PRISO_PM.mdl",
+	"models/player/combine_soldier.mdl",
+	"models/player/combine_super_soldier.mdl",
+	"models/player/combine_soldier_prisonguard.mdl",
     "models/metrocat/metrocat_beta.mdl" -- yummers ещкереее
 }
 
@@ -29,6 +33,7 @@ function CLASS.On(self)
     self:SetMaxHealth(150)
 
     tdm.GiveSwep(self,CLASS.main_weapons,8)
+    tdm.GiveSwep(self,CLASS.secondary_weapons,8)
 
     self:Give("weapon_hands")
     self:Give("weapon_hg_hl2")
@@ -111,6 +116,8 @@ function CLASS.PlayerEndVoice(self)
     end
 end
 
+print("hello world")
+
 function CLASS.CanLisenOutput(output,input,isChat)
     if input.isCombine then return true end
 end
@@ -127,6 +134,4 @@ function CLASS.HomigradDamage(self,hitGroup,dmgInfo,rag)
     end
 end
 
-function CLASS.GuiltLogic(self,ply)
-    return false
-end
+function CLASS.GuiltLogic(self,ply) return false end

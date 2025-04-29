@@ -3,6 +3,11 @@ homicide = homicide or {}
 homicide.Name = "Homicide"
 
 models = {}
+local black_male_models = {"models/player/Group01/male_01.mdl","models/player/Group01/male_03.mdl","models/player/Group03/male_01.mdl","models/player/Group03/male_03.mdl"}
+local black_female_models = {"models/player/Group01/female_03.mdl","models/player/Group01/female_05.mdl","models/player/Group03/female_03.mdl","models/player/Group03/female_05.mdl"}
+local asian_models = {"models/player/Group01/male_05.mdl","models/player/Group03/male_05.mdl"}
+local ded_models = {"models/player/Group01/male_08.mdl","models/player/Group03/male_08.mdl"}
+
 for i = 1,9 do table.insert(models,"models/player/group01/male_0" .. i .. ".mdl") end
 
 models_rebels = {}
@@ -22,7 +27,7 @@ local roundTypes = {
 "Чрезвычайное Положение",
 "Стандартный",
 "Безоружная территория",
-"Запад Запад",
+"Восток Запад Запад Юг",
 "Мафия"
 }
 local roundSound = {
@@ -114,6 +119,35 @@ end
 
 local red,blue = Color(200,0,10),Color(75,75,255)
 
+function homicide.GetPlayerModel(ply)
+    local model = ply:GetModel()
+
+    for _, mdl in ipairs(black_male_models) do
+        if model == mdl then
+            return "black male"
+        end
+    end
+
+    for _, mdl in ipairs(black_female_models) do
+        if model == mdl then
+            return "black female"
+        end
+    end
+
+    for _, mdl in ipairs(asian_models) do
+        if model == mdl then
+            return "asian"
+        end
+    end
+
+    for _, mdl in ipairs(ded_models) do
+        if model == mdl then
+            return "ded"
+        end
+    end
+    return "xui znaet"
+end
+
 function homicide.HUDPaint_RoundLeft(white2)
     local roundType = homicide.roundType or 2
     local lply = LocalPlayer()
@@ -131,12 +165,22 @@ function homicide.HUDPaint_RoundLeft(white2)
         else
             drawRoundMode("Homicide",roundTypes[roundType],startRound,Color(55,55,155))
         end
+        
+        draw.SimpleText("ВНЕШНОСТЬ","HomigradFont",ScrW()/1.9,ScrH()/1.9,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
+        if homicide.GetPlayerModel(lply) == "ded" then
+            draw.SimpleText("ded","HomigradFont",ScrW()/1.9+10,ScrH()/1.9,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
+        elseif homicide.GetPlayerModel(lply) == "asian" then
+            draw.SimpleText("asiat","HomigradFont",ScrW()/1.9+10,ScrH()/1.9,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)            
+        end
+
+        draw.SimpleText("ПРОФЕССИЯ","HomigradFont",ScrW()/2.2,ScrH()/1.9,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
+    
 
         if homicide.roundType == 1 then
             if lply.roleT then 
                 drawRoundStart("Убийца", "Ваша задача подебить всех", startRound, 2)
             elseif lply.roleCT then 
-                drawRoundStart("Выживший искатель", "У вас есть дробовик", startRound, 1)
+                drawRoundStart("Выживший", "У вас есть дробовик", startRound, 1)
             else 
                 drawRoundStart("Выживший", "Найдите убийцу", startRound, 3)
         end end
@@ -162,7 +206,7 @@ function homicide.HUDPaint_RoundLeft(white2)
             elseif lply.roleCT then 
                 drawRoundStart("Шериф", "У вас есть револьвер и дробовик", startRound, 1)
             else 
-                drawRoundStart(math.random(1, 20) == 3 and "Фембой" or "Ковбой", "Найдите убийцу", startRound, 3)
+                drawRoundStart("Ковбой", "Найдите убийцу", startRound, 3)
         end end
         if homicide.roundType == 5 then
             if lply.roleT then 

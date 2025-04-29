@@ -1,6 +1,6 @@
 table.insert(LevelList,"tdm")
 tdm = {}
-tdm.Name = "Я не придумал название этому режиму пускай кто-то за меня его придумает потом"
+tdm.Name = "Режим Дальтоника"
 
 local models = {}
 
@@ -10,13 +10,12 @@ for i = 1,6 do table.insert(models,"models/player/group01/female_0" .. i .. ".md
 
 tdm.models = models
 tdm.red = {
-	"Повстанцы",Color(255,180,69),
+	"Повстанцы",Color(255,165,31),
 	weapons = {"weapon_binokle","weapon_radio","weapon_gurkha","weapon_hands","med_band_big","med_band_small","medkit","painkiller"},
 	main_weapon = {"weapon_ak74u","weapon_akm","weapon_remington870","weapon_galil","weapon_rpk","weapon_galilsar","weapon_mp40"},
 	secondary_weapon = {"weapon_p220","weapon_deagle","weapon_glock"},
 	models = models
 }
-
 
 tdm.blue = {
 	"Сопротивлянцы",Color(245,255,99),

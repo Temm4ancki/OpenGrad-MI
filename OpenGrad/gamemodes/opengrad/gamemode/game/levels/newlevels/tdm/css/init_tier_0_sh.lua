@@ -1,5 +1,5 @@
 table.insert(LevelList,"css")
--- недодеано пока не включаем
+-- недодеано пока включаем
 css = {}
 css.Name = "Couynter-Strike: Source"
 
@@ -15,7 +15,7 @@ css.blue = {"ТЕРЫ",Color(161,121,61),
 	weapons = {"weapon_binokle","weapon_radio","weapon_gurkha","weapon_hands","med_band_big","med_band_small","medkit","painkiller"},
 	main_weapon = {"weapon_ak74u","weapon_akm","weapon_remington870","weapon_galil","weapon_rpk","weapon_galilsar","weapon_mp40"},
 	secondary_weapon = {"weapon_p220","weapon_deagle","weapon_glock"},
-	models = {"models/player/charple.mdl","models/player/leet.mdl","models/player/phoenix.mdl","models/player/guerilla.mdl","models/player/arctic.mdl"}
+	models = {"models/player/leet.mdl","models/player/phoenix.mdl","models/player/guerilla.mdl","models/player/arctic.mdl"}
 }
 
 css.teamEncoder = {

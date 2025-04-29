@@ -145,8 +145,6 @@ local function Message(self,name,time)
 	self["msg" .. name] = CurTime() + time
 end
 
-local active,oldValue
-
 function CLASS:HomigradDamage(hitGroup,dmgInfo,rag)
 	if self.Otrub then return end
 
@@ -157,10 +155,8 @@ function CLASS:HomigradDamage(hitGroup,dmgInfo,rag)
 	end
 
 	if CanMessage(self,"help") then
-		if math.random(1,2) == 1 then
-			EmitSound(self,"snd_jack_hmcd_cop1.wav")
-		else
-			EmitSound(self,"snd_jack_hmcd_cop2.wav")
+		if math.random(1,2) == 1 then EmitSound(self,"snd_jack_hmcd_cop1.wav")
+		else EmitSound(self,"snd_jack_hmcd_cop2.wav")
 		end
 	end
 
@@ -183,26 +179,24 @@ end
 function CLASS:EventPoint(name,pos,radius,a1,a2)
 	if self.Otrub then return end
 
-	if self:GetMoveType() ~= MOVETYPE_NOCLIP and name == "fragnade pre detonate" and tracerSee(self,pos,52) then
-		--EmitSound(self,"bot/noo.wav")
+	if self:GetMoveType() ~= MOVETYPE_NOCLIP and tracerSee(self,pos,52) then
+		EmitSound(self,"bot/noo.wav")
 
 		local hp = self:Health()
 
 		timer.Simple(2,function()
 			if not live(self,hp,self:Health()) then return end
 
-			--EmitSound(self,ebal("bot/yesss",2))
+			EmitSound(self,ebal("bot/yesss",2))
 		end)
 	end
 
-	if name == "hitgroup killed" and a1 ~= self and a1.isContr then
-		if a2.LastHitGroup == HITGROUP_HEAD then
-			local hp = self:Health()
-			timer.Simple(math.Rand(0.75,1.75),function()
-				if not live(self,hp,self:Health()) then return end
-				--EmitSound(self,ebal("bot/good_shot",2))
-			end)
-		end
+	if name == "hitgroup killed" and a1 ~= self and a1.isContr and a2.LastHitGroup == HITGROUP_HEAD then
+		local hp = self:Health()
+		timer.Simple(math.Rand(0.75,1.75),function()
+			if not live(self,hp,self:Health()) then return end
+			EmitSound(self,ebal("bot/good_shot",2))
+		end)
 	end
 end
 
@@ -258,12 +252,6 @@ if SERVER then
 		else
 			EmitSound(ply,sound)
 		end
-
-		--[[for i,ply in pairs(getList(ply)) do
-			net.Start("homicide contr")
-			net.WriteString(sound)
-			net.Send()
-		end]]--
 	end)
 
 	return

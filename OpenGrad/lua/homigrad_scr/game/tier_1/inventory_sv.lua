@@ -56,11 +56,6 @@ hook.Add("Player Think","Looting",function(ply)
 	ply.okeloot = key
 end)
 
-local prekol = {
-	weapon_physgun = true,
-	gmod_tool = true
-}
-
 net.Receive("inventory",function(len,ply)
 	local lootEnt = net.ReadEntity()
 	if not IsValid(lootEnt) then return end
@@ -91,7 +86,10 @@ net.Receive("ply_take_item",function(len,ply)
 			ply:GiveAmmo(wepInfo.Clip1,wepInfo.AmmoType)
 			wepInfo.Clip1 = 0
 		else
-			ply:ChatPrint("У тебя уже есть это оружие.")
+			ply:ChatPrint("У тебя уже есть это оружие, забираю патроны.")
+			
+			ply:GiveAmmo(wepInfo.Clip1,wepInfo.AmmoType)
+			wepInfo.Clip1 = 0
 		end
 	else
 		if lootEnt:IsPlayer() and (lootEnt.curweapon == wep and not lootEnt.Otrub) then return end

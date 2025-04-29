@@ -9,11 +9,15 @@ hook.Add("PlayerSpawn","homigrad-pain",function(ply)
 end)
 
 --[[for i,ply in pairs(player.GetAll()) do
-	--hook.Run("PlayerInitialSpawn",ply)
+--hook.Run("PlayerInitialSpawn",ply)
 end]]--
+
 
 hook.Add("HomigradDamage","PlayerPainGrowth",function(ply,hitGroup,dmginfo,rag,armorMul)
 	if dmginfo:GetAttacker():IsRagdoll() then return end
+	if ply.isCombine then return end
+	
+
 	local dmg = dmginfo:GetDamage()
 
 	dmg = dmg * 1.3
@@ -52,8 +56,6 @@ hook.Add("HomigradDamage","PlayerPainGrowth",function(ply,hitGroup,dmginfo,rag,a
 	dmg = ply.nopain and 1 or dmg
 	ply.pain = ply.pain + dmg
 end)
-
-local empty = {}
 
 util.AddNetworkString("info_pain")
 

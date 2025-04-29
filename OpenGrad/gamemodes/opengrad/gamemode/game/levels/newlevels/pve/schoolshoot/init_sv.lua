@@ -45,8 +45,6 @@ function schoolshoot.RoundEndCheck()
 		schoolshoot.police = true
 		PrintMessage(3,"Спецназ приехал.")
 
-		local aviable = ReadDataMap("spawnpointsct")
-
 		for i,ply in pairs(tdm.GetListMul(player.GetAll(),1,function(ply) return not ply:Alive() and not ply.roleT and ply:Team() ~= 1002 end),1) do
 			ply:Spawn()
 
@@ -91,11 +89,11 @@ function schoolshoot.RoundEndCheck()
 
 	OAlive = tdm.GetCountLive(team.GetPlayers(3))
 
-	if CTExit > 0 and CTAlive == 0 then EndRound(2) print("ЧЛЕН1") return end
-	if OAlive == 0 and TAlive == 0 and CTAlive == 0 then EndRound() print("ЧЛЕН2") return end
-	if OAlive == 0 and TAlive == 0 then EndRound(2) print("ЧЛЕН3") return end
-	if CTAlive == 0 then EndRound(1) print("ЧЛЕН4") return end
-	if TAlive == 0 then EndRound(2) print("ЧЛЕН5") return end
+	if CTExit > 0 and CTAlive == 0 then EndRound(2) return end
+	if OAlive == 0 and TAlive == 0 and CTAlive == 0 then EndRound() return end
+	if OAlive == 0 and TAlive == 0 then EndRound(2) return end
+	if CTAlive == 0 then EndRound(1) return end
+	if TAlive == 0 then EndRound(2) return end
 	
 end
 
