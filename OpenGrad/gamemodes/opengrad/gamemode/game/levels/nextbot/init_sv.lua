@@ -127,7 +127,7 @@ function nextbot.PlayerSpawn(ply,teamID)
     ply:Give("weapon_hands")
 
 	if math.random(1,4) == 4 then
-		ply:Give("adrinaline")
+		ply:Give("adrenaline")
 	end
 
 	if math.random(1,4) == 4 then

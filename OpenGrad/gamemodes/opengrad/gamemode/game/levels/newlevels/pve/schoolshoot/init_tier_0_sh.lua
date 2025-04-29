@@ -1,6 +1,6 @@
 table.insert(LevelList,"schoolshoot")
 schoolshoot = {}
-schoolshoot.Name = "Active Shooter"
+schoolshoot.Name = "School Shooter"
 
 local models = {}
 

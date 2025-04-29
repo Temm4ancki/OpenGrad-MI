@@ -20,7 +20,7 @@ function riot.HUDPaint_RoundLeft(white)
     if startRound > 0 and lply:Alive() then
         if playsound then
             playsound = false
-            surface.PlaySound("zbattle/criresp.mp3")
+            surface.PlaySound("round/start/criresp.ogg")
         end
         lply:ScreenFade(SCREENFADE.IN,Color(0,0,0,255),0.5,0.5)
 

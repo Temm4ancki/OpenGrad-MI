@@ -1,11 +1,22 @@
 table.insert(LevelList,"svo")
 svo = {}
-svo.Name = "Конфликт в Хомиграде"
+svo.Name = "SVO"
 
-local models_separ = {}
+local models_separ = {
+	"models/player/sibresp/rebel/male_02.mdl",
+	"models/player/sibresp/rebel/male_04.mdl",
+	"models/player/sibresp/rebel/male_05.mdl",
+	"models/player/sibresp/rebel/male_06.mdl",
+	"models/player/sibresp/rebel/male_07.mdl",
+	"models/player/sibresp/rebel/male_08.mdl",
+	"models/player/sibresp/rebel/male_09.mdl",
+	"models/player/sibresp/rebel/female_01.mdl",
+	"models/player/sibresp/rebel/female_02.mdl",
+	"models/player/sibresp/rebel/female_04.mdl",
+	"models/player/sibresp/rebel/female_06.mdl"
+}
 local models_homig = {}
 
-for i = 1,9 do table.insert(models_separ,"models/player/sibresp/rebel/male_0" .. i .. ".mdl") end
 for i = 1,5 do table.insert(models_homig,"models/player/military/military_0" .. i .. ".mdl") end
 
 svo.red = {"Сепаратисты",Color(54,155,67),

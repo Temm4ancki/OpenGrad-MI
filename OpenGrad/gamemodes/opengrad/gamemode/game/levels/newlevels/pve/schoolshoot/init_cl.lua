@@ -14,9 +14,9 @@ local white = Color(255,255,255)
 
 local roundSound = ""
 
--- local playsound = false
+local playsound = false
 function schoolshoot.StartRoundCL()
-    -- playsound = true
+    playsound = true
 end
 
 function schoolshoot.HUDPaint_RoundLeft(white2,time)
@@ -29,9 +29,7 @@ function schoolshoot.HUDPaint_RoundLeft(white2,time)
     if startRound > 0 and lply:Alive() then
         if playsound then
             playsound = false
-            sound.PlayURL(roundSound,"mono noblock",function(snd) 
-                snd:SetVolume( 0.3 )
-            end)
+            surface.PlaySound("round/start/school.ogg")
         end
 		
         lply:ScreenFade(SCREENFADE.IN,Color(0,0,0,255),0.5,0.5)

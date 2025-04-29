@@ -14,7 +14,7 @@ function tdm.HUDPaint_RoundLeft(white)
     if startRound > 0 and lply:Alive() then
         if playsound then
             playsound = false
-            surface.PlaySound("snd_jack_hmcd_deathmatch.mp3")
+            surface.PlaySound("round/start/nigshit.ogg")
         end
         lply:ScreenFade(SCREENFADE.IN,Color(0,0,0,255),0.5,0.5)
 
