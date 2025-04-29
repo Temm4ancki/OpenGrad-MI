@@ -49,7 +49,7 @@ function tdm.GetTeamName(ply)
 	if team then
 		team = game[team]
 
-		return team[1],team[2]
+		return team[1],team[2],team[3]
 	end
 end
 
