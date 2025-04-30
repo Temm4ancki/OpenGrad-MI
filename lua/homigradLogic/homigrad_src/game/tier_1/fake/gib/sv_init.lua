@@ -80,36 +80,35 @@ local validBone = {
 
 function Gib_Input(rag,bone,dmgInfo)
 	if not IsValid(rag) then return end
-
+	
 	local hitgroup = bonetohitgroup[rag:GetBoneName(bone)]
-
+	
 	local gibRemove = rag.gibRemove
 	if not gibRemove then
 		rag.gibRemove = {}
 		gibRemove = rag.gibRemove
-
+		
 		gib_ragdols[rag] = true
-
+		
 		if not dmgInfo:IsDamageType(DMG_CRUSH) then
 			rag.Blood = rag.Blood or 5000
 			rag.BloodNext = 0
 			rag.BloodGibs = {}
 		end
 	end
-
+	
 	local phys_bone = rag:TranslateBoneToPhysBone(bone)
-
+	
 	local dmgPos = dmgInfo:GetDamagePosition()
-
+	
 	if dmgInfo:GetDamage() >= 300 then
-		local bone = rag:LookupBone("ValveBiped.Bip01_Spine3")
-		if bone and rag:GetPhysicsObjectNum(bone):Distance(dmgPos) <= 75 then
+		local bone = rag:LookupBone("ValveBiped.Bip01_Spine")
+		if bone then
 			sound.Emit(rag,"physics/flesh/flesh_squishy_impact_hard" .. math.random(2,4) .. ".wav")
 			sound.Emit(rag,"physics/body/body_medium_break3.wav")
 			sound.Emit(rag,"physics/flesh/flesh_bloody_break.wav",nil,75)
 
 			BloodParticleExplode(rag:GetPhysicsObject(phys_bone):GetPos())
-
 			--rag:Remove()
 
 			return
@@ -137,7 +136,7 @@ function Gib_Input(rag,bone,dmgInfo)
 		local access
 		for bonename in pairs(validBone) do
 			local bone = rag:LookupBone(bonename)
-			if not bone then continue end--lol???????????????
+			if not bone then continue end
 
 			if rag:GetBonePosition(bone):Distance(dmgPos) <= 75 then access = true break end
 		end
@@ -154,36 +153,76 @@ function Gib_Input(rag,bone,dmgInfo)
 	end
 end
 
-hook.Add("PlayerDeath","Gib",function(ply)
-	dmgInfo = ply.LastDMGInfo
-	if not dmgInfo then return end
-	if CTakeDamage == nil then return end
-
-	--разве это не смешно когда ножом башка взрывается?
-	--не надо убирать
-
-	if dmgInfo:GetDamage() >= 50 or dmgInfo:GetDamage() >= 30 and (dmgInfo:GetDamageType() == DMG_SLASH or dmgInfo:GetDamageType() == DMG_CLUB) then
-		local rag = ply:GetNWEntity("Ragdoll")
-		local bone = rag:LookupBone(ply.LastHitBoneName)
-
-		if not IsValid(rag) or not bone then return end--неебу как не чето не хочу
-
-		Gib_Input(rag,bone,dmgInfo)
+hook.Add("EntityTakeDamage", "AdvancedGibSystem", function(ent, dmgInfo)
+    -- Условия для разных типов гиба
+    local isGibHeadshot = (dmgInfo:GetDamage() >= 50 and dmgInfo:GetDamageType() == DMG_BUCKSHOT) or 
+	(dmgInfo:GetDamage() >= 100 and dmgInfo:GetDamageType() == DMG_FALL)
+    
+    local isGibRegular = dmgInfo:GetDamage() >= 50 or 
+	(dmgInfo:GetDamage() >= 30 and (dmgInfo:GetDamageType() == DMG_SLASH or dmgInfo:GetDamageType() == DMG_CLUB))
+	
+	-- Обработка живого игрока
+	if ent:IsPlayer() and ent:Alive() then
+		-- Сохраняем информацию об уроне для возможного гиба после смерти
+		ent.LastDMGInfo = dmgInfo
+		ent.LastHitBone = ent:LastHitGroup()
+        
+        -- Особый случай: мгновенный гиб головы
+        if isGibHeadshot and ent:LastHitGroup() == 2 then
+            ent.LastHitBoneName = "ValveBiped.Bip01_Head1"
+            ent:Kill()
+            timer.Simple(0.1, function()
+                local rag = ent:GetRagdollEntity()
+				print(rag)
+                if IsValid(rag) then
+                    Gib_Input(rag, rag:LookupBone("ValveBiped.Bip01_Head1"), dmgInfo)
+                end
+            end)
+        end
+        return
 	end
+	
+    -- Обработка тряпичной куклы
+    if ent:IsRagdoll() then
+        local owner = RagdollOwner(ent)
+        if not IsValid(owner) or not owner:Alive() then
+            local physBone = GetPhysicsBoneDamageInfo(ent, dmgInfo)
+            if physBone ~= 0 and isGibRegular then
+                Gib_Input(ent, ent:TranslatePhysBoneToBone(physBone), dmgInfo)
+            end
+        end
+    end
 end)
 
-hook.Add("EntityTakeDamage","Gib",function(ent,dmgInfo)
-	if not ent:IsRagdoll() then return end
-	
-	local ply = RagdollOwner(ent)
-	ply = ply and ply:Alive() and ply
-	if ply then return end
-	
-	local phys_bone = GetPhysicsBoneDamageInfo(ent,dmgInfo)
-	if phys_bone == 0 then return end--lol
-	if dmgInfo:GetDamage() >= 50 or dmgInfo:GetDamage() >= 30 and (dmgInfo:GetDamageType() == DMG_SLASH or dmgInfo:GetDamageType() == DMG_CLUB) then
-		Gib_Input(ent,ent:TranslatePhysBoneToBone(phys_bone),dmgInfo)
-	end
+hook.Add("PlayerDeath", "PostDeathGib", function(ply)
+    if not ply.LastDMGInfo then return end
+    
+    local dmgInfo = ply.LastDMGInfo
+    local isGibRegular = dmgInfo:GetDamage() >= 50 or 
+                        (dmgInfo:GetDamage() >= 30 and (dmgInfo:GetDamageType() == DMG_SLASH or dmgInfo:GetDamageType() == DMG_CLUB))
+
+    -- Если это был не хедшот, но урон достаточен для гиба
+    if isGibRegular then
+        timer.Simple(0.1, function()
+            local rag = ply:GetRagdollEntity() or ply:GetNWEntity("Ragdoll")
+            if IsValid(rag) then
+                -- Пытаемся найти кость по месту попадания
+                local bone = ply.LastHitBone and rag:LookupBone(ply.LastHitBone) or nil
+                
+                -- Если не нашли конкретную кость, используем физическую
+                if not bone then
+                    local physBone = GetPhysicsBoneDamageInfo(rag, dmgInfo)
+                    if physBone ~= 0 then
+                        bone = rag:TranslatePhysBoneToBone(physBone)
+                    end
+                end
+                
+                if bone then
+                    Gib_Input(rag, bone, dmgInfo)
+                end
+            end
+        end)
+    end
 end)
 
 local max = math.max

@@ -199,54 +199,6 @@ end
 
 hook.Add("Think","hg-roundcheckthink",function() RoundEndCheck() end)
 
-local function donaterVoteLevelEnd(t,argv,calling_ply,args)
-	local results = t.results
-	local winner
-	local winnernum = 0
- 
-	for id, numvotes in pairs(results) do
-		if numvotes > winnernum then
-			winner = id
-			winnernum = numvotes
-		end
-	end
-
-	if winner == 2 then
-		ChatPrint("Раунд будет закончен.")
-		EndRound()
-	elseif winner == 1 then
-		ChatPrint("Раунд не будет закончен.")
-	else
-		ChatPrint("Голосование не прошло успешно или было остановлено.")
-	end
-
-	calling_ply.canVoteNext = CurTime() + 300
-end
-
-local function donaterVoteLevel(t,argv,calling_ply,args)
-	local results = t.results
-	local winner
-	local winnernum = 0
-
-	for id, numvotes in pairs(results) do
-		if numvotes > winnernum then
-			winner = id
-			winnernum = numvotes
-		end
-	end
-
-	if winner == 2 then
-		ChatPrint("Режим сменится в следующем раунде на " .. tostring(args[1]))
-		SetActiveNextRound(args[1])
-	elseif winner == 1 then
-		ChatPrint("Смены режима не состоялось.")
-	else
-		ChatPrint("Голосование не прошло успешно или было остановлено.")
-	end
-
-	calling_ply.canVoteNext = CurTime() + 300
-end
-
 concommand.Add("hg_roundinfoget",function(ply)
 	RoundStateSync(ply,RoundData)
 end)

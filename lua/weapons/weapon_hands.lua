@@ -8,7 +8,6 @@
 	if CLIENT then
 		SWEP.WepSelectIcon = surface.GetTextureID("vgui/wep_jack_hmcd_hands")
 	end
-	local hands = {}
 
 	function SWEP:DrawWeaponSelection( x, y, wide, tall, alpha )
 	-- Set us up the texture
@@ -120,7 +119,7 @@
 		end
 	end
 
-function hands.WhomILookinAt(ply, cone, dist)
+function SWEP.WhomILookinAt(ply, cone, dist)
 	local CreatureTr, ObjTr, OtherTr = nil, nil, nil
 
 	for i = 1, 150 * cone do
@@ -148,7 +147,7 @@ function hands.WhomILookinAt(ply, cone, dist)
 	return nil, nil, nil
 end
 
-function hands.GetPlayerStrength(ply)
+function SWEP.GetPlayerStrength(ply)
 	if not(IsValid(ply) and ply:IsPlayer() and ply:Alive()) then return 1 end
 	local PlyHealth = ply:Health()
 	local PlyMaxHealth = ply:GetMaxHealth()
@@ -352,7 +351,7 @@ function SWEP:ApplyForce()
 		local Force = (avec - velo / 2) * mul
 		local ForceNormal = Force:GetNormalized()
 		local ForceMagnitude = Force:Length()
-		ForceMagnitude = math.Clamp(ForceMagnitude, 0, 2000 * hands.GetPlayerStrength(self.Owner))
+		ForceMagnitude = math.Clamp(ForceMagnitude, 0, 2000 * self.GetPlayerStrength(self.Owner))
 		Force = ForceNormal * ForceMagnitude
 
 		local CounterDir, CounterAmt = velo:GetNormalized(), velo:Length()
@@ -507,7 +506,7 @@ end
 function SWEP:AttackFront()
 	if CLIENT then return end
 	self:GetOwner():LagCompensation(true)
-	local Ent, HitPos = hands.WhomILookinAt(self:GetOwner(), .3, 55)
+	local Ent, HitPos = self.WhomILookinAt(self:GetOwner(), .3, 55)
 	local AimVec = self:GetOwner():GetAimVector()
 
 	if IsValid(Ent) or (Ent and Ent.IsWorld and Ent:IsWorld()) then

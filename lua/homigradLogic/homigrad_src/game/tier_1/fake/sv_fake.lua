@@ -239,9 +239,9 @@ function Faking(ply) -- функция падения
 			local trace = {start = pos,endpos = pos + Vector(0,0,64),filter = {ply,rag}}
 			local tracea = util.TraceLine(trace)
 			if tracea.Hit then
-				pos:Add(-Vector(0,0,64) * (1 - tracea.Fraction))
+				pos:Add(Vector(0,0,64) * (1 - tracea.Fraction))
 			end
-			
+
 			ply:SetPos(pos)
 
 			ply:DrawViewModel(true)
@@ -559,7 +559,7 @@ concommand.Add("fake",function(ply)
 	if IsValid(ply:GetNWEntity("Ragdoll")) and ply:GetNWEntity("Ragdoll"):GetVelocity():Length()>300 then return nil end
 	if IsValid(ply:GetNWEntity("Ragdoll")) and table.Count(constraint.FindConstraints( ply:GetNWEntity("Ragdoll"), 'Rope' ))>0 then return nil end
 
-	if ply.pain>(250*(ply.Blood/5000))+(ply:GetNWInt("SharpenAMT")*5) or ply.Blood<3000 then return end
+	if ply.pain>(250*(ply.Blood/5000)) or ply.Blood<3000 then return end
 
 	timer.Create("faketimer"..ply:EntIndex(), 2, 1, function() end)
 
@@ -804,10 +804,6 @@ end
 -- end,2)
 
 local gg = CreateConVar("hg_oldcollidefake","0")
-COMMANDS.oldcollidefake = {function(ply,args)
-	GetConVar("hg_oldcollidefake"):SetBool(tonumber(args[1]) > 0)
-	PrintMessage(3,"Старая система collide fake - " .. tostring(gg:GetBool()))
-end}
 
 hook.Add("Player Collide","homigrad-fake",function(ply,hitEnt,data)
 	if  (gg:GetBool() and not ply:HasGodMode() and data.Speed > 200) or
@@ -900,7 +896,49 @@ hook.Add("Player Think","FakeControl",function(ply,time) --управление 
 		--RagdollOwner(rag):SetMoveParent( rag )
 		--RagdollOwner(rag):SetParent( rag )
 	if !ply.Otrub then
-		
+				-- Вращение тела на A/D
+		if ply:KeyDown(IN_MOVELEFT) or ply:KeyDown(IN_MOVERIGHT) then
+			local rotateSpeed = 1000 -- Скорость вращения (можно настроить)
+			local upperBodyBone = rag:TranslateBoneToPhysBone(rag:LookupBone("ValveBiped.Bip01_Spine2")) -- Плечи/грудь
+			local lowerBodyBone = rag:TranslateBoneToPhysBone(rag:LookupBone("ValveBiped.Bip01_Pelvis")) -- Таз/бедра
+
+			-- Выбираем, какую часть вращаем
+			local isGrabbing = IsValid(rag.ZacConsLH) or IsValid(rag.ZacConsRH)
+			local phys = rag:GetPhysicsObjectNum(isGrabbing and lowerBodyBone or upperBodyBone)
+
+			if IsValid(phys) then
+				local ang = phys:GetAngles()
+				local direction = ply:KeyDown(IN_MOVELEFT) and 1 or -1 -- Направление (A = влево, D = вправо)
+
+				-- Плавное вращение
+				if isGrabbing then
+					ang.y = ang.y + direction * rotateSpeed * deltatime
+					ang.r = ang.r + direction * rotateSpeed * deltatime * 0.3
+				else
+					ang.y = ang.y + direction * rotateSpeed * deltatime
+				end
+
+				local shadowparams = {
+					secondstoarrive = 0.2,
+					pos = phys:GetPos(),
+					angle = ang,
+					maxangular = 500,
+					maxangulardamp = 100,
+					maxspeed = 0,
+					teleportdistance = 0,
+					deltatime = deltatime,
+				}
+
+				phys:Wake()
+				phys:ComputeShadowControl(shadowparams)
+
+				-- Легкий толчок для реалистичности
+				local pushForce = isGrabbing
+					and phys:GetAngles():Up() * -direction * 100
+					or phys:GetAngles():Right() * direction * 80
+				phys:ApplyForceCenter(pushForce)
+			end
+		end
 		if ply:KeyDown( IN_JUMP ) and (table.Count(constraint.FindConstraints( ply:GetNWEntity("Ragdoll"), 'Rope' ))>0 or ((rag.IsWeld or 0) > 0)) and ply.stamina>45 and (ply.lastuntietry or 0) < CurTime() then
 			ply.lastuntietry = CurTime() + 2
 			

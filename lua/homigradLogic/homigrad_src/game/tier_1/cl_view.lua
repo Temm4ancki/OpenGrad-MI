@@ -86,7 +86,7 @@ local HasFocus = system.HasFocus
 local oldFocus
 local text
 
-local hg_disable_stoprenderunfocus = CreateClientConVar("hg_disable_stoprenderunfocus","0",true)
+local hg_disable_stoprenderunfocus = CreateClientConVar("hg_disable_stoprenderunfocus","1",true)
 
 local prekols = {
 	"всем привет",
@@ -248,7 +248,7 @@ local weps = {
 ["weapon_beretta"] = true,
 ["weapon_fiveseven"] = true,
 ["weapon_mp5"] = true,
-["weapon_m3super"] = true,
+["weapon_m4super"] = true,
 ["weapon_p220"] = true,
 ["weapon_hk_usp"] = true,
 ["weapon_mp7"] = true,
@@ -270,7 +270,7 @@ local weps = {
 ["weapon_rpk"] = true,
 ["weapon_ump"] = true,
 ["weapon_xm1014"] = true,
-["weapon_remington870"] = true,
+["weapon_m3super"] = true,
 ["weapon_taser"] = true,
 ["weapon_sar2"] = true,
 ["weapon_rpgg"] = true,
@@ -517,9 +517,9 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 			vecWep = hand.Pos + hand.Ang:Up() * 3.55 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 0.95
 			angWep = hand.Ang + Angle(-8,0,0)
 		end
-		if weaponClass == "weapon_remington870" then
+		if weaponClass == "weapon_m3super" then
 			--Vector(3.8,4,0.65)
-			vecWep = hand.Pos + hand.Ang:Up() * 4.4 - hand.Ang:Forward() * 4 + hand.Ang:Right() / 1.6
+			vecWep = hand.Pos + hand.Ang:Up() * 4.4 - hand.Ang:Forward() * 4 + hand.Ang:Right() / 1.1
 			angWep = hand.Ang + Angle(-5,0,0)
 		end
 		if weaponClass == "weapon_ar15" then
@@ -552,7 +552,7 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 			vecWep = hand.Pos + hand.Ang:Up() * 4.17 - hand.Ang:Forward() * 7 + hand.Ang:Right() * 0.79	
 			angWep = hand.Ang + Angle(-5,0,0)
 		end
-		if weaponClass == "weapon_m3super" then
+		if weaponClass == "weapon_m4super" then
 			--Vector(3.66,5,0.65)
 			vecWep = hand.Pos + hand.Ang:Up() * 3.66 - hand.Ang:Forward() * 5 + hand.Ang:Right() * 0.65
 			angWep = hand.Ang + Angle(-5,0,0)
@@ -834,20 +834,6 @@ hide = {
 }
 hook.Add("HUDShouldDraw","HideHUD",function(name)
 	if (hide[name]) then return false end
-end)
-
-hook.Add("AdjustMouseSensitivity", "staminasensivity", function()
-	local ply = LocalPlayer()
-	if ply:GetMoveType(MOVETYPE_WALK) and ply:IsSprinting() and not IsValid(ply:GetNWEntity("Ragdoll")) then
-		return 0.3
-	end
-	local wep = ply:GetActiveWeapon()
-	wep = IsValid(wep) and wep
-	scope = IsValid(wep) and wep.IsScope and wep:IsScope() and not wep.isClose
-	if scope then
-		return 0.4
-	end
-	return 1
 end)
 
 hook.Add("Think","mouthanim",function()

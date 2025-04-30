@@ -4,20 +4,12 @@ local validUserGroup = {
 }
 
 if SERVER then
-    COMMANDS.accessspawn = {function(ply,args)
-        SetGlobalBool("AccessSpawn",tonumber(args[1]) > 0)
-
-        PrintMessage(3,"Разрешение на взаимодействие Q меню : " .. tostring(GetGlobalBool("AccessSpawn")))
-    end}
-
     local function CanUseSpawnMenu(ply,class)
         local func = TableRound().CanUseSpawnMenu
         func = func and func(ply,class)
         if func ~= nil then return func end
 
         if validUserGroup[ply:GetUserGroup()] or GetGlobalBool("AccessSpawn") then return true end
-
-        if not ply:IsAdmin() then ply:Kick("xd)00)0") return false end
     end
 
     hook.Add("PlayerSpawnVehicle","Cantspawnbullshit",function(ply) return CanUseSpawnMenu(ply,"vehicle") end)

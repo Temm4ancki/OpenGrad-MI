@@ -1,5 +1,5 @@
-blood = 5000
-adrenaline = 0
+local blood = 5000
+local adrenaline = 0
 
 net.Receive("info_blood",function()
 	blood = net.ReadFloat()

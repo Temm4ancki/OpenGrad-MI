@@ -65,76 +65,80 @@ end)
 
 local vecR = Vector(10,10,10)
 
-net.Receive("blood particle headshoot",function()
-	local pos,vel = net.ReadVector(),net.ReadVector()
-	local dir = Vector()
-	dir:Set(vel)
-	dir:Normalize()
-	dir:Mul(25)
+-- net.Receive("blood particle headshoot",function()
+-- 	local pos,vel = net.ReadVector(),net.ReadVector()
+-- 	local dir = Vector()
+-- 	dir:Set(vel)
+-- 	dir:Normalize()
+-- 	dir:Mul(25)
 
-	local l1,l2 = pos - dir / 2,pos + dir / 2
+-- 	local l1,l2 = pos - dir / 2,pos + dir / 2
 
-	local r = random(10,15)
+-- 	local r = random(10,15)
 
-	for i = 1,r do
-		local vel = Vector(vel[1],vel[2],vel[3])
-		vel:Rotate(Angle(Rand(-15,15) * Rand(0.9,1.1),Rand(-15,15) * Rand(0.9,1.1)))
+-- 	for i = 1,r do
+-- 		local vel = Vector(vel[1],vel[2],vel[3])
+-- 		vel:Rotate(Angle(Rand(-15,15) * Rand(0.9,1.1),Rand(-15,15) * Rand(0.9,1.1)))
 
-		addBloodPart(Lerp(i / r * Rand(0.9,1.1),l1,l2),vel,mats[random(1,#mats)],random(10,15),random(10,15))
-	end
+-- 		addBloodPart(Lerp(i / r * Rand(0.9,1.1),l1,l2),vel,mats[random(1,#mats)],random(10,15),random(10,15))
+-- 	end
 
-	for i = 1,8 do
-		addBloodPart2(pos,vecZero,mats[random(1,#mats)],random(30,45),random(30,45),Rand(1,2))
-	end
-end)
+-- 	for i = 1,8 do
+-- 		addBloodPart2(pos,vecZero,mats[random(1,#mats)],random(30,45),random(30,45),Rand(1,2))
+-- 	end
+-- end)
 
-concommand.Add("testpart",function()
-    local pos = Vector(1200.543579,699.216309,300.834564)
-	local vel = Vector(1024,0,0)
-	local dir = Vector()
-	dir:Set(vel)
-	dir:Normalize()
-	dir:Mul(25)
-
-	local l1,l2 = pos - dir / 2,pos + dir / 2
-
-	local r = random(10,15)
-
-	--[[for i = 1,r do
-		local vel = Vector(vel[1],vel[2],vel[3])
-		vel:Rotate(Angle(Rand(-15,15) * Rand(0.9,1.1),Rand(-15,15) * Rand(0.9,1.1)))
-
-		addBloodPart(Lerp(i / r * Rand(0.9,1.1),l1,l2),vel,mats[random(1,#mats)],random(10,15),random(10,15))
-	end]]--
-
-	for i = 1,8 do
-		addBloodPart2(pos + VectorRand(-vecR,vecR),VectorRand(-vecR,vecR),mats[random(1,#mats)],random(30,45),random(30,45),Rand(1,2))
-	end
-end)
-
-concommand.Add("freecamera",function(ply)
-	if not ply:IsAdmin() then return end
-
-	freecameraPos = ply:EyePos()
-	freecameraAng = ply:EyeAngles()
-
-	freecamera = not freecamera
-end)
-
-hook.Add("Move","FreeCamera",function(mv)
-	if not freecamera then return end
-
-end)
-
-local view = {}
-
-hook.Add("PreCalcView","!",function(ply,pos,ang)
-	if not freecamera then return end
-
-	view.origin = freecameraPos
-	view.angles = freecameraAng
-	view.fov = CameraLerpFOV
-	view.drawviewer = true
-
-	return view
+net.Receive("blood particle headshoot", function()
+    local pos, vel = net.ReadVector(), net.ReadVector()
+    
+    -- Направление основного выброса (как в оригинальном headshoot)
+    local mainDir = Vector(vel)
+    mainDir:Normalize()
+    mainDir:Mul(100) -- Уменьшенная сила по сравнению с explode (было 250)
+    
+    -- Добавляем небольшой разброс к основному направлению
+    mainDir:Rotate(Angle(
+        Rand(-20, 20), -- Разброс по pitch (вверх/вниз)
+        Rand(-30, 30), -- Разброс по yaw (влево/вправо)
+        0
+    ))
+    
+    -- Основные летящие частицы (меньше, чем в explode)
+    local particleCount = 50 -- Вместо 144 (как в explode)
+    
+    for i = 1, particleCount do
+        -- Направление частицы (основано на mainDir, но с дополнительным рандомом)
+        local dir = Vector(mainDir)
+        dir:Rotate(Angle(
+            Rand(-15, 15) * 0.5, -- Меньший разброс, чем в explode
+            Rand(-15, 15) * 0.5,
+            0
+        ))
+        
+        -- Добавляем немного хаотичности в разлёт
+        dir[1] = dir[1] + Rand(-40, 40)
+        dir[2] = dir[2] + Rand(-40, 40)
+        dir[3] = dir[3] + Rand(10, 50) -- Лёгкий подъём
+        
+        -- Создаём частицу
+        addBloodPart(
+            pos, 
+            dir, 
+            mats[random(1, #mats)], 
+            random(7, 15), -- Размер
+            random(5, 10)  -- Время жизни
+        )
+    end
+    
+    -- Статичные капли (как в оригинальном headshoot)
+    for i = 1, 8 do
+        addBloodPart2(
+            pos, 
+            Vector(0, 0, 0), -- Без скорости (капли падают на землю)
+            mats[random(1, #mats)], 
+            random(20, 40), -- Размер
+            random(20, 30), -- Время жизни
+            Rand(1, 2)      -- Доп. параметр (если требуется)
+        )
+    end
 end)

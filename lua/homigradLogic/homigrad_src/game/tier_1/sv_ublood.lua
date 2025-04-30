@@ -23,14 +23,6 @@ hook.Add("HomigradDamage","phildcorn",function(ply,hitGroup,dmginfo,rag,armorMul
 	ply.Bloodlosing = ply.Bloodlosing + dmg
 end)
 
-hook.Add("EntityTakeDamage","asdsdads",function(ent,dmginfo)
-	--[[if ent and not ent.IsBleeding and dmginfo:IsDamageType(DMG_BULLET+DMG_SLASH+DMG_BLAST+DMG_ENERGYBEAM+DMG_NEVERGIB+DMG_ALWAYSGIB+DMG_PLASMA+DMG_AIRBOAT+DMG_SNIPER) then
-		table.insert(BleedingEntities,ent)
-		ent.bloodNext = CurTime()
-		ent.Blood = ent.Blood or 5000--wtf
-	end]]--
-end)
-
 local tr = {filter = {}}
 local math_Clamp = math.Clamp
 

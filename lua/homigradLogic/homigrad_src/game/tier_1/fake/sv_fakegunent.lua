@@ -1,12 +1,12 @@
 bullets = {
-	["weapon_m3super"] = 8,
-	["weapon_remington870"] = 12,
+	["weapon_m4super"] = 8,
+	["weapon_m3super"] = 12,
 	["weapon_xm1014"] = 8,
 }
 cir = {
-	["weapon_m3super"] = 0.02,
+	["weapon_m4super"] = 0.02,
 	["weapon_ak74"] = 0.1,
-	["weapon_remington870"] = 0.1,
+	["weapon_m3super"] = 0.1,
 	["weapon_xm1014"] = 0.02,
 }
 
@@ -35,11 +35,11 @@ Vectors = {
 ["weapon_mp40"]=Vector(13,-1,3),
 ["weapon_rpk"]=Vector(3,-1,0),
 ["weapon_ump"]=Vector(2,-1,0),
-["weapon_m3super"]=Vector(5,-2,0),
+["weapon_m4super"]=Vector(5,-2,0),
 ["weapon_hk_usps"]=Vector(4,-1.2,2),
 ["weapon_glock"]=Vector(14,0,4),
 ["weapon_mp7"]=Vector(0,0,0),
-["weapon_remington870"]=Vector(14,-1,3),
+["weapon_m3super"]=Vector(14,-1,3),
 ["weapon_xm1014"]=Vector(12,-1,4),
 ["bandage"]=Vector(0,0,0),
 ["weapon_taser"]=Vector(2,1.5,0),
@@ -68,9 +68,9 @@ Vectors2 = {
 ["weapon_mp40"]=Vector(5,-3,1),
 ["weapon_rpk"]=Vector(12,-2,-2),
 ["weapon_ump"]=Vector(12,-1,-4),
-["weapon_m3super"]=Vector(15,-3.5,-2),
+["weapon_m4super"]=Vector(15,-3.5,-2),
 ["weapon_mp7"]=Vector(6,-2,0),
-["weapon_remington870"]=Vector(10,-2,-2),
+["weapon_m3super"]=Vector(10,-2,-2),
 ["weapon_xm1014"]=Vector(14,-2,-2),
 ["weapon_sar2"]=Vector(12,-2,2),
 ["weapon_civil_famas"]=Vector(9,-2,-3),
@@ -81,8 +81,8 @@ vecZero = Vector(0,0,0)
 function SpawnWeapon(ply,clip1)
 	--local guninfo = ply.GunInfo
 	--local guninfo = ply.GunInfo
-
 	if !IsValid(ply.wep) and table.HasValue(Guns,ply.curweapon) then
+		
 		local rag = ply:GetNWEntity("Ragdoll")
 
 		if IsValid(rag) then
@@ -90,7 +90,8 @@ function SpawnWeapon(ply,clip1)
 
 			ply.wep=ents.Create("wep")
 
-			ply.wep:SetModel(weapons.Get(ply.curweapon).WorldModel or nil)
+			-- ply.wep:SetModel(weapons.Get(ply.curweapon).WorldModel or nil)
+			ply.wep:SetModel(GunsModel[ply.curweapon] or nil)
 
 			ply.wep:SetOwner(ply)
 
@@ -165,6 +166,7 @@ function SpawnWeapon(ply,clip1)
 					end
 				end
 			end
+			return rag
 		end
 	end
 end
@@ -250,13 +252,13 @@ end
 
 function Reload(wep)
 	if not wep then return end
-	local weptable = weapons.Get(wep.curweapon)
+
 	if !IsValid(wep) then return nil end
 	if ShootWait[wep.curweapon]==nil then return nil end
 	local ply = wep:GetOwner()
 	if !timer.Exists("reload"..wep:EntIndex()) and wep.Clip ~= wep.MaxClip and wep.Amt > 0 then
 		wep:EmitSound("weapons/ar2/ar2_reload.wav", 75, 100, 1)
-		timer.Create("reload"..wep:EntIndex(), weptable.ReloadTime, 1, function()
+		timer.Create("reload"..wep:EntIndex(), ReloadTime[wep.curweapon], 1, function()
 			if IsValid(wep) then
 				local oldclip = wep.Clip
 				wep.Clip = math.Clamp(wep.Clip + wep.Amt, 0, wep.MaxClip)
@@ -281,9 +283,6 @@ local pos = Vector(0,0,0)
 
 function FireShot(wep)
 	if not IsValid(wep) then return end
-
-	local weptable = weapons.Get(wep.curweapon)
-
 	function wep:BulletCallbackFunc(dmgAmt,ply,tr,dmg,tracer,hard,multi)
 		if(tr.MatType==MAT_FLESH)then
 			util.Decal("Blood",tr.HitPos+tr.HitNormal,tr.HitPos-tr.HitNormal)
@@ -354,12 +353,11 @@ function FireShot(wep)
 			})
 		end
 	end
-
 	if ShootWait[wep.curweapon]==nil then return nil end
 	if !IsValid(wep) then return nil end
 	if wep.Clip<=0 then
 		sound.Play("snd_jack_hmcd_click.wav",wep:GetPos(),65,100)
-		wep.NextShot = CurTime() + weptable.ShootWait
+		wep.NextShot = CurTime() + ShootWait[wep.curweapon]
 	return nil end
 	if timer.Exists("reload"..wep:EntIndex()) then return nil end
 	local guninfo = wep.GunInfo
@@ -368,14 +366,15 @@ function FireShot(wep)
 
 	if ( wep.NextShot > CurTime() ) then return end
 
-	wep.NextShot = CurTime() + weptable.ShootWait
+	wep.NextShot = CurTime() + ShootWait[wep.curweapon]
 
 	local Attachment = wep:GetAttachment(wep:LookupAttachment("muzzle"))
 
 	local shootOrigin = Attachment.Pos
 	local shootAngles = Attachment.Ang--wep:GetAngles()
 	local shootDir = shootAngles:Forward()
-	local damage = weapons.Get(wep.curweapon).Primary.Damage
+	local weptable = weapons.Get(wep.curweapon)
+	local damage = weptable.Primary.Damage
 	local ply = wep:GetOwner()
 	local bullet = {}
 		bullet.Num 			= (weptable.NumBullet or 1)

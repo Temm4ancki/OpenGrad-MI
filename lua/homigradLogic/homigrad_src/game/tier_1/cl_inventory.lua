@@ -8,7 +8,7 @@ local blackListedAmmo = {
 	[10] = true
 }
 
-Gunshuy = {
+GunsList = {
 	"weapon_glock18",
 	"weapon_p220",
 	"weapon_mp5",
@@ -34,10 +34,10 @@ Gunshuy = {
 	"weapon_rpk",
 	"weapon_ump",
 	"weapon_hk_usps",
-	"weapon_m3super",
+	"weapon_m4super",
 	"weapon_glock",
 	"weapon_mp7",
-	"weapon_remington870",
+	"weapon_m3super",
 	"weapon_xm1014",
 	"bandage",
 	"morphine",
@@ -117,7 +117,7 @@ net.Receive("inventory",function()
 
 	if not success or not lootEnt then return end
 	
-	if items[lootEnt.curweapon] and table.HasValue(Gunshuy,lootEnt.curweapon) then items[lootEnt.curweapon] = nil end
+	if items[lootEnt.curweapon] and table.HasValue(GunsList,lootEnt.curweapon) then items[lootEnt.curweapon] = nil end
 
 	local items_ammo = net.ReadTable()
 

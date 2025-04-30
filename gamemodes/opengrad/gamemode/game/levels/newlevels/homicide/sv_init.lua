@@ -6,7 +6,7 @@ changeClass = {
 	["weapon_stunstick"]="weapon_knife",
 	["weapon_pistol"]="weapon_glock",
 	["weapon_357"]="weapon_deagle",
-	["weapon_shotgun"]="weapon_remington870",
+	["weapon_shotgun"]="weapon_m3super",
 	--["weapon_crossbow"]="weapon_kar98k",
 	["weapon_ar2"]="weapon_ar15",
 	["weapon_smg1"]="weapon_ar15",
@@ -107,7 +107,7 @@ local function makeCT(ply)
     table.insert(homicide.ct,ply)
     if     homicide.roundType == 1 then 
         SpawnBadGuy(ply,{
-            "weapon_remington870"
+            "weapon_m3super"
         })
     elseif homicide.roundType == 2 then 
         SpawnBadGuy(ply,{
@@ -120,7 +120,7 @@ local function makeCT(ply)
         })
     elseif homicide.roundType == 4 then 
         SpawnBadGuy(ply,{
-            "weapon_remington870"
+            "weapon_m3super"
         })
     elseif homicide.roundType == 5 then
         SpawnBadGuy(ply,{

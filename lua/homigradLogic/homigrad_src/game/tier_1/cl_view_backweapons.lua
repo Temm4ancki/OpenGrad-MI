@@ -27,7 +27,7 @@ hook.Add( "HUDAmmoPickedUp", "AmmoPickedUp", function( ammo, ammout )
 	end)
 end )
 
-hook.Add("HUDDrawPickupHistory", "HudJoskii", function()
+hook.Add("HUDDrawPickupHistory", "HUDPickup", function()
 	for i = 1, table.Count( PickTable ) do
 		if PickTable[i] then
 			PickLerp[i] = Lerp(5*FrameTime(),PickLerp[i] or 0,(i-1)*20)
