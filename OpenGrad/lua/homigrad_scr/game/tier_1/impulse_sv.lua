@@ -6,6 +6,34 @@
 	ply.dmgimpulse=ply.dmgimpulse+dmg
 end)--]]
 
+local vests = {
+	["Heavy-Vest"] = true,
+	["Light-Vest"] = true,
+	["Medium-Vest"] = true,
+	["Medium-Heavy-Vest"] = true,
+	["Medium-Light-Vest"] = true
+}
+
+local helmets = {
+	["BallisticMask"] = true,
+	["Metal Bucket"] = true,
+	["Metal Pot"] = true,
+	["Ceramic Pot"] = true,
+	["Traffic Cone"] = true,
+	["Heavy-Helmet"] = true,
+	["Heavy-Riot-Helmet"] = true,
+	["Light-Helmet"] = true,
+	["Medium-Helmet"] = true,
+	["Riot-Helmet"] = true
+}
+
+local function GetPlayerArmor(ply)
+	for i,v in pairs(ply.EZarmor.items) do
+		if vests[v.name] then return "vest" end
+		if helmets[v.name] then return "helmet" end
+	end
+end
+
 hook.Add("HomigradDamage","ImpulseShock",function(ply,hitGroup,dmginfo)
 	local dmg = dmginfo:GetDamage()
 
@@ -26,22 +54,40 @@ hook.Add("HomigradDamage","ImpulseShock",function(ply,hitGroup,dmginfo)
 	dmg = ply.nopain and 0.01 or dmg
 
 	ply.dmgimpulse = ply.dmgimpulse or 0
-	ply.dmgimpulse = ply.dmgimpulse + dmg * 1.5
+	ply.dmgimpulse = ply.dmgimpulse + dmg
 
 	net.Start("info_impulse")
 	net.WriteFloat(ply.dmgimpulse)
 	net.Send(ply)
-
+	
 	if hitGroup == HITGROUP_RIGHTLEG or hitGroup == HITGROUP_LEFTLEG then
-		if ply.dmgimpulse > 30 then timer.Simple(0,function() if not ply.fake then Faking(ply) end end) end
+		if ply.dmgimpulse > 500 then 
+			timer.Simple(0,function() 
+				if not ply.fake then 
+					Faking(ply) 
+				end 
+			end) 
+		end
 	end
 
 	if hitGroup == HITGROUP_CHEST then
-		if ply.dmgimpulse > 40 then timer.Simple(0,function() if not ply.fake then Faking(ply) end end) end
+		if ply.dmgimpulse > 200 or (GetPlayerArmor(ply)=="vest" and ply.dmgimpulse > 500) then 
+			timer.Simple(0,function() 
+				if not ply.fake then 
+					Faking(ply) 
+				end 
+			end) 
+		end
 	end
 
 	if hitGroup == HITGROUP_STOMACH then
-		if ply.dmgimpulse > 70 then timer.Simple(0,function() if not ply.fake then Faking(ply) end end) end
+		if ply.dmgimpulse > 200  or (GetPlayerArmor(ply)=="vest" and ply.dmgimpulse > 500)  then 
+			timer.Simple(0,function() 
+				if not ply.fake then 
+					Faking(ply) 
+				end 
+			end) 
+		end
 	end
 end)
 

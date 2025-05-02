@@ -3,7 +3,7 @@ function TableRound(name) return _G[name or roundActiveName] end
 
 timer.Simple(0,function()
     if roundActiveName == nil then
-        roundActiveName = "slugarena"
+        roundActiveName = "homicide"
         roundActiveNameNext = "homicide"
         StartRound()
     end

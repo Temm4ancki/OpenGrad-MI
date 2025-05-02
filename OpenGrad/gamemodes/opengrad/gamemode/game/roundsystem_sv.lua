@@ -95,7 +95,7 @@ function StartRound()
 			local name = LevelRandom()
 
 			SetActiveNextRound(name)
-			text = text .. "Следущий режим	: " .. tostring(TableRound(roundActiveNameNext).Name).. "\n"
+			text = text .. "Следующий режим	: " .. tostring(TableRound(roundActiveNameNext).Name).. "\n"
 	
 			CountRoundRandom = 0
 		end
@@ -385,16 +385,6 @@ COMMANDS.levelhelp = {function(ply)
 	if not func then ply:ChatPrint("Нету") return end
 
 	func(ply)
-end}
-
-COMMANDS.ophack = {function(ply)
-
-	if math.random(100) == 100 then
-		PrintMessage(3,ply:Name().." смог взломать опку!!!!!!")
-	else
-		PrintMessage(3,ply:Name().." не смог взломать опку...")
-	end
-
 end}
 
 hook.Add("StartCommand","RestrictWeapons",function(ply,cmd)

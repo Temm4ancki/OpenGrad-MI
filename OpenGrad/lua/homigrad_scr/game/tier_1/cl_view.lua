@@ -1,7 +1,3 @@
-										
-										
-										
-										
 -- 					 ..................................................(///(%(//((##/*/((/**/#*,,,*/(((/((/*,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.                       
 -- 					 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,/(,(//(////((((((((/*//((##/////((((((((((,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.                       
 -- 					 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,//(/**//(((((((((((((((((((((((((((#((/*,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.                       
@@ -77,10 +73,8 @@ local n, e, r, o
 -- local d = Material('materials/scopes/scope_dbm.png')
 CameraSetFOV = 100
 
-CreateClientConVar("hg_fov","100",true,false,nil,90,120)
+CreateClientConVar("hg_fov","130",true,false,nil,90,120)
 local smooth_cam = CreateClientConVar("hg_smooth_cam","1",true,false,nil,0,1)
-
-CreateClientConVar("hg_bodycam","1",true,false,nil,0,1)
 
 CreateClientConVar("hg_fakecam_mode","0",true,false,nil,0,1)
 
@@ -116,34 +110,6 @@ surface.CreateFont("BodyCamFont",{
 	shadow = true
 })
 
-local function a()
-	e = 360
-	r = GetRenderTarget('weaponSight-' .. e, e, e)
-	if not t[e] then
-		t[e] = CreateMaterial('weaponSight-' .. e, 'UnlitGeneric', {})
-	end
-	o = t[e]
-	n = {}
-	local r, o, t, e = 0, 0, e / 2, 24
-	n[#n+1] = {
-		x = r,
-		y = o,
-		u = .5,
-		v = .5
-	}
-	for a = 0, e do
-		local e = math.rad( (a/e)*-360 )
-		n[#n+1] = {
-			x = r+math.sin(e)*t,
-			y = o+math.cos(e)*t,
-			u = math.sin(e)/2+.5,
-			v = math.cos(e)/2+.5
-		}
-	end
-end
-
-a()
---[[
 local a = false
 local function i(wep)
 	a = true
@@ -162,53 +128,6 @@ local function i(wep)
 	render.PopRenderTarget()
 	a = false
 end
-
-hook.Add("PostDrawOpaqueRenderables","", function()
-	local wep = LocalPlayer():GetActiveWeapon()
-	if wep.SightPos and wep.aimProgress and wep.aimProgress > 0 and wep:GetReady() then
-		local t = wep:GetOwner()
-		local a = t:LookupAttachment('anim_attachment_rh')
-		if not a then return end
-		local t = t:GetAttachment(a)
-		local l, a = LocalToWorld(wep.SightPos, wep.SightAng, t.Pos, t.Ang)
-		local t = e / -2
-		cam.Start3D2D(l, a, wep.SightSize / e * 1.1)
-			cam.IgnoreZ(true)
-			render.ClearStencil()
-			render.SetStencilEnable(true)
-			render.SetStencilTestMask(255)
-			render.SetStencilWriteMask(255)
-			render.SetStencilReferenceValue(42)
-			render.SetStencilCompareFunction(STENCIL_ALWAYS)
-			render.SetStencilFailOperation(STENCIL_KEEP)
-			render.SetStencilPassOperation(STENCIL_REPLACE)
-			render.SetStencilZFailOperation(STENCIL_KEEP)
-			surface.SetDrawColor(0,0,0,1)
-			draw.NoTexture()
-			surface.DrawPoly(n)
-			render.SetStencilCompareFunction(STENCIL_EQUAL)
-			render.SetStencilFailOperation(STENCIL_ZERO)
-			render.SetStencilZFailOperation(STENCIL_ZERO)
-			o:SetTexture('$basetexture',r)
-			o:SetFloat('$alpha',math.Clamp(math.Remap(wep.aimProgress,.1,1,0,1),0,1))
-			surface.SetMaterial(o)
-			surface.DrawTexturedRect(t,t,e,e)
-			surface.SetDrawColor(255,255,255)
-			surface.SetMaterial(d)
-			surface.DrawTexturedRect(t-10,t-10,e+20,e+20)
-			render.SetStencilEnable(false)
-			cam.IgnoreZ(false)
-		cam.End3D2D()
-	end
-end)
-
-hook.Add('PreDrawEffects', 'octoweapons', function()
-	if a then return end
-	local wep = LocalPlayer():GetActiveWeapon()
-	if LocalPlayer():KeyDown(IN_ATTACK2) then
-		i(wep)
-	end
-end)]]--
 
 local view = {
 	x = 0,
@@ -290,13 +209,10 @@ hook.Add("RenderScene","octoweapons",function(pos,angle,fov)
 	return true
 end)
 
-local ply = LocalPlayer()
-local scrw, scrh = ScrW(), ScrH()
 local whitelistweps = {
 	["weapon_physgun"] = true,
 	["gmod_tool"] = true,
 	["gmod_camera"] = true,
-	["drgbase_possessor"] = true,
 }
 
 function RagdollOwner(rag)
@@ -421,16 +337,6 @@ local weps = {
 
 local ScopeLerp = 0
 local scope
-local G = 0
-local size = 0.03
-local angle = Angle(0)
-local possight = Vector(0)
-
-local function scopeAiming()
-	local wep = LocalPlayer():GetActiveWeapon()
-
-	return IsValid(wep) and weps[wep:GetClass()] and LocalPlayer():KeyDown(IN_ATTACK2) and not LocalPlayer():KeyDown(IN_SPEED)
-end
 
 LerpEyeRagdoll = Angle(0,0,0)
 
@@ -465,7 +371,7 @@ net.Receive("nodraw_helmet",function()
 	helmEnt = net.ReadEntity()
 end)
 
-hook.Add("JMod_ArmorModelDraw", "hg_shlemidinaher", function(ply, Mdl, ArmorData, ArmorInfo) 
+hook.Add("JMod_ArmorModelDraw", "NahuiHelmet", function(ply, Mdl, ArmorData, ArmorInfo) 
 	if ArmorInfo.slots and (ArmorInfo.slots["head"] or ArmorInfo.slots["eyes"] or ArmorInfo.slots["mouthnose"] or ArmorInfo.slots["ears"]) and ply.GetViewEntity and ply:GetViewEntity() == ply then
 		if IsValid(ply) and ply:IsPlayer() then
 			Mdl:SetNoDraw(true)
@@ -517,19 +423,6 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 		return result
 	end
 
-	--[[if lply:InVehicle() then
-		local diffvel = lply:GetVehicle():GetPos() - vel
-		
-		local view = {
-			origin = lply:EyePos() + diffvel * 10,
-			angles = lply:EyeAngles(),
-			fov = fov
-		}
-		
-		vel = lply:GetVehicle():GetPos()
-		return view
-	end--]]
-
 	firstPerson = GetViewEntity() == lply
 
 	local bone = lply:LookupBone("ValveBiped.Bip01_Head1")
@@ -541,21 +434,9 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 
 	--print(bodypos)
 
-	if GetConVar("hg_bodycam"):GetInt() == 0 then
-		angEye = lply:EyeAngles()
-		--angEye[3] = 0
-		vecEye = (eye and eye.Pos + eye.Ang:Up() * 2 + eye.Ang:Forward() * 1) or lply:EyePos()
-	else
-		local matrix = ply:GetBoneMatrix(body)
-		local bodypos = matrix:GetTranslation()
-		local bodyang = matrix:GetAngles()
-		--bodyang:RotateAroundAxis(bodyang:Right(),90)
-
-		--bodyang[2] = eye.Ang[2]
-		--bodyang[3] = 0
-		angEye = eye.Ang--bodyang
-		vecEye = (eye and bodypos + bodyang:Up() * 0 + bodyang:Forward() * 14 + bodyang:Right() * -6) or lply:EyePos()
-	end
+	angEye = lply:EyeAngles()
+	--angEye[3] = 0
+	vecEye = (eye and eye.Pos + eye.Ang:Up() * 2 + eye.Ang:Forward() * 1) or lply:EyePos()
 	local ragdoll = ply:GetNWEntity("Ragdoll")
 
 	if ply:Alive() and ply:GetNWBool("fake") and IsValid(ragdoll) then
@@ -564,14 +445,6 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 		local att = ragdoll:GetAttachment(ragdoll:LookupAttachment("eyes"))
 		
 		local eyeAngs = lply:EyeAngles()
-		if GetConVar("hg_bodycam"):GetInt() == 1 then
-			local matrix = ragdoll:GetBoneMatrix(body)
-			local bodypos = matrix:GetTranslation()
-			local bodyang = matrix:GetAngles()
-			
-			eyeAngs = att.Ang
-			att.Pos = (eye and bodypos + bodyang:Up() * 0 + bodyang:Forward() * 10 + bodyang:Right() * -8) or lply:EyePos()
-		end
 		local anghook = GetConVar("hg_fakecam_mode"):GetFloat()
 		LerpEyeRagdoll = LerpAngleFT(0.08,LerpEyeRagdoll,LerpAngle(anghook,eyeAngs,att.Ang))
 
@@ -594,22 +467,16 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 	local wep = lply:GetActiveWeapon()
 	wep = IsValid(wep) and wep
 
-	local traca = lply:GetEyeTrace()
-	local dist = traca.HitPos:Distance(lply:EyePos())
-
 	if not RENDERSCENE then
 		scope = IsValid(wep) and wep.IsScope and wep:IsScope() and not wep.isClose
 		if scope then
-			if lply:KeyPressed(IN_WALK) then
-				pointshooting = not pointshooting
-			end
-			if pointshooting then
-				ScopeLerp = LerpFT(GetConVar("hg_bodycam"):GetInt() == 0 and 0.1 or 1,ScopeLerp,0.85)
+			if lply:KeyDown(IN_WALK) then
+				ScopeLerp = LerpFT(0.2,ScopeLerp,0.65)
 			else
-				ScopeLerp = LerpFT(GetConVar("hg_bodycam"):GetInt() == 0 and 0.1 or 1,ScopeLerp,1)
+				ScopeLerp = LerpFT(0.2,ScopeLerp,1)
 			end
 		else
-			ScopeLerp = LerpFT(GetConVar("hg_bodycam"):GetInt() == 0 and 0.1 or 1,ScopeLerp,0)
+			ScopeLerp = LerpFT(0.2,ScopeLerp,0)
 		end
 	end
 
@@ -619,7 +486,6 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 	
 	if wep and weps[wep:GetClass()] then
 		local weaponClass = wep:GetClass()
-		local att = wep.Attachments
 
 		if not RENDERSCENE then
 			local lastShootTime = wep:LastShootTime()
@@ -812,38 +678,20 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 			vecWep = hand.Pos + hand.Ang:Up() * 3.1 - hand.Ang:Forward() * 6 + hand.Ang:Right() * 0.85
 			angWep = hand.Ang + Angle(-7,0,0)
 		end
-		--[[if RENDERSCENE then
-			local wep = lply:GetActiveWeapon()
-			local angatt = wep:GetAttachment(wep:LookupAttachment("muzzle")).Ang
-			angatt:RotateAroundAxis(angatt:Forward(),-90)
-			angWep = angatt
-			angWep[3] = 0
-		end--]]
+		-- if RENDERSCENE then
+		-- 	local wep = lply:GetActiveWeapon()
+		-- 	local angatt = wep:GetAttachment(wep:LookupAttachment("muzzle")).Ang
+		-- 	angatt:RotateAroundAxis(angatt:Forward(),-90)
+		-- 	angWep = angatt
+		-- 	angWep[3] = 0
+		-- end
 	end
 
 
 	if not RENDERSCENE then
-		LerpEye = LerpAngleFT(smooth_cam:GetBool() and 0.25 or 1,LerpEye,angEye)
+		LerpEye = LerpAngleFT(smooth_cam:GetBool() and 0.55 or 1,LerpEye,angEye)
 	else
-		angEye = LerpAngleFT(0.25,LerpEye,angEye)
-		
-		if GetConVar("hg_bodycam"):GetInt() == 1 and IsValid(wep) and wep:LookupAttachment("muzzle") and scope then
-			vecWep = vecWep + hand.Ang:Up() * 2 - hand.Ang:Forward() * -15 + hand.Ang:Right() * -1.5
-			LerpEye = wep:GetAttachment(wep:LookupAttachment("muzzle")).Ang
-			--LerpEye[3] = 0
-			
-			if wep.HoldType == "revolver" then
-				angEye[1] = angEye[1] - 10
-				angEye[2] = angEye[2] + 5
-				--angEye[3] = 0
-			end
-			if wep.HoldType == "smg" or wep.HoldType == "ar2" then
-				angEye[1] = angEye[1] - 10
-				angEye[2] = angEye[2] + 10
-				--angEye[3] = 0
-			end
-		end
-
+		angEye = LerpAngleFT(0.15,LerpEye,angEye)
 	end
 
 	angEye = LerpEye
@@ -851,24 +699,9 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 	vecEye = LerpVector(ScopeLerp,vecEye,vecWep or vecEye)
 	angEye = LerpAngle(ScopeLerp/2,angEye,angWep or angEye)
 
-	if GetConVar("hg_bodycam"):GetInt() == 1 and not scope then
-		local wep = lply:GetActiveWeapon()
-
-		if wep.HoldType == "revolver" then
-			angEye[1] = angEye[1] - 10
-			angEye[2] = angEye[2] + 5
-			--angEye[3] = 0
-		end
-		if wep.HoldType == "smg" or wep.HoldType == "ar2" then
-			angEye[1] = angEye[1] - 15
-			angEye[2] = angEye[2] + 5
-			--angEye[3] = 0
-		end
-	end
-
 	view.fov = fov
 
-	if lply:InVehicle() or not firstPerson then return end
+	-- if lply:InVehicle() or not firstPerson then return end
 
 	if not lply:Alive() or (IsValid(wep) and whitelistweps[wep:GetClass()]) or lply:GetMoveType() == MOVETYPE_NOCLIP then
 		view.origin = ply:EyePos()
@@ -898,7 +731,7 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 
 	vel = math.max(math.Round(Lerp(0.1,vel,lply:GetVelocity():Length())) - 1,0)
 	
-	sprinthuy = LerpFT(0.1,sprinthuy,-math.abs(math.sin(CurTime() * 6)) * vel / 400)
+	sprinthuy = LerpFT(0.1,sprinthuy,-math.abs(math.sin(CurTime() * 10)) * vel / 400)
 	output_ang[1] = output_ang[1] + sprinthuy
 
 	output_ang[3] = 0
@@ -927,7 +760,6 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 
 	local size = Vector(6,6,0)
 	local tr = {}
-	local dir = (output_pos - vec):GetNormalized()
 	tr.start = vec
 	tr.endpos = output_pos
 	tr.mins = -size
@@ -976,32 +808,6 @@ hook.Add("HUDShouldDraw","HideHUD",function(name)
 	if (hide[name]) then return false end
 end)
 
---[[
-local allowedRanks = {
-  ["superadmin"] = true,
-  ["admin"] = true,
-  ["operator"] = true,
-  ["moderator"] = true,
-  ["user"] = true,
-  ["viptest"] = true,
-  ["kakaha"] = true
-}]]--
-
---[[прицелчики
-hook.Add("PostDrawOpaqueRenderables", "example", function()
-	local hand = LocalPlayer():GetAttachment(ply:LookupAttachment("anim_attachment_rh"))
-	local eye = LocalPlayer():GetAttachment(ply:LookupAttachment("eyes"))
-	possight = hand.Pos + hand.Ang:Up() * 4.4 - hand.Ang:Forward() * -1 + hand.Ang:Right() * -0.15
-	angle = hand.Ang + Angle(-90,0,0)
-
-
-	cam.Start3D2D( possight, angle, 1 )
-		surface.SetDrawColor( 255, 0, 0, 200)
-		draw.NoTexture()
-		draw.Circle(0,0,0.05,25 )
-	cam.End3D2D()
-end )
-]]--
 
 hook.Add("AdjustMouseSensitivity", "staminasensivity", function()
 	local ply = LocalPlayer()
@@ -1068,8 +874,6 @@ local tab2 = {
 	[ "$pp_colour_mulb" ] = 0
 }
 
-local mat = Material("pp/texturize/plain.png")
-
 local blurMat2, Dynamic2 = Material("pp/blurscreen"), 0
 
 local function BlurScreen(den,alp)
@@ -1087,13 +891,6 @@ local function BlurScreen(den,alp)
 
 	Dynamic2 = math.Clamp(Dynamic2 + (1 / FrameRate) * 7, 0, 1)
 end
-
-local huy = math.random(1,10)
-local triangle = {
-	{ x = 1770, y =	150 },
-	{ x = 1820, y = 50 },
-	{ x = 1870, y = 150 }
-}
 
 local addmat_r = Material("CA/add_r")
 local addmat_g = Material("CA/add_g")
@@ -1116,38 +913,6 @@ local function DrawCA(rx, gx, bx, ry, gy, by)
 end
 
 hook.Add("RenderScreenspaceEffects","BloomEffect-homigrad",function()
-	if GetConVar("hg_bodycam"):GetInt() == 1 and LocalPlayer():Alive() then
-		local splitTbl = string.Split(util.DateStamp()," ")
-		local date,time = splitTbl[1],splitTbl[2]
-		time = string.Replace(time,"-",":")
-
-		draw.Text( {
-			text = date.." "..time.." -0400",
-			font = "BodyCamFont",
-			pos = { ScrW() - 650, 50 }
-		} )
-		draw.Text( {
-			text = "AXON BODY "..huy.." XG8A754GH",
-			font = "BodyCamFont",
-			pos = { ScrW() - 650, 100 }
-		} )
-
-		surface.SetDrawColor( 255, 255, 0, 255 )
-		draw.NoTexture()
-		surface.DrawPoly(triangle)
-
-		DrawBloom( 0.5, 1, 9, 9, 1, 1.2, 0.8, 0.8, 1.2 )
-		--DrawTexturize(1,mat)
-		DrawSharpen( 1, 1.2 )
-		DrawColorModify(tab)
-		BlurScreen(0.3,55)
-		LocalPlayer():SetDSP(55,true)
-		DrawMotionBlur(0.2,0.3,0.001)
-		--DrawToyTown(1,ScrH() / 2)
-		local k3 = 6
-		DrawCA(4 * k3, 2 * k3, 0, 2 * k3, 1 * k3, 0)
-	end
-
 	if not LocalPlayer():Alive() then
 		LocalPlayer():SetDSP(1)
 	end
@@ -1182,24 +947,7 @@ hook.Add("RenderScreenspaceEffects","BloomEffect-homigrad",function()
 end)
 
 
-hook.Add("PostDrawTranslucentRenderables","fuck_off",function()
-	--[[local lply = LocalPlayer()
-	if lply == Entity(1) then
-		local ent = lply:GetEyeTrace().Entity
-		ent = ent:IsPlayer() and ent
-		if ent then
-			local pos,ang = ent:GetBonePosition(ent:LookupBone('ValveBiped.Bip01_Head1'))
-			
-			render.DrawBox( pos, ang, Vector(3,-6,-4), Vector(9,4,4), color_white )
-
-			local dmgpos = ply:GetEyeTrace().HitPos
-			local penetration = ply:GetAimVector() * 10
-			local huy = util.IntersectRayWithOBB(dmgpos,penetration,pos,ang,Vector(2,-4,-3), Vector(7,4,3))
-
-			print(huy)
-		end
-	end--]]
-end )
+hook.Add("PostDrawTranslucentRenderables","fuck_off",function() end )
 
 
 -- Код с форсакенеда
@@ -1211,8 +959,6 @@ local function CanManipulateBones(ply)
 	return true
 end
 
---local ikDebug = GetConVar("developer")
---local COLOR_RED = Color(255, 0, 0)
 local mins = Vector(-3, -3, 0)
 local maxs = Vector(3, 3, 5)
 hook.Add("PostPlayerDraw", "IKFoot_PostPlayerDraw", function(ply)

@@ -1,5 +1,11 @@
 local blackListedWeps = {
-	["weapon_hands"] = true
+	["weapon_hands"]=true,
+	["weapon_kabar"]=true,
+	["weapon_hg_t_vxpoison"]=true,
+	["weapon_hidebomb"]=true,
+	["weapon_hg_t_syringepoison"]=true,
+	["weapon_jahidka"]=true,
+	["weapon_hg_rgd5"]=true
 }
 
 local blackListedAmmo = {
@@ -123,7 +129,11 @@ net.Receive("inventory",function()
 
 	--if #items == 0 and #items_ammo == 0 then return end--wtf
 
-	items.weapon_hands = nil
+	-- тратор нелутаем больше
+	for i,v in pairs(items) do
+		print(i)
+		if blackListedWeps[i] then items[i] = nil end
+	end
 
 	panel = vgui.Create("DFrame")
 	panel:SetAlpha(255)

@@ -48,8 +48,8 @@ function css.PlayerSpawn(ply,teamID)
 
 	for i,weapon in pairs(teamTbl.weapons) do ply:Give(weapon) end
 
-	tdm.GiveSwep(ply,teamTbl.main_weapon,0)
-	tdm.GiveSwep(ply,teamTbl.secondary_weapon)
+	tdm.GiveSwep(ply,teamTbl.main_weapon,3)
+	tdm.GiveSwep(ply,teamTbl.secondary_weapon,3)
 
 	JMod.EZ_Equip_Armor(ply,(math.random(1,2) == 1 and "Medium-Light-Vest") or (math.random(1,2) and "Light-Vest"))
 

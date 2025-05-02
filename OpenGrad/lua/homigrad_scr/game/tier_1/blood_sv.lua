@@ -213,14 +213,15 @@ concommand.Add("hg_organisminfo",function(ply,cmd,args)
 	net.Start("organism_info")
 	net.WriteTable(huyply.Organs)
 	net.WriteString(
-	"Кровь (мл): "..tostring(huyply.Blood).."\n"..
-	"Кровотечение (мл/удар): "..tostring(huyply.Bloodlosing).."\n"..
-	"СЛР: "..tostring(huyply.CPR).."\n"..
-	"Боль: "..tostring(huyply.pain).."\n"..
-	"Остановка сердца: "..tostring(huyply.heartstop).."\n"..
+	"blood (мл): "..tostring(huyply.Blood).."\n"..
+	"bloodLoss (мл/удар): "..tostring(huyply.Bloodlosing).."\n"..
+	"CPR: "..tostring(huyply.CPR).."\n"..
+	"pain: "..tostring(huyply.pain).."\n"..
+	"painlosing: "..tostring(huyply.painlosing).."\n"..
+	"heartstop: "..tostring(huyply.heartstop).."\n"..
 	"o2 (1 = полный запас кислорода): "..tostring(huyply.o2).."\n"..
-	"Удары в минуту: "..tostring(huyply.heartstop and 0 or 1 / huyply.nextPulse * 60).."\n"..
-	"Игрок: "..huyply:Name()
+	"pulse: "..tostring(huyply.heartstop and 0 or 1 / huyply.nextPulse * 60).."\n"..
+	"player: "..huyply:Name()
 	)
 	net.Send(ply)
 end)

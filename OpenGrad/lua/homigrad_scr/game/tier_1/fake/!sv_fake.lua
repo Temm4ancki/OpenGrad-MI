@@ -1441,8 +1441,8 @@ hook.Add("PlayerSwitchWeapon","fakewep",function(ply,oldwep,newwep)
 
 	if ply.fake then
 		if IsValid(ply.Info.ActiveWeapon2) and IsValid(ply.wep) and ply.wep.Clip~=nil and ply.wep.Amt~=nil and ply.wep.AmmoType~=nil then
-			ply.Info.ActiveWeapon2:SetClip1((ply.wep.Clip or 0))
-			ply:SetAmmo((ply.wep.Amt or 0), (ply.wep.AmmoType or 0))
+			ply.Info.ActiveWeapon2:SetClip1(ply.wep.Clip or 0)
+			ply:SetAmmo(ply.wep.Amt or 0, ply.wep.AmmoType or 0)
 		end
 
 		if table.HasValue(Guns,newwep:GetClass()) then
@@ -1574,22 +1574,6 @@ hook.Add("PlayerSay","dropweaponhuy",function(ply,text)
             return ""
         end
     end
-	if string.lower(text)=="!viptest" then
-		if !ply.fake then
-		ply:SetVelocity( Vector(0,0,50000) )
-		timer.Simple( 5, function()
-			ply:Ban(1,false)
-			ply:Kick("Ну как тебе ВИП ТЕСТ!!! минутка бана))))")
-
-		end)
-		else
-		ply:GetNWEntity("Ragdoll"):GetPhysicsObjectNum(0):SetVelocity( Vector(0,0,50000) )
-		timer.Simple( 5, function()
-			ply:Ban(1,false)
-			ply:Kick("Ну как тебе ВИП ТЕСТ!!! хи фейк не поможет, жди минуту")
-		end)
-		end
-	end
 end)
 
 if (SERVER) then
@@ -1624,34 +1608,6 @@ hook.Add("PlayerSpawn","!!!huyassdd",function(lootEnt)
 			end
 		end
 	end
-end)
-
-hook.Add("Player Think","Looting",function(ply)
-	local key = ply:KeyDown(IN_USE)
-
-	if not ply.fake and ply:Alive() and ply:KeyDown(IN_ATTACK2) then
-		if ply.okeloot ~= key and key then
-			local tr = {}
-			tr.start = ply:GetAttachment(ply:LookupAttachment("eyes")).Pos
-			tr.endpos = tr.start + ply:EyeAngles():Forward() * 64
-			tr.filter = ply
-			local tracea = util.TraceLine(tr)
-			local hitEnt = tracea.Entity
-
-			if not IsValid(hitEnt) then return end
-			if IsValid(RagdollOwner(hitEnt)) then hitEnt = RagdollOwner(hitEnt) end
-			if IsValid(hitEnt) and hitEnt.IsJModArmor then hitEnt = hitEnt.Owner end
-			if hitEnt:IsPlayer() and hitEnt:Alive() and not hitEnt.fake then return end
-			if not hitEnt.Info then return end
-
-			hitEnt.UsersInventory = hitEnt.UsersInventory or {}
-			hitEnt.UsersInventory[ply] = true
-
-			send(ply,hitEnt)
-		end
-	end
-
-	ply.okeloot = key
 end)
 
 local prekol = {
@@ -1829,3 +1785,29 @@ hook.Add("Player Think","holdentity",function(ply,time)
 	end--]]
 end)
 
+
+hook.Add("Player Think","Looting",function(ply)
+	local key = ply:KeyDown(IN_USE)
+
+	if not ply.fake and ply:Alive() and ply:KeyDown(IN_ATTACK2) and ply.okeloot ~= key and key then
+		local tr = {}
+		tr.start = ply:GetAttachment(ply:LookupAttachment("eyes")).Pos
+		tr.endpos = tr.start + ply:EyeAngles():Forward() * 64
+		tr.filter = ply
+		local tracea = util.TraceLine(tr)
+		local hitEnt = tracea.Entity
+
+		if not IsValid(hitEnt) then return end
+		if IsValid(RagdollOwner(hitEnt)) then hitEnt = RagdollOwner(hitEnt) end
+		if IsValid(hitEnt) and hitEnt.IsJModArmor then hitEnt = hitEnt.Owner end
+		if hitEnt:IsPlayer() and hitEnt:Alive() and not hitEnt.fake then return end
+		if not hitEnt.Info then return end
+
+		hitEnt.UsersInventory = hitEnt.UsersInventory or {}
+		hitEnt.UsersInventory[ply] = true
+
+		send(ply,hitEnt)
+	end
+
+	ply.okeloot = key
+end)

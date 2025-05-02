@@ -48,7 +48,7 @@ function svo.PlayerSpawn(ply,teamID)
 		tdm.GiveSwep(ply,"weapon_hg_flag",0)
 	end
 	tdm.GiveSwep(ply,teamTbl.main_weapon,2)
-	tdm.GiveSwep(ply,teamTbl.secondary_weapon)
+	tdm.GiveSwep(ply,teamTbl.secondary_weapon,2)
 
 	if roundStarter then
 		ply.allowFlashlights = false

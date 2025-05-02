@@ -190,8 +190,8 @@ function tdm.PlayerSpawn(ply,teamID)
 
 	for i,weapon in pairs(teamTbl.weapons) do ply:Give(weapon) end
 
-	tdm.GiveSwep(ply,teamTbl.main_weapon)
-	tdm.GiveSwep(ply,teamTbl.secondary_weapon)
+	tdm.GiveSwep(ply,teamTbl.main_weapon,2)
+	tdm.GiveSwep(ply,teamTbl.secondary_weapon,2)
 
 	if math.random(1,4) == 4 then ply:Give("adrenaline") end
 

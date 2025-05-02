@@ -8,6 +8,12 @@ local black_female_models = {"models/player/Group01/female_03.mdl","models/playe
 local asian_models = {"models/player/Group01/male_05.mdl","models/player/Group03/male_05.mdl"}
 local ded_models = {"models/player/Group01/male_08.mdl","models/player/Group03/male_08.mdl"}
 
+local jobPool = {
+    "Лошара",
+    "Бомжара",
+    "Дебилоид"
+}
+
 for i = 1,9 do table.insert(models,"models/player/group01/male_0" .. i .. ".mdl") end
 
 models_rebels = {}
@@ -145,7 +151,7 @@ function homicide.GetPlayerModel(ply)
             return "ded"
         end
     end
-    return "xui znaet"
+    return "white"
 end
 
 function homicide.HUDPaint_RoundLeft(white2)
@@ -165,16 +171,23 @@ function homicide.HUDPaint_RoundLeft(white2)
         else
             drawRoundMode("Homicide",roundTypes[roundType],startRound,Color(55,55,155))
         end
-        
-        draw.SimpleText("ВНЕШНОСТЬ","HomigradFont",ScrW()/1.9,ScrH()/1.9,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
-        if homicide.GetPlayerModel(lply) == "ded" then
-            draw.SimpleText("ded","HomigradFont",ScrW()/1.9+10,ScrH()/1.9,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
-        elseif homicide.GetPlayerModel(lply) == "asian" then
-            draw.SimpleText("asiat","HomigradFont",ScrW()/1.9+10,ScrH()/1.9,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)            
-        end
 
-        draw.SimpleText("ПРОФЕССИЯ","HomigradFont",ScrW()/2.2,ScrH()/1.9,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
-    
+        draw.SimpleText("МОДЕЛЬ","HomigradFont",ScrW()/1.9,ScrH()/1.9,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
+        if homicide.GetPlayerModel(lply) == "ded" then
+            draw.SimpleText("дед","HomigradFont",ScrW()/1.9,ScrH()/1.9+15,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
+        elseif homicide.GetPlayerModel(lply) == "asian" then
+            draw.SimpleText("азиат","HomigradFont",ScrW()/1.9,ScrH()/1.9+15,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)   
+        elseif homicide.GetPlayerModel(lply) == "black female" then
+            draw.SimpleText("чёрная","HomigradFont",ScrW()/1.9,ScrH()/1.9+15,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)   
+        elseif homicide.GetPlayerModel(lply) == "black male" then
+            draw.SimpleText("чёрный","HomigradFont",ScrW()/1.9,ScrH()/1.9+15,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)   
+        else
+            draw.SimpleText("белый","HomigradFont",ScrW()/1.9,ScrH()/1.9+15,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)     
+        end
+        
+        
+        -- draw.SimpleText("ПРОФЕССИЯ","HomigradFont",ScrW()/2.2,ScrH()/1.9,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
+        -- draw.SimpleText(jobPool[math.random(#jobPool)],"HomigradFont",ScrW()/2.2,ScrH()/1.9+15,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
 
         if homicide.roundType == 1 then
             if lply.roleT then 

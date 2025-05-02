@@ -268,7 +268,6 @@ function homicide.RoundEndCheck()
                     ply:EmitSound("police_arrive")
                     playsound = false
                 end
-                ply:ConCommand("hg_bodycam 0")
             end)
         end)
 	end
@@ -299,7 +298,6 @@ function homicide.PlayerSpawn(ply,teamID)
     ply:SetPlayerColor(color:ToVector())
 
 	ply:Give("weapon_hands")
-	ply:ConCommand("hg_bodycam 0")
     timer.Simple(0,function() ply.allowFlashlights = false end)
 end
 

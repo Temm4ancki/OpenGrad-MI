@@ -42,8 +42,8 @@ function hl2dm.PlayerSpawn(ply,teamID)
 
 	for i,weapon in pairs(teamTbl.weapons) do ply:Give(weapon) end
 
-	tdm.GiveSwep(ply,teamTbl.main_weapon)
-	tdm.GiveSwep(ply,teamTbl.secondary_weapon)
+	tdm.GiveSwep(ply,teamTbl.main_weapon,2)
+	tdm.GiveSwep(ply,teamTbl.secondary_weapon,2)
 	
 	if teamID == 2 then
 		ply:SetPlayerClass("combine")

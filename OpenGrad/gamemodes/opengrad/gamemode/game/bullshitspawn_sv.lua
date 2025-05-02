@@ -202,8 +202,7 @@ hook.Add("PropBreak","homigrad",function(att,ent)
 	end
 
 	if type1 then
-		-- sound.Emit(huy,sndsDrop[type1],50,0.5)
-		--круто на наверное такое не нужно
+		sound.Emit(huy,sndsDrop[type1],50,0.5)
 	end
 end)
 
@@ -224,8 +223,8 @@ hook.Add("PostCleanupMap","addboxs",function()
 
 	timer.Create("SpawnTheBoxes", 15, 0 ,function()
 		hook_Run("Boxes Think")
-	end)--lol4ik?
-end)--насрал, сожри
+	end)
+end)
 
 if timer.Exists("SpawnTheBoxes") then timer.Remove("SpawnTheBoxes") end
 timer.Create("SpawnTheBoxes", 15, 0 ,function()
@@ -276,8 +275,8 @@ hook.Add("Boxes Think", "SpawnBoxes",function()
 		ent.Spawned = true
 	end
 
-	if IsValid(ent) then --!! если коробки не будут спавнится то убрать
-		ent:SetPos(spawns[math.random(#spawns)] + vec)
-		ent:Spawn()
-	end
+	-- if IsValid(ent) then --!! если коробки не будут спавнится то убрать
+	-- 	ent:SetPos(spawns[math.random(#spawns)] + vec)
+	-- 	ent:Spawn()
+	-- end
 end)

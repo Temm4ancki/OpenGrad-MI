@@ -19,7 +19,7 @@ local function send(ply,lootEnt,remove)
 	end
 end
 
-hook.Add("PlayerSpawn","!!!huyassdd",function(lootEnt)
+hook.Add("PlayerSpawn","InventoryCheck",function(lootEnt)
 	if lootEnt.UsersInventory ~= nil then
 		for plys,bool in pairs(lootEnt.UsersInventory) do
 			lootEnt.UsersInventory[plys] = nil
