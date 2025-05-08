@@ -59,7 +59,7 @@ local function makeT(ply)
             "weapon_kabar",
             "weapon_hk_usps", 
             "weapon_hidebomb", 
-            "weapon_hg_rgd5",
+            "weapon_hg_m26",
             "weapon_jahidka"
         })
     elseif homicide.roundType == 2 then
@@ -68,7 +68,7 @@ local function makeT(ply)
             "weapon_hg_t_syringepoison", 
             "weapon_hg_t_vxpoison",
             "weapon_hidebomb",
-            "weapon_hg_rgd5",
+            "weapon_hg_m26",
             "weapon_jahidka"
         })
     elseif homicide.roundType == 3 then
@@ -81,7 +81,7 @@ local function makeT(ply)
         SpawnBadGuy(ply,{
             "weapon_kabar",
             "weapon_hidebomb",
-            "weapon_hg_rgd5",
+            "weapon_hg_m26",
             "weapon_jahidka"
         })
         ply:GiveAmmo(12,5)
@@ -349,22 +349,35 @@ local uncommon = {"medkit","weapon_molotok","painkiller"}
 local rare = {"weapon_glock18","weapon_gurkha","weapon_t","weapon_per4ik","*ammo*"}
 
 function homicide.ShouldSpawnLoot()
-    if roundTimeStart + roundTimeLoot - CurTime() > 0 then return false end
+    --[[
+    Структура лут таблиц
+    local lootingTable = {
+        ["mdl name"] = {
+            ["unique category name"] = {
+                ["chance"] = number,
+                ["loot"] = {
+                    ["weapon name"] = number, -- chance
+                    ["weapon name"] = number,
+                    ["weapon name"] = number,
+                }
+            },
+        },
+    }
+    ]]
+    local lootingTable = {
+        ["models/props_junk/trashdumpster01a.mdl"] = {
+            ["weapons"] = {
+                ["chance"] = 100,
+                ["loot"] = {
+                    ["weapon_m3super"] = 100,
+                }
+            },
+        },
+    }
 
-    if homicide.roundType != 1 then
-        local chance = math.random(100)
-        if chance < 3 then
-            return true,rare[math.random(#rare)],"legend"
-        elseif chance < 20 then
-            return true,uncommon[math.random(#uncommon)],"veryrare"
-        elseif chance < 60 then
-            return true,common[math.random(#common)],"common"
-        else
-            return false
-        end
-    else
-        return true
-    end
+    if false then return false end
+
+    return true, lootingTable
 end
 
 function homicide.GuiltLogic(ply,att,dmgInfo)

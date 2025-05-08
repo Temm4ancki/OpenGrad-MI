@@ -288,7 +288,7 @@ function SWEP:FreezeMovement()
 	return false
 end
 
-function SWEP:ApplyForce()
+function SWEP:ApplyForce() 
 	local target = self.Owner:GetAimVector() * self.CarryDist + self.Owner:GetShootPos() + Vector(0, 0, 5)
 	local phys = self.CarryEnt:GetPhysicsObjectNum(self.CarryBone)
 
@@ -300,7 +300,7 @@ function SWEP:ApplyForce()
 		end
 
 		local vec = target - TargetPos
-		local len, mul = vec:Length(), self.CarryEnt:GetPhysicsObject():GetMass() / 30
+		local len, mul = vec:Length(), self.CarryEnt:GetPhysicsObject():GetMass() / 15
 
 		local StandingEnt = self.Owner:GetGroundEntity()
 		local StandingOn = IsValid(StandingEnt) and ((StandingEnt == self.CarryEnt) or (StandingEnt:IsConstrained() and table.HasValue(constraint.GetAllConstrainedEntities(StandingEnt), self.CarryEnt)))
@@ -311,8 +311,9 @@ function SWEP:ApplyForce()
 			return
 		end
 
+
 		if self.CarryEnt:GetClass() == "prop_ragdoll" then
-			mul = mul * 5
+			mul = mul * 10
 			local ply = RagdollOwner(self.CarryEnt)
 			if self:GetOwner():KeyPressed( IN_RELOAD ) then
 				if not ply then
@@ -329,7 +330,7 @@ function SWEP:ApplyForce()
 				end
 			elseif self:GetOwner():KeyPressed(IN_ATTACK) then
 				self:GetOwner():ChatPrint("ГРАБ ТИПО СИЛЬНО")
-				mul = mul * 20
+				mul = mul * 40
 			end
 
 			--uncomment

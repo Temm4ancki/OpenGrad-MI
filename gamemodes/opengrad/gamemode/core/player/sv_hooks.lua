@@ -8,16 +8,10 @@ hook.Add("Player Think","HasGodMode Rep",function(ply)
     ply:SetNWBool("HasGodMode",ply:HasGodMode())
 end)
 
-hook.Add("PlayerInitializeSpawn","PlayerClass",function(plySend)
-    for i,ply in pairs(player.GetAll()) do
-        if not ply:GetPlayerClass() then continue end
-        
-        net.Start("setupclass")
-        net.WriteEntity(ply)
-        net.WriteString(ply:GetNWString("Class"))
-        net.WriteString(ply:GetNWString("ClassOld"))
-        net.Send(plySend)
-    end
+hook.Add("PlayerInitialSpawn","homigrad-addcallback",function(ply)
+	ply:AddCallback("PhysicsCollide",function(phys,data)
+		hook.Run("Player Collide",ply,data.HitEntity,data)
+	end)
 end)
 
 hook.Add("PlayerDeath","PlayerClass",function(ply,inf,att)
@@ -64,4 +58,12 @@ end)
 
 hook.Add("Shuold JMod Armor Equip","PlayerClass",function(ply)
     return ply:PlayerClassEvent("JModArmorEquip")
+end)
+
+hook.Add("Think", "homigrad-player-thinker", function(ply)
+	time = CurTime()
+    
+	for _, ply in player.Iterator() do
+		hook.Run("Player Think", ply, time)
+	end
 end)

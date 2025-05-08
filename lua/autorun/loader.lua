@@ -1,4 +1,4 @@
-local ROOT = "homigradLogic"
+local ROOT = "homigradlogic"
 local shInitFiles, svInitFiles, clInitFiles = {}, {}, {}
 local shOtherFiles, svOtherFiles, clOtherFiles = {}, {}, {}
 local function getDepth(path) return #string.Explode("/", path) - 2 end

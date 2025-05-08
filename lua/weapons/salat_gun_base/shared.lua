@@ -54,43 +54,6 @@ SWEP.vbw = true
 SWEP.vbwPos = false
 SWEP.vbwAng = false
 SWEP.Suppressed = false
-SWEP.skin4ik = ""
-
-local hg_skins = CreateClientConVar("hg_skins","0",true,false,"скини ксго",0,1)
--- local hg_show_hitposmuzzle = CreateClientConVar("hg_show_hitposmuzzle","0",false,false,"прицел для админов",0,1)
-
---[[hook.Add("HUDPaint","admin_hitpos",function() -- теперь в cl_init режима
-	--if hg_show_hitposmuzzle:GetBool() and LocalPlayer():IsAdmin() then
-		
-		local wep = LocalPlayer():GetActiveWeapon()
-		if not IsValid(wep) then return end
-
-		local att = wep:LookupAttachment("muzzle")
-		if not att then return end
-
-		local att = wep:GetAttachment(att)
-		if not att then return end
-
-		if not wep.IsScope or wep:IsScope() then return end
-
-		local shootOrigin = att.Pos
-		local vec = vecZero
-		vec:Set(wep.addPos)
-		vec:Rotate(att.Ang)
-		shootOrigin:Add(vec)
-	
-		local shootAngles = att.Ang
-		local ang = angZero
-		ang:Set(wep.addAng)
-		shootAngles:Add(ang)
-
-		local tr = util.QuickTrace(shootOrigin,shootAngles:Forward() * 1000,LocalPlayer())
-		local hit = tr.HitPos:ToScreen()
-		
-		surface.SetDrawColor( 255, 255, 255, 150 )
-		surface.DrawRect(hit.x - 2.5,hit.y - 2.5,5,5)
-	--end
-end)]]
 
 function SWEP:IsSprinting()
 	local owner = self:GetOwner()
@@ -158,13 +121,6 @@ end
 
 function SWEP:DrawWorldModel()
     self:DrawModel()
-	
-	if not hg_skins:GetBool() then return end
-
-    if (IsValid(self:GetOwner()) and self:GetOwner():IsPlayer()) then
-        self:SetSubMaterial(0, self:GetNWString("skin"))
-        self:DrawModel()
-    end
 end
 
 HMCD_SurfaceHardness={
@@ -328,25 +284,6 @@ function SWEP:PrimaryAttack()
 
 	local ply = self:GetOwner() -- а ну да
 	self.NextShot = CurTime() + self.ShootWait
-
-	--[[if SERVER then
-		sound.Emit(self,self.Primary.Sound,511,2,100,self:GetOwner(),1)
-	else
-		sound.Emit(self,self.Primary.Sound,511,2,100,1)
-	end]]-- Шарик ты даун
-
-	--[[
-	if SERVER then
-		local Dist = 60
-		local Pitch = 100
-
-		if self.Suppressed then Dist = 55 end
-
-		sound.Play(self.Primary.Sound,self:GetOwner():GetShootPos(),Dist,Pitch) --  надо звук а ну или так Я звуки с хомиса добавил, кетовскго, можно дальние оттуда взять
-
-		sound.Play(self.Primary.Sound,self:GetOwner():GetShootPos(),Dist * 5,Pitch / 2,1)
-	end
-	--]]
 	
 	if SERVER then
 		net.Start("huysound")
@@ -748,7 +685,7 @@ function SWEP:Step()
 	
 	if ((CLIENT and isLocal) or SERVER) then
 		if not ply:GetNWBool("Suiciding") and not self:IsSprinting() then
-			local numbr = self.TwoHands and 50 or 80
+			local numbr = self.TwoHands and 60 or 90
 			if eyeangles[1] > numbr then
 				hand[1] = hand[1] - (eyeangles[1] - numbr)
 			end
