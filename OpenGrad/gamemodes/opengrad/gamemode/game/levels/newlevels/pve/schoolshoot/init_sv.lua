@@ -1,6 +1,5 @@
 function schoolshoot.StartRoundSV(data)
     tdm.RemoveItems()
-
 	tdm.DirectOtherTeam(1,2)
 
 	roundTimeStart = CurTime()
@@ -134,10 +133,12 @@ function schoolshoot.PlayerSpawn(ply,teamID)
 	ply.allowFlashlights = false
 end
 
-function schoolshoot.PlayerInitialSpawn(ply) ply:SetTeam(2) end
+function schoolshoot.PlayerInitialSpawn(ply) 
+	ply:SetTeam(2) 
+end
 
 function schoolshoot.PlayerCanJoinTeam(ply,teamID)
-	ply.schoolshootForceT = nil
+	--[[ply.schoolshootForceT = nil
 
 	if teamID == 3 then
 		if ply:IsAdmin() then
@@ -169,7 +170,8 @@ function schoolshoot.PlayerCanJoinTeam(ply,teamID)
 		end
 
 		return true
-	end
+	end]]
+	return true
 end
 
 local common = {"food_lays","weapon_pipe","weapon_bat","med_band_big","med_band_small","medkit","food_monster","food_fishcan","food_spongebob_home"}

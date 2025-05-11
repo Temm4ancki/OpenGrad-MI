@@ -22,6 +22,10 @@ SpawnPointsList = {
  	--Режим TDM (центер не используется, но нужен)
 	center = {"center",color_white},
 
+	--Режим JohnWick. Если их нет, используем стандарные T и CT точки
+	spawnpointswick = {"wick",color_white},
+	spawnpointsnaem = {"naem",color_white},
+
 	--Режим NextBot (отключен)
 	--points_nextbox = {"nextbot",Color(0,255,255)},
 

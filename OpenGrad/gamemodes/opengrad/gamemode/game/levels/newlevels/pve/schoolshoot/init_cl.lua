@@ -1,6 +1,23 @@
 tdm = tdm or {}
 schoolshoot.GetTeamName = tdm.GetTeamName
 
+if tdm.GetTeamName then
+    schoolshoot.GetTeamName = tdm.GetTeamName
+else
+    function schoolshoot.GetTeamName(ply)
+        local teamID = ply:Team()
+        if teamID == 1 then
+            return "Кибер-спортсмен", Color(255, 98, 98)
+        elseif teamID == 2 then
+            return "Школьник", Color(55, 255, 55)
+        elseif teamID == 3 then
+            return "Спецназ", Color(55, 55, 255)
+        else
+            return "Неизвестно", ScoreboardSpec or Color(255, 255, 255)
+        end
+    end
+end
+
 local colorSpec = ScoreboardSpec
 function schoolshoot.Scoreboard_Status(ply)
 	local lply = LocalPlayer()
@@ -11,8 +28,6 @@ end
 
 local green = Color(0,125,0)
 local white = Color(255,255,255)
-
-local roundSound = ""
 
 local playsound = false
 function schoolshoot.StartRoundCL()
@@ -31,8 +46,7 @@ function schoolshoot.HUDPaint_RoundLeft(white2,time)
             playsound = false
             surface.PlaySound("round/start/school.ogg")
         end
-		
-        lply:ScreenFade(SCREENFADE.IN,Color(0,0,0,255),0.5,0.5)
+		lply:ScreenFade(SCREENFADE.IN,Color(0,0,0,255),0.5,0.5)
 
 		drawRoundMode("Player vs Everyone",schoolshoot.Name,startRound,Color(155,155,155))
 
