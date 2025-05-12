@@ -833,26 +833,6 @@ local function RemoveRag(self)
 	end
 end
 
-local CustomWeight = {
-	["models/player/police_fem.mdl"] = 50,
-	["models/player/police.mdl"] = 60,
-	["models/player/combine_soldier.mdl"] = 70,
-	["models/player/combine_super_soldier.mdl"] = 80,
-	["models/player/combine_soldier_prisonguard.mdl"] = 70,
-	["models/player/azov.mdl"] = 10,
-	["models/player/Rusty/NatGuard/male_01.mdl"] = 90,
-	["models/player/Rusty/NatGuard/male_02.mdl"] = 90,
-	["models/player/Rusty/NatGuard/male_03.mdl"] = 90,
-	["models/player/Rusty/NatGuard/male_04.mdl"] = 90,
-	["models/player/Rusty/NatGuard/male_05.mdl"] = 90,
-	["models/player/Rusty/NatGuard/male_06.mdl"] = 90,
-	["models/player/Rusty/NatGuard/male_07.mdl"] = 90,
-	["models/player/Rusty/NatGuard/male_08.mdl"] = 90,
-	["models/player/Rusty/NatGuard/male_09.mdl"] = 90,
-	["models/LeymiRBA/Gyokami/Gyokami.mdl"] = 50,
-	["models/player/smoky/Smoky.mdl"] = 65,
-	["models/player/smoky/Smokycl.mdl"] = 65
-}
 --НЕ ОТМЕНЯЙ ЗАДРАЛ
 
 function PlayerMeta:CreateRagdoll(attacker, dmginfo) --изменение функции регдолла
@@ -1183,8 +1163,8 @@ hook.Add("Player Think","FakeControl",function(ply,time) --управление 
 		if(ply:KeyDown(IN_USE))then
 			local phys = head
 			local angs = ply:EyeAngles()
-			angs:RotateAroundAxis(angs:Forward(),90)
-			angs:RotateAroundAxis(angs:Up(),90)
+			--angs:RotateAroundAxis(angs:Forward(),90)
+			--angs:RotateAroundAxis(angs:Up(),90)
 			local shadowparams = {
 				secondstoarrive=0.5,
 				pos=head:GetPos()+vector_up*(20/math.Clamp(rag:GetVelocity():Length()/300,1,12)) * 15,

@@ -1038,14 +1038,14 @@ hook.Add("Player Think","FakeControl",function(ply,time) --управление 
 			local phys = head
 			local angs = ply:EyeAngles()
 			if ply:GetActiveWeapon() == "weapon_hands" then
-				angs:RotateAroundAxis(angs:Up(),90)
+				angs:RotateAroundAxis(angs:Forward(),90)
 				local shadowparams = {
 					secondstoarrive=0.5,
 					pos=head:GetPos()+vector_up*(20/math.Clamp(rag:GetVelocity():Length()/300,1,12)) * 45,
 					angle=angs,
 					maxangulardamp=10,
 					maxspeeddamp=30,
-					maxangular=500,
+					maxangular=sin(500),
 					maxspeed=40,
 					teleportdistance=0,
 					deltatime=deltatime,

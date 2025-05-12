@@ -162,7 +162,7 @@ net.Receive("inventory",function()
 		surface.SetDrawColor(255,255,255,128)
 		surface.DrawOutlinedRect(1,1,w - 2,h - 2)
 
-		draw.SimpleText("Инвентарь "..nickname,"DefaultFixedDropShadow",6,6,color_white)
+		draw.SimpleText("Инвентарь "..nickname or "","DefaultFixedDropShadow",6,6,color_white)
 	end
 
 	local x,y = 40,40

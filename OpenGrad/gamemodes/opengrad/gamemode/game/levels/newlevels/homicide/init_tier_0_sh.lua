@@ -3,10 +3,26 @@ homicide = homicide or {}
 homicide.Name = "Homicide"
 
 models = {}
-local black_male_models = {"models/player/Group01/male_01.mdl","models/player/Group01/male_03.mdl","models/player/Group03/male_01.mdl","models/player/Group03/male_03.mdl"}
-local black_female_models = {"models/player/Group01/female_03.mdl","models/player/Group01/female_05.mdl","models/player/Group03/female_03.mdl","models/player/Group03/female_05.mdl"}
-local asian_models = {"models/player/Group01/male_05.mdl","models/player/Group03/male_05.mdl"}
-local ded_models = {"models/player/Group01/male_08.mdl","models/player/Group03/male_08.mdl"}
+local black_male_models = {
+    ["models/player/group01/male_01.mdl"] = true,
+    ["models/player/group01/male_03.mdl"] = true,
+    ["models/player/group03/male_01.mdl"] = true,
+    ["models/player/group03/male_03.mdl"] = true,
+}
+local black_female_models = {
+    ["models/player/group01/female_03.mdl"] = true,
+    ["models/player/group01/female_05.mdl"] = true,
+    ["models/player/group03/female_03.mdl"] = true,
+    ["models/player/group03/female_05.mdl"] = true,
+}
+local asian_models = {
+    ["models/player/group01/male_05.mdl"] = true,
+    ["models/player/group03/male_05.mdl"] = true
+}
+local ded_models = {
+    ["models/player/group01/male_08.mdl"] = true,
+    ["models/player/group03/male_08.mdl"] = true
+}
 
 local jobPool = {
     "Лошара",
@@ -124,41 +140,21 @@ function homicide.Scoreboard_Status(ply)
 end
 
 local red,blue = Color(200,0,10),Color(75,75,255)
+local white_gray = Color(181,181,181)
 
 function homicide.GetPlayerModel(ply)
     local model = ply:GetModel()
-
-    for _, mdl in ipairs(black_male_models) do
-        if model == mdl then
-            return "black male"
-        end
-    end
-
-    for _, mdl in ipairs(black_female_models) do
-        if model == mdl then
-            return "black female"
-        end
-    end
-
-    for _, mdl in ipairs(asian_models) do
-        if model == mdl then
-            return "asian"
-        end
-    end
-
-    for _, mdl in ipairs(ded_models) do
-        if model == mdl then
-            return "ded"
-        end
-    end
-    return "white"
+    if black_male_models[model] then return "Ниггер"
+    elseif black_female_models[model] then return "Ниггерша"
+    elseif asian_models[model] then return "Азиат"
+    elseif ded_models[model] then return "Дед"
+    else return "Белый" end
 end
 
 function homicide.HUDPaint_RoundLeft(white2)
     local roundType = homicide.roundType or 2
     local lply = LocalPlayer()
     local name,color = homicide.GetTeamName(lply)
-
     local startRound = roundTimeStart + 7 - CurTime()
     if startRound > 0 and lply:Alive() then
         if playsound then
@@ -171,23 +167,9 @@ function homicide.HUDPaint_RoundLeft(white2)
         else
             drawRoundMode("Homicide",roundTypes[roundType],startRound,Color(55,55,155))
         end
-
-        draw.SimpleText("МОДЕЛЬ","HomigradFont",ScrW()/1.9,ScrH()/1.9,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
-        if homicide.GetPlayerModel(lply) == "ded" then
-            draw.SimpleText("дед","HomigradFont",ScrW()/1.9,ScrH()/1.9+15,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
-        elseif homicide.GetPlayerModel(lply) == "asian" then
-            draw.SimpleText("азиат","HomigradFont",ScrW()/1.9,ScrH()/1.9+15,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)   
-        elseif homicide.GetPlayerModel(lply) == "black female" then
-            draw.SimpleText("чёрная","HomigradFont",ScrW()/1.9,ScrH()/1.9+15,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)   
-        elseif homicide.GetPlayerModel(lply) == "black male" then
-            draw.SimpleText("чёрный","HomigradFont",ScrW()/1.9,ScrH()/1.9+15,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)   
-        else
-            draw.SimpleText("белый","HomigradFont",ScrW()/1.9,ScrH()/1.9+15,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)     
-        end
         
-        
-        -- draw.SimpleText("ПРОФЕССИЯ","HomigradFont",ScrW()/2.2,ScrH()/1.9,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
-        -- draw.SimpleText(jobPool[math.random(#jobPool)],"HomigradFont",ScrW()/2.2,ScrH()/1.9+15,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
+        draw.SimpleText("Внешность - "..homicide.GetPlayerModel(lply),"HomigradFont",ScrW()/2.05,ScrH()/1.9,white_gray,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
+        --draw.SimpleText("Профессия - "..jobPool[math.random(#jobPool)],"HomigradFont",ScrW()/2.05,ScrH()/1.8,white_gray,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
 
         if homicide.roundType == 1 then
             if lply.roleT then 
