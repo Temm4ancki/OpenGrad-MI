@@ -1,0 +1,12 @@
+Patch
+{
+include "materials/nmrih/models/weapons/nmrih_wguns_shared.vmt"
+insert
+{
+$baseTexture "nmrih\models\weapons\fa_mac10\w_fa_mac10_d"
+$bumpmap "nmrih\models\weapons\fa_mac10\w_fa_mac10_n"
+
+$surfaceprop "metal"
+	"keywords" "ingram mac10 mac 10 M10"
+}
+}

@@ -1,0 +1,12 @@
+Patch
+{
+include "materials/nmrih/models/weapons/nmrih_guns_shared.vmt"
+insert
+{
+$baseTexture "nmrih\models\weapons\fa_win1892\v_fa_win1892_d"
+$bumpmap "nmrih\models\weapons\fa_win1892\v_fa_win1892_n"
+
+$surfaceprop "weapon"
+	"keywords" "870 Remington"
+}
+}

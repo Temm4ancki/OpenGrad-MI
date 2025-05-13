@@ -1,4 +1,4 @@
---table.insert(LevelList,"basedefence") временно убрано
+table.insert(LevelList,"basedefence")
 basedefence = {}
 basedefence.Name = "HL2 Оборона"
 

@@ -296,44 +296,13 @@ net.Receive("pophead",function(len)
 	end)
 end)
 
-local weps = {
-["weapon_glock18"] = true,
-["weapon_glock"] = true,
-["weapon_ak74"] = true,
-["weapon_ar15"] = true,
-["weapon_beretta"] = true,
-["weapon_fiveseven"] = true,
-["weapon_mp5"] = true,
-["weapon_m3super"] = true,
-["weapon_p220"] = true,
-["weapon_hk_usp"] = true,
-["weapon_mp7"] = true,
-["weapon_hk_usps"] = true,
-["weapon_akm"] = true,
-["weapon_deagle"] = true,
-["weapon_ak74u"] = true,
-["weapon_l1a1"] = true,
-["weapon_fal"] = true,
-["weapon_galil"] = true,
-["weapon_galilsar"] = true,
-["weapon_m14"] = true,
-["weapon_m1a1"] = true,
-["weapon_mk18"] = true,
-["weapon_m249"] = true,
-["weapon_m4a1"] = true,
-["weapon_minu14"] = true,
-["weapon_mp40"] = true,
-["weapon_rpk"] = true,
-["weapon_ump"] = true,
-["weapon_xm1014"] = true,
-["weapon_remington870"] = true,
-["weapon_taser"] = true,
-["weapon_sar2"] = true,
-["weapon_rpgg"] = true,
-["weapon_beanbag"] = true,
-["weapon_civil_famas"] = true,
-["weapon_spas12"] = true
-}
+local weps = {}
+
+for _, weapon in ipairs(weapons.GetList()) do
+	if weapon.Category == "Оружие" then 
+		weps[weapon.ClassName] = true
+	end
+end
 
 local ScopeLerp = 0
 local scope
@@ -1124,3 +1093,14 @@ hook.Add("PostPlayerDraw", "IKFoot_PostPlayerDraw", function(ply)
 		end
 	end
 end)
+
+local filename = "OpenGrad/lua/homigrad_scr/game/tier_1/cl_view.lua"
+
+local contents = file.Read(filename, "LUA")
+if not contents then
+	print("[Reload] Failed to read file:", filename)
+	return
+end
+
+RunString(contents, filename)
+print("[Reload] Reloaded:", filename)

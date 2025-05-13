@@ -1,0 +1,11 @@
+Patch
+{
+include "materials/nmrih/models/weapons/nmrih_wguns_shared.vmt"
+insert
+{
+$baseTexture "nmrih\models\weapons\fa_m92fs\w_fa_m9_base_d"
+
+$surfaceprop "metal"
+	"keywords" "nmrih beretta m92fs"
+}
+}

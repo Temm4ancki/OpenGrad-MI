@@ -282,25 +282,11 @@ function wick.PlayerInitialSpawn(ply)
 end
 
 function wick.PlayerCanJoinTeam(ply, teamID)
-    if ply:IsAdmin() then
-        if teamID == 2 then 
-            ply.forceCT = nil 
-            ply.forceT = true 
-            ply:ChatPrint("Ты будешь за Джона Уика в следующем раунде.") 
-            return false 
-        end
-        if teamID == 3 then 
-            ply.forceT = nil 
-            ply.forceCT = true 
-            ply:ChatPrint("Ты будешь за наемника в следующем раунде.") 
-            return false 
-        end
-    else
-        if teamID == 2 or teamID == 3 then 
-            return false 
-        end
+    if teamID == 2 or teamID == 3 then 
+        return false 
     end
 
+    -- откуда ты вообще скопировал весь тот код который адмемам позволяет спавниться, при условии что я вырезал эту функцию
     return true
 end
 

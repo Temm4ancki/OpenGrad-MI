@@ -1,0 +1,12 @@
+"UnlitGeneric"
+{
+	"$baseTexture" "nmrih\models\weapons\fa_m16a4\scope_lens_d"
+	"$translucent"	1
+	"$model"		1
+
+	$distancealpha			1
+	$softedges			1
+	$edgesoftnessstart			0.99
+	$edgesoftnessend			0.0
+	$scaleedgesoftnessbasedonscreenres	1
+}

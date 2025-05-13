@@ -1,0 +1,13 @@
+Patch
+{
+include "materials/nmrih/models/weapons/fa_m92fs/M92fs_shared.vmt"
+insert
+{
+$baseTexture "nmrih\models\weapons\fa_m92fs\gripplatescolor"
+$bumpmap "nmrih\models\weapons\fa_m92fs\gripplatescolor_n"
+$phongexponenttexture "nmrih\models\weapons\fa_m92fs\gripplatescolor_g"
+
+$surfaceprop "weapon"
+	"keywords" "nmrih beretta m92fs"
+}
+}

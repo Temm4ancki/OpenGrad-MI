@@ -82,7 +82,6 @@ end
 
 function CLASS.PlayerDeath(self)
     sound.Play(Sound("npc/overwatch/radiovoice/die" .. math.random(1,3) .. ".wav"),self:GetPos())
-    
     if self:GetModel() == "models/metrocat/metrocat_beta.mdl" then
         sound.Play(Sound("npc/metropolice/die"..math.random(1,4)..".wav"),self:GetPos())
     else

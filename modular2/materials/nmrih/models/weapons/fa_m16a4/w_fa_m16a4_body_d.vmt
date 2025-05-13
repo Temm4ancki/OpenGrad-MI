@@ -1,0 +1,12 @@
+Patch
+{
+include "materials/nmrih/models/weapons/nmrih_wguns_shared.vmt"
+insert
+{
+$baseTexture "nmrih\models\weapons\fa_m16a4\w_fa_m16a4_body_d"
+$bumpmap "nmrih\models\weapons\fa_m16a4\w_fa_m16a4_body_n"
+
+$surfaceprop "metal"
+	"keywords" "M16A4"
+}
+}
