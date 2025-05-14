@@ -133,6 +133,33 @@ function SolidMapVote.getWinningMaps()
 end
 
 function SolidMapVote.poolMaps()
+    SolidMapVote.mapPool = {}
+
+    if file.Exists("ulx/votemaps.txt", "DATA") then
+        local content = file.Read("ulx/votemaps.txt", "DATA")
+        if content then
+            for line in string.gmatch(content, "[^\r\n]+") do
+                local mapName = string.Trim(line)
+
+                local commentPos = string.find(mapName, ";", 1, true)
+                if commentPos then
+                    mapName = string.sub(mapName, 1, commentPos - 1)
+                    mapName = string.Trim(mapName)
+                end
+
+                if mapName ~= "" and mapName ~= game.GetMap() then
+                    table.insert(SolidMapVote.mapPool, mapName)
+                end
+            end
+        end
+    else
+        ErrorNoHalt("votemaps.txt not found in data/ulx/!\n")
+    end
+
+    return SolidMapVote.mapPool
+end
+
+--[[function SolidMapVote.poolMaps()
     SolidMapVote.mapPool = {} -- Reset the map pool
     local maps = file.Find( 'maps/*.bsp', 'GAME' )
 
@@ -159,7 +186,7 @@ function SolidMapVote.poolMaps()
     end
 
     return SolidMapVote.mapPool
-end
+end]]
 
 function SolidMapVote.selectMaps()
     SolidMapVote.maps = {} -- Reset the active maps

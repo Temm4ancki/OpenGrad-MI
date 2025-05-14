@@ -19,19 +19,37 @@ function SolidMapVote.close()
     end
 end
 
+function SolidMapVote.getMapThumbnail(name)
+    if file.Exists("maps/thumb/" .. name .. ".png", "GAME") then
+        return "maps/thumb/" .. name .. ".png"
+    elseif file.Exists("maps/" .. name .. ".png", "GAME") then
+        return "maps/" .. name .. ".png"
+    else
+        return "maps/thumb/noicon.png"
+    end
+end
+
 function SolidMapVote.GetMapConfigInfo( map )
     for _, mapData in pairs( SolidMapVote[ 'Config' ][ 'Specific Maps' ] ) do
         if map == mapData.filename then
-            return mapData
+            if not mapData.useLocalThumbnail and mapData.image then
+                return mapData
+            else
+                local thumbnailPath = SolidMapVote.getMapThumbnail(map)
+                mapData.image = thumbnailPath
+                return mapData
+            end
         end
     end
 
+    local thumbnailPath = SolidMapVote.getMapThumbnail(map)
     return {
         filename = map,
         displayname = string.Replace( map, '_', ' ' ),
-        image = SolidMapVote[ 'Config' ][ 'Missing Image' ],
+        image = thumbnailPath,
         width = SolidMapVote[ 'Config' ][ 'Missing Image Size' ].width,
-        height = SolidMapVote[ 'Config' ][ 'Missing Image Size' ].height
+        height = SolidMapVote[ 'Config' ][ 'Missing Image Size' ].height,
+        useLocalThumbnail = true
     }
 end
 

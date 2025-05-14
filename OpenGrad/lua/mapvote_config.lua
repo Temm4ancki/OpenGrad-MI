@@ -165,11 +165,27 @@ SolidMapVote[ 'Config' ][ 'Random Mode' ] = 2
 SolidMapVote[ 'Config' ][ 'Random Image' ] = 'http://i.imgur.com/oqeqWhl.png'
 
 -- This is the image for maps that are missing an image
+SolidMapVote['Config']['Use Local Thumbnails'] = true
 SolidMapVote[ 'Config' ][ 'Missing Image' ] = 'https://i.imgur.com/io5gt3d.png'
 SolidMapVote[ 'Config' ][ 'Missing Image Size' ] = { width = 1080, height = 1080 }
 
 -- In this table you can add information for the map to make it more
 -- appealing on the mapvote.
 SolidMapVote[ 'Config' ][ 'Specific Maps' ] = {
-    { filename = 'ttt_minecraft_b5', displayname = 'Minecraft B5', image = 'http://i2.imgbus.com/doimg/3co1mmfoncb63a7.jpg', width = 1920, height = 1080 },
+    {
+        filename = 'ttt_minecraft_b5',
+        displayname = 'Minecraft B5',
+        image = 'http://i2.imgbus.com/doimg/3co1mmfoncb63a7.jpg',
+        width = 1920,
+        height = 1080
+    },
+    {
+        filename = "gm_construct",
+        displayname = "Construct",
+        useLocalThumbnail = true,  -- Использовать локальное изображение карты
+        -- Опционально можно указать собственное изображение, которое перезапишет локальное
+        -- image = "https://example.com/custom_construct.jpg",
+        width = 16,
+        height = 9
+    }
 }
