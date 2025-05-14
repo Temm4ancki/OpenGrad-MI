@@ -1,6 +1,0 @@
-"VertexLitGeneric"
-{
-	// Original shader: VertexLitTexture
-	"$basetexture" "models\kuhnya\oguzok\oguzok_cook"
-	"$halflambert" 1
-}

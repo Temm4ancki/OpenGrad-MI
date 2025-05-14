@@ -1,6 +1,0 @@
-"VertexLitGeneric"
-{
-	"$basetexture" "models\kuhnya\oguzok\oguzok_hair_d"
-	$alphatest 1	
-	$alphatestreference	.35
-}
