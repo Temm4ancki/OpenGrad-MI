@@ -76,7 +76,7 @@ function wick.HUDPaint_RoundLeft(white2, time)
     
         local pos = ply:GetBonePosition(boneIndex)
         local dis = lply_pos:Distance(pos)
-        if dis < 0 then continue end
+        if dis < 500 then continue end
 
         local pos = pos:ToScreen()
         if not pos.visible then continue end
