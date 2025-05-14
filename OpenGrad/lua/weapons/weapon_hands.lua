@@ -294,7 +294,7 @@ function SWEP:SecondaryAttack()
 			if Dist < self.ReachDistance then
 				sound.Play("Flesh.ImpactSoft", self:GetOwner():GetShootPos(), 65, math.random(90, 110))
 				self:GetOwner():SetVelocity(self:GetOwner():GetAimVector() * 20)
-				tr.Entity:SetVelocity(-self:GetOwner():GetAimVector() * 50)
+				tr.Entity:SetVelocity(self:GetOwner():GetAimVector() * 50)
 				self:SetNextSecondaryFire(CurTime() + .25)
 			end
 		end
@@ -369,6 +369,40 @@ function SWEP:ApplyForce() --!! Функция спизженная из джи�
 		end
 
 		vec:Normalize()
+
+		--Короче он типа работает, но типа нет. Он выводит из НЕТ ПУЛЬСА, но надо выкачивать дальше, а он не выкачивает. Почините кто умеет кодить @Temm4ancki
+		if SERVER then
+			local ply = RagdollOwner(self.CarryEnt)
+			-- self:GetOwner():PrintMessage(HUD_PRINTTALK,tostring(ply.CPR).." "..tostring(ply.Blood).." "..tostring(ply.Organs["brain"]).." "..tostring(ply.heartstop))
+			if self:GetOwner():KeyDown(IN_ATTACK) then
+				if ply and ply.heartstop then
+					if self.firstTimePrint then self:GetOwner():PrintMessage(HUD_PRINTTALK,"Вы начинаете проводить СЛР... (держите ЛКМ зажатым до появления пульса)") end
+					self.firstTimePrint = false
+
+					if (self.CPRThink or 0) < CurTime() then
+						self.CPRThink = CurTime() + 1
+						ply.CPR = math.max(ply.CPR + 50,0)
+						
+						ply.o2 = math.min(ply.o2 + 0.5,1)
+						self.CarryEnt:EmitSound("physics/body/body_medium_impact_soft"..tostring(math.random(7))..".wav")
+					end
+				else
+					if not ply and self.CarryEnt:GetClass() == "prop_ragdoll" then
+						if self.firstTimePrint then 
+							self:GetOwner():PrintMessage(HUD_PRINTTALK,"Вы начинаете проводить СЛР... (держите ЛКМ зажатым до появления пульса)") 
+						end
+						self.firstTimePrint = false
+						if (self.CPRThink or 0) < CurTime() then
+							self.CPRThink = CurTime() + 1
+							self.CarryEnt:EmitSound("physics/body/body_medium_impact_soft"..tostring(math.random(7))..".wav")
+						end
+					end
+				end
+			else
+				self.firstTimePrint = true
+			end
+		end
+
 		local plyVel = self.Owner:GetVelocity()
 		local avec, velo = vec * len^1.5, phys:GetVelocity() - (plyVel * 2)
 		local Force = (avec - velo / 2) * mul

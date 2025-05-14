@@ -128,9 +128,17 @@ hook.Add("PostPlayerDeath","RefreshPain",function(ply)
 end)
 
 function IsUnconscious(ply)
-	if ply.painlosing > 20 or ply.pain > 250 + ply:GetNWInt("SharpenAMT") * 5 or ply.Blood < 1500 or ply.heartstop then
-		ply.Otrub = true
+	local painlosingThreshold = 20
+	local painThreshold = 250 + ply:GetNWInt("SharpenAMT") * 5
+	local bloodThreshold = 1500
 
+	if ply.ResistOtrub then
+		painlosingThreshold = painlosingThreshold + 25
+		painThreshold = painThreshold + 110
+		bloodThreshold = bloodThreshold - 350
+	end
+	if ply.painlosing > painlosingThreshold or ply.pain > painThreshold or ply.Blood < bloodThreshold or ply.heartstop then
+		ply.Otrub = true
 		ply:SetDSP(16)
 	else
 		ply.Otrub = false
@@ -142,8 +150,7 @@ function IsUnconscious(ply)
 		end
 	end
 
-	ply:SetNWInt("Otrub",ply.Otrub)
-
+	ply:SetNWInt("Otrub", ply.Otrub)
 	return ply.Otrub
 end
 

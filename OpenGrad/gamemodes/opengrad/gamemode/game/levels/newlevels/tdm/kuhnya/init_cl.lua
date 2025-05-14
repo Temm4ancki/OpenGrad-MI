@@ -12,8 +12,8 @@ function kuhnya.HUDPaint_RoundLeft(white)
     if startRound > 0 and lply:Alive() then
         if playsound then
             playsound = false
-            surface.PlaySound("kuhnya/barinov-start" .. math.random(1,3) .. ".wav")
-            surface.PlaySound("kuhnya/round.wav")
+            surface.PlaySound("kuhnya/barinov-start" .. math.random(1,3) .. ".ogg")
+            surface.PlaySound("kuhnya/round.ogg")
 
         end
         lply:ScreenFade(SCREENFADE.IN,Color(0,0,0,255),0.5,0.5)

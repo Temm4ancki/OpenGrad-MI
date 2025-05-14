@@ -13,7 +13,7 @@ local models_oguzok = {
 function CLASS.Off(self)
     if CLIENT then return end
 
-    self.isoOguzok = nil
+    self.isOguzok = nil
 end
 
 function CLASS.On(self)
@@ -28,7 +28,7 @@ function CLASS.On(self)
 
     tdm.GiveSwep(self,CLASS.main_weapons,8)
 
-    self.isoOguzok = true
+    self.isOguzok = true
 
 end
 
@@ -56,7 +56,7 @@ local function getList(self)
 end
 
 function CLASS.PlayerDeath(self)
-    sound.Play(Sound("kuhnya/death" .. math.random(1,5) .. ".wav"),self:GetPos())
+    sound.Play(Sound("kuhnya/death" .. math.random(1,5) .. ".ogg"),self:GetPos())
     self:SetPlayerClass()
 end
 
@@ -66,7 +66,7 @@ function CLASS.HomigradDamage(self,hitGroup,dmgInfo,rag)
     if (self.delaysoundpain or 0) > CurTime() then
         self.delaysoundpain = CurTime() + math.Rand(0.25,0.5)
 
-        self:PlaySound("kuhnya/oguzok-hurt" .. math.random(1,5) .. ".wav")
+        self:PlaySound("kuhnya/oguzok-hurt" .. math.random(1,5) .. ".ogg")
     end
 end
 

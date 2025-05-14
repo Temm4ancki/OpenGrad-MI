@@ -1,0 +1,9 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models\kuhnya\fedya\hat"
+	"$nocull" 1
+	"$phong" "1"
+	"$phongboost"	"1"
+	"$phongalbedotint" "1"
+	"$phongfresnelranges"	"[0 0 1]"
+}

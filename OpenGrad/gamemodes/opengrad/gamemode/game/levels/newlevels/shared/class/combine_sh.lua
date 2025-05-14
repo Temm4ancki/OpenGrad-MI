@@ -115,8 +115,6 @@ function CLASS.PlayerEndVoice(self)
     end
 end
 
-print("hello world")
-
 function CLASS.CanLisenOutput(output,input,isChat)
     if input.isCombine then return true end
 end

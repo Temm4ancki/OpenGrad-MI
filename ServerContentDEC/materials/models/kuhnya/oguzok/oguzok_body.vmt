@@ -1,0 +1,11 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models\kuhnya\oguzok\oguzok_body_d"
+	"$bumpmap" "models\kuhnya\oguzok\oguzok_body_n"
+
+	"$phong" "1"
+	"$phongexponent" "4"
+//	"$phongalbedotint" "1"
+	"$phongboost" "1"
+	"$phongfresnelranges"	"[.3 .3 .3]"
+}

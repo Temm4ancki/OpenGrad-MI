@@ -1,0 +1,10 @@
+VertexLitGeneric
+{
+$basetexture "models\kuhnya\barinov\barinov_hair"
+$alphatest 1	
+$alphatestreference	.35
+$phong 1
+$phongboost "2.4"
+$phongexponent 4
+$phongfresnelranges "[.2 .5 5]"
+}

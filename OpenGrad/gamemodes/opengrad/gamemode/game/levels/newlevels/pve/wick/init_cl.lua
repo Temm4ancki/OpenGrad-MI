@@ -72,9 +72,11 @@ function wick.HUDPaint_RoundLeft(white2, time)
         local color = ply.roleT and red
         if not color or ply == lply or not ply:Alive() then continue end
 
-        local pos = ply:GetPos() + ply:OBBCenter()
+        local boneIndex = ply:LookupBone("ValveBiped.Bip01_Pelvis")
+    
+        local pos = ply:GetBonePosition(boneIndex)
         local dis = lply_pos:Distance(pos)
-        if dis < 500 then continue end
+        if dis < 0 then continue end
 
         local pos = pos:ToScreen()
         if not pos.visible then continue end
