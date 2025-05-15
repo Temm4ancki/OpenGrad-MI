@@ -37,14 +37,12 @@ SWEP.Secondary.Ammo            = "none"
 SWEP.FumoCount = 0
 
 
-if SERVER then
-	cvarMinSqueezes = 3
-	cvarExpChance = 0.1
-	cvarForceKill = 0
-	cvarTripCooldown = 8
-	cvarDetonateTime = 5
-	cvarUseTracks = 1
-end
+local cvarMinSqueezes = 3
+local cvarExpChance = 0.1
+local cvarForceKill = 0
+local cvarTripCooldown = 8
+local cvarDetonateTime = 5
+local cvarUseTracks = 1
 
 function SWEP:Initialize()
 	self:SetHoldType(self.HoldType)
@@ -94,7 +92,7 @@ function SWEP:PrimaryAttack()
     vm:SendViewModelMatchingSequence( vm:LookupSequence( "deploy" ) )
     if SERVER then
         local ply = self:GetOwner()
-        self.Primary.Delay = CurTime() + cvarTripCooldown:GetInt() + 0.01
+        self.Primary.Delay = CurTime() + cvarTripCooldown + 0.01
         local pos = ply:GetPos() + Vector(0,0,10)
         local ent = ents.Create("prop_physics")
         ent:SetModel(self.WorldModel)
@@ -112,7 +110,7 @@ function SWEP:PrimaryAttack()
 			ent:CallOnRemove( "StopFumoSound", function() ent:StopSound( "carryable_fumos/fumofunkyy.wav" ) end )
 		end
 		self.FumoCount = self.FumoCount + 2
-        timer.Simple(cvarDetonateTime:GetInt(), function()
+        timer.Simple(cvarDetonateTime, function()
             if IsValid(ent) then
 				ent:Remove()
                 local explosion = ents.Create("env_explosion")
@@ -145,7 +143,7 @@ function SWEP:PrimaryAttack()
         end)
     end
 	if SERVER then
-    self:SetNextPrimaryFire(CurTime() + cvarTripCooldown:GetInt())
+    self:SetNextPrimaryFire(CurTime() + cvarTripCooldown)
 	end
 end
 
@@ -154,7 +152,7 @@ function SWEP:SecondaryAttack()
     if self:GetNextSecondaryFire() > CurTime() then return end
     self:SetNextSecondaryFire(CurTime() + 1)
 
-    if SERVER and self.ClickCount >= cvarMinSqueezes:GetInt() and math.random() < cvarExpChance:GetFloat() then 
+    if SERVER and self.ClickCount >= cvarMinSqueezes and math.random() < cvarExpChance then 
         local explosion = ents.Create("env_explosion") 
         explosion:SetPos(self.Owner:GetPos()) 
         explosion:SetOwner(self.Owner)
@@ -162,7 +160,7 @@ function SWEP:SecondaryAttack()
         explosion:SetKeyValue("iMagnitude", "200")
         explosion:Fire("Explode", 0, 0)
 
-		if cvarForceKill:GetBool() then
+		if cvarForceKill then
 			self.Owner:Kill()
 		end
     end
