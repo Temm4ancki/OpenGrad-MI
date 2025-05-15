@@ -557,6 +557,8 @@ concommand.Add("fake",function(ply)
 	if ply.Seizure then return end
 
 	if ply.brokenspine then return nil end
+	if ply.LeftLeg == 0 and ply.RightLeg == 0 then ply:ChatPrint("Сломаны ноги, не могу встать.") return nil end
+
 	if IsValid(ply:GetNWEntity("Ragdoll")) and ply:GetNWEntity("Ragdoll"):GetVelocity():Length()>300 then return nil end
 	if IsValid(ply:GetNWEntity("Ragdoll")) and table.Count(constraint.FindConstraints( ply:GetNWEntity("Ragdoll"), 'Rope' ))>0 then return nil end
 
@@ -749,7 +751,7 @@ function PlayerMeta:CreateRagdoll(attacker,dmginfo) --изменение фун�
             self.curweapon = nil
             if table.HasValue(Guns,self:GetActiveWeapon():GetClass()) then
 				self.curweapon = self:GetActiveWeapon():GetClass()
-				SpawnWeapon(self,self:GetActiveWeapon():Clip1()).rag = rag
+				--SpawnWeapon(self,self:GetActiveWeapon():Clip1()).rag = rag
 			end
 			rag.curweapon = self.curweapon
         end

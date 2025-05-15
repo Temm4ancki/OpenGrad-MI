@@ -158,14 +158,27 @@ end)
 
 function SWEP:HUDShouldDraw( hud )
 	if hud == "CHudWeaponSelection" then
-			return not self:GetNWBool("Sighted")
+		return not self:GetNWBool("Sighted")
 	end
 end
+
+-- суицид реален?
+if SERVER then
+	concommand.Add("suicide",function(ply)
+		if not ply:Alive() then return end
+		ply.suiciding = not ply.suiciding
+		ply:SetNWBool("Suiciding",ply.suiciding)
+	end)
+end
+
+hook.Add("PlayerDeath","suciding",function(ply)
+	ply.suiciding = false
+	ply:SetNWBool("Suiciding",false)
+end)
 
 -- Think Function
 local zeroAng = Angle(0,0,0)
 function SWEP:Step()
-
 	ply = self:GetOwner()
 	self.Sightded = self:GetNWBool("Sighted")
 	-- trDistance for walls
@@ -176,10 +189,11 @@ function SWEP:Step()
 	} )
 	local trdistance = math.Clamp((tr.HitPos:Distance(tr.StartPos)/40),0,1)
 
+
 	-- SightUp function
 
 	if SERVER then
-		self:SetNWBool("Sighted",trdistance > .9 and (!self.Osmotr) and ply:KeyDown(IN_ATTACK2))
+		self:SetNWBool("Sighted",trdistance > .9 and (!self.Osmotr) and ply:KeyDown(IN_ATTACK2)) 
 	end
 
 	if (!self.Sightded and !self:GetNWBool("Reloading") or ply:IsSprinting()) and !self.Osmotr then
@@ -203,30 +217,61 @@ function SWEP:Step()
 		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Hand"),(self.HoldType == "revolver" and Angle(self:GetNWFloat("VisualRecoil")*2.5,0,0)) or Angle(self:GetNWFloat("VisualRecoil")*0.5,0,0),false)		
 	end
 
-	if ply:KeyDown(IN_ALT1) then
-		self:SetHoldType("slam")
-		self.Osmotr = true
-	elseif self:GetHoldType() == "slam" then
-		self:SetHoldType(self.HoldType)
-		self.Osmotr = false
-	end
 	-- Client recoil 
 
 	if CLIENT and ply == LocalPlayer() then
-        viewShootPunch = easedLerpAng1(0.01,viewShootPunch,Angle(0,0,0))
+        viewShootPunch = easedLerpAng1(0.1,viewShootPunch,Angle(0,0,0))
 		self.eyeSpray = self.eyeSpray or Angle(0,0,0)
-		self.Finger = Lerp(0.25, self.Finger or 0, (( ply:KeyDown(IN_ATTACK) and -1 ) or 0))
+		self.Finger = Lerp(0.25, self.Finger or 0, ( ply:KeyDown(IN_ATTACK) and -1 ) or 0)
 		
 		ply:SetEyeAngles(ply:EyeAngles() + self.eyeSpray)
-		ply:ManipulateBoneAngles( ply:LookupBone("ValveBiped.Bip01_R_Finger11"), Angle(0,self.Finger*40,0), false )
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Finger11"), Angle(0,self.Finger*40,0), false )
 		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Hand"),(self.Osmotr and (self.HoldType == "revolver" and (Angle(15,0,math.sin(CurTime()*0.5)*55)) or (Angle(15,-25,math.sin(CurTime()*0.5)*55))) )or Angle(0,0,0),false)
 		
 		self.eyeSpray = LerpAngle(0.2,self.eyeSpray,Angle(0,0,0))
 	end
 
+	-- СУИЦИД РЕЛЕН
+-- ValveBiped.Bip01_R_Hand
+-- ValveBiped.Bip01_R_Forearm
+-- ValveBiped.Bip01_R_Foot
+-- ValveBiped.Bip01_R_Thigh
+-- ValveBiped.Bip01_R_Calf
+-- ValveBiped.Bip01_R_Shoulder
+-- ValveBiped.Bip01_R_Elbow
+
+	if ply:GetNWBool("Suiciding") then
+		if !self.TwoHands then
+			self:SetHoldType("normal")
+			ply:ManipulateBoneAngles( ply:LookupBone("ValveBiped.Bip01_R_Forearm"), Angle(0,-150,0), false )
+		else
+			self:SetHoldType("revolver")
+			ply:ManipulateBoneAngles( ply:LookupBone("ValveBiped.Bip01_R_Hand"), Angle(0,190,0), false )
+		end
+	else
+		self:SetHoldType(self.HoldType)
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Forearm"), Angle(0,0,0), false )
+		ply:ManipulateBoneAngles( ply:LookupBone("ValveBiped.Bip01_R_Hand"), Angle(0,0,0), false )
+	end
+
+	local walkSpeed = ply:GetWalkSpeed()
+
+	-- alt button
+	print(walkSpeed)
+	if ply:KeyDown(IN_WALK) then ply:SetWalkSpeed(walkSpeed*1.1) else ply:SetWalkSpeed(walkSpeed) end
+
 end
 function SWEP:SecondaryAttack()
 end
+
+concommand.Add("penis",function (ply)
+	timer.Simple(0.1,function ()
+		ply:ManipulateBoneAngles( ply:LookupBone("ValveBiped.Bip01_R_Forearm"), Angle(-20,-20,0),true)
+		ply:ManipulateBoneAngles( ply:LookupBone("ValveBiped.Bip01_L_Forearm"), Angle(20,-50,0),true)
+	end)
+	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Forearm"), Angle(0,0,0), true )
+	ply:ManipulateBoneAngles( ply:LookupBone("ValveBiped.Bip01_L_Forearm"), Angle(0,0,0),true)
+end)
 
 -- Holster bone manipulate remover
 function SWEP:Holster()
@@ -236,6 +281,8 @@ function SWEP:Holster()
 		ply:ManipulateBonePosition(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"),Vector(0,0,0),true)
 		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"),Angle(0,0,0),true)
 		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_Head1"),Angle(0,0,0),true)	
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Forearm"), Angle(0,0,0), true )
+		ply:ManipulateBoneAngles( ply:LookupBone("ValveBiped.Bip01_L_Forearm"), Angle(0,0,0),true)
 	end)
 	self.Clavicle = Angle(0,0,0)
 	self.Head = Angle(0,0,0)
@@ -250,4 +297,8 @@ hook.Add( "PlayerDeath", "Resetbones", function( ply )
 	ply:ManipulateBonePosition(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"),Vector(0,0,0),true)
 	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"),Angle(0,0,0),true)
 	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_Head1"),Angle(0,0,0),true)
+	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Forearm"), Angle(0,0,0), true )
+
 end )
+
+

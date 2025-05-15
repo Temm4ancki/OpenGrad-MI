@@ -18,10 +18,6 @@ function css.StartRoundSV()
 
 end
 
-function css.SpawnBombSite()
-	return ReadDataMap("bomb_site")
-end
-
 function css.RoundEndCheck()
 
 	local TAlive = tdm.GetCountLive(team.GetPlayers(1))

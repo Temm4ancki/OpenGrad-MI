@@ -18,9 +18,3 @@ function SWEP:ReloadSound()
         end)
     end
 end
-
-skins = {
-	superadmin = true,
-	premium = true,
-	admin = true
-}

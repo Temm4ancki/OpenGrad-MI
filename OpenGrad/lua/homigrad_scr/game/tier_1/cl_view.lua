@@ -67,6 +67,10 @@
 --  &&&&&&&&&&&&&&&&&&&&&&&@@@@@@&&&@@@@@@@@@@@@@&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&@@&&&&&&&&&&&&&&&&&&@@@@&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&/../*#/%&&@&&&&&
 																						 
 
+weaponClasses = {
+	
+}
+
 
 local t = {}
 local n, e, r, o
@@ -440,9 +444,9 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 		scope = IsValid(wep) and wep.IsScope and wep:IsScope() and not wep.isClose
 		if scope then
 			if lply:KeyDown(IN_WALK) then
-				ScopeLerp = LerpFT(0.2,ScopeLerp,0.65)
+				ScopeLerp = LerpFT(0.1,ScopeLerp,0.55)
 			else
-				ScopeLerp = LerpFT(0.2,ScopeLerp,1)
+				ScopeLerp = LerpFT(0.1,ScopeLerp,1)
 			end
 		else
 			ScopeLerp = LerpFT(0.2,ScopeLerp,0)
@@ -455,6 +459,7 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 	
 	if wep and weps[wep:GetClass()] then
 		local weaponClass = wep:GetClass()
+		local muzzle = wep:GetAttachment(wep:LookupAttachment("muzzle"))
 
 		if not RENDERSCENE then
 			local lastShootTime = wep:LastShootTime()
@@ -465,6 +470,9 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 					recoil = math.Rand(0.9,1.1) * (scope and 0.5 or 0.5)
 				end
 			end
+		else
+			vecWep = muzzle.Pos + muzzle.Ang:Up()*-2 - muzzle.Ang:Forward()*20 + muzzle.Ang:Right()*-2
+			angWep = muzzle.Ang + Angle(0,0,0)
 		end
 		
 		local anim_pos = max(startRecoil - CurTime(),0) * 5
@@ -474,7 +482,7 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 
 		if weaponClass == "weapon_glock18" then
 			--Vector(3.85,10,1.45)
-			vecWep = hand.Pos + hand.Ang:Up() * 3.85 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 1.45
+			vecWep = hand.Pos + hand.Ang:Up() * 4.3 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 1.15
 			angWep = hand.Ang + Angle(5,10,0)
 		end
 		if weaponClass == "weapon_glock" then
@@ -647,13 +655,10 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 			vecWep = hand.Pos + hand.Ang:Up() * 3.1 - hand.Ang:Forward() * 6 + hand.Ang:Right() * 0.85
 			angWep = hand.Ang + Angle(-7,0,0)
 		end
-		-- if RENDERSCENE then
-		-- 	local wep = lply:GetActiveWeapon()
-		-- 	local angatt = wep:GetAttachment(wep:LookupAttachment("muzzle")).Ang
-		-- 	angatt:RotateAroundAxis(angatt:Forward(),-90)
-		-- 	angWep = angatt
-		-- 	angWep[3] = 0
-		-- end
+		if string.find(weaponClass,"fumo") then
+			vecWep = hand.Pos + hand.Ang:Up() * 3.1 - hand.Ang:Forward() * 6 + hand.Ang:Right() * 0.85
+			angWep = hand.Ang + Angle(-7,0,0)
+		end
 	end
 
 
@@ -672,7 +677,7 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 
 	-- if lply:InVehicle() or not firstPerson then return end
 
-	if not lply:Alive() or (IsValid(wep) and whitelistweps[wep:GetClass()]) or lply:GetMoveType() == MOVETYPE_NOCLIP then
+	if not lply:Alive() or (IsValid(wep) and (whitelistweps[wep:GetClass()] or string.find(wep:GetClass(),"fumo"))) or lply:GetMoveType() == MOVETYPE_NOCLIP then
 		view.origin = ply:EyePos()
 		view.angles = ply:EyeAngles()
 		view.drawviewer = false
@@ -894,7 +899,7 @@ hook.Add("RenderScreenspaceEffects","BloomEffect-homigrad",function()
 	if !LocalPlayer():Alive() and timer.Exists("DeathCam") then
 		DrawMotionBlur(0.5,0.3,0.02)
 		DrawSharpen( 1, 0.2 )
-		local k3 = 15
+		local k3 = 2
 		DrawCA(4 * k3, 2 * k3, 0, 2 * k3, 1 * k3, 0)
 		tab2["$pp_colour_colour"] = 0.2
 		tab2[ "$pp_colour_mulb" ] = 0.5
@@ -908,7 +913,7 @@ hook.Add("RenderScreenspaceEffects","BloomEffect-homigrad",function()
 			yalign = TEXT_ALIGN_CENTER,
 			color = Color(255,35,35,220)
 		} )
-		LocalPlayer():SetDSP(15)
+		LocalPlayer():SetDSP(1)
 	elseif not LocalPlayer():Alive() then
 		LocalPlayer():SetDSP(1)
 	end

@@ -251,7 +251,7 @@ hook.Add("HUDPaint","hitpos",function()
 		local att = wep:GetAttachment(wep:LookupAttachment("muzzle"))
 		if not att then return end
 
-		if wep.IsScope and wep:IsScope() then return end
+		if wep.IsScope and wep:IsScope() and !ply:KeyDown(IN_WALK) then return end
 		
 		local pos = att.Pos
 		local ang = att.Ang
@@ -270,7 +270,9 @@ hook.Add("HUDPaint","hitpos",function()
 		local hit = tr.HitPos:ToScreen()
 
 		surface.SetDrawColor( 255, 255, 255, 150 )
-		surface.DrawRect(hit.x - 2.5,hit.y - 2.5,5,5)
+		if ply:Alive() or RENDERSCENE then
+			surface.DrawRect(hit.x - 2.5,hit.y - 2.5,5,5)
+		end
 	end
 end)
 

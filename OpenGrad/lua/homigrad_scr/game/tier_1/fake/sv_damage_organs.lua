@@ -31,7 +31,7 @@ hook.Add("HomigradDamage","Organs",function(ply,hitgroup,dmginfo,rag,armorMul,ar
             ply.LeftArm = math.min(0.6,ply.LeftArm - sub)
             if ply.msgLeftArm < CurTime() then
                 ply.msgLeftArm = CurTime() + 1
-                ply:ChatPrint("Правая рука повреждена.")
+                ply:ChatPrint("Правая рука сломана.")
                 ent:EmitSound("NPC_Barnacle.BreakNeck",70,65,0.4,CHAN_ITEM)
             end
         end
@@ -40,7 +40,7 @@ hook.Add("HomigradDamage","Organs",function(ply,hitgroup,dmginfo,rag,armorMul,ar
             ply.RightArm = math.max(0.6,ply.RightArm - sub)
             if ply.msgRightArm < CurTime() then
                 ply.msgRightArm = CurTime() + 1
-                ply:ChatPrint("Левая рука повреждена.")
+                ply:ChatPrint("Левая рука сломана.")
                 ent:EmitSound("NPC_Barnacle.BreakNeck",70,65,0.4,CHAN_ITEM)
             end
         end
@@ -49,7 +49,7 @@ hook.Add("HomigradDamage","Organs",function(ply,hitgroup,dmginfo,rag,armorMul,ar
             ply.LeftLeg = math.max(0.6,ply.LeftLeg - sub)
             if ply.msgLeftLeg < CurTime() then
                 ply.msgLeftLeg = CurTime() + 1
-                ply:ChatPrint("Левая нога повреждена.")
+                ply:ChatPrint("Левая нога сломана.")
                 ent:EmitSound("NPC_Barnacle.BreakNeck",70,65,0.4,CHAN_ITEM)
             end
         end
@@ -58,7 +58,7 @@ hook.Add("HomigradDamage","Organs",function(ply,hitgroup,dmginfo,rag,armorMul,ar
             ply.RightLeg = math.max(0.6,ply.RightLeg - sub)
             if ply.msgRightLeg < CurTime() then
                 ply.msgRightLeg = CurTime() + 1
-                ply:ChatPrint("Правая нога повреждена.")
+                ply:ChatPrint("Правая нога сломана.")
                 ent:EmitSound("NPC_Barnacle.BreakNeck",70,65,0.4,CHAN_ITEM)
             end
         end

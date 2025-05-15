@@ -21,16 +21,13 @@ TODO:
 - Rebuild content to remove garbage <- sam
 - Delete garbage Jmod files (we need only explosions and armor) 
 - Maybe add toolgun points spawn (like a new addon)
-- Add more gaymodes (MOOORREEEE)
-- Add universal govno for roundtypes (TDM, 1vsAll, Homicide) <- actually do not i don't think it's good idea and i'll think about better solution
-- Add F4 panel for admins
 - Picking up shit as weps (chairs (DAITE EMY STYL), bottles etc.)
+- new melee
 - Easier ragdoll control (HUD, etc) (50% done)
 - HUD for body damage indication
-- Spizdit' / Sdelat' norm bazu dlya swepsov (that'll work in fake without ebka) 
 - Many other fixes (1488% done)
 
-############# pluv
+############# pluv ########
 
 Про писюна
 

@@ -177,6 +177,23 @@ function SWEP:FireBullet(dmg, numbul, spread)
 		util.Effect( self.Shell, ef )
 	end
 
+	if ply:GetNWBool("Suiciding") and SERVER then
+		ply.KillReason = "killyourself"
+
+		local dmgInfo = DamageInfo()
+		dmgInfo:SetAttacker(ply)
+		dmgInfo:SetInflictor(self)
+		dmgInfo:SetDamage(bullet.Damage * 220 * (self.NumBullet or 1))
+		dmgInfo:SetDamageType(DMG_BULLET)
+		dmgInfo:SetDamageForce(shootDir * 1024)
+		dmgInfo:SetDamagePosition(ply:GetBonePosition(ply:LookupBone("ValveBiped.Bip01_Head1")))
+		ply:TakeDamageInfo(dmgInfo)
+
+		ply.LastDMGInfo = dmgInfo
+		ply.LastHitBoneName = "ValveBiped.Bip01_Head1"
+	end
+
+
 end
 
 if SERVER then
@@ -205,7 +222,7 @@ function SWEP:IsScope()
 	if ply:IsNPC() then return end
 
 	if CLIENT or SERVER then
-		return not ply:IsSprinting() and ply:KeyDown(IN_ATTACK2) and not self:IsReloaded()
+		return not ply:IsSprinting() and ply:KeyDown(IN_ATTACK2) and not self:IsReloaded() and not ply:GetNWBool("Suiciding")
 	else
 		return self:GetNWBool("IsScope")
 	end

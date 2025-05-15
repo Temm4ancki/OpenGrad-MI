@@ -3,7 +3,6 @@ dristec = dristec or {}
 
 local function AddFile(File, dir)
     local fileSide = string.lower(string.Left(File, 3))
-    
     if SERVER and fileSide == "sv_" then
         include(dir..File)
     elseif fileSide == "sh_" then

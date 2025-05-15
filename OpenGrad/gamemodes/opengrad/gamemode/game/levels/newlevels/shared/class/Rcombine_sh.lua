@@ -3,7 +3,6 @@ local CLASS = player.RegClass("combinereal")
 local function MewMath(first, second)
     temp1 = math.random(first, second)
     temp2 = math.random(first, second)
-    print(temp1, temp2)
     if temp1 ~= temp2 then return temp1
     else return temp2 end
 end
@@ -135,17 +134,12 @@ function CLASS.CanLisenInput(input,output,isChat)
 end
 
 -- Я ЕБАЛ ЭТОТ КОД. КТО-ТО ПЕРЕДЕЛАЙТЕ ПЛИЗ
+-- что ты хочешь чтобы здесь переделали :thinking:
 function CLASS.HomigradDamage(self, hitGroup, dmgInfo, rag)
     if (self.delaysoundpain or 0) > CurTime() then return end
-    local otrub = self.Otrub
-    --print("self:", self)
-    --print("hitGroup:", hitGroup)
-    --print("dmgInfo:", dmgInfo)
-    --print("rag:", rag)
-    --print("OTRUB:", otrub)
 
+    local otrub = self.Otrub
     local health = self:Health()-1.5
-    --print(health)
     local notcritical = 60
     local critical = 30
 
@@ -192,8 +186,6 @@ function CLASS.HomigradDamage(self, hitGroup, dmgInfo, rag)
             pos:EmitSound("hl2dmreal/pain_" .. math.random(1, 10) .. ".ogg")
         end
     end
-    --print("")
-    --print("")
 end
 
 function CLASS.GuiltLogic(self,ply) return false end
