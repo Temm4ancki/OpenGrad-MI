@@ -1,32 +1,39 @@
 function drawRoundMode(mode, subMode, time, color)
     if colorSub == nil then colorSub = color end
     local alpha = math.Clamp(time - 0.5, 0, 1) * 255
+    colorMode = Color(color.r - 50, color.g - 50, color.b - 50, alpha)
+    colorSubMode = Color(color.r, color.g, color.b, alpha)
 
-    colorMode = Color(color.r-50,color.g-50,color.b-50,alpha)
-    colorSubMode = Color(color.r,color.g,color.b,alpha)
-
-    draw.DrawText(subMode, "HomigradFontBig", ScrW() / 2, ScrH() / 6, colorSubMode, TEXT_ALIGN_CENTER )
-    draw.DrawText(mode, "HomigradFontBig", ScrW() / 2, ScrH() / 8, colorMode , TEXT_ALIGN_CENTER )
+    draw.DrawText(subMode, "HomigradFontBig", ScrW() / 2, ScrH() / 6, colorSubMode, TEXT_ALIGN_CENTER)
+    draw.DrawText(mode, "HomigradFontBig", ScrW() / 2, ScrH() / 8, colorMode, TEXT_ALIGN_CENTER)
 end
 
 function drawRoundStart(role, desc, time, color, typingEffect)
     local alpha = math.Clamp(time - 0.5, 0, 1) * 255
-    if color == 1 then 
-        colorDesc = Color(55,55,155,alpha) -- innocent CT
-        colorRole = Color(41,41,192,alpha)
-    elseif color == 2 then 
-        colorDesc = Color(155,55,55,alpha) -- traitor
-        colorRole = Color(192,41,41,alpha)
-    elseif color == 3 then 
-        colorDesc = Color(55,55,155,alpha)
-        colorRole = Color(155,155,155,alpha)
-    else    
-        colorDesc = Color(color.r,color.g,color.b,alpha)
-        colorRole = Color(color.r+30,color.g+30,color.b+30,alpha)
+    if color == 1 then
+        colorDesc = Color(55, 55, 155, alpha) -- innocent CT
+        colorRole = Color(41, 41, 192, alpha)
+    elseif color == 2 then
+        colorDesc = Color(155, 55, 55, alpha) -- traitor
+        colorRole = Color(192, 41, 41, alpha)
+    elseif color == 3 then
+        colorDesc = Color(55, 55, 155, alpha)
+        colorRole = Color(155, 155, 155, alpha)
+    else
+        colorDesc = Color(color.r, color.g, color.b, alpha)
+        colorRole = Color(color.r + 30, color.g + 30, color.b + 30, alpha)
     end
 
-    draw.DrawText(role, "HomigradFontLargeBig", ScrW() / 2, ScrH() / 2-60, colorRole , TEXT_ALIGN_CENTER )
-    draw.DrawText(desc, "HomigradFontBig", ScrW() / 2, ScrH() / 1.2, colorDesc, TEXT_ALIGN_CENTER )
+    draw.DrawText(role, "HomigradFontLargeBig", ScrW() / 2, ScrH() / 2 - 60, colorRole, TEXT_ALIGN_CENTER)
+    draw.DrawText(desc, "HomigradFontBig", ScrW() / 2, ScrH() / 1.2, colorDesc, TEXT_ALIGN_CENTER)
+end
+
+function drawRoundJob(time)
+    local alpha = math.Clamp(time - 0.5, 0, 1) * 255
+    local lply = LocalPlayer()
+    local jobcolor = Color(255, 255, 255, alpha)
+
+    draw.DrawText("Внешность - " .. homicide.GetPlayerModel(lply), "HomigradFont", ScrW() / 2, ScrH() / 1.9, jobcolor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 end
 
 function DrawAnimatedLogo(material, duration, startX, targetX, startY, targetY, time)
@@ -61,9 +68,8 @@ function DrawAnimatedLogo(material, duration, startX, targetX, startY, targetY, 
     end
 end
 
-function SpawnEblan(ply,wep)
+function SpawnEblan(ply, wep)
     for _, wepa in ipairs(wep) do
         ply:Give(wepa)
     end
 end
-

@@ -167,8 +167,9 @@ function homicide.HUDPaint_RoundLeft(white2)
         else
             drawRoundMode("Homicide",roundTypes[roundType],startRound,Color(55,55,155))
         end
-        
-        draw.SimpleText("Внешность - "..homicide.GetPlayerModel(lply),"HomigradFont",ScrW()/2.05,ScrH()/1.9,white_gray,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
+
+        drawRoundJob(startRound)
+        --draw.SimpleText("Внешность - "..homicide.GetPlayerModel(lply),"HomigradFont",ScrW()/2.05,ScrH()/1.9,white_gray,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
         --draw.SimpleText("Профессия - "..jobPool[math.random(#jobPool)],"HomigradFont",ScrW()/2.05,ScrH()/1.8,white_gray,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
 
         if homicide.roundType == 1 then
