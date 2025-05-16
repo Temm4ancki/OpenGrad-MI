@@ -589,8 +589,10 @@ local function CreateArmor(ragdoll,info)
 	local Index = ragdoll:LookupBone(item.bon)
 	if not Index then return end
 
-	local Pos,Ang = (ply or ragdoll):GetBonePosition(Index)
+	local Pos,Ang = (ragdoll or ply):GetBonePosition(Index)
 	if not Pos then return end
+
+	print(item,Index,Pos,Ang)
 
 	local ent = ents.Create(item.ent)
 
