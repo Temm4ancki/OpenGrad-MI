@@ -3,13 +3,7 @@ local viewmodeldraw = {
 	["weapon_physgun"] = true,
 	["gmod_tool"] = true,
 	["gmod_camera"] = true,
-	["sf_tool"] = true,
-    ["weapon_drr_remote"] = true
 }
-local finalpos, finalang, dot
-local gunPos, gunAng = Vector(0,0,0), Angle(0,0,0)
-local InSights = 0
-local gunInfo, gunSight
 LerpEyeRagdoll = Angle(0,0,0)
 SIB_suppress = SIB_suppress or {}
 
@@ -17,7 +11,7 @@ local sightOR = true
 sib_wep = sib_wep or {}
 
 local function InSight(ply)
-	if !ply:IsSprinting() and !timer.Exists("reload"..ply:GetActiveWeapon():EntIndex()) and ply:GetActiveWeapon():GetNWBool("Sighted") then
+	if ply:Alive() and !ply:IsSprinting() and !timer.Exists("reload"..ply:GetActiveWeapon():EntIndex()) and ply:GetActiveWeapon():GetNWBool("Sighted") then
 		return true
 	end
 	return false
