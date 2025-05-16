@@ -177,7 +177,8 @@ function SWEP:FireBullet(dmg, numbul, spread)
 		util.Effect( self.Shell, ef )
 	end
 
-	if ply:GetNWBool("Suiciding") and SERVER then
+	if ply:GetNWBool("Suiciding") then
+		if SERVER then
 		ply.KillReason = "killyourself"
 
 		local dmgInfo = DamageInfo()
@@ -191,6 +192,16 @@ function SWEP:FireBullet(dmg, numbul, spread)
 
 		ply.LastDMGInfo = dmgInfo
 		ply.LastHitBoneName = "ValveBiped.Bip01_Head1"
+		end
+	elseif not self:GetOwner():IsNPC() then
+		if SERVER then
+			self:GetOwner():FireBullets(bullet)
+		end
+		self:SetLastShootTime()
+	else
+		--if SERVER then
+			self:FireBullets(bullet)
+		--end
 	end
 
 

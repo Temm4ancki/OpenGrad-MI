@@ -104,13 +104,52 @@ function SWEP:Reload()
 	end
 end
 
+function SWEP:Melee()
+    local ply = self.Owner
+    local tr = util.TraceHull({
+        start = ply:GetShootPos(),
+        endpos = ply:GetShootPos() + ply:GetAimVector() * 75,
+        filter = ply,
+        mins = Vector(-10, -10, -10),
+        maxs = Vector(10, 10, 10),
+    })
+
+    if tr.Hit then
+        local ent = tr.Entity 
+        if IsValid(ent) and ent.TakeDamage ~= nil then
+            local dmg = DamageInfo()
+            dmg:SetDamage(10)
+            dmg:SetAttacker(ply)
+            dmg:SetInflictor(self)
+            dmg:SetDamageType(DMG_CLUB)
+            ent:TakeDamageInfo(dmg)
+			
+            self:EmitSound("weapons/shove_hit.wav")
+		else
+            self:EmitSound("weapons/shove_hit.wav")
+        end
+    else
+        self:EmitSound("weapons/shove_01.wav")
+    end
+end
+
 function SWEP:PrimaryAttack()
 	self.ShootNext = self.NextShot or NextShot
 	if not IsFirstTimePredicted() then return end
 	if self.NextShot > CurTime() then return end
 	if timer.Exists("reload"..self:EntIndex()) then return end
 	if self.Owner:IsSprinting() then return end
-    if !self.Sightded then return end
+    if !self.Sightded and !ply:GetNWBool("Suiciding") then 
+		if !ply:Alive() then return end
+		ply:AnimResetGestureSlot(GESTURE_SLOT_ATTACK_AND_RELOAD)
+		timer.Create("modularMelee",.1,1,function()
+			ply:AnimRestartGesture(GESTURE_SLOT_ATTACK_AND_RELOAD,ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE, true)
+			self:Melee()
+		end)
+		self.NextShot = CurTime()+self.ShootWait*12
+		return
+	end
+
 	if self:Clip1()<1 then 
 		self:EmitSound("snd_jack_hmcd_click.wav",55,100,1,CHAN_ITEM,0,0)
 		self.NextShot = CurTime() + self.ShootWait return end
@@ -127,8 +166,8 @@ function SWEP:PrimaryAttack()
 	else
 		self:EmitSound(self.Primary.Sound,100,math.random(100,120),1,CHAN_WEAPON,0,0)
 	end
-	--self.Forearm = self.Forearm + Angle(self.Primary.Force/10,-self.Primary.Force/10,0)--RotateAroundAxis(ply:EyeAngles():Right()*1,self.Primary.Force/5)
-	--self.Forearm:RotateAroundAxis(ply:EyeAngles():Up()*-1,self.Primary.Force/10) --+ Angle(1,-0.5,-2)*self.Primary.Force/30
+	-- self.Forearm = self.Forearm + Angle(self.Primary.Force/10,-self.Primary.Force/10,0)--RotateAroundAxis(ply:EyeAngles():Right()*1,self.Primary.Force/5)
+	-- self.Forearm:RotateAroundAxis(ply:EyeAngles():Up()*-1,self.Primary.Force/10) --+ Angle(1,-0.5,-2)*self.Primary.Force/30
 
 	local dmg = self.Primary.Damage--self.TwoHands and self.Primary.Damage * 2 or self.Primary.Damage
     self:FireBullet(dmg, 1, 5)
@@ -232,14 +271,6 @@ function SWEP:Step()
 	end
 
 	-- СУИЦИД РЕЛЕН
--- ValveBiped.Bip01_R_Hand
--- ValveBiped.Bip01_R_Forearm
--- ValveBiped.Bip01_R_Foot
--- ValveBiped.Bip01_R_Thigh
--- ValveBiped.Bip01_R_Calf
--- ValveBiped.Bip01_R_Shoulder
--- ValveBiped.Bip01_R_Elbow
-
 	if ply:GetNWBool("Suiciding") then
 		if !self.TwoHands then
 			self:SetHoldType("normal")
@@ -251,26 +282,30 @@ function SWEP:Step()
 	else
 		self:SetHoldType(self.HoldType)
 		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Forearm"), Angle(0,0,0), false )
-		ply:ManipulateBoneAngles( ply:LookupBone("ValveBiped.Bip01_R_Hand"), Angle(0,0,0), false )
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Hand"), Angle(0,0,0), false )
 	end
 
 end
 function SWEP:SecondaryAttack()
 end
 
-concommand.Add("penis",function (ply)
-	timer.Simple(0.1,function ()
-		ply:ManipulateBoneAngles( ply:LookupBone("ValveBiped.Bip01_R_Forearm"), Angle(-20,-20,0),true)
-		ply:ManipulateBoneAngles( ply:LookupBone("ValveBiped.Bip01_L_Forearm"), Angle(20,-50,0),true)
-	end)
-	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Forearm"), Angle(0,0,0), true )
-	ply:ManipulateBoneAngles( ply:LookupBone("ValveBiped.Bip01_L_Forearm"), Angle(0,0,0),true)
-end)
+-- concommand.Add("penis",function ()
+-- 	timer.Simple(.1,function ()
+-- 		ply:ManipulateBoneAngles( ply:LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(0,30,0), true )
+-- 		ply:ManipulateBoneAngles( ply:LookupBone("ValveBiped.Bip01_R_Upperarm"), Angle(30,0,0), true )
+-- 		ply:ManipulateBoneAngles( ply:LookupBone("ValveBiped.Bip01_R_Forearm"), Angle(0,-140,0), true )
+-- 	end)
+-- 	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(0,0,0), true )
+-- 	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Upperarm"), Angle(0,0,0), true )
+-- 	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Forearm"), Angle(0,0,0), true )
+
+-- end)
 
 -- Holster bone manipulate remover
 function SWEP:Holster()
 	local ply = self:GetOwner()
-	timer.Simple(0.1,function()
+
+	timer.Simple(0.1,function() -- убираем наухй все манипуляции с костями
 		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Hand"),Angle(0,0,0),true)	
 		ply:ManipulateBonePosition(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"),Vector(0,0,0),true)
 		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"),Angle(0,0,0),true)
@@ -282,6 +317,7 @@ function SWEP:Holster()
 	self.Head = Angle(0,0,0)
 	self:SetNWFloat("VisualRecoil",0)
 	self:SetNWBool("Reloading",false)
+	self:EmitSound("act3/uni-holster.wav")
 	return true
 end
 

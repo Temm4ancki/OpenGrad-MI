@@ -913,7 +913,7 @@ hook.Add("RenderScreenspaceEffects","BloomEffect-homigrad",function()
 			yalign = TEXT_ALIGN_CENTER,
 			color = Color(255,35,35,220)
 		} )
-		LocalPlayer():SetDSP(1)
+		LocalPlayer():SetDSP(7)
 	elseif not LocalPlayer():Alive() then
 		LocalPlayer():SetDSP(1)
 	end

@@ -270,7 +270,7 @@ hook.Add("HUDPaint","hitpos",function()
 		local hit = tr.HitPos:ToScreen()
 
 		surface.SetDrawColor( 255, 255, 255, 150 )
-		if ply:Alive() or RENDERSCENE then
+		if ply:Alive() then
 			surface.DrawRect(hit.x - 2.5,hit.y - 2.5,5,5)
 		end
 	end

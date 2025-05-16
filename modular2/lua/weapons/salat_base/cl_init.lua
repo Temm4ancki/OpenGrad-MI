@@ -17,9 +17,9 @@ net.Receive("huysound",function(len)
 	if ent:IsValid() and dist < 4000 then
 		ent:EmitSound(sound,100,math.random(90,110),1,CHAN_WEAPON,0,0)
 	elseif ent:IsValid() then
-        timer.Simple(dist/45000,function()
-		    ent:EmitSound(farsound,120,math.random(90,110),1,CHAN_WEAPON,0,0)
-        end)
+		timer.Simple(dist/45000,function()
+			ent:EmitSound(farsound,120,math.random(90,110),1,CHAN_WEAPON,0,0)
+		end)
 	end
 end)
 
@@ -69,33 +69,20 @@ function surface.DrawTexturedRectRotatedPoint( x, y, w, h, rot, x0, y0 )
 end
 
 function SWEP:DrawHUD()
-    if !self.DrawScope then return end
-    ply = self:GetOwner()
-    local hand = ply:GetAttachment(ply:LookupAttachment("anim_attachment_rh"))
-    local muzzle = self:GetAttachment(self:LookupAttachment("muzzle"))
-    local rt = {
-        x = 0,
-        y = 0,
-        w = 512,
-        h = 512,
-        angles = muzzle.Ang+self.ScopeAdjust,
-        origin = muzzle.Pos+self.addPos,
-        drawviewmodel = false,
-        fov = self.ScopeFov,
-        znear = 1,
-        zfar = 26000
-    }
-    rt.angles[3] = rt.angles[3] -180
-    render.PushRenderTarget(self.rtmat, 0, 0, 512, 512)
-        local old = DisableClipping(true)
-        render.Clear(1,1,1,255)
-        render.RenderView( rt )
+    local ply = LocalPlayer()
+    if not IsValid(ply) then return end
 
-        cam.Start2D()
-            surface.SetDrawColor( 255, 255, 255, 255 ) -- Set the drawing color
-            surface.SetMaterial( self.ScopeMat ) -- Use our cached material
-            surface.DrawTexturedRectRotated( 256, 256, 512, 512, self.ScopeRot or 0 ) -- Actually draw the rectangl
-        cam.End2D()
-        DisableClipping(old)
-    render.PopRenderTarget()
+    local wep = ply:GetActiveWeapon()
+    if not IsValid(wep) or not wep:Clip1() or wep:Clip1() < 0 then return end
+
+    local clip = wep:Clip1()
+    local reserve = ply:GetAmmoCount(wep:GetPrimaryAmmoType())
+
+    draw.SimpleTextOutlined("" .. clip .. " / " .. reserve, 
+        "DermaLarge",              
+        ScrW() /2, ScrH() /1.1, 
+        Color(255, 255, 255, 255), 
+        TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM,
+        1, Color(0, 0, 0, 200)     
+    )
 end

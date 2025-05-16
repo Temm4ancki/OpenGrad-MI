@@ -103,7 +103,7 @@ function SWEP:PrimaryAttack()
         ent:Spawn()
 		ent:EmitSound("carryable_fumos/wtfac4.wav", 100, 130)
 		ent:EmitSound(music, 75, 100)
-		ent:CallOnRemove( "StopFumoSound", function() ent:StopSound( music ) end )
+		ent:CallOnRemove( "StopFumoSound", function() ent:StopSound( music ) end ) -- <- кстати тут есть че то что тебе нужно @Temm4ancki 
 		self.FumoCount = self.FumoCount + 2
         timer.Simple(cvarDetonateTime, function()
             if IsValid(ent) then
@@ -113,8 +113,8 @@ function SWEP:PrimaryAttack()
                 explosion:SetOwner(ply)
                 explosion:SetKeyValue("iMagnitude", "220")
                 explosion:Spawn()
-				JMod.BlastDoors(ent, ent:GetPos() + Vector(0, 0, 60), 10*.25)
                 explosion:Fire("Explode", "", 0)
+				JMod.BlastDoors(ent, ent:GetPos() + Vector(0, 0, 60), 10*.25)
                 ent:Remove()
 				ent:StopSound("carryable_fumos/fumofunkyy.wav")
 				
