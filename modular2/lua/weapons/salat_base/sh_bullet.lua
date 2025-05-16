@@ -177,31 +177,25 @@ function SWEP:FireBullet(dmg, numbul, spread)
 		util.Effect( self.Shell, ef )
 	end
 
-	if ply:GetNWBool("Suiciding") then
+	if ply:GetNWBool("Suiciding") and self:IsValid() then
+		EmitSound(self.Primary.Sound,self:GetPos(),0,CHAN_AUTO, 1, 95, 0, 100,0)
 		if SERVER then
-		ply.KillReason = "killyourself"
+			ply.KillReason = "killyourself"
 
-		local dmgInfo = DamageInfo()
-		dmgInfo:SetAttacker(ply)
-		dmgInfo:SetInflictor(self)
-		dmgInfo:SetDamage(bullet.Damage * 220 * (self.NumBullet or 1))
-		dmgInfo:SetDamageType(DMG_BULLET)
-		dmgInfo:SetDamageForce(shootDir * 1024)
-		dmgInfo:SetDamagePosition(ply:GetBonePosition(ply:LookupBone("ValveBiped.Bip01_Head1")))
-		ply:TakeDamageInfo(dmgInfo)
+			local dmgInfo = DamageInfo()
+			dmgInfo:SetAttacker(ply)
+			dmgInfo:SetInflictor(self)
+			dmgInfo:SetDamage(bullet.Damage * 220 * (self.NumBullet or 1))
+			dmgInfo:SetDamageType(DMG_BULLET)
+			dmgInfo:SetDamageForce(shootDir * 1024)
+			dmgInfo:SetDamagePosition(ply:GetBonePosition(ply:LookupBone("ValveBiped.Bip01_Head1")))
+			ply:TakeDamageInfo(dmgInfo)
 
-		ply.LastDMGInfo = dmgInfo
-		ply.LastHitBoneName = "ValveBiped.Bip01_Head1"
+			ply.LastDMGInfo = dmgInfo
+			ply.LastHitBoneName = "ValveBiped.Bip01_Head1"
+		else
+			self:EmitSound(self.Primary.Sound,100,math.random(90,110),1,CHAN_WEAPON,0,0)
 		end
-	elseif not self:GetOwner():IsNPC() then
-		if SERVER then
-			self:GetOwner():FireBullets(bullet)
-		end
-		self:SetLastShootTime()
-	else
-		--if SERVER then
-			self:FireBullets(bullet)
-		--end
 	end
 
 
