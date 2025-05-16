@@ -66,6 +66,7 @@
 --  &&&&&&&&&&&&&&&&&&@@@@@@@@@@@@&&&&@@&&&&&&@@@@@@@@@&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&@@&&&&&&&&&&&&&&&&&&&&&&@&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&(%((,#*/#,,(&&&&
 --  &&&&&&&&&&&&&&&&&&&&&&&@@@@@@&&&@@@@@@@@@@@@@&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&@@&&&&&&&&&&&&&&&&&&@@@@&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&/../*#/%&&@&&&&&
 																						 
+if engine.ActiveGamemode() != "opengrad" then return end
 
 weaponClasses = {
 	
@@ -471,8 +472,8 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 				end
 			end
 		else
-			vecWep = muzzle.Pos + muzzle.Ang:Up()*-2 - muzzle.Ang:Forward()*20 + muzzle.Ang:Right()*-2
-			angWep = muzzle.Ang + Angle(0,0,0)
+			vecWep = hand.Pos + hand.Ang:Up()*10 - muzzle.Ang:Forward()*7 + hand.Ang:Right()*-4
+			angWep = hand.Ang + Angle(0,0,0)
 		end
 		
 		local anim_pos = max(startRecoil - CurTime(),0) * 5
@@ -665,7 +666,7 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 	if not RENDERSCENE then
 		LerpEye = LerpAngleFT(smooth_cam:GetBool() and 0.55 or 1,LerpEye,angEye)
 	else
-		angEye = LerpAngleFT(0.15,LerpEye,angEye)
+		angEye = LerpAngleFT(0.15,LerpEye,angEye) or LerpAngle(0.15,LerpEye,angEye)
 	end
 
 	angEye = LerpEye

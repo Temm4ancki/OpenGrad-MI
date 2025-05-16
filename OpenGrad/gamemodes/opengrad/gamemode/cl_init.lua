@@ -251,8 +251,6 @@ hook.Add("HUDPaint","hitpos",function()
 		local att = wep:GetAttachment(wep:LookupAttachment("muzzle"))
 		if not att then return end
 
-		if wep.IsScope and wep:IsScope() and !ply:KeyDown(IN_WALK) then return end
-		
 		local pos = att.Pos
 		local ang = att.Ang
 
