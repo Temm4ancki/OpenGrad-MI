@@ -99,7 +99,6 @@ function hl2dmreal.HUDPaint_RoundLeft(white)
         draw.SimpleText(nick, "Combine", textX, textY, color, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
 
-    CreatePlayerHOMScreen()
     combine_cam()
 end
 
