@@ -254,12 +254,6 @@ function SWEP:Step()
 		ply:ManipulateBoneAngles( ply:LookupBone("ValveBiped.Bip01_R_Hand"), Angle(0,0,0), false )
 	end
 
-	local walkSpeed = ply:GetWalkSpeed()
-
-	-- alt button
-	print(walkSpeed)
-	if ply:KeyDown(IN_WALK) then ply:SetWalkSpeed(walkSpeed*1.1) else ply:SetWalkSpeed(walkSpeed) end
-
 end
 function SWEP:SecondaryAttack()
 end

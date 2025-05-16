@@ -5,7 +5,7 @@ SWEP.Category = "Fumos"
 SWEP.Spawnable	= true
 
 SWEP.PrintName			= "Koishi Fumo"		
-SWEP.Purpose        = "koishi is beatiful"
+SWEP.Purpose        = "во всём виноват rock"
 SWEP.Instructions   = "koishi!!!!!!!!!!!!"
 SWEP.ViewModel = "models/weapons/melee/koishi_v.mdl"
 SWEP.WorldModel = "models/props_junk/koishi_w.mdl"

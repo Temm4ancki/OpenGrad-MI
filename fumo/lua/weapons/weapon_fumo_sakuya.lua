@@ -5,7 +5,7 @@ SWEP.Category = "Fumos"
 SWEP.Spawnable	= true
 
 SWEP.PrintName			= "Sakuya Fumo"		
-SWEP.Purpose        = "sakuya is beatiful"
+SWEP.Purpose        = "КОРТЕСС ЭТО ТЫ??????"
 SWEP.Instructions   = "sakuya!!!!!!!!!!!!"
 SWEP.ViewModel = "models/weapons/melee/sakuya_v.mdl"
 SWEP.WorldModel = "models/props_junk/sakuya_w.mdl"
