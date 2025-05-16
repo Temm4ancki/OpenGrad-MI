@@ -14,7 +14,7 @@ SWEP.BodyHolsterScale = 1.1
 SWEP.HoldtypeHolstered = "normal"
 SWEP.HoldtypeActive = "pistol"
 SWEP.HoldtypeSights = "revolver"
-JMod.ApplyAmmoSpecs(SWEP, "Magnum Pistol Round")
+JMod.ApplyAmmoSpecs(SWEP, "Magnum Pistol Round", 1.3)
 SWEP.HipDispersion = 1100
 SWEP.Primary.ClipSize = 6 -- DefaultClip is automatically set.
 SWEP.ChamberSize = 0 -- revolver lol
@@ -33,14 +33,15 @@ SWEP.Firemodes = {
 }
 
 SWEP.AccuracyMOA = 6 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
-SWEP.FirstShootSound = "snds_jack_gmod/ez_weapons/magnum_revolver.wav"
-SWEP.ShootSound = "snds_jack_gmod/ez_weapons/magnum_revolver.wav"
-SWEP.DistantShootSound = "snds_jack_gmod/ez_weapons/pistol_far.wav"
+SWEP.FirstShootSound = "snds_jack_gmod/ez_weapons/magnum_revolver.ogg"
+SWEP.ShootSound = "snds_jack_gmod/ez_weapons/magnum_revolver.ogg"
+SWEP.DistantShootSound = "snds_jack_gmod/ez_weapons/pistol_far.ogg"
 SWEP.ShootSoundExtraMult = 1
 SWEP.MuzzleEffect = "muzzleflash_pistol_deagle"
 SWEP.ShellModel = "models/jhells/shell_9mm.mdl"
 SWEP.ShellPitch = 80
 SWEP.ShellScale = 3.5
+SWEP.ShellSounds = JMod.ShellSounds.metal
 SWEP.SpeedMult = 1
 SWEP.SightedSpeedMult = .9
 SWEP.SightTime = .35
@@ -94,7 +95,8 @@ SWEP.Animations = {
 	},
 	["fire"] = {
 		Source = "fire",
-		Time = 0.4
+		Time = 0.4,
+		TPAnim = ACT_HL2MP_GESTURE_RANGE_ATTACK_PISTOL
 	},
 	["reload"] = {
 		Source = "reload_empty",
@@ -114,12 +116,12 @@ SWEP.Animations = {
 				p = 110
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/magnumrevolver/open.wav",
+				s = "snds_jack_gmod/ez_weapons/magnumrevolver/open.ogg",
 				t = .65,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/magnumrevolver/out.wav",
+				s = "snds_jack_gmod/ez_weapons/magnumrevolver/out.ogg",
 				t = .75,
 				v = 55
 			},
@@ -130,12 +132,12 @@ SWEP.Animations = {
 				p = 110
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/magnumrevolver/in.wav",
+				s = "snds_jack_gmod/ez_weapons/magnumrevolver/in.ogg",
 				t = 1.9,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/magnumrevolver/close.wav",
+				s = "snds_jack_gmod/ez_weapons/magnumrevolver/close.ogg",
 				t = 2.8,
 				v = 60
 			},

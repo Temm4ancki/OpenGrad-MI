@@ -20,7 +20,7 @@ function css.HUDPaint_RoundLeft(white)
     if startRound > 0 and lply:Alive() then
         if playsound then
             playsound = false
-            surface.PlaySound("round/start/tarkov.ogg")
+            surface.PlaySound("hg_rounds/start/tarkov.ogg")
         end
         lply:ScreenFade(SCREENFADE.IN,Color(0,0,0,255),0.5,0.5)
 

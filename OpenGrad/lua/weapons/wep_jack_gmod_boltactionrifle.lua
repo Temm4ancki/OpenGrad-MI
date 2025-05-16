@@ -29,21 +29,22 @@ SWEP.Firemodes = {
 
 SWEP.ShotgunReload = true
 SWEP.AccuracyMOA = 1 -- real bolt guns are more accurate than this, but whatever... gmod
-SWEP.FirstShootSound = "snds_jack_gmod/ez_weapons/medium_rifle.wav"
-SWEP.ShootSound = "snds_jack_gmod/ez_weapons/medium_rifle.wav"
-SWEP.DistantShootSound = "snds_jack_gmod/ez_weapons/rifle_far.wav"
+SWEP.FirstShootSound = "snds_jack_gmod/ez_weapons/medium_rifle.ogg"
+SWEP.ShootSound = "snds_jack_gmod/ez_weapons/medium_rifle.ogg"
+SWEP.DistantShootSound = "snds_jack_gmod/ez_weapons/rifle_far.ogg"
 SWEP.ShootSoundExtraMult = 1
 SWEP.MuzzleEffect = "muzzleflash_g3"
 SWEP.ShellModel = "models/jhells/shell_762nato.mdl"
 SWEP.ShellPitch = 80
 SWEP.ShellScale = 2
+SWEP.ShellSounds = JMod.ShellSounds.metal
 SWEP.SpeedMult = 1
 SWEP.SightedSpeedMult = .65
 SWEP.SightTime = .6
 
 SWEP.IronSightStruct = {
-	Pos = Vector(-3.75, 0, .5),
-	Ang = Angle(-.1, 0, -5),
+	Pos = Vector(-4.6, 0, 2.5),
+	Ang = Angle(.5, 0, -5),
 	Magnification = 1.1,
 	SwitchToSound = JMod.GunHandlingSounds.aim.inn,
 	SwitchFromSound = JMod.GunHandlingSounds.aim.out
@@ -101,6 +102,7 @@ SWEP.Animations = {
 		Source = "shoot1",
 		Time = 1.1,
 		ShellEjectAt = .4,
+		TPAnim = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2,
 		SoundTable = {
 			{
 				s = "snds_jack_gmod/ez_weapons/bar/lift.wav",
@@ -108,17 +110,17 @@ SWEP.Animations = {
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/bar/pull.wav",
+				s = "snds_jack_gmod/ez_weapons/bar/pull.ogg",
 				t = .3,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/bar/push.wav",
+				s = "snds_jack_gmod/ez_weapons/bar/push.ogg",
 				t = .5,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/bar/lock.wav",
+				s = "snds_jack_gmod/ez_weapons/bar/lock.ogg",
 				t = .6,
 				v = 60
 			}
@@ -135,17 +137,17 @@ SWEP.Animations = {
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/bar/pull.wav",
+				s = "snds_jack_gmod/ez_weapons/bar/pull.ogg",
 				t = .4,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/bar/push.wav",
+				s = "snds_jack_gmod/ez_weapons/bar/push.ogg",
 				t = .7,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/bar/lock.wav",
+				s = "snds_jack_gmod/ez_weapons/bar/lock.ogg",
 				t = .8,
 				v = 60
 			}
@@ -170,7 +172,7 @@ SWEP.Animations = {
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/bar/pull.wav",
+				s = "snds_jack_gmod/ez_weapons/bar/pull.ogg",
 				t = .55,
 				v = 60
 			}
@@ -187,7 +189,7 @@ SWEP.Animations = {
 		HardResetAnim = "reload_end",
 		SoundTable = {
 			{
-				s = "snds_jack_gmod/ez_weapons/bar/insert.wav",
+				s = "snds_jack_gmod/ez_weapons/bar/insert.ogg",
 				t = .1,
 				v = 60
 			}
@@ -201,12 +203,12 @@ SWEP.Animations = {
 		LHIKOut = 0.4,
 		SoundTable = {
 			{
-				s = "snds_jack_gmod/ez_weapons/bar/push.wav",
+				s = "snds_jack_gmod/ez_weapons/bar/push.ogg",
 				t = .2,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/bar/lock.wav",
+				s = "snds_jack_gmod/ez_weapons/bar/lock.ogg",
 				t = .45,
 				v = 60
 			},
@@ -225,12 +227,12 @@ SWEP.Animations = {
 		LHIKOut = 1,
 		SoundTable = {
 			{
-				s = "snds_jack_gmod/ez_weapons/bar/push.wav",
+				s = "snds_jack_gmod/ez_weapons/bar/push.ogg",
 				t = .2,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/bar/lock.wav",
+				s = "snds_jack_gmod/ez_weapons/bar/lock.ogg",
 				t = .45,
 				v = 60
 			},

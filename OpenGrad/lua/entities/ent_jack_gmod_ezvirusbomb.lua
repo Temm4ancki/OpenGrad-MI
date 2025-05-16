@@ -26,7 +26,7 @@ if SERVER then
 		local ent = ents.Create(self.ClassName)
 		ent:SetAngles(Angle(0, 0, 0))
 		ent:SetPos(SpawnPos)
-		JMod.SetOwner(ent, ply)
+		JMod.SetEZowner(ent, ply)
 		ent:Spawn()
 		ent:Activate()
 		--local effectdata=EffectData()
@@ -37,8 +37,7 @@ if SERVER then
 	end
 
 	function ENT:Initialize()
-		self:SetModel("models/jmod/explosives/props_explosive/explosive_butane_can02.mdl")
-		--self:SetModelScale(.5,0)
+		self:SetModel("models/jmod/props/viruscan.mdl")
 		self:SetMaterial("models/props_explosive/virus")
 		self:PhysicsInit(SOLID_VPHYSICS)
 		self:SetMoveType(MOVETYPE_VPHYSICS)
@@ -86,7 +85,7 @@ if SERVER then
 			local Att = dmginfo:GetAttacker()
 
 			if IsValid(Att) and Att:IsPlayer() then
-				JMod.SetOwner(self, Att)
+				JMod.SetEZowner(self, Att)
 			end
 
 			self:Burst()
@@ -94,19 +93,19 @@ if SERVER then
 	end
 
 	function ENT:Use(activator)
-		local State, Alt = self:GetState(), activator:KeyDown(JMod.Config.AltFunctionKey)
+		local State, Alt = self:GetState(), JMod.IsAltUsing(activator)
 
 		if State == STATE_SEALED then
 			if Alt then
-				JMod.SetOwner(self, activator)
-				self:EmitSound("snd_jack_pinpull.wav", 55, 100)
-				self:EmitSound("snd_jack_spoonfling.wav", 55, 100)
+				JMod.SetEZowner(self, activator)
+				self:EmitSound("snd_jack_pinpull.ogg", 55, 100)
+				self:EmitSound("snd_jack_spoonfling.ogg", 55, 100)
 				self:SetState(STATE_TICKING)
 				JMod.Hint(activator, "gas spread")
 
 				timer.Simple(10, function()
 					if IsValid(self) then
-						self:EmitSound("snd_jack_sminepop.wav", 55, 120)
+						self:EmitSound("snd_jack_sminepop.ogg", 55, 120)
 						self:SetState(STATE_VENTING)
 					end
 				end)
@@ -120,24 +119,25 @@ if SERVER then
 	end
 
 	function ENT:EZdetonateOverride(detonator)
-		self:EmitSound("snd_jack_sminepop.wav", 55, 130)
+		self:EmitSound("snd_jack_sminepop.ogg", 55, 130)
 		self:SetState(STATE_VENTING)
 	end
 
 	function ENT:Burst()
 		if self.Exploded then return end
 		self.Exploded = true
-		local SelfPos, Owner, SelfVel = self:LocalToWorld(self:OBBCenter()), self:GetOwner() or self, self:GetPhysicsObject():GetVelocity()
+		local SelfPos, Owner, SelfVel = self:LocalToWorld(self:OBBCenter()), self.EZowner or self, self:GetPhysicsObject():GetVelocity()
 		JMod.Sploom(Owner, SelfPos, 100)
 
 		for i = 1, self.ContainedGas do
 			timer.Simple(i / 200, function()
 				local Gas = ents.Create("ent_jack_gmod_ezvirusparticle")
 				Gas:SetPos(SelfPos)
-				JMod.SetOwner(Gas, Owner)
+				JMod.SetEZowner(Gas, Owner)
 				Gas:Spawn()
 				Gas:Activate()
-				Gas:GetPhysicsObject():SetVelocity(SelfVel + VectorRand() * math.random(1, 500))
+				Gas.Canister = self
+				Gas.CurVel = (SelfVel + VectorRand() * math.random(1, 50))
 			end)
 		end
 
@@ -148,20 +148,21 @@ if SERVER then
 		local State, Time = self:GetState(), CurTime()
 
 		if State == STATE_TICKING then
-			self:EmitSound("snd_jack_metallicclick.wav", 50, 100)
+			self:EmitSound("snd_jack_metallicclick.ogg", 50, 100)
 			self:NextThink(Time + 1)
 
 			return true
 		elseif State == STATE_VENTING then
 			local Gas = ents.Create("ent_jack_gmod_ezvirusparticle")
 			Gas:SetPos(self:LocalToWorld(self:OBBCenter()))
-			JMod.SetOwner(Gas, self:GetOwner() or self)
+			JMod.SetEZowner(Gas, self.EZowner or self)
 			Gas:Spawn()
 			Gas:Activate()
-			Gas:GetPhysicsObject():SetVelocity(self:GetPhysicsObject():GetVelocity() + self:GetUp() * 500)
+			Gas.CurVel = (self:GetPhysicsObject():GetVelocity() + self:GetUp() * 500)
+			Gas.Container = self
 			self.ContainedGas = self.ContainedGas - 1
 			self:NextThink(Time + .2)
-			self:EmitSound("snds_jack_gmod/hiss.wav", 55, math.random(90, 110))
+			self:EmitSound("snds_jack_gmod/hiss.ogg", 55, math.random(90, 110))
 
 			if self.ContainedGas <= 0 then
 				self:Remove()

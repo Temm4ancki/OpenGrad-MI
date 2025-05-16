@@ -9,54 +9,36 @@ ENT.JModPreferredCarryAngles = Angle(0, 140, 0)
 ENT.Model = "models/jmod/explosives/grenades/flashbang/flashbang.mdl"
 --ENT.ModelScale=1.5
 ENT.SpoonScale = 2
+ENT.PinBodygroup = {1, 1}
+ENT.SpoonBodygroup = {2, 1}
+ENT.DetDelay = 2
 
 if SERVER then
-	function ENT:Arm()
-		self:SetBodygroup(2, 1)
-		self:SetState(JMod.EZ_STATE_ARMED)
-		self:SpoonEffect()
-
-		local time = 2
-		timer.Simple(time - 1,function()
-			player.EventPoint(self:GetPos(),"flashbang pre detonate",1024,self)
-		end)
-
-		timer.Simple(time, function()
-			if IsValid(self) then
-				self:Detonate()
-			end
-		end)
-	end
-
-	function ENT:CanSee(ent)
-		if not IsValid(ent) then return false end
-		local TargPos, SelfPos = ent:LocalToWorld(ent:OBBCenter()), self:LocalToWorld(self:OBBCenter()) + vector_up * 10
-
-		local Tr = util.TraceLine({
-			start = SelfPos,
-			endpos = TargPos,
-			filter = {self, ent},
-			mask = MASK_SHOT + MASK_WATER
-		})
-
-		return not Tr.Hit
-	end
-
 	function ENT:Detonate()
 		if self.Exploded then return end
 		self.Exploded = true
 		local SelfPos, Time = self:GetPos() + Vector(0, 0, 10), CurTime()
-		JMod.Sploom(self:GetOwner(), self:GetPos(), 20)
+		JMod.Sploom(self.EZowner, self:GetPos(), 20)
 		self:EmitSound("snd_jack_fragsplodeclose.ogg", 90, 140)
 		self:EmitSound("snd_jack_fragsplodeclose.ogg", 90, 140)
 		local plooie = EffectData()
 		plooie:SetOrigin(SelfPos)
+		plooie:SetScale(1)
 		util.Effect("eff_jack_gmod_flashbang", plooie, true, true)
 		util.ScreenShake(SelfPos, 20, 20, .2, 1000)
 
-		for k, v in pairs(ents.FindInSphere(SelfPos, 200)) do
+		local BlastDist = 500
+		for k, v in pairs(ents.FindInSphere(SelfPos, BlastDist)) do
 			if v:IsNPC() then
-				v.EZNPCincapacitate = Time + math.Rand(3, 5)
+				v.EZNPCincapacitate = Time + math.Rand(3, 6)
+			end
+			if v:IsPlayer() and v:Alive() and JMod.ClearLoS(self, v, false, 10) and not JMod.PlyHasArmorEff(v, "earPro") then
+				local AlreadyBLasted = v:GetNW2Float("EZblastShock", 0)
+				local BlastAmount = 200
+				if JMod.PlyHasArmorEff(v, "earPro") then
+					BlastAmount = BlastAmount * .5
+				end
+				v:SetNW2Float("EZblastShock", math.Clamp(AlreadyBLasted + BlastAmount * (1 - SelfPos:Distance(v:GetPos()) / BlastDist), 0, 100))
 			end
 		end
 
@@ -64,28 +46,12 @@ if SERVER then
 
 		timer.Simple(.1, function()
 			if not IsValid(self) then return end
-			util.BlastDamage(self, self:GetOwner() or self, SelfPos, 1000, 2)
+			util.BlastDamage(self, JMod.GetEZowner(self), SelfPos, 1000, 2)
 		end)
-
-		local Pos = self:GetPos()
-
-		for i,ply in pairs(player.GetAll()) do
-			local plyPos = ply:GetPos()
-			local dis = Pos:Distance(plyPos)
-
-			if dis < 1000 then
-				if not util.TraceLine({
-					start = Pos,
-					endpos = plyPos,
-					filter = {self,ply}
-				}).Hit then
-					player.Event(ply,"flashbang",1 - dis / 1000)
-				end
-			end
-		end
 
 		SafeRemoveEntityDelayed(self, 10)
 	end
+	
 elseif CLIENT then
 	function ENT:Draw()
 		self:DrawModel()
@@ -93,3 +59,25 @@ elseif CLIENT then
 
 	language.Add("ent_jack_gmod_ezflashbang", "EZ Flashbang Grenade")
 end
+
+hook.Add("SetupMove", "JMOD_FLASHBANG", function(ply, mvd, cmd)
+	local BlastShock = ply:GetNW2Float("EZblastShock", nil)
+	if BlastShock then
+		-- Slow player's movement
+		local CurrentSpeed = mvd:GetMaxClientSpeed()
+		local CurrentSlow = (1 - (BlastShock or 0) / 100) ^ 2
+		if CurrentSpeed > 10 then
+			mvd:SetMaxClientSpeed(math.max(CurrentSpeed * CurrentSlow, 10))
+			mvd:SetMaxSpeed(math.max(CurrentSpeed * CurrentSlow, 10))
+		end
+
+		if IsFirstTimePredicted() then
+			local WearoffMult = 1 / (JMod.Config.Explosives.Flashbang.StunDurationMult or 1)
+			BlastShock = math.Clamp(BlastShock - 10 * WearoffMult * FrameTime(), 0, 100)
+			if (BlastShock <= 0) then
+				BlastShock = nil
+			end
+			ply:SetNW2Float("EZblastShock", BlastShock)
+		end
+	end
+end)

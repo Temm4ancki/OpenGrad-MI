@@ -30,18 +30,14 @@ SWEP.Firemodes = {
 }
 
 SWEP.AccuracyMOA = 20 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
-SWEP.FirstShootSound = "snds_jack_gmod/ez_weapons/shotgun.wav"
-SWEP.ShootSound = "snds_jack_gmod/ez_weapons/shotgun.wav"
-SWEP.DistantShootSound = "snds_jack_gmod/ez_weapons/shotgun_far.wav"
+SWEP.FirstShootSound = "snds_jack_gmod/ez_weapons/shotgun.ogg"
+SWEP.ShootSound = "snds_jack_gmod/ez_weapons/shotgun.ogg"
+SWEP.DistantShootSound = "snds_jack_gmod/ez_weapons/shotgun_far.ogg"
 SWEP.ShootSoundExtraMult = 1 -- fix calcview reload bob lol
 SWEP.MuzzleEffect = "muzzleflash_m3"
 SWEP.ShellModel = "models/jhells/shell_12gauge.mdl"
 SWEP.ShellPitch = 90
-
-if ArcCW then
-	SWEP.ShellSounds = ArcCW.ShotgunShellSoundsTable
-end
-
+SWEP.ShellSounds = JMod.ShellSounds.plastic
 SWEP.ShellScale = 3
 SWEP.SpeedMult = 1
 SWEP.SightedSpeedMult = .7
@@ -105,17 +101,17 @@ SWEP.Animations = {
 				p = 120
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/bas/swing.wav",
+				s = "snds_jack_gmod/ez_weapons/bas/swing.ogg",
 				t = .2,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/bas/shut.wav",
+				s = "snds_jack_gmod/ez_weapons/bas/shut.ogg",
 				t = .5,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/bas/grab.wav",
+				s = "snds_jack_gmod/ez_weapons/bas/grab.ogg",
 				t = 1.1,
 				v = 65
 			}
@@ -128,6 +124,7 @@ SWEP.Animations = {
 	["fire"] = {
 		Source = "fire",
 		Time = 1,
+		TPAnim = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2
 	},
 	["reload"] = {
 		Source = "reload",
@@ -143,7 +140,7 @@ SWEP.Animations = {
 		ShellEjectCount = 1,
 		SoundTable = {
 			{
-				s = "snds_jack_gmod/ez_weapons/bas/open.wav",
+				s = "snds_jack_gmod/ez_weapons/bas/open.ogg",
 				t = .03,
 				v = 65
 			},
@@ -154,28 +151,28 @@ SWEP.Animations = {
 				p = 140
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/bas/tap.wav",
+				s = "snds_jack_gmod/ez_weapons/bas/tap.ogg",
 				t = 1.35,
 				v = 65
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/bas/in.wav",
+				s = "snds_jack_gmod/ez_weapons/bas/in.ogg",
 				t = 1.65,
 				v = 65,
 				p = 120
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/bas/swing.wav",
+				s = "snds_jack_gmod/ez_weapons/bas/swing.ogg",
 				t = 2.05,
 				v = 65
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/bas/shut.wav",
+				s = "snds_jack_gmod/ez_weapons/bas/shut.ogg",
 				t = 2.25,
 				v = 65
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/bas/grab.wav",
+				s = "snds_jack_gmod/ez_weapons/bas/grab.ogg",
 				t = 2.65,
 				v = 65
 			}
@@ -195,7 +192,7 @@ SWEP.Animations = {
 		ShellEjectCount = 2,
 		SoundTable = {
 			{
-				s = "snds_jack_gmod/ez_weapons/bas/open_empty.wav",
+				s = "snds_jack_gmod/ez_weapons/bas/open_empty.ogg",
 				t = .12,
 				v = 65
 			},
@@ -206,28 +203,28 @@ SWEP.Animations = {
 				p = 120
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/bas/tap.wav",
+				s = "snds_jack_gmod/ez_weapons/bas/tap.ogg",
 				t = 1.7,
 				v = 65
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/bas/in_double.wav",
+				s = "snds_jack_gmod/ez_weapons/bas/in_double.ogg",
 				t = 2.2,
 				v = 65,
 				p = 120
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/bas/swing.wav",
+				s = "snds_jack_gmod/ez_weapons/bas/swing.ogg",
 				t = 2.4,
 				v = 65
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/bas/shut.wav",
+				s = "snds_jack_gmod/ez_weapons/bas/shut.ogg",
 				t = 3,
 				v = 65
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/bas/grab.wav",
+				s = "snds_jack_gmod/ez_weapons/bas/grab.ogg",
 				t = 3.45,
 				v = 65
 			}

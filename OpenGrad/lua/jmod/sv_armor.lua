@@ -1,4 +1,4 @@
-﻿local EquipSounds = {"snds_jack_gmod/equip1.wav", "snds_jack_gmod/equip2.wav", "snds_jack_gmod/equip3.wav", "snds_jack_gmod/equip4.wav", "snds_jack_gmod/equip5.wav"}
+﻿local EquipSounds = {"snds_jack_gmod/equip1.ogg", "snds_jack_gmod/equip2.ogg", "snds_jack_gmod/equip3.ogg", "snds_jack_gmod/equip4.ogg", "snds_jack_gmod/equip5.ogg"}
 
 local function IsDamageThisType(dmg, typ)
 	if type(typ) ~= "number" then return false end
@@ -23,7 +23,7 @@ end
 function JMod.EZarmorSync(ply)
 	if not ply.EZarmor then return end
 	ply.EZarmor.effects = {}
-	ply.EZarmor.mskmat = nil
+	ply.EZarmor.mskmats = {}
 	ply.EZarmor.sndlop = nil
 	ply.EZarmor.blackvision = nil
 
@@ -43,7 +43,7 @@ function JMod.EZarmorSync(ply)
 			end
 		end
 
-		local dead = item.chrg and ((item.chrg.power and item.chrg.power <= 0) or (item.chrg.chemicals and item.chrg.chemicals <= 0))
+		local dead = item.chrg and ((item.chrg.power and item.chrg.power <= 0) or (item.chrg.chemicals and item.chrg.chemicals <= 0) or (item.chrg.gas and item.chrg.gas <= 0))
 
 		if ArmorInfo.eff and not dead then
 			for effName, effMag in pairs(ArmorInfo.eff) do
@@ -61,22 +61,23 @@ function JMod.EZarmorSync(ply)
 		end
 
 		if ArmorInfo.mskmat and ArmorInfo.mskmat ~= "" then
-			ply.EZarmor.mskmat = ArmorInfo.mskmat
+			ply.EZarmor.mskmats[id] = ArmorInfo.mskmat
 		end
 
 		if ArmorInfo.sndlop and ArmorInfo.sndlop ~= "" then
 			ply.EZarmor.sndlop = ArmorInfo.sndlop
 		end
 	end
+	if not ply.EZarmor.effects.parachute and ply:GetNW2Bool("EZparachuting", false) then
+		ply:SetNW2Bool("EZparachuting", false)
+	end
 
-	hook.Run("JModHookEZArmorSync", ply)
+	hook.Run("JMod_EZarmorSync", ply)
 
 	net.Start("JMod_EZarmorSync")
-	net.WriteEntity(ply)
-	net.WriteTable(ply.EZarmor)
+		net.WriteEntity(ply)
+		net.WriteTable(ply.EZarmor)
 	net.Broadcast()
-
-	hook.Run("JMod Armor Sync",ply)
 end
 
 function JMod.EZarmorWarning(ply, txt)
@@ -98,14 +99,15 @@ local function IsHitToBack(ply, dmg)
 	local FacingDir, DmgDir = ply:GetAimVector(), dmg:GetDamageForce():GetNormalized()
 	local ApproachAngle = -math.deg(math.asin(DmgDir:Dot(FacingDir)))
 
-	return ApproachAngle < -45
+	return ApproachAngle < -30
 end
+
+local NonProtectiveSlots = {"ears", "waist"}
 
 local function GetProtectionFromSlot(ply, slot, dmg, dmgAmt, protectionMul, shouldDmgArmor, cumulativeCoverage)
 	local Protection, Busted = 0, false
 
-	local getArmorInfo,getArmorData
-
+	if not(ply.EZarmor and ply.EZarmor.items) then return Protection, Busted end
 	for id, armorData in pairs(ply.EZarmor.items) do
 		local ArmorInfo = table.FullCopy(JMod.ArmorTable[armorData.name])
 
@@ -126,17 +128,16 @@ local function GetProtectionFromSlot(ply, slot, dmg, dmgAmt, protectionMul, shou
 			local CumulativeDivisor = 0
 
 			for armorSlot, coverage in pairs(ArmorInfo.slots) do
-				if (armorSlot ~= "ears") and (armorSlot ~= "back") and (armorSlot ~= "waist") then
+				if not table.HasValue(NonProtectiveSlots, armorSlot) then
 					CumulativeDivisor = CumulativeDivisor + 1
 				end
 			end
 
 			for armorSlot, coverage in pairs(ArmorInfo.slots) do
-				if (armorSlot ~= "ears") and (armorSlot ~= "back") and (armorSlot ~= "waist") and (armorSlot == slot) then
+				if not(table.HasValue(NonProtectiveSlots, armorSlot)) and (armorSlot == slot) then
+					if not(ArmorInfo.def) then break end
 					for damType, damProtection in pairs(ArmorInfo.def) do
 						if IsDamageThisType(dmg, damType) then
-							getArmorInfo,getArmorData = ArmorInfo,armorData
-
 							Protection = Protection + damProtection * coverage * protectionMul
 
 							if cumulativeCoverage then
@@ -145,7 +146,7 @@ local function GetProtectionFromSlot(ply, slot, dmg, dmgAmt, protectionMul, shou
 
 							if shouldDmgArmor then
 								if not IsDamageOneOfTypes(dmg, JMod.BiologicalDmgTypes) then
-									local ArmorDmgAmt = Protection * dmgAmt * JMod.Config.ArmorDegredationMult
+									local ArmorDmgAmt = Protection * dmgAmt * JMod.Config.Armor.DegradationMult
 
 									if damType == DMG_BUCKSHOT then
 										ArmorDmgAmt = ArmorDmgAmt / 2.5
@@ -163,7 +164,7 @@ local function GetProtectionFromSlot(ply, slot, dmg, dmgAmt, protectionMul, shou
 									armorData.dur = armorData.dur - ArmorDmgAmt
 
 									if armorData.dur < ArmorInfo.dur * .25 then
-										JMod.EZarmorWarning(ply, "Бронепластина почти сломана")
+										JMod.EZarmorWarning(ply, "armor piece is almost destroyed!")
 									end
 
 									if armorData.dur <= 0 then
@@ -171,7 +172,7 @@ local function GetProtectionFromSlot(ply, slot, dmg, dmgAmt, protectionMul, shou
 										Busted = true
 									end
 								elseif armorData.chrg and armorData.chrg.chemicals then
-									JMod.DepleteArmorChemicalCharge(ply, Protection * dmgAmt * .02)
+									JMod.DepleteArmorChemicalCharge(ply, Protection * dmgAmt * .01)
 
 									if armorData.chrg.chemicals <= 0 then
 										Protection = 0
@@ -189,10 +190,10 @@ local function GetProtectionFromSlot(ply, slot, dmg, dmgAmt, protectionMul, shou
 		end
 	end
 
-	return Protection,Busted,getArmorInfo,getArmorData
+	return Protection, Busted
 end
 
-function JMod.LocationalDmgHandling(ply, hitgroup, dmg)
+local function LocationalDmgHandling(ply, hitgroup, dmg)
 	local Mul = 1
 	local AmmoTypeID, AmmoAPmul, AmmoHPmul = dmg:GetAmmoType(), 1, 1
 
@@ -209,8 +210,6 @@ function JMod.LocationalDmgHandling(ply, hitgroup, dmg)
 		end
 	end
 
-	local armors = {}
-
 	if ply.EZarmor and #table.GetKeys(ply.EZarmor.items) > 0 then
 		local RelevantSlots, DmgAmt = {}, dmg:GetDamage()
 
@@ -222,7 +221,12 @@ function JMod.LocationalDmgHandling(ply, hitgroup, dmg)
 				RelevantSlots.head = 1
 			end
 		elseif hitgroup == HITGROUP_CHEST or hitgroup == HITGROUP_GENERIC then
-			RelevantSlots.chest = 1
+			if IsHitToBack(ply, dmg) then
+				RelevantSlots.chest = 1
+				RelevantSlots.back = 1
+			else
+				RelevantSlots.chest = 1
+			end
 		elseif hitgroup == HITGROUP_STOMACH then
 			RelevantSlots.abdomen = .5
 			RelevantSlots.pelvis = .5
@@ -243,13 +247,10 @@ function JMod.LocationalDmgHandling(ply, hitgroup, dmg)
 		local Protection, ArmorPieceBroke = 0, false
 
 		for slot, relevance in pairs(RelevantSlots) do
-			local ProtectionForThisSlot, Busted,armorInfo,armorData = GetProtectionFromSlot(ply, slot, dmg, DmgAmt, relevance, true, false)
+			local ProtectionForThisSlot, Busted = GetProtectionFromSlot(ply, slot, dmg, DmgAmt, relevance, true, false)
+			--print("[JMod] Protection for " .. slot .. ": " .. ProtectionForThisSlot)
 			Protection = Protection + ProtectionForThisSlot
 			ArmorPieceBroke = ArmorPieceBroke or Busted
-
-			if armorInfo then
-				armors[armorInfo] = armorData
-			end
 		end
 
 		local NoProtection = Protection <= .05
@@ -264,11 +265,15 @@ function JMod.LocationalDmgHandling(ply, hitgroup, dmg)
 			end
 		end
 
-		Mul = (Mul * (1 - Protection)) / JMod.Config.ArmorProtectionMult
+		Mul = (Mul * (1 - Protection)) / JMod.Config.Armor.ProtectionMult
 
 		-- if there's no armor on the struck bodypart
-		if NoProtection and JMod.Config.QoL.RealisticLocationalDamage then
-			Mul = Mul * JMod.BodyPartDamageMults[hitgroup]
+		if NoProtection then 
+			if JMod.Config.QoL.RealisticLocationalDamage then
+				Mul = Mul * JMod.BodyPartDamageMults[hitgroup]
+			end
+		else
+			sound.Play("snds_jack_gmod/ricochet_"..math.random(1,2)..".ogg", ply:GetShootPos() + VectorRand() * 10, 70, math.random(80,120))
 		end
 
 		if ArmorPieceBroke then
@@ -281,9 +286,7 @@ function JMod.LocationalDmgHandling(ply, hitgroup, dmg)
 		Mul = Mul * AmmoHPmul
 	end
 
-	--dmg:ScaleDamage(Mul)
-
-	return armors,Mul
+	dmg:ScaleDamage(Mul)
 end
 
 local function FullBodyDmgHandling(ply, dmg, biological, isInSewage)
@@ -317,7 +320,7 @@ local function FullBodyDmgHandling(ply, dmg, biological, isInSewage)
 		Protection = Protection * AmmoAPmul
 	end
 
-	Mul = (Mul * (1 - Protection)) / JMod.Config.ArmorProtectionMult
+	Mul = (Mul * 1 - (Protection * JMod.Config.Armor.ProtectionMult))
 
 	if Mul < .001 then
 		dmg:ScaleDamage(0)
@@ -325,7 +328,7 @@ local function FullBodyDmgHandling(ply, dmg, biological, isInSewage)
 		dmg:ScaleDamage(Mul)
 
 		if isInSewage then
-			if math.random(1, 10) == 2 then
+			if math.Rand(0, 1) < JMod.Config.Particles.SludgeVirusInfectChance then
 				JMod.ViralInfect(ply, game.GetWorld())
 			end
 		end
@@ -338,38 +341,43 @@ local function FullBodyDmgHandling(ply, dmg, biological, isInSewage)
 end
 
 hook.Add("ScalePlayerDamage", "JMod_ScalePlayerDamage", function(ply, hitgroup, dmginfo)
-	--if ply.EZarmor then JMOD.LocationalDmgHandling(ply, hitgroup, dmginfo) end
+	if ply.EZarmor then
+		LocationalDmgHandling(ply, hitgroup, dmginfo)
+	end
 end)
 
 hook.Add("ScaleNPCDamage", "JMod_ScaleNPCdamage", function(npc, hitgroup, dmginfo)
-	JMod.LocationalDmgHandling(npc, hitgroup, dmginfo)
+	LocationalDmgHandling(npc, hitgroup, dmginfo)
 end)
 
 hook.Add("EntityTakeDamage", "JMod_EntityTakeDamage", function(victim, dmginfo)
-	if victim:IsPlayer() and victim.EZarmor then
-		local Helf, IsPiercingDmg, Att = victim:Health(), IsDamageOneOfTypes(dmginfo, JMod.PiercingDmgTypes), dmginfo:GetAttacker()
-		local IsShit = bit.band(util.PointContents(victim:GetShootPos()), 268435472) == 268435472
-		local IsInSewage = (dmginfo:IsDamageType(DMG_ACID) or dmginfo:IsDamageType(DMG_RADIATION)) and IsShit
+	if victim:IsPlayer() then 
+		victim.JMod_IsSleeping = false
+		if victim.EZarmor then
+			local Helf, IsPiercingDmg, Att = victim:Health(), IsDamageOneOfTypes(dmginfo, JMod.PiercingDmgTypes), dmginfo:GetAttacker()
+			local IsShit = bit.band(util.PointContents(victim:GetShootPos()), 268435472) == 268435472
+			local IsInSewage = (dmginfo:IsDamageType(DMG_ACID) or dmginfo:IsDamageType(DMG_RADIATION)) and IsShit
 
-		if IsDamageOneOfTypes(dmginfo, JMod.LocationalDmgTypes) then
-		elseif IsDamageOneOfTypes(dmginfo, JMod.FullBodyDmgTypes) then
-			-- scaling handled in scaleplayerdamage
-			FullBodyDmgHandling(victim, dmginfo, false, IsInSewage)
-		elseif IsDamageOneOfTypes(dmginfo, JMod.BiologicalDmgTypes) then
-			FullBodyDmgHandling(victim, dmginfo, true, IsInSewage)
-		end
+			if IsDamageOneOfTypes(dmginfo, JMod.LocationalDmgTypes) then
+				-- scaling handled in scaleplayerdamage
+			elseif IsDamageOneOfTypes(dmginfo, JMod.FullBodyDmgTypes) then
+				FullBodyDmgHandling(victim, dmginfo, false, IsInSewage)
+			elseif IsDamageOneOfTypes(dmginfo, JMod.BiologicalDmgTypes) then
+				FullBodyDmgHandling(victim, dmginfo, true, IsInSewage)
+			end
 
-		if JMod.Config.QoL.BleedDmgMult > 0 and IsPiercingDmg then
-			timer.Simple(0, function()
-				local NewHelf = victim:Health()
-				local HelfLoss = Helf - NewHelf
+			if JMod.Config.QoL.BleedDmgMult > 0 and IsPiercingDmg then
+				timer.Simple(0, function()
+					local NewHelf = victim:Health()
+					local HelfLoss = Helf - NewHelf
 
-				if NewHelf > 0 and HelfLoss > 0 then
-					victim.EZbleeding = (victim.EZbleeding or 0) + HelfLoss * JMod.Config.QoL.BleedDmgMult
-					victim.EZbleedAttacker = Att
-					JMod.SyncBleeding(victim)
-				end
-			end)
+					if NewHelf > 0 and HelfLoss > 0 then
+						victim.EZbleeding = (victim.EZbleeding or 0) + HelfLoss * JMod.Config.QoL.BleedDmgMult
+						victim.EZbleedAttacker = Att
+						JMod.SyncBleeding(victim)
+					end
+				end)
+			end
 		end
 	end
 end)
@@ -384,28 +392,37 @@ end
 
 function JMod.CalcSpeed(ply)
 	local Walk, Run, TotalWeight = ply.EZoriginalWalkSpeed or 200, ply.EZoriginalRunSpeed or 400, 0
+	local Phys = ply:GetPhysicsObject()
 
 	for k, v in pairs(ply.EZarmor.items) do
 		local ArmorInfo = JMod.ArmorTable[v.name]
-		TotalWeight = TotalWeight + ArmorInfo.wgt
+		local Weight = (ArmorInfo and ArmorInfo.wgt) or 0
+		TotalWeight = TotalWeight + Weight
 	end
 
+	if ply.JModInv and ply.JModInv.weight then
+		TotalWeight = TotalWeight + ply.JModInv.weight
+	end
+	
 	ply.EZarmor.totalWeight = TotalWeight
 
-	if ply.EZarmor.totalWeight >= 50 then
-		JMod.Hint(ply, "chonky boi ;3")
-	end
-
 	local WeighedFrac = TotalWeight / 250
-	ply.EZarmor.speedfrac = math.Clamp(1 - (.8 * WeighedFrac * JMod.Config.ArmorWeightMult), .05, 1)
+	ply.EZarmor.speedfrac = math.Clamp(1 - (.8 * WeighedFrac * JMod.Config.Armor.WeightMult), .05, 1)
+
+	hook.Run("JMod_CalcArmorSpeed", ply)
+
+	if ply.EZarmor.totalWeight >= 150 then
+		JMod.Hint(ply, "chonky boi")
+	end
 end
 
 hook.Add("PlayerFootstep", "JMOD_PlayerFootstep", function(ply, pos, foot, snd, vol, filter)
 	if ply.EZarmor then
 		--local Num=#table.GetKeys(ply.EZarmor.items)
-		if ply.EZarmor.totalWeight >= 50 then
-			ply:EmitSound("snd_jack_gear" .. tostring(math.random(1, 6)) .. ".wav", 58, math.random(70, 130))
+		if ply.EZarmor.totalWeight >= 150 then
+			ply:EmitSound("snd_jack_gear" .. tostring(math.random(1, 6)) .. ".ogg", 58, math.random(70, 130))
 		end
+		--local InventoryItems = ply.JModInv and ply.JModInv.items
 	end
 end)
 
@@ -414,10 +431,20 @@ function JMod.RemoveArmorByID(ply, ID, broken)
 	if not Info then return end
 	local Specs = JMod.ArmorTable[Info.name]
 
+	if Specs.eff and Specs.eff.weapon then
+		local Wep = ply:GetWeapon(Specs.eff.weapon)
+
+		if IsValid(Wep) then
+			local PastSwep = ply:GetPreviousWeapon()
+			if IsValid(PastSwep) and (ply:GetActiveWeapon() == Wep) then ply:SelectWeapon(PastSwep:GetClass()) end
+			Wep:Remove()
+		end
+	end
+
 	timer.Simple(math.Rand(0, .5), function()
 		if broken then
-			--ply:EmitSound("snds_jack_gmod/armorbreak.wav", 60, math.random(80, 120))
-			--ply:PrintMessage(HUD_PRINTTALK, Info.name .. " ")
+			ply:EmitSound("snds_jack_gmod/armorbreak.ogg", 60, math.random(80, 120))
+			ply:PrintMessage(HUD_PRINTTALK, Info.name .. " has been destroyed")
 		else
 			if Specs.snds and Specs.snds.uneq then
 				ply:EmitSound(Specs.snds.uneq, 60, math.random(80, 120))
@@ -427,13 +454,18 @@ function JMod.RemoveArmorByID(ply, ID, broken)
 		end
 	end)
 
-	local Ent
+	local Ent -- This is for if we can stow stuff in the armor when it's unequpped
 
-	if not broken then
+	if broken then
+		if Specs.eff and Specs.eff.explosive then
+			local FireAmt = (Info.chrg and Info.chrg.fuel and math.random(2, 4)) or 0
+			JMod.EnergeticsCookoff(ply:GetPos(), game.GetWorld(), 1, 1, 0, FireAmt)
+		end
+	else
 		Ent = ents.Create(Specs.ent)
 		Ent:SetPos(ply:GetShootPos() + ply:GetAimVector() * 30 + VectorRand() * math.random(1, 20))
 		Ent:SetAngles(AngleRand())
-		Ent.ArmorDurability = Info.dur
+		Ent.Durability = Info.dur
 
 		if Info.chrg then
 			Ent.ArmorCharges = table.FullCopy(Info.chrg)
@@ -457,9 +489,40 @@ function JMod.RemoveArmorByID(ply, ID, broken)
 		ply.EZarmor.bodygroups = nil
 	end
 
-	hook.Run("JMod Armor Remove",ply,Info,Specs,Ent)
-
 	ply.EZarmor.items[ID] = nil
+	
+	local StowItems = not(broken) and Specs.storage and IsValid(Ent)
+
+	local RemovedItems = JMod.UpdateInv(ply, StowItems, true)
+
+	if StowItems and not(table.IsEmpty(RemovedItems)) then
+		for _, v in ipairs(RemovedItems) do
+			timer.Simple(0, function()
+				local Success = JMod.AddToInventory(Ent, v)
+			end)
+		end
+	end
+
+	-- if this armor piece increased ammo carry limit, we need to go through and strip extra ammo now
+	if (Specs.ammoCarryMult) then
+		if not(broken) then
+			Ent.ammoStored = {}
+		end
+		for k, v in pairs(ply:GetAmmo()) do
+			local Max = game.GetAmmoMax(k)
+			if (v > Max) then
+				local AmountToRemove = v - Max
+				ply:RemoveAmmo(AmountToRemove, k)
+				if not(broken) then
+					Ent.ammoStored[k] = (Ent.ammoStored[k] or 0) + (AmountToRemove)
+				end
+			end
+		end
+	end
+
+	hook.Run("JMod_ArmorRemoved", ply, Info, Specs, Ent, broken)
+
+	return Ent
 end
 
 local function GetArmorBySlot(currentArmorItems, slot)
@@ -498,27 +561,25 @@ function JMod.SetPlayerModel(ply, mod)
 	end
 end
 
-function JMod.EZ_Equip_Armor(ply,nameOrEnt,forceColor,forceToggle)
-	if hook.Run("Shuold JMod Armor Equip",ply) ~= nil then return end
-	
+function JMod.EZ_Equip_Armor(ply, nameOrEnt)
 	local NewArmorName = nameOrEnt
 	local NewArmorID, NewArmorDurability, NewArmorColor, NewArmorSpecs, NewArmorCharges
-
-	local ent = nameOrEnt
 
 	if type(nameOrEnt) ~= "string" then
 		if not IsValid(nameOrEnt) then return end
 		NewArmorName = nameOrEnt.ArmorName
 		NewArmorSpecs = JMod.ArmorTable[NewArmorName]
 		NewArmorID = nameOrEnt.EZID
-		NewArmorDurability = nameOrEnt.ArmorDurability or NewArmorSpecs.dur
+		NewArmorDurability = nameOrEnt.Durability or NewArmorSpecs.dur
 		NewArmorColor = nameOrEnt:GetColor()
 		NewArmorCharges = nameOrEnt.ArmorCharges
-		nameOrEnt:Remove()
+		if not(nameOrEnt.JModInv) and not(nameOrEnt.ammoStored) then
+			nameOrEnt:Remove()
+		end
 	else
 		NewArmorSpecs = JMod.ArmorTable[NewArmorName]
 		NewArmorID = JMod.GenerateGUID()
-		NewArmorColor = forceColor or Color(128, 128, 128)
+		NewArmorColor = Color(128, 128, 128)
 		NewArmorDurability = NewArmorSpecs.dur
 
 		if NewArmorSpecs.chrg then
@@ -533,15 +594,13 @@ function JMod.EZ_Equip_Armor(ply,nameOrEnt,forceColor,forceToggle)
 		AreSlotsClear, ConflictingItemID = GetAreSlotsClear(ply.EZarmor.items, NewArmorName)
 	end
 
-	if not NewArmorSpecs.tgl then forceToggle = false end
-
 	local NewVirtualArmorItem = {
 		name = NewArmorName,
 		dur = NewArmorDurability,
 		col = NewArmorColor,
 		chrg = NewArmorCharges,
 		id = NewArmorID,
-		tgl = forceToggle or false
+		tgl = false
 	}
 
 	ply.EZarmor.items[NewArmorID] = NewVirtualArmorItem
@@ -571,7 +630,25 @@ function JMod.EZ_Equip_Armor(ply,nameOrEnt,forceColor,forceToggle)
 		ply:EmitSound(table.Random(EquipSounds), 60, math.random(80, 120))
 	end
 
-	hook.Run("JMod Armor Equip",ply,NewVirtualArmorItem,NewArmorSpecs,ent)
+	if IsValid(nameOrEnt) then
+		if nameOrEnt.JModInv then
+			nameOrEnt.KeepJModInv = true
+			for _, v in ipairs(nameOrEnt.JModInv.items) do
+				JMod.AddToInventory(ply, v.ent)
+			end
+			for k, v in pairs(nameOrEnt.JModInv.EZresources) do
+				JMod.AddToInventory(ply, {k, v})
+				nameOrEnt.JModInv.EZresources[k] = nil
+			end
+			nameOrEnt.KeepJModInv = false
+		end
+		if nameOrEnt.ammoStored then
+			for k, v in pairs(nameOrEnt.ammoStored) do
+				JMod.GiveAmmo(ply, k, v)
+			end
+		end
+		nameOrEnt:Remove()
+	end
 
 	JMod.CalcSpeed(ply)
 	JMod.EZarmorSync(ply)
@@ -579,27 +656,25 @@ end
 
 net.Receive("JMod_Inventory", function(ln, ply)
 	if not ply:Alive() then return end
-	local ActionType = net.ReadInt(8)
+	local ActionType = net.ReadInt(8) -- 1: Remove armor | 2: Toggle armor | 3: Repair armor | 4: Recharge armor | 5: Color armor
+	local ID = net.ReadString()
 
 	if ActionType == 1 then
-		local ID = net.ReadString()
+		
 		JMod.RemoveArmorByID(ply, ID)
 	elseif ActionType == 2 then
-		local ID = net.ReadString()
-
-		if ply.EZarmor.items[ID] then
+		local ItemData = ply.EZarmor.items[ID]
+		if ItemData and JMod.ArmorTable[ItemData.name].tgl then
 			ply.EZarmor.items[ID].tgl = not ply.EZarmor.items[ID].tgl
 		end
 	elseif ActionType == 3 then
-		local ID = net.ReadString()
 		local ItemData = ply.EZarmor.items[ID]
 		local ItemInfo = JMod.ArmorTable[ItemData.name]
 		local RepairRecipe, RepairStatus, BuildRecipe = {}, 0, nil
-
-		for k, v in pairs(JMod.Config.Recipes) do
-			if v[1] == ItemInfo.ent then
+		for k, v in pairs(JMod.Config.Craftables) do
+			if v.results == ItemInfo.ent then
 				if ItemData.dur < ItemInfo.dur * .9 then
-					BuildRecipe = v[2]
+					BuildRecipe = v.craftingReqs
 				end
 
 				break
@@ -610,13 +685,32 @@ net.Receive("JMod_Inventory", function(ln, ply)
 			BuildRecipe = JMod.BackupArmorRepairRecipes[ItemData.name]
 		end
 
+		local BenchNearby = false
+		for _, ent in pairs(ents.FindInSphere(ply:GetPos(), 200)) do
+			if ent.Craftables and istable(ent.Craftables) then
+				local HasOurRecipe = false
+				for k, v in pairs(ent.Craftables) do
+					if v.results == ItemInfo.ent then
+						HasOurRecipe = true
+						break
+					end
+				end
+				if HasOurRecipe then
+					BenchNearby = true
+					break
+				end
+			end
+		end
+
+		local AvailableResources = {}
 		if BuildRecipe then
 			local DamagedFraction = 1 - (ItemData.dur / ItemInfo.dur)
-
 			for resourceName, resourceAmt in pairs(BuildRecipe) do
-				local RequiredAmt = math.floor(resourceAmt * DamagedFraction * 1.2) -- 20% efficiency penalty for not needing a workbench
+				local RequiredAmt = math.floor(resourceAmt * DamagedFraction) 
+				if not BenchNearby then RequiredAmt = math.floor(RequiredAmt * 1.2) end -- 20% efficiency penalty for not needing a workbench
 
-				if RequiredAmt > 0 then
+				-- If it requires things it also consumes, like fuel, gas and chemicals, we shouldn't require those for repair
+				if not(ItemInfo.chrg and ItemInfo.chrg[resourceName]) and (RequiredAmt > 0) then
 					RepairRecipe[resourceName] = RequiredAmt
 				end
 			end
@@ -624,69 +718,120 @@ net.Receive("JMod_Inventory", function(ln, ply)
 			RepairStatus = 1
 
 			---
-			if JMod.HaveResourcesToPerformTask(nil, nil, RepairRecipe, ply) then
+			AvailableResources = JMod.CountResourcesInRange(nil, nil, ply)
+			if JMod.HaveResourcesToPerformTask(nil, nil, RepairRecipe, ply, AvailableResources) then
 				RepairStatus = 2
-				JMod.ConsumeResourcesInRange(BuildRecipe, nil, nil, ply)
+				JMod.ConsumeResourcesInRange(RepairRecipe, nil, nil, ply)
 				ItemData.dur = ItemInfo.dur
 			end
 		end
 
 		if RepairStatus == 0 then
-			ply:ChatPrint( "item can not be repaired")
+			ply:PrintMessage(HUD_PRINTCENTER, "Item can not be repaired")
 		elseif RepairStatus == 1 then
 			local mats = ""
 
 			for k, v in pairs(RepairRecipe) do
-				mats = mats .. k .. ", "
+				local AmountNeeded = math.max(0, v - (AvailableResources[k] or 0))
+				if next(RepairRecipe, k) ~= nil then
+					mats = mats .. k .. " x" .. tostring(AmountNeeded) .. ", "
+				else
+					mats = mats .. k .. " x" .. tostring(AmountNeeded)
+				end
+
 			end
 
-			ply:ChatPrint( "missing resources for repair, need " .. mats)
+			ply:PrintMessage(HUD_PRINTCENTER, "Missing resources for repair, need: \n" .. mats)
 		elseif RepairStatus == 2 then
-			ply:ChatPrint( "item repaired")
+			ply:PrintMessage(HUD_PRINTCENTER, "Item repaired")
 
 			for i = 1, 10 do
-				sound.Play("snds_jack_gmod/ez_tools/" .. math.random(1, 27) .. ".wav", ply:GetPos(), 60, math.random(80, 120))
+				sound.Play("snds_jack_gmod/ez_tools/" .. math.random(1, 27) .. ".ogg", ply:GetPos(), 60, math.random(80, 120))
 			end
 		end
 	elseif ActionType == 4 then
-		local ID = net.ReadString()
 		local ItemData = ply.EZarmor.items[ID]
 		local ItemInfo = JMod.ArmorTable[ItemData.name]
-		local RechargeRecipe, RechargeStatus = {}, 0
+		if ItemInfo.chrg  then
+			local RechargeRecipe, RechargeStatus, PartialRecharge = {}, 0, false
 
-		for resourceName, maxAmt in pairs(ItemInfo.chrg) do
-			local missing = maxAmt - ItemData.chrg[resourceName]
+			for resourceName, maxAmt in pairs(ItemInfo.chrg) do
+				local missing = maxAmt - ItemData.chrg[resourceName]
 
-			if missing > 0 then
-				RechargeRecipe[resourceName] = missing * 1.1 -- 10% penalty for doing this in the field
-				RechargeStatus = 1
-			end
-		end
-
-		if RechargeStatus == 1 then
-			if JMod.HaveResourcesToPerformTask(nil, nil, RechargeRecipe, ply) then
-				RechargeStatus = 2
-				JMod.ConsumeResourcesInRange(RechargeRecipe, nil, nil, ply)
-
-				for resourceName, maxAmt in pairs(ItemInfo.chrg) do
-					ItemData.chrg[resourceName] = maxAmt
+				if missing > 0 then
+					RechargeRecipe[resourceName] = missing
+					RechargeStatus = 1
 				end
 			end
-		end
 
-		if RechargeStatus == 0 then
-			ply:ChatPrint( "item can not be recharged")
-		elseif RechargeStatus == 1 then
-			local mats = ""
+			if RechargeStatus == 1 then
+				local AvailableResources, ResourcesToConsume = JMod.CountResourcesInRange(nil, nil, ply), {}
 
-			for k, v in pairs(RechargeRecipe) do
-				mats = mats .. k .. ", "
+				for resourceName, missing in pairs(RechargeRecipe) do
+					missing = math.ceil(missing)
+					if AvailableResources[resourceName] then
+						local AmtToConsume = math.Clamp(AvailableResources[resourceName], 0, missing)
+						ResourcesToConsume[resourceName] = math.Clamp(AvailableResources[resourceName], 0, missing)
+						ItemData.chrg[resourceName] = math.Clamp(ItemData.chrg[resourceName] + AmtToConsume, 0, ItemInfo.chrg[resourceName])
+
+						if AmtToConsume >= missing then
+							RechargeRecipe[resourceName] = nil
+							PartialRecharge = true
+						else
+							RechargeRecipe[resourceName] = missing - AmtToConsume
+							PartialRecharge = true
+						end
+					end
+				end
+
+				JMod.ConsumeResourcesInRange(ResourcesToConsume, nil, nil, ply)
+
+				if table.IsEmpty(RechargeRecipe) then
+					RechargeStatus = 2
+				end
 			end
 
-			ply:ChatPrint( "missing resources for recharge, need " .. mats)
-		elseif RechargeStatus == 2 then
-			ply:ChatPrint( "item recharged")
-			sound.Play("items/ammo_pickup.wav", ply:GetPos(), 60, math.random(100, 140))
+			if RechargeStatus == 0 then
+				ply:PrintMessage(HUD_PRINTCENTER, "Item can not be recharged")
+
+			elseif RechargeStatus == 1 then
+				local mats = ""
+
+				for k, v in pairs(RechargeRecipe) do
+					if next(RechargeRecipe, k) ~= nil then
+						mats = mats .. k .. ", "
+					else
+						mats = mats .. k
+					end
+				end
+
+				if PartialRecharge then
+					ply:PrintMessage(HUD_PRINTCENTER, "Item partially recharged, still needs: " .. mats)
+					sound.Play("items/ammo_pickup.ogg", ply:GetPos(), 60, math.random(100, 140))
+				else
+					ply:PrintMessage(HUD_PRINTCENTER, "Missing resources for recharge, needs: " .. mats)
+				end
+
+			elseif RechargeStatus == 2 then
+				ply:PrintMessage(HUD_PRINTCENTER, "Item recharged")
+				sound.Play("items/ammo_pickup.ogg", ply:GetPos(), 60, math.random(100, 140))
+			end
+		end
+	elseif ActionType == 5 then
+		local NewColor = net.ReadColor()
+		if ID == "" then
+			for k, v in pairs(ply.EZarmor.items) do
+				local ItemInfo = JMod.ArmorTable[v.name]
+				if not ItemInfo["clrForced"] then
+					ply.EZarmor.items[k].col = {r = NewColor.r, g = NewColor.g, b = NewColor.b, a = 255}
+				end
+			end
+		else
+			local ItemData = ply.EZarmor.items[ID]
+			local ItemInfo = JMod.ArmorTable[ItemData.name]
+			if not ItemInfo["clrForced"] then
+				ply.EZarmor.items[ID].col = {r = NewColor.r, g = NewColor.g, b = NewColor.b, a = 255}
+			end
 		end
 	end
 
@@ -695,7 +840,7 @@ net.Receive("JMod_Inventory", function(ln, ply)
 end)
 
 hook.Add("OnDamagedByExplosion", "JModOnDamagedByExplosion", function(ply, dmg)
-	if ply.EZarmor and ply.EZarmor.effects.earPro then return true end
+	if JMod.PlyHasArmorEff(ply, "earPro") then return true end
 end)
 
 concommand.Add("jmod_debug_fullarmor", function(ply, cmd, args)
@@ -742,3 +887,24 @@ concommand.Add("jmod_debug_givearmortotarget", function(ply, cmd, args)
 		print("invalid aim target")
 	end
 end, nil, "Adds full armour to your target.")
+
+concommand.Add("jmod_debug_removearmor", function(ply, cmd, args)
+	if not ply:IsSuperAdmin() then return end
+	local target = ply
+
+	if args[1] == "looking" then
+		target = ply:GetEyeTrace().Entity
+	elseif tonumber(args[1]) and player.GetByID(tonumber(args[1])) then
+		target = player.GetByID(tonumber(args[1]))
+	end
+
+	if not IsValid(target) then
+		print("invalid target")
+
+		return
+	end
+
+	for k, v in pairs(ply.EZarmor.items) do
+		JMod.RemoveArmorByID(ply, k, tobool(args[2]))
+	end
+end, nil, "Removes armor from your target.")

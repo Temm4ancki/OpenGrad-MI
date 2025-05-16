@@ -30,14 +30,15 @@ SWEP.Firemodes = {
 
 SWEP.ShotgunReload = true
 SWEP.AccuracyMOA = 1 -- real bolt guns are more accurate than this, but whatever... gmod
-SWEP.FirstShootSound = "snds_jack_gmod/ez_weapons/magnum_rifle.wav"
-SWEP.ShootSound = "snds_jack_gmod/ez_weapons/magnum_rifle.wav"
-SWEP.DistantShootSound = "snds_jack_gmod/ez_weapons/rifle_far.wav"
+SWEP.FirstShootSound = "snds_jack_gmod/ez_weapons/magnum_rifle.ogg"
+SWEP.ShootSound = "snds_jack_gmod/ez_weapons/magnum_rifle.ogg"
+SWEP.DistantShootSound = "snds_jack_gmod/ez_weapons/rifle_far.ogg"
 SWEP.ShootSoundExtraMult = 1
 SWEP.MuzzleEffect = "muzzleflash_SR25"
 SWEP.ShellModel = "models/jhells/shell_762nato.mdl"
 SWEP.ShellPitch = 80
 SWEP.ShellScale = 3
+SWEP.ShellSounds = JMod.ShellSounds.metal
 SWEP.SpeedMult = 1
 SWEP.SightedSpeedMult = .55
 SWEP.SightTime = .6
@@ -117,6 +118,7 @@ SWEP.Animations = {
 		Time = 1.2,
 		Mult = 1,
 		ShellEjectAt = .8,
+		TPAnim = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2,
 		SoundTable = {
 			{
 				s = "snds_jack_gmod/ez_weapons/sniper_rifle/lift.wav",
@@ -124,17 +126,17 @@ SWEP.Animations = {
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/sniper_rifle/pull.wav",
+				s = "snds_jack_gmod/ez_weapons/sniper_rifle/pull.ogg",
 				t = .4,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/sniper_rifle/push.wav",
+				s = "snds_jack_gmod/ez_weapons/sniper_rifle/push.ogg",
 				t = .65,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/sniper_rifle/lock.wav",
+				s = "snds_jack_gmod/ez_weapons/sniper_rifle/lock.ogg",
 				t = .75,
 				v = 60
 			},
@@ -157,17 +159,17 @@ SWEP.Animations = {
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/sniper_rifle/pull.wav",
+				s = "snds_jack_gmod/ez_weapons/sniper_rifle/pull.ogg",
 				t = .4,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/sniper_rifle/push.wav",
+				s = "snds_jack_gmod/ez_weapons/sniper_rifle/push.ogg",
 				t = .75,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/sniper_rifle/lock.wav",
+				s = "snds_jack_gmod/ez_weapons/sniper_rifle/lock.ogg",
 				t = .85,
 				v = 60
 			},
@@ -197,7 +199,7 @@ SWEP.Animations = {
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/sniper_rifle/pull.wav",
+				s = "snds_jack_gmod/ez_weapons/sniper_rifle/pull.ogg",
 				t = 1,
 				v = 60
 			}
@@ -220,7 +222,7 @@ SWEP.Animations = {
 				p = 120
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/bar/insert.wav",
+				s = "snds_jack_gmod/ez_weapons/bar/insert.ogg",
 				t = .15,
 				v = 60,
 				p = 90
@@ -235,12 +237,12 @@ SWEP.Animations = {
 		LHIKOut = 0.4,
 		SoundTable = {
 			{
-				s = "snds_jack_gmod/ez_weapons/sniper_rifle/push.wav",
+				s = "snds_jack_gmod/ez_weapons/sniper_rifle/push.ogg",
 				t = .3,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/sniper_rifle/lock.wav",
+				s = "snds_jack_gmod/ez_weapons/sniper_rifle/lock.ogg",
 				t = .55,
 				v = 60
 			},
@@ -259,12 +261,12 @@ SWEP.Animations = {
 		LHIKOut = 1,
 		SoundTable = {
 			{
-				s = "snds_jack_gmod/ez_weapons/sniper_rifle/push.wav",
+				s = "snds_jack_gmod/ez_weapons/sniper_rifle/push.ogg",
 				t = .3,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/sniper_rifle/lock.wav",
+				s = "snds_jack_gmod/ez_weapons/sniper_rifle/lock.ogg",
 				t = .6,
 				v = 60
 			},

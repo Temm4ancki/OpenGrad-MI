@@ -43,7 +43,7 @@ local function BoomSmall(ent)
 			Flame:SetPos(SelfPos + Vector(0, 0, 50))
 			Flame:SetAngles(FireVec:Angle())
 			Flame:SetOwner(game.GetWorld())
-			JMod.SetOwner(Flame, game.GetWorld())
+			Flame.SetOwner(Flame, game.GetWorld())
 			Flame.SpeedMul = 0.25
 			Flame.Creator = game.GetWorld()
 			Flame.HighVisuals = true

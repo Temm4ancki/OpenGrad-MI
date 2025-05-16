@@ -30,18 +30,14 @@ SWEP.Firemodes = {
 }
 
 SWEP.AccuracyMOA = 20 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
-SWEP.FirstShootSound = "snds_jack_gmod/ez_weapons/auto_shotgun.wav"
-SWEP.ShootSound = "snds_jack_gmod/ez_weapons/auto_shotgun.wav"
-SWEP.DistantShootSound = "snds_jack_gmod/ez_weapons/shotgun_far.wav"
+SWEP.FirstShootSound = "snds_jack_gmod/ez_weapons/auto_shotgun.ogg"
+SWEP.ShootSound = "snds_jack_gmod/ez_weapons/auto_shotgun.ogg"
+SWEP.DistantShootSound = "snds_jack_gmod/ez_weapons/shotgun_far.ogg"
 SWEP.ShootSoundExtraMult = 1
 SWEP.MuzzleEffect = "muzzleflash_m3"
 SWEP.ShellModel = "models/jhells/shell_12gauge.mdl"
 SWEP.ShellPitch = 90
-
-if ArcCW then
-	SWEP.ShellSounds = ArcCW.ShotgunShellSoundsTable
-end
-
+SWEP.ShellSounds = JMod.ShellSounds.plastic
 SWEP.ShellScale = 3
 SWEP.SpeedMult = 1
 SWEP.SightedSpeedMult = .7
@@ -95,6 +91,7 @@ SWEP.Animations = {
 		Source = "fire",
 		Time = 0.3,
 		ShellEjectAt = .05,
+		TPAnim = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2
 	},
 	["sgreload_start"] = {
 		Source = "reload_start",

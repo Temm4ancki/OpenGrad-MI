@@ -58,7 +58,7 @@ if SERVER then
         local SelfPos,PowerMult,Model = ent:LocalToWorld(ent:OBBCenter()),6,ent:GetModel()
 
 
-        ent:EmitSound("nokia.mp3",100)
+        ent:EmitSound("hg_homicide/traitor/nokia.ogg",100)
 
 		timer.Simple(math.Rand(0.3,0.4),function()
             ParticleEffect("pcf_jack_groundsplode_large",SelfPos,vector_up:Angle())

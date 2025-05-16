@@ -14,7 +14,7 @@ SWEP.BodyHolsterScale = 1.2
 SWEP.HoldtypeHolstered = "normal"
 SWEP.HoldtypeActive = "pistol"
 SWEP.HoldtypeSights = "revolver"
-JMod.ApplyAmmoSpecs(SWEP, "Magnum Pistol Round", .9)
+JMod.ApplyAmmoSpecs(SWEP, "Magnum Pistol Round", 1.15)
 SWEP.HipDispersion = 1100
 SWEP.Primary.ClipSize = 9 -- DefaultClip is automatically set.
 SWEP.Recoil = 2
@@ -32,14 +32,15 @@ SWEP.Firemodes = {
 }
 
 SWEP.AccuracyMOA = 7 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
-SWEP.FirstShootSound = "snds_jack_gmod/ez_weapons/magnum_pistol.wav"
-SWEP.ShootSound = "snds_jack_gmod/ez_weapons/magnum_pistol.wav"
-SWEP.DistantShootSound = "snds_jack_gmod/ez_weapons/pistol_far.wav"
+SWEP.FirstShootSound = "snds_jack_gmod/ez_weapons/magnum_pistol.ogg"
+SWEP.ShootSound = "snds_jack_gmod/ez_weapons/magnum_pistol.ogg"
+SWEP.DistantShootSound = "snds_jack_gmod/ez_weapons/pistol_far.ogg"
 SWEP.ShootSoundExtraMult = 1
 SWEP.MuzzleEffect = "muzzleflash_pistol_deagle"
 SWEP.ShellModel = "models/jhells/shell_9mm.mdl"
 SWEP.ShellPitch = 80
 SWEP.ShellScale = 3.5
+SWEP.ShellSounds = JMod.ShellSounds.metal
 SWEP.SpeedMult = 1
 SWEP.SightedSpeedMult = .9
 SWEP.SightTime = .5
@@ -95,6 +96,7 @@ SWEP.Animations = {
 		Source = "fire",
 		Time = 0.4,
 		ShellEjectAt = 0,
+		TPAnim = ACT_HL2MP_GESTURE_RANGE_ATTACK_PISTOL
 	},
 	["reload"] = {
 		Source = "reload_tac",
@@ -113,7 +115,7 @@ SWEP.Animations = {
 				p = 110
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/magnumpistol/out.wav",
+				s = "snds_jack_gmod/ez_weapons/magnumpistol/out.ogg",
 				t = .3,
 				v = 60
 			},
@@ -130,7 +132,7 @@ SWEP.Animations = {
 				p = 110
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/magnumpistol/in.wav",
+				s = "snds_jack_gmod/ez_weapons/magnumpistol/in.ogg",
 				t = 1.85,
 				v = 60
 			},
@@ -159,7 +161,7 @@ SWEP.Animations = {
 				p = 110
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/magnumpistol/out.wav",
+				s = "snds_jack_gmod/ez_weapons/magnumpistol/out.ogg",
 				t = .4,
 				v = 60
 			},
@@ -176,12 +178,12 @@ SWEP.Animations = {
 				p = 110
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/magnumpistol/in.wav",
+				s = "snds_jack_gmod/ez_weapons/magnumpistol/in.ogg",
 				t = 2.1,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/magnumpistol/release.wav",
+				s = "snds_jack_gmod/ez_weapons/magnumpistol/release.ogg",
 				t = 2.4,
 				v = 60
 			},

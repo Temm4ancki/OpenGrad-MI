@@ -20,7 +20,7 @@ if SERVER then
 		local ent = ents.Create(self.ClassName)
 		ent:SetAngles(Angle(0, 0, 0))
 		ent:SetPos(SpawnPos)
-		JMod.SetOwner(ent, ply)
+		JMod.SetEZowner(ent, ply)
 		ent:Spawn()
 		ent:Activate()
 		--local effectdata=EffectData()
@@ -31,7 +31,7 @@ if SERVER then
 	end
 
 	function ENT:Initialize()
-		self:SetModel("models/saraphines/binoculars/binoculars_sniper/binoculars_sniper.mdl")
+		self:SetModel("models/props_combine/combine_binocular03.mdl")--"models/saraphines/binoculars/binoculars_sniper/binoculars_sniper.mdl")
 		self:PhysicsInit(SOLID_VPHYSICS)
 		self:SetMoveType(MOVETYPE_VPHYSICS)
 		self:SetSolid(SOLID_VPHYSICS)
@@ -64,7 +64,7 @@ if SERVER then
 	end
 
 	function ENT:Use(activator)
-		if activator:KeyDown(JMod.Config.AltFunctionKey) then
+		if JMod.IsAltUsing(activator) then
 			activator:PickupObject(self)
 		elseif not activator:HasWeapon("wep_jack_gmod_ezdesignator") then
 			activator:Give("wep_jack_gmod_ezdesignator")

@@ -15,7 +15,7 @@ function EFFECT:Init(data)
 	self.Normal = data:GetNormal()
 	self.Delay = math.Clamp(0.03 * data:GetScale(), 0.025, 0.06)
 	self.EndTime = CurTime() + self.Delay
-	self:SetRenderBoundsWS(self.StartPos, self.EndPos)
+	self.Entity:SetRenderBoundsWS(self.StartPos, self.EndPos)
 	local dlightend = DynamicLight(self:EntIndex())
 	dlightend.Pos = self.EndPos
 	dlightend.Size = 375 * self.Scayul
@@ -37,7 +37,7 @@ end
 
 function EFFECT:Render()
 	local Flicker = math.Rand(.9, 1.1)
-	self:SetRenderBoundsWS(self.StartPos, self.EndPos)
+	self.Entity:SetRenderBoundsWS(self.StartPos, self.EndPos)
 	render.SetMaterial(LaserHitPic)
 	render.DrawSprite(self.EndPos + self.Normal, 18 * Flicker, 18 * Flicker, Color(255, 255, 255, 255))
 	render.DrawSprite(self.EndPos + self.Normal, 52 * Flicker, 52 * Flicker, Color(255, 100, 100, 175))

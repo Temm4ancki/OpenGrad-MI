@@ -44,7 +44,7 @@ function schoolshoot.HUDPaint_RoundLeft(white2,time)
     if startRound > 0 and lply:Alive() then
         if playsound then
             playsound = false
-            surface.PlaySound("round/start/school.ogg")
+            surface.PlaySound("hg_rounds/start/school.ogg")
         end
 		lply:ScreenFade(SCREENFADE.IN,Color(0,0,0,255),0.5,0.5)
 

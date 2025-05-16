@@ -3,7 +3,7 @@
 local Refract = Material("sprites/mat_jack_shockwave")
 
 function EFFECT:Init(data)
-	print("welp",self.Del_Bepis)
+	--print("welp",self.Del_Bepis)
 	local Pos, Scale = data:GetOrigin(), data:GetScale()
 	self.DieTime = CurTime() + .3
 	local Emitter = ParticleEmitter(Pos)
@@ -54,6 +54,7 @@ function EFFECT:Init(data)
 	end)
 
 	self.Pos = Pos
+	self.Scale = Scale
 end
 
 function EFFECT:Think()
@@ -76,7 +77,10 @@ function EFFECT:Render()
 		DLight.Style = 0
 	end
 
+	local SpriteSize = 8000 * Frac * self.Scale
+	local SpriteSize2 = 7000 * Frac * self.Scale
+
 	render.SetMaterial(Refract)
-	render.DrawSprite(self.Pos, 8000 * Frac, 8000 * Frac, Color(255, 255, 255, 255))
-	render.DrawSprite(self.Pos, 7000 * Frac, 7000 * Frac, Color(255, 255, 255, 255))
+	render.DrawSprite(self.Pos, SpriteSize, SpriteSize, Color(255, 255, 255, 255))
+	render.DrawSprite(self.Pos, SpriteSize2, SpriteSize2, Color(255, 255, 255, 255))
 end

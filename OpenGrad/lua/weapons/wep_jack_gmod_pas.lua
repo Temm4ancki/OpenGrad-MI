@@ -30,18 +30,14 @@ SWEP.Firemodes = {
 }
 
 SWEP.AccuracyMOA = 20 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
-SWEP.FirstShootSound = "snds_jack_gmod/ez_weapons/shotgun.wav"
-SWEP.ShootSound = "snds_jack_gmod/ez_weapons/shotgun.wav"
-SWEP.DistantShootSound = "snds_jack_gmod/ez_weapons/shotgun_far.wav"
+SWEP.FirstShootSound = "snds_jack_gmod/ez_weapons/shotgun.ogg"
+SWEP.ShootSound = "snds_jack_gmod/ez_weapons/shotgun.ogg"
+SWEP.DistantShootSound = "snds_jack_gmod/ez_weapons/shotgun_far.ogg"
 SWEP.ShootSoundExtraMult = 1 -- fix calcview reload bob lol
 SWEP.MuzzleEffect = "muzzleflash_m3"
 SWEP.ShellModel = "models/jhells/shell_12gauge.mdl"
 SWEP.ShellPitch = 90
-
-if ArcCW then
-	SWEP.ShellSounds = ArcCW.ShotgunShellSoundsTable
-end
-
+SWEP.ShellSounds = JMod.ShellSounds.plastic
 SWEP.ShellScale = 3
 SWEP.SpeedMult = 1
 SWEP.SightedSpeedMult = .7
@@ -92,14 +88,15 @@ SWEP.Animations = {
 	["fire"] = {
 		Source = "shoot1",
 		Time = 1,
+		TPAnim = ACT_HL2MP_GESTURE_RANGE_ATTACK_SHOTGUN,
 		SoundTable = {
 			{
-				s = "snds_jack_gmod/ez_weapons/pas/back.wav",
+				s = "snds_jack_gmod/ez_weapons/pas/back.ogg",
 				t = .35,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/pas/forward.wav",
+				s = "snds_jack_gmod/ez_weapons/pas/forward.ogg",
 				t = .55,
 				v = 60
 			}
@@ -172,12 +169,12 @@ SWEP.Animations = {
 				v = 65
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/pas/back.wav",
+				s = "snds_jack_gmod/ez_weapons/pas/back.ogg",
 				t = .3,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/pas/forward.wav",
+				s = "snds_jack_gmod/ez_weapons/pas/forward.ogg",
 				t = .5,
 				v = 60
 			}

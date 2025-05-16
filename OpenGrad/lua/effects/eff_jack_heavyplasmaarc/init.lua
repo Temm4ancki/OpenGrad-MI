@@ -11,7 +11,7 @@ function EFFECT:Init(data)
 	self.Scayul = data:GetScale() ^ 0.5
 	self.Delay = math.Clamp(0.04 * data:GetScale(), 0.025, 0.06)
 	self.EndTime = CurTime() + self.Delay
-	self:SetRenderBoundsWS(self.StartPos, self.EndPos)
+	self.Entity:SetRenderBoundsWS(self.StartPos, self.EndPos)
 	local dlightend = DynamicLight(0)
 	dlightend.Pos = self.EndPos
 	dlightend.Size = 400 * self.Scayul
@@ -32,7 +32,7 @@ function EFFECT:Think()
 end
 
 function EFFECT:Render()
-	self:SetRenderBoundsWS(self.StartPos, self.EndPos)
+	self.Entity:SetRenderBoundsWS(self.StartPos, self.EndPos)
 	render.SetMaterial(Beamtwo)
 	render.DrawBeam(self.StartPos, self.EndPos, Lerp((self.EndTime - CurTime()) / self.Delay, 0, 3 * self.Scayul), 0, 0, Color(100, 150, 255, 254))
 	render.DrawBeam(self.StartPos, self.EndPos, Lerp((self.EndTime - CurTime()) / self.Delay, 0, 2 * self.Scayul), 0, 0, Color(100, 150, 255, 254))

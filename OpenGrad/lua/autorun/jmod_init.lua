@@ -46,6 +46,8 @@ JMod.EZ_RESOURCE_TYPES = {
 	CLOTH = "cloth",
 	CERAMIC = "ceramic",
 	PAPER = "paper",
+	SAND = "sand",
+	CONCRETE = "concrete",
 	--
 	AMMO = "ammo",
 	MUNITIONS = "munitions",
@@ -63,6 +65,12 @@ JMod.EZ_RESOURCE_TYPES = {
 	FISSILEMATERIAL = "fissile material",
 	--
 	ANTIMATTER = "antimatter"
+}
+
+JMod.PrimitiveResourceTypes = {
+	["wood"] = { JMod.EZ_RESOURCE_TYPES.WOOD },
+	["metal"] = { JMod.EZ_RESOURCE_TYPES.ALUMINUM, JMod.EZ_RESOURCE_TYPES.COPPER, JMod.EZ_RESOURCE_TYPES.STEEL },
+	["rock"] = { JMod.EZ_RESOURCE_TYPES.CONCRETE, JMod.EZ_RESOURCE_TYPES.CERAMIC }
 }
 
 JMod.ResourceToIndex = {}
@@ -131,21 +139,27 @@ JMod.EZ_RESOURCE_ENTITIES = {
 	[JMod.EZ_RESOURCE_TYPES.ADVANCEDTEXTILES] = "ent_jack_gmod_ezadvtextiles",
 	[JMod.EZ_RESOURCE_TYPES.ADVANCEDPARTS] = "ent_jack_gmod_ezadvparts",
 	[JMod.EZ_RESOURCE_TYPES.FISSILEMATERIAL] = "ent_jack_gmod_ezfissilematerial",
-	[JMod.EZ_RESOURCE_TYPES.ANTIMATTER] = "ent_jack_gmod_ezantimatter"
+	[JMod.EZ_RESOURCE_TYPES.ANTIMATTER] = "ent_jack_gmod_ezantimatter",
+	[JMod.EZ_RESOURCE_TYPES.SAND] = "ent_jack_gmod_ezsand",
+	[JMod.EZ_RESOURCE_TYPES.CONCRETE] = "ent_jack_gmod_ezconcrete"
 }
 
-for k, v in pairs({
-	"models/squad/sf_tris/sf_tri8x8.mdl",
-	"models/squad/sf_tris/sf_tri7x7.mdl",
-	"models/squad/sf_tris/sf_tri6x6.mdl",
-	"models/squad/sf_tris/sf_tri5x5.mdl",
-	"models/squad/sf_tris/sf_tri4x4.mdl",
-	"models/squad/sf_tris/sf_tri3x3.mdl",
-	"models/squad/sf_tris/sf_tri2x2.mdl",
-	"models/squad/sf_tris/sf_tri1x1.mdl",
-}) do
-	util.PrecacheModel(v)
-end
+JMod.EZ_RESOURCE_TYPE_METHODS = {
+	[JMod.EZ_RESOURCE_TYPES.BASICPARTS] = "BasicParts",
+	[JMod.EZ_RESOURCE_TYPES.POWER] = "Electricity",
+	[JMod.EZ_RESOURCE_TYPES.GAS] = "Gas",
+	[JMod.EZ_RESOURCE_TYPES.COOLANT] = "Coolant",
+	[JMod.EZ_RESOURCE_TYPES.WATER] = "Water",
+	[JMod.EZ_RESOURCE_TYPES.CHEMICALS] = "Chemicals",
+	[JMod.EZ_RESOURCE_TYPES.OIL] = "Oil",
+	[JMod.EZ_RESOURCE_TYPES.FUEL] = "Fuel",
+	[JMod.EZ_RESOURCE_TYPES.AMMO] = "Ammo",
+	[JMod.EZ_RESOURCE_TYPES.MUNITIONS] = "Munitions",
+	[JMod.EZ_RESOURCE_TYPES.MEDICALSUPPLIES] = "Supplies",
+	[JMod.EZ_RESOURCE_TYPES.COAL] = "Coal",
+	[JMod.EZ_RESOURCE_TYPES.SAND] = "Sand",
+	[JMod.EZ_RESOURCE_TYPES.CONCRETE] = "Concrete"
+}
 
 -- EZ item quality grade (upgrade level) definitions
 JMod.EZ_GRADE_BASIC = 1
@@ -163,14 +177,6 @@ JMod.EZ_GRADE_MATS = {Material("models/mats_jack_grades/1"), Material("models/ma
 JMod.EZ_GRADE_UPGRADE_COSTS = {.5, 1, 1.5, 2}
 
 JMod.EZ_UPGRADE_RESOURCE_BLACKLIST = {}
-
-JMod.EZ_GRADE_BUFFS = {1, 1.25, 1.5, 1.75, 2}
-
-JMod.EZ_GRADE_NAMES = {"basic", "copper", "silver", "gold", "platinum"}
-
-JMod.EZ_GRADE_UPGRADE_COSTS = {.5, 1, 1.5, 2}
-
-JMod.EZ_UPGRADE_RESOURCE_BLACKLIST = {}
 -- State enums
 JMod.EZ_STATE_BROKEN = -1
 JMod.EZ_STATE_OFF = 0
@@ -181,6 +187,8 @@ JMod.EZ_STATE_ARMED = 4
 JMod.EZ_STATE_WARNING = 5
 
 JMod.EZ_HAZARD_PARTICLES = {
+	["ent_jack_gmod_ezcsparticle"] = {JMod.EZ_RESOURCE_TYPES.CHEMICALS, .2},
+	["ent_jack_gmod_ezcoparticle"] = {JMod.EZ_RESOURCE_TYPES.CHEMICALS, 0},
 	["ent_jack_gmod_ezgasparticle"] = {JMod.EZ_RESOURCE_TYPES.CHEMICALS, .5},
 	["ent_jack_gmod_ezvirusparticle"] = {JMod.EZ_RESOURCE_TYPES.CHEMICALS, .1},
 	["ent_jack_gmod_ezfalloutparticle"] = {JMod.EZ_RESOURCE_TYPES.FISSILEMATERIAL, .2}
@@ -242,6 +250,73 @@ JMod.HitMatColors = {
 	[MAT_WARPSHIELD] = {Color(255, 255, 255)}
 }
 
+JMod.DefualtArmorTable={
+	[DMG_BUCKSHOT]=.1,
+	[DMG_CRUSH]=.5,
+	[DMG_VEHICLE]=.5,
+	[DMG_BULLET]=.2,
+	[DMG_SLASH]=.2,
+	[DMG_BLAST]=1,
+	[DMG_BLAST_SURFACE]=1,
+	[DMG_CLUB]=.5,
+	[DMG_SHOCK]=1,
+	[DMG_BURN]=.3,
+	[DMG_SLOWBURN]=.3,
+	[DMG_ACID]=.4,
+	[DMG_PLASMA]=.4,
+	[DMG_AIRBOAT]=.75,
+	[DMG_SONIC]=.1,
+	-- Machines should never be damaged by these
+	[DMG_DROWN]=0,
+	[DMG_PARALYZE]=0,
+	[DMG_NERVEGAS]=0,
+	[DMG_POISON]=0,
+	[DMG_RADIATION]=0,
+	-- These damages should always be applied
+	[DMG_SNIPER]=1,
+	[DMG_GENERIC]=1,
+	[DMG_FALL]=1,
+	[DMG_ENERGYBEAM]=1,
+	[DMG_PHYSGUN]=1,
+	[DMG_DIRECT]=1,
+	[DMG_DISSOLVE]=1,
+	[DMG_MISSILEDEFENSE]=1
+}
+
+JMod.TreeArmorTable={
+	[DMG_SLASH]=1.1,
+	[DMG_BLAST]=1.1,
+	[DMG_CLUB]=1.1,
+	[DMG_BUCKSHOT]=.1,
+	[DMG_SNIPER]=.2,
+	[DMG_CRUSH]=.9,
+	[DMG_BULLET]=.1,
+	[DMG_SHOCK]=.9,
+	[DMG_BURN]=.3,
+	[DMG_SLOWBURN]=.3,
+	[DMG_AIRBOAT]=.5,
+	[DMG_PLASMA]=.3,
+	[DMG_RADIATION]=.2,
+	-- These values are more black and white
+	[DMG_POISON]=0,
+	[DMG_DROWN]=0,
+	[DMG_PARALYZE]=0,
+	[DMG_NERVEGAS]=0,
+	[DMG_FALL]=0,
+	[DMG_SONIC]=0,
+	[DMG_ENERGYBEAM]=1,
+	[DMG_PHYSGUN]=1,
+	[DMG_ACID]=1,
+	[DMG_VEHICLE]=1,
+	[DMG_DISSOLVE]=1,
+	[DMG_BLAST_SURFACE]=1,
+	[DMG_DIRECT]=1,
+	[DMG_GENERIC]=1,
+	[DMG_MISSILEDEFENSE]=1
+}
+
+JMod.EZ_OwnerID = {}
+
 -- we have to load locales before any other files
 -- because files that add concommands have help text
 -- and we want the help text to be localized
@@ -266,6 +341,94 @@ for i, f in pairs(file.Find("jmod/*.lua", "LUA")) do
 		print("JMod detected unaccounted-for lua file '" .. f .. "'-check prefixes!")
 	end
 end
+
+local PrimitiveBenchReqs = {[JMod.EZ_RESOURCE_TYPES.WOOD] = 25, [JMod.EZ_RESOURCE_TYPES.CERAMIC] = 15, [JMod.EZ_RESOURCE_TYPES.ALUMINUM] = 8}
+
+local Handcraft = function(ply, cmd, args)
+	local Pos = ply:GetPos()
+	local ScrapResources, LocalScrap = JMod.FindSuitableScrap(Pos, 200, ply)
+	local ResourcesFromResourceEntities = JMod.CountResourcesInRange(nil, nil, ply)
+	local AvailableResources = {}
+	for k, v in pairs(ScrapResources) do
+		AvailableResources[k] = (AvailableResources[k] or 0) + v
+	end
+	for k, v in pairs(ResourcesFromResourceEntities) do
+		AvailableResources[k] = (AvailableResources[k] or 0) + v
+	end
+	local EnoughStuff, StuffLeft = JMod.HaveResourcesToPerformTask(nil, nil, PrimitiveBenchReqs, nil, AvailableResources)
+	if EnoughStuff then
+		local WherePutBench = util.QuickTrace(ply:GetShootPos(), ply:GetAimVector() * 100, ply)
+		JMod.BuildEffect(WherePutBench.HitPos + Vector(0, 0, 30))
+		timer.Simple(0.5, function()
+			local Bench = ents.Create("ent_jack_gmod_ezprimitivebench")
+			Bench:SetPos(WherePutBench.HitPos + Vector(0, 0, 30))
+			Bench:SetAngles(-ply:GetAngles())
+			Bench:Spawn()
+			JMod.SetEZowner(Bench, ply)
+			Bench:Activate()
+		end)
+		
+		local AllDone, Moar = JMod.ConsumeResourcesInRange(PrimitiveBenchReqs, Pos, 200, ply, false, LocalScrap)
+		if not(AllDone) then
+			JMod.ConsumeResourcesInRange(Moar, Pos, 200, ply, false)
+		end
+	else
+		local Mssg = ""
+		for k, v in pairs(StuffLeft) do
+			Mssg = Mssg .. tostring(v) .. " more " .. tostring(k) .. ", "
+		end
+		ply:PrintMessage(HUD_PRINTCENTER, "You need: " .. string.sub(Mssg, 1, -3))
+	end
+end
+
+-- This needs to be here I guess, probably due to load order
+JMod.EZ_CONCOMMANDS = {
+	{name = "inv", func = JMod.EZ_Open_Inventory, helpTxt = "Opens your EZ inventory to manage your armour.", noShow = true},
+	{name = "bombdrop", func = JMod.EZ_BombDrop, helpTxt = "Drops any bombs you have armed and welded."},
+	{name = "launch", func = JMod.EZ_WeaponLaunch, helpTxt = "Fires any active missiles you own."},
+	{name = "trigger", func = JMod.EZ_Remote_Trigger,  helpTxt = "Triggers any EZ bombs/mini-nades you have armed."},
+	{name = "scrounge", func = JMod.EZ_ScroungeArea, helpTxt = "Scrounges area for useful props to salvage."},
+	{name = "grab", func = JMod.EZ_GrabItem, helpTxt = "Grabs the item and tries to put it in your inventory"},
+	{name = "handcraft", func = Handcraft, helpTxt = "Construct crafting table from scrap."},
+	{name = "config", func = JMod.EZ_Open_ConfigUI, helpTxt = "Opens the EZ config editor.", adminOnly = true}
+}
+
+if SERVER then
+	for _, v in ipairs(JMod.EZ_CONCOMMANDS) do
+		concommand.Add("jmod_ez_"..v.name, function(ply, cmd, args)
+			if not (IsValid(ply) and ply:Alive()) then return end
+			if v.adminOnly and not(JMod.IsAdmin(ply)) then ply:PrintMessage(HUD_PRINTCENTER, "This command is admin only") return end
+			v.func(ply, cmd, args)
+		end, nil, v.helpTxt)
+	end
+end
+
+--[[local ImpactSounds = {
+	Metal = {"Canister.ImpactSoft", "Metal_Barrel.BulletImpact", "Metal_Barrel.ImpactSoft", "Metal_Box.BulletImpact", "Metal_Box.ImpactSoft", "Metal_SeafloorCar.BulletImpact", "MetalGrate.BulletImpact", "MetalGrate.ImpactSoft", "MetalVehicle.ImpactSoft", "MetalVent.ImpactHard",},
+	Wood = {"Wood.BulletImpact", "Wood.ImpactSoft", "Wood_Box.BulletImpact", "Wood_Box.ImpactSoft", "Wood_Crate.ImpactSoft", "Wood_Furniture.ImpactSoft", "Wood_Panel.BulletImpact", "Wood_Panel.ImpactSoft", "Wood_Plank.BulletImpact", "Wood_Plank.ImpactSoft", "Wood_Solid.BulletImpact", "Wood_Solid.ImpactSoft"},
+	Flesh = {"Flesh.BulletImpact", "Flesh.ImpactSoft"},
+	Concrete = {"Concrete.BulletImpact", "Concrete.ImpactSoft"},
+	Dirt = {"Dirt.BulletImpact", "Dirt.Impact"}
+}
+
+JMod.EZ_BulletMatImpactTable = {
+	[MAT_METAL] = ImpactSounds.Metal,
+	[MAT_WOOD] = ImpactSounds.Wood,
+	[MAT_FLESH] = ImpactSounds.Flesh,
+	[MAT_CONCRETE] = ImpactSounds.Concrete,
+	[MAT_DIRT] = ImpactSounds.Dirt,
+	[MAT_DEFAULT] = ImpactSounds.Concrete,
+}
+JMod.EZ_BulletPhysImpactTable = {
+	"metal" = ImpactSounds.Metal,
+	"wood" = ImpactSounds.Wood,
+	"concrete" = ImpactSounds.Concrete,
+}
+
+JMod.EZ_PhysImpactSound = function(physmat)
+
+end--]]
+
 --[[
 Physics Sounds
 

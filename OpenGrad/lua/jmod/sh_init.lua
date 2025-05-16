@@ -9,10 +9,12 @@ game.AddParticles("particles/gb5_large_explosion.pcf")
 game.AddParticles("particles/gb5_500lb.pcf")
 game.AddParticles("particles/gb5_100lb.pcf")
 game.AddParticles("particles/gb5_50lb.pcf")
+-- game.AddParticles("particles/inferno_fx.pcf")
 
 game.AddDecal("BigScorch", {"decals/big_scorch1", "decals/big_scorch2", "decals/big_scorch3"})
-
 game.AddDecal("GiantScorch", {"decals/giant_scorch1", "decals/giant_scorch2", "decals/giant_scorch3"})
+game.AddDecal("EZtreeRoots", {"decals/ez_tree_roots"})
+game.AddDecal("EZgroundHole", {"decals/ez_ground_cracks"})
 
 PrecacheParticleSystem("pcf_jack_nuke_ground")
 PrecacheParticleSystem("pcf_jack_nuke_air")
@@ -97,6 +99,7 @@ local cheats = GetConVar("sv_cheats")
 local timeScale = GetConVar("host_timescale")
 
 hook.Add("EntityEmitSound", "JMOD_EntityEmitSound", function(t)
+	if not(JMod.Config and JMod.Config.QoL.ChangePitchWithHostTimeScale) then return end
 	local p = t.Pitch
 
 	if game.GetTimeScale() ~= 1 then
@@ -159,3 +162,103 @@ hook.Add("StartCommand", "JMod_StartCommand", function(ply, ucmd)
 		ucmd:SetButtons(Btns)
 	end
 end)
+
+local WDir = VectorRand()
+
+hook.Add("StartCommand", "ParachuteShake", function(ply, cmd)
+	if not ply:Alive() then return end
+
+	if ply:GetNW2Bool("EZparachuting", false) then
+		local Amt, Sporadicness, FT = 30, 20, FrameTime()
+
+		if ply:KeyDown(IN_FORWARD) then
+			Sporadicness = Sporadicness * 1.5
+			Amt = Amt * 2
+		end
+
+		local S, EAng = .05, cmd:GetViewAngles()
+		--(JMod.Wind + EAng:Forward())
+		WDir = (WDir + FT * VectorRand() * Sporadicness):GetNormalized()
+		EAng.pitch = math.NormalizeAngle(EAng.pitch + math.sin(RealTime() * 2) * 0.02)
+		ply.LerpedYaw = math.ApproachAngle(ply.LerpedYaw, EAng.y, FT * 120)
+		EAng.yaw = ply.LerpedYaw + math.NormalizeAngle(WDir.x * FT * Amt * S)
+		cmd:SetViewAngles(EAng)
+	else
+		ply.LerpedYaw = cmd:GetViewAngles().y
+	end
+end)
+
+hook.Add("StartCommand", "RocketSpeen", function(ply, cmd)
+	if not ply:Alive() then return end
+
+	if ply:GetNW2Bool("EZrocketSpin", false) then
+		local FT = FrameTime()
+
+		local Spin, EAng = 1200, cmd:GetViewAngles()
+		local WDir = ply:GetVelocity():GetNormalized()
+		ply.LerpedYaw = math.ApproachAngle(ply.LerpedYaw, EAng.y, FT * 120)
+		EAng.yaw = ply.LerpedYaw + math.NormalizeAngle(WDir.x * Spin * FT)
+		cmd:SetViewAngles(EAng)
+	else
+		ply.LerpedYaw = cmd:GetViewAngles().y
+	end
+end)
+
+
+function JMod.GetPlayerHeldEntity(ply)
+	if not(IsValid(ply) and ply:Alive()) then return end
+	local HeldEntity = ply:GetNW2Entity("EZheldEnt", ply.EZheldEnt)
+	if IsValid(HeldEntity) then
+		return HeldEntity
+	end
+end
+
+function JMod.SetPlayerHeldEntity(ply, ent)
+	if not(IsValid(ply) and ply:Alive()) then return end
+	if IsValid(ent) then
+		ply.EZheldEnt = ent
+	else
+		ply.EZheldEnt = nil
+	end
+
+	ply:SetNW2Entity("EZheldEnt", ent)
+end
+
+hook.Add("OnPlayerPhysicsPickup", "JMod_PhysicsPickup", function(ply, ent)
+	JMod.SetPlayerHeldEntity(ply, ent)
+end)
+
+hook.Add("OnPlayerPhysicsDrop", "JMod_PhysicsDrop", function(ply, ent) 
+	JMod.SetPlayerHeldEntity(ply, nil)
+end)
+
+function JMod.LiquidSpray(pos, dir, amt, group, typ)
+	local group = group or 1
+	local amt = amt or 1
+	local dir = dir or Vector(0, 0, 1)
+	if SERVER then
+		net.Start("JMod_LiquidParticle")
+		net.WriteVector(pos)
+		net.WriteVector(dir)
+		net.WriteInt(amt, 8)
+		net.WriteInt(group, 8) -- which group of particles is this associated with
+		net.WriteInt(typ, 8) -- particle type, in this case 1 = generic liquid
+		net.Broadcast()
+	elseif CLIENT then
+		local Specs = JMod.ParticleSpecs[typ]
+		if not(Specs) then return end
+		for i = 1, amt do
+			timer.Simple((i - 1) * 0.1, function()
+				JMod.LiquidParticles[group] = JMod.LiquidParticles[group] or {}
+				table.insert(JMod.LiquidParticles[group], {
+					typ = typ,
+					pos = pos,
+					vel = dir + VectorRand() * 20,
+					dieTime = CurTime() + Specs.lifeTime,
+					impacted = false,
+					lifeProgress = 0 -- for calc caching
+				})
+			end)
+		end
+	end
+end

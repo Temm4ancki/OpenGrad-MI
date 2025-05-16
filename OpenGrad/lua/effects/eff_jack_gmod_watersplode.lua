@@ -9,11 +9,10 @@ function EFFECT:Init(data)
 	self.Normal = Vector(0, 0, 1)
 
 	local Tr = util.TraceLine({
-		start = self.Pos + Vector(0, 0, 500),
-		endpos = self.Pos - Vector(0, 0, -1000),
+		start = self.Pos + Vector(0, 0, 1000),
+		endpos = self.Pos,
 		filter = {self.Mine},
-		mask = -1 -- hit water
-		
+		mask = MASK_WATER
 	})
 
 	if Tr.Hit then
@@ -27,22 +26,13 @@ function EFFECT:Init(data)
 	Splach:SetScale(100)
 	util.Effect("WaterSplash", Splach)
 	---
-	sound.Play("snds_jack_gmod/watersplode_with_rain.wav", self.Pos + Vector(0, 0, 100), 80, math.random(95, 105), 1)
-	sound.Play("snds_jack_gmod/watersplode_with_rain.wav", self.Pos + Vector(0, 0, 110), 80, math.random(95, 105), 1)
+	sound.Play("snds_jack_gmod/watersplode_with_rain.ogg", self.Pos + Vector(0, 0, 100), 80, math.random(95, 105), 1)
+	sound.Play("snds_jack_gmod/watersplode_with_rain.ogg", self.Pos + Vector(0, 0, 110), 80, math.random(95, 105), 1)
 	---
 	local emitter = ParticleEmitter(self.Pos)
 
 	for i = 0, 200 do
-		local Sprite
-		local Rand = math.random(1, 3)
-
-		if Rand == 1 then
-			Sprite = "effects/splash1"
-		elseif Rand == 2 then
-			Sprite = "effects/splash2"
-		elseif Rand == 3 then
-			Sprite = "effects/splash4"
-		end
+		local Sprite = "effects/jmod/splash2"
 
 		local Vec = Vector(math.Rand(-80, 80), math.Rand(-80, 80), 0) * self.Scale
 		local Dist = Vec:Length()
@@ -64,16 +54,8 @@ function EFFECT:Init(data)
 	end
 
 	for i = 0, 150 do
-		local Sprite
+		local Sprite = "effects/jmod/splash2"
 		local Rand = math.random(1, 3)
-
-		if Rand == 1 then
-			Sprite = "effects/splash1"
-		elseif Rand == 2 then
-			Sprite = "effects/splash2"
-		elseif Rand == 3 then
-			Sprite = "effects/splash4"
-		end
 
 		local Vec = Vector(math.Rand(-80, 80), math.Rand(-80, 80), 0) * self.Scale
 		local Dist = Vec:Length()
@@ -95,16 +77,8 @@ function EFFECT:Init(data)
 	end
 
 	for i = 0, 100 do
-		local Sprite
+		local Sprite = "effects/jmod/splash2"
 		local Rand = math.random(1, 3)
-
-		if Rand == 1 then
-			Sprite = "effects/splash1"
-		elseif Rand == 2 then
-			Sprite = "effects/splash2"
-		elseif Rand == 3 then
-			Sprite = "effects/splash4"
-		end
 
 		local Vec = Vector(math.Rand(-80, 80), math.Rand(-80, 80), 0) * self.Scale
 		local Dist = Vec:Length()
@@ -132,7 +106,7 @@ function EFFECT:Init(data)
 		local emitter = ParticleEmitter(Pos)
 
 		for i = 0, 500 do
-			local Sprite = table.Random({"effects/splash1", "effects/splash2", "effects/splash4"})
+			local Sprite = "effects/jmod/splash2"
 
 			local particle = emitter:Add(Sprite, Pos)
 			particle:SetVelocity(VectorRand() * math.Rand(0, 200) * Scale + Vector(0, 0, math.Rand(200, 1000) * Scale))

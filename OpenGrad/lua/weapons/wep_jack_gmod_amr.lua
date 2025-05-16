@@ -19,7 +19,8 @@ SWEP.BodyHolsterScale = .9
 SWEP.DefaultBodygroups = "01000"
 JMod.ApplyAmmoSpecs(SWEP, "Heavy Rifle Round")
 SWEP.Primary.ClipSize = 5 -- DefaultClip is automatically set.
-SWEP.Recoil = 2
+SWEP.Recoil = 5
+SWEP.RecoilSide = .5
 SWEP.VisualRecoilMult = 2
 SWEP.Delay = 60 / 200 -- 60/RPM.
 
@@ -34,14 +35,15 @@ SWEP.Firemodes = {
 }
 
 SWEP.AccuracyMOA = 4 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
-SWEP.FirstShootSound = "snds_jack_gmod/ez_weapons/heavy_autoloader.wav"
-SWEP.ShootSound = "snds_jack_gmod/ez_weapons/heavy_autoloader.wav"
-SWEP.DistantShootSound = "snds_jack_gmod/ez_weapons/rifle_far.wav"
+SWEP.FirstShootSound = "snds_jack_gmod/ez_weapons/heavy_autoloader.ogg"
+SWEP.ShootSound = "snds_jack_gmod/ez_weapons/heavy_autoloader.ogg"
+SWEP.DistantShootSound = "snds_jack_gmod/ez_weapons/rifle_far.ogg"
 SWEP.ShootSoundExtraMult = 1
 SWEP.MuzzleEffect = "muzzle_center_M82"
 SWEP.ShellModel = "models/jhells/shell_762nato.mdl"
 SWEP.ShellPitch = 70
 SWEP.ShellScale = 4
+SWEP.ShellSounds = JMod.ShellSounds.metal
 SWEP.SpeedMult = .8
 SWEP.SightedSpeedMult = .4
 SWEP.SightTime = .9
@@ -115,7 +117,7 @@ SWEP.Animations = {
 				p = 90
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/amr/bigmove.wav",
+				s = "snds_jack_gmod/ez_weapons/amr/bigmove.ogg",
 				t = .2,
 				v = 60
 			},
@@ -133,6 +135,7 @@ SWEP.Animations = {
 		Source = "fire",
 		Time = 0.6,
 		ShellEjectAt = .05,
+		TPAnim = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2
 	},
 	["reload"] = {
 		Source = "reload_tac",
@@ -151,17 +154,17 @@ SWEP.Animations = {
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/amr/move.wav",
+				s = "snds_jack_gmod/ez_weapons/amr/move.ogg",
 				t = .2,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/amr/magrelease.wav",
+				s = "snds_jack_gmod/ez_weapons/amr/magrelease.ogg",
 				t = 1.2,
 				v = 65
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/amr/magtoss.wav",
+				s = "snds_jack_gmod/ez_weapons/amr/magtoss.ogg",
 				t = 1.1,
 				v = 65
 			},
@@ -171,7 +174,7 @@ SWEP.Animations = {
 				v = 65
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/amr/magmove.wav",
+				s = "snds_jack_gmod/ez_weapons/amr/magmove.ogg",
 				t = 2,
 				v = 65
 			},
@@ -182,7 +185,7 @@ SWEP.Animations = {
 				p = 80
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/amr/in.wav",
+				s = "snds_jack_gmod/ez_weapons/amr/in.ogg",
 				t = 3.35,
 				v = 65
 			},
@@ -215,17 +218,17 @@ SWEP.Animations = {
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/amr/move.wav",
+				s = "snds_jack_gmod/ez_weapons/amr/move.ogg",
 				t = .2,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/amr/magrelease.wav",
+				s = "snds_jack_gmod/ez_weapons/amr/magrelease.ogg",
 				t = 1.3,
 				v = 65
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/amr/magtoss.wav",
+				s = "snds_jack_gmod/ez_weapons/amr/magtoss.ogg",
 				t = 1.4,
 				v = 65
 			},
@@ -235,7 +238,7 @@ SWEP.Animations = {
 				v = 65
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/amr/magmove.wav",
+				s = "snds_jack_gmod/ez_weapons/amr/magmove.ogg",
 				t = 2.2,
 				v = 65
 			},
@@ -246,7 +249,7 @@ SWEP.Animations = {
 				p = 80
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/amr/in.wav",
+				s = "snds_jack_gmod/ez_weapons/amr/in.ogg",
 				t = 3.7,
 				v = 65
 			},
@@ -261,12 +264,12 @@ SWEP.Animations = {
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/amr/pull.wav",
+				s = "snds_jack_gmod/ez_weapons/amr/pull.ogg",
 				t = 5,
 				v = 65
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/amr/release.wav",
+				s = "snds_jack_gmod/ez_weapons/amr/release.ogg",
 				t = 5.3,
 				v = 65
 			},

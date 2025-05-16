@@ -1,10 +1,10 @@
 ﻿-- Jackarunda 2021
---AddCSLuaFile()
+AddCSLuaFile()
 ENT.Type = "anim"
 ENT.Author = "Jackarunda"
 ENT.Category = "JMod - EZ Weapons"
 ENT.Information = "glhfggwpezpznore"
---ENT.PrintName = "EZ Weapon"
+ENT.PrintName = "EZ Weapon"
 ENT.NoSitAllowed = true
 ENT.Spawnable = false
 ENT.AdminSpawnable = false
@@ -18,7 +18,7 @@ if SERVER then
 		local ent = ents.Create(self.ClassName)
 		ent:SetAngles(Angle(0, 0, 0))
 		ent:SetPos(SpawnPos)
-		JMod.SetOwner(ent, ply)
+		JMod.SetEZowner(ent, ply)
 		ent.HasSpawnAmmo = true
 		ent:Spawn()
 		ent:Activate()
@@ -31,9 +31,8 @@ if SERVER then
 		self:SetModel(self.Specs.mdl)
 		self:SetMaterial(self.Specs.mat or "")
 
-		--self:PhysicsInitBox(Vector(-10,-10,-10),Vector(10,10,10))
-		if self.ModelScale and not self.Specs.gayPhysics then
-			self:SetModelScale(self.ModelScale)
+		if self.Specs.size then
+			self:SetModelScale(self.Specs.size, 0)
 		end
 
 		self:PhysicsInit(SOLID_VPHYSICS)
@@ -42,28 +41,26 @@ if SERVER then
 		self:DrawShadow(true)
 		self:SetUseType(SIMPLE_USE)
 
-		if self.Specs.size then
-			self:SetModelScale(self.Specs.size, 0)
-		end
-
-		self:GetPhysicsObject():SetMass(20)
-
+		local Phys = self:GetPhysicsObject()
 		timer.Simple(.01, function()
-			self:GetPhysicsObject():SetMass(20)
-			self:GetPhysicsObject():Wake()
+			if IsValid(Phys) then
+				Phys:SetMass(20)
+				Phys:Wake()
+			end
 		end)
 
 		---
 		self.EZID = self.EZID or JMod.GenerateGUID()
 		---
 		self.MagRounds = self.MagRounds or 0
+		self:Activate()
 	end
 
 	function ENT:PhysicsCollide(data, physobj)
 		if data.DeltaTime > 0.1 then
 			if data.Speed > 50 then
 				self:EmitSound("weapon.ImpactHard")
-			elseif data.Speed > 10 then
+			elseif data.Speed > 5 then
 				self:EmitSound("weapon.ImpactSoft")
 			end
 		end
@@ -78,7 +75,7 @@ if SERVER then
 	end
 
 	function ENT:Use(activator)
-		local Alt = activator:KeyDown(JMod.Config.AltFunctionKey)
+		local Alt = JMod.IsAltUsing(activator)
 
 		if Alt then
 			activator:PickupObject(self)
@@ -89,10 +86,16 @@ if SERVER then
 					local GivenWep = activator:GetWeapon(self.Specs.swep)
 
 					if self.HasSpawnAmmo then
-						GivenWep:SetClip1(GivenWep.Primary.ClipSize)
+						GivenWep:SetClip1(GivenWep.Primary.ClipSize or 0)
+						if GivenWep.Secondary.ClipSize and GivenWep.Secondary.ClipSize > 0 then
+							GivenWep:SetClip2(GivenWep.Secondary.ClipSize)
+						end
 						self.HasSpawnAmmo = false
 					else
 						GivenWep:SetClip1(self.MagRounds)
+						if GivenWep.Secondary.ClipSize and GivenWep.Secondary.ClipSize > 0 and self.MorRounds and self.MorRounds > 0 then
+							GivenWep:SetClip2(self.MorRounds)
+						end
 					end
 
 					activator:SelectWeapon(self.Specs.swep)
@@ -113,6 +116,7 @@ if SERVER then
 							JMod.Hint(activator, v)
 						end)
 					end
+					--print(activator:GetWeapon(self.Specs.swep).Owner)
 
 					self:Remove()
 				else
@@ -120,7 +124,7 @@ if SERVER then
 				end
 			else
 				activator:PickupObject(self)
-				activator:ChatPrint( "ArcCW Base is missing!")
+				activator:PrintMessage(HUD_PRINTCENTER, "ArcCW Base is missing!")
 			end
 		end
 	end

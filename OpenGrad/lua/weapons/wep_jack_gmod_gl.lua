@@ -5,17 +5,21 @@ SWEP.Slot = 4
 SWEP.ViewModel = "models/weapons/v_jmod_m79.mdl"
 SWEP.WorldModel = "models/weapons/w_jmod_m79.mdl"
 SWEP.ViewModelFOV = 75
+--
 SWEP.BodyHolsterSlot = "back"
 SWEP.BodyHolsterAng = Angle(0, -105, 0)
 SWEP.BodyHolsterAngL = Angle(0, -75, 160)
 SWEP.BodyHolsterPos = Vector(1, -14, -11)
 SWEP.BodyHolsterPosL = Vector(-2.5, -15, 11)
 SWEP.BodyHolsterScale = .9
+--
 JMod.ApplyAmmoSpecs(SWEP, "40mm Grenade")
 SWEP.DamageRand = .1
 SWEP.ShootEntity = "ent_jack_gmod_ezprojectilenade"
 SWEP.MuzzleVelocity = 3000
+--
 SWEP.Primary.ClipSize = 1 -- DefaultClip is automatically set.
+SWEP.ChamberSize = 0 -- sigh
 SWEP.Recoil = 2
 SWEP.Delay = 60 / 100 -- 60/RPM.
 
@@ -30,14 +34,15 @@ SWEP.Firemodes = {
 }
 
 SWEP.AccuracyMOA = 15 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
-SWEP.FirstShootSound = "snds_jack_gmod/ez_weapons/40mm_grenade.wav"
-SWEP.ShootSound = "snds_jack_gmod/ez_weapons/40mm_grenade.wav"
-SWEP.DistantShootSound = "snds_jack_gmod/ez_weapons/rifle_far.wav"
+SWEP.FirstShootSound = "snds_jack_gmod/ez_weapons/40mm_grenade.ogg"
+SWEP.ShootSound = "snds_jack_gmod/ez_weapons/40mm_grenade.ogg"
+SWEP.DistantShootSound = "snds_jack_gmod/ez_weapons/rifle_far.ogg"
 SWEP.ShootSoundExtraMult = 1
 SWEP.MuzzleEffect = "muzzleflash_m79"
 SWEP.ShellModel = "models/jhells/shell_9mm.mdl"
 SWEP.ShellPitch = 50
 SWEP.ShellScale = 7
+SWEP.ShellSounds = JMod.ShellSounds.metal
 SWEP.SpeedMult = 1
 SWEP.SightedSpeedMult = .85
 SWEP.SightTime = .5
@@ -50,11 +55,44 @@ SWEP.IronSightStruct = {
 	SwitchFromSound = JMod.GunHandlingSounds.aim.out
 }
 
+--[[SWEP.ExtraIrons = {
+	[1] = {
+		Pos = Vector(-3.15, 0, .05),
+		Ang = Angle(5, 0, -2),
+		Magnification = 1.1,
+		SwitchToSound = JMod.GunHandlingSounds.aim.inn,
+		SwitchFromSound = JMod.GunHandlingSounds.aim.out
+	},
+	[2] = {
+		Pos = Vector(-3.15, 0, -3.75),
+		Ang = Angle(13, 0, -2),
+		Magnification = 1.1,
+		SwitchToSound = JMod.GunHandlingSounds.aim.inn,
+		SwitchFromSound = JMod.GunHandlingSounds.aim.out
+	}
+}--]]
+
 SWEP.ActivePos = Vector(1, 0, 0)
 SWEP.ActiveAng = Angle(1.8, 1.5, -2.5)
 SWEP.HolsterPos = Vector(6, -1, -4)
 SWEP.HolsterAng = Angle(0, 50, 0)
 SWEP.BarrelLength = 30
+
+--[[SWEP.Attachments = {
+	{
+		PrintName = "Optic",
+		DefaultAttName = "Iron Sights",
+		Slot = {"ez_optic"},
+		Bone = "j_front_end_reload",
+		Offset = {
+			vang = Angle(0, 0, 0),
+			vpos = Vector(0, 0, 2.6),
+			wpos = Vector(10, .8, -6),
+			wang = Angle(-10.393, 0, 180)
+		},
+		Installed = "optic_jack_scope_acog"
+	}
+}--]]
 
 --[[
 idle
@@ -85,7 +123,8 @@ SWEP.Animations = {
 	},
 	["fire"] = {
 		Source = "fire",
-		Time = 0.5
+		Time = 0.5,
+		TPAnim = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2
 	},
 	["reload_empty"] = {
 		Source = "reload_tac",
@@ -100,17 +139,17 @@ SWEP.Animations = {
 		ShellEjectAt = 1.8,
 		SoundTable = {
 			{
-				s = "snds_jack_gmod/ez_weapons/gl/move.wav",
+				s = "snds_jack_gmod/ez_weapons/gl/move.ogg",
 				t = .3,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/gl/open.wav",
+				s = "snds_jack_gmod/ez_weapons/gl/open.ogg",
 				t = .05,
 				v = 65
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/gl/out.wav",
+				s = "snds_jack_gmod/ez_weapons/gl/out.ogg",
 				t = 1,
 				v = 65
 			},
@@ -121,7 +160,7 @@ SWEP.Animations = {
 				p = 120
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/gl/in.wav",
+				s = "snds_jack_gmod/ez_weapons/gl/in.ogg",
 				t = 2.3,
 				v = 65
 			},
@@ -131,12 +170,67 @@ SWEP.Animations = {
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/gl/close.wav",
+				s = "snds_jack_gmod/ez_weapons/gl/close.ogg",
 				t = 3.25,
 				v = 65
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/gl/move.wav",
+				s = "snds_jack_gmod/ez_weapons/gl/move.ogg",
+				t = 3.3,
+				v = 60
+			}
+		}
+	},
+	["reload"] = {
+		Source = "reload_tac",
+		Time = 4,
+		TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
+		Checkpoints = {24, 42, 59, 71, 89},
+		FrameRate = 37,
+		Mult = .95,
+		LHIK = true,
+		LHIKIn = 0.5,
+		LHIKOut = 0.5,
+		ShellEjectAt = 1.8,
+		SoundTable = {
+			{
+				s = "snds_jack_gmod/ez_weapons/gl/move.ogg",
+				t = .3,
+				v = 60
+			},
+			{
+				s = "snds_jack_gmod/ez_weapons/gl/open.ogg",
+				t = .05,
+				v = 65
+			},
+			{
+				s = "snds_jack_gmod/ez_weapons/gl/out.ogg",
+				t = 1,
+				v = 65
+			},
+			{
+				s = JMod.GunHandlingSounds.cloth.magpull,
+				t = 1.7,
+				v = 60,
+				p = 120
+			},
+			{
+				s = "snds_jack_gmod/ez_weapons/gl/in.ogg",
+				t = 2.3,
+				v = 65
+			},
+			{
+				s = JMod.GunHandlingSounds.grab,
+				t = 2.9,
+				v = 60
+			},
+			{
+				s = "snds_jack_gmod/ez_weapons/gl/close.ogg",
+				t = 3.25,
+				v = 65
+			},
+			{
+				s = "snds_jack_gmod/ez_weapons/gl/move.ogg",
 				t = 3.3,
 				v = 60
 			}

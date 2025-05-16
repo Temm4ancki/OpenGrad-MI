@@ -31,15 +31,16 @@ SWEP.Firemodes = {
 }
 
 SWEP.AccuracyMOA = 4 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
-SWEP.FirstShootSound = "snds_jack_gmod/ez_weapons/light_rifle.wav"
-SWEP.ShootSound = "snds_jack_gmod/ez_weapons/light_rifle.wav"
-SWEP.DistantShootSound = "snds_jack_gmod/ez_weapons/rifle_far.wav"
+SWEP.FirstShootSound = "snds_jack_gmod/ez_weapons/light_rifle.ogg"
+SWEP.ShootSound = "snds_jack_gmod/ez_weapons/light_rifle.ogg"
+SWEP.DistantShootSound = "snds_jack_gmod/ez_weapons/rifle_far.ogg"
 SWEP.ShootSoundExtraMult = 1
 SWEP.MuzzleEffect = "muzzleflash_4"
 SWEP.ShellModel = "models/jhells/shell_556.mdl"
 SWEP.ShellPitch = 95
 SWEP.ShellScale = 1.75
 SWEP.ShellOffsetFix = Vector(0, 0, -3)
+SWEP.ShellSounds = JMod.ShellSounds.metal
 SWEP.SpeedMult = 1
 SWEP.SightedSpeedMult = .8
 SWEP.SightTime = .4
@@ -83,6 +84,7 @@ SWEP.Animations = {
 		Source = "shoot1",
 		Time = 0.4,
 		ShellEjectAt = 0,
+		TPAnim = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2
 	},
 	["reload"] = {
 		Source = "reload_full",
@@ -96,7 +98,7 @@ SWEP.Animations = {
 		LHIKOut = 0.5,
 		SoundTable = {
 			{
-				s = "snds_jack_gmod/ez_weapons/carbine/mag_out.wav",
+				s = "snds_jack_gmod/ez_weapons/carbine/mag_out.ogg",
 				t = .3,
 				v = 65
 			},
@@ -111,7 +113,7 @@ SWEP.Animations = {
 				v = 65
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/carbine/mag_in.wav",
+				s = "snds_jack_gmod/ez_weapons/carbine/mag_in.ogg",
 				t = 1.5,
 				v = 65
 			},
@@ -134,7 +136,7 @@ SWEP.Animations = {
 		LHIKOut = 0.5,
 		SoundTable = {
 			{
-				s = "snds_jack_gmod/ez_weapons/carbine/mag_out.wav",
+				s = "snds_jack_gmod/ez_weapons/carbine/mag_out.ogg",
 				t = .3,
 				v = 65
 			},
@@ -149,17 +151,17 @@ SWEP.Animations = {
 				v = 65
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/carbine/mag_in.wav",
+				s = "snds_jack_gmod/ez_weapons/carbine/mag_in.ogg",
 				t = 1.25,
 				v = 65
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/carbine/bolt_pull.wav",
+				s = "snds_jack_gmod/ez_weapons/carbine/bolt_pull.ogg",
 				t = 1.95,
 				v = 65
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/carbine/bolt_release.wav",
+				s = "snds_jack_gmod/ez_weapons/carbine/bolt_release.ogg",
 				t = 2.2,
 				v = 65
 			},

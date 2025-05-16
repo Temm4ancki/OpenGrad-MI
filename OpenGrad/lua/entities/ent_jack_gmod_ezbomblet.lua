@@ -44,7 +44,7 @@ if SERVER then
 		end
 
 		if dmginfo:GetDamage() >= 80 then
-			JMod.SetOwner(self, dmginfo:GetAttacker())
+			JMod.SetEZowner(self, dmginfo:GetAttacker())
 			self:Detonate()
 		end
 	end
@@ -52,7 +52,7 @@ if SERVER then
 	function ENT:Detonate()
 		if self.Exploded then return end
 		self.Exploded = true
-		local SelfPos, Att = self:GetPos() + Vector(0, 0, 30), self:GetOwner() or game.GetWorld()
+		local SelfPos, Att = self:GetPos() + Vector(0, 0, 30), JMod.GetEZowner(self)
 		---
 		local splad = EffectData()
 		splad:SetOrigin(SelfPos)
@@ -71,7 +71,7 @@ if SERVER then
 			util.Decal("Scorch", Tr.HitPos + Tr.HitNormal, Tr.HitPos - Tr.HitNormal)
 		end
 
-		self:Remove()
+		SafeRemoveEntityDelayed(self, 0)
 	end
 elseif CLIENT then
 	function ENT:Draw()

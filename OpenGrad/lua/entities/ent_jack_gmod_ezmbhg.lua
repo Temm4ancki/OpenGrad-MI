@@ -23,7 +23,7 @@ if SERVER then
 		local ent = ents.Create(self.ClassName)
 		ent:SetAngles(Angle(0, 0, 0))
 		ent:SetPos(SpawnPos)
-		JMod.SetOwner(ent, ply)
+		JMod.SetEZowner(ent, ply)
 		ent:Spawn()
 		ent:Activate()
 		--local effectdata=EffectData()
@@ -70,7 +70,7 @@ if SERVER then
 	function ENT:Break()
 		if self:GetState() == STATE_BROKEN then return end
 		self:SetState(STATE_BROKEN)
-		self:EmitSound("snd_jack_turretbreak.wav", 70, math.random(80, 120))
+		self:EmitSound("snd_jack_turretbreak.ogg", 70, math.random(80, 120))
 
 		for i = 1, 20 do
 			JMod.DamageSpark(self)
@@ -96,7 +96,7 @@ if SERVER then
 		if State < 0 then return end
 
 		if State == STATE_OFF then
-			JMod.SetOwner(self, activator)
+			JMod.SetEZowner(self, activator)
 
 			if Time - self.LastUse < .2 then
 				self:SetState(STATE_CHARGING)
@@ -132,17 +132,17 @@ if SERVER then
 		end
 
 		for i = 1, 3 do
-			sound.Play("snds_jack_gmod/ezbhg_splode.wav", SelfPos + VectorRand(), 140, 100)
+			sound.Play("snds_jack_gmod/ezbhg_splode.ogg", SelfPos + VectorRand(), 140, 100)
 		end
 
 		util.ScreenShake(SelfPos, 99999, 99999, 3, 3000)
-		util.BlastDamage(self, self:GetOwner() or self or game.GetWorld(), SelfPos, 200, 200)
-		local Own = self:GetOwner()
+		util.BlastDamage(self, JMod.GetEZowner(self) or game.GetWorld(), SelfPos, 200, 200)
+		local Own = self.EZowner
 
 		timer.Simple(2, function()
 			local Bam = ents.Create("ent_jack_gmod_ezblackhole")
 			Bam:SetPos(SelfPos)
-			JMod.SetOwner(Bam, Own)
+			JMod.SetEZowner(Bam, Own)
 			Bam:Spawn()
 			Bam:Activate()
 		end)
@@ -160,7 +160,7 @@ if SERVER then
 		local State, Time = self:GetState(), CurTime()
 
 		if State == STATE_CHARGING then
-			self.Charge = self.Charge + .1 * JMod.Config.MicroBlackHoleGeneratorChargeSpeed
+			self.Charge = self.Charge + .1 * JMod.Config.Machines.Blackhole.GeneratorChargeSpeed
 
 			if self.Hum then
 				self.Hum:ChangePitch(1 + self.Charge * 2.53)
@@ -168,7 +168,7 @@ if SERVER then
 
 			self:GetPhysicsObject():ApplyForceCenter(Vector(math.sin(Time * self.Charge / 2), math.cos(Time * self.Charge / 2), 0) * self.Charge * 200)
 
-			if self.Charge >= 10 then
+			if self.Charge >= 100 then
 				self:Detonate()
 
 				return

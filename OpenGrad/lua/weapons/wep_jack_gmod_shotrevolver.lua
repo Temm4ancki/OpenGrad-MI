@@ -34,17 +34,13 @@ SWEP.Firemodes = {
 }
 
 SWEP.AccuracyMOA = 50 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
-SWEP.FirstShootSound = "snds_jack_gmod/ez_weapons/small_shotgun.wav"
-SWEP.ShootSound = "snds_jack_gmod/ez_weapons/small_shotgun.wav"
-SWEP.DistantShootSound = "snds_jack_gmod/ez_weapons/pistol_far.wav"
+SWEP.FirstShootSound = "snds_jack_gmod/ez_weapons/small_shotgun.ogg"
+SWEP.ShootSound = "snds_jack_gmod/ez_weapons/small_shotgun.ogg"
+SWEP.DistantShootSound = "snds_jack_gmod/ez_weapons/pistol_far.ogg"
 SWEP.ShootSoundExtraMult = 1
 SWEP.MuzzleEffect = "muzzleflash_pistol_rbull"
 SWEP.ShellModel = "models/jhells/shell_12gauge.mdl"
-
-if ArcCW then
-	SWEP.ShellSounds = ArcCW.ShotgunShellSoundsTable
-end
-
+SWEP.ShellSounds = JMod.ShellSounds.plastic
 SWEP.ShellPitch = 130
 SWEP.ShellScale = 1.5
 SWEP.SpeedMult = 1
@@ -119,7 +115,8 @@ SWEP.Animations = {
 	},
 	["fire"] = {
 		Source = "fire",
-		Time = 0.4
+		Time = 0.4,
+		TPAnim = ACT_HL2MP_GESTURE_RANGE_ATTACK_PISTOL
 	},
 	["sgreload_start"] = {
 		Source = "reload_start",
@@ -138,17 +135,17 @@ SWEP.Animations = {
 				v = 65
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/shotrevolver/open.wav",
+				s = "snds_jack_gmod/ez_weapons/shotrevolver/open.ogg",
 				t = .5,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/shotrevolver/eject.wav",
+				s = "snds_jack_gmod/ez_weapons/shotrevolver/eject.ogg",
 				t = 1.1,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/shotrevolver/out.wav",
+				s = "snds_jack_gmod/ez_weapons/shotrevolver/out.ogg",
 				t = 1.4,
 				v = 60
 			},
@@ -159,7 +156,7 @@ SWEP.Animations = {
 				p = 120
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/shotrevolver/in.wav",
+				s = "snds_jack_gmod/ez_weapons/shotrevolver/in.ogg",
 				t = 2.3,
 				v = 60
 			}
@@ -181,17 +178,17 @@ SWEP.Animations = {
 				v = 65
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/shotrevolver/open.wav",
+				s = "snds_jack_gmod/ez_weapons/shotrevolver/open.ogg",
 				t = .5,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/shotrevolver/eject.wav",
+				s = "snds_jack_gmod/ez_weapons/shotrevolver/eject.ogg",
 				t = 1.1,
 				v = 60
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/shotrevolver/out.wav",
+				s = "snds_jack_gmod/ez_weapons/shotrevolver/out.ogg",
 				t = 1.4,
 				v = 60
 			},
@@ -202,7 +199,7 @@ SWEP.Animations = {
 				p = 120
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/shotrevolver/in.wav",
+				s = "snds_jack_gmod/ez_weapons/shotrevolver/in.ogg",
 				t = 2.3,
 				v = 60
 			}
@@ -225,7 +222,7 @@ SWEP.Animations = {
 				p = 120
 			},
 			{
-				s = "snds_jack_gmod/ez_weapons/shotrevolver/in.wav",
+				s = "snds_jack_gmod/ez_weapons/shotrevolver/in.ogg",
 				t = .8,
 				v = 60
 			}
@@ -238,7 +235,7 @@ SWEP.Animations = {
 		LHIKIn = 0,
 		SoundTable = {
 			{
-				s = "snds_jack_gmod/ez_weapons/shotrevolver/close.wav",
+				s = "snds_jack_gmod/ez_weapons/shotrevolver/close.ogg",
 				t = .4,
 				v = 60
 			},

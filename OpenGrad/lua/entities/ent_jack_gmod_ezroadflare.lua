@@ -27,7 +27,7 @@ if SERVER then
 		local ent = ents.Create(self.ClassName)
 		ent:SetAngles(Angle(0, 0, 0))
 		ent:SetPos(SpawnPos)
-		JMod.SetOwner(ent, ply)
+		JMod.SetEZowner(ent, ply)
 		ent:Spawn()
 		ent:Activate()
 
@@ -77,7 +77,7 @@ if SERVER then
 				if self:GetState() == STATE_BURNIN then
 					local Dmg = DamageInfo()
 					Dmg:SetDamageType(DMG_BURN)
-					Dmg:SetAttacker(self:GetOwner() or self)
+					Dmg:SetAttacker(JMod.GetEZowner(self))
 					Dmg:SetInflictor(self)
 					Dmg:SetDamage(5)
 					Dmg:SetDamagePosition(self:GetPos())
@@ -109,11 +109,11 @@ if SERVER then
 	function ENT:Use(activator)
 		local State = self:GetState()
 		if State == STATE_BURNT then return end
-		local Alt = activator:KeyDown(JMod.Config.AltFunctionKey)
+		local Alt = JMod.IsAltUsing(activator)
 
 		if State == STATE_OFF then
 			if Alt then
-				JMod.SetOwner(self, activator)
+				JMod.SetEZowner(self, activator)
 				net.Start("JMod_ColorAndArm")
 				net.WriteEntity(self)
 				net.Send(activator)
@@ -168,6 +168,7 @@ if SERVER then
 				Fsh:SetScale((Fuel > 150 and .75) or .25)
 				Fsh:SetNormal(Up)
 				Fsh:SetStart(self:GetVelocity())
+				Fsh:SetEntity(self)
 				util.Effect("eff_jack_gmod_flareburn", Fsh, true, true)
 				-- this requires an attachment to be spec'd on the entity, and i can't be assed
 				--ParticleEffect("gf2_fountain_02_regulus_b_main",Pos,self:GetAngles(),self)
@@ -175,7 +176,7 @@ if SERVER then
 
 			for k, v in pairs(ents.FindInSphere(Pos, 30)) do
 				if v.JModHighlyFlammableFunc then
-					JMod.SetOwner(v, self:GetOwner())
+					JMod.SetEZowner(v, self.EZowner)
 					local Func = v[v.JModHighlyFlammableFunc]
 					Func(v)
 				end

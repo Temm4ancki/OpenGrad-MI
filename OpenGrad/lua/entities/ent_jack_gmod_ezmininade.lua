@@ -38,15 +38,15 @@ if SERVER then
 	function ENT:Use(activator, activatorAgain, onOff)
 		if self.Exploded then return end
 		local Dude = activator or activatorAgain
-		JMod.SetOwner(self, Dude)
+		JMod.SetEZowner(self, Dude)
 		JMod.Hint(Dude, self.ClassName)
 		local Time = CurTime()
-		if self.ShiftAltUse and Dude:KeyDown(JMod.Config.AltFunctionKey) and Dude:KeyDown(IN_SPEED) then return self:ShiftAltUse(Dude, tobool(onOff)) end
+		if self.ShiftAltUse and JMod.IsAltUsing(Dude) and Dude:KeyDown(IN_SPEED) then return self:ShiftAltUse(Dude, tobool(onOff)) end
 
 		if tobool(onOff) then
 			local State = self:GetState()
 			if State < 0 then return end
-			local Alt = Dude:KeyDown(JMod.Config.AltFunctionKey)
+			local Alt = JMod.IsAltUsing(Dude)
 
 			if State == JMod.EZ_STATE_OFF and Alt then
 				self:Prime()
@@ -90,15 +90,15 @@ if SERVER then
 		local SelfPos = self:GetPos()
 
 		if IsValid(self.AttachedBomb) then
-			JMod.SetOwner(self.AttachedBomb, self:GetOwner() or self.AttachedBomb.Owner or game.GetWorld())
+			JMod.SetEZowner(self.AttachedBomb, self.EZowner or self.AttachedBomb.EZowner or game.GetWorld())
 			self.AttachedBomb:EZdetonateOverride(self)
-			JMod.Sploom(self:GetOwner(), SelfPos, 3)
+			JMod.Sploom(self.EZowner, SelfPos, 3)
 			self:Remove()
 
 			return
 		end
 
-		JMod.Sploom(self:GetOwner(), SelfPos, self.MiniNadeDamage, self.MiniNadeDamageMax)
+		JMod.Sploom(self.EZowner, SelfPos, self.MiniNadeDamage, self.MiniNadeDamageMax)
 		util.ScreenShake(SelfPos, 20, 20, 1, 500)
 		self:Remove()
 	end

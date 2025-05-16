@@ -8,6 +8,7 @@ ENT.PrintName = "EZ Ammo Box"
 ENT.NoSitAllowed = true
 ENT.Spawnable = false
 ENT.AdminSpawnable = false
+ENT.Model = "models/props_junk/cardboard_box004a.mdl"
 ---
 ENT.JModEZstorable = true
 ENT.JModPreferredCarryAngles = Angle(0, 90, 0)
@@ -23,7 +24,7 @@ if SERVER then
 		local ent = ents.Create(self.ClassName)
 		ent:SetAngles(Angle(0, 0, 0))
 		ent:SetPos(SpawnPos)
-		JMod.SetOwner(ent, ply)
+		JMod.SetEZowner(ent, ply)
 		ent:Spawn()
 		ent:Activate()
 		--local effectdata=EffectData()
@@ -35,7 +36,7 @@ if SERVER then
 
 	function ENT:Initialize()
 		self.Specs = JMod.GetAmmoSpecs(self.EZammo)
-		self:SetModel("models/props_junk/cardboard_box004a.mdl")
+		self:SetModel(self.Model)
 		self:SetMaterial(self.Specs.mat or "")
 
 		--self:PhysicsInitBox(Vector(-10,-10,-10),Vector(10,10,10))
@@ -87,7 +88,7 @@ if SERVER then
 
 	-- stub
 	function ENT:Use(activator)
-		local Alt = activator:KeyDown(JMod.Config.AltFunctionKey)
+		local Alt = JMod.IsAltUsing(activator)
 
 		if Alt then
 			activator:PickupObject(self)

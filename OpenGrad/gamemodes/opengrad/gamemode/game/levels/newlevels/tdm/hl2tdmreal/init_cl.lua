@@ -23,7 +23,7 @@ function hl2dmreal.HUDPaint_RoundLeft(white)
     if startRound > 0 and lply:Alive() then
         if playsound then
             playsound = false
-            surface.PlaySound("round/start/HL2DM.ogg")
+            surface.PlaySound("hg_rounds/start/HL2DM.ogg")
             timer.Simple(5, function()
                 surface.PlaySound("hl2dmreal/f_protectionresponse_" .. math.random(4, 5) .. "_spkr.ogg")
             end)

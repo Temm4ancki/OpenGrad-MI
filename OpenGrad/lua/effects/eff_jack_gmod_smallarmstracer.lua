@@ -1,6 +1,6 @@
-﻿TRACER_FLAG_USEATTACHMENT = 0x0002
-SOUND_FROM_WORLD = 0
-CHAN_STATIC = 6
+﻿local TRACER_FLAG_USEATTACHMENT = 0x0002
+-- SOUND_FROM_WORLD = 0
+-- CHAN_STATIC = 6
 EFFECT.Speed = 20000
 EFFECT.Length = 1024
 EFFECT.WhizDistance = 72
@@ -53,7 +53,7 @@ end
 function EFFECT:Init(data)
 	self.StartPos = self:GetTracerOrigin(data)
 	self.EndPos = data:GetOrigin()
-	self:SetRenderBoundsWS(self.StartPos, self.EndPos)
+	self.Entity:SetRenderBoundsWS(self.StartPos, self.EndPos)
 	local diff = self.EndPos - self.StartPos
 	self.Normal = diff:GetNormal()
 	self.StartTime = 0
