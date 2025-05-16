@@ -39,7 +39,7 @@ function hl2dmreal.HUDPaint_RoundLeft(white)
         if lply:Team() == 1 then
             drawRoundStart(name, "Комбайны обнаружили вас. Отбейтесь", startRound, Color(color.r, color.g, color.b))
         else
-            drawRoundStart(name, "ОТСЕЧЬ. ОБНУЛИТЬ. ПОДТВЕРДИТЬ. ", startRound, Color(color.r, color.g, color.b))
+            drawRoundStart(name, "ОТСЕЧЬ. ОБНУЛИТЬ. ПОДТВЕРДИТЬ. ", startRound, Color(color.r, color.g, color.b), true)
         end
 
         if logoAnimation then
@@ -71,7 +71,7 @@ function hl2dmreal.HUDPaint_RoundLeft(white)
 
     for _, ply in ipairs(player.GetAll()) do
         if ply:Team() ~= 2 or ply == lply or not ply:Alive() then continue end
-        
+
         local pos
 
         local rag = ply:GetNWEntity("ragdoll")
@@ -94,11 +94,12 @@ function hl2dmreal.HUDPaint_RoundLeft(white)
 
         local textX = screenPos.x
         local textY = screenPos.y
-        
+
         local nick = string.upper(ply:Nick())
         draw.SimpleText(nick, "Combine", textX, textY, color, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
 
+    CreatePlayerHOMScreen()
     combine_cam()
 end
 

@@ -10,11 +10,14 @@ end
 
 function drawRoundStart(role, desc, time, color, typingEffect)
     local alpha = math.Clamp(time - 0.5, 0, 1) * 255
+    if alpha <= 0 then return end
+
+    local colorDesc, colorRole
     if color == 1 then
-        colorDesc = Color(55, 55, 155, alpha) -- innocent CT
+        colorDesc = Color(55, 55, 155, alpha)
         colorRole = Color(41, 41, 192, alpha)
     elseif color == 2 then
-        colorDesc = Color(155, 55, 55, alpha) -- traitor
+        colorDesc = Color(155, 55, 55, alpha)
         colorRole = Color(192, 41, 41, alpha)
     elseif color == 3 then
         colorDesc = Color(55, 55, 155, alpha)
@@ -25,7 +28,23 @@ function drawRoundStart(role, desc, time, color, typingEffect)
     end
 
     draw.DrawText(role, "HomigradFontLargeBig", ScrW() / 2, ScrH() / 2 - 60, colorRole, TEXT_ALIGN_CENTER)
-    draw.DrawText(desc, "HomigradFontBig", ScrW() / 2, ScrH() / 1.2, colorDesc, TEXT_ALIGN_CENTER)
+
+    local visibleText = desc
+
+    if typingEffect then
+        local fullDuration = 3
+        local typingSpeed = #desc / fullDuration
+        local timeSinceStart = math.Clamp(7 - time, 0, fullDuration)
+
+        local charsToShow = math.floor(timeSinceStart * typingSpeed)
+        visibleText = string.sub(desc, 1, charsToShow)
+
+        if (SysTime() % 1) < 0.5 and charsToShow < #desc then
+            visibleText = visibleText .. "|"
+        end
+    end
+
+    draw.DrawText(visibleText, "HomigradFontBig", ScrW() / 2, ScrH() / 1.2, colorDesc, TEXT_ALIGN_CENTER)
 end
 
 function drawRoundJob(time)
@@ -36,6 +55,8 @@ function drawRoundJob(time)
     draw.DrawText("Внешность - " .. homicide.GetPlayerModel(lply), "HomigradFont", ScrW() / 2, ScrH() / 1.9, jobcolor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 end
 
+-- Плиз кто умеет кодить переделайте код на более умный.
+-- Уверен ИИ насрал хуйней ведь цитата Руслана "вфт зачем тебе return function(time)"
 function DrawAnimatedLogo(material, duration, startX, targetX, startY, targetY, time)
     local startTime = CurTime()
     local logoMaterial = Material(material)

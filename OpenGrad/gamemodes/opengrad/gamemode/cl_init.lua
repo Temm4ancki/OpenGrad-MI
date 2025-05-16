@@ -458,8 +458,8 @@ end,nil,"Bruh wtf")
 
 function combine_cam()
 	--Эффекты аддона Simple Custom Shaders. Вдруг тоже захотите подобное
-    render.DrawMercVignette(1, 0.05)
-    render.DrawMercRadialBlur(0.5, 0.5, 0.01)
-    render.DrawMercChromaticAberration(-0.05, true)
-    render.DrawMercFisheye(0.070)
+	render.DrawMercVignette(1, 0.05)
+	render.DrawMercRadialBlur(0.5, 0.5, 0.01)
+	render.DrawMercChromaticAberration(-0.05, true)
+	render.DrawMercFisheye(0.070)
 end
