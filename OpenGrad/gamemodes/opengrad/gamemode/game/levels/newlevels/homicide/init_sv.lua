@@ -35,7 +35,8 @@ local function makeT(ply)
             "weapon_hk_usps", 
             "weapon_hidebomb", 
             "weapon_hg_rgd5",
-            "weapon_jahidka"
+            "weapon_jahidka",
+            "weapon_trap"
         })
     elseif homicide.roundType == 2 then
         SpawnEblan(ply,{
@@ -44,27 +45,31 @@ local function makeT(ply)
             "weapon_hg_t_vxpoison",
             "weapon_hidebomb",
             "weapon_hg_rgd5",
-            "weapon_jahidka"
+            "weapon_jahidka",
+            "weapon_trap"
         })
     elseif homicide.roundType == 3 then
         SpawnEblan(ply,{
             "weapon_kabar",
             "weapon_hg_t_syringepoison",
             "weapon_hg_t_vxpoison",
+            "weapon_trap"
         })
     elseif homicide.roundType == 4 then
         SpawnEblan(ply,{
             "weapon_kabar",
             "weapon_hidebomb",
             "weapon_hg_rgd5",
-            "weapon_jahidka"
+            "weapon_jahidka",
+            "weapon_trap"
         })
         ply:GiveAmmo(12,5)
     elseif homicide.roundType == 5 then
         SpawnEblan(ply,{
             "weapon_kabar",
             "weapon_hidebomb",
-            "weapon_hg_usps"
+            "weapon_hg_usps",
+            "weapon_trap"
         })
     end
 

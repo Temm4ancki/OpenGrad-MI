@@ -8,13 +8,12 @@ SWEP.Category = "Гранаты"
 SWEP.Slot = 4
 SWEP.SlotPos = 2
 SWEP.Spawnable = true
-SWEP.AutoSwitchFrom = false
-SWEP.AutoSwitchTo = false
 
 SWEP.ViewModel = "models/jmod/explosives/grenades/flashbang/flashbang.mdl"
 SWEP.WorldModel = "models/jmod/explosives/grenades/flashbang/flashbang.mdl"
 
 SWEP.Granade = "ent_hgjack_flashbang"
+SWEP.DoNotArm = true 
 
 function SWEP:DrawWorldModel()
     local owner = self:GetOwner()
@@ -33,7 +32,7 @@ function SWEP:DrawWorldModel()
     local matrix = self:GetOwner():GetBoneMatrix(11)
     if not matrix then return end
 
-    mdl:SetRenderOrigin(matrix:GetTranslation()+matrix:GetAngles():Forward()*3+matrix:GetAngles():Right()*2)
-    mdl:SetRenderAngles(matrix:GetAngles())
+    mdl:SetRenderOrigin(matrix:GetTranslation()+matrix:GetAngles():Forward()*4.5+matrix:GetAngles():Right()*2)
+    mdl:SetRenderAngles(matrix:GetAngles() + Angle(0,0,180))
     mdl:DrawModel()
 end

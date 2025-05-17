@@ -8,10 +8,9 @@ SWEP.Category = "Гранаты"
 SWEP.Slot = 4
 SWEP.SlotPos = 2
 SWEP.Spawnable = true
-SWEP.AutoSwitchFrom = false
-SWEP.AutoSwitchTo = false
 
 SWEP.ViewModel = "models/weapons/w_grenade.mdl"
 SWEP.WorldModel = "models/weapons/w_grenade.mdl"
 
 SWEP.Granade = "ent_hgjack_hl2nade"
+SWEP.Trap = true

@@ -2,7 +2,7 @@ AddCSLuaFile()
 
 SWEP.Base = "medkit"
 
-SWEP.PrintName = "Стяжки"
+SWEP.PrintName = "Наручники"
 SWEP.Author = "z"
 SWEP.Instructions = "Связать человека"
 SWEP.Category = "Разное"
@@ -28,6 +28,8 @@ else
     end)
 end
 
+function SWEP:SecondaryAttack() return end
+
 function SWEP:PrimaryAttack()
     if SERVER then
         local owner = self:GetOwner()
@@ -43,7 +45,7 @@ function SWEP:PrimaryAttack()
 
         local ply = RagdollOwner(ent) and ent
 
-        if IsValid(ent) and ply then
+        if IsValid(ent) and ply and not self.CuffPly then
             self.CuffPly = ply
             self.CuffTime = CurTime()
             net.Start("huyvalues")
@@ -57,14 +59,19 @@ end
 
 local cuffTime = 2
 function SWEP:Think()
-    if SERVER and self.CuffPly then
-        local pos1 = self.CuffPly:GetPos()
-        local pos2 = self:GetOwner():GetPos()
+    if SERVER then
+        if self.CuffPly then
 
-        if pos1:Distance(pos2) >= 100 then
-            self.CuffPly = nil
-        elseif self.CuffTime + cuffTime <= CurTime() then
-            self:Cuff(self.CuffPly)
+            --self.CuffPly.FakeShooting = false
+
+            local pos1 = self.CuffPly:GetPos()
+            local pos2 = self:GetOwner():GetPos()
+
+            if pos1:Distance(pos2) >= 100 then
+                self.CuffPly = nil
+            elseif self.CuffTime + cuffTime <= CurTime() then
+                self:Cuff(self.CuffPly)
+            end
         end
     end
 end
