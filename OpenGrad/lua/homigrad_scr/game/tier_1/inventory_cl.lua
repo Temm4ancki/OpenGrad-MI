@@ -119,7 +119,7 @@ net.Receive("inventory",function()
 
 	local lootEnt = net.ReadEntity()
 	local success,items = pcall(net.ReadTable)
-	local nickname = lootEnt:IsPlayer() and lootEnt:Name() or lootEnt:GetNWString("Nickname") or ""
+	local nickname = lootEnt:IsPlayer() and lootEnt:GetNWString("FakeName","Неизвестного") or ""
 
 	if not success or not lootEnt then return end
 	

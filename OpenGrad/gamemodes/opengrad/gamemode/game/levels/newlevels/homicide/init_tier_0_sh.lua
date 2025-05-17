@@ -168,7 +168,7 @@ function homicide.HUDPaint_RoundLeft(white2)
             drawRoundMode("Homicide",roundTypes[roundType],startRound,Color(55,55,155))
         end
 
-        drawRoundJob(startRound)
+        drawRoundCosmetic(startRound)
         --draw.SimpleText("Внешность - "..homicide.GetPlayerModel(lply),"HomigradFont",ScrW()/2.05,ScrH()/1.9,white_gray,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
         --draw.SimpleText("Профессия - "..jobPool[math.random(#jobPool)],"HomigradFont",ScrW()/2.05,ScrH()/1.8,white_gray,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
 

@@ -78,6 +78,6 @@ hook.Add("HUDPaint","homigrad-huynyui",function()
 		end
 
 		col.a = 255 * Size * 2
-		draw.DrawText(ent:GetNWString("Nickname",false) or (ent:IsPlayer() and ent:Name()) or "", "HomigradFontLarge", Tr.HitPos:ToScreen().x, Tr.HitPos:ToScreen().y - 200, col, TEXT_ALIGN_CENTER )
+		draw.DrawText(ent:GetNWString("FakeName",false) or (ent:IsPlayer() and ent.FakeName) or "", "HomigradFontLarge", Tr.HitPos:ToScreen().x, Tr.HitPos:ToScreen().y - 200, col, TEXT_ALIGN_CENTER )
 	end
 end)

@@ -97,7 +97,7 @@ else
 						col = Color(255,255,255,255)
 					end
 					col.a = 255 * Size * 2
-					draw.DrawText(Tr.Entity:IsPlayer() and Tr.Entity:Name() or Tr.Entity:GetNWString("Nickname") or "", "HomigradFontLarge", Tr.HitPos:ToScreen().x, Tr.HitPos:ToScreen().y - 30, col, TEXT_ALIGN_CENTER)
+					draw.DrawText(Tr.Entity:IsPlayer() and Tr.Entity:Name() or Tr.Entity:GetNWString("FakeName") or "", "HomigradFontLarge", Tr.HitPos:ToScreen().x, Tr.HitPos:ToScreen().y - 30, col, TEXT_ALIGN_CENTER)
 				else
 					local Size = math.max(1 - Tr.Fraction, 0.15)
 					surface.SetDrawColor(Color(200, 200, 200, 200))
@@ -116,7 +116,7 @@ else
 					end
 					col.a = 255 * Size * 2
 					Circle(Tr.HitPos:ToScreen().x, Tr.HitPos:ToScreen().y, 40 * Size, 32)
-					draw.DrawText( Tr.Entity:IsPlayer() and Tr.Entity:Name() or Tr.Entity:GetNWString("Nickname") or "", "HomigradFontLarge", Tr.HitPos:ToScreen().x, Tr.HitPos:ToScreen().y + 30, col, TEXT_ALIGN_CENTER )
+					draw.DrawText( Tr.Entity:IsPlayer() and Tr.Entity.FakeName or Tr.Entity:GetNWString("FakeName") or "", "HomigradFontLarge", Tr.HitPos:ToScreen().x, Tr.HitPos:ToScreen().y + 30, col, TEXT_ALIGN_CENTER )
 
 				end
 			end
@@ -141,7 +141,7 @@ else
 				end
 				col.a = 255 * Size * 2
 				Circle(Tr.HitPos:ToScreen().x, Tr.HitPos:ToScreen().y, 40 * Size, 32)
-				draw.DrawText( Tr.Entity:IsPlayer() and Tr.Entity:Name() or Tr.Entity:GetNWString("Nickname") or "", "HomigradFontLarge", Tr.HitPos:ToScreen().x, Tr.HitPos:ToScreen().y + 30, col, TEXT_ALIGN_CENTER )
+				draw.DrawText( Tr.Entity:IsPlayer() and Tr.Entity.FakeName or Tr.Entity:GetNWString("FakeName") or "", "HomigradFontLarge", Tr.HitPos:ToScreen().x, Tr.HitPos:ToScreen().y + 30, col, TEXT_ALIGN_CENTER )
 			end
 		end
 	end

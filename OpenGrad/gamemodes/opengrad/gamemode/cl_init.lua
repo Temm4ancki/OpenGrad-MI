@@ -83,6 +83,7 @@ hook.Add("HUDPaint","spectate",function()
 			surface.SetFont("HomigradFont")
 			local tw = surface.GetTextSize(ent:GetName())
 			draw.SimpleText(ent:GetName(),"HomigradFont",ScrW() / 2 - tw / 2,ScrH() - 100,TEXT_ALING_CENTER,TEXT_ALING_CENTER)
+			draw.SimpleText(ent:GetNWString("FakeName","Неизвестный"),"HomigradFont",ScrW() / 2 - tw / 2,ScrH() - 120,TEXT_ALING_CENTER,TEXT_ALING_CENTER)
 			tw = surface.GetTextSize("Здоровье: " .. ent:Health())
 			draw.SimpleText("Здоровье: " .. ent:Health(),"HomigradFont",ScrW() / 2 - tw / 2,ScrH() - 75,TEXT_ALING_CENTER,TEXT_ALING_CENTER)
 
@@ -94,7 +95,7 @@ hook.Add("HUDPaint","spectate",function()
 		if keyOld ~= key and key then
 			SpectateHideNick = not SpectateHideNick
 
-			chat.AddText("Ники игроков: " .. tostring(not SpectateHideNick))
+			chat.AddText("Ники игроков: " .. (not SpectateHideNick and "Видны" or SpectateHideNick and "Не видны"))
 		end
 		keyOld = key
 
@@ -131,7 +132,7 @@ hook.Add("HUDPaint","spectate",function()
 			local func = TableRound().HUDPaint_ESP
 			if func then func() end
 
-			for _, v in ipairs(player.GetAll()) do --ESP
+			for _, v in player.Iterator() do --ESP
 				if !v:Alive() or v == ent then continue end
 
 				local ent = IsValid(v:GetNWEntity("Ragdoll")) and v:GetNWEntity("Ragdoll") or v
@@ -143,7 +144,7 @@ hook.Add("HUDPaint","spectate",function()
 				local size = math.max(10, 32 * factor)
 				local alpha = math.max(255 * factor, 80)
 
-				local text = v:Name()
+				local text = v:GetNWString("FakeName")
 				surface.SetFont("Trebuchet18")
 				local tw, th = surface.GetTextSize(text)
 
@@ -273,6 +274,8 @@ hook.Add("HUDPaint","hitpos",function()
 		end
 	end
 end)
+
+
 
 local function ToggleMenu(toggle)
     if toggle then

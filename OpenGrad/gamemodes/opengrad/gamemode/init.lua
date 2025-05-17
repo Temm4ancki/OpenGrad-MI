@@ -50,6 +50,7 @@ function GM:PlayerSpawn(ply)
 	ply:SetSlowWalkSpeed(75)
 	ply:SetLadderClimbSpeed(75)
 	ply:SetJumpPower(200)
+	ply:SetFakeName()
 
 	local size = 9
 
@@ -83,6 +84,12 @@ function GM:PlayerSpawn(ply)
 	ply:PlayerClassEvent("On")
 	
 	TableRound().PlayerSpawn(ply,ply:Team())
+end
+
+function GM:Think()
+	for k,ply in player.Iterator() do
+		if(math.random(1,2000)==2)then ply:InvoluntaryEvent() end
+	end
 end
 
 function GM:PlayerDeath(ply,inf,att)

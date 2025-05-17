@@ -50,3 +50,4 @@ function OpposingAllTeam()
 	for i,ply in pairs(oldT) do ply:SetTeam(2) end
 	for i,ply in pairs(oldCT) do ply:SetTeam(1) end
 end
+

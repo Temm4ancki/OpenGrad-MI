@@ -47,12 +47,13 @@ function drawRoundStart(role, desc, time, color, typingEffect)
     draw.DrawText(visibleText, "HomigradFontBig", ScrW() / 2, ScrH() / 1.2, colorDesc, TEXT_ALIGN_CENTER)
 end
 
-function drawRoundJob(time)
+function drawRoundCosmetic(time)
     local alpha = math.Clamp(time - 0.5, 0, 1) * 255
     local lply = LocalPlayer()
     local jobcolor = Color(255, 255, 255, alpha)
 
     draw.DrawText("Внешность - " .. homicide.GetPlayerModel(lply), "HomigradFont", ScrW() / 2, ScrH() / 1.9, jobcolor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.DrawText("Имя - " .. lply:GetNWString("FakeName","Неизвестный"), "HomigradFont", ScrW() / 2, ScrH() / 1.85, jobcolor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 end
 
 -- Плиз кто умеет кодить переделайте код на более умный.

@@ -4,7 +4,7 @@ local function GetFriends(play)
 
     for i, ply in pairs(homicide.t) do
         if play == ply then continue end
-        huy = huy .. ply:Name() .. ", "
+        huy = huy .. ply:GetNWString("FakeName","Неизвестный") .. ", "
     end
 
     return huy
@@ -286,7 +286,7 @@ end
 function homicide.EndRound(winner)
     PrintMessage(3,(winner == 1 and "Победа предателей." or winner == 2 and "Победа невиновых." or "Ничья"))
     if homicide.t and #homicide.t > 0 then
-        PrintMessage(3,#homicide.t > 1 and ("Трейторами были: " .. homicide.t[1]:Name() .. ", " .. GetFriends(homicide.t[1])) or ("Трейтором был: " .. homicide.t[1]:Name()))
+        PrintMessage(3,#homicide.t > 1 and ("Трейторами были: " .. homicide.t[1]:Name() .. homicide.t[1]:GetNWString("FakeName") .. ", " .. GetFriends(homicide.t[1])) or ("Трейтором был: " .. homicide.t[1]:Name()))
     end
 end
 
