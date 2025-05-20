@@ -24,7 +24,7 @@ ENT.Flammable = 1
 if SERVER then
 	function ENT:UseEffect(pos, ent)
 	end
-	-- todo: find a particle effect for this
+	-- todojmod: find a particle effect for this
 elseif CLIENT then
     local drawvec, drawang = Vector(0, -.5, 9), Angle(0, 0, 0)
 	function ENT:Draw()

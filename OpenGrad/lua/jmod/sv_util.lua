@@ -37,8 +37,8 @@ function JMod.AeroGuide(ent, forward, targetPos, turnMult, thrustMult, angleDrag
 	Phys:ApplyForceOffset(TargetDir * Mass * turnMult * 5000, Pos + forward)
 	Phys:ApplyForceOffset(-TargetDir * Mass * turnMult * 5000, Pos - forward)
 	Phys:AddAngleVelocity(-Phys:GetAngleVelocity() * angleDragMult * 3)
-	--- todo: fuck
-	Phys:ApplyForceCenter(forward * 20000 * thrustMult) -- todo: make this function fucking work ARGH
+	--- todojmod: fuck
+	Phys:ApplyForceCenter(forward * 20000 * thrustMult) -- todojmod: make this function fucking work ARGH
 end
 
 -- https://developer.valvesoftware.com/wiki/Ai_sound

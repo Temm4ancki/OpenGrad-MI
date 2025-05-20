@@ -1,38 +1,29 @@
 svo.GetTeamName = tdm.GetTeamName
 
 local playsound = false
-local bhop
 function svo.StartRoundCL()
-    --[[sound.PlayURL("https://cdn.discordapp.com/attachments/1136982600829894656/1138472303294951544/challengecomplete_metal.wav","mono noblock",function(snd)
-        bhop = snd
-
-        snd:SetVolume(1)
-    end) ]]--
-	playsound = true
+    playsound = true
 end
-
 
 function svo.HUDPaint_RoundLeft(white)
     local lply = LocalPlayer()
-	local name,color = svo.GetTeamName(lply)
+    local name, color = svo.GetTeamName(lply)
 
-	local startRound = roundTimeStart + 5 - CurTime()
+    local startRound = roundTimeStart + 7 - CurTime()
     if startRound > 0 and lply:Alive() then
         if playsound then
             playsound = false
-            surface.PlaySound("snd_jack_hmcd_disaster.mp3")
+            surface.PlaySound("tdm_svo/start_" .. math.random(1, 2) .. ".ogg")
         end
-        lply:ScreenFade(SCREENFADE.IN,Color(0,0,0,255),0.5,0.5)
+        lply:ScreenFade(SCREENFADE.IN, Color(0, 0, 0, 255), 0.5, 0.5)
 
-
-        drawRoundMode("Team Deathmatch",svo.Name,startRound,Color(155,155,155))
+        drawRoundMode("Team Deathmatch", svo.Name, startRound, Color(155, 155, 155))
         if lply:Team() == 1 then
-            drawRoundStart(name,"Уничтожь оккупантов, защищай сво.",startRound,Color(color.r,color.g,color.b))
+            drawRoundStart(name, "Уничтожь оккупантов, защищай сво.", startRound, Color(color.r, color.g, color.b))
         else
-            drawRoundStart(name,"Уничтожь сепаратистов, защищай сво.",startRound,Color(color.r,color.g,color.b))
+            drawRoundStart(name, "Уничтожь сепаратистов, защищай сво.", startRound, Color(color.r, color.g, color.b))
         end
         return
     end
-
     --draw.SimpleText(acurcetime,"HomigradFont",ScrW()/2,ScrH()-25,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
 end

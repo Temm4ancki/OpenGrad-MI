@@ -24,7 +24,7 @@ if SERVER then
 	function ENT:UseEffect(pos, ent)
 	end
 
-	-- todo: find a particle effect for this
+	-- todojmod: find a particle effect for this
 	function ENT:CustomThink()
 		self:SetMaterial(self.Material)
 		local Col = self:GetColor()

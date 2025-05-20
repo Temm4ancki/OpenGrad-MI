@@ -165,7 +165,7 @@ if SERVER then
 	end
 
 	function ENT:IsLocationClear(pos)
-		return true -- todo
+		return true -- todojmod
 	end
 
 	function ENT:TryMoveTowardPoint(pos)

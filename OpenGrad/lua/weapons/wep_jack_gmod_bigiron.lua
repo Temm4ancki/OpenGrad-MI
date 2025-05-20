@@ -199,7 +199,7 @@ SWEP.BarrelLength = 20
             id	=	1
             name	=	1
 ]]
--- todo: extra dmg against texas red
+-- todojmod: extra dmg against texas red
 SWEP.Animations = {
 	["idle"] = {
 		Source = "Idle",

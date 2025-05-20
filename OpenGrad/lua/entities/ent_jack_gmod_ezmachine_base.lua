@@ -478,7 +478,7 @@ if(SERVER)then
 					--if(Missing<self.MaxSupplies*.1)then return 0 end
 					Accepted = math.min(Missing, amt)
 					self:SetSupplies(Supps + Accepted)
-					self:EmitSound("snd_jack_turretbatteryload.ogg", 65, math.random(90, 110)) -- TODO: new sound here
+					self:EmitSound("snd_jack_turretbatteryload.ogg", 65, math.random(90, 110)) -- todojmod: new sound here
 				elseif(typ == JMod.EZ_RESOURCE_TYPES.BASICPARTS)then
 					local Missing = self.MaxDurability - self.Durability
 					if(Missing <= 0)then return 0 end

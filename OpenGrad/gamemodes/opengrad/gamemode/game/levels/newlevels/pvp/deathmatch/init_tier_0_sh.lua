@@ -50,6 +50,7 @@ function dm.HUDPaint_RoundLeft(white)
             playsound = false
             surface.PlaySound("pvp_deathmatch/start_" .. math.random(1, 6) .. ".ogg")
         end
+
         lply:ScreenFade(SCREENFADE.IN, Color(0, 0, 0, 255), 0.5, 0.5)
 
         drawRoundMode("Player Vs Player", dm.Name, startRound, Color(155, 155, 255), Color(155, 155, 255))

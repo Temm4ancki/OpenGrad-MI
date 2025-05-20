@@ -9,30 +9,31 @@ function PlayerMeta:GetPlayerClass()
 end
 
 local meta
-function PlayerMeta:PlayerClassEvent(name,...)--haha
+function PlayerMeta:PlayerClassEvent(name,...) --haha
     meta = self:GetPlayerClass()
     meta = meta and meta[name]
 
     if meta then return meta(self,...) end
 end
 
+--TODO Тут тоже звуки
 function PlayerMeta:InvoluntaryEvent()
-	local Event,Pos=math.random(1,4),self:GetShootPos()
-	if(Event==1)then
-		self:ViewPunch(Angle(5,0,0))
-		timer.Simple(.5,function() if(IsValid(self))then self:ViewPunch(Angle(2,0,0)) end end)
-        self:EmitSound("snd_jack_hmcd_cough_male.wav",60,100)
-	elseif(Event==2)then
-		timer.Simple(.9,function() if(IsValid(self))then self:ViewPunch(Angle(-5,0,0)) end end)
-		timer.Simple(1.1,function() if(IsValid(self))then self:ViewPunch(Angle(20,0,0)) end end)
-        self:EmitSound("snd_jack_hmcd_sneeze_male.wav",60,100)
-	elseif(Event==3)then
-		util.ScreenShake(Pos,255,255,.3,40)
-        self:EmitSound("snd_jack_hmcd_burp.wav",60,80)
-	elseif(Event==4)then
-		util.ScreenShake(Pos,255,255,.6,40)
-        self:EmitSound("snd_jack_hmcd_fart.wav",60,80)
-	end
+    local Event, Pos = math.random(1, 4), self:GetShootPos()
+    if Event == 1 then
+        self:ViewPunch(Angle(5, 0, 0))
+        timer.Simple(.5, function() if IsValid(self) then self:ViewPunch(Angle(2, 0, 0)) end end)
+        self:EmitSound("snd_jack_hmcd_cough_male.wav", 60, 100)
+    elseif Event == 2 then
+        timer.Simple(.9, function() if IsValid(self) then self:ViewPunch(Angle(-5, 0, 0)) end end)
+        timer.Simple(1.1, function() if IsValid(self) then self:ViewPunch(Angle(20, 0, 0)) end end)
+        self:EmitSound("snd_jack_hmcd_sneeze_male.wav", 60, 100)
+    elseif Event == 3 then
+        util.ScreenShake(Pos, 255, 255, .3, 40)
+        self:EmitSound("snd_jack_hmcd_burp.wav", 60, 80)
+    elseif Event == 4 then
+        util.ScreenShake(Pos, 255, 255, .6, 40)
+        self:EmitSound("snd_jack_hmcd_fart.wav", 60, 80)
+    end
 end
 
 function player.RegClass(name)

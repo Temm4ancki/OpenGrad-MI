@@ -12,23 +12,19 @@ CLASS.weapons = {
 }
 
 CLASS.secondary_weapon = {"weapon_glock"}
-CLASS.models = {}
 
-for i = 1,6 do
-	CLASS.models[#CLASS.models + 1] = "models/monolithservers/mpd/female_0" .. i .. ".mdl"
-end
-
-for i = 1,6 do
-	CLASS.models[#CLASS.models + 1] = "models/monolithservers/mpd/female_0" .. i .. "_2.mdl"
-end
-
-for i = 1,6 do
-	CLASS.models[#CLASS.models + 1] = "models/monolithservers/mpd/male_0" .. i .. ".mdl"
-end
-
-for i = 1,6 do
-	CLASS.models[#CLASS.models + 1] = "models/monolithservers/mpd/male_0" .. i .. "_2.mdl"
-end
+CLASS.models = {
+	"models/player/police.mdl",
+	"models/player/police_fem.mdl",
+	"models/hg_homicide/police/metrocop/male_01_metrocop.mdl",
+	"models/hg_homicide/police/metrocop/male_02_metrocop.mdl",
+	"models/hg_homicide/police/metrocop/male_03_metrocop.mdl",
+	"models/hg_homicide/police/metrocop/male_04_metrocop.mdl",
+	"models/hg_homicide/police/metrocop/male_05_metrocop.mdl",
+	"models/hg_homicide/police/metrocop/male_06_metrocop.mdl",
+	"models/hg_homicide/police/metrocop/male_08_metrocop.mdl",
+	"models/hg_homicide/police/metrocop/male_09_metrocop.mdl"
+}
 
 CLASS.color = Color(75,75,75)
 
@@ -63,6 +59,12 @@ function CLASS:On()
 
 	self:SetModel(CLASS.models[math.random(#CLASS.models)] or "models/player/group01/male_03.mdl")
 	self:SetPlayerColor(color:ToVector())
+
+	local bodygroups = self:GetBodyGroups()
+	for _, group in ipairs(bodygroups) do
+		local randomValue = math.random(0, group.num)
+		self:SetBodygroup(group.id, randomValue)
+	end
 
 	self:Give("weapon_hands")
 

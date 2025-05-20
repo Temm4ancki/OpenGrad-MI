@@ -579,7 +579,7 @@ function JMod.ApplyAmmoSpecs(wep, typ, mult)
 		wep.EZarmorpiercingAmmo = Specs.armorpiercing
 	end
 
-	-- todo: implement this when we add these types
+	-- todojmod: implement this when we add these types
 	if Specs.tracer then
 		wep.Tracer = Specs.tracer
 	else
@@ -833,7 +833,7 @@ elseif SERVER then
 	end, nil, "Drops your current EZ weapon.")
 
 	concommand.Add("jmod_ez_switchammo", function(ply, cmd, args)
-		-- TODO: this is not complete, we need to modify more traits
+		-- todojmod: this is not complete, we need to modify more traits
 		-- TracerNum, Penetration, DamageType, Num, maybe Accuracy and Recoil
 		-- and somehow we have to keep track of the original values during swaps
 		if not ply:Alive() then return end
@@ -1000,4 +1000,4 @@ elseif SERVER then
 		end
 	end
 end
--- todo: fix judge anims, remove the extra round
+-- todojmod: fix judge anims, remove the extra round

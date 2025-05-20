@@ -212,9 +212,9 @@ function wick.RoundEndCheck()
         return
     end
 
-    if TAlive == 0 and CTAlive == 0 then 
+    if TAlive == 0 and CTAlive == 0 then
         EndRound()
-        return 
+        return
     end
 
     if TAlive == 0 then
@@ -268,9 +268,9 @@ function wick.PlayerSpawn(ply, teamID)
     end
 
     ply:Give("weapon_hands")
-    timer.Simple(0, function() 
+    timer.Simple(0, function()
         if IsValid(ply) then
-            ply.allowFlashlights = false 
+            ply.allowFlashlights = false
         end
     end)
 end
@@ -294,8 +294,8 @@ function wick.SyncRole()
     local role = {{}, {}}
 
     for _, ply in ipairs(player.GetAll()) do
-        if ply.roleT then 
-            table.insert(role[1], ply) 
+        if ply.roleT then
+            table.insert(role[1], ply)
         end
     end
 

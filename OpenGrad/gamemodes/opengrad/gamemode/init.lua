@@ -87,8 +87,8 @@ function GM:PlayerSpawn(ply)
 end
 
 function GM:Think()
-	for k,ply in player.Iterator() do
-		if(math.random(1,2000)==2)then ply:InvoluntaryEvent() end
+	for k, ply in player.Iterator() do
+		if math.random(1, 5500) == 2 then ply:InvoluntaryEvent() end
 	end
 end
 

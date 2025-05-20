@@ -3,8 +3,11 @@ local CLASS = player.RegClass("combinereal")
 local function MewMath(first, second)
     temp1 = math.random(first, second)
     temp2 = math.random(first, second)
-    if temp1 ~= temp2 then return temp1
-    else return temp2 end
+    if temp1 ~= temp2 then
+        return temp1
+    else
+        return temp2
+    end
 end
 
 CLASS.main_weapons = {
@@ -30,7 +33,7 @@ function CLASS.Off(self)
     self.ResistOtrub = nil
 end
 
-function CLASS.On(self) 
+function CLASS.On(self)
     if CLIENT then return end
 
     self:SetModel(models_combine[math.random(#models_combine)])
@@ -89,7 +92,7 @@ function CLASS.PlayerDeath(self)
     local playerList = getList(self)
     local rag = self:GetNWEntity("ragdoll")
     sound.Play(Sound("hl2dmreal/die_" .. MewMath(1,6) .. ".ogg"), rag:GetPos())
- 
+
     timer.Simple(1, function()
         if #playerList == 1 then
             local ply = playerList[1]
@@ -107,7 +110,7 @@ function CLASS.PlayerDeath(self)
     self:SetPlayerClass()
 end
 
-function CLASS.Think(self)end
+function CLASS.Think(self) end
 
 function CLASS.PlayerStartVoice(self)
     for i,ply in pairs(player.GetAll()) do
@@ -139,7 +142,7 @@ function CLASS.HomigradDamage(self, hitGroup, dmgInfo, rag)
     if (self.delaysoundpain or 0) > CurTime() then return end
 
     local otrub = self.Otrub
-    local health = self:Health()-1.5
+    local health = self:Health() - 1.5
     local notcritical = 60
     local critical = 30
 
@@ -153,13 +156,13 @@ function CLASS.HomigradDamage(self, hitGroup, dmgInfo, rag)
     --print("IsValid")
     --print("rag Pos:",rag)
     --print("self Pos:",self)
-    if IsValid(rag) then 
+    if IsValid(rag) then
         pos = rag
     else
         pos = self
     end
     --print("Pos:",pos)
-    
+
     --print(pos:Alive())
     --print(IsValid(pos))
 
@@ -178,7 +181,7 @@ function CLASS.HomigradDamage(self, hitGroup, dmgInfo, rag)
             return
         end
         --print("PlaySound")
-        if health <= critical then 
+        if health <= critical then
             pos:EmitSound("hl2dmreal/critical_" .. math.random(1, 3) .. ".ogg")
         elseif health <= notcritical then
             pos:EmitSound("hl2dmreal/notcritical_" .. math.random(1, 3) .. ".ogg")

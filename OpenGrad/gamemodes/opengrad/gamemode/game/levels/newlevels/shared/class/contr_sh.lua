@@ -1,3 +1,4 @@
+--Спецназ
 local CLASS = player.RegClass("contr")
 
 CLASS.weapons = {
@@ -23,11 +24,7 @@ CLASS.secondary_weapon = {
 }
 
 CLASS.models = {
-	"models/monolithservers/mpd/male_04_2.mdl",
-	"models/monolithservers/mpd/male_06_2.mdl",
-	"models/monolithservers/mpd/male_07_2.mdl",
-	"models/monolithservers/mpd/male_08_2.mdl",
-	"models/monolithservers/mpd/male_09_2.mdl"
+	"models/hg_homicide/contr/masked_cop.mdl"
 }
 
 CLASS.color = Color(75,75,75)

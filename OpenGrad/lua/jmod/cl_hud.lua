@@ -24,7 +24,7 @@ hook.Add("HUDPaintBackground", "JMOD_HUDBG", function()
 		if ArmorMaskmats and not(table.IsEmpty(ArmorMaskmats)) and Alive and not ThirdPerson then
 
 			local Col = render.GetLightColor(EyePos())
-			for id, maskMat in pairs(ArmorMaskmats) do -- TODO: Sort by slot relevance
+			for id, maskMat in pairs(ArmorMaskmats) do -- todojmod: Sort by slot relevance
 				local Mat = MaskMats[maskMat]
 
 				if not Mat then
@@ -517,8 +517,8 @@ hook.Add("PostDrawHUD", "JMod_PostDrawHUD", function()
 	end
 
 	-- gps
-	-- todo: pos and angle of view
+	-- todojmod: pos and angle of view
 
 	-- speedometer
-	-- todo: speed of player in hu/s, m/s, ft/s and mph
+	-- todojmod: speed of player in hu/s, m/s, ft/s and mph
 end )

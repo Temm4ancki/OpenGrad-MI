@@ -188,7 +188,7 @@ local WreckBlacklist = {"gmod_lamp", "gmod_cameraprop", "gmod_light", "ent_jack_
 function JMod.WreckBuildings(blaster, pos, power, range, ignoreVisChecks)
 	local origPower = power
 	power = power * JMod.Config.Explosives.PropDestroyPower
-	local maxRange = 250 * power * (range or 1) -- todo: this still doesn't do what i want for the nuke
+	local maxRange = 250 * power * (range or 1) -- todojmod: this still doesn't do what i want for the nuke
 	local maxMassToDestroy = 10 * power ^ .8
 	local masMassToLoosen = 30 * power
 	local allProps = ents.FindInSphere(pos, maxRange)

@@ -646,7 +646,7 @@ function SWEP:ToggleCustomizeHUD(ic)
 end
 
 -- arctic's bash code is REALLY bad tbh
---[[ -- TODO: do this when we introduce melee weps
+--[[ -- todojmod: do this when we introduce melee weps
 function SWEP:Bash(melee2)
     melee2=melee2 or false
     if self:GetState() == ArcCW.STATE_SIGHTS then return end
@@ -877,7 +877,7 @@ function SWEP:MeleeAttack(melee2)
     self:GetOwner():LagCompensation(false)
 end
 --]]
-if CLIENT then end -- TODO: override Arctic's expensive-as-shit thermal code once we implement thermal scopes -- HUD time baby
+if CLIENT then end -- todojmod: override Arctic's expensive-as-shit thermal code once we implement thermal scopes -- HUD time baby
 --[[
 	function SWEP:ShouldDrawCrosshair()
 		return false

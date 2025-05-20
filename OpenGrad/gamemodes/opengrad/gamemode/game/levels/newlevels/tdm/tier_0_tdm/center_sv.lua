@@ -1,5 +1,7 @@
 function tdm.CenterInit()
-	for i,ply in pairs(player.GetAll()) do ply.delayKill = nil end
+	for i, ply in pairs(player.GetAll()) do
+		ply.delayKill = nil
+	end
 end
 
 function tdm.Center()
@@ -8,10 +10,10 @@ function tdm.Center()
 	local point = ReadDataMap("center")
 	if #point == 0 then return end
 
-	for i,ply in pairs(player.GetAll()) do
+	for i, ply in pairs(player.GetAll()) do
 		if not ply:Alive() or ply:Team() == 1002 or ply:HasGodMode() then continue end
 
-		if tdm.KCenter(ply:GetPos(),point) >= 1 then
+		if tdm.KCenter(ply:GetPos(), point) >= 1 then
 			if not ply.delayKill then
 				ply.delayKill = CurTime() + 10
 				ply:ChatPrint("Ты умрёшь, покинь запретную зону в течении 10 секунд.")
@@ -25,9 +27,11 @@ function tdm.Center()
 	end
 end
 
-if GetGlobalVar("Center") == nil then SetGlobalVar("Center",true) end
+if GetGlobalVar("Center") == nil then SetGlobalVar("Center", true) end
 
-COMMANDS.center = {function(ply,args)
-    SetGlobalVar("Center",tonumber(args[1]) > 0)
-    PrintMessage(3,tostring(GetGlobalVar("Center")))
-end}
+COMMANDS.center = {
+	function(ply, args)
+		SetGlobalVar("Center", tonumber(args[1]) > 0)
+		PrintMessage(3, tostring(GetGlobalVar("Center")))
+	end
+}

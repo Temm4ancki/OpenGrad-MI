@@ -32,7 +32,7 @@ function EFFECT:GetTracerOrigin(data)
 				if IsValid(vm) and not LocalPlayer():ShouldDrawLocalPlayer() then
 					entity = vm
 				else
-					-- HACK: fix the model in multiplayer
+					-- HACKjmod: fix the model in multiplayer
 					if entity.WorldModel then
 						entity:SetModel(entity.WorldModel)
 					end

@@ -514,7 +514,7 @@ local SalvagingTable = {
 }
 
 local SpecializedSalvagingTable = {
-	classname = {}, -- todo: implement
+	classname = {}, -- todojmod: implement
 	modelname = {
 		{
 			substrings = {"crate_fruit", "fruit_crate"},

@@ -167,7 +167,7 @@ elseif(CLIENT)then
 				cam.End3D2D()
 			end
 		end
-		--[[ -- todo: use this in the prop conversion machines
+		--[[ -- todojmod: use this in the prop conversion machines
 		local Col=Color(0,0,0,50)
 		render.SetMaterial(DarkSprite)
 		for i=1,30 do

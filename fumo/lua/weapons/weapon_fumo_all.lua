@@ -43,7 +43,7 @@ local fumo_options = {
 	"weapon_fumo_yuyuko",
 }
 
--- TODO: Save the selected fumo somehow. Could use ClientConVar,
+-- todofumo: Save the selected fumo somehow. Could use ClientConVar,
 -- but a whole bunch of error/exploit checking would need to be done
 function SWEP:SetupDataTables()
 	self:NetworkVar( "Int", 0, "SelectedFumo" )

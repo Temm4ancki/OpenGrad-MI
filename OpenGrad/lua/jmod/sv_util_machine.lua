@@ -326,7 +326,7 @@ function JMod.MachineSpawnResource(machine, resourceType, amount, relativeSpawnP
 		if SpawnTr.Hit then
 			local SpawnPos = SpawnTr.HitPos + (SpawnTr.HitNormal * 40)
 		end
-		-- TODO: Figure out how to optimize the resource effects
+		-- todojmod: Figure out how to optimize the resource effects
 		local SpawnAmount = math.min(amount, 100 * JMod.Config.ResourceEconomy.MaxResourceMult)
 		if ejectionVector then
 			JMod.ResourceEffect(resourceType, machine:LocalToWorld(ejectionVector), SpawnPos, SpawnAmount * 0.01, 1, 1)
@@ -663,7 +663,7 @@ function JMod.BuildEffect(pos)
 	eff:SetOrigin(pos + VectorRand())
 	eff:SetScale(Scale)
 	util.Effect("eff_jack_gmod_ezbuildsmoke", eff, true, true)
-	-- todo: useEffects
+	-- todojmod: useEffects
 end
 
 concommand.Add("jmod_debug_destroy", function(ply, cmd, args)

@@ -60,18 +60,18 @@ gamemodes:
       game:
         levels:
           basedefence:
-            ☐ init_cl.lua
-            ☐ init_sv.lua
-            ☐ init_tier_0_sh.lua
+            ✔ init_cl.lua @done(25-05-20 14:56)
+            ✔ init_sv.lua @done(25-05-20 14:56)
+            ✔ init_tier_0_sh.lua @done(25-05-20 14:43)
 
           construct:
-            ☐ init_sv.lua
-            ☐ init_tier_0_sh.lua
+            ✔ init_sv.lua @done(25-05-20 14:28)
+            ✔ init_tier_0_sh.lua @done(25-05-20 14:28)
 
           cp:
-            ☐ init_cl.lua
-            ☐ init_sv.lua
-            ☐ init_tier_0_sh.lua
+            ✔ init_cl.lua @done(25-05-20 14:25)
+            ✔ init_sv.lua @done(25-05-20 14:25)
+            ✔ init_tier_0_sh.lua @done(25-05-20 14:25)
 
           newlevels:
             homicide:
@@ -111,9 +111,9 @@ gamemodes:
 
             tdm:
               css:
-                ☐ init_cl.lua
-                ☐ init_sv.lua
-                ☐ init_tier_0_sh.lua
+                ✔ init_cl.lua @done(25-05-20 15:11)
+                ✔ init_sv.lua @done(25-05-20 15:11)
+                ✔ init_tier_0_sh.lua @done(25-05-20 15:11)
 
               hl2tdm: 
                 --Тут тупо звуки из HL2
@@ -132,35 +132,35 @@ gamemodes:
                 ✔ init_tier_0_sh.lua @done(25-05-20 02:49)
 
               riot:
-                ☐ init_cl.lua
-                ☐ init_sv.lua
-                ☐ init_tier_0_sh.lua
+                ✔ init_cl.lua @done(25-05-20 15:11)
+                ✔ init_sv.lua @done(25-05-20 15:16)
+                ✔ init_tier_0_sh.lua @done(25-05-20 19:34)
 
               slovoeblana:
-                ☐ init_cl.lua
-                ☐ init_sv.lua
-                ☐ init_tier_0_sh.lua
+                ✔ init_cl.lua @done(25-05-20 15:27)
+                ✔ init_sv.lua @done(25-05-20 15:28)
+                ✔ init_tier_0_sh.lua @done(25-05-20 15q:27)
 
               svo:
-                ☐ init_cl.lua
-                ☐ init_sv.lua
-                ☐ init_tier_0_sh.lua
+                ✔ init_cl.lua @done(25-05-20 15:46)
+                ✔ init_sv.lua @done(25-05-20 15:50)
+                ✔ init_tier_0_sh.lua @done(25-05-20 21:10)
 
               tier_0_tdm:
-                ☐ center_sh.lua
-                ☐ center_sv.lua
-                ☐ init_cl.lua
-                ☐ init_sv.lua
-                ☐ tier_0_sh.lua
+                ✔ center_sh.lua @done(25-05-20 16:51)
+                ✔ center_sv.lua @done(25-05-20 16:51)
+                ✔ init_cl.lua @done(25-05-20 16:51)
+                ✔ init_sv.lua @done(25-05-20 16:54)
+                ✔ tier_0_sh.lua @done(25-05-20 16:51)
 
           nextbot:
-            ☐ init_sv.lua
-            ☐ init_tier_0_sh.lua
+            ✔ init_sv.lua @done(25-05-20 16:54)
+            ✔ init_tier_0_sh.lua @done(25-05-20 16:54)
 
         looting:
-          ☐ looting_cl.lua
-          ☐ looting_sh.lua
-          ☐ looting_sv.lua
+          ✔ looting_cl.lua @done(25-05-20 17:03)
+          ✔ looting_sh.lua @done(25-05-20 17:03)
+          ✔ looting_sv.lua @done(25-05-20 17:03)
 
         maps:
           ☐ gm_fork_sv.lua
@@ -181,7 +181,7 @@ gamemodes:
         ☐ control_inspec_sv.lua
         ☐ datamap_cl.lua
         ☐ datamap_debug_cl.lua
-        ☐ datamap_sv.lua
+        ✔ datamap_sv.lua @done(25-05-20 14:25)
         ☐ fakename_sv.lua
         ☐ fog_cl.lua
         ☐ fog_sv.lua

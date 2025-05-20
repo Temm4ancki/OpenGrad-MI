@@ -7,7 +7,7 @@ end
 function kuhnya.HUDPaint_RoundLeft(white)
     local lply = LocalPlayer()
     local name, color = kuhnya.GetTeamName(lply)
-    local startRound = roundTimeStart + 7 - CurTime()
+    local startRound = roundTimeStart + 5 - CurTime()
 
     if startRound > 0 and lply:Alive() then
         if playsound then

@@ -1090,7 +1090,7 @@ net.Receive("JMod_Ravebreak", function()
 	LocalPlayer().JMod_RavebreakStartTime = CurTime() + 2.325
 	LocalPlayer().JMod_RavebreakEndTime = CurTime() + 25.5
 end)
--- note that the song's beat is about .35 seconds
+-- that the song's beat is about .35 seconds
 
 -- Liquid Effects
 local WaterSprite, FireSprite = Material("effects/jmod/splash2"), Material("effects/fire_cloud1")

@@ -5,26 +5,26 @@ SpawnPointsPage = SpawnPointsPage or 1
 
 SpawnPointsList = {
 	--Команды
-	spawnpointst = {"red",Color(255,0,0)},
-	spawnpointsct = {"blue",Color(0,0,255)},
+	spawnpointst = {"red", Color(255, 0, 0)},
+	spawnpointsct = {"blue", Color(0, 0, 255)},
 
 	--Силовики после количества времени
-	spawnpoints_ss_police = {"police",Color(0,0,125)},
+	spawnpoints_ss_police = {"police", Color(0, 0, 125)},
 
 	--Режим CSS
-	bomb_site = {"bomb_site",Color(161,121,61)},
+	bomb_site = {"bomb_site", Color(161, 121, 61)},
 
 	--Режим SchoolShooter
-	spawnpoints_ss_exit = {"exit",Color(0,125,0),true},
+	spawnpoints_ss_exit = {"exit", Color(0, 125, 0), true},
 	--spawnpoints_ss_school = {"school",Color(0,255,0)}, 
 	--Для чего нужен???
 
- 	--Режим TDM (центер не используется, но нужен)
-	center = {"center",color_white},
+	--Режим TDM (центер не используется, но нужен)
+	center = {"center", color_white},
 
 	--Режим JohnWick. Если их нет, используем стандарные T и CT точки
-	spawnpointswick = {"wick",color_white},
-	spawnpointsnaem = {"naem",color_white},
+	spawnpointswick = {"wick", color_white},
+	spawnpointsnaem = {"naem", color_white},
 
 	--Режим NextBot (отключен)
 	--points_nextbox = {"nextbot",Color(0,255,255)},
@@ -32,12 +32,7 @@ SpawnPointsList = {
 	--Режим CP (отключен)
 	--swo_carsct = ???
 	--swo_carst = ???
-	--gred_emp_dshk = {"gred_emp_dshk",Color(25,25,25)},
-	--gred_ammobox = {"gred_ammobox",Color(25,25,25)},
 	--controlpoint = {"control_point",Color(25,25,25)},
-	
-	--Режим Сonstruct (отключен)
-	--level_construct = {"level_construct",Color(0,0,0)},
 
 	--Режим BaseDefence (отключен)
 	--basedefencebots = {"basedefencebots",Color(155,155,155)},
@@ -47,6 +42,12 @@ SpawnPointsList = {
 	--basedefenceplayerspawns = {"basedefenceplayerspawns",Color(255,255,0)},
 	--boxspawn = {"boxspawn",Color(25,25,25)},
 
+	--Общие точки для CP и BD
+	--gred_emp_dshk = {"gred_emp_dshk",Color(25,25,25)},
+	--gred_ammobox = {"gred_ammobox",Color(25,25,25)},
+
+	--Режим Сonstruct (отключен)
+	--level_construct = {"level_construct",Color(0,0,0)},
 
 	-- НЕ ИСПОЛЬЗУЕТСЯ (ДУМАЙТЕ)
 	-- spawnpointswick = {"spawnpointswick",Color(255,0,0)},
@@ -87,7 +88,7 @@ SpawnPointsList = {
 	--sim_fphys_conscriptapc_armed = {"sim_fphys_conscriptapc_armed",Color(165,165,165)},
 }
 
-function GetDataMapName(name) return "homigrad/maps/" .. name .. "/" .. game.GetMap() .. (SpawnPointsPage == 1 and "" or SpawnPointsPage) ..".txt" end
+function GetDataMapName(name) return "homigrad/maps/" .. name .. "/" .. game.GetMap() .. (SpawnPointsPage == 1 and "" or SpawnPointsPage) .. ".txt" end
 
 function GetMaxDataPages(name)
 	local i = 0
@@ -95,7 +96,7 @@ function GetMaxDataPages(name)
 	while true do
 		i = i + 1
 
-		if not file.Exists("homigrad/maps/" .. name .. "/" .. game.GetMap() .. (i == 1 and "" or i) ..".txt","DATA") then return i - 1 end
+		if not file.Exists("homigrad/maps/" .. name .. "/" .. game.GetMap() .. (i == 1 and "" or i) .. ".txt","DATA") then return i - 1 end
 	end
 end
 
@@ -108,7 +109,7 @@ function WriteDataMap(name,data)
 	file.Write(GetDataMapName(name),util.TableToJSON(data or {}) or "")
 end
 
-function SetupSpawnPointsList()--чтение и запись
+function SetupSpawnPointsList() --чтение и запись
 	for name,info in pairs(SpawnPointsList) do
 		info[3] = ReadDataMap(name)
 	end

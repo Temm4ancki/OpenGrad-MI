@@ -1217,7 +1217,7 @@ if(SERVER)then
 		local X, Y = self:GetAimYaw(), self:GetAimPitch()
 		self:Point(Y + math.Rand(-1, 1) * self.TurnSpeed / 8, X + math.Rand(-1, 1) * self.TurnSpeed / 4)
 		self:ConsumeElectricity()
-		-- todo: sound
+		-- todojmod: sound
 	end
 
 	function ENT:ReturnToForward()

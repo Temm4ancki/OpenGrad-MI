@@ -28,7 +28,7 @@ ENT.PropModels = {
 	"models/bandages.mdl"
 }
 
--- todo: missing texture
+-- todojmod: missing texture
 ---
 if SERVER then
 	--

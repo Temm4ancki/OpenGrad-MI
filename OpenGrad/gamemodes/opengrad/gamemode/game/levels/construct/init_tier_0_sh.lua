@@ -1,13 +1,13 @@
+--NOTE В чём вообще прикол этого режима? Тут даже звуков никаких нет для начала раунда
 --table.insert(LevelList,"construct")
 construct = {}
 construct.Name = "Construct"
 
 function construct.StartRound(data)
-	game.CleanUpMap(false)
+    game.CleanUpMap(false)
 
-	if CLIENT then
+    if CLIENT then
         wait = data[1]
-
         return
     end
 
@@ -15,16 +15,17 @@ function construct.StartRound(data)
 end
 
 if SERVER then return end
+function construct.CanUseSpawnMenu()
+    return GetGlobalVar("Can", true)
+end
 
-function construct.CanUseSpawnMenu() return GetGlobalVar("Can", true) end
-
-local gray = Color(122,122,122,255)
+local gray = Color(122, 122, 122, 255)
 
 function construct.GetTeamName(ply)
     local teamID = ply:Team()
 
     if ply:Team() == 1 then
-        return "Constructer",gray
+        return "Constructer", gray
     end
 end
 
@@ -32,9 +33,9 @@ function construct.HUDPaint_RoundLeft()
     local time = math.Round((wait or 0) - CurTime())
 
     if time > 0 then
-        local acurcetime = string.FormattedTime(time,"%02i:%02i")
+        local acurcetime = string.FormattedTime(time, "%02i:%02i")
         acurcetime = "До окончания строительства : " .. acurcetime
 
-        draw.SimpleText(acurcetime,"HomigradFont",ScrW() / 2,ScrH() - 25,white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
+        draw.SimpleText(acurcetime, "HomigradFont", ScrW() / 2, ScrH() - 25, white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
 end

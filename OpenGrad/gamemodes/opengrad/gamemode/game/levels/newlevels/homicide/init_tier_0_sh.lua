@@ -57,6 +57,7 @@ local roundTypes = {
     "Мафия"
 }
 
+--TODO про эти звуки ты забыл
 local roundSound = {
     "snd_jack_hmcd_disaster.mp3",
     "snd_jack_hmcd_shining.mp3",
