@@ -42,18 +42,17 @@ end
 
 function slugarena.HUDPaint_RoundLeft(white)
     local lply = LocalPlayer()
+    local startRound = roundTimeStart + 7 - CurTime()
 
-	local startRound = roundTimeStart + 7 - CurTime()
     if startRound > 0 and lply:Alive() then
         if playsound then
             playsound = false
-            surface.PlaySound("snd_jack_hmcd_deathmatch.mp3")
+            surface.PlaySound("pvp_slugarena/start_" .. math.random(1, 2) .. ".ogg")
         end
-        lply:ScreenFade(SCREENFADE.IN,Color(0,0,0,255),0.5,0.5)
 
-        drawRoundMode("Player Vs Player",slugarena.Name,startRound,Color(155,155,255))
-        drawRoundStart("Слизнекот","ПОБЕДИ",startRound,Color(155,155,155))
-
+        lply:ScreenFade(SCREENFADE.IN, Color(0, 0, 0, 255), 0.5, 0.5)
+        drawRoundMode("Player Vs Player", slugarena.Name, startRound, Color(155, 155, 255))
+        drawRoundStart("Слизнекот", "ПОБЕДИ", startRound, Color(155, 155, 155))
         return
     end
 end

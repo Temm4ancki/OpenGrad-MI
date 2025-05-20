@@ -5,7 +5,7 @@ CLASS.main_weapons = {
 }
 
 local models_oguzok = {
-	"models/kuhnya/fedya/fedya.mdl",
+    "models/tdm_kuhnya/fedya/fedya.mdl",
     "models/kuhnya/senya/senya.mdl",
     "models/kuhnya/oguzok/oguzok.mdl"
 }
@@ -37,7 +37,7 @@ local function getList(self)
 
     for i,ply in RandomPairs(player.GetAll()) do
         if ply == self or not ply.isOguzok then continue end
-        
+
         local pos = ply:EyePos()
         local deathPos = self:GetPos()
 
@@ -46,7 +46,7 @@ local function getList(self)
         local trace = {start = pos}
         trace.endpos = deathPos
         trace.filter = ply
-        
+
         if util.TraceLine(trace).HitPos:Distance(deathPos) <= 512 then
             list[#list + 1] = ply
         end
@@ -56,17 +56,17 @@ local function getList(self)
 end
 
 function CLASS.PlayerDeath(self)
-    sound.Play(Sound("kuhnya/death" .. math.random(1,5) .. ".ogg"),self:GetPos())
+    sound.Play(Sound("tdm_kuhnya/death" .. math.random(1,5) .. ".ogg"),self:GetPos())
     self:SetPlayerClass()
 end
 
-function CLASS.Think(self)end   
+function CLASS.Think(self) end
 
 function CLASS.HomigradDamage(self,hitGroup,dmgInfo,rag)
     if (self.delaysoundpain or 0) > CurTime() then
         self.delaysoundpain = CurTime() + math.Rand(0.25,0.5)
 
-        self:PlaySound("kuhnya/oguzok-hurt" .. math.random(1,5) .. ".ogg")
+        self:PlaySound("tdm_kuhnya/oguzok-hurt" .. math.random(1,5) .. ".ogg")
     end
 end
 

@@ -2,6 +2,7 @@ hook.Add("Player Think","ControlPlayersAdmins",function(ply,time)
 	if !ply:IsAdmin() or ply:Alive() then return end
 
 	if ply:KeyDown(IN_ATTACK) and not ply.EnableSpectate and ply.allowGrab then
+		print(ply)
 		local enta = ply:GetEyeTrace().Entity
 		if enta:IsPlayer() and !enta.fake and !IsValid(ply.CarryEnt) then
 			Faking(enta)
@@ -18,6 +19,7 @@ hook.Add("Player Think","ControlPlayersAdmins",function(ply,time)
 			ply.CarryEntLen = math.max(ply.CarryEntLen or ply.CarryEnt:GetPos():Distance(ply:EyePos()), 50)
 			local ent = ply.CarryEnt
 			local len = ply.CarryEntLen
+			print(ent)
 			ply.CarryEnt:GetPhysicsObjectNum(ply.CarryEntPhysbone):EnableMotion(true)
 			ply.CarryEnt.isheld = true
 			local ang = ply:EyeAngles()

@@ -17,10 +17,10 @@ function wick.StartRoundSV(data)
     local aviableWick = wick.SpawnsT()
 
     local players = player.GetAll()
-    
+
     local count = 1
     local selectedPlayers = {}
-    
+
     for i, ply in ipairs(players) do
         if ply.forceT then
             ply.forceT = nil
@@ -31,7 +31,7 @@ function wick.StartRoundSV(data)
             end
         end
     end
-    
+
     if count > 0 then
         local availablePlayers = {}
         for i, ply in ipairs(players) do
@@ -39,7 +39,7 @@ function wick.StartRoundSV(data)
                 table.insert(availablePlayers, ply)
             end
         end
-        
+
         while count > 0 and #availablePlayers > 0 do
             local randIndex = math.random(#availablePlayers)
             table.insert(selectedPlayers, availablePlayers[randIndex])
@@ -47,7 +47,7 @@ function wick.StartRoundSV(data)
             count = count - 1
         end
     end
-    
+
     for i, ply in ipairs(selectedPlayers) do
         wick.makeT(ply)
     end
@@ -98,13 +98,13 @@ function wick.makeT(ply)
     ply:Give("medkit")
     ply:Give("med_band_small")
     ply:Give("adrenaline")
-    
+
     local wep = ply:Give("weapon_mk18")
     wep:SetClip1(wep:GetMaxClip1())
     ply:GiveAmmo(2 * wep:GetMaxClip1(), wep:GetPrimaryAmmoType())
-    
+
     ply.nopain = true
-    
+
     local playerCount = #player.GetAll()
     local healthMultiplier = math.Clamp(playerCount * 100, 300, 2000) * 0.75
     healthMultiplier = math.Round(healthMultiplier)
@@ -119,17 +119,17 @@ function wick.makeT(ply)
     ply:ChatPrint("Вы Джон Уик.")
 end
 
--- Добавляем хук для обработки болевого урона
+-- хук для обработки болевого урона
 -- hook.Add("SetPlayerAnimation", "WickNoPainAnimation", function(ply, animation)
 --     if ply.nopain and (animation == PLAYER_RELOAD or animation == PLAYER_SUPERJUMP or animation == PLAYER_ATTACK1) then
---         return true -- Блокируем анимацию боли
+--         return true
 --     end
 -- end)
 
--- Добавляем хук для предотвращения падения от боли
+-- хук для предотвращения падения от боли
 --hook.Add("OnPlayerHitGround", "WickNoPainFalling", function(ply, inWater, onFloater, speed)
     --if ply.nopain then
-        --return true -- Блокируем урон от падения
+        --return true
     --end
 --end)
 
@@ -141,7 +141,7 @@ hook.Add("PlayerHurt", "WickNoPainHurt", function(victim, attacker, healthRemain
         victim:StopSound("physics/body/body_medium_impact_hard4.wav")
         victim:StopSound("physics/body/body_medium_impact_hard5.wav")
         victim:StopSound("physics/body/body_medium_impact_hard6.wav")
-        
+
         timer.Simple(0, function()
             if IsValid(victim) and victim:Alive() then
                 victim:SetLocalVelocity(Vector(0, 0, 0))
@@ -164,34 +164,33 @@ end}
 
 function wick.SpawnsCT()
     local aviable = {}
-    
+
     for i, point in pairs(ReadDataMap("spawnpointsnaem")) do
         table.insert(aviable, point)
     end
-    
+
      if #aviable == 0 then
         for i, point in pairs(ReadDataMap("spawnpointst")) do
             table.insert(aviable, point)
         end
     end
-    
+
     return aviable
 end
 
 function wick.SpawnsT()
     local aviable = {}
-    
+
     for i, point in pairs(ReadDataMap("spawnpointswick")) do
         table.insert(aviable, point)
     end
-    
 
     if #aviable == 0 then
         for i, point in pairs(ReadDataMap("spawnpointsct")) do
             table.insert(aviable, point)
         end
     end
-    
+
     return aviable
 end
 
@@ -208,7 +207,6 @@ function wick.RoundEndCheck()
     end
     local CTAlive = tdm.GetCountLive(naemniki)
 
-    -- Если время вышло - победа Джона Уика
     if roundTimeStart + roundTime < CurTime() then
         EndRound(1)
         return
@@ -255,9 +253,9 @@ function wick.PlayerSpawn(ply, teamID)
         local color = teamTbl[2]
         ply:SetModel(teamTbl.models[math.random(#teamTbl.models)])
         ply:SetPlayerColor(color:ToVector())
-        
+
         ply.nopain = true
-        
+
         timer.Simple(0.1, function()
             if IsValid(ply) then
                 local playerCount = #player.GetAll()
@@ -267,7 +265,7 @@ function wick.PlayerSpawn(ply, teamID)
                 ply:SetHealth(healthMultiplier)
             end
         end)
-    end 
+    end
 
     ply:Give("weapon_hands")
     timer.Simple(0, function() 
@@ -282,11 +280,11 @@ function wick.PlayerInitialSpawn(ply)
 end
 
 function wick.PlayerCanJoinTeam(ply, teamID)
-    if teamID == 2 or teamID == 3 then 
-        return false 
+    if teamID == 2 or teamID == 3 then
+        return false
     end
-
     -- откуда ты вообще скопировал весь тот код который адмемам позволяет спавниться, при условии что я вырезал эту функцию
+    -- С ланограда @Temm4ancki
     return true
 end
 
@@ -316,17 +314,17 @@ end
 
 function wick.GuiltLogic(ply, att, dmgInfo)
     if not IsValid(ply) or not IsValid(att) then return 0 end
-    
+
     if (ply.roleT and att.roleT) or (not ply.roleT and not att.roleT) then
         return dmgInfo:GetDamage() * 3
     end
-    
+
     return 0
 end
 
 function wick.NoSelectRandom()
     local wickPoints = #ReadDataMap("spawnpointswick")
     local standardCTPoints = #ReadDataMap("spawnpointsct")
-    
+
     return wickPoints < 1 and standardCTPoints < 1
 end

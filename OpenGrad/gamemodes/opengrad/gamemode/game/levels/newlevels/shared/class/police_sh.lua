@@ -1,23 +1,33 @@
 local CLASS = player.RegClass("police")
 
-CLASS.weapons = {"weapon_radio","med_band_big","medkit","painkiller","weapon_handcuffs","weapon_taser","weapon_hg_flashbang","weapon_police_bat"}
+CLASS.weapons = {
+	"weapon_radio",
+	"med_band_big",
+	"medkit",
+	"painkiller",
+	"weapon_handcuffs",
+	"weapon_taser",
+	"weapon_hg_flashbang"
+	,"weapon_police_bat"
+}
+
 CLASS.secondary_weapon = {"weapon_glock"}
 CLASS.models = {}
 
 for i = 1,6 do
-	CLASS.models[#CLASS.models + 1] = "models/monolithservers/mpd/female_0"..i..".mdl"
+	CLASS.models[#CLASS.models + 1] = "models/monolithservers/mpd/female_0" .. i .. ".mdl"
 end
 
 for i = 1,6 do
-	CLASS.models[#CLASS.models + 1] = "models/monolithservers/mpd/female_0"..i.."_2.mdl"
+	CLASS.models[#CLASS.models + 1] = "models/monolithservers/mpd/female_0" .. i .. "_2.mdl"
 end
 
 for i = 1,6 do
-	CLASS.models[#CLASS.models + 1] = "models/monolithservers/mpd/male_0"..i..".mdl"
+	CLASS.models[#CLASS.models + 1] = "models/monolithservers/mpd/male_0" .. i .. ".mdl"
 end
 
 for i = 1,6 do
-	CLASS.models[#CLASS.models + 1] = "models/monolithservers/mpd/male_0"..i.."_2.mdl"
+	CLASS.models[#CLASS.models + 1] = "models/monolithservers/mpd/male_0" .. i .. "_2.mdl"
 end
 
 CLASS.color = Color(75,75,75)
@@ -84,7 +94,7 @@ local function tracerSee(self,endpos,dis)
 	local trace = {start = self:EyePos()}
 	trace.endpos = endpos
 	trace.filter = self
-	
+
 	if util.TraceLine(trace).HitPos:Distance(endpos) <= dis then
 		return true
 	end
@@ -95,7 +105,7 @@ local function getList(self)
 
 	for i,ply in RandomPairs(player.GetAll()) do
 		if ply == self or not ply.isContr then continue end
-		
+
 		local pos = ply:EyePos()
 		local deathPos = self:GetPos()
 
@@ -104,7 +114,7 @@ local function getList(self)
 		local trace = {start = pos}
 		trace.endpos = deathPos
 		trace.filter = ply
-		
+
 		if util.TraceLine(trace).HitPos:Distance(deathPos) <= 512 then
 			list[#list + 1] = ply
 		end
@@ -155,8 +165,8 @@ function CLASS:HomigradDamage(hitGroup,dmgInfo,rag)
 	end
 
 	if CanMessage(self,"help") then
-		if math.random(1,2) == 1 then EmitSound(self,"snd_jack_hmcd_cop1.wav")
-		else EmitSound(self,"snd_jack_hmcd_cop2.wav")
+		if math.random(1,2) == 1 then EmitSound(self,"hg_homicide/police/snd_jack_hmcd_cop1.ogg")
+		else EmitSound(self,"hg_homicide/police/snd_jack_hmcd_cop2.ogg")
 		end
 	end
 
@@ -187,7 +197,7 @@ function CLASS:EventPoint(name,pos,radius,a1,a2)
 		timer.Simple(2,function()
 			if not live(self,hp,self:Health()) then return end
 
-			EmitSound(self,ebal("bot/yesss",2))
+			EmitSound(self,ebal("bot/yesss.wav",2))
 		end)
 	end
 
@@ -195,7 +205,7 @@ function CLASS:EventPoint(name,pos,radius,a1,a2)
 		local hp = self:Health()
 		timer.Simple(math.Rand(0.75,1.75),function()
 			if not live(self,hp,self:Health()) then return end
-			EmitSound(self,ebal("bot/good_shot",2))
+			EmitSound(self,ebal("bot/good_shot.wav",2))
 		end)
 	end
 end
@@ -223,9 +233,9 @@ function CLASS:Event(name,a1)
 			if r == 1 then EmitSound(self,"bot/aah.wav") elseif r == 2 then EmitSound(self,"bot/aw_hell.wav") else EmitSound(self,"bot/aww_man.wav") end
 		else
 			if math.random(1,2) == 2 then
-				EmitSound(self,"snd_jack_hmcd_cop2.wav")
+				EmitSound(self,"hg_homicide/police/snd_jack_hmcd_cop2.ogg")
 			else
-				EmitSound(self,"snd_jack_hmcd_cop1.wav")
+				EmitSound(self,"hg_homicide/police/snd_jack_hmcd_cop1.ogg")
 			end
 		end
 	end
@@ -272,7 +282,7 @@ for id,snd in pairs(sounds) do
 	local pos = snd[3]
 	interface[pos[1]] = interface[pos[1]] or {}
 	interface[pos[1]][pos[2]] = {id,snd[1]}
-	
+
 	interfacemaxy = math.max(interfacemaxy,pos[2])
 end
 
@@ -287,7 +297,7 @@ function CLASS:OpenMenu()
 	frame:MakePopup()
 	frame:ShowCloseButton(false)
 	frame:SetDraggable(false)
-	
+
 	function frame:Paint(w,h)
 		Selected = nil
 	end

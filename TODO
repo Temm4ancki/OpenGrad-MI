@@ -1,0 +1,1047 @@
+gamemodes:
+  opengrad:
+    entities:
+      entities:
+        ent_trap:
+          ☐ cl_init.lua
+          ☐ init.lua
+          ☐ shared.lua
+
+        ☐ ent_aidbox_big.lua
+        ☐ ent_drop_flashlight.lua
+        ☐ ent_hg_cyanid.lua
+        ☐ ent_othershit_box.lua
+
+      weapons:
+        megamedkit:
+          ☐ init.lua
+          ☐ shared.lua
+
+        weapon_handcuffs:
+          ☐ cl_init.lua
+          ☐ init.lua
+          ☐ shared.lua
+
+        weapon_hg_granade_base:
+          ☐ shared.lua
+
+        weapon_radio:
+          ☐ init.lua
+          ☐ shared.lua
+
+        weapon_trap:
+          ☐ shared.lua
+
+        weapon_zs_zombie:
+          ☐ cl_init.lua
+          ☐ init.lua
+          ☐ shared.lua
+
+        ☐ weapon_binokle.lua
+        ☐ weapon_gredammo.lua
+        ☐ weapon_gredmg34.lua
+        ☐ weapon_gredmimomet.lua
+        ☐ weapon_hg_f1.lua
+        ☐ weapon_hg_flashbang.lua
+        ☐ weapon_hg_hl2.lua
+        ☐ weapon_hg_molotov.lua
+        ☐ weapon_hg_rgd5.lua
+        ☐ weapon_hg_t_syringepoison.lua
+        ☐ weapon_hg_t_vxpoison.lua
+        ☐ weapon_hidebomb.lua
+        ☐ weapon_jahidka.lua
+        ☐ weapon_molotok.lua
+        ☐ weapon_per4ik.lua
+        ☐ weapon_phone.lua
+        ☐ weapon_radio.lua
+        ☐ weapon_taser.lua
+
+    gamemode:
+      game:
+        levels:
+          basedefence:
+            ☐ init_cl.lua
+            ☐ init_sv.lua
+            ☐ init_tier_0_sh.lua
+
+          construct:
+            ☐ init_sv.lua
+            ☐ init_tier_0_sh.lua
+
+          cp:
+            ☐ init_cl.lua
+            ☐ init_sv.lua
+            ☐ init_tier_0_sh.lua
+
+          newlevels:
+            homicide:
+              ✔ init_sv.lua @done(25-05-20 04:11)
+              ✔ init_tier_0_sh.lua @done(25-05-20 04:11)
+
+            pve:
+              schoolshoot:
+                ✔ init_cl.lua @done(25-05-20 03:45)
+                ✔ init_sv.lua @done(25-05-20 03:45)
+                ✔ init_tier_0_sh.lua @done(25-05-20 03:45)
+
+              wick:
+                ✔ init_cl.lua @done(25-05-20 03:34)
+                ✔ init_sv.lua @done(25-05-20 03:34)
+                ✔ init_tier_0_sh.lua @done(25-05-20 03:34)
+
+            pvp:
+              deathmatch:
+                ✔ init_sv.lua @done(25-05-20 02:48)
+                ✔ init_tier_0_sh.lua @done(25-05-20 03:12)
+
+              slugarena:
+                ✔ init_sv.lua @done(25-05-20 02:02)
+                ✘ init_tier_0_sh.lua @cancelled(25-05-20 02:44) --НАСРАНО
+
+            shared:
+              class:
+                ✔ barinov_sh.lua @done(25-05-20 01:15)
+                ✔ combine_sh.lua @done(25-05-20 01:31) --Тут тупо звуки из HL2
+                ✘ contr_sh.lua @cancelled(25-05-20 01:28) --Тут звуки из CSS
+                ✔ oguzok_sh.lua @done(25-05-20 01:21)
+                ✔ police_sh.lua @done(25-05-20 01:53) --Тут звуки из CSS и куча не используемых EmitSound. Но поменял звуким хомисайда на hg_homicide/police/ 
+                ✔ Rcombine_sh.lua @done(25-05-20 01:37)
+
+              ✔ sh_newlevels.lua @done(25-05-20 01:53) --Код
+
+            tdm:
+              css:
+                ☐ init_cl.lua
+                ☐ init_sv.lua
+                ☐ init_tier_0_sh.lua
+
+              hl2tdm: 
+                --Тут тупо звуки из HL2
+                ✔ init_cl.lua @done(25-05-20 02:49)
+                ✔ init_sv.lua @done(25-05-20 02:49)
+                ✔ init_tier_0_sh.lua @done(25-05-20 02:49)
+
+              hl2tdmreal:
+                ✔ init_cl.lua @done(25-05-20 02:49)
+                ✔ init_sv.lua @done(25-05-20 02:49)
+                ✔ init_tier_0_sh.lua @done(25-05-20 02:49)
+
+              kuhnya:
+                ✔ init_cl.lua @done(25-05-20 02:49)
+                ✔ init_sv.lua @done(25-05-20 02:49)
+                ✔ init_tier_0_sh.lua @done(25-05-20 02:49)
+
+              riot:
+                ☐ init_cl.lua
+                ☐ init_sv.lua
+                ☐ init_tier_0_sh.lua
+
+              slovoeblana:
+                ☐ init_cl.lua
+                ☐ init_sv.lua
+                ☐ init_tier_0_sh.lua
+
+              svo:
+                ☐ init_cl.lua
+                ☐ init_sv.lua
+                ☐ init_tier_0_sh.lua
+
+              tier_0_tdm:
+                ☐ center_sh.lua
+                ☐ center_sv.lua
+                ☐ init_cl.lua
+                ☐ init_sv.lua
+                ☐ tier_0_sh.lua
+
+          nextbot:
+            ☐ init_sv.lua
+            ☐ init_tier_0_sh.lua
+
+        looting:
+          ☐ looting_cl.lua
+          ☐ looting_sh.lua
+          ☐ looting_sv.lua
+
+        maps:
+          ☐ gm_fork_sv.lua
+
+        scoreboard:
+          ☐ menu_cl.lua
+          ☐ tier_0_cl.lua
+          ☐ tier_1_cl.lua
+
+        tier_0_playerclass:
+          ☐ anim_sh.lua
+          ☐ tier_0_sh.lua
+          ☐ tier_0_sv.lua
+
+        ☐ bullshitspawn_sv.lua
+        ☐ commands_cl.lua
+        ☐ communication_sv.lua
+        ☐ control_inspec_sv.lua
+        ☐ datamap_cl.lua
+        ☐ datamap_debug_cl.lua
+        ☐ datamap_sv.lua
+        ☐ fakename_sv.lua
+        ☐ fog_cl.lua
+        ☐ fog_sv.lua
+        ☐ level_cl.lua
+        ☐ level_debug_cl.lua
+        ☐ level_hook_cl.lua
+        ☐ level_hook_sv.lua
+        ☐ level_sh.lua
+        ☐ level_sv.lua
+        ☐ roundsystem_sv.lua
+        ☐ sv_util.lua
+
+      ☐ cl_init.lua
+      ☐ init.lua
+      ☐ loader.lua
+      ☐ shared.lua
+
+    ☐ opengrad.txt
+
+lua:
+  autorun:
+    client:
+      ☐ !!!initial.lua
+      ☐ !!!scoreboard_sandbox.lua
+
+    server:
+      ☐ !!!init.lua
+
+    ☐ !!!gproc.lua
+    ☐ !!!gprocstd.lua
+    ☐ !!!mapvote_init.lua
+    ☐ !!!sh_flashlight.lua
+    ☐ !!!sh_flybysounds.lua
+    ☐ !!!sh_optimize.lua
+    ☐ !!!swepts_suppression.lua
+    ☐ homigrad_loader.lua
+    ☐ jmod_init.lua
+
+  core:
+    client:
+      ☐ cl_mapvote.lua
+      ☐ cl_net.lua
+
+    lib:
+      ☐ b-draw_lib.lua
+
+    server:
+      ☐ sv_hooks.lua
+      ☐ sv_mapvote.lua
+      ☐ sv_net.lua
+
+  effects:
+    eff_jack_aidimpact:
+      ☐ init.lua
+
+    eff_jack_aidopen:
+      ☐ init.lua
+
+    eff_jack_america:
+      ☐ init.lua
+
+    eff_jack_bombdetonate:
+      ☐ init.lua
+
+    eff_jack_bombletdetonate:
+      ☐ init.lua
+
+    eff_jack_cold:
+      ☐ init.lua
+
+    eff_jack_coldmuzzle:
+      ☐ init.lua
+
+    eff_jack_cyanflash:
+      ☐ init.lua
+
+    eff_jack_detonate:
+      ☐ init.lua
+
+    eff_jack_directionalsplode:
+      ☐ init.lua
+
+    eff_jack_dronelight:
+      ☐ init.lua
+
+    eff_jack_fadingmelt:
+      ☐ init.lua
+
+    eff_jack_firebomb:
+      ☐ init.lua
+
+    eff_jack_flamesmoke:
+      ☐ init.lua
+
+    eff_jack_fougasseburst:
+      ☐ init.lua
+
+    eff_jack_fragsplosion:
+      ☐ init.lua
+
+    eff_jack_fuzeburn:
+      ☐ init.lua
+
+    eff_jack_gasolineburst:
+      ☐ init.lua
+
+    eff_jack_genericboom:
+      ☐ init.lua
+
+    eff_jack_genrun:
+      ☐ init.lua
+
+    eff_jack_gunoverheat:
+      ☐ init.lua
+
+    eff_jack_heatshimmer:
+      ☐ init.lua
+
+    eff_jack_heavyfadingmelt:
+      ☐ init.lua
+
+    eff_jack_heavylaserbeam:
+      ☐ init.lua
+
+    eff_jack_heavylaserbeamimpact:
+      ☐ init.lua
+
+    eff_jack_heavyplasmaarc:
+      ☐ init.lua
+
+    eff_jack_iceimpact:
+      ☐ init.lua
+
+    eff_jack_instantvent:
+      ☐ init.lua
+
+    eff_jack_lampburn:
+      ☐ init.lua
+
+    eff_jack_laserbeam:
+      ☐ init.lua
+
+    eff_jack_laserbeamimpact:
+      ☐ init.lua
+
+    eff_jack_lightboom:
+      ☐ init.lua
+
+    eff_jack_longflamelight:
+      ☐ init.lua
+
+    eff_jack_minesplode:
+      ☐ init.lua
+
+    eff_jack_minesplode_l:
+      ☐ init.lua
+
+    eff_jack_napalmburn:
+      ☐ init.lua
+
+    eff_jack_penetrate:
+      ☐ init.lua
+
+    eff_jack_plasmaarc:
+      ☐ init.lua
+
+    eff_jack_plasmaburst:
+      ☐ init.lua
+
+    eff_jack_plasmajetwater:
+      ☐ init.lua
+
+    eff_jack_plastisplosion:
+      ☐ init.lua
+
+    eff_jack_powdersplode:
+      ☐ init.lua
+
+    eff_jack_railgunmuzzle:
+      ☐ init.lua
+
+    eff_jack_redflash:
+      ☐ init.lua
+
+    eff_jack_rocketthrust:
+      ☐ init.lua
+
+    eff_jack_shrapnelburst:
+      ☐ init.lua
+
+    eff_jack_shrapnelsplosion:
+      ☐ init.lua
+
+    eff_jack_smallvent:
+      ☐ init.lua
+
+    eff_jack_sminebury:
+      ☐ init.lua
+
+    eff_jack_sminepop:
+      ☐ init.lua
+
+    eff_jack_spraypaint:
+      ☐ init.lua
+
+    eff_jack_targetbust:
+      ☐ init.lua
+
+    eff_jack_thermobaricsplode:
+      ☐ init.lua
+
+    eff_jack_tinyburn:
+      ☐ init.lua
+
+    eff_jack_tinymelt:
+      ☐ init.lua
+
+    eff_jack_tinyturretburn:
+      ☐ init.lua
+
+    eff_jack_torchburn:
+      ☐ init.lua
+
+    eff_jack_turretmuzzle:
+      ☐ init.lua
+
+    eff_jack_turretmuzzlelight:
+      ☐ init.lua
+
+    eff_jack_waterboom:
+      ☐ init.lua
+
+    ☐ drg_blood_explosion.lua
+    ☐ eff_jack_gmod_40mmshell.lua
+    ☐ eff_jack_gmod_aidboxsignal.lua
+    ☐ eff_jack_gmod_airdestruction.lua
+    ☐ eff_jack_gmod_airsuck.lua
+    ☐ eff_jack_gmod_appear.lua
+    ☐ eff_jack_gmod_augerdig.lua
+    ☐ eff_jack_gmod_blackpowderpour.lua
+    ☐ eff_jack_gmod_bloodpoof.lua
+    ☐ eff_jack_gmod_bloodsplosion.lua
+    ☐ eff_jack_gmod_bphmuzzle.lua
+    ☐ eff_jack_gmod_bpmuzzle.lua
+    ☐ eff_jack_gmod_bpsmoke.lua
+    ☐ eff_jack_gmod_bubbleshieldburst.lua
+    ☐ eff_jack_gmod_deathzombiehit.lua
+    ☐ eff_jack_gmod_eastereggpop.lua
+    ☐ eff_jack_gmod_efpburst.lua
+    ☐ eff_jack_gmod_explosion_base.lua
+    ☐ eff_jack_gmod_ezbackblast.lua
+    ☐ eff_jack_gmod_ezbhg.lua
+    ☐ eff_jack_gmod_ezbuildsmoke.lua
+    ☐ eff_jack_gmod_ezcorndust.lua
+    ☐ eff_jack_gmod_ezexhaust.lua
+    ☐ eff_jack_gmod_ezfalloutdust.lua
+    ☐ eff_jack_gmod_ezflamethrowerfire.lua
+    ☐ eff_jack_gmod_ezhealpoof.lua
+    ☐ eff_jack_gmod_ezleaf.lua
+    ☐ eff_jack_gmod_ezoilfiresmoke.lua
+    ☐ eff_jack_gmod_ezpopcorn.lua
+    ☐ eff_jack_gmod_ezsmokescreen.lua
+    ☐ eff_jack_gmod_ezsmokesignal.lua
+    ☐ eff_jack_gmod_ezsteam.lua
+    ☐ eff_jack_gmod_ezthermonuke.lua
+    ☐ eff_jack_gmod_faebomb_main.lua
+    ☐ eff_jack_gmod_faebomb_predet.lua
+    ☐ eff_jack_gmod_fire.lua
+    ☐ eff_jack_gmod_firework.lua
+    ☐ eff_jack_gmod_flareburn.lua
+    ☐ eff_jack_gmod_flashbang.lua
+    ☐ eff_jack_gmod_fragsplosion.lua
+    ☐ eff_jack_gmod_fuzeburn_smoky.lua
+    ☐ eff_jack_gmod_heatcool.lua
+    ☐ eff_jack_gmod_heavyfire.lua
+    ☐ eff_jack_gmod_incbullet.lua
+    ☐ eff_jack_gmod_jetflyby.lua
+    ☐ eff_jack_gmod_liquidtrail.lua
+    ☐ eff_jack_gmod_noflashmuzzle.lua
+    ☐ eff_jack_gmod_normalmuzzle.lua
+    ☐ eff_jack_gmod_npcrocketsmoke.lua
+    ☐ eff_jack_gmod_pmuzzle.lua
+    ☐ eff_jack_gmod_portalclose.lua
+    ☐ eff_jack_gmod_portalopen.lua
+    ☐ eff_jack_gmod_projectileflareburn.lua
+    ☐ eff_jack_gmod_pulselaserfire.lua
+    ☐ eff_jack_gmod_redflash.lua
+    ☐ eff_jack_gmod_refractripple.lua
+    ☐ eff_jack_gmod_resource_liquid.lua
+    ☐ eff_jack_gmod_resource_props.lua
+    ☐ eff_jack_gmod_resource_sprites.lua
+    ☐ eff_jack_gmod_rocketthrust.lua
+    ☐ eff_jack_gmod_rockettrail.lua
+    ☐ eff_jack_gmod_rollersplode.lua
+    ☐ eff_jack_gmod_sentryoverheat.lua
+    ☐ eff_jack_gmod_shieldgenoverheat.lua
+    ☐ eff_jack_gmod_smallarmstracer.lua
+    ☐ eff_jack_gmod_smalldustshock.lua
+    ☐ eff_jack_gmod_spranklerspray.lua
+    ☐ eff_jack_gmod_thrustsmoke.lua
+    ☐ eff_jack_gmod_tinynukeflash.lua
+    ☐ eff_jack_gmod_tinysplash.lua
+    ☐ eff_jack_gmod_watersplode.lua
+    ☐ eff_jack_gmod_weaponshell.lua
+    ☐ eff_jack_gmod_woodsplode.lua
+    ☐ eff_jack_gmod_woodsplosion.lua
+
+  entities:
+    ammo_base:
+      ☐ cl_init.lua
+      ☐ init.lua
+      ☐ shared.lua
+
+    armor:
+      ☐ cl_init.lua
+      ☐ init.lua
+      ☐ shared.lua
+
+    hostage:
+      ☐ cl_init.lua
+      ☐ init.lua
+      ☐ shared.lua
+
+    item_loot_base:
+      ☐ cl_init.lua
+      ☐ init.lua
+      ☐ shared.lua
+
+    wep:
+      ☐ cl_init.lua
+      ☐ init.lua
+      ☐ shared.lua
+      ☐ weps.lua
+
+    ☐ ent_hgjack_f1nade.lua
+    ☐ ent_hgjack_flashbang.lua
+    ☐ ent_hgjack_hl2nade.lua
+    ☐ ent_hgjack_molotov.lua
+    ☐ ent_hgjack_rgd5nade.lua
+    ☐ ent_hgjack_smoke.lua
+    ☐ ent_jack_aidbox.lua
+    ☐ ent_jack_experimental_light_base.lua
+    ☐ ent_jack_experimental_light.lua
+    ☐ ent_jack_gmod_base_ezbomb.lua
+    ☐ ent_jack_gmod_bubble_shield_personal.lua
+    ☐ ent_jack_gmod_bubble_shield.lua
+    ☐ ent_jack_gmod_ez40mmshell.lua
+    ☐ ent_jack_gmod_ezacorn.lua
+    ☐ ent_jack_gmod_ezadvparts.lua
+    ☐ ent_jack_gmod_ezadvtextiles.lua
+    ☐ ent_jack_gmod_ezaidradio.lua
+    ☐ ent_jack_gmod_ezaluminum.lua
+    ☐ ent_jack_gmod_ezaluminumore.lua
+    ☐ ent_jack_gmod_ezammo.lua
+    ☐ ent_jack_gmod_ezammobox_a.lua
+    ☐ ent_jack_gmod_ezammobox_bpmc.lua
+    ☐ ent_jack_gmod_ezammobox_bppc.lua
+    ☐ ent_jack_gmod_ezammobox_lrr.lua
+    ☐ ent_jack_gmod_ezammobox_lrrap.lua
+    ☐ ent_jack_gmod_ezammobox_lrrbt.lua
+    ☐ ent_jack_gmod_ezammobox_lrrt.lua
+    ☐ ent_jack_gmod_ezammobox.lua
+    ☐ ent_jack_gmod_ezanomaly_crate.lua
+    ☐ ent_jack_gmod_ezanomaly_gnome.lua
+    ☐ ent_jack_gmod_ezanomaly_grenade.lua
+    ☐ ent_jack_gmod_ezanomaly_resource.lua
+    ☐ ent_jack_gmod_ezantimatter.lua
+    ☐ ent_jack_gmod_ezapple.lua
+    ☐ ent_jack_gmod_ezarmor.lua
+    ☐ ent_jack_gmod_ezarrow.lua
+    ☐ ent_jack_gmod_ezatmine.lua
+    ☐ ent_jack_gmod_ezaugerdrill.lua
+    ☐ ent_jack_gmod_ezautocannonshot.lua
+    ☐ ent_jack_gmod_ezaxe.lua
+    ☐ ent_jack_gmod_ezbasicparts.lua
+    ☐ ent_jack_gmod_ezbattery.lua
+    ☐ ent_jack_gmod_ezbeartrap.lua
+    ☐ ent_jack_gmod_ezbigbomb.lua
+    ☐ ent_jack_gmod_ezblackhole.lua
+    ☐ ent_jack_gmod_ezblackpowderpile.lua
+    ☐ ent_jack_gmod_ezblastingmachine.lua
+    ☐ ent_jack_gmod_ezbomb.lua
+    ☐ ent_jack_gmod_ezbombbay.lua
+    ☐ ent_jack_gmod_ezbomblet.lua
+    ☐ ent_jack_gmod_ezboundingmine.lua
+    ☐ ent_jack_gmod_ezbucket.lua
+    ☐ ent_jack_gmod_ezcentrifuge.lua
+    ☐ ent_jack_gmod_ezceramic.lua
+    ☐ ent_jack_gmod_ezcheese.lua
+    ☐ ent_jack_gmod_ezchemicals.lua
+    ☐ ent_jack_gmod_ezcloth.lua
+    ☐ ent_jack_gmod_ezclusterbomb.lua
+    ☐ ent_jack_gmod_ezclusterbuster_skeet.lua
+    ☐ ent_jack_gmod_ezclusterbuster_sub.lua
+    ☐ ent_jack_gmod_ezclusterbuster.lua
+    ☐ ent_jack_gmod_ezclusterminebomb.lua
+    ☐ ent_jack_gmod_ezcoal.lua
+    ☐ ent_jack_gmod_ezcompactbox.lua
+    ☐ ent_jack_gmod_ezconcrete.lua
+    ☐ ent_jack_gmod_ezcoolant.lua
+    ☐ ent_jack_gmod_ezcoparticle.lua
+    ☐ ent_jack_gmod_ezcopper.lua
+    ☐ ent_jack_gmod_ezcopperore.lua
+    ☐ ent_jack_gmod_ezcornear.lua
+    ☐ ent_jack_gmod_ezcornkernals.lua
+    ☐ ent_jack_gmod_ezcornstalk.lua
+    ☐ ent_jack_gmod_ezcorpse.lua
+    ☐ ent_jack_gmod_ezcrate_uni.lua
+    ☐ ent_jack_gmod_ezcrate.lua
+    ☐ ent_jack_gmod_ezcriticalityweapon.lua
+    ☐ ent_jack_gmod_ezcrop_base.lua
+    ☐ ent_jack_gmod_ezcsnade.lua
+    ☐ ent_jack_gmod_ezcsparticle.lua
+    ☐ ent_jack_gmod_ezdesignator.lua
+    ☐ ent_jack_gmod_ezdetpack.lua
+    ☐ ent_jack_gmod_ezdiamond.lua
+    ☐ ent_jack_gmod_ezdynamite.lua
+    ☐ ent_jack_gmod_ezeasteregg.lua
+    ☐ ent_jack_gmod_ezexplosives.lua
+    ☐ ent_jack_gmod_ezfabricator.lua
+    ☐ ent_jack_gmod_ezfalloutparticle.lua
+    ☐ ent_jack_gmod_ezfieldhospital.lua
+    ☐ ent_jack_gmod_ezfiregas.lua
+    ☐ ent_jack_gmod_ezfirehazard.lua
+    ☐ ent_jack_gmod_ezfirenade.lua
+    ☐ ent_jack_gmod_ezfirework.lua
+    ☐ ent_jack_gmod_ezfissilematerial.lua
+    ☐ ent_jack_gmod_ezflareprojectile.lua
+    ☐ ent_jack_gmod_ezflashbang.lua
+    ☐ ent_jack_gmod_ezfluid_bottler.lua
+    ☐ ent_jack_gmod_ezfougasse.lua
+    ☐ ent_jack_gmod_ezfragnade.lua
+    ☐ ent_jack_gmod_ezfuel.lua
+    ☐ ent_jack_gmod_ezfuellantern.lua
+    ☐ ent_jack_gmod_ezfumigator.lua
+    ☐ ent_jack_gmod_ezfumigatorsalat.lua
+    ☐ ent_jack_gmod_ezfurnace.lua
+    ☐ ent_jack_gmod_ezgas.lua
+    ☐ ent_jack_gmod_ezgasnade.lua
+    ☐ ent_jack_gmod_ezgasparticle.lua
+    ☐ ent_jack_gmod_ezgeothermalgenerator.lua
+    ☐ ent_jack_gmod_ezglass.lua
+    ☐ ent_jack_gmod_ezglowstick.lua
+    ☐ ent_jack_gmod_ezgold.lua
+    ☐ ent_jack_gmod_ezgoldore.lua
+    ☐ ent_jack_gmod_ezgrenade.lua
+    ☐ ent_jack_gmod_ezgroundscanner.lua
+    ☐ ent_jack_gmod_ezguidancekit.lua
+    ☐ ent_jack_gmod_ezheatrocket.lua
+    ☐ ent_jack_gmod_ezheavyrocket.lua
+    ☐ ent_jack_gmod_ezhebomb.lua
+    ☐ ent_jack_gmod_ezherocket.lua
+    ☐ ent_jack_gmod_ezhook.lua
+    ☐ ent_jack_gmod_ezifakpacket.lua
+    ☐ ent_jack_gmod_ezimpactnade.lua
+    ☐ ent_jack_gmod_ezincendiarybomb.lua
+    ☐ ent_jack_gmod_ezironore.lua
+    ☐ ent_jack_gmod_ezlandmine.lua
+    ☐ ent_jack_gmod_ezlead.lua
+    ☐ ent_jack_gmod_ezleadore.lua
+    ☐ ent_jack_gmod_ezlfg.lua
+    ☐ ent_jack_gmod_ezmachine_base.lua
+    ☐ ent_jack_gmod_ezmbhg.lua
+    ☐ ent_jack_gmod_ezmedkit.lua
+    ☐ ent_jack_gmod_ezmedsupplies.lua
+    ☐ ent_jack_gmod_ezmfg_base.lua
+    ☐ ent_jack_gmod_ezminimore.lua
+    ☐ ent_jack_gmod_ezmininade.lua
+    ☐ ent_jack_gmod_ezminirocket.lua
+    ☐ ent_jack_gmod_ezmoab.lua
+    ☐ ent_jack_gmod_ezmunitions.lua
+    ☐ ent_jack_gmod_eznade_impact.lua
+    ☐ ent_jack_gmod_eznade_proximity.lua
+    ☐ ent_jack_gmod_eznade_remote.lua
+    ☐ ent_jack_gmod_eznade_timed.lua
+    ☐ ent_jack_gmod_eznapalm.lua
+    ☐ ent_jack_gmod_eznavalmine.lua
+    ☐ ent_jack_gmod_eznuke_big.lua
+    ☐ ent_jack_gmod_eznuke_small.lua
+    ☐ ent_jack_gmod_eznuke.lua
+    ☐ ent_jack_gmod_eznukerocket.lua
+    ☐ ent_jack_gmod_eznutrients.lua
+    ☐ ent_jack_gmod_ezoil_rig.lua
+    ☐ ent_jack_gmod_ezoil.lua
+    ☐ ent_jack_gmod_ezoilderrick.lua
+    ☐ ent_jack_gmod_ezoilfire.lua
+    ☐ ent_jack_gmod_ezorganics.lua
+    ☐ ent_jack_gmod_ezpaper.lua
+    ☐ ent_jack_gmod_ezparachute.lua
+    ☐ ent_jack_gmod_ezpickaxe.lua
+    ☐ ent_jack_gmod_ezplastic.lua
+    ☐ ent_jack_gmod_ezplatinum.lua
+    ☐ ent_jack_gmod_ezplatinumore.lua
+    ☐ ent_jack_gmod_ezpopcorn.lua
+    ☐ ent_jack_gmod_ezpowderkeg.lua
+    ☐ ent_jack_gmod_ezpowerbank.lua
+    ☐ ent_jack_gmod_ezprecparts.lua
+    ☐ ent_jack_gmod_ezprimitivebench.lua
+    ☐ ent_jack_gmod_ezprojectilenade.lua
+    ☐ ent_jack_gmod_ezpropellant.lua
+    ☐ ent_jack_gmod_ezpumpjack.lua
+    ☐ ent_jack_gmod_ezrefinery.lua
+    ☐ ent_jack_gmod_ezresource.lua
+    ☐ ent_jack_gmod_ezroadflare.lua
+    ☐ ent_jack_gmod_ezrocketmotor.lua
+    ☐ ent_jack_gmod_ezrocketpod.lua
+    ☐ ent_jack_gmod_ezrtg.lua
+    ☐ ent_jack_gmod_ezrtgs.lua
+    ☐ ent_jack_gmod_ezrubber.lua
+    ☐ ent_jack_gmod_ezsalatbomb.lua
+    ☐ ent_jack_gmod_ezsalatgas.lua
+    ☐ ent_jack_gmod_ezsalatgasnade.lua
+    ☐ ent_jack_gmod_ezsand.lua
+    ☐ ent_jack_gmod_ezsatchelcharge.lua
+    ☐ ent_jack_gmod_ezsentry.lua
+    ☐ ent_jack_gmod_ezsfg.lua
+    ☐ ent_jack_gmod_ezshieldgen.lua
+    ☐ ent_jack_gmod_ezshovel.lua
+    ☐ ent_jack_gmod_ezsignalnade.lua
+    ☐ ent_jack_gmod_ezsilver.lua
+    ☐ ent_jack_gmod_ezsilverore.lua
+    ☐ ent_jack_gmod_ezslam.lua
+    ☐ ent_jack_gmod_ezsmallbomb.lua
+    ☐ ent_jack_gmod_ezsmokenade.lua
+    ☐ ent_jack_gmod_ezsolargenerator.lua
+    ☐ ent_jack_gmod_ezsprinkler.lua
+    ☐ ent_jack_gmod_ezsteel.lua
+    ☐ ent_jack_gmod_ezsticknade.lua
+    ☐ ent_jack_gmod_ezsticknadebundle.lua
+    ☐ ent_jack_gmod_ezstickynade.lua
+    ☐ ent_jack_gmod_ezthermobaricbomb.lua
+    ☐ ent_jack_gmod_eztimebomb.lua
+    ☐ ent_jack_gmod_eztitanium.lua
+    ☐ ent_jack_gmod_eztitaniumore.lua
+    ☐ ent_jack_gmod_eztnt.lua
+    ☐ ent_jack_gmod_eztoolbox.lua
+    ☐ ent_jack_gmod_eztorpedo.lua
+    ☐ ent_jack_gmod_eztree.lua
+    ☐ ent_jack_gmod_eztungsten.lua
+    ☐ ent_jack_gmod_eztungstenore.lua
+    ☐ ent_jack_gmod_ezuranium.lua
+    ☐ ent_jack_gmod_ezuraniumore.lua
+    ☐ ent_jack_gmod_ezvirusbomb.lua
+    ☐ ent_jack_gmod_ezvirusparticle.lua
+    ☐ ent_jack_gmod_ezwarmine.lua
+    ☐ ent_jack_gmod_ezwater.lua
+    ☐ ent_jack_gmod_ezweapon.lua
+    ☐ ent_jack_gmod_ezwheat.lua
+    ☐ ent_jack_gmod_ezwheatseed.lua
+    ☐ ent_jack_gmod_ezwinch.lua
+    ☐ ent_jack_gmod_ezwood.lua
+    ☐ ent_jack_gmod_ezworkbench.lua
+    ☐ ent_jack_gmod_nukeflash.lua
+    ☐ ent_jack_projtexlight.lua
+    ☐ ent_jack_sleepingbag.lua
+    ☐ ent_jack_spoon.lua
+    ☐ ent_thrown_spear.lua
+    ☐ item_loot_ammo.lua
+    ☐ item_loot_build.lua
+    ☐ item_loot_medical.lua
+    ☐ item_loot_trear_1.lua
+    ☐ item_loot_trear_2.lua
+    ☐ item_loot_trear_3.lua
+    ☐ item_loot_trear_4.lua
+    ☐ jmod_base_light.lua
+    ☐ npc_jack_gmod_tinydeskengineer.lua
+
+  homigrad_scr:
+    game:
+      tier_0:
+        oop:
+          entities:
+            ☐ !sh_entity.lua
+            ☐ !sh_weapon.lua
+
+          vgui:
+            tier_0:
+              fuck:
+                ☐ main_cl.lua
+
+              ☐ cl_tier_0.lua
+              ☐ color_cl.lua
+              ☐ transform_cl.lua
+
+            tier_1:
+              ☐ button_cl.lua
+              ☐ frame_cl.lua
+              ☐ scrollpanel_cl.lua
+
+            ☐ cl_draw_bg.lua
+            ☐ cl_draw_figure.lua
+            ☐ cl_draw.lua
+            ☐ sv_download.lua
+
+          ☐ sh_lib.lua
+          ☐ sh_tier_0_main.lua
+
+        ☐ sh_event.lua
+        ☐ sh_table.lua
+        ☐ sh_tier_0.lua
+        ☐ sv_chat_commands.lua
+        ☐ sv_tier_0_simple_data.lua
+
+      tier_1:
+        fake:
+          gib:
+            particles:
+              input:
+                ☐ input_cl.lua
+
+              ☐ blood1_cl.lua
+              ☐ blood2_cl.lua
+              ☐ main_tier_0_cl.lua
+
+            ☐ blood_sv.lua
+            ☐ init_cl.lua
+            ☐ init_sv.lua
+
+          ☐ sv_damage_organs.lua
+          ☐ sv_damage.lua
+          ☐ sv_fake.lua
+          ☐ sv_fakegunent.lua
+
+        fun:
+          ☐ radio_cl.lua
+          ☐ radio_sv.lua
+
+        ☐ blood_cl.lua
+        ☐ blood_sv.lua
+        ☐ cl_hudtarget.lua
+        ☐ cl_view_backweapons.lua
+        ☐ cl_view.lua
+        ☐ explosive_sv.lua
+        ☐ hg_ammo_sh.lua
+        ☐ impulse_sv.lua
+        ☐ inventory_cl.lua
+        ☐ inventory_sv.lua
+        ☐ notificate_sv.lua
+        ☐ pain_cl.lua
+        ☐ pain_sv.lua
+        ☐ sound_cl.lua
+        ☐ sound_sv.lua
+        ☐ spawnmenu_sh.lua
+        ☐ stamina_sh.lua
+        ☐ stamina_sv.lua
+        ☐ util_sv.lua
+        ☐ zomb_virus_cl.lua
+        ☐ zomb_virus_sv.lua
+
+    ☐ loader.lua
+    ☐ run.lua
+
+  jmod:
+    locales:
+      ☐ en.lua
+      ☐ ru.lua
+
+    ☐ cl_armor.lua
+    ☐ cl_config_ui.lua
+    ☐ cl_config.lua
+    ☐ cl_gui.lua
+    ☐ cl_hint.lua
+    ☐ cl_hud.lua
+    ☐ cl_init.lua
+    ☐ sh_armor.lua
+    ☐ sh_config.lua
+    ☐ sh_economy.lua
+    ☐ sh_equippables.lua
+    ☐ sh_hint.lua
+    ☐ sh_init.lua
+    ☐ sh_locales.lua
+    ☐ sh_util.lua
+    ☐ sh_weapons.lua
+    ☐ sv_armor.lua
+    ☐ sv_concommand.lua
+    ☐ sv_config_ui.lua
+    ☐ sv_hint.lua
+    ☐ sv_init.lua
+    ☐ sv_inventory.lua
+    ☐ sv_net.lua
+    ☐ sv_radio.lua
+    ☐ sv_util_explosive.lua
+    ☐ sv_util_machine.lua
+    ☐ sv_util.lua
+
+  vgui:
+    ☐ solidmapvote.lua
+    ☐ solidmapvotebutton.lua
+    ☐ solidmapvoteimage.lua
+    ☐ solidmapvotemap.lua
+    ☐ solidmapvotenomination.lua
+    ☐ solidmapvotenominationmenu.lua
+    ☐ solidmapvoteplayer.lua
+    ☐ solidmapvoteplayergrid.lua
+
+  weapons:
+    adrenaline:
+      ☐ init.lua
+      ☐ shared.lua
+
+    blood_bag:
+      ☐ init.lua
+      ☐ shared.lua
+
+    gmod_tool:
+      stools:
+        ☐ jmod_deposit.lua
+
+    med_band_big:
+      ☐ init.lua
+      ☐ shared.lua
+
+    med_band_small:
+      ☐ init.lua
+      ☐ shared.lua
+
+    medkit:
+      ☐ init.lua
+      ☐ shared.lua
+
+    morphine:
+      ☐ init.lua
+      ☐ shared.lua
+
+    painkiller:
+      ☐ init.lua
+      ☐ shared.lua
+
+    weapon_hg_melee_base:
+      ☐ shared.lua
+
+    ☐ food_base.lua
+    ☐ food_bleach.lua
+    ☐ food_blin.lua
+    ☐ food_coconut_drink.lua
+    ☐ food_fishcan.lua
+    ☐ food_kfc.lua
+    ☐ food_kinder.lua
+    ☐ food_lays.lua
+    ☐ food_monster.lua
+    ☐ food_ogyrci_banka.lua
+    ☐ food_shaverma.lua
+    ☐ food_spongebob_home.lua
+    ☐ weapon_ak74.lua
+    ☐ weapon_ak74u.lua
+    ☐ weapon_akm.lua
+    ☐ weapon_ar15.lua
+    ☐ weapon_bat.lua
+    ☐ weapon_beanbag.lua
+    ☐ weapon_beretta.lua
+    ☐ weapon_civil_famas.lua
+    ☐ weapon_deagle.lua
+    ☐ weapon_deserteagle.lua
+    ☐ weapon_doublebarrel.lua
+    ☐ weapon_fal.lua
+    ☐ weapon_fiveseven.lua
+    ☐ weapon_galil.lua
+    ☐ weapon_galilsar.lua
+    ☐ weapon_glock.lua
+    ☐ weapon_glock18.lua
+    ☐ weapon_gurkha.lua
+    ☐ weapon_hands.lua
+    ☐ weapon_hg_crowbar.lua
+    ☐ weapon_hg_fireaxe.lua
+    ☐ weapon_hg_flag.lua
+    ☐ weapon_hg_fubar.lua
+    ☐ weapon_hg_hatchet.lua
+    ☐ weapon_hg_kitknife.lua
+    ☐ weapon_hg_metalbat.lua
+    ☐ weapon_hg_shovel.lua
+    ☐ weapon_hg_sleagehammer.lua
+    ☐ weapon_hg_sperm.lua
+    ☐ weapon_hg_stunstick.lua
+    ☐ weapon_hk_usp.lua
+    ☐ weapon_hk_usps.lua
+    ☐ weapon_jmodbundle.lua
+    ☐ weapon_jmodcs.lua
+    ☐ weapon_jmoddynamite.lua
+    ☐ weapon_jmodflash.lua
+    ☐ weapon_jmodgas.lua
+    ☐ weapon_jmodnade.lua
+    ☐ weapon_jmodsalatgas.lua
+    ☐ weapon_jmodsmoke.lua
+    ☐ weapon_jmodsticknade.lua
+    ☐ weapon_jmodstickynade.lua
+    ☐ weapon_jmodtnt.lua
+    ☐ weapon_kabar.lua
+    ☐ weapon_knife.lua
+    ☐ weapon_l1a1.lua
+    ☐ weapon_m14.lua
+    ☐ weapon_m1a1.lua
+    ☐ weapon_m249.lua
+    ☐ weapon_m3super.lua
+    ☐ weapon_m4a1.lua
+    ☐ weapon_minu14.lua
+    ☐ weapon_mk18.lua
+    ☐ weapon_mp40.lua
+    ☐ weapon_mp5.lua
+    ☐ weapon_mp7.lua
+    ☐ weapon_p220.lua
+    ☐ weapon_pipe.lua
+    ☐ weapon_police_bat.lua
+    ☐ weapon_remington870.lua
+    ☐ weapon_rpgg.lua
+    ☐ weapon_rpk.lua
+    ☐ weapon_sar2.lua
+    ☐ weapon_spas12.lua
+    ☐ weapon_t.lua
+    ☐ weapon_ump.lua
+    ☐ weapon_winchester.lua
+    ☐ weapon_xm1014.lua
+    ☐ wep_jack_gmod_amr.lua
+    ☐ wep_jack_gmod_amsr.lua
+    ☐ wep_jack_gmod_assaultrifle.lua
+    ☐ wep_jack_gmod_autocannon.lua
+    ☐ wep_jack_gmod_bas.lua
+    ☐ wep_jack_gmod_battlerifle.lua
+    ☐ wep_jack_gmod_bigiron.lua
+    ☐ wep_jack_gmod_blunderbuss.lua
+    ☐ wep_jack_gmod_boltactionrifle.lua
+    ☐ wep_jack_gmod_cabr.lua
+    ☐ wep_jack_gmod_carbine.lua
+    ☐ wep_jack_gmod_combatknife.lua
+    ☐ wep_jack_gmod_crossbow.lua
+    ☐ wep_jack_gmod_dmr.lua
+    ☐ wep_jack_gmod_ezaxe.lua
+    ☐ wep_jack_gmod_ezbucket.lua
+    ☐ wep_jack_gmod_ezdesignator.lua
+    ☐ wep_jack_gmod_ezflamethrower.lua
+    ☐ wep_jack_gmod_ezmedkit.lua
+    ☐ wep_jack_gmod_ezmeleebase.lua
+    ☐ wep_jack_gmod_ezpickaxe.lua
+    ☐ wep_jack_gmod_ezshovel.lua
+    ☐ wep_jack_gmod_eztoolbox.lua
+    ☐ wep_jack_gmod_fas.lua
+    ☐ wep_jack_gmod_flintlockmusket.lua
+    ☐ wep_jack_gmod_flintlockpistol.lua
+    ☐ wep_jack_gmod_gl.lua
+    ☐ wep_jack_gmod_gunbase.lua
+    ☐ wep_jack_gmod_hands.lua
+    ☐ wep_jack_gmod_lac.lua
+    ☐ wep_jack_gmod_lmg.lua
+    ☐ wep_jack_gmod_machinepistol.lua
+    ☐ wep_jack_gmod_magpistol.lua
+    ☐ wep_jack_gmod_magrevolver.lua
+    ☐ wep_jack_gmod_meleebase.lua
+    ☐ wep_jack_gmod_mgl.lua
+    ☐ wep_jack_gmod_mmg.lua
+    ☐ wep_jack_gmod_mrl.lua
+    ☐ wep_jack_gmod_pas.lua
+    ☐ wep_jack_gmod_pistol.lua
+    ☐ wep_jack_gmod_plinkingpistol.lua
+    ☐ wep_jack_gmod_pocketknife.lua
+    ☐ wep_jack_gmod_pocketpistol.lua
+    ☐ wep_jack_gmod_revolver.lua
+    ☐ wep_jack_gmod_rocketlauncher.lua
+    ☐ wep_jack_gmod_sas.lua
+    ☐ wep_jack_gmod_shotrevolver.lua
+    ☐ wep_jack_gmod_smg.lua
+    ☐ wep_jack_gmod_sniperrifle.lua
+    ☐ wep_jack_gmod_ssr.lua
+
+  ☐ mapvote_config.lua

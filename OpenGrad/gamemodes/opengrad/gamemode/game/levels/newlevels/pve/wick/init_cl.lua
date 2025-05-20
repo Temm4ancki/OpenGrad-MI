@@ -45,13 +45,13 @@ function wick.HUDPaint_RoundLeft(white2, time)
     if startRound > 0 and lply:Alive() then
         if playsound then
             playsound = false
-            surface.PlaySound("hg_rounds/start/school.ogg")
+            surface.PlaySound("pve_wick/start_" .. math.random(1, 4) .. ".ogg")
         end
 
         lply:ScreenFade(SCREENFADE.IN, Color(0, 0, 0, 255), 0.5, 0.5)
 
         drawRoundMode("Player vs Everyone", wick.Name, startRound, Color(155, 155, 155))
-        
+
         if lply.roleT then
             drawRoundStart(name, "Вы - Джон Уик, разберитесь со всеми наемниками.", startRound, Color(color.r, color.g, color.b))
         else
@@ -64,8 +64,8 @@ function wick.HUDPaint_RoundLeft(white2, time)
         draw.SimpleText("До конца раунда: ", "HomigradFont", ScrW() / 2 - 200, ScrH()-25, white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         draw.SimpleText(acurcetime, "HomigradFont", ScrW() / 2 + 200, ScrH()-25, white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
     end
-    blue.a = white2.a
 
+    blue.a = white2.a
     local lply_pos = lply:GetPos()
 
     for i, ply in ipairs(player.GetAll()) do
@@ -73,7 +73,7 @@ function wick.HUDPaint_RoundLeft(white2, time)
         if not color or ply == lply or not ply:Alive() then continue end
 
         local boneIndex = ply:LookupBone("ValveBiped.Bip01_Pelvis")
-    
+
         local pos = ply:GetBonePosition(boneIndex)
         local dis = lply_pos:Distance(pos)
         if dis < 500 then continue end

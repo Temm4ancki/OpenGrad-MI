@@ -2,89 +2,82 @@ tdm = tdm or {}
 schoolshoot.GetTeamName = tdm.GetTeamName
 
 if tdm.GetTeamName then
-    schoolshoot.GetTeamName = tdm.GetTeamName
+	schoolshoot.GetTeamName = tdm.GetTeamName
 else
-    function schoolshoot.GetTeamName(ply)
-        local teamID = ply:Team()
-        if teamID == 1 then
-            return "Кибер-спортсмен", Color(255, 98, 98)
-        elseif teamID == 2 then
-            return "Школьник", Color(55, 255, 55)
-        elseif teamID == 3 then
-            return "Спецназ", Color(55, 55, 255)
-        else
-            return "Неизвестно", ScoreboardSpec or Color(255, 255, 255)
-        end
-    end
+	function schoolshoot.GetTeamName(ply)
+		local teamID = ply:Team()
+		if teamID == 1 then
+			return "Кибер-спортсмен", Color(255, 98, 98)
+		elseif teamID == 2 then
+			return "Школьник", Color(55, 255, 55)
+		elseif teamID == 3 then
+			return "Спецназ", Color(55, 55, 255)
+		else
+			return "Неизвестно", ScoreboardSpec or Color(255, 255, 255)
+		end
+	end
 end
 
 local colorSpec = ScoreboardSpec
 function schoolshoot.Scoreboard_Status(ply)
 	local lply = LocalPlayer()
 	if not lply:Alive() or lply:Team() == 1002 then return true end
-
-	return "Неизвестно",colorSpec
+	return "Неизвестно", colorSpec
 end
 
-local green = Color(0,125,0)
-local white = Color(255,255,255)
-
+local green = Color(0, 125, 0)
+local white = Color(255, 255, 255)
 local playsound = false
 function schoolshoot.StartRoundCL()
-    playsound = true
+	playsound = true
 end
 
-function schoolshoot.HUDPaint_RoundLeft(white2,time)
+function schoolshoot.HUDPaint_RoundLeft(white2, time)
 	local time = math.Round(roundTimeStart + roundTime - CurTime())
-	local acurcetime = string.FormattedTime(time,"%02i:%02i")
+	local acurcetime = string.FormattedTime(time, "%02i:%02i")
 	local lply = LocalPlayer()
-	local name,color = schoolshoot.GetTeamName(lply)
-
+	local name, color = schoolshoot.GetTeamName(lply)
 	local startRound = roundTimeStart + 7 - CurTime()
-    if startRound > 0 and lply:Alive() then
-        if playsound then
-            playsound = false
-            surface.PlaySound("hg_rounds/start/school.ogg")
-        end
-		lply:ScreenFade(SCREENFADE.IN,Color(0,0,0,255),0.5,0.5)
-
-		drawRoundMode("Player vs Everyone",schoolshoot.Name,startRound,Color(155,155,155))
-
-		if lply:Team() == 1 then
-        	drawRoundStart(name,"Убей их всех.",startRound,Color(color.r,color.g,color.b))
-		else
-        	drawRoundStart(name,"В здании стрелок, сбеги по приезду спецназа.",startRound,Color(color.r,color.g,color.b))
+	if startRound > 0 and lply:Alive() then
+		if playsound then
+			playsound = false
+			surface.PlaySound("pve_schoolshoot/start_" .. math.random(1, 2) .. ".ogg")
 		end
 
-        return
-    end
+		lply:ScreenFade(SCREENFADE.IN, Color(0, 0, 0, 255), 0.5, 0.5)
+		drawRoundMode("Player vs Everyone", schoolshoot.Name, startRound, Color(155, 155, 155))
+		if lply:Team() == 1 then
+			drawRoundStart(name, "Убей их всех.", startRound, Color(color.r, color.g, color.b))
+		else
+			drawRoundStart(name, "В здании стрелок, сбеги по приезду спецназа.", startRound, Color(color.r, color.g, color.b))
+		end
+		return
+	end
 
 	if time > 0 then
-		draw.SimpleText("До прибытия полиции : ","HomigradFont",ScrW() / 2 - 200,ScrH()-25,white,TEXT_ALIGN_LEFT,TEXT_ALIGN_CENTER)
-		draw.SimpleText(acurcetime,"HomigradFont",ScrW() / 2 + 200,ScrH()-25,white,TEXT_ALIGN_RIGHT,TEXT_ALIGN_CENTER)
+		draw.SimpleText("До прибытия полиции : ", "HomigradFont", ScrW() / 2 - 200, ScrH() - 25, white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+		draw.SimpleText(acurcetime, "HomigradFont", ScrW() / 2 + 200, ScrH() - 25, white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
 	end
+
 	green.a = white2.a
-
-
 	if lply:Team() == 3 or lply:Team() == 2 or not lply:Alive() and schoolshoot.police then
 		local list = SpawnPointsList.spawnpoints_ss_exit
 		--local list = ReadDataMap("spawnpoints_ss_exit")
 		if list then
-			for i,point in pairs(list[3]) do
+			for i, point in pairs(list[3]) do
 				point = ReadPoint(point)
 				local pos = point[1]:ToScreen()
-				draw.SimpleText("EXIT","ChatFont",pos.x,pos.y,green,TEXT_ALIGN_CENTER)
+				draw.SimpleText("EXIT", "ChatFont", pos.x, pos.y, green, TEXT_ALIGN_CENTER)
 			end
 
-			draw.SimpleText("Нажми TAB чтобы снова увидеть это.","HomigradFont",ScrW() / 2,ScrH() - 100,white2,TEXT_ALIGN_CENTER)
+			draw.SimpleText("Нажми TAB чтобы снова увидеть это.", "HomigradFont", ScrW() / 2, ScrH() - 100, white2, TEXT_ALIGN_CENTER)
 		else
-			draw.SimpleText("Попроси админа поставить эвакуационные точки для школьников...","HomigradFont",ScrW() / 2,ScrH() - 100,white2,TEXT_ALIGN_CENTER)
+			draw.SimpleText("Попроси админа поставить эвакуационные точки для школьников...", "HomigradFont", ScrW() / 2, ScrH() - 100, white2, TEXT_ALIGN_CENTER)
 		end
 	end
 end
 
 function schoolshoot.PlayerClientSpawn()
 	if LocalPlayer():Team() ~= 3 then return end
-
 	showRoundInfo = CurTime() + 10
 end

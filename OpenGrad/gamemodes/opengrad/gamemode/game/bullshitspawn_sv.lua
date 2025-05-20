@@ -1,4 +1,4 @@
-KOROBKA_HUYNYI={
+BOX_LOOT={
 	"models/props_junk/cardboard_box001a.mdl",
 	"models/props_junk/cardboard_box001b.mdl",
 	"models/props_junk/cardboard_box002a.mdl",
@@ -36,20 +36,19 @@ KOROBKA_HUYNYI={
 }
 
 local newTbl = {}
-for i,mdl in pairs(KOROBKA_HUYNYI) do newTbl[mdl] = true end
+for i,mdl in pairs(BOX_LOOT) do newTbl[mdl] = true end
 
 weaponscommon = {
 	"weapon_binokle",
 	"weapon_molotok",
 	"ent_drop_flashlight",
-
 	"weapon_knife",
 	"weapon_pipe",
-	
+
 	"med_band_small",
 	"med_band_big",
 	"blood_bag",
-	
+
 	"weapon_fumo_cirno"
 }
 
@@ -100,14 +99,6 @@ weaponslegendary = {
 	"weapon_civil_famas"
 }
 
-local sndsDrop = {
-	common = "homigrad/vgui/item_drop1_common.wav",
-	uncommon = "homigrad/vgui/item_drop2_uncommon.wav",
-	rare = "homigrad/vgui/item_drop3_rare.wav",
-	veryrare = "homigrad/vgui/item_drop4_mythical.wav",
-	legend = "homigrad/vgui/item_drop6_ancient.wav"
-}
-
 local ammos = {
 	"ent_ammo_.44magnum",
 	"ent_ammo_12/70gauge",
@@ -121,7 +112,7 @@ hook.Add("PropBreak","homigrad",function(att,ent)
 
 	local func = TableRound().ShouldSpawnLoot
 	if not func then return end
-	
+
 	local result,spawnEnt,type1 = TableRound().ShouldSpawnLoot()
 	if result == false then return end
 
@@ -151,21 +142,6 @@ hook.Add("PropBreak","homigrad",function(att,ent)
 		end
 
 		if entName then
-			if math.random(1,1000) == 1000 then
-				for i = 1,math.random(3,4) do
-					local huy = ents.Create("ent_jack_gmod_ezcheese")
-					huy:SetPos(posSpawn)
-					huy:Spawn()
-					hut:SetCollisionGroup(COLLISION_GROUP_DEBRIS)
-				end
-
-				local huy = ents.Create("weapon_physgun")
-				huy:SetPos(posSpawn)
-				huy:Spawn()
-
-				return
-			end
-
 			if entName == "*ammo*" then
 				if IsValid(att) then
 					for i,wep in RandomPairs(att:GetWeapons()) do
@@ -202,40 +178,49 @@ hook.Add("PropBreak","homigrad",function(att,ent)
 		huy:Spawn()
 		huy.Spawned = true
 	end
-
-	if type1 then
-		sound.Emit(huy,sndsDrop[type1],50,0.5)
-	end
 end)
 
-local spawns = {}
+spawns = {}
 
-for i, ent in pairs(ents.FindByClass("info_*")) do
+--[[for i, ent in pairs(ents.FindByClass("info_*")) do
 	table.insert(spawns,ent:GetPos())
+end]]
+
+local x, y, z = math.random(0, 50), math.random(25, 50), math.random(5, 10)
+
+for i, v in pairs(navmesh.GetAllNavAreas()) do
+	local pos = v:GetCenter()+Vector(x, y, z)
+
+	table.insert(spawns,pos)
 end
 
 local hook_Run = hook.Run
 hook.Add("PostCleanupMap","addboxs",function()
 	spawns = {}
-	for i, ent in pairs(ents.FindByClass("info_*")) do
-		table.insert(spawns,ent:GetPos())
+
+	for i, v in pairs(navmesh.GetAllNavAreas()) do
+		local pos = v:GetCenter()+Vector(x, y, z)
+
+		table.insert(spawns,pos)
 	end
+
+	--PrintTable(spawns)
 
 	if timer.Exists("SpawnTheBoxes") then timer.Remove("SpawnTheBoxes") end
 
-	timer.Create("SpawnTheBoxes", 15, 0 ,function()
+	timer.Create("SpawnTheBoxes", 10, 0 ,function()
 		hook_Run("Boxes Think")
 	end)
 end)
 
 if timer.Exists("SpawnTheBoxes") then timer.Remove("SpawnTheBoxes") end
-timer.Create("SpawnTheBoxes", 15, 0 ,function()
+timer.Create("SpawnTheBoxes", 10, 0 ,function()
 	hook_Run("Boxes Think")
 end)
 
 local function randomLoot()
 	local gunchance = math.random(1,100)
-	
+
 	local entName = false
 	if gunchance < 2 then
 		entName = table.Random(weaponslegendary)
@@ -260,16 +245,18 @@ local function randomLoot()
 	return entName
 end
 
-local vec = Vector(0,0,32)
 hook.Add("Boxes Think", "SpawnBoxes",function()
 	if #player.GetAll() == 0 or not roundActive then return end
-	
+
 	local func = TableRound().ShouldSpawnLoot
 	if func and func() == false then return end
 
+	if IsValid(spawns) and not table.IsEmpty(spawns) then return end
+
+	local vec = Vector(0,0,10)
 
 	local randomWep = randomLoot()
-	local ent = ents.Create(not randomWep and "prop_physics" or randomWep)
+	local ent = ents.Create((not randomWep and "prop_physics") or randomWep)
 
 	if not randomWep then
 		ent:SetModel(KOROBKA_HUYNYI[math.random(#KOROBKA_HUYNYI)])
@@ -277,8 +264,10 @@ hook.Add("Boxes Think", "SpawnBoxes",function()
 		ent.Spawned = true
 	end
 
-	-- if IsValid(ent) then --!! если коробки не будут спавнится то убрать
-	-- 	ent:SetPos(spawns[math.random(#spawns)] + vec)
-	-- 	ent:Spawn()
-	-- end
+	if IsValid(ent) then
+		ent:SetPos(spawns[math.random(#spawns)] + vec)
+		ent:Spawn()
+
+		--print(ent:GetPos())
+	end
 end)

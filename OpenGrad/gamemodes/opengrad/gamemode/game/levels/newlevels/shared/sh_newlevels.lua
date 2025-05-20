@@ -56,7 +56,7 @@ function drawRoundCosmetic(time)
     draw.DrawText("Имя - " .. lply:GetNWString("FakeName","Неизвестный"), "HomigradFont", ScrW() / 2, ScrH() / 1.85, jobcolor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 end
 
--- Плиз кто умеет кодить переделайте код на более умный.
+-- TODO Плиз кто умеет кодить переделайте код на более умный.
 -- Уверен ИИ насрал хуйней ведь цитата Руслана "вфт зачем тебе return function(time)"
 function DrawAnimatedLogo(material, duration, startX, targetX, startY, targetY, time)
     local startTime = CurTime()

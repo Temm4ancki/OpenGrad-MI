@@ -62,27 +62,27 @@ local gray = Color(122, 122, 122, 255)
 local black = Color(0, 0, 0, 255)
 
 function wick.GetTeamName(ply)
-    if ply.roleT then 
-        return "John Wick", red 
+    if ply.roleT then
+        return "John Wick", red
     end
 
     local teamID = ply:Team()
     if teamID == 1 then
         return "Наемник", ScoreboardSpec
     end
-    
+
     return "Неизвестно", ScoreboardSpec or Color(255, 255, 255)
 end
 
 net.Receive("homicide_roleget2", function()
-    for i, ply in ipairs(player.GetAll()) do 
-        ply.roleT = nil 
+    for i, ply in ipairs(player.GetAll()) do
+        ply.roleT = nil
     end
-    
+
     local role = net.ReadTable()
 
-    for i, ply in pairs(role[1]) do 
-        ply.roleT = true 
+    for i, ply in pairs(role[1]) do
+        ply.roleT = true
     end
 end)
 

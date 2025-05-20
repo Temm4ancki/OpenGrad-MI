@@ -1,7 +1,9 @@
 local CLASS = player.RegClass("combine")
 
 CLASS.main_weapons = {
-    "weapon_sar2","weapon_spas12","weapon_mp7"
+    "weapon_sar2",
+    "weapon_spas12",
+    "weapon_mp7"
 }
 
 CLASS.secondary_weapons = {
@@ -9,10 +11,10 @@ CLASS.secondary_weapons = {
 }
 
 local models_combine = {
-	"models/player/combine_soldier.mdl",
-	"models/player/combine_super_soldier.mdl",
-	"models/player/combine_soldier_prisonguard.mdl",
-    "models/metrocat/metrocat_beta.mdl" -- yummers ещкереее
+    "models/player/combine_soldier.mdl",
+    "models/player/combine_super_soldier.mdl",
+    "models/player/combine_soldier_prisonguard.mdl",
+    "models/metrocat/metrocat_beta.mdl"
 }
 
 function CLASS.Off(self)
@@ -44,17 +46,16 @@ function CLASS.On(self)
     self:EmitSound("radio/go.wav")
 end
 
-function CLASS.PlayerFootstep(self,pos,foot,name,volume,filter)
+function CLASS.PlayerFootstep(self, pos, foot, name, volume, filter)
     if SERVER then return true end
-
     if self:GetModel() == "models/metrocat/metrocat_beta.mdl" then
-        sound.Play(Sound("npc/metropolice/gear".. math.random(1,6) .. ".wav"),pos,75,100,1)
+        sound.Play(Sound("npc/metropolice/gear" .. math.random(1, 6) .. ".wav"), pos, 75, 100, 1)
     else
-        sound.Play(Sound("npc/combine_soldier/gear" .. math.random(1,6) .. ".wav"),pos,75,100,1)
+        sound.Play(Sound("npc/combine_soldier/gear" .. math.random(1, 6) .. ".wav"), pos, 75, 100, 1)
     end
-    sound.Play(name,pos,75,100,volume)
 
-	return true
+    sound.Play(name, pos, 75, 100, volume)
+    return true
 end
 
 local function getList(self)
@@ -62,7 +63,7 @@ local function getList(self)
 
     for i,ply in RandomPairs(player.GetAll()) do
         if ply == self or not ply.isCombine then continue end
-        
+
         local pos = ply:EyePos()
         local deathPos = self:GetPos()
 
@@ -71,7 +72,7 @@ local function getList(self)
         local trace = {start = pos}
         trace.endpos = deathPos
         trace.filter = ply
-        
+
         if util.TraceLine(trace).HitPos:Distance(deathPos) <= 512 then
             list[#list + 1] = ply
         end
@@ -83,9 +84,9 @@ end
 function CLASS.PlayerDeath(self)
     sound.Play(Sound("npc/overwatch/radiovoice/die" .. math.random(1,3) .. ".wav"),self:GetPos())
     if self:GetModel() == "models/metrocat/metrocat_beta.mdl" then
-        sound.Play(Sound("npc/metropolice/die"..math.random(1,4)..".wav"),self:GetPos())
+        sound.Play(Sound("npc/metropolice/die" .. math.random(1,4) .. ".wav"),self:GetPos())
     else
-        sound.Play(Sound("npc/combine_soldier/die"..math.random(1,3)..".wav"),self:GetPos())
+        sound.Play(Sound("npc/combine_soldier/die" .. math.random(1,3) .. ".wav"),self:GetPos())
     end
 
     for i,ply in RandomPairs(getList(self)) do
@@ -97,7 +98,7 @@ function CLASS.PlayerDeath(self)
     self:SetPlayerClass()
 end
 
-function CLASS.Think(self)end
+function CLASS.Think(self) end
 
 function CLASS.PlayerStartVoice(self)
     for i,ply in pairs(player.GetAll()) do

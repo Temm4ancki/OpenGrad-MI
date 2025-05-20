@@ -1,9 +1,35 @@
 local CLASS = player.RegClass("contr")
 
-CLASS.weapons = {"weapon_radio","weapon_police_bat","med_band_big","medkit","painkiller","adrenaline","weapon_handcuffs","weapon_taser","weapon_hg_flashbang"}
-CLASS.main_weapon = {"weapon_ar15","weapon_m3super"}
-CLASS.secondary_weapon = {"weapon_beretta","weapon_fiveseven"}
-CLASS.models = {"models/monolithservers/mpd/male_04_2.mdl","models/monolithservers/mpd/male_06_2.mdl","models/monolithservers/mpd/male_07_2.mdl","models/monolithservers/mpd/male_08_2.mdl","models/monolithservers/mpd/male_09_2.mdl"}
+CLASS.weapons = {
+	"weapon_radio",
+	"weapon_police_bat",
+	"med_band_big",
+	"medkit",
+	"painkiller",
+	"adrenaline",
+	"weapon_handcuffs",
+	"weapon_taser",
+	"weapon_hg_flashbang"
+}
+
+CLASS.main_weapon = {
+	"weapon_ar15",
+	"weapon_m3super"
+}
+
+CLASS.secondary_weapon = {
+	"weapon_beretta",
+	"weapon_fiveseven"
+}
+
+CLASS.models = {
+	"models/monolithservers/mpd/male_04_2.mdl",
+	"models/monolithservers/mpd/male_06_2.mdl",
+	"models/monolithservers/mpd/male_07_2.mdl",
+	"models/monolithservers/mpd/male_08_2.mdl",
+	"models/monolithservers/mpd/male_09_2.mdl"
+}
+
 CLASS.color = Color(75,75,75)
 
 function CLASS:Off()
@@ -51,8 +77,6 @@ function CLASS:On()
 	JMod.EZ_Equip_Armor(self,"Light-Right-Shoulder",color)
 	JMod.EZ_Equip_Armor(self,"Light-Left-Shoulder",color)
 	JMod.EZ_Equip_Armor(self,"BallisticMask",color)
-	
-
 
 	self.isContr = true
 
@@ -76,7 +100,7 @@ local function tracerSee(self,endpos,dis)
 	local trace = {start = self:EyePos()}
 	trace.endpos = endpos
 	trace.filter = self
-	
+
 	if util.TraceLine(trace).HitPos:Distance(endpos) <= dis then
 		return true
 	end
@@ -87,7 +111,7 @@ local function getList(self)
 
 	for i,ply in RandomPairs(player.GetAll()) do
 		if ply == self or not ply.isContr then continue end
-		
+
 		local pos = ply:EyePos()
 		local deathPos = self:GetPos()
 
@@ -96,7 +120,7 @@ local function getList(self)
 		local trace = {start = pos}
 		trace.endpos = deathPos
 		trace.filter = ply
-		
+
 		if util.TraceLine(trace).HitPos:Distance(deathPos) <= 512 then
 			list[#list + 1] = ply
 		end
@@ -105,6 +129,7 @@ local function getList(self)
 	return list
 end
 
+-- NOTE Контент из CSS
 local soundDeaths = {
 	"bot/pain10.wav",
 	"bot/pain2.wav",
@@ -137,7 +162,7 @@ local function Message(self,name,time)
 	self["msg" .. name] = CurTime() + time
 end
 
-local active,oldValue
+local active, oldValue
 
 
 function CLASS:HomigradDamage(hitGroup,dmgInfo,rag)
@@ -228,6 +253,7 @@ function CLASS:Event(name,a1)
 	end
 end
 
+-- NOTE Контент из CSS
 local sounds = {
 	{"Right",{"bot/alright.wav","bot/alright2.wav","bot/yea_ok.wav"},{1,1}},
 	{"No",{"bot/negative.wav","bot/negative2.wav","bot/no.wav","bot/no2.wav"},{1,2}},
@@ -275,7 +301,7 @@ for id,snd in pairs(sounds) do
 	local pos = snd[3]
 	interface[pos[1]] = interface[pos[1]] or {}
 	interface[pos[1]][pos[2]] = {id,snd[1]}
-	
+
 	interfacemaxy = math.max(interfacemaxy,pos[2])
 end
 
@@ -290,7 +316,7 @@ function CLASS:OpenMenu()
 	frame:MakePopup()
 	frame:ShowCloseButton(false)
 	frame:SetDraggable(false)
-	
+
 	function frame:Paint(w,h)
 		Selected = nil
 	end
