@@ -1,32 +1,28 @@
 local FakeNames = {
-    male = {
-        "Максим",
-        "Михаил",
-        "Александр",
-        "Дмитрий",
-        "Денис",
-        "Илья",
-        "Андрей",
-        "Даниил",
-        "Артём",
-        "Иван",
-        "Алексей",
-        "Никита",
-        "Павел",
-        "Евгений"
+    russian = {
+        male = {
+            "Максим","Михаил","Александр","Дмитрий","Денис","Илья","Андрей","Даниил","Артём","Иван","Алексей","Никита","Павел","Евгений","Антон","Лев","Эльдар","Григорий","Владимир","Руслан","Василий","Виталий","Вячеслав","Игнат","Николай","Олег","Роман","Сергей","Тимур","Пётр"
+        },
+        female = {
+            "Ольга"
+        },
     },
-    female = {
-        "Mary",
-        "Linda",
-        "Patricia",
-        "Jennifer",
-        "Elizabeth",
-        "Barbara",
-        "Susan",
-        "Jessica",
-        "Sarah",
-        "Karen",
+    german = {
+        male = {
+            "Конрад"
+        },
+        female = {
+
+        }
     },
+    italian = {
+        male = {
+
+        },
+        female = {
+
+        },
+    }
 }
 
 local EntityMeta = FindMetaTable("Entity")
@@ -45,7 +41,13 @@ function EntityMeta:GetFakeName()
 end
 
 function EntityMeta:GenerateFakeName(gender)
-    local maleNames,femaleNames = FakeNames.male,FakeNames.female
+    local maleNames,femaleNames = FakeNames.russian.male,FakeNames.russian.female
     if gender == "male" then return maleNames[math.random(1,#maleNames)]
     else return femaleNames[math.random(1,#femaleNames)] end
 end
+
+concommand.Add("penis",function()
+    for langset,name in pairs(FakeNames) do
+        print(name.male)
+    end
+end)
