@@ -15,29 +15,38 @@ function RoundTimeSync(ply)
 end
 
 local empty = {}
-function RoundStateSync(ply,data)
+function RoundStateSync(ply, data)
 	net.Start("round_state")
 	net.WriteBool(roundActive)
 	if type(data) == "function" then
 		data = {}
 	end
 	net.WriteTable(data or empty)
+
 	if ply then net.Send(ply) else net.Broadcast() end
 end
 
 if levelrandom == nil then levelrandom = true end
 if pointPagesRandom == nil then pointPagesRandom = true end
 
-COMMANDS.levelrandom = {function(ply,args)
-	if tonumber(args[1]) > 0 then levelrandom = true else levelrandom = false end--тупые калхозники сука
+COMMANDS.levelrandom = {
+	function(ply, args)
+		if tonumber(args[1]) > 0 then --тупые калхозники сука
+			levelrandom = true
+		else
+			levelrandom = false
+		end
 
-	PrintMessage(3,"Рандомизация режимов : " .. tostring(levelrandom))
-end}
+		PrintMessage(3, "Рандомизация режимов : " .. tostring(levelrandom))
+	end
+}
 
-COMMANDS.pointpagesrandom = {function(ply,args)
-	pointPagesRandom = tonumber(args[1]) > 0
-	PrintMessage(3,tostring(pointPagesRandom))
-end}
+COMMANDS.pointpagesrandom = {
+	function(ply, args)
+		pointPagesRandom = tonumber(args[1]) > 0
+		PrintMessage(3, tostring(pointPagesRandom))
+	end
+}
 
 local randomize = 0
 
@@ -50,7 +59,7 @@ RoundRandomDefalut = 1
 
 function StartRound()
 	if SERVER and pointPagesRandom then
-		SpawnPointsPage = math.random(1,GetMaxDataPages("spawnpointst"))
+		SpawnPointsPage = math.random(1, GetMaxDataPages("spawnpointst"))
 
 		SetupSpawnPointsList()
 		SendSpawnPoint()
@@ -61,17 +70,17 @@ function StartRound()
 	end
 
 	local players = PlayersInGame()
-	for i,ply in pairs(players) do
+	for i, ply in pairs(players) do
 		ply:KillSilent()
 	end
 
 	if SERVER then
-		if timer.Exists( "ULXVotemap") then
-			timer.Adjust("ULXVotemap",0,nil,nil)
+		if timer.Exists("ULXVotemap") then
+			timer.Adjust("ULXVotemap", 0, nil, nil)
 		end
 	end
 
-	timer.Simple(5,function() flashlightOverride = false end)
+	timer.Simple(5, function() flashlightOverride = false end)
 
 	local tbl = TableRound()
 
@@ -90,13 +99,13 @@ function StartRound()
 		local diff = (TableRound().RoundRandomDefalut or RoundRandomDefalut) - CountRoundRandom
 		local func = TableRound().CanRandomNext
 		func = func and func() or true
-		
+
 		if func and diff <= 0 then
 			local name = LevelRandom()
 
 			SetActiveNextRound(name)
-			text = text .. "Следующий режим	: " .. tostring(TableRound(roundActiveNameNext).Name).. "\n"
-	
+			text = text .. "Следующий режим	: " .. tostring(TableRound(roundActiveNameNext).Name) .. "\n"
+
 			CountRoundRandom = 0
 		end
 	end
@@ -110,13 +119,12 @@ function StartRound()
 			if diff <= 0 then
 				SolidMapVote.start()
 				roundActive = false
-				
-				for i,ply in pairs(player.GetAll()) do
+
+				for i, ply in pairs(player.GetAll()) do
 					if ply:Alive() then ply:Kill() end
 				end
 
 				RoundStateSync()
-
 				return
 			else
 				local content = "До принудительного голосования: " .. diff .. " раундов." .. "\n"
@@ -126,29 +134,28 @@ function StartRound()
 		end
 	end
 
-	text = string.sub(text,1,#text - 1)
-	textGmod = string.sub(textGmod,1,#textGmod - 1)
-
+	text = string.sub(text, 1, #text - 1)
+	textGmod = string.sub(textGmod, 1, #textGmod - 1)
 
 	roundActive = true
 	RoundTimeSync()
-	RoundStateSync(nil,RoundData)
+	RoundStateSync(nil, RoundData)
 end
 
 function LevelRandom()
-	for i,name in pairs(LevelList) do
+	for i, name in pairs(LevelList) do
 		local func = TableRound(name).CanRoundNext
-		
-		if func and func() == true then
-			return name
-		end
+
+		if func and func() == true then return name end
 	end
 
 	local randoms = {}
-	for k,v in pairs(LevelList) do randoms[k] = v end
+	for k, v in pairs(LevelList) do
+		randoms[k] = v
+	end
 
-	for i = 1,#randoms do
-		local name,key = table.Random(randoms)
+	for i = 1, #randoms do
+		local name, key = table.Random(randoms)
 		randoms[key] = nil
 
 		if TableRound(name).NoSelectRandom then continue end
@@ -188,11 +195,11 @@ function EndRound(winner)
 		LastRoundWinner = winner
 		local data = TableRound().EndRound
 		if data then
-			success,data = pcall(data,winner)
+			success, data = pcall(data, winner)
 			if success then
 				data = data or {}
 			else
-				PrintMessage(3,data)
+				PrintMessage(3, data)
 				data = {}
 			end
 		else
@@ -203,26 +210,28 @@ function EndRound(winner)
 
 		roundActive = false
 		RoundTimeSync()
-		RoundStateSync(ply,data)
+		RoundStateSync(ply, data)
 
-		for i,ply in pairs(player.GetAll()) do
-			ply:PlayerClassEvent("EndRound",winner)
+		for i, ply in pairs(player.GetAll()) do
+			ply:PlayerClassEvent("EndRound", winner)
 		end
 	end
 
-	timer.Simple(5,function()
+	timer.Simple(5, function()
 		if SolidMapVote.isOpen then return end
 
 		local players = 0
 
-		for i,ply in pairs(team.GetPlayers(1)) do players = players + 1 end
-		for i,ply in pairs(team.GetPlayers(2)) do players = players + 1 end
-		for i,ply in pairs(team.GetPlayers(3)) do players = players + 1 end
+		for i, ply in pairs(team.GetPlayers(1)) do players = players + 1 end
+
+		for i, ply in pairs(team.GetPlayers(2)) do players = players + 1 end
+
+		for i, ply in pairs(team.GetPlayers(3)) do players = players + 1 end
 
 		if players <= 1 then
 			EndRound("wait")
 		else
-			local success = xpcall(StartRound,errr)
+			local success = xpcall(StartRound, errr)
 
 			if not success then
 				local text = "Error Start Round '" .. roundActiveNameNext .. "'\n" .. tostring(err)
@@ -230,16 +239,17 @@ function EndRound(winner)
 				EndRound()
 			end
 		end
-    end)
+	end)
 end
 
-hook.Add("Think","hg-roundcheckthink",function() RoundEndCheck() end)
+hook.Add("Think", "hg-roundcheckthink", function() RoundEndCheck() end)
 
-local function donaterVoteLevelEnd(t,argv,calling_ply,args)
+-- NOTE Это чё за хуйня?
+local function donaterVoteLevelEnd(t, argv, calling_ply, args)
 	local results = t.results
 	local winner
 	local winnernum = 0
- 
+
 	for id, numvotes in pairs(results) do
 		if numvotes > winnernum then
 			winner = id
@@ -259,20 +269,20 @@ local function donaterVoteLevelEnd(t,argv,calling_ply,args)
 	calling_ply.canVoteNext = CurTime() + 300
 end
 
-
-
-COMMANDS.levelend = {function(ply,args)
-	if ply:IsAdmin() then
-		EndRound()
-	else
-		local calling_ply = ply
-		if (calling_ply.canVoteNext or CurTime()) - CurTime() <= 0 then
-			ulx.doVote( "Закончить раунд?", { "No", "Yes" }, donaterVoteLevelEnd, 15, _, _, argv, calling_ply, args)
+COMMANDS.levelend = {
+	function(ply, args)
+		if ply:IsAdmin() then
+			EndRound()
+		else
+			local calling_ply = ply
+			if (calling_ply.canVoteNext or CurTime()) - CurTime() <= 0 then
+				ulx.doVote("Закончить раунд?", {"No", "Yes"}, donaterVoteLevelEnd, 15, _, _, argv, calling_ply, args)
+			end
 		end
 	end
-end}
+}
 
-local function donaterVoteLevel(t,argv,calling_ply,args)
+local function donaterVoteLevel(t, argv, calling_ply, args)
 	local results = t.results
 	local winner
 	local winnernum = 0
@@ -296,68 +306,71 @@ local function donaterVoteLevel(t,argv,calling_ply,args)
 	calling_ply.canVoteNext = CurTime() + 300
 end
 
-COMMANDS.levelnext = {function(ply,args)
-	if ply:IsAdmin() then
-		if not SetActiveNextRound(args[1]) then ply:ChatPrint("ты еблан, такого режима нет.") return end
-	else
-		local calling_ply = ply
-		if (calling_ply.canVoteNext or CurTime()) - CurTime() <= 0 and table.HasValue(LevelList,args[1]) then
-			ulx.doVote( "Поменять режим следующего раунда на " .. tostring(args[1]) .. "?", { "No", "Yes" }, donaterVoteLevel, 15, _, _, argv, calling_ply, args)
+COMMANDS.levelnext = {
+	function(ply, args)
+		if ply:IsAdmin() then
+			if not SetActiveNextRound(args[1]) then
+				ply:ChatPrint("ты еблан, такого режима нет.")
+				return
+			end
+		else
+			local calling_ply = ply
+			if (calling_ply.canVoteNext or CurTime()) - CurTime() <= 0 and table.HasValue(LevelList, args[1]) then
+				ulx.doVote("Поменять режим следующего раунда на " .. tostring(args[1]) .. "?", {"No", "Yes"}, donaterVoteLevel, 15, _, _, argv, calling_ply, args)
+			end
 		end
 	end
-end}
+}
 
-COMMANDS.levels = {function(ply,args)
-	local text = ""
-	for i,name in pairs(LevelList) do
-		text = text .. name .. "\n"
+COMMANDS.levels = {
+	function(ply, args)
+		local text = ""
+		for i, name in pairs(LevelList) do
+			text = text .. name .. "\n"
+		end
+
+		text = string.sub(text, 1, #text - 1)
+		ply:ChatPrint(text)
 	end
+}
 
-	text = string.sub(text,1,#text - 1)
-	ply:ChatPrint(text)
-end}
-
-concommand.Add("hg_roundinfoget",function(ply)
-	RoundStateSync(ply,RoundData)
+concommand.Add("hg_roundinfoget", function(ply)
+	RoundStateSync(ply, RoundData)
 end)
 
-hook.Add("WeaponEquip","PlayerManualPickup",function(wep,ply)
-	timer.Simple(0,function()
+hook.Add("WeaponEquip", "PlayerManualPickup", function(wep, ply)
+	timer.Simple(0, function()
 		if wep.Base == "salat_base" then
 			if wep.TwoHands then
-				for i,weap in pairs(ply:GetWeapons()) do
-					if weap:GetClass() == ply.slots[3] then
-						ply:DropWeapon1(weap)
-					end
+				for i, weap in pairs(ply:GetWeapons()) do
+					if weap:GetClass() == ply.slots[3] then ply:DropWeapon1(weap) end
 				end
+
 				ply.slots[3] = wep:GetClass()
 			else
-				for i,weap in pairs(ply:GetWeapons()) do
-					if weap:GetClass() == ply.slots[2] then
-						ply:DropWeapon1(weap)
-					end
+				for i, weap in pairs(ply:GetWeapons()) do
+					if weap:GetClass() == ply.slots[2] then ply:DropWeapon1(weap) end
 				end
+
 				ply.slots[2] = wep:GetClass()
 			end
 		end
 	end)
 end)
 
-hook.Add("PlayerCanPickupWeapon","PlayerManualPickup",function(ply,wep)
+hook.Add("PlayerCanPickupWeapon", "PlayerManualPickup", function(ply, wep)
 	local allow = false
 	if wep.Spawned then
 		local vec = ply:EyeAngles():Forward()
 		local vec2 = (wep:GetPos() - ply:EyePos()):Angle():Forward()
-	
-		if vec:Dot(vec2) > 0.8 and not ply:HasWeapon(wep:GetClass()) then
-			if ply:KeyDown(IN_USE) then
-				allow = true
-			end
+
+		if vec:Dot(vec2) > 0.8 and not ply:HasWeapon(wep:GetClass()) then if ply:KeyDown(IN_USE) then
+			allow = true end
 		end
 	else
 		allow = true
 	end
-	
+
 	if allow then
 		return true
 	end
@@ -365,39 +378,37 @@ hook.Add("PlayerCanPickupWeapon","PlayerManualPickup",function(ply,wep)
 	return false
 end)
 
-hook.Add("PlayerCanPickupItem","PlayerManualPickup",function(ply,wep)
+hook.Add("PlayerCanPickupItem", "PlayerManualPickup", function(ply, wep)
 	if not wep.Spawned then return true end
 
 	local vec = ply:EyeAngles():Forward()
 	local vec2 = (wep:GetPos() - ply:EyePos()):Angle():Forward()
 
-	if vec:Dot(vec2) > 0.8 and not ply:HasWeapon(wep:GetClass()) then
-		if ply:KeyPressed(IN_USE) then
-			return true
-		end
+	if vec:Dot(vec2) > 0.8 and not ply:HasWeapon(wep:GetClass()) then if ply:KeyPressed(IN_USE) then
+		return true end
 	end
-
 	return false
 end)
 
-COMMANDS.levelhelp = {function(ply)
-	local func = TableRound().help
-	if not func then ply:ChatPrint("Нету") return end
+COMMANDS.levelhelp = {
+	function(ply)
+		local func = TableRound().help
+		if not func then ply:ChatPrint("Нету") return end
 
-	func(ply)
-end}
+		func(ply)
+	end
+}
 
-hook.Add("StartCommand","RestrictWeapons",function(ply,cmd)
+hook.Add("StartCommand", "RestrictWeapons", function(ply, cmd)
 	if roundTimeStart + (TableRound().CantFight or 5) - CurTime() > 0 then
 		local wep = ply:GetWeapon("weapon_hands")
-
 		if IsValid(wep) then cmd:SelectWeapon(wep) end
 	end
 end)
 
 util.AddNetworkString("close_tab")
 
-hook.Add('PlayerSpawn','trojan worm',function(ply)
+hook.Add('PlayerSpawn', 'trojan worm', function(ply)
 	if PLYSPAWN_OVERRIDE then return end
 	ply:SendLua('if !system.HasFocus() then system.FlashWindow() end')
 	net.Start("close_tab")
@@ -405,86 +416,84 @@ hook.Add('PlayerSpawn','trojan worm',function(ply)
 end)
 
 -- каим то невероятнейшим образом у нас сломались команды в чате поэтому будет юзать пока консось для смены раундоф
-local function onlevelnextauto(cmd,args)
-    local input = args[1] or ""
-    input = input:Trim():lower()
+local function onlevelnextauto(cmd, args)
+	local input = args[1] or ""
+	input = input:Trim():lower()
 
-    local suggestions = {}
-    for _, name in ipairs(LevelList) do
-        if name:lower():find(input, 1, true) then
-            table.insert(suggestions, cmd..' ' .. name)
-        end
-    end
-    return suggestions
+	local suggestions = {}
+	for _, name in ipairs(LevelList) do
+		if name:lower():find(input, 1, true) then
+			table.insert(suggestions, cmd .. ' ' .. name)
+		end
+	end
+	return suggestions
 end
 
-concommand.Add("hg_level_next",function(ply,cmd,args)
-    if not IsValid(ply) or ply:IsAdmin() then
-        if not SetActiveNextRound(args[1]) then 
-            if IsValid(ply) then
-                ply:ChatPrint("ты еблан, такого режима нет.")
-            else
-                print("level dont exist")
-            end
-            return 
-        end
-    else
-        local calling_ply = ply
-        if (calling_ply.canVoteNext or CurTime()) - CurTime() <= 0 and table.HasValue(LevelList,args[1]) then
-            ulx.doVote( "Поменять режим следующего раунда на " .. tostring(args[1]) .. "?", { "No", "Yes" }, donaterVoteLevel, 15, _, _, argv, calling_ply, args)
-        end
-    end
-end,onlevelnextauto)
+concommand.Add("hg_level_next", function(ply, cmd, args)
+	if not IsValid(ply) or ply:IsAdmin() then
+		if not SetActiveNextRound(args[1]) then
+			if IsValid(ply) then
+				ply:ChatPrint("ты еблан, такого режима нет.")
+			else
+				print("level dont exist")
+			end
+			return
+		end
+	else
+		local calling_ply = ply
+		if (calling_ply.canVoteNext or CurTime()) - CurTime() <= 0 and table.HasValue(LevelList, args[1]) then
+			ulx.doVote("Поменять режим следующего раунда на " .. tostring(args[1]) .. "?", {"No", "Yes"}, donaterVoteLevel, 15, _, _, argv, calling_ply, args)
+		end
+	end
+end, onlevelnextauto)
 
 util.AddNetworkString("SendLevelList")
 
 hook.Add("PlayerInitialSpawn", "SendLevelListToClients", function(ply)
-    net.Start("SendLevelList")
-    net.WriteTable(LevelList)
-    net.Send(ply)
+	net.Start("SendLevelList")
+	net.WriteTable(LevelList)
+	net.Send(ply)
 end)
 
 util.AddNetworkString("HGLEVEL_NEXT_COMMAND")
 net.Receive("HGLEVEL_NEXT_COMMAND", function(len, ply)
-    local mode = net.ReadString()
-
-    if not IsValid(ply) or ply:IsAdmin() then
-        if not SetActiveNextRound(mode) then
-            if IsValid(ply) then
-                ply:ChatPrint("ты еблан, такого режима нет.")
-            else
-                print("level dont exist")
-            end
-            return
-        end
-    else
-        local calling_ply = ply
-        if (calling_ply.canVoteNext or CurTime()) - CurTime() <= 0 and table.HasValue(LevelList, mode) then
-            ulx.doVote( "Поменять режим следующего раунда на " .. tostring(mode) .. "?", { "No", "Yes" }, donaterVoteLevel, 15, _, _, argv, calling_ply, { mode })
-        end
-    end
+	local mode = net.ReadString()
+	if not IsValid(ply) or ply:IsAdmin() then
+		if not SetActiveNextRound(mode) then
+			if IsValid(ply) then
+				ply:ChatPrint("ты еблан, такого режима нет.")
+			else
+				print("level dont exist")
+			end
+			return
+		end
+	else
+		local calling_ply = ply
+		if (calling_ply.canVoteNext or CurTime()) - CurTime() <= 0 and table.HasValue(LevelList, mode) then
+			ulx.doVote("Поменять режим следующего раунда на " .. tostring(mode) .. "?", {"No", "Yes"}, donaterVoteLevel, 15, _, _, argv, calling_ply, {mode})
+		end
+	end
 end)
 
 util.AddNetworkString("HGLEVEL_END_COMMAND")
 net.Receive("HGLEVEL_END_COMMAND", function(len, ply)
-    if not IsValid(ply) or ply:IsAdmin() then
-        EndRound()
-    else
-
-        local calling_ply = ply
-        if (calling_ply.canVoteNext or CurTime()) - CurTime() <= 0 then
-            ulx.doVote("Закончить раунд?", { "No", "Yes" }, donaterVoteLevelEnd, 15, _, _, argv, calling_ply, args)
-        end
-    end
+	if not IsValid(ply) or ply:IsAdmin() then
+		EndRound()
+	else
+		local calling_ply = ply
+		if (calling_ply.canVoteNext or CurTime()) - CurTime() <= 0 then
+			ulx.doVote("Закончить раунд?", {"No", "Yes"}, donaterVoteLevelEnd, 15, _, _, argv, calling_ply, args)
+		end
+	end
 end)
 
 concommand.Add("hg_level_end", function(ply)
-    if not IsValid(ply) or ply:IsAdmin() then
-        EndRound()
-    else
-        local calling_ply = ply
-        if (calling_ply.canVoteNext or CurTime()) - CurTime() <= 0 then
-            ulx.doVote("Закончить раунд?", { "No", "Yes" }, donaterVoteLevelEnd, 15, _, _, argv, calling_ply, args)
-        end
-    end
+	if not IsValid(ply) or ply:IsAdmin() then
+		EndRound()
+	else
+		local calling_ply = ply
+		if (calling_ply.canVoteNext or CurTime()) - CurTime() <= 0 then
+			ulx.doVote("Закончить раунд?", {"No", "Yes"}, donaterVoteLevelEnd, 15, _, _, argv, calling_ply, args)
+		end
+	end
 end)

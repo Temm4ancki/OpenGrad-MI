@@ -1,10 +1,10 @@
-hook.Add("Player Think","ControlPlayersAdmins",function(ply,time)
-	if !ply:IsAdmin() or ply:Alive() then return end
+hook.Add("Player Think", "ControlPlayersAdmins", function(ply, time)
+	if not ply:IsAdmin() or ply:Alive() then return end
 
 	if ply:KeyDown(IN_ATTACK) and not ply.EnableSpectate and ply.allowGrab then
 		print(ply)
 		local enta = ply:GetEyeTrace().Entity
-		if enta:IsPlayer() and !enta.fake and !IsValid(ply.CarryEnt) then
+		if enta:IsPlayer() and not enta.fake and not IsValid(ply.CarryEnt) then
 			Faking(enta)
 		end
 		if not IsValid(enta:GetPhysicsObject()) then return end
@@ -14,7 +14,7 @@ hook.Add("Player Think","ControlPlayersAdmins",function(ply,time)
 
 		timer.Simple(5, function() ply.AdminAttackerWithPhys = false end)
 		if IsValid(ply.CarryEnt) then
-			ply.CarryEnt:SetPhysicsAttacker(ply,5)
+			ply.CarryEnt:SetPhysicsAttacker(ply, 5)
 
 			ply.CarryEntLen = math.max(ply.CarryEntLen or ply.CarryEnt:GetPos():Distance(ply:EyePos()), 50)
 			local ent = ply.CarryEnt
@@ -47,6 +47,7 @@ hook.Add("Player Think","ControlPlayersAdmins",function(ply,time)
 			ply.CarryEntPhysbone = nil
 		end
 	end
+
 	if ply:KeyDown(IN_ATTACK2) and ply.allowGrab then
 		if IsValid(ply.CarryEnt) then
 			ply.CarryEnt:GetPhysicsObjectNum(ply.CarryEntPhysbone):EnableMotion(false)
@@ -55,13 +56,13 @@ hook.Add("Player Think","ControlPlayersAdmins",function(ply,time)
 	end
 end)
 
-hook.Add("StartCommand","PickupPlayersAdmin",function(ply, cmd)
+hook.Add("StartCommand", "PickupPlayersAdmin", function(ply, cmd)
 	local num = ply:GetInfo("physgun_wheelspeed")
-	if !IsValid(ply.CarryEnt) then return end
+	if not IsValid(ply.CarryEnt) then return end
 	if cmd:GetMouseWheel() > 0 then ply.CarryEntLen = ply.CarryEntLen + num end
 	if cmd:GetMouseWheel() < 0 then ply.CarryEntLen = ply.CarryEntLen - num end
 end)
 
-hook.Add("AllowPlayerPickup","ya_ebal_slona",function(ply,ent)
+hook.Add("AllowPlayerPickup", "ya_ebal_slona", function(ply, ent)
 	return not ent:IsPlayerHolding()
 end)

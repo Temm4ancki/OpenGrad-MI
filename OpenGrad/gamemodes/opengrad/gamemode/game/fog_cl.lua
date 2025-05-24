@@ -6,41 +6,36 @@ local fogStart = render.FogStart
 local fogEnd = render.FogEnd
 local fogMaxDensity = render.FogMaxDensity
 local fogColor = render.FogColor
-local r,g,b = 255 * 0.6,255 * 0.7,255 * 0.8
+local r, g, b = 255 * 0.6, 255 * 0.7, 255 * 0.8
 
 local math_sin = math.sin
 
-local fogdefault = {165,165,165}
+local fogdefault = {165, 165, 165}
 
 file.CreateDir("homigrad")
 --file.Write("homigrad/fog_maps_color.txt","")
 dataFog = util.JSONToTable(file.Read("homigrad/fog_maps_color.txt") or "") or {}
-dataFogMap = dataFog[game.GetMap()] or {{156,156,156},0}
+dataFogMap = dataFog[game.GetMap()] or {{156, 156, 156}, 0}
 dataFog[game.GetMap()] = dataFogMap
 
-concommand.Add("hg_fogsetcolor",function(ply,cmd,args)
-	local r,g,b = tonumber(args[1]),tonumber(args[2]),tonumber(args[3])
-	dataFogMap[1] = {r,g,b}
-	file.Write("homigrad/fog_maps_color.txt",util.TableToJSON(dataFog))
-end,nil,"Sets color for fog")
+concommand.Add("hg_fogsetcolor", function(ply, cmd, args)
+	local r, g, b = tonumber(args[1]), tonumber(args[2]), tonumber(args[3])
+	dataFogMap[1] = {r, g, b}
+	file.Write("homigrad/fog_maps_color.txt", util.TableToJSON(dataFog))
+end, nil, "Sets color for fog")
 
-concommand.Add("hg_fogset",function(ply,cmd,args)
+concommand.Add("hg_fogset", function(ply, cmd, args)
 	dataFogMap[2] = tonumber(args[1])
-	file.Write("homigrad/fog_maps_color.txt",util.TableToJSON(dataFog))
-end,nil,"Enable fog (0 for false, don't set 1)")
+	file.Write("homigrad/fog_maps_color.txt", util.TableToJSON(dataFog))
+end, nil, "Enable fog (0 for false, don't set 1)")
 
-hook.Add("SetupWorldFog","shlib",function()
-    local distance = GetGlobalVar("Fog Dis")
-
+hook.Add("SetupWorldFog", "shlib", function()
+	local distance = GetGlobalVar("Fog Dis")
 	local upper = dataFogMap[2]
-
 	local content = util.PointContents(EyePos())
-	if
-		((bit.band(content,CONTENTS_SOLID) == CONTENTS_SOLID) and
-		(LocalPlayer():GetMoveType() == MOVETYPE_NOCLIP and not LocalPlayer():InVehicle())) or (not distance and upper <= 0)
-	then
-		CAMERA_ZFAR = nil
 
+	if ((bit.band(content, CONTENTS_SOLID) == CONTENTS_SOLID) and (LocalPlayer():GetMoveType() == MOVETYPE_NOCLIP and not LocalPlayer():InVehicle())) or (not distance and upper <= 0) then
+		CAMERA_ZFAR = nil
 		return
 	end
 
@@ -55,14 +50,13 @@ hook.Add("SetupWorldFog","shlib",function()
 	fogEnd(CAMERA_ZFAR - 25)
 	fogMaxDensity(1)
 
-    local color = custom and dataFogMap[1] or GetGlobalVar("Fog Color",fogdefault)
-	fogColor(color[1],color[2],color[3],255)
+	local color = custom and dataFogMap[1] or GetGlobalVar("Fog Color", fogdefault)
+	fogColor(color[1], color[2], color[3], 255)
 
 	return true
 end)
 
-local ang = Angle(0,0,0)
-
+local ang = Angle(0, 0, 0)
 local mat = Material("color")
 
 local surface_SetMaterial = surface.SetMaterial
@@ -70,30 +64,29 @@ local surface_SetDrawColor = surface.SetDrawColor
 local render_SetColorMaterial = render.SetColorMaterial
 local render_DrawQuadEasy = render.DrawQuadEasy
 
-hook.Add("PostDrawOpaqueRenderables","shlib",function()
+hook.Add("PostDrawOpaqueRenderables", "shlib", function()
 	if not CAMERA_ZFAR then return end
 
-	local vec = Vector(CAMERA_ZFAR,0,0)
+	local vec = Vector(CAMERA_ZFAR, 0, 0)
 	local lply = LocalPlayer()
 
 	vec:Rotate(EyeAngles())
 
 	lply = EyePos()
-
 	vec = lply + vec
 
-	local normal = Vector(1,0,0)
+	local normal = Vector(1, 0, 0)
 	normal:Rotate((lply - vec):Angle())
 
-    local color = GetGlobalVar("Fog Color",fogdefault)
-	surface_SetDrawColor(155,155,155,255)
+	local color = GetGlobalVar("Fog Color", fogdefault)
+	surface_SetDrawColor(155, 155, 155, 255)
 	surface_SetMaterial(mat)
 	render_SetColorMaterial()
 
-	render_DrawQuadEasy(vec,normal,100000,100000,color_white)
+	render_DrawQuadEasy(vec, normal, 100000, 100000, color_white)
 end)
 
-concommand.Add("hg_fogcheck",function(ply)
-    print(GetGlobalVar("Fog Dis"))
-    print(GetGlobalVar("Fog Color"))
-end,nil,"Checks for fog")
+concommand.Add("hg_fogcheck", function(ply)
+	print(GetGlobalVar("Fog Dis"))
+	print(GetGlobalVar("Fog Color"))
+end, nil, "Checks for fog")

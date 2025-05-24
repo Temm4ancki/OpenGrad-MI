@@ -176,27 +176,27 @@ gamemodes:
           ✔ tier_0_sv.lua @done(25-05-22 17:27)
 
         ✔ bullshitspawn_sv.lua @done(25-05-22 20:25)
-        ☐ commands_cl.lua
-        ☐ communication_sv.lua
-        ☐ control_inspec_sv.lua
-        ☐ datamap_cl.lua
-        ☐ datamap_debug_cl.lua
+        ✔ commands_cl.lua @done(25-05-24 23:26)
+        ✔ communication_sv.lua @done(25-05-24 23:29)
+        ✔ control_inspec_sv.lua @done(25-05-24 23:29)
+        ✔ datamap_cl.lua @done(25-05-24 23:29)
+        ✔ datamap_debug_cl.lua @done(25-05-24 23:29)
         ✔ datamap_sv.lua @done(25-05-20 14:25)
-        ☐ fakename_sv.lua
-        ☐ fog_cl.lua
-        ☐ fog_sv.lua
-        ☐ level_cl.lua
-        ☐ level_debug_cl.lua
-        ☐ level_hook_cl.lua
-        ☐ level_hook_sv.lua
-        ☐ level_sh.lua
-        ☐ level_sv.lua
-        ☐ roundsystem_sv.lua
-        ☐ sv_util.lua
+        ✔ fakename_sv.lua @done(25-05-24 23:30)
+        ✔ fog_cl.lua @done(25-05-24 23:31)
+        ✔ fog_sv.lua @done(25-05-24 23:31)
+        ✔ level_cl.lua @done(25-05-24 23:33)
+        ✔ level_debug_cl.lua @done(25-05-24 23:33)
+        ✔ level_hook_cl.lua @done(25-05-24 23:44)
+        ✔ level_hook_sv.lua @done(25-05-24 23:44)
+        ✔ level_sh.lua @done(25-05-24 23:44)
+        ✔ level_sv.lua @done(25-05-24 23:44)
+        ✔ roundsystem_sv.lua @done(25-05-24 23:44)
+        ✔ sv_util.lua @done(25-05-24 23:44)
 
-      ☐ cl_init.lua
-      ☐ init.lua
-      ☐ loader.lua
+      ✔ cl_init.lua @done(25-05-25 00:06)
+      ✔ init.lua @done(25-05-25 00:06)
+      ✔ loader.lua @done(25-05-24 23:45)
       ✔ shared.lua @done(25-05-22 17:03)
 
     ☐ opengrad.txt
