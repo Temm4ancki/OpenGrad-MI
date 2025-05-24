@@ -1,57 +1,51 @@
-if engine.ActiveGamemode() != "opengrad" then return end
-
+if engine.ActiveGamemode() ~= "opengrad" then return end
 hg = hg or {}
 
 include("homigrad_scr/loader.lua")
 include("homigrad_scr/run.lua")
 
-if SERVER then
-    resource.AddWorkshop("3004847067")
-end
-
+-- NOTE Бесполезно? Аддон мёртв
+if SERVER then resource.AddWorkshop("3004847067") end
 hook.Add("Initialize", "Optimizon", function()
-	hook.Remove( "PlayerTick", "TickWidgets" )
-
+	hook.Remove("PlayerTick", "TickWidgets")
 	if SERVER and timer.Exists("CheckHookTimes") then
-		timer.Remove( "CheckHookTimes" )
+		timer.Remove("CheckHookTimes")
 	end
-
-	hook.Remove( "PlayerTick", "TickWidgets" )
-	hook.Remove(  "Think", "CheckSchedules" )
-	timer.Remove( "HostnameThink" )
-	hook.Remove( "LoadGModSave", "LoadGModSave" )
+	hook.Remove("PlayerTick", "TickWidgets")
+	hook.Remove("Think", "CheckSchedules")
+	timer.Remove("HostnameThink")
+	hook.Remove("LoadGModSave", "LoadGModSave")
 
 	if CLIENT then
-		RunConsoleCommand( "cl_threaded_client_leaf_system", "1" )
-		RunConsoleCommand( "cl_smooth", "0" )
-		RunConsoleCommand( "mat_queue_mode", "2" )
-		RunConsoleCommand( "cl_threaded_bone_setup", "1" )
-		RunConsoleCommand( "gmod_mcore_test", "1" )
-		RunConsoleCommand( "r_threaded_client_shadow_manager", "1" )
-		RunConsoleCommand( "r_queued_post_processing", "1" )
-		RunConsoleCommand( "r_threaded_renderables", "1" )
-		RunConsoleCommand( "r_threaded_particles", "1" )
-		RunConsoleCommand( "r_queued_ropes", "1" )
-		RunConsoleCommand( "studio_queue_mode", "1" )
-		RunConsoleCommand( "r_decals", "2048" )
-		RunConsoleCommand( "r_queued_decals", "1" )
-		RunConsoleCommand( "gm_demo_icon", "0" )
-		RunConsoleCommand( "r_radiosity", "4" )
-		RunConsoleCommand( "cl_cmdrate", "101" )
-		RunConsoleCommand( "cl_updaterate", "101" )
-		RunConsoleCommand( "cl_interp", "0.07" )
-		RunConsoleCommand( "cl_interp_npcs", "0.08" )
-		RunConsoleCommand( "cl_timeout", "2400" )
-		RunConsoleCommand( "r_flashlightdepthres", "512" )
-		RunConsoleCommand( "hg_oldcollidefake", "1")
-
-		if GetConVar( "mat_picmip" ):GetInt() < 0 then
-			RunConsoleCommand( "mat_picmip", "0" )
+		RunConsoleCommand("cl_threaded_client_leaf_system", "1")
+		RunConsoleCommand("cl_smooth", "0")
+		RunConsoleCommand("mat_queue_mode", "2")
+		RunConsoleCommand("cl_threaded_bone_setup", "1")
+		RunConsoleCommand("gmod_mcore_test", "1")
+		RunConsoleCommand("r_threaded_client_shadow_manager", "1")
+		RunConsoleCommand("r_queued_post_processing", "1")
+		RunConsoleCommand("r_threaded_renderables", "1")
+		RunConsoleCommand("r_threaded_particles", "1")
+		RunConsoleCommand("r_queued_ropes", "1")
+		RunConsoleCommand("studio_queue_mode", "1")
+		RunConsoleCommand("r_decals", "2048")
+		RunConsoleCommand("r_queued_decals", "1")
+		RunConsoleCommand("gm_demo_icon", "0")
+		RunConsoleCommand("r_radiosity", "4")
+		RunConsoleCommand("cl_cmdrate", "101")
+		RunConsoleCommand("cl_updaterate", "101")
+		RunConsoleCommand("cl_interp", "0.07")
+		RunConsoleCommand("cl_interp_npcs", "0.08")
+		RunConsoleCommand("cl_timeout", "2400")
+		RunConsoleCommand("r_flashlightdepthres", "512")
+		RunConsoleCommand("hg_oldcollidefake", "1")
+		if GetConVar("mat_picmip"):GetInt() < 0 then
+			RunConsoleCommand("mat_picmip", "0")
 		end
 	end
 end)
 
-hook.Add("InitPostEntity","RemoveShittyHooks",function()
+hook.Add("InitPostEntity", "RemoveShittyHooks", function()
 	local phys_settings = physenv.GetPerformanceSettings()
 
 	phys_settings.LookAheadTimeObjectsVsObject = 0 -- 0.5

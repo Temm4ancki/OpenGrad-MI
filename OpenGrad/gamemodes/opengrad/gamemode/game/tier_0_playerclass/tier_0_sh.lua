@@ -16,23 +16,30 @@ function PlayerMeta:PlayerClassEvent(name,...) --haha
     if meta then return meta(self,...) end
 end
 
---TODO Тут тоже звуки
 function PlayerMeta:InvoluntaryEvent()
     local Event, Pos = math.random(1, 4), self:GetShootPos()
     if Event == 1 then
         self:ViewPunch(Angle(5, 0, 0))
         timer.Simple(.5, function() if IsValid(self) then self:ViewPunch(Angle(2, 0, 0)) end end)
-        self:EmitSound("snd_jack_hmcd_cough_male.wav", 60, 100)
+        if isstring(self:GetModel()) and string.find(string.lower(self:GetModel()), "female") then
+            self:EmitSound("hg_homicide/sfx/hmcd_cough_female.ogg", 60, 100)
+        else
+            self:EmitSound("hg_homicide/sfx/hmcd_cough_male.ogg", 60, 100)
+        end
     elseif Event == 2 then
         timer.Simple(.9, function() if IsValid(self) then self:ViewPunch(Angle(-5, 0, 0)) end end)
         timer.Simple(1.1, function() if IsValid(self) then self:ViewPunch(Angle(20, 0, 0)) end end)
-        self:EmitSound("snd_jack_hmcd_sneeze_male.wav", 60, 100)
+        if isstring(self:GetModel()) and string.find(string.lower(self:GetModel()), "female") then
+            self:EmitSound("hg_homicide/sfx/hmcd_sneeze_female.ogg", 60, 100)
+        else
+            self:EmitSound("hg_homicide/sfx/hmcd_sneeze_male.ogg", 60, 100)
+        end
     elseif Event == 3 then
         util.ScreenShake(Pos, 255, 255, .3, 40)
-        self:EmitSound("snd_jack_hmcd_burp.wav", 60, 80)
+        self:EmitSound("hg_homicide/sfx/hmcd_burp.ogg", 60, 80)
     elseif Event == 4 then
         util.ScreenShake(Pos, 255, 255, .6, 40)
-        self:EmitSound("snd_jack_hmcd_fart.wav", 60, 80)
+        self:EmitSound("hg_homicide/sfx/hmcd_fart.ogg", 60, 80)
     end
 end
 

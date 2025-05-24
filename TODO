@@ -76,7 +76,7 @@ gamemodes:
           newlevels:
             homicide:
               ✔ init_sv.lua @done(25-05-20 04:11)
-              ✔ init_tier_0_sh.lua @done(25-05-20 04:11)
+              ✔ init_tier_0_sh.lua @done(25-05-22 17:27)
 
             pve:
               schoolshoot:
@@ -163,19 +163,19 @@ gamemodes:
           ✔ looting_sv.lua @done(25-05-20 17:03)
 
         maps:
-          ☐ gm_fork_sv.lua
+          ✘ gm_fork_sv.lua @cancelled(25-05-22 17:44)
 
         scoreboard:
-          ☐ menu_cl.lua
-          ☐ tier_0_cl.lua
-          ☐ tier_1_cl.lua
+          ✔ menu_cl.lua @done(25-05-22 17:43)
+          ✔ tier_0_cl.lua @done(25-05-22 17:43)
+          ✔ tier_1_cl.lua @done(25-05-22 17:43)
 
         tier_0_playerclass:
-          ☐ anim_sh.lua
-          ☐ tier_0_sh.lua
-          ☐ tier_0_sv.lua
+          ✔ anim_sh.lua @done(25-05-22 19:47)
+          ✔ tier_0_sh.lua @done(25-05-22 19:46)
+          ✔ tier_0_sv.lua @done(25-05-22 17:27)
 
-        ☐ bullshitspawn_sv.lua
+        ✔ bullshitspawn_sv.lua @done(25-05-22 20:25)
         ☐ commands_cl.lua
         ☐ communication_sv.lua
         ☐ control_inspec_sv.lua
@@ -197,7 +197,7 @@ gamemodes:
       ☐ cl_init.lua
       ☐ init.lua
       ☐ loader.lua
-      ☐ shared.lua
+      ✔ shared.lua @done(25-05-22 17:03)
 
     ☐ opengrad.txt
 
@@ -217,7 +217,7 @@ lua:
     ☐ !!!sh_flybysounds.lua
     ☐ !!!sh_optimize.lua
     ☐ !!!swepts_suppression.lua
-    ☐ homigrad_loader.lua
+    ✔ homigrad_loader.lua @done(25-05-22 17:03)
     ☐ jmod_init.lua
 
   core:

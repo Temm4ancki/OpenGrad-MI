@@ -1,11 +1,12 @@
 local blackListedWeps = {
-	["weapon_hands"]=true,
-	["weapon_kabar"]=true,
-	["weapon_hg_t_vxpoison"]=true,
-	["weapon_hidebomb"]=true,
-	["weapon_hg_t_syringepoison"]=true,
-	["weapon_jahidka"]=true,
-	["weapon_hg_rgd5"]=true
+	["weapon_hands"] = true,
+	["weapon_kabar"] = true,
+	["weapon_hg_t_vxpoison"] = true,
+	["weapon_hidebomb"] = true,
+	["weapon_hg_t_syringepoison"] = true,
+	["weapon_jahidka"] = true,
+	["weapon_hg_rgd5"] = true,
+	["weapon_trap"] = true,
 }
 
 local blackListedAmmo = {
@@ -122,7 +123,7 @@ net.Receive("inventory",function()
 	local nickname = lootEnt:IsPlayer() and lootEnt:GetNWString("FakeName","Неизвестного") or ""
 
 	if not success or not lootEnt then return end
-	
+
 	if items[lootEnt.curweapon] and table.HasValue(Gunshuy,lootEnt.curweapon) then items[lootEnt.curweapon] = nil end
 
 	local items_ammo = net.ReadTable()
@@ -131,7 +132,7 @@ net.Receive("inventory",function()
 
 	-- тратор нелутаем больше
 	for i,v in pairs(items) do
-		print(i)
+		--print(i)
 		if blackListedWeps[i] then items[i] = nil end
 	end
 
@@ -162,7 +163,7 @@ net.Receive("inventory",function()
 		surface.SetDrawColor(255,255,255,128)
 		surface.DrawOutlinedRect(1,1,w - 2,h - 2)
 
-		draw.SimpleText("Инвентарь "..nickname or "","DefaultFixedDropShadow",6,6,color_white)
+		draw.SimpleText("Инвентарь " .. nickname or "","DefaultFixedDropShadow",6,6,color_white)
 	end
 
 	local x,y = 40,40

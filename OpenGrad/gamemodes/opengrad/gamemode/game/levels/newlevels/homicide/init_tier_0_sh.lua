@@ -57,13 +57,12 @@ local roundTypes = {
     "Мафия"
 }
 
---TODO про эти звуки ты забыл
 local roundSound = {
-    "snd_jack_hmcd_disaster.mp3",
-    "snd_jack_hmcd_shining.mp3",
-    "snd_jack_hmcd_panic.mp3",
-    "snd_jack_hmcd_wildwest.mp3",
-    "snd_jack_hmcd_psycho.mp3"
+    "hg_homicide/sfx/hmcd_r_disaster.ogg",
+    "hg_homicide/sfx/hmcd_r_shining.ogg",
+    "hg_homicide/sfx/hmcd_r_panic.ogg",
+    "hg_homicide/sfx/hmcd_r_wildwest.ogg",
+    "hg_homicide/sfx/hmcd_r_psycho.ogg"
 }
 
 homicide.RoundRandomDefalut = 9

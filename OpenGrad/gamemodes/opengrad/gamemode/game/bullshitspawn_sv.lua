@@ -209,10 +209,18 @@ hook.Add("PropBreak","homigrad",function(att,ent)
 	end
 end)
 
-local spawns = {}
+spawns = {}
 
-for i, ent in pairs(ents.FindByClass("info_*")) do
+--[[for i, ent in pairs(ents.FindByClass("info_*")) do
 	table.insert(spawns,ent:GetPos())
+end]]
+
+local x, y, z = math.random(0, 50), math.random(25, 50), math.random(5, 10)
+
+for i, v in pairs(navmesh.GetAllNavAreas()) do
+	local pos = v:GetCenter()+Vector(x, y, z)
+
+	table.insert(spawns,pos)
 end
 
 local hook_Run = hook.Run
@@ -224,13 +232,13 @@ hook.Add("PostCleanupMap","addboxs",function()
 
 	if timer.Exists("SpawnTheBoxes") then timer.Remove("SpawnTheBoxes") end
 
-	timer.Create("SpawnTheBoxes", 15, 0 ,function()
+	timer.Create("SpawnTheBoxes", 13, 0 ,function()
 		hook_Run("Boxes Think")
 	end)
 end)
 
 if timer.Exists("SpawnTheBoxes") then timer.Remove("SpawnTheBoxes") end
-timer.Create("SpawnTheBoxes", 15, 0 ,function()
+timer.Create("SpawnTheBoxes", 13, 0 ,function()
 	hook_Run("Boxes Think")
 end)
 
@@ -268,9 +276,10 @@ hook.Add("Boxes Think", "SpawnBoxes",function()
 	local func = TableRound().ShouldSpawnLoot
 	if func and func() == false then return end
 
+	if IsValid(spawns) and not table.IsEmpty(spawns) then return end
 
 	local randomWep = randomLoot()
-	local ent = ents.Create(not randomWep and "prop_physics" or randomWep)
+	local ent = ents.Create((not randomWep and "prop_physics") or randomWep)
 
 	if not randomWep then
 		ent:SetModel(KOROBKA_HUYNYI[math.random(#KOROBKA_HUYNYI)])
@@ -278,8 +287,8 @@ hook.Add("Boxes Think", "SpawnBoxes",function()
 		ent.Spawned = true
 	end
 
-	-- if IsValid(ent) then --!! если коробки не будут спавнится то убрать
-	-- 	ent:SetPos(spawns[math.random(#spawns)] + vec)
-	-- 	ent:Spawn()
-	-- end
+	if IsValid(ent) then
+		ent:SetPos(spawns[math.random(#spawns)] + vec)
+		ent:Spawn()
+	end
 end)

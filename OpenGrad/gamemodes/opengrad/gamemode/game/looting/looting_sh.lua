@@ -45,6 +45,4 @@ lootable_big = {
     ["models/props_wasteland/kitchen_fridge001a.mdl"] = true
 }
 
-loot = {
-    
-}
+loot = {}

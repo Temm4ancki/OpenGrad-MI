@@ -46,7 +46,7 @@ function cp.HUDPaint_RoundLeft(white2) --позиции точек и счёт
             playsound = false
             surface.PlaySound("snd_jack_hmcd_disaster.mp3")
         end]]
-        -- TODO Тут не звуков. Добавь 
+        -- TODO В CP не звуков. Добавь 
 
         lply:ScreenFade(SCREENFADE.IN, Color(0, 0, 0, 255), 0.5, 0.5)
         --[[surface.SetFont("HomigradFontBig")
