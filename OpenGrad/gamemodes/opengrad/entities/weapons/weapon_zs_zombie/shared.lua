@@ -36,19 +36,19 @@ function SWEP:StopMoaningSound()
 end
 
 function SWEP:StartMoaningSound()
-	self:GetOwner():EmitSound("NPC_BaseZombie.Moan"..math.random(4))
+	self:GetOwner():EmitSound("NPC_BaseZombie.Moan" .. math.random(4))
 end
 
 function SWEP:PlayHitSound()
-	self:EmitSound("npc/zombie/claw_strike"..math.random(3)..".wav", nil, nil, nil, CHAN_AUTO)
+	self:EmitSound("npc/zombie/claw_strike" .. math.random(3) .. ".wav", nil, nil, nil, CHAN_AUTO)
 end
 
 function SWEP:PlayMissSound()
-	self:EmitSound("npc/zombie/claw_miss"..math.random(2)..".wav", nil, nil, nil, CHAN_AUTO)
+	self:EmitSound("npc/zombie/claw_miss" .. math.random(2) .. ".wav", nil, nil, nil, CHAN_AUTO)
 end
 
 function SWEP:PlayAttackSound()
-	self:EmitSound("npc/zombie/zo_attack"..math.random(2)..".wav")
+	self:EmitSound("npc/zombie/zo_attack" .. math.random(2) .. ".wav")
 end
 
 function SWEP:Initialize()
@@ -301,11 +301,11 @@ function SWEP:DoAlert()
 end
 
 function SWEP:PlayAlertSound()
-	self:GetOwner():EmitSound("npc/zombie/zombie_alert"..math.random(3)..".wav")
+	self:GetOwner():EmitSound("npc/zombie/zombie_alert" .. math.random(3) .. ".wav")
 end
 
 function SWEP:PlayIdleSound()
-	self:GetOwner():EmitSound("npc/zombie/zombie_voice_idle"..math.random(14)..".wav")
+	self:GetOwner():EmitSound("npc/zombie/zombie_voice_idle" .. math.random(14) .. ".wav")
 end
 
 function SWEP:SendAttackAnim()

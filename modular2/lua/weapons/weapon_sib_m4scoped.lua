@@ -1,4 +1,4 @@
-SWEP.Base = 'salat_base' -- base
+SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "M16A4-ACOG - SIB"
 SWEP.Author 				= "ArmaLite"

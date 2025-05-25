@@ -1,5 +1,5 @@
 
-SWEP.Base = 'salat_base' -- base
+SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "FAMAS-Civil"
 SWEP.Author 				= "Homigrad"

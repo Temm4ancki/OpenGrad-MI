@@ -8,12 +8,13 @@ SWEP.Instructions = "Лечит большую кровопотерю"
 
 SWEP.Spawnable = true
 SWEP.Category = "Медицина"
+SWEP.IconOverride = "vgui/icon/bandages.png"
 
 SWEP.Slot = 3
 SWEP.SlotPos = 3
 
-SWEP.ViewModel = "models/bandages.mdl"
-SWEP.WorldModel = "models/bandages.mdl"
+SWEP.ViewModel = "models/weapons/medical/bandages/bandages.mdl"
+SWEP.WorldModel = "models/weapons/medical/bandages/bandages.mdl"
 
 SWEP.dwsPos = Vector(25,25,10)
 

@@ -6,7 +6,7 @@ ENT.PrintName = "EZHG RGD5 Granade"
 ENT.Category = "JModHomigrad"
 ENT.Spawnable = true
 ENT.JModPreferredCarryAngles = Angle(0, -140, 0)
-ENT.Model = "models/pwb/weapons/w_rgd5_thrown.mdl"
+ENT.Model = "models/weapons/grenade/rgd5/w_rgd5_thrown.mdl"
 ENT.SpoonScale = 2
 
 if SERVER then
@@ -15,7 +15,6 @@ if SERVER then
 		self:SetState(JMod.EZ_STATE_ARMED)
 		self:SpoonEffect()
 
-		
 		local time = secs or math.random(3.2,4.2)
 		timer.Simple(time - 1,function()
 			player.EventPoint(self:GetPos(),"fragnade pre detonate",1024,self)
@@ -33,7 +32,7 @@ if SERVER then
 		self.Exploded = true
 		local SelfPos = self:GetPos()
 		JMod.Sploom(self.EZowner, self:GetPos(), math.random(10, 20))
-		self:EmitSound("weapons/m67/m67_detonate_0"..math.random(1,3)..".wav", 551, 100)
+		self:EmitSound("weapons/grenade/f1/m67_detonate_0" .. math.random(1,3) .. ".ogg", 551, 100)
 		local plooie = EffectData()
 		plooie:SetOrigin(SelfPos)
 		plooie:SetScale(.2)

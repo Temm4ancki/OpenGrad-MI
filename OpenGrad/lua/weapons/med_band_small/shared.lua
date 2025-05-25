@@ -5,15 +5,15 @@ SWEP.Base = "medkit"
 SWEP.PrintName = "Маленький бинт"
 SWEP.Author = "Homigrad"
 SWEP.Instructions = "Лечит мелкую кровопотерю"
-
+SWEP.IconOverride = "vgui/icon/bandages.png"
 SWEP.Spawnable = true
 SWEP.Category = "Медицина"
 
 SWEP.Slot = 3
 SWEP.SlotPos = 3
 
-SWEP.ViewModel = "models/bandages.mdl"
-SWEP.WorldModel = "models/bandages.mdl"
+SWEP.ViewModel = "models/weapons/medical/bandages/bandages.mdl"
+SWEP.WorldModel = "models/weapons/medical/bandages/bandages.mdl"
 
 SWEP.dwsPos = Vector(55,55,20)
 

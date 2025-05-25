@@ -5,15 +5,15 @@ SWEP.Base = "medkit"
 SWEP.PrintName = "Морфий"
 SWEP.Author = "Homigrad"
 SWEP.Instructions = "Агонистическое влияние морфина на опиатные рецепторы сопровождается снижением уровня сознания, ощущением тепла, сонливостью и эйфорией"
-
+SWEP.IconOverride = "vgui/icon/morphine.png"
 SWEP.Spawnable = true
 SWEP.Category = "Медицина"
 
 SWEP.Slot = 3
 SWEP.SlotPos = 3
 
-SWEP.ViewModel = "models/bloocobalt/l4d/items/w_eq_adrenaline.mdl"
-SWEP.WorldModel = "models/bloocobalt/l4d/items/w_eq_adrenaline.mdl"
+SWEP.ViewModel = "models/weapons/medical/morphine/w_eq_morphine.mdl"
+SWEP.WorldModel = "models/weapons/medical/morphine/w_eq_morphine.mdl"
 
 SWEP.dwsPos = Vector(15,15,5)
 SWEP.dwsItemPos = Vector(0,0,2)

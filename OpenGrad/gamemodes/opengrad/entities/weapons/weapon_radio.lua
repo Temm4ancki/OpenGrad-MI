@@ -1,52 +1,52 @@
-SWEP.Base                   = "weapon_base"
+SWEP.Base = "weapon_base"
 
-SWEP.PrintName 				= "Рация"
-SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Используется для того чтобы координироваться со своей командой"
-SWEP.Category 				= "Разное"
+SWEP.PrintName = "Рация"
+SWEP.Author = "Homigrad"
+SWEP.Instructions = "Используется для того чтобы координироваться со своей командой"
+SWEP.Category = "Разное"
+SWEP.IconOverride = "vgui/icon/radio.png"
 
-SWEP.Spawnable 				= true
-SWEP.AdminOnly 				= false
+SWEP.Spawnable = true
+SWEP.AdminOnly = false
 SWEP.AutoSwitchFrom = false
 SWEP.AutoSwitchTo = false
 
-SWEP.Primary.ClipSize		= -1
-SWEP.Primary.DefaultClip	= -1
-SWEP.Primary.Automatic		= false
-SWEP.Primary.Ammo			= "none"
+SWEP.Primary.ClipSize = -1
+SWEP.Primary.DefaultClip = -1
+SWEP.Primary.Automatic = false
+SWEP.Primary.Ammo = "none"
 
-SWEP.Secondary.ClipSize		= -1
-SWEP.Secondary.DefaultClip	= -1
-SWEP.Secondary.Automatic	= false
-SWEP.Secondary.Ammo			= "none"
+SWEP.Secondary.ClipSize = -1
+SWEP.Secondary.DefaultClip = -1
+SWEP.Secondary.Automatic = false
+SWEP.Secondary.Ammo = "none"
 
-SWEP.Weight					= 5
-SWEP.AutoSwitchTo			= false
-SWEP.AutoSwitchFrom			= false
+SWEP.Weight = 5
+SWEP.AutoSwitchTo = false
+SWEP.AutoSwitchFrom = false
 
-SWEP.Slot					= 5
-SWEP.SlotPos				= 1
-SWEP.DrawAmmo				= true
-SWEP.DrawCrosshair			= false
+SWEP.Slot = 5
+SWEP.SlotPos = 1
+SWEP.DrawAmmo = true
+SWEP.DrawCrosshair = false
 
-SWEP.ViewModel				= "models/sirgibs/ragdoll/css/terror_arctic_radio.mdl"
-SWEP.WorldModel				= "models/sirgibs/ragdoll/css/terror_arctic_radio.mdl"
-
+SWEP.ViewModel = "models/weapons/terror_arctic_radio/terror_arctic_radio.mdl"
+SWEP.WorldModel = "models/weapons/terror_arctic_radio/terror_arctic_radio.mdl"
 
 SWEP.DrawWeaponSelection = DrawWeaponSelection
 SWEP.OverridePaintIcon = OverridePaintIcon
 
-SWEP.dwsPos = Vector(15,15,5)
-SWEP.dwsItemPos = Vector(0,7,-40)
+SWEP.dwsPos = Vector(15, 15, 5)
+SWEP.dwsItemPos = Vector(0, 7, -40)
 
 SWEP.vbw = true
 SWEP.vbwPistol = true
-SWEP.vbwPos = Vector(0.5,-44,-0.5)
-SWEP.vbwAng = Angle(-90,0,-90)
+SWEP.vbwPos = Vector(0.5, -44, -0.5)
+SWEP.vbwAng = Angle(-90, 0, -90)
 SWEP.vbwModelScale = 1
 
 function SWEP:PrimaryAttack()
-	return false
+    return false
 end
 
 if SERVER then -- ЕБАННЫЙ ДАУН
@@ -61,7 +61,7 @@ if SERVER then -- ЕБАННЫЙ ДАУН
         self.lisens = {}
     end
 
-    local can,bipp
+    local can, bipp
 
     --[[function SWEP:Bipp(output,pitch,isChat)
         for _,input in pairs(player.GetAll()) do
@@ -70,13 +70,13 @@ if SERVER then -- ЕБАННЫЙ ДАУН
 
             self:BippSound(input,pitch)
         end
-    end]]--
+    end]]
 
-    function SWEP:BippSound(ent,pitch)
-        ent:EmitSound("buttons/button16.wav",75,pitch)
+    function SWEP:BippSound(ent, pitch)
+        ent:EmitSound("buttons/button16.wav", 75, pitch)
     end
 
-    function SWEP:CanLisen(output,input,isChat)
+    function SWEP:CanLisen(output, input, isChat)
         if not output:Alive() or output.Otrub or not input:Alive() or input.Otrub then return false end
         if output:InVehicle() and output:IsSpeaking() then self.voiceSpeak = CurTime() + 0.5 end
 
@@ -104,16 +104,16 @@ if SERVER then -- ЕБАННЫЙ ДАУН
 
         if Transmit then
             local lisens = self.lisens
-            for i,input in pairs(GetAll()) do
-                if not self:CanLisen(output,input) then
+            for i, input in pairs(GetAll()) do
+                if not self:CanLisen(output, input) then
                     if lisens[input] then
                         lisens[input] = nil
-                        self:BippSound(input,80)
+                        self:BippSound(input, 80)
                     end
                 elseif not lisens[input] then
                     lisens[input] = true
                     input:ChatPrint("Вещает : " .. output:Nick())
-                    self:BippSound(input,100)
+                    self:BippSound(input, 100)
                 end
             end
 
@@ -122,7 +122,7 @@ if SERVER then -- ЕБАННЫЙ ДАУН
             local lisens = self.lisens
             for input in pairs(lisens) do
                 lisens[input] = nil
-                self:BippSound(input,80)
+                self:BippSound(input, 80)
             end
 
             self:SetHoldType("normal")
@@ -131,36 +131,35 @@ if SERVER then -- ЕБАННЫЙ ДАУН
 
     function SWEP:OnRemove() end
 
-    hook.Add("Player Can Lisen","radio",function(output,input,isChat)
+    hook.Add("Player Can Lisen", "radio", function(output, input, isChat)
         local wep = output:GetWeapon("weapon_radio")
 
-        if IsValid(wep) and wep:CanLisen(output,input,isChat) then
+        if IsValid(wep) and wep:CanLisen(output, input, isChat) then
             if isChat then
-                for i,input in pairs(GetAll()) do
-                    if not wep:CanLisen(output,input,isChat) then continue end
+                for i, input in pairs(GetAll()) do
+                    if not wep:CanLisen(output, input, isChat) then continue end
 
-                    wep:BippSound(input,140)
+                    wep:BippSound(input, 140)
                 end
             end
-
-            return true,false
+            return true, false
         end
     end)
 else
-    local hg_hint = CreateClientConVar("hg_hint","1",true,false)
+    local hg_hint = CreateClientConVar("hg_hint", "1", true, false)
     function SWEP:DrawHUD()
         if LocalPlayer():InVehicle() or not hg_hint:GetBool() then return end
 
-        draw.SimpleText("В голосовой","DebugFixedSmall",ScrW() / 2 - 200,ScrH() - 175,color_white)
-        draw.SimpleText("Зажми ПКМ и говори","DebugFixedSmall",ScrW() / 2 + 200,ScrH() - 175,color_white,TEXT_ALIGN_RIGHT)
-        draw.SimpleText("В чат","DebugFixedSmall",ScrW() / 2 - 200,ScrH() - 150,color_white)
-        draw.SimpleText("Просто пиши и держи в руках","DebugFixedSmall",ScrW() / 2 + 200,ScrH() - 150,color_white,TEXT_ALIGN_RIGHT)
-        draw.SimpleText("Сидя в машине нужно просто говорить","DebugFixedSmall",ScrW() / 2 ,ScrH() - 125,color_white,TEXT_ALIGN_CENTER)
+        draw.SimpleText("В голосовой", "DebugFixedSmall", ScrW() / 2 - 200, ScrH() - 175, color_white)
+        draw.SimpleText("Зажми ПКМ и говори", "DebugFixedSmall", ScrW() / 2 + 200, ScrH() - 175, color_white, TEXT_ALIGN_RIGHT)
+        draw.SimpleText("В чат", "DebugFixedSmall", ScrW() / 2 - 200, ScrH() - 150, color_white)
+        draw.SimpleText("Просто пиши и держи в руках", "DebugFixedSmall", ScrW() / 2 + 200, ScrH() - 150, color_white, TEXT_ALIGN_RIGHT)
+        draw.SimpleText("Сидя в машине нужно просто говорить", "DebugFixedSmall", ScrW() / 2, ScrH() - 125, color_white, TEXT_ALIGN_CENTER)
 
-        draw.SimpleText("Убрать подсказки hg_hint 0","DebugFixedSmall",ScrW() / 2,ScrH() - 100,color_white,TEXT_ALIGN_CENTER)
+        draw.SimpleText("Убрать подсказки hg_hint 0", "DebugFixedSmall", ScrW() / 2, ScrH() - 100, color_white, TEXT_ALIGN_CENTER)
     end
 
-    local model = GDrawWorldModel or ClientsideModel(SWEP.WorldModel,RENDER_GROUP_OPAQUE_ENTITY)
+    local model = GDrawWorldModel or ClientsideModel(SWEP.WorldModel, RENDER_GROUP_OPAQUE_ENTITY)
     GDrawWorldModel = model
     model:SetNoDraw(true)
 
@@ -172,15 +171,15 @@ else
     SWEP.dwmAUp = 0
     SWEP.dwmARight = 180
     SWEP.dwmAForward = 0
+
     function SWEP:DrawWorldModel()
         local owner = self:GetOwner()
         if not IsValid(owner) then
             self:DrawModel()
-
             return
         end
 
-        local Pos,Ang = owner:GetBonePosition(owner:LookupBone("ValveBiped.Bip01_R_Hand"))
+        local Pos, Ang = owner:GetBonePosition(owner:LookupBone("ValveBiped.Bip01_R_Hand"))
         if not Pos then return end
 
         model:SetModel(self.WorldModel)
@@ -191,13 +190,12 @@ else
 
         model:SetPos(Pos)
 
-        Ang:RotateAroundAxis(Ang:Up(),self.dwmAUp)
-        Ang:RotateAroundAxis(Ang:Right(),self.dwmARight)
-        Ang:RotateAroundAxis(Ang:Forward(),self.dwmAForward)
+        Ang:RotateAroundAxis(Ang:Up(), self.dwmAUp)
+        Ang:RotateAroundAxis(Ang:Right(), self.dwmARight)
+        Ang:RotateAroundAxis(Ang:Forward(), self.dwmAForward)
         model:SetAngles(Ang)
 
         model:SetModelScale(1.1)
-
         model:DrawModel()
     end
 end

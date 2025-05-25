@@ -6,8 +6,8 @@ ENT.PrintName = "EZHG Flashbang"
 ENT.Category = "JModHomigrad"
 ENT.Spawnable = true
 ENT.JModPreferredCarryAngles = Angle(0, 140, 0)
-ENT.Model = "models/jmod/explosives/grenades/flashbang/flashbang.mdl"
-ENT.ModelScale=0.8
+ENT.Model = "models/weapons/grenade/flashbang/flashbang.mdl"
+ENT.ModelScale = 0.8
 ENT.SpoonScale = 2
 
 if SERVER then
@@ -47,8 +47,8 @@ if SERVER then
 		self.Exploded = true
 		local SelfPos, Time = self:GetPos() + Vector(0, 0, 10), CurTime()
 		JMod.Sploom(self:GetOwner(), self:GetPos(), 20)
-		self:EmitSound("snd_jack_fragsplodeclose.ogg", 511, 140)
-		self:EmitSound("snd_jack_fragsplodeclose.ogg", 511, 140)
+		self:EmitSound("weapons/grenade/flashbang/snd_jack_fragsplodeclose.ogg", 511, 140)
+		self:EmitSound("weapons/grenade/flashbang/snd_jack_fragsplodeclose.ogg", 511, 140)
 		local plooie = EffectData()
 		plooie:SetOrigin(SelfPos)
 		util.Effect("eff_jack_gmod_flashbang", plooie, true, true)

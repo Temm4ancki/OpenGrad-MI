@@ -1,4 +1,4 @@
-SWEP.Base = 'salat_base' -- base
+SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "CZ-858 - SIB"
 SWEP.Author 				= "Ceská Zbrojovka"

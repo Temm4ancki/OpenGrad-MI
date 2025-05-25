@@ -1,4 +1,4 @@
-SWEP.Base = 'salat_base' -- base
+SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "HK416"
 SWEP.Instructions			= "Автоматическая винтовка под калибр 5,56х45"

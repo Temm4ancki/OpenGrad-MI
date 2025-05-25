@@ -15,15 +15,15 @@ if SERVER then
 		self:SetSolid(SOLID_VPHYSICS)
 	end
 
-    function ENT:Use(activator, caller)
+	function ENT:Use(activator, caller)
 		--[[net.Start("Box")
 		net.WriteEntity(activator)
 		net.Broadcast()]]
 		activator:ChatPrint("Sharik tupoy hurrep")
-		activator:EmitSound("snd_jack_hmcd_fart.wav")
-    end
+		activator:EmitSound("hg_homicide/sfx/hmcd_fart.ogg")
+	end
 else
-    --[[local openVgui = function(ent)
+	--[[local openVgui = function(ent)
         local panel = vgui.Create("DFrame")
         panel:SetSize(300,400)
         panel:Center()

@@ -70,12 +70,12 @@ end
 
 function SWEP:OnRemove() end
 
-hook.Add("Player Can Lisen","radio",function(output,input,isChat)
+hook.Add("Player Can Lisen","radio",function(output, input, isChat)
     local wep = output:GetWeapon("weapon_radio")
 
     if IsValid(wep) and wep:CanLisen(output,input,isChat) then
         if isChat then
-            for i,input in pairs(GetAll()) do
+            for i, input in pairs(GetAll()) do
                 if not wep:CanLisen(output,input,isChat) then continue end
 
                 wep:BippSound(input,140)

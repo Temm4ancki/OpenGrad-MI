@@ -5,15 +5,15 @@ SWEP.Base = "medkit"
 SWEP.PrintName = "Пустой пакет крови"
 SWEP.Author = "Homigrad"
 SWEP.Instructions = "Пакет ёмкостью 500мл для забора крови, наборы для определения группы крови в комплекте\nКАК ИСПОЛЬЗОВАТЬ: зажать на 2 секунды ЛКМ/ПКМ, чтобы влить в пакет кровь/вылить из пакета кровь (ЛКМ - действие с собой, ПКМ - действие с игроком)"
-
+SWEP.IconOverride = "vgui/icon/empty_blood_bag.png"
 SWEP.Spawnable = true
 SWEP.Category = "Медицина"
 
 SWEP.Slot = 3
 SWEP.SlotPos = 3
 
-SWEP.ViewModel = "models/zcity/other/bloodbag.mdl"
-SWEP.WorldModel = "models/zcity/other/bloodbag.mdl"
+SWEP.ViewModel = "models/weapons/medical/bloodbag/bloodbag.mdl"
+SWEP.WorldModel = "models/weapons/medical/bloodbag/bloodbag.mdl"
 
 SWEP.dwsPos = Vector(55,55,20)
 

@@ -5,15 +5,15 @@ SWEP.Base = "medkit"
 SWEP.PrintName = "Обезболивающее"
 SWEP.Author = "Homigrad"
 SWEP.Instructions = "Повышает скорость понижения боли"
-
+SWEP.IconOverride = "vgui/icon/painkillers.png"
 SWEP.Spawnable = true
 SWEP.Category = "Медицина"
 
 SWEP.Slot = 3
 SWEP.SlotPos = 3
 
-SWEP.ViewModel = "models/w_models/weapons/w_eq_painpills.mdl"
-SWEP.WorldModel = "models/w_models/weapons/w_eq_painpills.mdl"
+SWEP.ViewModel = "models/weapons/medical/painpills/w_painpills.mdl"
+SWEP.WorldModel = "models/weapons/medical/painpills/w_painpills.mdl"
 
 SWEP.dwsPos = Vector(10,10,10)
 

@@ -5,6 +5,7 @@ SWEP.Base = "medkit"
 SWEP.PrintName = "Мега Аптечка"
 SWEP.Author = "First AID"
 SWEP.Instructions = "на себя не юзается"
+SWEP.IconOverride = "vgui/icon/medkit.png"
 
 SWEP.Category = "Медицина"
 SWEP.Spawnable = true
@@ -12,8 +13,8 @@ SWEP.Spawnable = true
 SWEP.Slot = 3
 SWEP.SlotPos = 3
 
-SWEP.ViewModel = "models/w_models/weapons/w_eq_medkit.mdl"
-SWEP.WorldModel = "models/w_models/weapons/w_eq_medkit.mdl"
+SWEP.ViewModel = "models/weapons/medical/medkit/w_medkit.mdl"
+SWEP.WorldModel = "models/weapons/medical/medkit/w_medkit.mdl"
 SWEP.UseHands = true
 
 SWEP.DrawWeaponSelection = DrawWeaponSelection

@@ -1,4 +1,4 @@
-SWEP.Base = 'salat_base' -- base
+SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "UMP"
 SWEP.Instructions			= "Что может еще делать ПП? СТРЕЛЯТЬ В ЛИЦО!"

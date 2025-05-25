@@ -2,7 +2,7 @@ SWEP.Base = "weapon_hg_granade_base"
 
 SWEP.PrintName = "Осколочная Граната"
 SWEP.Author = "Homigrad"
-SWEP.Instructions = "Оснваная граната комбайнов, имеет очень убойную силу."
+SWEP.Instructions = "Оснваная граната комбайнов, имеет очень убойную силу.\nAlt+R сделать растяжку"
 SWEP.Category = "Гранаты"
 
 SWEP.Slot = 4

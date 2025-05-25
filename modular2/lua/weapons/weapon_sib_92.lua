@@ -1,4 +1,4 @@
-SWEP.Base = 'salat_base' -- base
+SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "Beretta 92FS - SIB"
 SWEP.Author 				= "Beretta"

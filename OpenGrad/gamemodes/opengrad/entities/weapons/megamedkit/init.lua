@@ -1,6 +1,6 @@
 include("shared.lua")
 
-local healsound = Sound("snd_jack_bandage.wav")
+local healsound = Sound("weapons/medical/snd_jack_bandage.ogg")
 
 function SWEP:Heal(ent)
     local usses

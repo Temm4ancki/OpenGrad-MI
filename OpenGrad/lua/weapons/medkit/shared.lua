@@ -5,15 +5,15 @@ SWEP.Base = "weapon_base"
 SWEP.PrintName = "Аптечка"
 SWEP.Author = "Homigrad"
 SWEP.Instructions = "Имеет в себе бинты и обезболивающие"
-
+SWEP.IconOverride = "vgui/icon/medkit.png"
 SWEP.Spawnable = true
 SWEP.Category = "Медицина"
 
 SWEP.Slot = 3
 SWEP.SlotPos = 3
 
-SWEP.ViewModel = "models/w_models/weapons/w_eq_medkit.mdl"
-SWEP.WorldModel = "models/w_models/weapons/w_eq_medkit.mdl"
+SWEP.ViewModel = "models/weapons/medical/medkit/w_medkit.mdl"
+SWEP.WorldModel = "models/weapons/medical/medkit/w_medkit.mdl"
 
 SWEP.Primary.ClipSize = -1
 SWEP.Primary.DefaultClip = -1
@@ -41,7 +41,7 @@ function SWEP:PostInit()
 end
 
 function SWEP:Initialize()
-	self:SetHoldType("slam")
+    self:SetHoldType("slam")
     self:PostInit()
 end
 

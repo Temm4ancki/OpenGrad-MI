@@ -106,7 +106,7 @@ function wick.makeT(ply)
     ply.nopain = true
 
     local playerCount = #player.GetAll()
-    local healthMultiplier = math.Clamp(playerCount * 100, 300, 2000) * 0.75
+    local healthMultiplier = math.Clamp(playerCount * 100, 300, 2000) * 0.55
     healthMultiplier = math.Round(healthMultiplier)
     timer.Simple(0.1, function()
         if IsValid(ply) then
@@ -259,7 +259,7 @@ function wick.PlayerSpawn(ply, teamID)
         timer.Simple(0.1, function()
             if IsValid(ply) then
                 local playerCount = #player.GetAll()
-                local healthMultiplier = math.Clamp(playerCount * 100, 300, 2000) * 0.75
+                local healthMultiplier = math.Clamp(playerCount * 100, 300, 2000) * 0.55
                 healthMultiplier = math.Round(healthMultiplier)
                 ply:SetMaxHealth(healthMultiplier)
                 ply:SetHealth(healthMultiplier)

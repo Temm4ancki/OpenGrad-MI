@@ -4,8 +4,8 @@ SWEP.PrintName = "База ближнего боя"
 
 SWEP.Category = "Ближний Бой"
 
-SWEP.Spawnable= false
-SWEP.AdminSpawnable= false
+SWEP.Spawnable = false
+SWEP.AdminSpawnable = false
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60

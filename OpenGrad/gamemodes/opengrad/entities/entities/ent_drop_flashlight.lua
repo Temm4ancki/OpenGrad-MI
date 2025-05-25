@@ -22,7 +22,7 @@ if SERVER then
         if not ply.allowFlashlights then
             --ply:AllowFlashlight(true)
             ply.allowFlashlights = true
-            ply:EmitSound("snd_jack_hmcd_flashlight.wav")
+            ply:EmitSound("utils/snd_jack_hmcd_flashlight.ogg")
             self:Remove()
         elseif not self:IsPlayerHolding() then
             ply:PickupObject(self)

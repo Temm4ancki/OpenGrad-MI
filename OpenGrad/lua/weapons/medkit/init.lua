@@ -31,7 +31,7 @@ function SWEP:SecondaryAttack()
 	end
 end
 
-local healsound = Sound("snd_jack_bandage.ogg")
+local healsound = Sound("weapons/medical/snd_jack_bandage.ogg")
 
 function SWEP:Heal(ent)
 	if not ent or not ent:IsPlayer() then sound.Play(healsound,ent:GetPos(),75,100,0.5) return true end

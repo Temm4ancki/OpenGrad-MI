@@ -1,42 +1,43 @@
-SWEP.Base                   = "weapon_base"
+--FIXME Бомба может заложиться в живого человека. Надо исправить
+SWEP.Base = "weapon_base"
 
-SWEP.PrintName 				= "Бомба в пропе"
-SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "ЛКМ, чтобы заложить в проп/поставить; ПКМ, чтобы взорвать"
-SWEP.Category 				= "Примочки убийцы"
+SWEP.PrintName = "Бомба в пропе"
+SWEP.Author = "Homigrad"
+SWEP.Instructions = "ЛКМ, чтобы заложить в проп/поставить; ПКМ, чтобы взорвать"
+SWEP.Category = "Примочки убийцы"
 
-SWEP.Spawnable 				= true
-SWEP.AdminOnly 				= false
+SWEP.Spawnable = true
+SWEP.AdminOnly = false
 SWEP.AutoSwitchFrom = false
 SWEP.AutoSwitchTo = false
 
-SWEP.Primary.ClipSize		= -1
-SWEP.Primary.DefaultClip	= -1
-SWEP.Primary.Automatic		= false
-SWEP.Primary.Ammo			= "none"
+SWEP.Primary.ClipSize = -1
+SWEP.Primary.DefaultClip = -1
+SWEP.Primary.Automatic = false
+SWEP.Primary.Ammo = "none"
 
-SWEP.Secondary.ClipSize		= -1
-SWEP.Secondary.DefaultClip	= -1
-SWEP.Secondary.Automatic	= false
-SWEP.Secondary.Ammo			= "none"
+SWEP.Secondary.ClipSize = -1
+SWEP.Secondary.DefaultClip = -1
+SWEP.Secondary.Automatic = false
+SWEP.Secondary.Ammo = "none"
 
-SWEP.Weight					= 5
-SWEP.AutoSwitchTo			= false
-SWEP.AutoSwitchFrom			= false
+SWEP.Weight = 5
+SWEP.AutoSwitchTo = false
+SWEP.AutoSwitchFrom = false
 
-SWEP.Slot					= 4
-SWEP.SlotPos				= 2
-SWEP.DrawAmmo				= true
-SWEP.DrawCrosshair			= false
+SWEP.Slot = 4
+SWEP.SlotPos = 2
+SWEP.DrawAmmo = true
+SWEP.DrawCrosshair = false
 
-SWEP.ViewModel				= "models/props_junk/cardboard_jox004a.mdl"
-SWEP.WorldModel				= "models/props_junk/cardboard_jox004a.mdl"
+SWEP.ViewModel = "models/props_junk/cardboard_box004a.mdl"
+SWEP.WorldModel = "models/props_junk/cardboard_box004a.mdl"
 
 SWEP.DrawWeaponSelection = DrawWeaponSelection
 SWEP.OverridePaintIcon = OverridePaintIcon
 
-SWEP.dwsPos = Vector(20,20,15)
-SWEP.dwsItemPos = Vector(0,0,5)
+SWEP.dwsPos = Vector(20, 20, 15)
+SWEP.dwsItemPos = Vector(0, 0, 5)
 
 if SERVER then
     local BigFireModels = {
@@ -51,32 +52,28 @@ if SERVER then
         ["models/props_junk/metalgascan.mdl"] = true,
         ["models/props_c17/canister01a.mdl"] = true,
         ["models/props_c17/canister02a.mdl"] = true
-
     }
 
     local function Bomb(ent)
-        local SelfPos,PowerMult,Model = ent:LocalToWorld(ent:OBBCenter()),6,ent:GetModel()
+        local SelfPos, PowerMult, Model = ent:LocalToWorld(ent:OBBCenter()), 6, ent:GetModel()
+        ent:EmitSound("weapons/t_hidebomb/nokia.ogg", 100)
 
+        timer.Simple(math.Rand(0.3, 0.4), function()
+            ParticleEffect("pcf_jack_groundsplode_large", SelfPos, vector_up:Angle())
+            util.ScreenShake(SelfPos, 999, 999, 1, 3000)
+            sound.Play("BaseExplosionEffect.Sound", SelfPos, 120, math.random(90, 110))
 
-        ent:EmitSound("hg_homicide/traitor/nokia.ogg",100)
-
-		timer.Simple(math.Rand(0.3,0.4),function()
-            ParticleEffect("pcf_jack_groundsplode_large",SelfPos,vector_up:Angle())
-            util.ScreenShake(SelfPos,999,999,1,3000)
-            sound.Play("BaseExplosionEffect.Sound", SelfPos,120,math.random(90,110))
-
-            for i = 1,4 do
-                sound.Play("explosions/doi_ty_01_close.wav",SelfPos,140,math.random(80,110))
+            for i = 1, 4 do
+                sound.Play("utils/explosions/doi_ty_01_close.ogg", SelfPos, 140, math.random(80, 110))
             end
 
             if util.GetSurfaceIndex(ent:GetBoneSurfaceProp(0)) == 3 or util.GetSurfaceIndex(ent:GetBoneSurfaceProp(0)) == 66 then
                 JMod.FragSplosion(ent, SelfPos + Vector(0, 0, 20), 1024, 50, 3500, ent.owner or game.GetWorld())
             end
 
-            timer.Simple(.1,function()
+            timer.Simple(.1, function()
                 for i = 1, 5 do
                     local Tr = util.QuickTrace(SelfPos, VectorRand() * 20)
-
                     if Tr.Hit then
                         util.Decal("Scorch", Tr.HitPos + Tr.HitNormal, Tr.HitPos - Tr.HitNormal)
                     end
@@ -88,7 +85,7 @@ if SERVER then
 
             if BigFireModels[Model] then
                 for i = 1, 25 do
-                    local FireVec = ( VectorRand() * .3 + Vector(0, 0, .3)):GetNormalized()
+                    local FireVec = (VectorRand() * .3 + Vector(0, 0, .3)):GetNormalized()
                     FireVec.z = FireVec.z / 2
                     local Flame = ents.Create("ent_jack_gmod_eznapalm")
                     Flame:SetPos(SelfPos + Vector(0, 0, 50))
@@ -103,7 +100,7 @@ if SERVER then
                 end
             elseif FireModels[Model] then
                 for i = 1, 7 do
-                    local FireVec = ( VectorRand() * .3 + Vector(0, 0, .3)):GetNormalized()
+                    local FireVec = (VectorRand() * .3 + Vector(0, 0, .3)):GetNormalized()
                     FireVec.z = FireVec.z / 2
                     local Flame = ents.Create("ent_jack_gmod_eznapalm")
                     Flame:SetPos(SelfPos + Vector(0, 0, 50))
@@ -123,14 +120,15 @@ if SERVER then
                 --if RagdollOwner(ent) then RagdollOwner(ent):KillSilent() end
                 ent:Remove()
             end
-            timer.Simple(0,function()
+
+            timer.Simple(0, function()
                 local ZaWarudo = game.GetWorld()
                 local Infl, Att = (IsValid(ent) and ent) or ZaWarudo, (IsValid(ent) and IsValid(ent.owner) and ent.owner) or (IsValid(ent) and ent) or ZaWarudo
-                util.BlastDamage(Infl,Att,SelfPos,60 * PowerMult,120 * PowerMult)
-
+                util.BlastDamage(Infl, Att, SelfPos, 60 * PowerMult, 120 * PowerMult)
                 --util.BlastDamage(Infl,Att,SelfPos,20 * PowerMult,1000 * PowerMult)
             end)
-		end)
+        end)
+
         if IsValid(ent.parentBomb) then ent.parentBomb:Remove() end
     end
 
@@ -147,7 +145,7 @@ if SERVER then
 
         local tr = {}
         tr.start = owner:GetAttachment(owner:LookupAttachment("eyes")).Pos
-        local dir = Vector(1,0,0)
+        local dir = Vector(1, 0, 0)
         dir:Rotate(owner:EyeAngles())
         tr.endpos = tr.start + dir * 75
         tr.filter = owner
@@ -159,7 +157,6 @@ if SERVER then
         if not IsValid(ent) then
             ent = ents.Create("prop_physics")
             ent:SetModel("models/props_junk/cardboard_box004a.mdl")
-
             ent:SetPos(traceResult.HitPos)
             ent:Spawn()
         end
@@ -170,9 +167,9 @@ if SERVER then
         self:GetOwner().bomb = owner
         ent.parentBomb = self
         ent.owner = self:GetOwner()
-        ent:CallOnRemove("homigrad-bomb",Bomb)
-        ent:EmitSound("buttons/button24.wav",60,50)
-        self:SetNWBool("hasbomb",true)
+        ent:CallOnRemove("homigrad-bomb", Bomb)
+        ent:EmitSound("buttons/button24.wav", 60, 50)
+        self:SetNWBool("hasbomb", true)
     end
 
     function SWEP:SecondaryAttack()
@@ -193,23 +190,25 @@ else
 
         self.mdl = self.mdl or false
         if not IsValid(self.mdl) then
-            self.mdl = ClientsideModel("models/props_junk/cardboard_jox004a.mdl")
+            self.mdl = ClientsideModel("models/props_junk/cardboard_box004a.mdl")
             self.mdl:SetNoDraw(true)
             self.mdl:SetModelScale(0.5)
         end
-        self:CallOnRemove("huyhuy",function() self.mdl:Remove() end)
+
+        self:CallOnRemove("huyhuy", function() self.mdl:Remove() end)
         local matrix = self:GetOwner():GetBoneMatrix(11)
         if not matrix then return end
 
-        self.mdl:SetRenderOrigin(matrix:GetTranslation()+matrix:GetAngles():Forward()*3+matrix:GetAngles():Right()*3)
+        self.mdl:SetRenderOrigin(matrix:GetTranslation() + matrix:GetAngles():Forward() * 3 + matrix:GetAngles():Right() * 3)
         self.mdl:SetRenderAngles(matrix:GetAngles())
         self.mdl:DrawModel()
     end
+
     function SWEP:DrawHUD()
         local owner = self:GetOwner()
         local tr = {}
         tr.start = owner:GetAttachment(owner:LookupAttachment("eyes")).Pos
-        local dir = Vector(1,0,0)
+        local dir = Vector(1, 0, 0)
         dir:Rotate(owner:EyeAngles())
         tr.endpos = tr.start + dir * 75
         tr.filter = owner
@@ -228,7 +227,7 @@ else
             surface.SetDrawColor(Color(255, 255, 255, 255))
             draw.NoTexture()
             Circle(traceResult.HitPos:ToScreen().x, traceResult.HitPos:ToScreen().y, 5 / frac, 32)
-            draw.DrawText( "Заложить бомбу "..tostring((util.GetSurfaceIndex(ent:GetBoneSurfaceProp(0)) == 3 or util.GetSurfaceIndex(ent:GetBoneSurfaceProp(0)) == 66) and "в металлический проп" or ""), "TargetID", traceResult.HitPos:ToScreen().x, traceResult.HitPos:ToScreen().y - 40, color_white, TEXT_ALIGN_CENTER )
+            draw.DrawText("Заложить бомбу " .. tostring((util.GetSurfaceIndex(ent:GetBoneSurfaceProp(0)) == 3 or util.GetSurfaceIndex(ent:GetBoneSurfaceProp(0)) == 66) and "в металлический проп" or ""), "TargetID", traceResult.HitPos:ToScreen().x, traceResult.HitPos:ToScreen().y - 40, color_white, TEXT_ALIGN_CENTER)
         end
     end
 end

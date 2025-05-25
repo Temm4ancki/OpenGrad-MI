@@ -361,7 +361,7 @@ function SWEP:ApplyForce() --!! Функция спизженная из джи�
 				surface.SetDrawColor(Color(255, 255, 255, 255))
 				draw.NoTexture()
 				Circle(x, y, 5 / frac, 32)
-				draw.DrawText(ply and ("раzсвязать "..ply:Nick()) or "", "TargetID", x, y - 40, color_white, TEXT_ALIGN_CENTER )
+				draw.DrawText(ply and ("Разсвязать " .. ply:Nick()) or "", "TargetID", x, y - 40, color_white, TEXT_ALIGN_CENTER )
 				if self.CuffTime then
 					surface.DrawRect(x - 50,y + 50,100 - math.max((self.CuffTime - CurTime() + cuffTime) * 100,0),25)
 				end
@@ -382,7 +382,7 @@ function SWEP:ApplyForce() --!! Функция спизженная из джи�
 					if (self.CPRThink or 0) < CurTime() then
 						self.CPRThink = CurTime() + 1
 						ply.CPR = math.max(ply.CPR + 50,0)
-						
+
 						ply.o2 = math.min(ply.o2 + 0.5,1)
 						self.CarryEnt:EmitSound("physics/body/body_medium_impact_soft"..tostring(math.random(7))..".wav")
 					end

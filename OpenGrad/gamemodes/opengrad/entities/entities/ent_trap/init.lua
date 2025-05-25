@@ -1,15 +1,15 @@
-AddCSLuaFile( "cl_init.lua" ) 
-AddCSLuaFile( "shared.lua" ) 
-include( 'shared.lua' ) 
-ENT.SWEP="weapon_trap"
+AddCSLuaFile("cl_init.lua")
+AddCSLuaFile("shared.lua")
+include('shared.lua')
+ENT.SWEP = "weapon_trap"
 
-function ENT:Initialize() 
-	self:SetUseType( SIMPLE_USE ) 
-	self:SetModel( "models/trap/trap.mdl" ) 
-	self:SetColor(Color(155,155,155,255))
-	self:PhysicsInit( SOLID_VPHYSICS ) 
-	self:SetMoveType(MOVETYPE_VPHYSICS) 
-	self:SetSolid( SOLID_VPHYSICS ) 
+function ENT:Initialize()
+	self:SetUseType(SIMPLE_USE)
+	self:SetModel("models/trap/trap.mdl")
+	self:SetColor(Color(155, 155, 155, 255))
+	self:PhysicsInit(SOLID_VPHYSICS)
+	self:SetMoveType(MOVETYPE_VPHYSICS)
+	self:SetSolid(SOLID_VPHYSICS)
 	self:GetPhysicsObject():Wake()
 	self:DrawShadow(true)
 
@@ -17,21 +17,20 @@ function ENT:Initialize()
 		self:SetMoveType(MOVETYPE_NONE) 
 	end)]]
 end
- 
+
 function ENT:Use(ply)
-	if self:GetCollisionGroup() == COLLISION_GROUP_DEBRIS then 
-		self:SetModel( "models/trap/trap.mdl" ) 
+	if self:GetCollisionGroup() == COLLISION_GROUP_DEBRIS then
+		self:SetModel("models/trap/trap.mdl")
 		self:SetCollisionGroup(COLLISION_GROUP_NONE)
-		
+
 		if IsValid(self.Traped) and self.Traped.IsWeld >= 1 then
 			self.Traped.IsWeld = math.max(self.Traped.IsWeld - 1, 0)
 			print(self.Traped.IsWeld)
 		end
 
 		if IsValid(self.Traped) then
-			for weldEntity,self in pairs(self.Traped.weld) do
+			for weldEntity, self in pairs(self.Traped.weld) do
 				self.Traped.weld[weldEntity] = nil
-
 				weldEntity:Remove()
 			end
 		end
@@ -39,7 +38,7 @@ function ENT:Use(ply)
 		self:PickUp(ply)
 	end
 end
- 
+
 function ENT:PickUp(ply)
 	local wep = self.SWEP
 
@@ -49,19 +48,18 @@ function ENT:PickUp(ply)
 		self:Remove()
 	end
 end
- 
-function ENT:Touch( entity ) 
-	if entity:IsPlayer() and IsValid(entity) then 
 
-		if self:GetCollisionGroup() == COLLISION_GROUP_DEBRIS then return false end 
+function ENT:Touch(entity)
+	if entity:IsPlayer() and IsValid(entity) then
+
+		if self:GetCollisionGroup() == COLLISION_GROUP_DEBRIS then return false end
 
 		local ply = entity
-
 		Faking(ply)
-		
-		self:SetModel("models/trap/trap_close.mdl") 
-		self:SetCollisionGroup(COLLISION_GROUP_DEBRIS) 
-		ply:EmitSound( "trap/trap.mp3" ) 
+
+		self:SetModel("models/trap/trap_close.mdl")
+		self:SetCollisionGroup(COLLISION_GROUP_DEBRIS)
+		ply:EmitSound("trap/trap.mp3")
 
 		--[[local dmg = DamageInfo()
 		dmg:SetDamage(math.random(15,20))
@@ -72,7 +70,6 @@ function ENT:Touch( entity )
 		ply.Bloodlosing = ply.Bloodlosing + 10
 
 		local rag = ply:GetNWEntity("Ragdoll")
-
 		local legbone = {
 			"ValveBiped.Bip01_L_Foot",
 			"ValveBiped.Bip01_R_Foot",
@@ -84,46 +81,43 @@ function ENT:Touch( entity )
 
 		if bonerand == "ValveBiped.Bip01_L_Foot" then
 			entity.LeftLeg = 0.6
-            if entity.msgLeftLeg < CurTime() then
-                entity.msgLeftLeg = CurTime() + 1
-                entity:ChatPrint("Левая нога повреждена.")
-                rag:EmitSound("NPC_Barnacle.BreakNeck",70,65,0.4,CHAN_ITEM)
-            end
+			if entity.msgLeftLeg < CurTime() then
+				entity.msgLeftLeg = CurTime() + 1
+				entity:ChatPrint("Левая нога повреждена.")
+				rag:EmitSound("NPC_Barnacle.BreakNeck", 70, 65, 0.4, CHAN_ITEM)
+			end
 		else
 			entity.RightLeg = 0.6
-            if entity.msgRightLeg < CurTime() then
-                ply.msgRightLeg = CurTime() + 1
-                ply:ChatPrint("Правая нога повреждена.")
-                rag:EmitSound("NPC_Barnacle.BreakNeck",70,65,0.4,CHAN_ITEM)
-            end
+			if entity.msgRightLeg < CurTime() then
+				ply.msgRightLeg = CurTime() + 1
+				ply:ChatPrint("Правая нога повреждена.")
+				rag:EmitSound("NPC_Barnacle.BreakNeck", 70, 65, 0.4, CHAN_ITEM)
+			end
 		end
 
-		local bone = rag:LookupBone( bonerand )
-
+		local bone = rag:LookupBone(bonerand)
 		local BoneObj = rag:GetPhysicsObjectNum(rag:TranslateBoneToPhysBone(bone))
-
 		BoneObj:SetPos(self:GetPos())
 
 		local PhysBone = rag:TranslateBoneToPhysBone(bone)
 
 		local weldEntity = constraint.Weld(rag, self, PhysBone or 0, 0, 120000, 0, false, false)
-		
 		rag.weld = rag.weld or {}
 		rag.weld[weldEntity] = self
 
 		self.Traped = rag
-	end 
-end 
+	end
+end
 
-function ENT:OnTakeDamage(dmg) 
+function ENT:OnTakeDamage(dmg)
 	self:SetModel("models/trap/trap_close.mdl")
 	self:SetCollisionGroup(COLLISION_GROUP_DEBRIS)
-	self:EmitSound( "trap/trap.mp3" )
+	self:EmitSound("trap/trap.mp3")
 end
 
 function ENT:OnRemove()
 	if IsValid(self.Traped) then
-		for weldEntity,self in pairs(self.Traped.weld) do
+		for weldEntity, self in pairs(self.Traped.weld) do
 			self.Traped.weld[weldEntity] = nil
 
 			weldEntity:Remove()
@@ -133,6 +127,4 @@ function ENT:OnRemove()
 	end
 end
 
-if(CLIENT)then
-	--
-end
+if CLIENT then end

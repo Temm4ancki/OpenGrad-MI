@@ -47,7 +47,7 @@ function SWEP:Think()
 			--local compatible = bloodtypes[bloodtranslate[self.bloodtype]][bloodtranslate[ent.bloodtype]]
 			--owner:ChatPrint(not self.bloodinside and tostring(blood_compatibility))
 		end
-	
+
 		if ent then
 			if self.zabortime and (self.zabortime + 2) <= CurTime() then
 				self:Heal(ent)
@@ -68,7 +68,7 @@ function SWEP:Think()
 			ent:EmitSound(healsound2)
 			owner:SetAnimation(PLAYER_ATTACK1)
 			ent.bloodtype = ent.bloodtype or math.random(1,8)
-			owner:ChatPrint(self.bloodinside and bloodtranslate[self.bloodtype].." -> "..bloodtranslate[ent.bloodtype] or bloodtranslate[ent.bloodtype].." -> пакет для крови")
+			owner:ChatPrint(self.bloodinside and bloodtranslate[self.bloodtype].. " -> " ..bloodtranslate[ent.bloodtype] or bloodtranslate[ent.bloodtype].." -> пакет для крови")
 			--local compatible = bloodtypes[bloodtranslate[self.bloodtype]][bloodtranslate[ent.bloodtype]]
 			--owner:ChatPrint(not self.bloodinside and tostring(blood_compatibility))
 		end
@@ -131,7 +131,7 @@ function SWEP:Heal(ent)
 			net.WriteEntity(self)
 			net.WriteBool(false)
 			net.Broadcast()
-	
+
 			ent:EmitSound(healsound1)
 		end
 	end

@@ -1,4 +1,4 @@
-SWEP.Base = 'salat_base' -- base 
+SWEP.Base = "salat_base" -- base 
 
 SWEP.PrintName 				= "MP7"
 SWEP.Instructions			= "Пистолет-пулемёт под калибр 4,6×30"

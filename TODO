@@ -3,58 +3,58 @@ gamemodes:
     entities:
       entities:
         ent_trap:
-          ☐ cl_init.lua
-          ☐ init.lua
-          ☐ shared.lua
+          ✔ cl_init.lua @done(25-05-25 14:03)
+          ✔ init.lua @done(25-05-25 14:03)
+          ✔ shared.lua @done(25-05-25 14:03)
 
-        ☐ ent_aidbox_big.lua
-        ☐ ent_drop_flashlight.lua
-        ☐ ent_hg_cyanid.lua
-        ☐ ent_othershit_box.lua
+        ✘ ent_aidbox_big.lua @cancelled(25-05-25 14:22)
+        ✔ ent_drop_flashlight.lua @done(25-05-25 14:03)
+        ✔ ent_hg_cyanid.lua @done(25-05-25 14:03)
+        ✔ ent_othershit_box.lua @done(25-05-25 14:03)
 
       weapons:
         megamedkit:
-          ☐ init.lua
-          ☐ shared.lua
+          ✔ init.lua @done(25-05-25 13:32)
+          ✔ shared.lua @done(25-05-25 13:32)
 
         weapon_handcuffs:
-          ☐ cl_init.lua
-          ☐ init.lua
-          ☐ shared.lua
+          ✔ cl_init.lua @done(25-05-25 13:18)
+          ✔ init.lua @done(25-05-25 13:18)
+          ✔ shared.lua @done(25-05-25 13:18)
 
         weapon_hg_granade_base:
-          ☐ shared.lua
+          ✔ shared.lua @done(25-05-25 01:39)
 
         weapon_radio:
-          ☐ init.lua
-          ☐ shared.lua
+          ✔ init.lua @done(25-05-25 13:18)
+          ✔ shared.lua @done(25-05-25 13:18)
 
         weapon_trap:
-          ☐ shared.lua
+          ✔ shared.lua @done(25-05-25 13:18)
 
         weapon_zs_zombie:
-          ☐ cl_init.lua
-          ☐ init.lua
-          ☐ shared.lua
+          ✔ cl_init.lua @done(25-05-25 13:18)
+          ✔ init.lua @done(25-05-25 13:18)
+          ✔ shared.lua @done(25-05-25 13:18)
 
-        ☐ weapon_binokle.lua
-        ☐ weapon_gredammo.lua
-        ☐ weapon_gredmg34.lua
-        ☐ weapon_gredmimomet.lua
-        ☐ weapon_hg_f1.lua
-        ☐ weapon_hg_flashbang.lua
-        ☐ weapon_hg_hl2.lua
-        ☐ weapon_hg_molotov.lua
-        ☐ weapon_hg_rgd5.lua
-        ☐ weapon_hg_t_syringepoison.lua
-        ☐ weapon_hg_t_vxpoison.lua
-        ☐ weapon_hidebomb.lua
-        ☐ weapon_jahidka.lua
-        ☐ weapon_molotok.lua
-        ☐ weapon_per4ik.lua
-        ☐ weapon_phone.lua
-        ☐ weapon_radio.lua
-        ☐ weapon_taser.lua
+        ✔ weapon_binokle.lua @done(25-05-25 01:38)
+        ✘ weapon_gredammo.lua @cancelled(25-05-25 01:38)
+        ✘ weapon_gredmg34.lua @cancelled(25-05-25 01:38)
+        ✘ weapon_gredmimomet.lua @cancelled(25-05-25 01:38)
+        ✔ weapon_hg_f1.lua @done(25-05-25 01:38)
+        ✔ weapon_hg_flashbang.lua @done(25-05-25 01:38)
+        ✔ weapon_hg_hl2.lua @done(25-05-25 01:38)
+        ✔ weapon_hg_molotov.lua @done(25-05-25 01:38)
+        ✔ weapon_hg_rgd5.lua @done(25-05-25 01:38)
+        ✔ weapon_hg_t_syringepoison.lua @done(25-05-25 12:43)
+        ✔ weapon_hg_t_vxpoison.lua @done(25-05-25 12:43)
+        ✔ weapon_hidebomb.lua @done(25-05-25 12:43)
+        ✔ weapon_jahidka.lua @done(25-05-25 12:43)
+        ✔ weapon_molotok.lua @done(25-05-25 12:43)
+        ✔ weapon_per4ik.lua @done(25-05-25 12:52)
+        ✘ weapon_phone.lua @cancelled(25-05-25 13:06)
+        ✔ weapon_radio.lua @done(25-05-25 13:06)
+        ✔ weapon_taser.lua @done(25-05-25 13:06)
 
     gamemode:
       game:
@@ -516,11 +516,11 @@ lua:
       ☐ shared.lua
       ☐ weps.lua
 
-    ☐ ent_hgjack_f1nade.lua
-    ☐ ent_hgjack_flashbang.lua
-    ☐ ent_hgjack_hl2nade.lua
-    ☐ ent_hgjack_molotov.lua
-    ☐ ent_hgjack_rgd5nade.lua
+    ✔ ent_hgjack_f1nade.lua @done(25-05-25 01:39)
+    ✔ ent_hgjack_flashbang.lua @done(25-05-25 01:39)
+    ✔ ent_hgjack_hl2nade.lua @done(25-05-25 01:39)
+    ✔ ent_hgjack_molotov.lua @done(25-05-25 01:39)
+    ✔ ent_hgjack_rgd5nade.lua @done(25-05-25 01:39)
     ☐ ent_hgjack_smoke.lua
     ☐ ent_jack_aidbox.lua
     ☐ ent_jack_experimental_light_base.lua
@@ -879,36 +879,36 @@ lua:
 
   weapons:
     adrenaline:
-      ☐ init.lua
-      ☐ shared.lua
+      ✔ init.lua @done(25-05-25 15:20)
+      ✔ shared.lua @done(25-05-25 15:20)
 
     blood_bag:
-      ☐ init.lua
-      ☐ shared.lua
+      ✔ init.lua @done(25-05-25 15:20)
+      ✔ shared.lua @done(25-05-25 15:20)
 
     gmod_tool:
       stools:
-        ☐ jmod_deposit.lua
+        ✘ jmod_deposit.lua @cancelled(25-05-25 15:21)
 
     med_band_big:
-      ☐ init.lua
-      ☐ shared.lua
+      ✔ init.lua @done(25-05-25 15:21)
+      ✔ shared.lua @done(25-05-25 15:21)
 
     med_band_small:
-      ☐ init.lua
-      ☐ shared.lua
+      ✔ init.lua @done(25-05-25 15:21)
+      ✔ shared.lua @done(25-05-25 15:21)
 
     medkit:
-      ☐ init.lua
-      ☐ shared.lua
+      ✔ init.lua @done(25-05-25 15:21)
+      ✔ shared.lua @done(25-05-25 15:21)
 
     morphine:
-      ☐ init.lua
-      ☐ shared.lua
+      ✔ init.lua @done(25-05-25 15:21)
+      ✔ shared.lua @done(25-05-25 15:21)
 
     painkiller:
-      ☐ init.lua
-      ☐ shared.lua
+      ✔ init.lua @done(25-05-25 15:21)
+      ✔ shared.lua @done(25-05-25 15:21)
 
     weapon_hg_melee_base:
       ☐ shared.lua

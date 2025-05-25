@@ -4,16 +4,17 @@ SWEP.PrintName = "Коктейль Молотова"
 SWEP.Author = "Homigrad"
 SWEP.Instructions = "Стеклянная бутылка, содержащая горючую жидкость и запал"
 SWEP.Category = "Гранаты"
+SWEP.IconOverride = "vgui/icon/molotov.png"
 
 SWEP.Slot = 4
 SWEP.SlotPos = 2
 SWEP.Spawnable = true
 
-SWEP.ViewModel = "models/w_models/weapons/w_eq_molotov.mdl"
-SWEP.WorldModel = "models/w_models/weapons/w_eq_molotov.mdl"
+SWEP.ViewModel = "models/weapons/grenade/molotov/w_molotov.mdl"
+SWEP.WorldModel = "models/weapons/grenade/molotov/w_molotov.mdl"
 
 SWEP.Granade = "ent_hgjack_molotov"
-SWEP.DoNotArm = true 
+SWEP.DoNotArm = true
 
 local angBack = Angle(0,0,180)
 function SWEP:DrawWorldModel()
@@ -32,7 +33,7 @@ function SWEP:DrawWorldModel()
     local matrix = self:GetOwner():GetBoneMatrix(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Hand"))
     if not matrix then return end
 
-    self.mdl:SetRenderOrigin(matrix:GetTranslation()+matrix:GetAngles():Forward()*3+matrix:GetAngles():Right()*3)
-    self.mdl:SetRenderAngles(matrix:GetAngles()+angBack)
+    self.mdl:SetRenderOrigin(matrix:GetTranslation() + matrix:GetAngles():Forward() * 3 + matrix:GetAngles():Right() * 3)
+    self.mdl:SetRenderAngles(matrix:GetAngles() + angBack)
     self.mdl:DrawModel()
 end

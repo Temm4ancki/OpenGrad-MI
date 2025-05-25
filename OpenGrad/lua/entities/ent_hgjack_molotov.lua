@@ -7,7 +7,7 @@ ENT.Category = "JModHomigrad"
 ENT.Spawnable = true
 ENT.Material = ""
 ENT.MiniNadeDamage = 35
-ENT.Model = "models/w_models/weapons/w_eq_molotov.mdl"
+ENT.Model = "models/weapons/grenade/molotov/w_molotov.mdl"
 
 ENT.Hints = {"mininade"}
 
@@ -19,7 +19,7 @@ if SERVER then
 			self:Detonate()
 		else
 			if data.DeltaTime > 0.2 and data.Speed > 30 then
-				local sound = Sound("physics/glass/glass_bottle_impact_hard"..math.random(1,3)..".wav")
+				local sound = Sound("physics/glass/glass_bottle_impact_hard" .. math.random(1,3) .. ".wav")
 				self:EmitSound(sound)
 			end
 		end
@@ -65,7 +65,7 @@ if SERVER then
 			end
 		end
 	end
-	
+
 	function ENT:Detonate()
 		if self.Exploded then return end
 		self.Exploded = true

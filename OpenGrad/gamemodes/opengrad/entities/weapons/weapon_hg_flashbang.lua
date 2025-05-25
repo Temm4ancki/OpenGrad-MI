@@ -4,16 +4,17 @@ SWEP.PrintName = "Светошумовая Граната"
 SWEP.Author = "Homigrad"
 SWEP.Instructions = "Специальное средство несмертельного действия, оказывающие на человека светозвуковое и осколочное воздействие."
 SWEP.Category = "Гранаты"
+SWEP.IconOverride = "vgui/icon/flashbang.png"
 
 SWEP.Slot = 4
 SWEP.SlotPos = 2
 SWEP.Spawnable = true
 
-SWEP.ViewModel = "models/jmod/explosives/grenades/flashbang/flashbang.mdl"
-SWEP.WorldModel = "models/jmod/explosives/grenades/flashbang/flashbang.mdl"
+SWEP.ViewModel = "models/weapons/grenade/flashbang/flashbang.mdl"
+SWEP.WorldModel = "models/weapons/grenade/flashbang/flashbang.mdl"
 
 SWEP.Granade = "ent_hgjack_flashbang"
-SWEP.DoNotArm = true 
+SWEP.DoNotArm = true
 
 function SWEP:DrawWorldModel()
     local owner = self:GetOwner()
@@ -32,7 +33,7 @@ function SWEP:DrawWorldModel()
     local matrix = self:GetOwner():GetBoneMatrix(11)
     if not matrix then return end
 
-    mdl:SetRenderOrigin(matrix:GetTranslation()+matrix:GetAngles():Forward()*4.5+matrix:GetAngles():Right()*2)
+    mdl:SetRenderOrigin(matrix:GetTranslation() + matrix:GetAngles():Forward() * 4.5 + matrix:GetAngles():Right() * 2)
     mdl:SetRenderAngles(matrix:GetAngles() + Angle(0,0,180))
     mdl:DrawModel()
 end

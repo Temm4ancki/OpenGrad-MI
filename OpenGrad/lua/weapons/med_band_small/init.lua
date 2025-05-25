@@ -1,7 +1,7 @@
 include("shared.lua")
 
-local healsound1 = Sound("snd_jack_hmcd_bandage.wav")
-local healsound2 = Sound("snd_jack_hmcd_bandage.wav")
+local healsound1 = Sound("weapons/medical/snd_jack_bandage.ogg")
+local healsound2 = Sound("weapons/medical/snd_jack_bandage.ogg")
 
 function SWEP:Heal(ent)
 	if not ent or not ent:IsPlayer() then 

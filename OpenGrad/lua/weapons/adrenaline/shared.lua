@@ -5,15 +5,15 @@ SWEP.Base = "medkit"
 SWEP.PrintName = "Адреналин"
 SWEP.Author = "Homigrad"
 SWEP.Instructions = "Гормон сужает сосуды, особенно брюшной полости. Объём крови в организме перераспределяется, из печени и селезёнки она оттекает в сосуды тела, пополняя объём циркулирующей в них крови, вследствие чего сосуды, ведущие к сердцу и мозгу, расширяются, кровоснабжение органов улучшается"
-
+SWEP.IconOverride = "vgui/icon/adrenaline.png"
 SWEP.Spawnable = true
 SWEP.Category = "Медицина"
 
 SWEP.Slot = 3
 SWEP.SlotPos = 3
 
-SWEP.ViewModel = "models/weapons/w_models/w_jyringe_jroj.mdl"
-SWEP.WorldModel = "models/weapons/w_models/w_jyringe_jroj.mdl"
+SWEP.ViewModel = "models/weapons/medical/adrenaline/w_adrenaline.mdl"
+SWEP.WorldModel = "models/weapons/medical/adrenaline/w_adrenaline.mdl"
 
 SWEP.dwsPos = Vector(7,7,7)
 SWEP.dwsItemPos = Vector(2,0,2)

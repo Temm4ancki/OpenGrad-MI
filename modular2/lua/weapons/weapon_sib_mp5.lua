@@ -1,5 +1,5 @@
 
-SWEP.Base = 'salat_base' -- base
+SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "MP5A3 - SIB"
 SWEP.Author 				= "Heckler & Koch"

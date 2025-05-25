@@ -1,4 +1,4 @@
-SWEP.Base = 'salat_base' -- base
+SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "SKS - SIB"
 SWEP.Author 				= "Adolf Simonov"
