@@ -1,9 +1,9 @@
-SWEP.Base = 'weapon_base' -- base
-SWEP.PrintName = "weapon_sib_base"
-SWEP.Author = "sadsalat"
-SWEP.Instructions = "Salatis Imersive Base"
+SWEP.Base = "weapon_base"
+SWEP.PrintName = "watch_kkhta"
+SWEP.Author = "koishi"
+SWEP.Instructions = "shoot to kill."
 SWEP.Purpose = "Raise weapon - Hold RMB\nOn Rised: Rise sight - MWUP, Down sight - MWDOWN\nShoot - LMB"
-SWEP.Category = "[Homicbox]"
+SWEP.Category = "md3"
 SWEP.Spawnable = false
 SWEP.AdminOnly = false
 SWEP.HoldType = "revolver"
@@ -173,7 +173,7 @@ hook.Add("Think", "fwep-customThinker", function()
 		end
 
 		local owner = wep:GetOwner()
-		if not IsValid(owner) or (owner:IsPlayer() and not owner:Alive()) or owner:GetActiveWeapon() ~= wep then --wtf i dont know
+		if not IsValid(owner) or (owner:IsPlayer() and not owner:Alive()) then --wtf i dont know
 			continue
 		end
 
@@ -213,7 +213,7 @@ function SWEP:Step()
 
 	local trdistance = math.Clamp(tr.HitPos:Distance(tr.StartPos) / 40, 0, 1)
 	-- SightUp function
-	if SERVER then self:SetNWBool("Sighted", trdistance > .9 and (not self.Osmotr) and ply:KeyDown(IN_ATTACK2)) end
+	if SERVER then self:SetNWBool("Sighted", trdistance > .9 and ply:KeyDown(IN_ATTACK2)) end
 	if (not self.Sightded and not self:GetNWBool("Reloading") or ply:IsSprinting()) and not self.Osmotr then
 		self.Clavicle = LerpAngle(0.1 - math.Clamp(self.Mobility / 70, 0, 0.035), self.Clavicle or zeroAng, (self.HoldType == "revolver" and Angle(0, 0, -38)) or Angle(5, 20, -35))
 		self.Head = LerpAngle(0.1, self.Head or zeroAng, zeroAng)

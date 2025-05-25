@@ -221,7 +221,6 @@ function SWEP:IsReloaded()
 	return timer.Exists("reload"..self:EntIndex())
 end
 
-
 function SWEP:IsScope()
 	local ply = self:GetOwner()
 	if ply:IsNPC() then return end

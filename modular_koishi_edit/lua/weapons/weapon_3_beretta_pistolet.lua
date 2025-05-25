@@ -1,9 +1,9 @@
-SWEP.Base = 'salat_base' -- base
+SWEP.Base = 'koishi_sweps' -- base
 
 SWEP.PrintName 				= "Beretta 92FS - SIB"
 SWEP.Author 				= "Beretta"
 SWEP.Instructions			= "No bang! Hold on!"
-SWEP.Category 				= "Оружие"
+SWEP.Category 				= "md3"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
