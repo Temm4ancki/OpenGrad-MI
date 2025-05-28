@@ -16,36 +16,44 @@ local FakeNames = {
         "Евгений"
     },
     female = {
-        "Mary",
-        "Linda",
-        "Patricia",
-        "Jennifer",
-        "Elizabeth",
-        "Barbara",
-        "Susan",
-        "Jessica",
-        "Sarah",
-        "Karen",
+        "Мария",
+        "Анна",
+        "Екатерина",
+        "Ольга",
+        "Ирина",
+        "Наталья",
+        "Светлана",
+        "Татьяна",
+        "Елена",
+        "Алиса",
     },
 }
 
 local EntityMeta = FindMetaTable("Entity")
 
 function EntityMeta:SetFakeName()
-    self.FakeName = self:GenerateFakeName("male")
+    local model = self:GetModel()
+
+    local gender = "male"
+    if isstring(model) and string.find(string.lower(model), "female") then
+        gender = "female"
+    end
+
+    self.FakeGender = gender
+    self.FakeName = self:GenerateFakeName(gender)
+
     if roundActiveName == "homicide" then
-        self:SetNWString("FakeName",self.FakeName)
+        self:SetNWString("FakeName", self.FakeName)
     else
-        self:SetNWString("FakeName",self:Nick())
+        self:SetNWString("FakeName", self:Nick())
     end
 end
 
 function EntityMeta:GetFakeName()
-    return self:GetNWString("FakeName",self.FakeName)
+    return self:GetNWString("FakeName", self.FakeName)
 end
 
 function EntityMeta:GenerateFakeName(gender)
-    local maleNames,femaleNames = FakeNames.male,FakeNames.female
-    if gender == "male" then return maleNames[math.random(1,#maleNames)]
-    else return femaleNames[math.random(1,#femaleNames)] end
+    local names = FakeNames[gender or "male"]
+    return names[math.random(1, #names)]
 end

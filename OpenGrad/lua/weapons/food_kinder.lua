@@ -36,7 +36,7 @@ function SWEP:CustomEat()
 	end
 end
 
-if(CLIENT)then
+if (CLIENT) then
 	local WorldModel = ClientsideModel(SWEP.WorldModel)
 
 	WorldModel:SetNoDraw(true)
@@ -48,7 +48,7 @@ if(CLIENT)then
 			-- Specify a good position
 			local offsetVec = self.WorldPos
 			local offsetAng = self.WorldAng
-			
+
 			local boneid = _Owner:LookupBone("ValveBiped.Bip01_R_Hand") -- Right Hand
 			if !boneid then return end
 

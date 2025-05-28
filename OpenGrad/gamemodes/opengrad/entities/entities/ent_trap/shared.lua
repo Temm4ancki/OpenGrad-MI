@@ -1,5 +1,7 @@
 ENT.Type = "anim"
-ENT.PrintName = "капкан"
+ENT.PrintName = "Взведённый Капкан"
+ENT.IconOverride = "vgui/icon/trap.png"
+
 ENT.Author = ""
 ENT.Contact = ""
 ENT.Category = "Other"

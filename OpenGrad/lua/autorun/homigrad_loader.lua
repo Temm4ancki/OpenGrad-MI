@@ -6,6 +6,7 @@ include("homigrad_scr/run.lua")
 
 -- NOTE Бесполезно? Аддон мёртв
 if SERVER then resource.AddWorkshop("3004847067") end
+
 hook.Add("Initialize", "Optimizon", function()
 	hook.Remove("PlayerTick", "TickWidgets")
 	if SERVER and timer.Exists("CheckHookTimes") then

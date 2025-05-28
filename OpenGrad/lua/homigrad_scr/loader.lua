@@ -8,7 +8,7 @@ local string_find = string.find
 
 local string_GetFileFromFilename = string.GetFileFromFilename
 
-function hg.includeFile(path)--aaaaaaaeeeeeeeeeeeee😎
+function hg.includeFile(path) --aaaaaaaeeeeeeeeeeeee😎
 	local fileName = string_GetFileFromFilename(path)
 	if string_sub(fileName,1,1) == "!" then return end
 

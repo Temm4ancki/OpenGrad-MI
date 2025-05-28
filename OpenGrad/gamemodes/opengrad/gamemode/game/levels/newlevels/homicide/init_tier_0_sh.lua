@@ -4,32 +4,33 @@ homicide.Name = "Homicide"
 
 models = {}
 local black_male_models = {
-    ["models/player/group01/male_01.mdl"] = true,
-    ["models/player/group01/male_03.mdl"] = true,
-    ["models/player/group03/male_01.mdl"] = true,
-    ["models/player/group03/male_03.mdl"] = true,
+    ["models/other/ench/citizens/male_01.mdl"] = true,
+    ["models/other/ench/citizens/male_03.mdl"] = true,
 }
 
 local black_female_models = {
-    ["models/player/group01/female_03.mdl"] = true,
-    ["models/player/group01/female_05.mdl"] = true,
-    ["models/player/group03/female_03.mdl"] = true,
-    ["models/player/group03/female_05.mdl"] = true,
+    ["models/other/ench/citizens/female_03.mdl"] = true,
+    ["models/other/ench/citizens/female_07.mdl"] = true,
 }
 
 local asian_models = {
-    ["models/player/group01/male_05.mdl"] = true,
-    ["models/player/group03/male_05.mdl"] = true
+    ["models/other/ench/citizens/male_05.mdl"] = true,
+    ["models/other/ench/citizens/female_04.mdl"] = true,
 }
 
 local ded_models = {
-    ["models/player/group01/male_08.mdl"] = true,
-    ["models/player/group03/male_08.mdl"] = true
+    ["models/other/ench/citizens/male_08.mdl"] = true,
+    ["models/other/ench/citizens/male_10.mdl"] = true,
 }
 
 local jobPool = {"Лошара", "Бомжара", "Дебилоид"}
+
 for i = 1, 9 do
-    table.insert(models, "models/player/group01/male_0" .. i .. ".mdl")
+    table.insert(models, "models/other/ench/citizens/male_0" .. i .. ".mdl")
+end
+
+for i = 1, 4 do
+    table.insert(models, "models/other/ench/citizens/female_0" .. i .. ".mdl")
 end
 
 models_rebels = {}

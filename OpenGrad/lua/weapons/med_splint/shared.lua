@@ -2,21 +2,20 @@ AddCSLuaFile()
 
 SWEP.Base = "medkit"
 
-SWEP.PrintName = "Большой бинт"
+SWEP.PrintName = "Шина"
 SWEP.Author = "Homigrad"
-SWEP.Instructions = "Лечит большую кровопотерю"
-
+SWEP.Instructions = "Лечит ломанные ноги"
+SWEP.IconOverride = "vgui/icon/split.png"
 SWEP.Spawnable = true
 SWEP.Category = "Медицина"
-SWEP.IconOverride = "vgui/icon/big_bandages.png"
 
 SWEP.Slot = 3
 SWEP.SlotPos = 3
 
-SWEP.ViewModel = "models/weapons/medical/bandages/bandages.mdl"
-SWEP.WorldModel = "models/weapons/medical/bandages/bandages.mdl"
+SWEP.ViewModel = "models/weapons/medical/splint/w_splint.mdl"
+SWEP.WorldModel = "models/weapons/medical/splint/w_splint.mdl"
 
-SWEP.dwsPos = Vector(25,25,10)
+SWEP.dwsPos = Vector(55,55,20)
 
 SWEP.vbwPos = Vector(2,6,-8)
 SWEP.vbwAng = Angle(0,0,0)
@@ -31,7 +30,7 @@ function SWEP:vbwFunc(ply)
     return self.vbwPos2,self.vbwAng2
 end
 
-SWEP.dwmModeScale = 1.2
+SWEP.dwmModeScale = 0.5
 SWEP.dwmForward = 3.5
 SWEP.dwmRight = 1
 SWEP.dwmUp = -1

@@ -1,7 +1,7 @@
 AddCSLuaFile()
 SWEP.Base = "food_base"
 SWEP.PrintName = "Энергетик"
-SWEP.Purpose = "Lonely, lonely, I guess I'm lonely\nПусть всё будет, как решит монолог твоей души"
+SWEP.Purpose = "\nLonely, lonely, I guess I'm lonely \nПусть всё будет, как решит монолог твоей души"
 SWEP.Category = "Вкусности"
 SWEP.Spawnable = true
 SWEP.WorldModel = "models/foodnhouseholditems/sodacanb01.mdl"
@@ -11,7 +11,7 @@ SWEP.AdrenalineAmt = 1
 SWEP.StaminaAmt = 10
 SWEP.Drink = true
 
-if(CLIENT)then
+if (CLIENT) then
 	local WorldModel = ClientsideModel(SWEP.WorldModel)
 
 	WorldModel:SetNoDraw(true)
@@ -23,7 +23,7 @@ if(CLIENT)then
 			-- Specify a good position
 			local offsetVec = self.WorldPos
 			local offsetAng = self.WorldAng
-			
+
 			local boneid = _Owner:LookupBone("ValveBiped.Bip01_R_Hand") -- Right Hand
 			if !boneid then return end
 

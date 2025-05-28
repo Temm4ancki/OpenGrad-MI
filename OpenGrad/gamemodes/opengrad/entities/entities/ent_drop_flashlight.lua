@@ -5,6 +5,7 @@ ENT.PrintName = "Фонарик"
 ENT.Author = "0oa"
 ENT.Spawnable = true
 ENT.AdminSpawnable = false
+ENT.IconOverride = "vgui/icon/flashlight.png"
 
 if SERVER then
     function ENT:Initialize()

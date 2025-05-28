@@ -5,7 +5,7 @@ ENT.SWEP = "weapon_trap"
 
 function ENT:Initialize()
 	self:SetUseType(SIMPLE_USE)
-	self:SetModel("models/trap/trap.mdl")
+	self:SetModel("models/weapons/t_trap/trap.mdl")
 	self:SetColor(Color(155, 155, 155, 255))
 	self:PhysicsInit(SOLID_VPHYSICS)
 	self:SetMoveType(MOVETYPE_VPHYSICS)
@@ -20,7 +20,7 @@ end
 
 function ENT:Use(ply)
 	if self:GetCollisionGroup() == COLLISION_GROUP_DEBRIS then
-		self:SetModel("models/trap/trap.mdl")
+		self:SetModel("models/weapons/t_trap/trap.mdl")
 		self:SetCollisionGroup(COLLISION_GROUP_NONE)
 
 		if IsValid(self.Traped) and self.Traped.IsWeld >= 1 then
@@ -57,7 +57,7 @@ function ENT:Touch(entity)
 		local ply = entity
 		Faking(ply)
 
-		self:SetModel("models/trap/trap_close.mdl")
+		self:SetModel("models/weapons/t_trap/trap_close.mdl")
 		self:SetCollisionGroup(COLLISION_GROUP_DEBRIS)
 		ply:EmitSound("trap/trap.mp3")
 
@@ -110,7 +110,7 @@ function ENT:Touch(entity)
 end
 
 function ENT:OnTakeDamage(dmg)
-	self:SetModel("models/trap/trap_close.mdl")
+	self:SetModel("models/weapons/t_trap/trap_close.mdl")
 	self:SetCollisionGroup(COLLISION_GROUP_DEBRIS)
 	self:EmitSound("trap/trap.mp3")
 end

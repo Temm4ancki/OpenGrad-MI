@@ -3,9 +3,10 @@
 SWEP.PrintName = "SOG M37 Seal pup"
 SWEP.Instructions = "Тот самый нож трейтора"
 SWEP.Category = "Ближний Бой"
+SWEP.IconOverride = "vgui/icon/w/kabar.png"
 
-SWEP.Spawnable= true
-SWEP.AdminSpawnable= true
+SWEP.Spawnable = true
+SWEP.AdminSpawnable = true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60

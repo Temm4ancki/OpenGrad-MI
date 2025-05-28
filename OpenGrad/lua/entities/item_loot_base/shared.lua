@@ -9,12 +9,9 @@ ENT.Spawnable = true
 ENT.Model = "models/kali/props/cases/hard case c.mdl"
 ENT.ModelMaterial = "models/jmod_block/metal"
 
-ENT.LootTable = {
-}
-
+ENT.LootTable = {}
 ENT.RandomLoot = {
-    [1] = {
-    }
+    [1] = {}
 }
 
 ENT.UpdateTime = CurTime()

@@ -4,6 +4,7 @@ SWEP.PrintName = "Бинокль"
 SWEP.Author = "Homigrad"
 SWEP.Instructions = "Оптический прибор, состоящий из двух параллельно расположенных и соединённых вместе зрительных труб, для наблюдения удалённых предметов двумя глазами"
 SWEP.Category = "Разное"
+SWEP.IconOverride = "vgui/icon/binokle.png"
 
 SWEP.Spawnable = true
 SWEP.AdminOnly = false

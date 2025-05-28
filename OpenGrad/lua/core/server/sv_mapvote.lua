@@ -28,7 +28,7 @@ function SolidMapVote.nominate( steamId64, nomination )
 end
 
 function SolidMapVote.getRTVAmount()
-    return math.ceil( #player.GetAll()*SolidMapVote[ 'Config' ][ 'RTV Percentage' ] )
+    return math.ceil(#player.GetAll() * SolidMapVote['Config']['RTV Percentage'])
 end
 
 

@@ -5,4 +5,5 @@ ENT.PrintName = "huy"
 
 DEFINE_BASECLASS( "base_anim" )
 
-ENT.Spawnable = "true"
+ENT.Spawnable = false
+ENT.AdminOnly = false

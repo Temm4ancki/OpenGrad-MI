@@ -2,7 +2,7 @@ SWEP.Base = "weapon_hg_granade_base"
 
 SWEP.PrintName = "Светошумовая Граната"
 SWEP.Author = "Homigrad"
-SWEP.Instructions = "Специальное средство несмертельного действия, оказывающие на человека светозвуковое и осколочное воздействие."
+SWEP.Instructions = "\nСпециальное средство несмертельного действия, оказывающие на человека светозвуковое и осколочное воздействие."
 SWEP.Category = "Гранаты"
 SWEP.IconOverride = "vgui/icon/flashbang.png"
 
@@ -15,6 +15,7 @@ SWEP.WorldModel = "models/weapons/grenade/flashbang/flashbang.mdl"
 
 SWEP.Granade = "ent_hgjack_flashbang"
 SWEP.DoNotArm = true
+SWEP.Trap = true
 
 function SWEP:DrawWorldModel()
     local owner = self:GetOwner()

@@ -5,7 +5,7 @@ SWEP.Base = "medkit"
 SWEP.PrintName = "Мега Аптечка"
 SWEP.Author = "First AID"
 SWEP.Instructions = "на себя не юзается"
-SWEP.IconOverride = "vgui/icon/medkit.png"
+SWEP.IconOverride = "vgui/icon/mega_medkit.png"
 
 SWEP.Category = "Медицина"
 SWEP.Spawnable = true

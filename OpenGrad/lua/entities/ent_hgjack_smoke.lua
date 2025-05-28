@@ -6,8 +6,8 @@ ENT.PrintName = "EZHG Smokenade"
 ENT.Category = "JModHomigrad"
 ENT.Spawnable = true
 ENT.JModPreferredCarryAngles = Angle(0, 140, 0)
-ENT.Model = "models/jmod/explosives/grenades/firenade/incendiary_grenade.mdl"
-ENT.Material = "models/mats_jack_nades/smokescreen"
+ENT.Model = "weapons/grenade/smoke/incendiary_grenade.mdl"
+ENT.Material = "models/weapons/grenade/smoke/smokescreen"
 ENT.ModelScale=0.8
 ENT.SpoonScale = 2
 
@@ -34,7 +34,7 @@ if SERVER then
 		if self.Exploded then return end
 		self.Exploded = true
 		self.FuelLeft = 100
-		self:EmitSound("snd_jack_fragsplodeclose.ogg", 50, 150)
+		self:EmitSound("weapons/grenade/snd_jack_fragsplodeclose.ogg", 50, 150)
 	end
 
 	function ENT:CustomThink()
@@ -45,7 +45,7 @@ if SERVER then
 			Foof:SetScale(self.FuelLeft / 100)
 			Foof:SetStart(self:GetPhysicsObject():GetVelocity())
 			util.Effect("eff_jack_gmod_ezsmokescreen", Foof, true, true)
-			self:EmitSound("snd_jack_sss.wav", 55, 80)
+			self:EmitSound("weapons/grenade/smoke/snd_jack_sss.ogg", 55, 80)
 			self.FuelLeft = self.FuelLeft - .5
 
 			if self.FuelLeft <= 0 then

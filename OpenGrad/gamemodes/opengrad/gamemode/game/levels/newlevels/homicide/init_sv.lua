@@ -35,7 +35,9 @@ local function makeT(ply)
             "weapon_hidebomb",
             "weapon_hg_rgd5",
             "weapon_jahidka",
-            "weapon_trap"
+            "weapon_trap",
+            "weapon_jam",
+            "weapon_mask",
         })
     elseif homicide.roundType == 2 then
         SpawnEblan(ply, {
@@ -45,14 +47,18 @@ local function makeT(ply)
             "weapon_hidebomb",
             "weapon_hg_rgd5",
             "weapon_jahidka",
-            "weapon_trap"
+            "weapon_trap",
+            "weapon_jam",
+            "weapon_mask",
         })
     elseif homicide.roundType == 3 then
         SpawnEblan(ply, {
             "weapon_kabar",
             "weapon_hg_t_syringepoison",
             "weapon_hg_t_vxpoison",
-            "weapon_trap"
+            "weapon_trap",
+            "weapon_jam",
+            "weapon_mask",
         })
     elseif homicide.roundType == 4 then
         SpawnEblan(ply, {
@@ -60,7 +66,9 @@ local function makeT(ply)
             "weapon_hidebomb",
             "weapon_hg_rgd5",
             "weapon_jahidka",
-            "weapon_trap"
+            "weapon_trap",
+            "weapon_jam",
+            "weapon_mask",
         })
         ply:GiveAmmo(12, 5)
     elseif homicide.roundType == 5 then
@@ -68,7 +76,9 @@ local function makeT(ply)
             "weapon_kabar",
             "weapon_hidebomb",
             "weapon_hg_usps",
-            "weapon_trap"
+            "weapon_trap",
+            "weapon_jam",
+            "weapon_mask",
         })
     end
 
@@ -295,6 +305,16 @@ function homicide.PlayerSpawn(ply, teamID)
         ply:SetModel(teamTbl.models[math.random(#teamTbl.models)] or "models/player/group01/male_03.mdl")
     else
         ply:SetModel(models_rebels[math.random(#models_rebels)] or "models/player/group03/male_01.mdl")
+    end
+
+    local bodygroups = ply:GetBodyGroups()
+    for _, group in ipairs(bodygroups) do
+        if group.id == 5 then
+            ply:SetBodygroup(group.id, 0)
+        else
+            local randomValue = math.random(0, group.num)
+            ply:SetBodygroup(group.id, randomValue)
+        end
     end
 
     ply:SetPlayerColor(color:ToVector())

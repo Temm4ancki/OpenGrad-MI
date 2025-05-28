@@ -7,6 +7,9 @@ local blackListedWeps = {
 	["weapon_jahidka"] = true,
 	["weapon_hg_rgd5"] = true,
 	["weapon_trap"] = true,
+	["weapon_mask"] = true,
+	["weapon_jam"] = true,
+	["weapon_hg_t_cyanid_capsule"] = true,
 }
 
 local blackListedAmmo = {
@@ -147,7 +150,7 @@ net.Receive("inventory",function()
 	function panel:OnKeyCodePressed(key)
 		if key == KEY_W or key == KEY_S or key == KEY_A or key == KEY_D then self:Remove() end
 	end
-	
+
 	function panel:OnRemove()
 		if self.override then return end
 

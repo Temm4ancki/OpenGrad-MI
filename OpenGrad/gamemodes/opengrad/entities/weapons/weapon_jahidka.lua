@@ -2,8 +2,9 @@ SWEP.Base = "weapon_base"
 
 SWEP.PrintName = "Шакидка"
 SWEP.Author = "Homigrad"
-SWEP.Instructions = "Пояс смертника, исход всегда один"
+SWEP.Instructions = "\nПояс смертника, исход всегда один \n\nЛКМ - ЗАБРАТЬ ИХ ВСЕХ С СОБОЙ"
 SWEP.Category = "Примочки убийцы"
+SWEP.IconOverride = "vgui/icon/jahidka.png"
 
 SWEP.Spawnable = true
 SWEP.AdminOnly = false

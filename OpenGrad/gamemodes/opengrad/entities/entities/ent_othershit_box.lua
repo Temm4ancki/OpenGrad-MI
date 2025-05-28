@@ -3,7 +3,7 @@ AddCSLuaFile()
 ENT.Type = "anim"
 ENT.PrintName = "Бокс"
 ENT.Author = "0oa"
-ENT.Spawnable = true
+ENT.Spawnable = false
 ENT.AdminSpawnable = false
 
 if SERVER then

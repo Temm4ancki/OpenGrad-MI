@@ -3,10 +3,11 @@ AddCSLuaFile()
 SWEP.PrintName = "Капкан"
 SWEP.Category = "Примочки убийцы"
 SWEP.Spawnable = true
+SWEP.IconOverride = "vgui/icon/trap.png"
 
 SWEP.Instructions = ""
-SWEP.ViewModel = "models/trap/trap.mdl"
-SWEP.WorldModel = "models/trap/trap.mdl"
+SWEP.ViewModel = "models/weapons/t_trap/trap.mdl"
+SWEP.WorldModel = "models/weapons/t_trap/trap.mdl"
 
 SWEP.Primary.ClipSize = -1
 SWEP.Primary.DefaultClip = 0

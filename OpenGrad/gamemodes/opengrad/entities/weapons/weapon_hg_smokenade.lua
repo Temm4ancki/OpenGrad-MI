@@ -5,6 +5,7 @@ SWEP.PrintName = "Дымовая граната"
 SWEP.Author = "Homigrad"
 SWEP.Instructions = "Пиротехническое средство для пуска дыма, предназначенное для подачи сигналов, указания места посадки, маскировки объектов при выполнении манёвров (в том числе в ходе уличных беспорядков)"
 SWEP.Category = "Гранаты"
+SWEP.IconOverride = "vgui/icon/smoke.png"
 
 SWEP.Slot = 4
 SWEP.SlotPos = 2
@@ -12,8 +13,8 @@ SWEP.Spawnable = true
 SWEP.AutoSwitchFrom = false
 SWEP.AutoSwitchTo = false
 
-SWEP.ViewModel = "models/jmod/explosives/grenades/firenade/incendiary_grenade.mdl"
-SWEP.WorldModel = "models/jmod/explosives/grenades/firenade/incendiary_grenade.mdl"
+SWEP.ViewModel = "weapons/grenade/smoke/incendiary_grenade.mdl"
+SWEP.WorldModel = "weapons/grenade/smoke/incendiary_grenade.mdl"
 
 SWEP.Granade = "ent_hgjack_smoke"
 
@@ -34,7 +35,7 @@ function SWEP:DrawWorldModel()
     local matrix = self:GetOwner():GetBoneMatrix(11)
     if not matrix then return end
 
-    mdl:SetRenderOrigin(matrix:GetTranslation()+matrix:GetAngles():Forward()*3+matrix:GetAngles():Right()*2)
+    mdl:SetRenderOrigin(matrix:GetTranslation() + matrix:GetAngles():Forward() * 3 + matrix:GetAngles():Right() * 2)
     mdl:SetRenderAngles(matrix:GetAngles())
     mdl:DrawModel()
 end

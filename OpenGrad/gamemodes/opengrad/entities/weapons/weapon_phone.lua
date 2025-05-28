@@ -6,6 +6,7 @@ SWEP.PrintName 				= "Мобила"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Закажи все вещи из JMOD!\nЛКМ - вкл выкл\nПКМ - открыть радио если включено\nR - проверка состояния"
 SWEP.Category 				= "Разное"
+SWEP.IconOverride = "vgui/icon/phone.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false

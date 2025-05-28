@@ -53,7 +53,6 @@ function GM:PlayerSpawn(ply)
 	ply:SetSlowWalkSpeed(75)
 	ply:SetLadderClimbSpeed(75)
 	ply:SetJumpPower(200)
-	ply:SetFakeName()
 
 	local size = 9
 
@@ -87,6 +86,7 @@ function GM:PlayerSpawn(ply)
 	ply:PlayerClassEvent("On")
 
 	TableRound().PlayerSpawn(ply, ply:Team())
+	ply:SetFakeName()
 end
 
 function GM:Think()

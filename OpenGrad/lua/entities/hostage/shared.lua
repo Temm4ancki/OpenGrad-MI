@@ -3,4 +3,5 @@ ENT.Base = "base_gmodentity"
 
 ENT.PrintName = "Hostage"
 
-ENT.Spawnable = true
+ENT.Spawnable = false
+ENT.AdminOnly = false

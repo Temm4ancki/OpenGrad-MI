@@ -90,7 +90,7 @@ hook.Add("Player Think","saystamina",function(ply,time)
 	local k = math.Clamp(ply.stamina / 100,0,1) * 0.6
 	k = k + ply.adrenaline / 4
 	k = math.Clamp(k,0,1) * (ply.painlosing > 1 and 1 or ply.LeftLeg) * (ply.painlosing > 1 and 1 or ply.RightLeg) * math.max(ply:Health() / 150,0.2)
-	
+
 	net.Start("info_staminamul")
 	net.WriteFloat(k)
 	net.Send(ply)
@@ -101,7 +101,7 @@ end)
 
 hook.Add("PlayerFootstep","CustomFootstep1",function(ply,pos,foot,sound,volume,rf)
 	if ply:IsSprinting() then
-		if foot == 0 and ply.LeftLeg <1 then
+		if foot == 0 and ply.LeftLeg < 1 then
 			ply.pain = ply.pain + 25
 			if ply.firstTimeNotifiedLeftLeg then
 				ply:ChatPrint("Вы чувствуете невыносимую боль от бега на сломанной левой ноге. ")
@@ -109,7 +109,7 @@ hook.Add("PlayerFootstep","CustomFootstep1",function(ply,pos,foot,sound,volume,r
 			end
 		end
 
-		if foot == 1 and ply.RightLeg<1 then
+		if foot == 1 and ply.RightLeg < 1 then
 			ply.pain = ply.pain + 25
 			if ply.firstTimeNotifiedRightLeg then
 				ply:ChatPrint("Вы чувствуете невыносимую боль от бега на сломанной правой ноге. ")
