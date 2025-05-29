@@ -1,28 +1,29 @@
 SWEP.Base = "salat_base" -- base
 
-SWEP.PrintName 				= "P99"
+SWEP.PrintName 				= "CZ75"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Пистолет под калибр 9х19"
 SWEP.Category 				= "Оружие"
-SWEP.WepSelectIcon			= "pwb/sprites/p99"
+SWEP.WepSelectIcon = "vgui/select/w/cz75"
+SWEP.IconOverride = "vgui/icon/w/cz75.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
 
 ------------------------------------------
 
-SWEP.Primary.ClipSize		= 15
-SWEP.Primary.DefaultClip	= 15
-SWEP.Primary.Automatic		= false
+SWEP.Primary.ClipSize		= 17
+SWEP.Primary.DefaultClip	= 17
+SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "9х19 mm Parabellum"
 SWEP.Primary.Cone = 0
-SWEP.Primary.Damage = 30
+SWEP.Primary.Damage = 25
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "hndg_colt1911/colt_1911_fire1.wav"
-SWEP.Primary.SoundFar = "snd_jack_hmcd_smp_far.wav"
-SWEP.Primary.Force = 80/3
+SWEP.Primary.Sound = "weapons/salat/w_cz75/m9_fp.ogg"
+SWEP.Primary.SoundFar = "weapons/salat/w_cz75/m9_dist.ogg"
+SWEP.Primary.Force = 90 / 3
 SWEP.ReloadTime = 2
-SWEP.ShootWait = 0.12
+SWEP.ShootWait = 0.08
 
 SWEP.Secondary.ClipSize		= -1
 SWEP.Secondary.DefaultClip	= -1
@@ -44,13 +45,7 @@ SWEP.SlotPos				= 1
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/pwb/weapons/w_p99.mdl"
-SWEP.WorldModel				= "models/pwb/weapons/w_p99.mdl"
+SWEP.ViewModel				= "models/weapons/salat/w_cz75/w_cz75.mdl"
+SWEP.WorldModel				= "models/weapons/salat/w_cz75/w_cz75.mdl"
 
-SWEP.dwsPos = Vector(15,15,5)
-SWEP.dwsItemPos = Vector(10,-1,-3)
-
-SWEP.vbwPos = Vector(8,-9,-8)
-
-SWEP.addAng = Angle(0.4,-0.2,0)
-SWEP.addPos = Vector(0.1,0,-0.9)
+SWEP.vbwPos = Vector(8.5,-10,-8)

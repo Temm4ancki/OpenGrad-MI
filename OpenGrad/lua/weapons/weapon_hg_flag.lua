@@ -1,16 +1,18 @@
 SWEP.Base = "weapon_hg_melee_base"
 
-SWEP.PrintName = "флаг"
+SWEP.PrintName = "Флаг"
 SWEP.Category = "Ближний Бой"
 SWEP.Instructions = "ЗА АФРИКАНИСТАН"
+SWEP.WepSelectIcon = "vgui/select/w/flag"
+SWEP.IconOverride = "vgui/icon/w/flag.png"
 
 SWEP.Spawnable= true
 SWEP.AdminSpawnable= true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60
-SWEP.ViewModel = "models/addons/flag_sib_resp.mdl"
-SWEP.WorldModel = "models/addons/flag_sib_resp.mdl"
+SWEP.ViewModel = "models/weapons/salat/w_hg_flag/flag_sib_resp.mdl"
+SWEP.WorldModel = "models/weapons/salat/w_hg_flag/flag_sib_resp.mdl"
 SWEP.ViewModelFlip = false
 
 SWEP.AutoSwitchTo = false

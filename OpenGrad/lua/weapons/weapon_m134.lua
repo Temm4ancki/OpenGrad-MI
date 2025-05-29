@@ -4,7 +4,8 @@ SWEP.PrintName 				= "MINIGUN"
 SWEP.Author 				= "ADMINI"
 SWEP.Instructions			= "MINIGUN АДМИНХУЙ! БАМ БАМ БАМ!"
 SWEP.Category 				= "Оружие"
-SWEP.WepSelectIcon			= "pwb/sprites/m134"
+SWEP.WepSelectIcon = "vgui/select/w/m134"
+SWEP.IconOverride = "vgui/icon/w/m134.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= true
@@ -18,7 +19,7 @@ SWEP.Primary.Ammo			= "357"
 SWEP.Primary.Cone = 0
 SWEP.Primary.Damage = 9999
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "weapons/ak47/ak47-1.wav"
+SWEP.Primary.Sound = "weapons/salat/w_m134/ak47-1.ogg"
 SWEP.Primary.Force = 110
 SWEP.ReloadTime = 5
 SWEP.ShootWait = 0.02
@@ -46,8 +47,8 @@ SWEP.SlotPos				= 2
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/pwb/weapons/w_m134.mdl"
-SWEP.WorldModel				= "models/pwb/weapons/w_m134.mdl"
+SWEP.ViewModel				= "models/weapons/salat/w_m134/w_m134.mdl"
+SWEP.WorldModel				= "models/weapons/salat/w_m134/w_m134.mdl"
 
 function SWEP:PrimaryAttack()
 	self.ShootNext=self.NextShot or NextShot

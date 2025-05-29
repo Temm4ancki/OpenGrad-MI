@@ -358,7 +358,7 @@ end
 local common = {
     "food_lays",
     "weapon_pipe",
-    "weapon_bat",
+    "weapon_hg_bat",
     "med_band_big",
     "med_band_small",
     "medkit",
@@ -374,9 +374,9 @@ local uncommon = {
 }
 
 local rare = {
-    "weapon_glock18",
+    "weapon_p228",
     "weapon_gurkha",
-    "weapon_t",
+    "weapon_tomahawk-2",
     "weapon_per4ik",
     "*ammo*"
 }

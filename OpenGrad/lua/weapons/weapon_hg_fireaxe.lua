@@ -3,14 +3,16 @@ SWEP.Base = "weapon_hg_melee_base"
 SWEP.PrintName = "Пожарный топор"
 SWEP.Category = "Ближний Бой"
 SWEP.Instructions = "Массивный топор для вскрытия и разборки конструкций при тушении пожара."
+SWEP.WepSelectIcon = "vgui/select/w/fireaxe"
+SWEP.IconOverride = "vgui/icon/w/fireaxe.png"
 
 SWEP.Spawnable= true
 SWEP.AdminSpawnable= true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60
-SWEP.ViewModel = "models/weapons/me_axe_fire_tracer/w_me_axe_fire.mdl"
-SWEP.WorldModel = "models/weapons/me_axe_fire_tracer/w_me_axe_fire.mdl"
+SWEP.ViewModel = "models/weapons/salat/w_hg_fireaxe/w_me_axe_fire.mdl"
+SWEP.WorldModel = "models/weapons/salat/w_hg_fireaxe/w_me_axe_fire.mdl"
 SWEP.ViewModelFlip = false
 
 SWEP.AutoSwitchTo = false
@@ -42,9 +44,9 @@ SWEP.Secondary.DefaultClip = 0
 SWEP.Secondary.Automatic = false
 SWEP.Secondary.Ammo = "none"
 
-SWEP.DrawSound = "weapons/melee/holster_in_light.wav"
-SWEP.HitSound = "weapons/shove_hit.wav"
-SWEP.FlashHitSound = "snd_jack_hmcd_axehit.wav"
+SWEP.DrawSound = "weapons/salat/w_hg_fireaxe/holster_in_light.ogg"
+SWEP.HitSound = "weapons/salat/w_hg_fireaxe/shove_hit.ogg"
+SWEP.FlashHitSound = "weapons/salat/w_hg_fireaxe/snd_jack_hmcd_axehit.ogg"
 SWEP.ShouldDecal = true
 SWEP.HoldTypeWep = "melee2"
 SWEP.DamageType = DMG_SLASH

@@ -3,14 +3,16 @@
 SWEP.PrintName = "Полицейская Дубинка"
 SWEP.Instructions = "Дубинка, используемая полицейскими подразделениями"
 SWEP.Category = "Ближний Бой"
+SWEP.WepSelectIcon = "vgui/select/w/police_bat"
+SWEP.IconOverride = "vgui/icon/w/police_bat.png"
 
 SWEP.Spawnable= true
 SWEP.AdminSpawnable= true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60
-SWEP.ViewModel = "models/drover/w_baton.mdl"
-SWEP.WorldModel = "models/drover/w_baton.mdl"
+SWEP.ViewModel = "models/weapons/salat/w_police_bat/w_baton.mdl"
+SWEP.WorldModel = "models/weapons/salat/w_police_bat/w_baton.mdl"
 SWEP.ViewModelFlip = false
 
 SWEP.AutoSwitchTo = false

@@ -4,7 +4,8 @@ SWEP.PrintName 				= "GALIL-SAR"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Автоматическая винтовка под калибр 5,56х45"
 SWEP.Category 				= "Оружие"
-SWEP.WepSelectIcon			= "pwb2/vgui/weapons/ace23"
+SWEP.WepSelectIcon = "vgui/select/w/ace23"
+SWEP.IconOverride = "vgui/icon/w/ace23.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
@@ -18,9 +19,9 @@ SWEP.Primary.Ammo			= "5.56x45 mm"
 SWEP.Primary.Cone = 0
 SWEP.Primary.Damage = 40
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "m16a4/m16a4_fp.wav"
-SWEP.Primary.SoundFar = "m16a4/m16a4_dist.wav"
-SWEP.Primary.Force = 240/3
+SWEP.Primary.Sound = "weapons/salat/w_ace23/m16a4_fp.ogg"
+SWEP.Primary.SoundFar = "weapons/salat/w_ace23/m16a4_dist.ogg"
+SWEP.Primary.Force = 240 / 3
 SWEP.ReloadTime = 2
 SWEP.ShootWait = 0.07
 SWEP.ReloadSound = "weapons/ar2/ar2_reload.wav"
@@ -46,8 +47,8 @@ SWEP.SlotPos				= 0
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/pwb2/weapons/w_ace23.mdl"
-SWEP.WorldModel				= "models/pwb2/weapons/w_ace23.mdl"
+SWEP.ViewModel				= "models/weapons/salat/w_ace23/w_ace23.mdl"
+SWEP.WorldModel				= "models/weapons/salat/w_ace23/w_ace23.mdl"
 
 SWEP.dwsPos = Vector(20,20,5)
 SWEP.dwsItemPos = Vector(-7,0,3)

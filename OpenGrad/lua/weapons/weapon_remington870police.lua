@@ -4,7 +4,8 @@ SWEP.PrintName 				= "Remington870 Police"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Дробовик под калибр 12/70 beanbag (нелетальный)"
 SWEP.Category 				= "Оружие"
-SWEP.WepSelectIcon			= "entities/weapon_insurgencymakarov.png"
+SWEP.WepSelectIcon = "vgui/select/w/remington870police"
+SWEP.IconOverride = "vgui/icon/w/remington870police.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
@@ -19,8 +20,8 @@ SWEP.Primary.Cone = 0
 SWEP.Primary.Damage = 10
 SWEP.RubberBullets = true
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "toz_shotgun/toz_fp.wav"
-SWEP.Primary.SoundFar = "toz_shotgun/toz_dist.wav"
+SWEP.Primary.Sound = "weapons/salat/w_remington870police/toz_fp.ogg"
+SWEP.Primary.SoundFar = "weapons/salat/w_remington870police/toz_dist.ogg"
 SWEP.Primary.Force = 0.5
 SWEP.ReloadTime = 2
 SWEP.ShootWait = 0.7
@@ -47,8 +48,8 @@ SWEP.SlotPos				= 0
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/pwb2/weapons/w_remington870police.mdl"
-SWEP.WorldModel				= "models/pwb2/weapons/w_remington870police.mdl"
+SWEP.ViewModel				= "models/weapons/salat/w_remington870police/w_remington870police.mdl"
+SWEP.WorldModel				= "models/weapons/salat/w_remington870police/w_remington870police.mdl"
 
 SWEP.vbwPos = Vector(-8,-6,-6)
 

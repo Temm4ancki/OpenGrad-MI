@@ -3,6 +3,8 @@
 SWEP.PrintName = "Труба"
 SWEP.Instructions = "Вырванная из чьей-то канализационной системы труба"
 SWEP.Category = "Ближний Бой"
+SWEP.WepSelectIcon = "vgui/select/w/mattpipe"
+SWEP.IconOverride = "vgui/icon/w/mattpipe.png"
 
 SWEP.Spawnable= true
 SWEP.AdminSpawnable= true
@@ -223,8 +225,8 @@ if CLIENT then
 
 		if (IsValid(_Owner)) then
             -- Specify a good position
-			local offsetVec = Vector(8,-1,0)
-			local offsetAng = Angle(150, 0, 0)
+			local offsetVec = Vector(4,-1,0)
+			local offsetAng = Angle(180, 0, 180)
 			
 			local boneid = _Owner:LookupBone("ValveBiped.Bip01_R_Hand") -- Right Hand
 			if !boneid then return end

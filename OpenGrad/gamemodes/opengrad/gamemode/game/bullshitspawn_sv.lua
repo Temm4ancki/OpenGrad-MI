@@ -55,12 +55,12 @@ weaponscommon = {
 }
 
 weaponsuncommon = {
-	"weapon_glock18",
+	"weapon_p228",
 	"weapon_per4ik",
 
 	"weapon_hg_crowbar",
 	"weapon_hg_fubar",
-	"weapon_bat",
+	"weapon_hg_bat",
 	"weapon_hg_metalbat",
 	"weapon_hg_hatchet",
 
@@ -74,14 +74,14 @@ weaponsuncommon = {
 
 weaponsrare = {
 	"weapon_beretta",
-	"weapon_beanbag",
+	"weapon_remington870police",
 	"weapon_glock",
-	"weapon_t",
+	"weapon_tomahawk-2",
 	"weapon_hg_molotov",
 
 	"*ammo*",
 
-	"weapon_hg_sleagehammer",
+	"weapon_hg_sledge",
 	"weapon_hg_fireaxe",
 
 	"ent_jack_gmod_ezarmor_gasmask",
@@ -89,7 +89,7 @@ weaponsrare = {
 }
 
 weaponsveryrare = {
-	"weapon_m3super",
+	"weapon_m4super-2",
 
 	"ent_jack_gmod_ezarmor_mtorso",
 	"ent_jack_gmod_ezarmor_mhead"

@@ -99,7 +99,7 @@ function wick.makeT(ply)
     ply:Give("med_band_small")
     ply:Give("adrenaline")
 
-    local wep = ply:Give("weapon_mk18")
+    local wep = ply:Give("weapon_hk416-2")
     wep:SetClip1(wep:GetMaxClip1())
     ply:GiveAmmo(2 * wep:GetMaxClip1(), wep:GetPrimaryAmmoType())
 

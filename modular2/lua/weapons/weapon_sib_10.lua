@@ -5,7 +5,7 @@ SWEP.Author 				= "Remington"
 SWEP.Instructions			= "Бакшот рулетка"
 SWEP.Category 				= "Оружие"
 
-SWEP.Spawnable 				= true
+SWEP.Spawnable 				= false
 SWEP.AdminOnly 				= false
 
 ------------------------------------------

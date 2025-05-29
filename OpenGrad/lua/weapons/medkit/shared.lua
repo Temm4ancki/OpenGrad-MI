@@ -81,7 +81,7 @@ function SWEP:DrawWorldModel()
     if not Pos then return end
 
     model:SetModel(self.WorldModel)
-    
+
     Pos:Add(Ang:Forward() * self.dwmForward)
     Pos:Add(Ang:Right() * self.dwmRight)
     Pos:Add(Ang:Up() * self.dwmUp)

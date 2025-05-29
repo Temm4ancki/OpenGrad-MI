@@ -5,7 +5,7 @@ SWEP.Author 				= "Browning"
 SWEP.Instructions			= "Знаменитый пистолет, который использовался во время Второй Мировой Войны"
 SWEP.Category 				= "Оружие"
 
-SWEP.Spawnable 				= true
+SWEP.Spawnable 				= false
 SWEP.AdminOnly 				= false
 
 ------------------------------------------

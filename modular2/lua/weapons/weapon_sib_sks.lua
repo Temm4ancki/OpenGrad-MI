@@ -5,7 +5,7 @@ SWEP.Author 				= "Adolf Simonov"
 SWEP.Instructions			= "Винтовка самозарядная Симонова"
 SWEP.Category 				= "Оружие"
 
-SWEP.Spawnable 				= true
+SWEP.Spawnable 				= false
 SWEP.AdminOnly 				= false
 
 ------------------------------------------

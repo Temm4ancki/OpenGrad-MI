@@ -15,12 +15,12 @@ CLASS.weapons = {
 
 CLASS.main_weapon = {
 	"weapon_ar15",
-	"weapon_m3super"
+	"weapon_m4super-2"
 }
 
 CLASS.secondary_weapon = {
 	"weapon_beretta",
-	"weapon_fiveseven"
+	"weapon_p99"
 }
 
 CLASS.models = {

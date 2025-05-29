@@ -1,9 +1,11 @@
-SWEP.Base = "salat_base" -- base
+SWEP.Base = "salat_base" -- base 
 
-SWEP.PrintName 				= "L85A1"
+SWEP.PrintName 				= "HK MP5a3"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Автоматическая винтовка под калибр 5,56х45"
+SWEP.Instructions			= "Пистолет-пулемёт под калибр 9х19"
 SWEP.Category 				= "Оружие"
+SWEP.WepSelectIcon = "vgui/select/w/mp5a3"
+SWEP.IconOverride = "vgui/icon/w/mp5a3.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
@@ -13,15 +15,15 @@ SWEP.AdminOnly 				= false
 SWEP.Primary.ClipSize		= 30
 SWEP.Primary.DefaultClip	= 30
 SWEP.Primary.Automatic		= true
-SWEP.Primary.Ammo			= "ar2"
+SWEP.Primary.Ammo			= "9х19 mm Parabellum"
 SWEP.Primary.Cone = 0
-SWEP.Primary.Damage = 35
-SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "pwb/weapons/l85a1/shoot.wav"
-SWEP.Primary.Force = 240/3
+SWEP.Primary.Damage = 25
+SWEP.Primary.Spread = 5
+SWEP.Primary.Sound = "weapons/salat/w_mp5a3/mp5k_fp.ogg"
+SWEP.Primary.SoundFar = "weapons/salat/w_mp5a3/mp5k_dist.ogg"
+SWEP.Primary.Force = 85 / 3
 SWEP.ReloadTime = 2
-SWEP.ShootWait = 0.1
-SWEP.ReloadSound = "weapons/ar2/ar2_reload.wav"
+SWEP.ShootWait = 0.06
 SWEP.TwoHands = true
 
 SWEP.Secondary.ClipSize		= -1
@@ -44,10 +46,10 @@ SWEP.SlotPos				= 0
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/pwb/weapons/w_l85a1.mdl"
-SWEP.WorldModel				= "models/pwb/weapons/w_l85a1.mdl"
+SWEP.ViewModel				= "models/weapons/salat/w_mp5a3/w_mp5a3.mdl"
+SWEP.WorldModel				= "models/weapons/salat/w_mp5a3/w_mp5a3.mdl"
 
-SWEP.vbwPos = Vector(0,-4,-6)
+SWEP.dwsPos = Vector(20,20,5)
+SWEP.dwsItemPos = Vector(-7,0,1.5)
 
-SWEP.addPos = Vector(0,0,0)
-SWEP.addAng = Angle(-0.4,0,0)
+SWEP.addAng = Angle(0,0,0)

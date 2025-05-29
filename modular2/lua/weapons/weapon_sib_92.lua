@@ -5,7 +5,7 @@ SWEP.Author 				= "Beretta"
 SWEP.Instructions			= "No bang! Hold on!"
 SWEP.Category 				= "Оружие"
 
-SWEP.Spawnable 				= true
+SWEP.Spawnable 				= false
 SWEP.AdminOnly 				= false
 
 ------------------------------------------

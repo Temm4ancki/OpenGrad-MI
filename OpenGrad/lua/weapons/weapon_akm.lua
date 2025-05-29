@@ -4,7 +4,8 @@ SWEP.PrintName 				= "АКМ"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Автоматическая винтовка под калибр 7,62х39"
 SWEP.Category 				= "Оружие"
-SWEP.WepSelectIcon          = "pwb/sprites/akm"
+SWEP.WepSelectIcon = "vgui/select/w/akm"
+SWEP.IconOverride = "vgui/icon/w/akm.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
@@ -18,9 +19,9 @@ SWEP.Primary.Ammo			= "7.62x39 mm"
 SWEP.Primary.Cone = 0
 SWEP.Primary.Damage = 45
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "ak74/ak74_fp.wav"
-SWEP.Primary.SoundFar = "ak74/ak74_dist.wav"
-SWEP.Primary.Force = 240/3
+SWEP.Primary.Sound = "weapons/salat/w_akm/ak74_fp.ogg"
+SWEP.Primary.SoundFar = "weapons/salat/w_akm/ak74_dist.ogg"
+SWEP.Primary.Force = 240 / 3
 SWEP.ReloadTime = 2
 SWEP.ShootWait = 0.1
 SWEP.ReloadSound = "weapons/ar2/ar2_reload.wav"
@@ -46,8 +47,8 @@ SWEP.SlotPos				= 0
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/pwb/weapons/w_akm.mdl"
-SWEP.WorldModel				= "models/pwb/weapons/w_akm.mdl"
+SWEP.ViewModel				= "models/weapons/salat/w_akm/w_akm.mdl"
+SWEP.WorldModel				= "models/weapons/salat/w_akm/w_akm.mdl"
 
 SWEP.vbwPos = Vector(5,-6,-6)
 

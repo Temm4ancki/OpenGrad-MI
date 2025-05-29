@@ -1,19 +1,19 @@
-if CLIENT then
-SWEP.DrawWeaponInfoBox	= false
-SWEP.BounceWeaponIcon = false
-end
 
-SWEP.PrintName = "Томагавк"
-SWEP.Instructions = "Находится на вооружении кораблей и подводных лодок ВМС США, использовалась во всех значительных военных конфликтах с участием США с момента её принятия на вооружение в 1983 году."
+
+SWEP.PrintName = "Деревянная бита"
+
 SWEP.Category = "Ближний Бой"
+SWEP.Instructions = "Часть спортивного инвентаря, предназначенная для нанесения ударов по мячу. Также популярно как холодное оружие благодаря своему удобству. Особенности конструкции биты позволяют наносить ею тяжёлые и мощные удары."
+SWEP.WepSelectIcon = "vgui/select/w/bat"
+SWEP.IconOverride = "vgui/icon/w/bat.png"
 
 SWEP.Spawnable= true
 SWEP.AdminSpawnable= true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60
-SWEP.ViewModel = "models/pwb/weapons/w_tomahawk.mdl"
-SWEP.WorldModel = "models/pwb/weapons/w_tomahawk.mdl"
+SWEP.ViewModel = "models/weapons/salat/w_hg_bat/w_knije_t.mdl"
+SWEP.WorldModel = "models/weapons/salat/w_hg_bat/w_knije_t.mdl"
 SWEP.ViewModelFlip = false
 
 SWEP.AutoSwitchTo = false
@@ -24,7 +24,7 @@ SWEP.SlotPos = 2
 
 SWEP.UseHands = true
 
-SWEP.HoldType = "knife"
+SWEP.HoldType = "melee2"
 
 SWEP.FiresUnderwater = false
 
@@ -34,19 +34,14 @@ SWEP.DrawAmmo = true
 
 SWEP.Base = "weapon_base"
 
-SWEP.CSMuzzleFlashes = true
-
-SWEP.Vehicle = 0
-SWEP.Sprint = 0
-
 SWEP.Primary.Sound = Sound( "Weapon_Crowbar.Single" )
-SWEP.Primary.Damage = 45
+SWEP.Primary.Damage = 40
 SWEP.Primary.Ammo = "none"
 SWEP.Primary.DefaultClip = 0
 SWEP.Primary.Automatic = true
 SWEP.Primary.Recoil = 0.5
-SWEP.Primary.Delay = 1
-SWEP.Primary.Force = 1000
+SWEP.Primary.Delay = 1.1
+SWEP.Primary.Force = 150
 
 SWEP.Secondary.ClipSize = 0
 SWEP.Secondary.DefaultClip = 0
@@ -121,28 +116,57 @@ if Tr.Hit then
 		draw.NoTexture()
 		Circle(Tr.HitPos:ToScreen().x, Tr.HitPos:ToScreen().y, 55 * Size, 32)
 
-		surface.SetDrawColor(Color(255, 255, 255, 255 * Size/0.5))
+		surface.SetDrawColor(Color(255, 255, 255, 200))
 		draw.NoTexture()
 		Circle(Tr.HitPos:ToScreen().x, Tr.HitPos:ToScreen().y, 40 * Size, 32)
 	end
 end
 
+if CLIENT then
+	local WorldModel = ClientsideModel(SWEP.WorldModel)
+
+	-- Settings...
+	WorldModel:SetSkin(1)
+	WorldModel:SetNoDraw(true)
+
+	function SWEP:DrawWorldModel()
+		local _Owner = self:GetOwner()
+
+		if (IsValid(_Owner)) then
+            -- Specify a good position
+			local offsetVec = Vector(8,-1,0)
+			local offsetAng = Angle(150, 0, 0)
+			
+			local boneid = _Owner:LookupBone("ValveBiped.Bip01_R_Hand") -- Right Hand
+			if !boneid then return end
+
+			local matrix = _Owner:GetBoneMatrix(boneid)
+			if !matrix then return end
+
+			local newPos, newAng = LocalToWorld(offsetVec, offsetAng, matrix:GetTranslation(), matrix:GetAngles())
+
+			WorldModel:SetPos(newPos)
+			WorldModel:SetAngles(newAng)
+			WorldModel:SetModelScale(1.3)
+
+            WorldModel:SetupBones()
+		else
+			WorldModel:SetPos(self:GetPos())
+			WorldModel:SetAngles(self:GetAngles())
+		end
+
+		WorldModel:DrawModel()
+	end
+end
 
 function SWEP:Initialize()
-	self:SetHoldType( "melee" )
-	self.lerpClose = 0
+self:SetHoldType( "melee2" )
 end
 
 
 function SWEP:Deploy()
-	self:SetNextPrimaryFire( CurTime() + self:GetOwner():GetViewModel():SequenceDuration() )
-	self:SetHoldType( "melee" )
-	if SERVER then
-		self:GetOwner():EmitSound(self.DrawSound,60)
-	end
-	local ply = self:GetOwner()
-	if not IsValid(ply) then return end
-	if ply:GetNWBool("Suiciding") then ply:SetNWBool("Suiciding",false) end
+self:SetNextPrimaryFire( CurTime() + self:GetOwner():GetViewModel():SequenceDuration() )
+self:SetHoldType( "melee2" )
 end
 
 function SWEP:Holster()
@@ -155,32 +179,10 @@ function SWEP:PrimaryAttack()
 
 	if SERVER then
 		self:GetOwner():EmitSound( "weapons/slam/throw.wav",60 )
-		self:GetOwner().stamina = math.max(self:GetOwner().stamina - 10,0)
+		self:GetOwner().stamina = math.max(self:GetOwner().stamina - 8,0)
 	end
-
-	local ply = self:GetOwner()
-	if ply:GetNWBool("Suiciding") then
-		if SERVER then
-			ply.KillReason = "killyourself"
-
-			local dmgInfo = DamageInfo()
-			dmgInfo:SetAttacker(ply)
-			dmgInfo:SetInflictor(self)
-			dmgInfo:SetDamage(self.Primary.Damage * 3)
-			dmgInfo:SetDamageType(DMG_SLASH)
-			dmgInfo:SetDamageForce(self:GetOwner():GetForward() * self.Primary.Force)
-			--dmgInfo:SetDamagePosition(ply:GetBonePosition(ply:LookupBone("ValveBiped.Bip01_Head1")))
-			ply:TakeDamageInfo(dmgInfo)
-
-			ply.LastDMGInfo = dmgInfo
-			ply.LastHitBoneName = "ValveBiped.Bip01_Head1"
-			ply.Organs["artery"] = math.Clamp(ply.Organs["artery1"] - (self.Primary.Damage * 3), 0, 1)
-			self:GetOwner():EmitSound("snd_jack_hmcd_slash.wav", 50)
-		end
-		return
-	end
-
 	self:GetOwner():LagCompensation( true )
+	local ply = self:GetOwner()
 
 	local tra = {}
 	tra.start = ply:GetAttachment(ply:LookupAttachment("eyes")).Pos
@@ -205,12 +207,12 @@ function SWEP:PrimaryAttack()
 	pos2 = tr.HitPos - tr.HitNormal
 	if true then
 		if SERVER and tr.HitWorld then
-			self:GetOwner():EmitSound(  "snd_jack_hmcd_knifehit.wav",60  )
+			self:GetOwner():EmitSound(  "physics/wood/wood_plank_impact_hard"..math.random(1,5)..".wav",60  )
 		end
 
 		if IsValid( tr.Entity ) and SERVER then
 			local dmginfo = DamageInfo()
-			dmginfo:SetDamageType( DMG_SLASH )
+			dmginfo:SetDamageType( DMG_CLUB )
 			dmginfo:SetAttacker( self:GetOwner() )
 			dmginfo:SetInflictor( self )
 			dmginfo:SetDamagePosition( tr.HitPos )
@@ -218,26 +220,24 @@ function SWEP:PrimaryAttack()
 			local angle = self:GetOwner():GetAngles().y - tr.Entity:GetAngles().y
 			if angle < -180 then angle = 360 + angle end
 
-			dmginfo:SetDamage( self.Primary.Damage / 1.5 )
+			if angle <= 90 and angle >= -90 then
+				dmginfo:SetDamage( self.Primary.Damage * 1.5 )
+			else
+				dmginfo:SetDamage( self.Primary.Damage / 1.5 )
+			end
 
 			if tr.Entity:IsNPC() or tr.Entity:IsPlayer() then
-				self:GetOwner():EmitSound( "snd_jack_hmcd_axehit.wav",60 )
+				self:GetOwner():EmitSound( "Flesh.ImpactHard",60 )
 			else
+
 				if tr.Entity:GetClass() == "prop_ragdoll" then
-					self:GetOwner():EmitSound(  "snd_jack_hmcd_axehit.wav",60  )
+					self:GetOwner():EmitSound(  "Flesh.ImpactHard",60  )
 				else
-					self:GetOwner():EmitSound(  "snd_jack_hmcd_knifehit.wav",60  )
+					self:GetOwner():EmitSound(  "physics/wood/wood_plank_impact_hard"..math.random(1,5)..".wav",60  )
 				end
+
 			end
 			tr.Entity:TakeDamageInfo( dmginfo )
-		end
-	end
-
-	if SERVER and Tr.Hit then
-		if IsValid(Tr.Entity) and Tr.Entity:GetClass()=="prop_ragdoll" then
-			util.Decal("Impact.Flesh",pos1,pos2)
-		else
-			util.Decal("ManhackCut",pos1,pos2)
 		end
 	end
 
@@ -250,54 +250,5 @@ end
 function SWEP:Reload()
 end
 
-local closeAng = Angle(0,0,0)
-local angZero = Angle(0,0,0)
-local angSuicide = Angle(160,30,90)
-local angSuicide2 = Angle(160,30,90)
-local angSuicide3 = Angle(60,-30,90)
-local forearm,clavicle,hand = Angle(0,0,0),Angle(0,0,0),Angle(0,0,0)
 function SWEP:Think()
-	local ply = self:GetOwner()
-	if not IsValid(ply) or not ply:Alive() then return end
-	hand:Set(angZero)
-	if not self.isClose and not self:GetOwner():IsSprinting() then
-		if not ply:GetNWBool("Suiciding") then
-			self:SetWeaponHoldType(self.HoldType)
-			hand:Set(angZero)
-			forearm:Set(angZero)
-		elseif not self.TwoHands and ply:GetNWBool("Suiciding") then
-			self:SetWeaponHoldType("normal")
-			forearm:Set(angSuicide2)
-			hand:Set(angSuicide3)
-		elseif ply:GetNWBool("Suiciding") then
-			self:SetWeaponHoldType("normal")
-			hand:Set(angSuicide)
-		end
-	end
-
-	local eyeangles = (-ply:GetEyeTrace().HitPos + ply:EyePos()):Angle()
-	eyeangles:RotateAroundAxis(eyeangles:Up(),180)
-	
-	if ((CLIENT and isLocal) or SERVER) then
-		if not ply:GetNWBool("Suiciding") and not self:GetOwner():IsSprinting() then
-			local numbr = self.TwoHands and 50 or 80
-			if eyeangles[1] > numbr then
-				hand[1] = hand[1] - (eyeangles[1] - numbr)
-			end
-
-			if eyeangles[1] < -numbr then
-				hand[1] = hand[1] - (eyeangles[1] + numbr)
-			end
-		end
-	end
-
-	clavicle:Set(angZero)
-	closeAng[3] = -40 * self.lerpClose
-	clavicle:Add(closeAng)
-
-	if not ply:LookupBone("ValveBiped.Bip01_R_Forearm") then return end--;c
-
-	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Forearm"),forearm,false)
-	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"),clavicle,false)
-	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Hand"),hand,false)
 end

@@ -4,6 +4,8 @@ SWEP.PrintName 				= "HK USP-S"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Пистолет под калибр 9х19"
 SWEP.Category 				= "Оружие"
+SWEP.WepSelectIcon = "vgui/select/w/usps"
+SWEP.IconOverride = "vgui/icon/w/usps.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
@@ -17,8 +19,8 @@ SWEP.Primary.Ammo			= "9х19 mm Parabellum"
 SWEP.Primary.Cone = 0
 SWEP.Primary.Damage = 25
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "pwb/weapons/tmp/shoot.wav"
-SWEP.Primary.Force = 70/3
+SWEP.Primary.Sound = "weapons/salat/w_hk_usps/shoot.wav"
+SWEP.Primary.Force = 70 / 3
 SWEP.ReloadTime = 2
 SWEP.ShootWait = 0.14
 

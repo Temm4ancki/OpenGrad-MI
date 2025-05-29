@@ -5,7 +5,7 @@ kuhnya.Name = "КУХНЯ"
 kuhnya.red = {"ОГУЗКИ",Color(255,255,255),
 	weapons = {"weapon_hands","med_band_big","med_band_small","weapon_radio"},
 	main_weapon = {"weapon_sar2","weapon_spas12","weapon_akm","weapon_mp7"},
-	secondary_weapon = {"weapon_hk_usp","weapon_p220"},
+	secondary_weapon = {"weapon_hk_usp","weapon_cz75-2"},
 	models = {"models/kuhnya/fedya/fedya.mdl","models/kuhnya/senya/senya.mdl","models/kuhnya/oguzok/oguzok.mdl"}
 }
 

@@ -171,7 +171,7 @@ function basedefence.PlayerSpawn(ply, teamID)
     ply:Give(r == 1 and "food_fishcan" or r == 2 and "food_spongebob_home" or r == 3 and "food_lays")
 
     if math.random(1, 3) == 3 then ply:Give("food_monster") end
-    if math.random(1, 5) == 5 then ply:Give("weapon_bat") end
+    if math.random(1, 5) == 5 then ply:Give("weapon_hg_bat") end
 end
 
 function basedefence.PlayerInitialSpawn(ply)

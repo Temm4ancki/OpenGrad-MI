@@ -6,6 +6,7 @@ end
 SWEP.PrintName = "Кукри"
 SWEP.Instructions = "Режущий инструмент, используемый для рубки деревьев, листвы и других вещей, которые попадутся под руку. Обладает удобной рукоятью и длинным лезвием, благодаря чему становится отличным оружием ближнего боя."
 SWEP.Category = "Ближний Бой"
+SWEP.WepSelectIcon = "vgui/select/w/gurkha"
 SWEP.IconOverride = "vgui/icon/w/gurkha.png"
 
 SWEP.Spawnable = true
@@ -171,7 +172,7 @@ function SWEP:PrimaryAttack()
 			ply.LastDMGInfo = dmgInfo
 			ply.LastHitBoneName = "ValveBiped.Bip01_Head1"
 			ply.Organs["artery"] = math.Clamp(ply.Organs["artery1"] - (self.Primary.Damage * 3), 0, 1)
-			self:GetOwner():EmitSound("snd_jack_hmcd_slash.wav", 50)
+			self:GetOwner():EmitSound("weapons/salat/w_gurkha/snd_jack_hmcd_slash.ogg", 50)
 		end
 		return
 	end
@@ -201,7 +202,7 @@ function SWEP:PrimaryAttack()
 	pos2 = tr.HitPos - tr.HitNormal
 	if true then
 		if SERVER and tr.HitWorld then
-			self:GetOwner():EmitSound(  "snd_jack_hmcd_knifehit.wav", 60)
+			self:GetOwner():EmitSound(  "weapons/salat/w_gurkha/snd_jack_hmcd_knifehit.ogg", 60)
 		end
 
 		if IsValid( tr.Entity ) and SERVER then
@@ -217,12 +218,12 @@ function SWEP:PrimaryAttack()
 			dmginfo:SetDamage( self.Primary.Damage / 1.5 )
 
 			if tr.Entity:IsNPC() or tr.Entity:IsPlayer() then
-				self:GetOwner():EmitSound( "snd_jack_hmcd_knifestab.wav", 60)
+				self:GetOwner():EmitSound( "weapons/salat/w_gurkha/snd_jack_hmcd_knifestab.ogg", 60)
 			else
 				if tr.Entity:GetClass() == "prop_ragdoll" then
-					self:GetOwner():EmitSound(  "snd_jack_hmcd_knifestab.wav", 60)
+					self:GetOwner():EmitSound(  "weapons/salat/w_gurkha/snd_jack_hmcd_knifestab.ogg", 60)
 				else
-					self:GetOwner():EmitSound(  "snd_jack_hmcd_knifehit.wav", 60)
+					self:GetOwner():EmitSound(  "weapons/salat/w_gurkha/snd_jack_hmcd_knifehit.ogg", 60)
 				end
 			end
 			tr.Entity:TakeDamageInfo( dmginfo )

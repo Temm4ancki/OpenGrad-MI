@@ -166,20 +166,20 @@ hook.Add("HUDDrawTargetID", "no", function() return false end)
 
 local laserweps = {
 	["weapon_xm1014"] = true,
-	["weapon_mp40"] = true,
+	["weapon_p90-2"] = true,
 	["weapon_m249"] = true,
-	["weapon_fiveseven"] = true,
+	["weapon_p99"] = true,
 	["weapon_hk_usp"] = true,
-	["weapon_mk18"] = true,
+	["weapon_hk416-2"] = true,
 	["weapon_hk_usp"] = true,
 	["weapon_m4a1"] = true,
 	["weapon_ar15"] = true,
-	["weapon_m3super"] = true,
+	["weapon_m4super-2"] = true,
 	["weapon_mp7"] = true,
-	["weapon_p220"] = true,
+	["weapon_cz75-2"] = true,
 	["weapon_galil"] = true,
 	["weapon_deagle"] = true,
-	["weapon_beanbag"] = true,
+	["weapon_remington870police"] = true,
 	["weapon_glock"] = true
 }
 

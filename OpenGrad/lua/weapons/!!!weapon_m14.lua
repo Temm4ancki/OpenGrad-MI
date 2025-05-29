@@ -1,29 +1,25 @@
 SWEP.Base = "salat_base" -- base
 
-SWEP.PrintName 				= "AR-15"
-SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Полуавтоматическая винтовка под калибр 5,56х45"
-SWEP.Category 				= "Оружие"
-SWEP.WepSelectIcon = "vgui/select/w/m4a1"
-SWEP.IconOverride = "vgui/icon/w/m4a1.png"
+SWEP.PrintName 				= "M14"
+SWEP.Instructions			= ""
+SWEP.Category 				= "Говно нерабочее"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
 
 ------------------------------------------
 
-SWEP.Primary.ClipSize		= 30
-SWEP.Primary.DefaultClip	= 30
+SWEP.Primary.ClipSize		= 20
+SWEP.Primary.DefaultClip	= 20
 SWEP.Primary.Automatic		= false
-SWEP.Primary.Ammo			= "5.56x45 mm"
+SWEP.Primary.Ammo			= "ar2"
 SWEP.Primary.Cone = 0
 SWEP.Primary.Damage = 40
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "weapons/salat/w_m4a1/m4a1_fp.ogg"
-SWEP.Primary.SoundFar = "weapons/salat/w_m4a1/m4a1_dist.ogg"
-SWEP.Primary.Force = 160 / 3
+SWEP.Primary.Sound = "weapons/m4a1/m4a1_unsil-1.wav"
+SWEP.Primary.Force = 270 / 3
 SWEP.ReloadTime = 2
-SWEP.ShootWait = 0.08
+SWEP.ShootWait = 0.15
 SWEP.ReloadSound = "weapons/ar2/ar2_reload.wav"
 SWEP.TwoHands = true
 
@@ -47,5 +43,7 @@ SWEP.SlotPos				= 0
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/weapons/salat/w_m4a1/w_m4a1.mdl"
-SWEP.WorldModel				= "models/weapons/salat/w_m4a1/w_m4a1.mdl"
+SWEP.ViewModel				= "models/weapons/w_snip_sg550.mdl"
+SWEP.WorldModel				= "models/weapons/w_snip_sg550.mdl"
+
+SWEP.vbwPos = Vector(-8,-4,-6)

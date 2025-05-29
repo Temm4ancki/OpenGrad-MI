@@ -6,7 +6,7 @@ SWEP.Author 				= "Heckler & Koch"
 SWEP.Instructions			= "Да я двигаюсь как будта тайлер дерден, па пути с качалки твою маму тайно дёрнул"
 SWEP.Category 				= "Оружие"
 
-SWEP.Spawnable 				= true
+SWEP.Spawnable 				= false
 SWEP.AdminOnly 				= false
 
 ------------------------------------------

@@ -4,7 +4,8 @@ SWEP.PrintName 				= "HK USP"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Пистолет под калибр 9х19"
 SWEP.Category 				= "Оружие"
-SWEP.WepSelectIcon			= "pwb2/vgui/weapons/usptactical"
+SWEP.WepSelectIcon = "vgui/select/w/usp"
+SWEP.IconOverride = "vgui/icon/w/usp.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
@@ -18,9 +19,9 @@ SWEP.Primary.Ammo			= "9х19 mm Parabellum"
 SWEP.Primary.Cone = 0
 SWEP.Primary.Damage = 35
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "hndg_beretta92fs/beretta92_fire1.wav"
-SWEP.Primary.SoundFar = "snd_jack_hmcd_smp_far.wav"
-SWEP.Primary.Force = 90/3
+SWEP.Primary.Sound = "weapons/salat/w_hk_usp/beretta92_fire1.ogg"
+SWEP.Primary.SoundFar = "weapons/salat/w_hk_usp/snd_jack_hmcd_smp_far.ogg"
+SWEP.Primary.Force = 90 / 3
 SWEP.ReloadTime = 2
 SWEP.ShootWait = 0.14
 
@@ -44,8 +45,8 @@ SWEP.SlotPos				= 1
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/pwb2/weapons/w_usptactical.mdl"
-SWEP.WorldModel				= "models/pwb2/weapons/w_usptactical.mdl"
+SWEP.ViewModel				= "models/weapons/salat/w_hk_usp/w_usptactical.mdl"
+SWEP.WorldModel				= "models/weapons/salat/w_hk_usp/w_usptactical.mdl"
 
 SWEP.vbwPos = Vector(6.5,3.4,-4)
 

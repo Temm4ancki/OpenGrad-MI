@@ -1,4 +1,4 @@
-SWEP.Base = 'weapon_base' -- base
+SWEP.Base = "weapon_base" -- base
 SWEP.PrintName = "weapon_sib_base"
 SWEP.Author = "sadsalat"
 SWEP.Instructions = "Salatis Imersive Base"
@@ -17,7 +17,7 @@ SWEP.Primary.Ammo = "pistol"
 SWEP.Primary.Cone = 0
 SWEP.Primary.Damage = 100
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "weapons/fiveseven/fiveseven-1.wav"
+SWEP.Primary.Sound = "weapons/p99/p99-1.wav"
 SWEP.Primary.FarSound = ""
 SWEP.Primary.Force = 0
 SWEP.ReloadTime = 2

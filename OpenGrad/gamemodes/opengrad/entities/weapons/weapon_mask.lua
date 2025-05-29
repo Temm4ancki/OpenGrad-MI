@@ -4,7 +4,7 @@ SWEP.Base = "weapon_base"
 
 SWEP.PrintName = "Костюм маньяка"
 SWEP.Category = "Примочки убийцы"
-SWEP.Instructions = "\nКейс с костюмом для скрытия личности \n\nЛКМ - Скрыть личность \nПКМ - Вернуть личность"
+SWEP.Instructions = "\nКейс с костюмом для скрытия личности \n\nR - Выбрать одежду маньяка \nЛКМ - Скрыть личность \nПКМ - Вернуть личность"
 SWEP.Author			= ""
 SWEP.Contact		= ""
 SWEP.Purpose		= ""

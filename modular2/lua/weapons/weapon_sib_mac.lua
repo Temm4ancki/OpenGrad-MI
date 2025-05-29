@@ -6,7 +6,7 @@ SWEP.Author 				= "Ingram"
 SWEP.Instructions			= "Оу щит гад дэм"
 SWEP.Category 				= "Оружие"
 
-SWEP.Spawnable 				= true
+SWEP.Spawnable 				= false
 SWEP.AdminOnly 				= false
 
 ------------------------------------------

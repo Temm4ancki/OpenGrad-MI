@@ -8,7 +8,7 @@ slovopacana.red = {
 	Color(55, 150, 98),
 	weapons = {"weapon_hands", "med_band_small"},
 	main_weapon = {"weapon_molotok", "med_band_big", "med_band_small", "weapon_hg_molotov", "weapon_per4ik", "weapon_molotok", "med_band_big", "med_band_small", "weapon_per4ik"},
-	secondary_weapon = {"weapon_hg_metalbat", "weapon_bat", "weapon_pipe"},
+	secondary_weapon = {"weapon_hg_metalbat", "weapon_hg_bat", "weapon_pipe"},
 	models = {"models/player/Group01/male_04.mdl", "models/player/Group01/male_01.mdl", "models/player/Group01/male_02.mdl", "models/player/Group01/male_08.mdl"}
 }
 
@@ -17,7 +17,7 @@ slovopacana.blue = {
 	Color(45, 75, 75),
 	weapons = {"weapon_hands", "med_band_small"},
 	main_weapon = {"weapon_molotok", "med_band_big", "med_band_small", "weapon_hg_molotov", "weapon_per4ik", "weapon_molotok", "med_band_big", "med_band_small", "weapon_per4ik"},
-	secondary_weapon = {"weapon_hg_metalbat", "weapon_bat", "weapon_pipe"},
+	secondary_weapon = {"weapon_hg_metalbat", "weapon_hg_bat", "weapon_pipe"},
 	models = {"models/player/Group01/male_04.mdl", "models/player/Group01/male_01.mdl", "models/player/Group01/male_02.mdl", "models/player/Group01/male_08.mdl"}
 }
 

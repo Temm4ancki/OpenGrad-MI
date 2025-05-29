@@ -5,7 +5,7 @@ SWEP.Author 				= "ArmaLite"
 SWEP.Instructions			= "Американская винтовка с оптикой ACOG"
 SWEP.Category 				= "Оружие"
 
-SWEP.Spawnable 				= true
+SWEP.Spawnable 				= false
 SWEP.AdminOnly 				= false
 
 ------------------------------------------

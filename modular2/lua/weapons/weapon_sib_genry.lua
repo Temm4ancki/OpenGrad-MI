@@ -5,7 +5,7 @@ SWEP.Author 				= "Winchester"
 SWEP.Instructions			= "I am the Sheriff"
 SWEP.Category 				= "Оружие"
 
-SWEP.Spawnable 				= true
+SWEP.Spawnable 				= false
 SWEP.AdminOnly 				= false
 
 ------------------------------------------

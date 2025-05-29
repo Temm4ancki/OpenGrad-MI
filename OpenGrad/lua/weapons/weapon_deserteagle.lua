@@ -4,7 +4,8 @@ SWEP.PrintName 				= "Desert Eagle"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Digle"
 SWEP.Category 				= "Оружие"
-SWEP.WepSelectIcon			= "pwb2/vgui/weapons/matebahomeprotection"
+SWEP.WepSelectIcon = "vgui/select/w/deserteagle"
+SWEP.IconOverride = "vgui/icon/w/deserteagle.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
@@ -18,9 +19,9 @@ SWEP.Primary.Ammo			= ".44 Remington Magnum"
 SWEP.Primary.Cone = 0
 SWEP.Primary.Damage = 35
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "hndg_sw686/revolver_fire_01.wav"
-SWEP.Primary.SoundFar = "snd_jack_hmcd_smp_far.wav"
-SWEP.Primary.Force = 105/40
+SWEP.Primary.Sound = "weapons/salat/w_deserteagle/revolver_fire_01.ogg"
+SWEP.Primary.SoundFar = "weapons/salat/w_deserteagle/snd_jack_hmcd_smp_far.ogg"
+SWEP.Primary.Force = 105 / 40
 SWEP.ReloadTime = 2
 SWEP.ShootWait = 0.12
 
@@ -45,8 +46,8 @@ SWEP.SlotPos				= 1
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/weapons/w_jmod_deagle.mdl"
-SWEP.WorldModel				= "models/weapons/w_jmod_deagle.mdl"
+SWEP.ViewModel				= "models/weapons/salat/w_deserteagle/w_jmod_deagle.mdl"
+SWEP.WorldModel				= "models/weapons/salat/w_deserteagle/w_jmod_deagle.mdl"
 
 function SWEP:ApplyEyeSpray()
     self.eyeSpray = self.eyeSpray - Angle(2,math.Rand(-0.5,0.5),0)
@@ -54,7 +55,7 @@ end
 
 local function rolldrum(ply,wpn)
     local wep = type(wpn) == "string" and ply:GetActiveWeapon() or wpn
-    
+
     if not IsValid(ply) or not IsValid(wep) or wep:GetClass() != "weapon_deagle" then return end
 
     wep.tries = math.random(math.max(7 - wep:Clip1(),1))
@@ -104,11 +105,11 @@ if SERVER then
 
     function SWEP:Deploy()
         self:SetHoldType("normal")
-        
-        self:GetOwner():EmitSound("snd_jack_hmcd_pistoldraw.wav", 65, 100, 1, CHAN_AUTO)
-    
+
+        self:GetOwner():EmitSound("weapons/salat/w_deserteagle/snd_jack_hmcd_pistoldraw.ogg", 65, 100, 1, CHAN_AUTO)
+
         self.NextShot = CurTime() + 0.5
-    
+
         self:SetHoldType( self.HoldType )
 
         self.tries = self.tries or math.random(math.max(7 - self:Clip1(),1))
@@ -121,9 +122,9 @@ if SERVER then
 else
     function SWEP:Deploy()
         self:SetHoldType("normal")
-    
+
         self.NextShot = CurTime() + 0.5
-    
+
         self:SetHoldType( self.HoldType )
     end
 

@@ -5,7 +5,7 @@ SWEP.Author 				= "Glock"
 SWEP.Instructions			= "Знаменитое оружие террористов из контры"
 SWEP.Category 				= "Оружие"
 
-SWEP.Spawnable 				= true
+SWEP.Spawnable 				= false
 SWEP.AdminOnly 				= false
 
 ------------------------------------------

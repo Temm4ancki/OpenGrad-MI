@@ -5,7 +5,7 @@ SWEP.Author 				= "FN"
 SWEP.Instructions			= "Если я пират, то моё имя Серёга"
 SWEP.Category 				= "Оружие"
 
-SWEP.Spawnable 				= true
+SWEP.Spawnable 				= false
 SWEP.AdminOnly 				= false
 
 ------------------------------------------

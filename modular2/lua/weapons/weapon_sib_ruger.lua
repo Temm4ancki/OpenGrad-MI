@@ -5,7 +5,7 @@ SWEP.Author 				= "Ruger"
 SWEP.Instructions			= "ВИнтовка"
 SWEP.Category 				= "Оружие"
 
-SWEP.Spawnable 				= true
+SWEP.Spawnable 				= false
 SWEP.AdminOnly 				= false
 
 ------------------------------------------

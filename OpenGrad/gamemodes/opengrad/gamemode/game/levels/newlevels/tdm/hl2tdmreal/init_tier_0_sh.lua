@@ -8,7 +8,7 @@ for i = 1,9 do table.insert(models,"models/player/group03/male_0" .. i .. ".mdl"
 hl2dmreal.red = {"Повстанец",Color(125,95,60),
 	weapons = {"weapon_hands","med_band_big","med_band_small","weapon_radio"},
 	main_weapon = {"weapon_sar2","weapon_remington870","weapon_akm","weapon_mp7"},
-	secondary_weapon = {"weapon_glock18","weapon_p220"},
+	secondary_weapon = {"weapon_p228","weapon_cz75-2"},
 	models = models
 }
 

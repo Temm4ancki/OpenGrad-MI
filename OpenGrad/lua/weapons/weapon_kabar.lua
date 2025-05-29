@@ -3,6 +3,7 @@
 SWEP.PrintName = "SOG M37 Seal pup"
 SWEP.Instructions = "Тот самый нож трейтора"
 SWEP.Category = "Ближний Бой"
+SWEP.WepSelectIcon = "vgui/select/w/kabar"
 SWEP.IconOverride = "vgui/icon/w/kabar.png"
 
 SWEP.Spawnable = true
@@ -10,8 +11,8 @@ SWEP.AdminSpawnable = true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60
-SWEP.ViewModel = "models/zcity/weapons/w_sog_knife.mdl"
-SWEP.WorldModel = "models/zcity/weapons/w_sog_knife.mdl"
+SWEP.ViewModel = "models/weapons/salat/w_kabar/w_sog_knife.mdl"
+SWEP.WorldModel = "models/weapons/salat/w_kabar/w_sog_knife.mdl"
 SWEP.ViewModelFlip = false
 
 SWEP.AutoSwitchTo = false
@@ -176,7 +177,7 @@ function SWEP:PrimaryAttack()
 			ply.LastDMGInfo = dmgInfo
 			ply.LastHitBoneName = "ValveBiped.Bip01_Head1"
 			ply.Organs["artery"] = math.Clamp(ply.Organs["artery1"] - (self.Primary.Damage * 3), 0, 1)
-			self:GetOwner():EmitSound("snd_jack_hmcd_slash.wav", 50)
+			self:GetOwner():EmitSound("weapons/salat/w_kabar/snd_jack_hmcd_slash.wav", 50)
 		end
 		return
 	end
@@ -205,7 +206,7 @@ function SWEP:PrimaryAttack()
 	pos2 = tr.HitPos - tr.HitNormal
 	if true then
 		if SERVER and tr.HitWorld then
-			self:GetOwner():EmitSound("snd_jack_hmcd_knifehit.wav", 60)
+			self:GetOwner():EmitSound("weapons/salat/w_kabar/snd_jack_hmcd_knifehit.wav", 60)
 		end
 
 		if IsValid( tr.Entity ) and SERVER then
@@ -225,12 +226,12 @@ function SWEP:PrimaryAttack()
 			end
 
 			if tr.Entity:IsNPC() or tr.Entity:IsPlayer() then
-				self:GetOwner():EmitSound( "snd_jack_hmcd_knifestab.wav",60 )
+				self:GetOwner():EmitSound( "weapons/salat/w_kabar/snd_jack_hmcd_knifestab.wav",60 )
 			else
 				if tr.Entity:GetClass() == "prop_ragdoll" then
-					self:GetOwner():EmitSound(  "snd_jack_hmcd_knifestab.wav",60  )
+					self:GetOwner():EmitSound(  "weapons/salat/w_kabar/snd_jack_hmcd_knifestab.wav",60  )
 				else
-					self:GetOwner():EmitSound(  "snd_jack_hmcd_knifehit.wav",60  )
+					self:GetOwner():EmitSound(  "weapons/salat/w_kabar/snd_jack_hmcd_knifehit.wav",60  )
 				end
 			end
 			tr.Entity:TakeDamageInfo( dmginfo )

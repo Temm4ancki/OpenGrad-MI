@@ -11,7 +11,7 @@ riot.red = {
 	"Полиция",
 	Color(55, 55, 150),
 	weapons = {"weapon_hands", "weapon_police_bat", "med_band_big", "med_band_small", "weapon_taser", "weapon_handcuffs", "weapon_radio"},
-	main_weapon = {"weapon_per4ik", "medkit", "painkiller", "weapon_hg_flashbang", "weapon_per4ik", "medkit", "painkiller", "weapon_beanbag"},
+	main_weapon = {"weapon_per4ik", "medkit", "painkiller", "weapon_hg_flashbang", "weapon_per4ik", "medkit", "painkiller", "weapon_remington870police"},
 	secondary_weapon = {""},
 	models = poli
 }
@@ -31,8 +31,8 @@ riot.blue = {
 	"Бунтующие",
 	Color(75, 45, 45),
 	weapons = {"weapon_hands", "med_band_small"},
-	main_weapon = {"weapon_glock18", "weapon_molotok", "med_band_big", "med_band_small", "weapon_hg_molotov", "weapon_per4ik", "weapon_molotok", "med_band_big", "med_band_small", "weapon_per4ik"},
-	secondary_weapon = {"weapon_hg_metalbat", "weapon_bat", "weapon_pipe"},
+	main_weapon = {"weapon_p228", "weapon_molotok", "med_band_big", "med_band_small", "weapon_hg_molotov", "weapon_per4ik", "weapon_molotok", "med_band_big", "med_band_small", "weapon_per4ik"},
+	secondary_weapon = {"weapon_hg_metalbat", "weapon_hg_bat", "weapon_pipe"},
 	models = bunt
 }
 

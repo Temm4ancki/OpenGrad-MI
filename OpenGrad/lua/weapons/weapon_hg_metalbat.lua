@@ -3,14 +3,16 @@ SWEP.Base = "weapon_hg_melee_base"
 SWEP.PrintName = "Металическая Бита"
 SWEP.Category = "Ближний Бой"
 SWEP.Instructions = "Часть спортивного инвентаря, предназначенная для нанесения ударов по мячу, выполненная из металлического материала, благодаря чему урон от данной биты будет в разы сильнее, чем от её деревянного аналога. Особенности конструкции биты позволяют наносить ею тяжёлые и мощные удары, но отличается от деревянной битой тем."
+SWEP.WepSelectIcon = "vgui/select/w/metalbat"
+SWEP.IconOverride = "vgui/icon/w/metalbat.png"
 
 SWEP.Spawnable= true
 SWEP.AdminSpawnable= true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60
-SWEP.ViewModel = "models/weapons/me_bat_metal_tracer/w_me_bat_metal.mdl"
-SWEP.WorldModel = "models/weapons/me_bat_metal_tracer/w_me_bat_metal.mdl"
+SWEP.ViewModel = "models/weapons/salat/w_hg_metalbat/w_me_bat_metal.mdl"
+SWEP.WorldModel = "models/weapons/salat/w_hg_metalbat/w_me_bat_metal.mdl"
 SWEP.ViewModelFlip = false
 
 SWEP.AutoSwitchTo = false
@@ -42,9 +44,9 @@ SWEP.Secondary.DefaultClip = 0
 SWEP.Secondary.Automatic = false
 SWEP.Secondary.Ammo = "none"
 
-SWEP.DrawSound = "weapons/melee/holster_in_light.wav"
+SWEP.DrawSound = "weapons/salat/w_hg_metalbat/holster_in_light.ogg"
 SWEP.HitSound = "physics/metal/metal_canister_impact_hard3.wav"
-SWEP.FlashHitSound = "weapons/melee/flesh_impact_blunt_04.wav"
+SWEP.FlashHitSound = "weapons/salat/w_hg_metalbat/flesh_impact_blunt_04.ogg"
 SWEP.ShouldDecal = false
 SWEP.HoldTypeWep = "melee2"
 SWEP.DamageType = DMG_CLUB

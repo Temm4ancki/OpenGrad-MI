@@ -232,263 +232,6 @@ lua:
       ☐ sv_hooks.lua
       ☐ sv_mapvote.lua
       ☐ sv_net.lua
-
-  effects:
-    eff_jack_aidimpact:
-      ☐ init.lua
-
-    eff_jack_aidopen:
-      ☐ init.lua
-
-    eff_jack_america:
-      ☐ init.lua
-
-    eff_jack_bombdetonate:
-      ☐ init.lua
-
-    eff_jack_bombletdetonate:
-      ☐ init.lua
-
-    eff_jack_cold:
-      ☐ init.lua
-
-    eff_jack_coldmuzzle:
-      ☐ init.lua
-
-    eff_jack_cyanflash:
-      ☐ init.lua
-
-    eff_jack_detonate:
-      ☐ init.lua
-
-    eff_jack_directionalsplode:
-      ☐ init.lua
-
-    eff_jack_dronelight:
-      ☐ init.lua
-
-    eff_jack_fadingmelt:
-      ☐ init.lua
-
-    eff_jack_firebomb:
-      ☐ init.lua
-
-    eff_jack_flamesmoke:
-      ☐ init.lua
-
-    eff_jack_fougasseburst:
-      ☐ init.lua
-
-    eff_jack_fragsplosion:
-      ☐ init.lua
-
-    eff_jack_fuzeburn:
-      ☐ init.lua
-
-    eff_jack_gasolineburst:
-      ☐ init.lua
-
-    eff_jack_genericboom:
-      ☐ init.lua
-
-    eff_jack_genrun:
-      ☐ init.lua
-
-    eff_jack_gunoverheat:
-      ☐ init.lua
-
-    eff_jack_heatshimmer:
-      ☐ init.lua
-
-    eff_jack_heavyfadingmelt:
-      ☐ init.lua
-
-    eff_jack_heavylaserbeam:
-      ☐ init.lua
-
-    eff_jack_heavylaserbeamimpact:
-      ☐ init.lua
-
-    eff_jack_heavyplasmaarc:
-      ☐ init.lua
-
-    eff_jack_iceimpact:
-      ☐ init.lua
-
-    eff_jack_instantvent:
-      ☐ init.lua
-
-    eff_jack_lampburn:
-      ☐ init.lua
-
-    eff_jack_laserbeam:
-      ☐ init.lua
-
-    eff_jack_laserbeamimpact:
-      ☐ init.lua
-
-    eff_jack_lightboom:
-      ☐ init.lua
-
-    eff_jack_longflamelight:
-      ☐ init.lua
-
-    eff_jack_minesplode:
-      ☐ init.lua
-
-    eff_jack_minesplode_l:
-      ☐ init.lua
-
-    eff_jack_napalmburn:
-      ☐ init.lua
-
-    eff_jack_penetrate:
-      ☐ init.lua
-
-    eff_jack_plasmaarc:
-      ☐ init.lua
-
-    eff_jack_plasmaburst:
-      ☐ init.lua
-
-    eff_jack_plasmajetwater:
-      ☐ init.lua
-
-    eff_jack_plastisplosion:
-      ☐ init.lua
-
-    eff_jack_powdersplode:
-      ☐ init.lua
-
-    eff_jack_railgunmuzzle:
-      ☐ init.lua
-
-    eff_jack_redflash:
-      ☐ init.lua
-
-    eff_jack_rocketthrust:
-      ☐ init.lua
-
-    eff_jack_shrapnelburst:
-      ☐ init.lua
-
-    eff_jack_shrapnelsplosion:
-      ☐ init.lua
-
-    eff_jack_smallvent:
-      ☐ init.lua
-
-    eff_jack_sminebury:
-      ☐ init.lua
-
-    eff_jack_sminepop:
-      ☐ init.lua
-
-    eff_jack_spraypaint:
-      ☐ init.lua
-
-    eff_jack_targetbust:
-      ☐ init.lua
-
-    eff_jack_thermobaricsplode:
-      ☐ init.lua
-
-    eff_jack_tinyburn:
-      ☐ init.lua
-
-    eff_jack_tinymelt:
-      ☐ init.lua
-
-    eff_jack_tinyturretburn:
-      ☐ init.lua
-
-    eff_jack_torchburn:
-      ☐ init.lua
-
-    eff_jack_turretmuzzle:
-      ☐ init.lua
-
-    eff_jack_turretmuzzlelight:
-      ☐ init.lua
-
-    eff_jack_waterboom:
-      ☐ init.lua
-
-    ☐ drg_blood_explosion.lua
-    ☐ eff_jack_gmod_40mmshell.lua
-    ☐ eff_jack_gmod_aidboxsignal.lua
-    ☐ eff_jack_gmod_airdestruction.lua
-    ☐ eff_jack_gmod_airsuck.lua
-    ☐ eff_jack_gmod_appear.lua
-    ☐ eff_jack_gmod_augerdig.lua
-    ☐ eff_jack_gmod_blackpowderpour.lua
-    ☐ eff_jack_gmod_bloodpoof.lua
-    ☐ eff_jack_gmod_bloodsplosion.lua
-    ☐ eff_jack_gmod_bphmuzzle.lua
-    ☐ eff_jack_gmod_bpmuzzle.lua
-    ☐ eff_jack_gmod_bpsmoke.lua
-    ☐ eff_jack_gmod_bubbleshieldburst.lua
-    ☐ eff_jack_gmod_deathzombiehit.lua
-    ☐ eff_jack_gmod_eastereggpop.lua
-    ☐ eff_jack_gmod_efpburst.lua
-    ☐ eff_jack_gmod_explosion_base.lua
-    ☐ eff_jack_gmod_ezbackblast.lua
-    ☐ eff_jack_gmod_ezbhg.lua
-    ☐ eff_jack_gmod_ezbuildsmoke.lua
-    ☐ eff_jack_gmod_ezcorndust.lua
-    ☐ eff_jack_gmod_ezexhaust.lua
-    ☐ eff_jack_gmod_ezfalloutdust.lua
-    ☐ eff_jack_gmod_ezflamethrowerfire.lua
-    ☐ eff_jack_gmod_ezhealpoof.lua
-    ☐ eff_jack_gmod_ezleaf.lua
-    ☐ eff_jack_gmod_ezoilfiresmoke.lua
-    ☐ eff_jack_gmod_ezpopcorn.lua
-    ☐ eff_jack_gmod_ezsmokescreen.lua
-    ☐ eff_jack_gmod_ezsmokesignal.lua
-    ☐ eff_jack_gmod_ezsteam.lua
-    ☐ eff_jack_gmod_ezthermonuke.lua
-    ☐ eff_jack_gmod_faebomb_main.lua
-    ☐ eff_jack_gmod_faebomb_predet.lua
-    ☐ eff_jack_gmod_fire.lua
-    ☐ eff_jack_gmod_firework.lua
-    ☐ eff_jack_gmod_flareburn.lua
-    ☐ eff_jack_gmod_flashbang.lua
-    ☐ eff_jack_gmod_fragsplosion.lua
-    ☐ eff_jack_gmod_fuzeburn_smoky.lua
-    ☐ eff_jack_gmod_heatcool.lua
-    ☐ eff_jack_gmod_heavyfire.lua
-    ☐ eff_jack_gmod_incbullet.lua
-    ☐ eff_jack_gmod_jetflyby.lua
-    ☐ eff_jack_gmod_liquidtrail.lua
-    ☐ eff_jack_gmod_noflashmuzzle.lua
-    ☐ eff_jack_gmod_normalmuzzle.lua
-    ☐ eff_jack_gmod_npcrocketsmoke.lua
-    ☐ eff_jack_gmod_pmuzzle.lua
-    ☐ eff_jack_gmod_portalclose.lua
-    ☐ eff_jack_gmod_portalopen.lua
-    ☐ eff_jack_gmod_projectileflareburn.lua
-    ☐ eff_jack_gmod_pulselaserfire.lua
-    ☐ eff_jack_gmod_redflash.lua
-    ☐ eff_jack_gmod_refractripple.lua
-    ☐ eff_jack_gmod_resource_liquid.lua
-    ☐ eff_jack_gmod_resource_props.lua
-    ☐ eff_jack_gmod_resource_sprites.lua
-    ☐ eff_jack_gmod_rocketthrust.lua
-    ☐ eff_jack_gmod_rockettrail.lua
-    ☐ eff_jack_gmod_rollersplode.lua
-    ☐ eff_jack_gmod_sentryoverheat.lua
-    ☐ eff_jack_gmod_shieldgenoverheat.lua
-    ☐ eff_jack_gmod_smallarmstracer.lua
-    ☐ eff_jack_gmod_smalldustshock.lua
-    ☐ eff_jack_gmod_spranklerspray.lua
-    ☐ eff_jack_gmod_thrustsmoke.lua
-    ☐ eff_jack_gmod_tinynukeflash.lua
-    ☐ eff_jack_gmod_tinysplash.lua
-    ☐ eff_jack_gmod_watersplode.lua
-    ☐ eff_jack_gmod_weaponshell.lua
-    ☐ eff_jack_gmod_woodsplode.lua
-    ☐ eff_jack_gmod_woodsplosion.lua
-
   entities:
     ammo_base:
       ☐ cl_init.lua
@@ -521,7 +264,7 @@ lua:
     ✔ ent_hgjack_hl2nade.lua @done(25-05-25 01:39)
     ✔ ent_hgjack_molotov.lua @done(25-05-25 01:39)
     ✔ ent_hgjack_rgd5nade.lua @done(25-05-25 01:39)
-    ☐ ent_hgjack_smoke.lua
+    ✔ ent_hgjack_smoke.lua @done(25-05-28 23:37)
     ☐ ent_jack_aidbox.lua
     ☐ ent_jack_experimental_light_base.lua
     ☐ ent_jack_experimental_light.lua
@@ -868,14 +611,14 @@ lua:
     ☐ sv_util.lua
 
   vgui:
-    ☐ solidmapvote.lua
-    ☐ solidmapvotebutton.lua
-    ☐ solidmapvoteimage.lua
-    ☐ solidmapvotemap.lua
-    ☐ solidmapvotenomination.lua
-    ☐ solidmapvotenominationmenu.lua
-    ☐ solidmapvoteplayer.lua
-    ☐ solidmapvoteplayergrid.lua
+    ✘ solidmapvote.lua @cancelled(25-05-29 02:03)
+    ✘ solidmapvotebutton.lua @cancelled(25-05-29 02:03)
+    ✘ solidmapvoteimage.lua @cancelled(25-05-29 02:03)
+    ✘ solidmapvotemap.lua @cancelled(25-05-29 02:03)
+    ✘ solidmapvotenomination.lua @cancelled(25-05-29 02:03)
+    ✘ solidmapvotenominationmenu.lua @cancelled(25-05-29 02:03)
+    ✘ solidmapvoteplayer.lua @cancelled(25-05-29 02:03)
+    ✘ solidmapvoteplayergrid.lua @cancelled(25-05-29 02:03)
 
   weapons:
     adrenaline:
@@ -925,74 +668,63 @@ lua:
     ☐ food_ogyrci_banka.lua
     ☐ food_shaverma.lua
     ☐ food_spongebob_home.lua
-    ☐ weapon_ak74.lua
-    ☐ weapon_ak74u.lua
-    ☐ weapon_akm.lua
-    ☐ weapon_ar15.lua
-    ☐ weapon_bat.lua
-    ☐ weapon_beanbag.lua
-    ☐ weapon_beretta.lua
-    ☐ weapon_civil_famas.lua
-    ☐ weapon_deagle.lua
-    ☐ weapon_deserteagle.lua
-    ☐ weapon_doublebarrel.lua
-    ☐ weapon_fal.lua
-    ☐ weapon_fiveseven.lua
-    ☐ weapon_galil.lua
-    ☐ weapon_galilsar.lua
-    ☐ weapon_glock.lua
-    ☐ weapon_glock18.lua
-    ☐ weapon_gurkha.lua
+    ✔ weapon_m134.lua @done(25-05-29 16:33)
+    ✔ weapon_aks74u.lua @done(25-05-29 16:33)
+    ✔ weapon_akm.lua @done(25-05-29 16:33)
+    ✔ weapon_ar15.lua @done(25-05-29 16:33)
+    ✔ weapon_hg_bat.lua @done(25-05-29 16:33)
+    ✔ weapon_remington870police.lua @done(25-05-29 16:33)
+    ✔ weapon_beretta.lua @done(25-05-29 16:33)
+    ✔ weapon_civil_famas.lua @done(25-05-29 16:33)
+    ✔ weapon_deagle.lua @done(25-05-29 16:33)
+    ✔ weapon_deserteagle.lua @done(25-05-29 16:33)
+    ✘ weapon_doublebarrel.lua @cancelled(25-05-29 16:33)
+    ✔ weapon_l85a1.lua @done(25-05-29 16:33)
+    ✔ weapon_p99.lua @done(25-05-29 16:33)
+    ✔ weapon_galil.lua @done(25-05-29 16:33)
+    ✔ weapon_asval.lua @done(25-05-29 16:33)
+    ✔ weapon_glock.lua @done(25-05-29 03:15)
+    ✔ weapon_p228.lua @done(25-05-29 03:15)
+    ✔ weapon_gurkha.lua @done(25-05-29 03:15)
     ☐ weapon_hands.lua
-    ☐ weapon_hg_crowbar.lua
-    ☐ weapon_hg_fireaxe.lua
-    ☐ weapon_hg_flag.lua
-    ☐ weapon_hg_fubar.lua
-    ☐ weapon_hg_hatchet.lua
-    ☐ weapon_hg_kitknife.lua
-    ☐ weapon_hg_metalbat.lua
-    ☐ weapon_hg_shovel.lua
-    ☐ weapon_hg_sleagehammer.lua
-    ☐ weapon_hg_sperm.lua
-    ☐ weapon_hg_stunstick.lua
-    ☐ weapon_hk_usp.lua
-    ☐ weapon_hk_usps.lua
-    ☐ weapon_jmodbundle.lua
-    ☐ weapon_jmodcs.lua
-    ☐ weapon_jmoddynamite.lua
-    ☐ weapon_jmodflash.lua
-    ☐ weapon_jmodgas.lua
-    ☐ weapon_jmodnade.lua
-    ☐ weapon_jmodsalatgas.lua
-    ☐ weapon_jmodsmoke.lua
-    ☐ weapon_jmodsticknade.lua
-    ☐ weapon_jmodstickynade.lua
-    ☐ weapon_jmodtnt.lua
-    ☐ weapon_kabar.lua
-    ☐ weapon_knife.lua
-    ☐ weapon_l1a1.lua
-    ☐ weapon_m14.lua
-    ☐ weapon_m1a1.lua
-    ☐ weapon_m249.lua
-    ☐ weapon_m3super.lua
-    ☐ weapon_m4a1.lua
-    ☐ weapon_minu14.lua
-    ☐ weapon_mk18.lua
-    ☐ weapon_mp40.lua
-    ☐ weapon_mp5.lua
-    ☐ weapon_mp7.lua
-    ☐ weapon_p220.lua
-    ☐ weapon_pipe.lua
-    ☐ weapon_police_bat.lua
-    ☐ weapon_remington870.lua
-    ☐ weapon_rpgg.lua
-    ☐ weapon_rpk.lua
-    ☐ weapon_sar2.lua
-    ☐ weapon_spas12.lua
-    ☐ weapon_t.lua
-    ☐ weapon_ump.lua
-    ☐ weapon_winchester.lua
-    ☐ weapon_xm1014.lua
+    ✔ weapon_hg_crowbar.lua @done(25-05-29 02:43)
+    ✔ weapon_hg_fireaxe.lua @done(25-05-29 02:43)
+    ✔ weapon_hg_flag.lua @done(25-05-29 02:43)
+    ✔ weapon_hg_fubar.lua @done(25-05-29 02:43)
+    ✔ weapon_hg_hatchet.lua @done(25-05-29 02:43)
+    ✔ weapon_hg_kitknife.lua @done(25-05-29 02:43)
+    ✔ weapon_hg_metalbat.lua @done(25-05-29 02:43)
+    ✔ weapon_hg_shovel.lua @done(25-05-29 02:43)
+    ✔ weapon_hg_sledge.lua @done(25-05-29 02:43)
+    ✔ weapon_hg_sperm.lua @done(25-05-29 02:43)
+    ✔ weapon_hg_stunstick.lua @done(25-05-29 02:43)
+    ✔ weapon_hk_usp.lua @done(25-05-29 02:43)
+    ✔ weapon_hk_usps.lua @done(25-05-29 02:43)
+    ✔ weapon_kabar.lua @done(25-05-29 02:43)
+    ✔ weapon_knife.lua @done(25-05-29 02:43)s
+    ✘ weapon_l1a1.lua @cancelled(25-05-29 16:38)
+    ✘ weapon_m14.lua @cancelled(25-05-29 16:38)
+    ✔ weapon_m1a1.lua @done(25-05-29 02:43)
+    ✔ weapon_m249.lua @done(25-05-29 02:01)
+    ✔ weapon_m4super-2.lua @done(25-05-29 02:01)
+    ✔ weapon_m4a1.lua @done(25-05-29 02:01)
+    ✘ weapon_minu14.lua @cancelled(25-05-29 16:38)
+    ✔ weapon_hk416-2.lua @done(25-05-29 02:01)
+    ✔ weapon_p90-2.lua @done(25-05-29 02:01)
+    ✔ weapon_mp5a3.lua @done(25-05-29 01:38)
+    ✔ weapon_mp7.lua @done(25-05-29 01:38)
+    ✔ weapon_cz75-2.lua @done(25-05-29 01:29)
+    ✔ weapon_pipe.lua @done(25-05-29 01:29)
+    ✔ weapon_police_bat.lua @done(25-05-29 01:29)
+    ✔ weapon_remington870.lua @done(25-05-29 01:29)
+    ✔ weapon_rpgg.lua @done(25-05-29 01:29)
+    ✔ weapon_rpk.lua @done(25-05-29 01:29)
+    ✔ weapon_sar2.lua @done(25-05-29 01:29)
+    ✔ weapon_spas12.lua @done(25-05-29 01:29)
+    ✔ weapon_t.lua @done(25-05-29 01:29)
+    ✔ weapon_ump.lua @done(25-05-29 01:29)
+    ✔ weapon_winchester.lua @done(25-05-29 01:29)
+    ✔ weapon_xm1014.lua @done(25-05-29 01:28)
     ☐ wep_jack_gmod_amr.lua
     ☐ wep_jack_gmod_amsr.lua
     ☐ wep_jack_gmod_assaultrifle.lua

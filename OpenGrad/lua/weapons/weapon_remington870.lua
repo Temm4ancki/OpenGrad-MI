@@ -4,6 +4,8 @@ SWEP.PrintName 				= "Remington 870"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Дробовик под калибр 12/70"
 SWEP.Category 				= "Оружие"
+SWEP.WepSelectIcon = "vgui/select/w/remington870"
+SWEP.IconOverride = "vgui/icon/w/remington870.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
@@ -17,8 +19,8 @@ SWEP.Primary.Ammo			= "12/70 gauge"
 SWEP.Primary.Cone = 0.05
 SWEP.Primary.Damage = 15
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "snd_jack_hmcd_sht_close.wav"
-SWEP.Primary.SoundFar = "snd_jack_hmcd_sht_far.wav"
+SWEP.Primary.Sound = "weapons/salat/w_remington_870/snd_jack_hmcd_sht_close.ogg"
+SWEP.Primary.SoundFar = "weapons/salat/w_remington_870/snd_jack_hmcd_sht_far.ogg"
 SWEP.Primary.Force = 35
 SWEP.ReloadTime = 2
 SWEP.ShootWait = 0.5
@@ -47,8 +49,8 @@ SWEP.SlotPos				= 0
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/pwb/weapons/w_remington_870.mdl"
-SWEP.WorldModel				= "models/pwb/weapons/w_remington_870.mdl"
+SWEP.ViewModel				= "models/weapons/salat/w_remington_870/w_remington_870.mdl"
+SWEP.WorldModel				= "models/weapons/salat/w_remington_870/w_remington_870.mdl"
 
 function SWEP:ApplyEyeSpray()
     self.eyeSpray = self.eyeSpray - Angle(5,math.Rand(-2,2),0)

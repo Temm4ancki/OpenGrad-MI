@@ -5,7 +5,7 @@ SWEP.Author 				= "Ceská Zbrojovka"
 SWEP.Instructions			= "Странный чешский пистолет"
 SWEP.Category 				= "Оружие"
 
-SWEP.Spawnable 				= true
+SWEP.Spawnable 				= false
 SWEP.AdminOnly 				= false
 
 ------------------------------------------

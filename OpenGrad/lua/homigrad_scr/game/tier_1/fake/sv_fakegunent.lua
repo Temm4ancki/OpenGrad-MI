@@ -1,41 +1,41 @@
 bullets = {
-	["weapon_m3super"] = 8,
+	["weapon_m4super-2"] = 8,
 	["weapon_remington870"] = 12,
 	["weapon_xm1014"] = 8,
 }
 cir = {
-	["weapon_m3super"] = 0.02,
-	["weapon_ak74"] = 0.1,
+	["weapon_m4super-2"] = 0.02,
+	["weapon_m134"] = 0.1,
 	["weapon_remington870"] = 0.1,
 	["weapon_xm1014"] = 0.02,
 }
 
 Vectors = {
-["weapon_glock18"]=Vector(4,-1,2.5),
-["weapon_p220"]=Vector(13.5,-0.5,4),
-["weapon_mp5"]=Vector(0.5,-1,0),
+["weapon_p228"]=Vector(4,-1,2.5),
+["weapon_cz75-2"]=Vector(13.5,-0.5,4),
+["weapon_mp5a3"]=Vector(0.5,-1,0),
 ["weapon_ar15"]=Vector(-3,-1,0),
-["weapon_ak74"]=Vector(14,-1,2),
+["weapon_m134"]=Vector(14,-1,2),
 ["weapon_akm"]=Vector(13,-2,2),
-["weapon_fiveseven"]=Vector(14,0,4),
+["weapon_p99"]=Vector(14,0,4),
 ["weapon_hk_usp"]=Vector(0,-0.5,0),
 ["weapon_deagle"]=Vector(0,-0.5,0),
 ["weapon_beretta"]=Vector(13,0,4),
-["weapon_ak74u"]=Vector(13,-1,2),
+["weapon_aks74u"]=Vector(13,-1,2),
 ["weapon_l1a1"]=Vector(3,-2,2),
-["weapon_fal"]=Vector(13,-2,2),
+["weapon_l85a1"]=Vector(13,-2,2),
 ["weapon_galil"]=Vector(-1,-2,0),
-["weapon_galilsar"]=Vector(4,-2,-1),
+["weapon_asval"]=Vector(4,-2,-1),
 ["weapon_m14"]=Vector(3,-2,2),
 ["weapon_m1a1"]=Vector(3,-2,2),
-["weapon_mk18"]=Vector(12,-1,4),
+["weapon_hk416-2"]=Vector(12,-1,4),
 ["weapon_m249"]=Vector(4,-1.5,0),
 ["weapon_m4a1"]=Vector(-2,-2,0),
 ["weapon_minu14"]=Vector(1,-1,0),
-["weapon_mp40"]=Vector(13,-1,3),
+["weapon_p90-2"]=Vector(13,-1,3),
 ["weapon_rpk"]=Vector(3,-1,0),
 ["weapon_ump"]=Vector(2,-1,0),
-["weapon_m3super"]=Vector(5,-2,0),
+["weapon_m4super-2"]=Vector(5,-2,0),
 ["weapon_hk_usps"]=Vector(4,-1.2,2),
 ["weapon_glock"]=Vector(14,0,4),
 ["weapon_mp7"]=Vector(0,0,0),
@@ -49,26 +49,26 @@ Vectors = {
 }
 
 Vectors2 = {
-["weapon_mp5"]=Vector(11,-2	,-2.5),
+["weapon_mp5a3"]=Vector(11,-2	,-2.5),
 ["weapon_ar15"]=Vector(9,-2,-3),
 ["weapon_act3_m249"]=Vector(10,-1,-6),
-["weapon_ak74"]=Vector(12,-3,-2),
+["weapon_m134"]=Vector(12,-3,-2),
 ["weapon_akm"]=Vector(12,-4,-5),
-["weapon_ak74u"]=Vector(10,-3,-5),
+["weapon_aks74u"]=Vector(10,-3,-5),
 ["weapon_l1a1"]=Vector(15,-2,-3),
-["weapon_fal"]=Vector(9,-4,-3),
+["weapon_l85a1"]=Vector(9,-4,-3),
 ["weapon_galil"]=Vector(15,-3,-3),
-["weapon_galilsar"]=Vector(15,-3,-3),
+["weapon_asval"]=Vector(15,-3,-3),
 ["weapon_m14"]=Vector(15,-3,-3.7),
 ["weapon_m1a1"]=Vector(15,-3,-3.7),
-["weapon_mk18"]=Vector(12,-2,-4),
+["weapon_hk416-2"]=Vector(12,-2,-4),
 ["weapon_m249"]=Vector(15,-4,-4),
 ["weapon_m4a1"]=Vector(9,-2,-3),
 ["weapon_minu14"]=Vector(9,-2,-4),
-["weapon_mp40"]=Vector(5,-3,1),
+["weapon_p90-2"]=Vector(5,-3,1),
 ["weapon_rpk"]=Vector(12,-2,-2),
 ["weapon_ump"]=Vector(12,-1,-4),
-["weapon_m3super"]=Vector(15,-3.5,-2),
+["weapon_m4super-2"]=Vector(15,-3.5,-2),
 ["weapon_mp7"]=Vector(6,-2,0),
 ["weapon_remington870"]=Vector(10,-2,-2),
 ["weapon_xm1014"]=Vector(14,-2,-2),
@@ -412,7 +412,7 @@ function FireShot(wep)
 		net.WriteEntity(wep)
 		net.Broadcast()
 	end
-	if wep.curweapon~="weapon_ak74" then
+	if wep.curweapon~="weapon_m134" then
 		wep:GetPhysicsObject():ApplyForceCenter(wep:GetAngles():Forward()*-damage*2+wep:GetAngles():Right()*VectorRand(-90,90)+wep:GetAngles():Up()*200)			--сделать зависимым от force потом
 	else
 		local ply = wep:GetOwner()

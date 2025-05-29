@@ -3,6 +3,8 @@ SWEP.Base = "salat_base" -- base
 SWEP.PrintName 				= "FN P90"
 SWEP.Instructions			= "Пистолет-пулемёт под калибр 5,7×28"
 SWEP.Category 				= "Оружие"
+SWEP.WepSelectIcon = "vgui/select/w/p90"
+SWEP.IconOverride = "vgui/icon/w/p90.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
@@ -16,8 +18,8 @@ SWEP.Primary.Ammo			= "5.7×28 mm"
 SWEP.Primary.Cone = 0
 SWEP.Primary.Damage = 30
 SWEP.Primary.Spread = 5
-SWEP.Primary.Sound = "mp5k/mp5k_fp.wav"
-SWEP.Primary.SoundFar = "mp5k/mp5k_dist.wav"
+SWEP.Primary.Sound = "weapons/salat/w_p90/mp5k_fp.ogg"
+SWEP.Primary.SoundFar = "weapons/salat/w_p90/mp5k_dist.ogg"
 SWEP.Primary.Force = 120/3
 SWEP.ReloadTime = 2
 SWEP.ShootWait = 0.05
@@ -43,8 +45,8 @@ SWEP.SlotPos				= 0
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/pwb/weapons/w_p90.mdl"
-SWEP.WorldModel				= "models/pwb/weapons/w_p90.mdl"
+SWEP.ViewModel				= "models/weapons/salat/w_p90/w_p90.mdl"
+SWEP.WorldModel				= "models/weapons/salat/w_p90/w_p90.mdl"
 
 SWEP.dwsPos = Vector(20,20,5)
 SWEP.dwsItemPos = Vector(10,-1,-3)
