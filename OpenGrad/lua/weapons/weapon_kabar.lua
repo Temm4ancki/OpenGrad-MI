@@ -206,7 +206,7 @@ function SWEP:PrimaryAttack()
 	pos2 = tr.HitPos - tr.HitNormal
 	if true then
 		if SERVER and tr.HitWorld then
-			self:GetOwner():EmitSound("weapons/salat/w_kabar/snd_jack_hmcd_knifehit.wav", 60)
+			self:GetOwner():EmitSound("weapons/salat/w_kabar/snd_jack_hmcd_knifehit.ogg", 60)
 		end
 
 		if IsValid( tr.Entity ) and SERVER then
@@ -226,12 +226,12 @@ function SWEP:PrimaryAttack()
 			end
 
 			if tr.Entity:IsNPC() or tr.Entity:IsPlayer() then
-				self:GetOwner():EmitSound( "weapons/salat/w_kabar/snd_jack_hmcd_knifestab.wav",60 )
+				self:GetOwner():EmitSound( "weapons/salat/w_kabar/snd_jack_hmcd_knifestab.ogg",60 )
 			else
 				if tr.Entity:GetClass() == "prop_ragdoll" then
-					self:GetOwner():EmitSound(  "weapons/salat/w_kabar/snd_jack_hmcd_knifestab.wav",60  )
+					self:GetOwner():EmitSound(  "weapons/salat/w_kabar/snd_jack_hmcd_knifestab.ogg",60  )
 				else
-					self:GetOwner():EmitSound(  "weapons/salat/w_kabar/snd_jack_hmcd_knifehit.wav",60  )
+					self:GetOwner():EmitSound(  "weapons/salat/w_kabar/snd_jack_hmcd_knifehit.ogg",60  )
 				end
 			end
 			tr.Entity:TakeDamageInfo( dmginfo )

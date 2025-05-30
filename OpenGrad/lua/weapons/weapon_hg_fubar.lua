@@ -45,7 +45,7 @@ SWEP.Secondary.Automatic = false
 SWEP.Secondary.Ammo = "none"
 
 SWEP.DrawSound = "weapons/salat/w_hg_fubar/holster_in_light.ogg"
-SWEP.HitSound = "phx/epicmetal_hard.ogg"
+SWEP.HitSound = "physics/metal/metal_sheet_impact_hard7.wav"
 SWEP.FlashHitSound = "weapons/salat/w_hg_fubar/flesh_impact_blunt_03.ogg"
 SWEP.ShouldDecal = false
 SWEP.HoldTypeWep = "melee2"

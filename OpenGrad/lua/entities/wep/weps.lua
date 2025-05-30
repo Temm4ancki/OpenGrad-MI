@@ -53,10 +53,10 @@ Guns = {
 }
 
 GunsModel = {
-    ["food_fishcan"] = "models/jordfood/atun.mdl",
-    ["food_lays"] = "models/foodnhouseholditems/chipslays5.mdl",
-    ["food_monster"] = "models/jorddrink/mongcan1a.mdl",
-    ["food_spongebob_home"] = "models/jordfood/can.mdl",
+    ["food_fishcan"] = "models/other/food/atun.mdl",
+    ["food_lays"] = "models/other/food/chipslays5.mdl",
+    ["food_monster"] = "models/other/food/mongcan1a.mdl",
+    ["food_spongebob_home"] = "models/other/food/can.mdl",
 
     ["bandage"] = "models/weapons/medical/bandages/bandages.mdl",
     ["medkit"] = "models/weapons/medical/medkit/w_medkit.mdl",

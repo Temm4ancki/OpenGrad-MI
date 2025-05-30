@@ -45,7 +45,7 @@ SWEP.Secondary.Automatic = false
 SWEP.Secondary.Ammo = "none"
 
 SWEP.DrawSound = "physics/metal/metal_box_impact_soft2.wav"
-SWEP.HitSound = "phx/epicmetal_hard.wav"
+SWEP.HitSound = "physics/metal/metal_sheet_impact_hard7.wav"
 SWEP.FlashHitSound = "physics/body/body_medium_impact_hard3.wav"
 SWEP.ShouldDecal = true
 SWEP.HoldTypeWep = "melee2"
