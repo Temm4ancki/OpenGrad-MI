@@ -5,8 +5,8 @@ SWEP.PrintName 				= "FAMAS-Civil"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Полуавтоматическа винтовка под калибр 5.56×45"
 SWEP.Category 				= "Оружие"
-SWEP.WepSelectIcon = "vgui/select/w/famas"
-SWEP.IconOverride = "vgui/icon/w/famas.png"
+SWEP.WepSelectIcon = "vgui/select/w/famasg2"
+SWEP.IconOverride = "vgui/icon/w/famasg2.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false

@@ -107,6 +107,15 @@ surface.CreateFont("HomigradFontBig",{
 	shadow = true
 })
 
+surface.CreateFont("HomigradSmall",{
+	font = "Roboto",
+	size = 20,
+	weight = 1000,
+	outline = false,
+	shadow = true
+})
+
+
 surface.CreateFont("BodyCamFont",{
 	font = "Arial",
 	size = 40,

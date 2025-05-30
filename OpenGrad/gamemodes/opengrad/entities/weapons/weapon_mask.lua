@@ -37,6 +37,7 @@ SWEP.CommandDroppable = false
 
 function SWEP:Initialize()
 	self:SetHoldType("normal")
+	self.SelectedDisguise = nil
 end
 
 function SWEP:Deploy()
@@ -47,6 +48,8 @@ end
 
 function SWEP:PrimaryAttack()
 	if self:GetOwner():KeyDown(IN_SPEED) and self:GetOwner():KeyDown(IN_FORWARD) then return end
+	if not self.SelectedDisguise then return end
+
 	self:GetOwner():SetAnimation(PLAYER_ATTACK1)
 	if SERVER then self:GetOwner():HideIdentity() end
 	self:SetNextPrimaryFire(CurTime() + 1)
@@ -80,20 +83,20 @@ function SWEP:Think() end
 function SWEP:OnDrop() end
 
 ManiacModelChoices = {
-	["Убийца"] = {
-		name = "Убийца",
+	["Трупак"] = {
+		name = "Трупак",
 		model = "models/player/corpse1.mdl",
-		color = Vector(1, 0, 0)
-	},
-	["Предатель"] = {
-		name = "Предатель",
-		model = "models/player/phoenix.mdl",
 		color = Vector(0, 0, 0)
 	},
-	["Огузок"] = {
-		name = "Огузок",
-		model = "models/tdm_kuhnya/oguzok/oguzok.mdl",
-		color = Vector(0, 0, 0)
+	["Джейсон Вурхиз"] = {
+		name = "Джейсон Вурхиз",
+		model = "models/hg_homicide/traitor/MKX_Jajon.mdl",
+		color = Vector(255, 255, 255)
+	},
+	["Джекет"] = {
+		name = "Джекет",
+		model = "models/hg_homicide/traitor/jacket.mdl",
+		color = Vector(139, 0, 255)
 	},
 }
 
@@ -113,7 +116,7 @@ function PlayerMeta:HideIdentity()
 		self:SetNWString("FakeName", disguise.name)
 		self:SetModel(disguise.model)
 		self:SetPlayerColor(disguise.color)
-		sound.Play("snd_jack_hmcd_disguise.wav", self:GetPos(), 65, 110)
+		sound.Play("weapons/mask/snd_jack_hmcd_disguise.ogg", self:GetPos(), 65, 110)
 	end
 
 	self.IdentityHidden = true
@@ -121,7 +124,7 @@ end
 
 function PlayerMeta:ShowIdentity()
 	if not self.IdentityHidden then return end
-	sound.Play("snd_jack_hmcd_disguise.wav", self:GetPos(), 65, 90)
+	sound.Play("weapons/mask/snd_jack_hmcd_disguise.ogg", self:GetPos(), 65, 90)
 	self:SetNWString("FakeName", self.TrueIdentity.plyName)
 	self:SetModel(self.TrueIdentity.plyModel)
 	self:SetPlayerColor(self.TrueIdentity.plyColor)
@@ -138,6 +141,9 @@ if SERVER then
 		if not chosen then return end
 		ply.SelectedDisguise = chosen
 
+		-- Просто выбираем модель, но НЕ меняем её сразу
+		-- Смена модели произойдет при ЛКМ (PrimaryAttack)
+
 		if not ply.TrueIdentity then
 			ply.TrueIdentity = {
 				plyName = ply:GetNWString("FakeName"),
@@ -145,48 +151,110 @@ if SERVER then
 				plyColor = ply:GetPlayerColor()
 			}
 		end
-
-		ply:SetNWString("FakeName", chosen.name)
-		ply:SetModel(chosen.model)
-		ply:SetPlayerColor(chosen.color)
-
-		sound.Play("snd_jack_hmcd_disguise.wav", ply:GetPos(), 65, 110)
-		ply.IdentityHidden = true
 	end)
 end
 
 if CLIENT then
-	local function CreateModelButton(layout, name, data, onClose)
-		local btn = layout:Add("DButton")
-		btn:SetText(name)
-		btn:SetTall(30)
-		btn:Dock(TOP)
-		btn:DockMargin(0, 5, 0, 0)
-		btn.DoClick = function()
-			net.Start("maniac_select_model")
-				net.WriteString(name)
-			net.SendToServer()
-			btn:GetParent():GetParent():Close()
-			if onClose then onClose() end
+	local blurMat = Material("pp/blurscreen")
+	local Dynamic = 0
+
+	local function BlurBackground(panel)
+		if not (IsValid(panel) and panel:IsVisible()) then return end
+		local layers, density, alpha = 1, 1, 105
+		local x, y = panel:LocalToScreen(0, 0)
+		surface.SetDrawColor(255, 255, 255, alpha)
+		surface.SetMaterial(blurMat)
+		local FrameRate, Num, Dark = 1 / FrameTime(), 5, 100
+		for i = 1, Num do
+			blurMat:SetFloat("$blur", (i / layers) * density * Dynamic)
+			blurMat:Recompute()
+			render.UpdateScreenEffectTexture()
+			surface.DrawTexturedRect(-x, -y, ScrW(), ScrH())
 		end
+
+		surface.SetDrawColor(0, 0, 0, Dark * Dynamic)
+		surface.DrawRect(0, 0, panel:GetWide(), panel:GetTall())
+		Dynamic = math.Clamp(Dynamic + (1 / FrameRate) * 7, 0, 1)
 	end
 
 	function OpenModelSelectMenu(onClose)
+		local modelCount = table.Count(ManiacModelChoices)
+		local modelsPerRow = math.min(modelCount, 5)
+		local itemWidth, itemHeight = 160, 300
+		local spacing = 10
+		local padding = 20
+
+		local rows = math.ceil(modelCount / modelsPerRow)
+
+		local width = modelsPerRow * (itemWidth + spacing) - spacing + padding * 2
+		local height = rows * (itemHeight + spacing) - spacing + padding * 2 + 20
+
 		local frame = vgui.Create("DFrame")
-		frame:SetTitle("Выберите маскировку")
-		frame:SetSize(300, 150)
+		frame:SetTitle("")
+		frame:SetSize(width, height)
 		frame:Center()
 		frame:MakePopup()
 		frame.OnClose = onClose
 
-		local layout = vgui.Create("DPanelList", frame)
-		layout:Dock(FILL)
-		layout:DockMargin(5, 5, 5, 5)
-		layout:SetSpacing(5)
-		layout:EnableVerticalScrollbar(true)
+		if IsValid(frame.btnMinim) then frame.btnMinim:SetVisible(false) end
+		if IsValid(frame.btnMaxim) then frame.btnMaxim:SetVisible(false) end
+		frame:ShowCloseButton(true)
+		-- frame:SetDraggable(false)
+
+		frame.Paint = function(self, w, h)
+			BlurBackground(self)
+			draw.RoundedBox(8, 0, 0, w, h, Color(10, 10, 10, 100))
+			draw.SimpleText("Выберите маскировку", "HomigradFontBig", w / 2, 15, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
+		end
+
+		local buttonLayout = vgui.Create("DIconLayout", frame)
+		buttonLayout:SetPos(padding, 50)
+		buttonLayout:SetSize(width - padding * 2, height - 50 - padding)
+		buttonLayout:SetSpaceX(spacing)
+		buttonLayout:SetSpaceY(spacing)
 
 		for name, data in pairs(ManiacModelChoices) do
-			CreateModelButton(layout, name, data, onClose)
+			local panel = buttonLayout:Add("DPanel")
+			panel:SetSize(itemWidth, itemHeight)
+			panel.Paint = function(self, w, h)
+				draw.RoundedBox(8, 0, 0, w, h, Color(20, 20, 20, 125))
+			end
+
+			local modelPreview = vgui.Create("DModelPanel", panel)
+			modelPreview:Dock(FILL)
+			modelPreview:SetModel(data.model)
+			modelPreview:SetFOV(50)
+			modelPreview:SetCamPos(Vector(50, 0, 60))
+			modelPreview:SetLookAt(Vector(0, 0, 40))
+			function modelPreview:LayoutEntity(ent) return end
+
+			-- Добавляем обработчик клика на модель
+			function modelPreview:OnMousePressed(mcode)
+				if mcode == MOUSE_LEFT then
+					net.Start("maniac_select_model")
+					net.WriteString(name)
+					net.SendToServer()
+					frame:Close()
+					if onClose then onClose() end
+				end
+			end
+
+			local btn = vgui.Create("DButton", panel)
+			btn:Dock(BOTTOM)
+			btn:SetText(name)
+			btn:SetFont("HomigradSmall")
+			btn:SetTall(35)
+			btn:SetTextColor(Color(255, 255, 255))
+			btn.Paint = function(self, w, h)
+				draw.RoundedBox(8, 0, 0, w, h, Color(5, 5, 5, 155))
+			end
+			btn.DoClick = function()
+				net.Start("maniac_select_model")
+				net.WriteString(name)
+				net.SendToServer()
+				frame:Close()
+				if onClose then onClose() end
+			end
 		end
 	end
 

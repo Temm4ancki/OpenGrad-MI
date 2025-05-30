@@ -13,8 +13,8 @@ SWEP.Spawnable = true
 SWEP.AutoSwitchFrom = false
 SWEP.AutoSwitchTo = false
 
-SWEP.ViewModel = "weapons/grenade/smoke/incendiary_grenade.mdl"
-SWEP.WorldModel = "weapons/grenade/smoke/incendiary_grenade.mdl"
+SWEP.ViewModel = "models/weapons/grenade/smoke/incendiary_grenade.mdl"
+SWEP.WorldModel = "models/weapons/grenade/smoke/incendiary_grenade.mdl"
 
 SWEP.Granade = "ent_hgjack_smoke"
 
