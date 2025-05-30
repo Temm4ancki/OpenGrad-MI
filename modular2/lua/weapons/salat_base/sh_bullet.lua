@@ -60,7 +60,7 @@ function SWEP:RicochetOrPenetrate(initialTrace)
 			})
 		end
 	elseif(ApproachAngle<(MaxRicAngle*.25))then -- ping whiiiizzzz
-		sound.Play("snd_jack_hmcd_ricochet_"..math.random(1,2)..".wav",IPos,70,math.random(90,100))
+		sound.Play("utils/ricochet/snd_jack_hmcd_ricochet_"..math.random(1,2)..".ogg",IPos,70,math.random(90,100))
 		local NewVec=AVec:Angle()
 		NewVec:RotateAroundAxis(TNorm,180)
 		NewVec=NewVec:Forward()
@@ -206,11 +206,10 @@ if SERVER then
 else
 	net.Receive("shoot_huy",function(len)
 		local tr = net.ReadTable()
-		--snd_jack_hmcd_bc_1.wav
 
 		local dist,vec,dist2 = util.DistanceToLine(tr.StartPos,tr.HitPos,EyePos())
 		if dist < 128 and dist2 > 128 then
-			EmitSound("snd_jack_hmcd_bc_"..tostring(math.random(1,7))..".wav", vec, 1, CHAN_AUTO, 1, 95, 0, 100,0)
+			EmitSound("utils/bc/snd_jack_hmcd_bc_" .. tostring(math.random(1,7)) .. ".ogg", vec, 1, CHAN_AUTO, 1, 95, 0, 100,0)
 			Suppress(1.5)
 		end
 	end)

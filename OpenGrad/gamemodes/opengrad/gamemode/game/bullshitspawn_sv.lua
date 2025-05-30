@@ -102,11 +102,11 @@ weaponslegendary = {
 }
 
 local sndsDrop = {
-	common = "homigrad/vgui/item_drop1_common.wav",
-	uncommon = "homigrad/vgui/item_drop2_uncommon.wav",
-	rare = "homigrad/vgui/item_drop3_rare.wav",
-	veryrare = "homigrad/vgui/item_drop4_mythical.wav",
-	legend = "homigrad/vgui/item_drop6_ancient.wav"
+	common = "utils/itemdrop/item_drop1_common.ogg",
+	uncommon = "utils/itemdrop/item_drop2_uncommon.ogg",
+	rare = "utils/itemdrop/item_drop3_rare.ogg",
+	veryrare = "utils/itemdrop/item_drop4_mythical.ogg",
+	legend = "utils/itemdrop/item_drop6_ancient.ogg"
 }
 
 local ammos = {

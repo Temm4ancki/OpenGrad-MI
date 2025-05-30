@@ -4,7 +4,7 @@ SWEP.PrintName = "Киндер сюрприз"
 SWEP.Purpose = "всегда дарит радость"
 SWEP.Category = "Вкусности"
 SWEP.Spawnable = true
-SWEP.WorldModel = "models/foodnhouseholditems/kindersurprise.mdl"
+SWEP.WorldModel = "models/other/food/kindersurprise.mdl"
 SWEP.WorldPos = Vector(4,-2,-2)
 SWEP.WorldAng = Angle(180, -150, 0)
 SWEP.AdrenalineAmt = 0
@@ -12,10 +12,10 @@ SWEP.StaminaAmt = 10
 SWEP.Drink = false
 
 local blevotasfx = {
-    "homigradsfx/blevota/blevotahmcd.mp3",
-    "homigradsfx/blevota/blevotalarge.mp3",
-    "homigradsfx/blevota/blevotamedium.mp3",
-    "homigradsfx/blevota/blevotasmall.mp3"
+    "hg_homicide/sfx/blevota/blevotahmcd.ogg",
+    "hg_homicide/sfx/blevota/blevotalarge.ogg",
+    "hg_homicide/sfx/blevota/blevotamedium.ogg",
+    "hg_homicide/sfx/blevota/blevotasmall.ogg"
 }
 
 function SWEP:CustomEat()

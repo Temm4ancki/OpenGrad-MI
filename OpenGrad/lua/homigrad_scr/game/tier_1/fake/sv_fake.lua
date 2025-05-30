@@ -507,7 +507,7 @@ net.Receive("Unload",function(len,ply)
 	local wep = net.ReadEntity()
 	local oldclip = wep:Clip1()
 	local ammo = wep:GetPrimaryAmmoType()
-	wep:EmitSound("snd_jack_hmcd_ammotake.wav")
+	wep:EmitSound("utils/snd_jack_hmcd_ammotake.ogg")
 	wep:SetClip1(0)
 	ply:GiveAmmo(oldclip,ammo)
 end)
@@ -944,7 +944,7 @@ hook.Add("Player Think","FakeControl",function(ply,time) --управление 
 					ply:ChatPrint("Ты развязался")
 				end
 				Ropes[1].Constraint:Remove()
-				rag:EmitSound("snd_jack_hmcd_ducttape.wav",90,50,0.5,CHAN_AUTO)
+				rag:EmitSound("utils/snd_jack_hmcd_ducttape.ogg",90,50,0.5,CHAN_AUTO)
 			end
 		end
 

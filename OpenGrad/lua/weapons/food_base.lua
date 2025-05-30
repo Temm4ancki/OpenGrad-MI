@@ -9,7 +9,7 @@ SWEP.Category = "Вкусности"
 SWEP.Slot = 3
 SWEP.SlotPos = 3
 SWEP.Spawnable = false
-SWEP.WorldModel = "models/jorddrink/mongcan1a.mdl"
+SWEP.WorldModel = "models/other/food/sodacanc01.mdl"
 
 SWEP.Primary.ClipSize = -1
 SWEP.Primary.DefaultClip = -1
@@ -110,7 +110,7 @@ function SWEP:PrimaryAttack()
 		owner.adrenaline = owner.adrenaline + self.AdrenalineAmt or 0
 		owner.stamina = owner.stamina + self.StaminaAmt or 10
 		owner.pain = math.max(owner.pain - ((self.StaminaAmt or 10) / 10),0)
-		local healsound = self.Drink and ("snd_jack_hmcd_drink"..math.random(1,3)..".wav") or ("snd_jack_hmcd_eat"..math.random(1,4)..".wav")
+		local healsound = self.Drink and ("other/food/snd_jack_hmcd_drink" .. math.random(1,3) .. ".ogg") or ("other/food/snd_jack_hmcd_eat" .. math.random(1,4) .. ".ogg")
 		--sound.Play(healsound, self:GetPos(),75,100,0.5)
 		owner:EmitSound(healsound)
 		owner:SelectWeapon("weapon_hands")

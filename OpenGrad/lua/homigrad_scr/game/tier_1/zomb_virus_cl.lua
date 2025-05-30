@@ -12,7 +12,7 @@ hook.Add("HUDPaint","VirusEffect",function()
     local w,h = ScrW(),ScrH()
     if virus > 5 then
         if virus > 40 and plysound then
-            surface.PlaySound("gbombs_5/tvirus_infection/ply_infection.mp3")
+            surface.PlaySound("other/infection/ply_infection.ogg")
             plysound = false
         end
         local pulse = math.sin(CurTime()*2)

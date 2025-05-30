@@ -17,7 +17,7 @@ SWEP.Primary.Ammo = "pistol"
 SWEP.Primary.Cone = 0
 SWEP.Primary.Damage = 100
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "weapons/p99/p99-1.wav"
+SWEP.Primary.Sound = "weapons/salat/w_p99/colt_1911_fire1.ogg"
 SWEP.Primary.FarSound = ""
 SWEP.Primary.Force = 0
 SWEP.ReloadTime = 2
@@ -130,7 +130,7 @@ function SWEP:PrimaryAttack()
 	end
 
 	if self:Clip1() < 1 then
-		self:EmitSound("snd_jack_hmcd_click.wav", 55, 100, 1, CHAN_ITEM, 0, 0)
+		self:EmitSound("utils/snd_jack_hmcd_click.ogg", 55, 100, 1, CHAN_ITEM, 0, 0)
 		self.NextShot = CurTime() + self.ShootWait
 		return
 	end
@@ -292,7 +292,7 @@ function SWEP:Holster()
 	self.Head = Angle(0, 0, 0)
 	self:SetNWFloat("VisualRecoil", 0)
 	self:SetNWBool("Reloading", false)
-	self:EmitSound("act3/uni-holster.wav")
+	self:EmitSound("utils/uni-holster.ogg")
 	return true
 end
 

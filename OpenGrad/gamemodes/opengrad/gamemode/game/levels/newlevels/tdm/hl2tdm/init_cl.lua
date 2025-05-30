@@ -12,7 +12,7 @@ function hl2dm.HUDPaint_RoundLeft(white)
     if startRound > 0 and lply:Alive() then
         if playsound then
             playsound = false
-            surface.PlaySound("snd_jack_hmcd_deathmatch.mp3")
+            surface.PlaySound("z_rounds/start/snd_jack_hmcd_deathmatch.ogg")
         end
         lply:ScreenFade(SCREENFADE.IN,Color(0,0,0,255),0.5,0.5)
 

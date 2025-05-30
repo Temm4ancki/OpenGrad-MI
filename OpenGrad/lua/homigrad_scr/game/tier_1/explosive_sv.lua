@@ -7,7 +7,7 @@ local function BoomBig(ent)
         sound.Play("BaseExplosionEffect.Sound", SelfPos,120,math.random(90,110))
 
         for i = 1,4 do
-            sound.Play("explosions/doi_ty_01_close.wav",SelfPos,140,math.random(80,110))
+            sound.Play("utils/explosions/doi_ty_01_close.ogg",SelfPos,140,math.random(80,110))
         end
 
         timer.Simple(.1,function()
@@ -57,7 +57,7 @@ local function BoomSmall(ent)
         sound.Play("BaseExplosionEffect.Sound", SelfPos,120,math.random(130,160))
 
         for i = 1,4 do
-            sound.Play("explosions/doi_ty_01_close.wav",SelfPos,140,math.random(140,160))
+            sound.Play("utils/explosions/doi_ty_01_close.ogg",SelfPos,140,math.random(140,160))
         end
 
         timer.Simple(.1,function()
@@ -151,7 +151,7 @@ hook.Add("PlayerSay","trolled",function(ply,text)
         sound.Play("BaseExplosionEffect.Sound", SelfPos,120,math.random(130,160))
 
         for i = 1,4 do
-            sound.Play("explosions/doi_ty_01_close.wav",SelfPos,140,math.random(140,160))
+            sound.Play("utils/explosions/doi_ty_01_close.ogg",SelfPos,140,math.random(140,160))
         end
 
         timer.Simple(.1,function()

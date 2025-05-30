@@ -48,6 +48,7 @@ net.Receive("give_gun", function(len, ply)
 	ply:Give(gun)
 	ply:ChatPrint("Взял")
 	ent.LootTable[gun] = nil
+	--NOTE тут звуки говна
 	ent:EmitSound("snds_jack_gmod/equip" .. math.random(1, 3) .. ".wav", 75)
 end)
 
@@ -61,5 +62,6 @@ net.Receive("drop_ent", function(len, ply)
 	entity.Spawned = true
 	entity:Spawn()
 	lootent.LootTable[ent] = nil
+	--NOTE тут звуки говна
 	lootent:EmitSound("snds_jack_gmod/equip" .. math.random(1, 3) .. ".wav", 75)
 end)

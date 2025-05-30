@@ -145,7 +145,7 @@ function SWEP:PrimaryAttack()
 			ply.LastDMGInfo = dmgInfo
 			ply.LastHitBoneName = "ValveBiped.Bip01_Head1"
 			ply.Organs["artery"] = math.Clamp(ply.Organs["artery1"] - (self.Primary.Damage * 3), 0, 1)
-			self:GetOwner():EmitSound("snd_jack_hmcd_slash.wav", 50)
+			self:GetOwner():EmitSound("weapons/snd_jack_hmcd_slash.ogg", 50)
 		end
 		return
 	end

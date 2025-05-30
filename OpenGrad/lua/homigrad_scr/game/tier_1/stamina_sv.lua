@@ -46,7 +46,8 @@ hook.Add("Player Think","saystamina",function(ply,time)
 	local ent = ply.fake and IsValid(ent) and ent or ply
 
 	if ply.stamina < 60 and ply:WaterLevel() <= 2 and not ply.heartstop then
-		ent:EmitSound("snds_jack_hmcd_breathing/m" .. math.random(1,6) .. ".wav",60,100,0.6,CHAN_AUTO)
+		--NOTE тут гендер бы
+		ent:EmitSound("utils/health/m" .. math.random(1,6) .. ".ogg",60,100,0.6,CHAN_AUTO)
 	end
 
 	if ply.stamina < 100 and not ply:IsSprinting() and ply:WaterLevel() <= 2  then

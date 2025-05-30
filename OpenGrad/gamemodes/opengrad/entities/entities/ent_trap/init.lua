@@ -59,7 +59,7 @@ function ENT:Touch(entity)
 
 		self:SetModel("models/weapons/t_trap/trap_close.mdl")
 		self:SetCollisionGroup(COLLISION_GROUP_DEBRIS)
-		ply:EmitSound("trap/trap.mp3")
+		ply:EmitSound("weapons/trap/trap.ogg")
 
 		--[[local dmg = DamageInfo()
 		dmg:SetDamage(math.random(15,20))
@@ -112,7 +112,7 @@ end
 function ENT:OnTakeDamage(dmg)
 	self:SetModel("models/weapons/t_trap/trap_close.mdl")
 	self:SetCollisionGroup(COLLISION_GROUP_DEBRIS)
-	self:EmitSound("trap/trap.mp3")
+	self:EmitSound("weapons/trap/trap.ogg")
 end
 
 function ENT:OnRemove()

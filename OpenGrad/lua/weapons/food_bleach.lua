@@ -4,7 +4,7 @@ SWEP.PrintName = "Отбеливатель"
 SWEP.Purpose = "вкусняшка из ссср"
 SWEP.Category = "Вкусности"
 SWEP.Spawnable = true
-SWEP.WorldModel = "models/foodnhouseholditems/clorox.mdl"
+SWEP.WorldModel = "models/other/food/clorox.mdl"
 SWEP.WorldPos = Vector(6,-4, 10)
 SWEP.WorldAng = Angle(-180, -50, 0)
 SWEP.AdrenalineAmt = 0
@@ -12,10 +12,10 @@ SWEP.StaminaAmt = -20
 SWEP.Drink = true
 
 local blevotasfx = {
-    "homigradsfx/blevota/blevotahmcd.mp3",
-    "homigradsfx/blevota/blevotalarge.mp3",
-    "homigradsfx/blevota/blevotamedium.mp3",
-    "homigradsfx/blevota/blevotasmall.mp3"
+    "hg_homicide/sfx/blevota/blevotahmcd.ogg",
+    "hg_homicide/sfx/blevota/blevotalarge.ogg",
+    "hg_homicide/sfx/blevota/blevotamedium.ogg",
+    "hg_homicide/sfx/blevota/blevotasmall.ogg"
 }
 
 function SWEP:CustomEat()

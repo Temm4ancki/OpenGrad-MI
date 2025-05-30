@@ -178,6 +178,7 @@ if SERVER then
 		Poof:SetOrigin(Pos)
 		Poof:SetScale(2)
 		util.Effect("eff_jack_aidopen", Poof, true, true)
+		--NOTE тут звуки говна
 		self:EmitSound("snd_jack_aidboxopen.wav", 75, 100)
 		self:EmitSound("snd_jack_aidboxopen.wav", 75, 100)
 		self:EmitSound("snd_jack_aidboxopen.wav", 75, 100)
@@ -200,6 +201,7 @@ if SERVER then
 		end
 
 		timer.Simple(2, function()
+			--NOTE тут звуки говна
 			sound.Play("snd_jack_itemsget.wav", Pos, 75, 100)
 		end)
 
@@ -240,6 +242,7 @@ if SERVER then
 			if Time < self.SignalStopTime then
 				if not self.last_sound or self.last_sound <= Time then
 					self.last_sound = Time + 2
+					--NOTE тут звуки говна
 					self:EmitSound("snds_jack_gmod/ezsentry_disengage.wav", 75, 70, 0.5)
 				end
 

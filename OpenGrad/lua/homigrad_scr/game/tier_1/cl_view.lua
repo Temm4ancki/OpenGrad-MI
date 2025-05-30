@@ -241,10 +241,10 @@ end
 hg_cool_camera = CreateClientConVar("hg_cool_camera","1",true,false,"huy",0,1)
 
 local deathtrack = {
-	"https://cdn.discordapp.com/attachments/1144224221334097974/1144224389970272388/death1.mp3",
-	"https://cdn.discordapp.com/attachments/1144224221334097974/1144226357967065180/death2.mp3",
-	"https://cdn.discordapp.com/attachments/1144224221334097974/1144230250465734797/death3.mp3",
-	"https://cdn.discordapp.com/attachments/1144224221334097974/1144238942862979142/death4.mp3",
+	"https://cdn.discordapp.com/attachments/959407102525325363/1378083828677218544/death1.ogg?ex=683b5014&is=6839fe94&hm=e789fc5298394bccc9dc039421c54598a16ec60c7a4ab5b40cfb79549184ee05&",
+	"https://cdn.discordapp.com/attachments/959407102525325363/1378083901494394900/death2.ogg?ex=683b5025&is=6839fea5&hm=c8cb4d56c969864fb9b22a6abd874f4744184a5cca2c74c9673faae611068777&",
+	"https://cdn.discordapp.com/attachments/959407102525325363/1378083910260490251/death3.ogg?ex=683b5027&is=6839fea7&hm=229730026094800ab8470ed638e21f3ae64b195ad2fcb323ede3c495f027fb77&",
+	"https://cdn.discordapp.com/attachments/959407102525325363/1378083919056081007/death4.ogg?ex=683b5029&is=6839fea9&hm=f54b83ef80e844e4a50b4c4bc4cf262e596fcebe3e7926feac3f6a7adb037287&",
 }
 local g_station = nil
 local playing = false

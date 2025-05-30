@@ -337,7 +337,7 @@ function FireShot(wep)
 				})
 			end
 		elseif(ApproachAngle<(MaxRicAngle*.75))then -- ping whiiiizzzz
-			sound.Play("snd_jack_hmcd_ricochet_"..math.random(1,2)..".wav",IPos,70,math.random(90,100))
+			sound.Play("utils/ricochet/snd_jack_hmcd_ricochet_"..math.random(1,2)..".ogg",IPos,70,math.random(90,100))
 			local NewVec=AVec:Angle()
 			NewVec:RotateAroundAxis(TNorm,180)
 			NewVec=NewVec:Forward()
@@ -358,7 +358,7 @@ function FireShot(wep)
 	if ShootWait[wep.curweapon]==nil then return nil end
 	if !IsValid(wep) then return nil end
 	if wep.Clip<=0 then
-		sound.Play("snd_jack_hmcd_click.wav",wep:GetPos(),65,100)
+		sound.Play("utils/snd_jack_hmcd_click.ogg",wep:GetPos(),65,100)
 		wep.NextShot = CurTime() + weptable.ShootWait
 	return nil end
 	if timer.Exists("reload"..wep:EntIndex()) then return nil end

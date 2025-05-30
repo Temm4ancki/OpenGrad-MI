@@ -147,8 +147,9 @@ hook.Add("EntityTakeDamage","ragdamage",function(ent,dmginfo) --урон по р
 				slots.leftcalf or
 				slots.rightcalf
 			then
-				sound.Emit(ent,"snd_jack_hmcd_ricochet_"..math.random(1,2)..".wav",90)
+				sound.Emit(ent,"utils/ricochet/snd_jack_hmcd_ricochet_"..math.random(1,2)..".ogg",90)
 			else
+				--NOTE тут звуки говна
 				sound.Emit(ent,"player/kevlar" .. math.random(1,6) .. ".wav",90)
 			end
 		end

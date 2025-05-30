@@ -93,7 +93,7 @@ hook.Add("Player Think","homigrad-blood",function(ply,time)
 
 	ply.pulseStart = time
 
-	ply:EmitSound("snd_jack_hmcd_heartpound.wav",45,100,0.05 / ply.nextPulse,CHAN_AUTO)
+	ply:EmitSound("utils/health/snd_jack_hmcd_heartpound.ogg",45,100,0.05 / ply.nextPulse,CHAN_AUTO)
 	
 	if ply.Bloodlosing > 0 then
 		ply.Bloodlosing = ply.Bloodlosing - 0.5

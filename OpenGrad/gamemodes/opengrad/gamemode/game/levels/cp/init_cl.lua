@@ -44,7 +44,7 @@ function cp.HUDPaint_RoundLeft(white2) --позиции точек и счёт
     if startRound > 0 and lply:Alive() then
         --[[if playsound then
             playsound = false
-            surface.PlaySound("snd_jack_hmcd_disaster.mp3")
+            surface.PlaySound("z_rounds/start/snd_jack_hmcd_disaster.ogg")
         end]]
         -- TODO В CP не звуков. Добавь 
 

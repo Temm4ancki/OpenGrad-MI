@@ -7,10 +7,10 @@ local zombies = {
 }
 
 local blevotasfx = {
-    "homigradsfx/blevota/blevotahmcd.mp3",
-    "homigradsfx/blevota/blevotalarge.mp3",
-    "homigradsfx/blevota/blevotamedium.mp3",
-    "homigradsfx/blevota/blevotasmall.mp3"
+    "hg_homicide/sfx/blevota/blevotahmcd.ogg",
+    "hg_homicide/sfx/blevota/blevotalarge.ogg",
+    "hg_homicide/sfx/blevota/blevotamedium.ogg",
+    "hg_homicide/sfx/blevota/blevotasmall.ogg"
 }
 --functions
 
@@ -105,9 +105,7 @@ hook.Add("PostPlayerDeath","RefreshPain",function(ply)
 end)
 
 local ugar4iksounds = {
-	"bullshitfuck/cuteuwu.mp3",
-	"bullshitfuck/uwudaddy.mp3",
-	"homigrad/suffocation_free.wav"
+	"other/infection/suffocation_free.ogg"
 }
 COMMANDS.virus = {function(ply,args)
 	if not ply:IsAdmin() then return end
@@ -156,10 +154,10 @@ concommand.Add("hg_blevota", function( ply, cmd, args )
 end,nil,"Bruh wtf")
 
 local franceveteranvoice = {
-	"homigrad/france/bigaweapon.wav",
-	"homigrad/france/ineedabullets1.wav",
-	"homigrad/france/ineedabullets2.wav",
-	"homigrad/france/ineedabullets3.wav"
+	"utils/france/bigaweapon.ogg",
+	"utils/france/ineedabullets1.ogg",
+	"utils/france/ineedabullets2.ogg",
+	"utils/france/ineedabullets3.ogg"
 }
 concommand.Add("hg_needbullets", function( ply, cmd, args )
     if !ply:Alive() or ply.Otrub then return end

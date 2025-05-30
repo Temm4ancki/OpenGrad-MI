@@ -129,6 +129,7 @@ if SERVER then
 		"гнилой лицемер"
 	}
 	local ringtone = {
+		--NOTE тут звуки говна
 		"gbombs_5/tvirus_infection/gaben.mp3",
 		"snd_jack_hmcd_phone_dial.wav",
 		"snd_jack_hmcd_islam.mp3",

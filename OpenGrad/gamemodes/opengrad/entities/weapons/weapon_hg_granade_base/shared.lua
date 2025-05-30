@@ -95,6 +95,7 @@ function SWEP:SecondaryAttack()
     end
 
     self:GetOwner():SetAnimation(PLAYER_ATTACK1)
+    --NOTE Этого звука нет
     --self:EmitSound("weapons/m67/handling/m67_throw_01.wav")
 end
 

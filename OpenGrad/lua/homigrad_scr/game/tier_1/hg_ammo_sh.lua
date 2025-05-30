@@ -355,6 +355,6 @@ if SERVER then
         AmmoEnt:Spawn()
         AmmoEnt.AmmoCount = count
         ply:SetAmmo(ply:GetAmmoCount(ammotype) - count, ammotype)
-        ply:EmitSound("snd_jack_hmcd_ammobox.wav", 75, math.random(80, 90), 1, CHAN_ITEM)
+        ply:EmitSound("utils/snd_jack_hmcd_ammobox.ogg", 75, math.random(80, 90), 1, CHAN_ITEM)
     end)
 end
