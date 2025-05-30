@@ -483,11 +483,11 @@ SWEP.ViewModelBoneMods = {
 }
 
 SWEP.VElements = {
-	["element_name"] = { type = "Model", model = "models/weapons/grenade/smoke/incendiary_grenade.mdl", bone = "ValveBiped.Grenade_body", rel = "", pos = Vector(-0.159, 0.34, -1.5), angle = Angle(0, 45, 180), size = Vector(1, 1, 1), color = Color(255, 255, 255, 255), surpresslightning = false, material = "models/mats_jack_nades/smokescreen", skin = 0, bodygroup = {} }
+	["element_name"] = { type = "Model", model = "models/jmod/explosives/grenades/firenade/incendiary_grenade.mdl", bone = "ValveBiped.Grenade_body", rel = "", pos = Vector(-0.159, 0.34, -1.5), angle = Angle(0, 45, 180), size = Vector(1, 1, 1), color = Color(255, 255, 255, 255), surpresslightning = false, material = "models/mats_jack_nades/smokescreen", skin = 0, bodygroup = {} }
 }
 
 SWEP.WElements = {
-	["element_name"] = { type = "Model", model = "models/weapons/grenade/smoke/incendiary_grenade.mdl", bone = "ValveBiped.Anim_Attachment_RH", rel = "", pos = Vector(0.3, -0.0, 0), angle = Angle(110, 65, -159), size = Vector(0.81, 0.81, 0.8), color = Color(255, 255, 255, 255), surpresslightning = false, material = "models/mats_jack_nades/smokescreen", skin = 0, bodygroup = {} }
+	["element_name"] = { type = "Model", model = "models/jmod/explosives/grenades/firenade/incendiary_grenade.mdl", bone = "ValveBiped.Anim_Attachment_RH", rel = "", pos = Vector(0.3, -0.0, 0), angle = Angle(110, 65, -159), size = Vector(0.81, 0.81, 0.8), color = Color(255, 255, 255, 255), surpresslightning = false, material = "models/mats_jack_nades/smokescreen", skin = 0, bodygroup = {} }
 }
 
 SWEP.Base                = "weapon_base"

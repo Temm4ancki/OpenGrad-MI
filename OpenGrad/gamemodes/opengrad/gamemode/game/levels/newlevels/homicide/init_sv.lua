@@ -309,12 +309,8 @@ function homicide.PlayerSpawn(ply, teamID)
 
     local bodygroups = ply:GetBodyGroups()
     for _, group in ipairs(bodygroups) do
-        if group.id == 5 then
-            ply:SetBodygroup(group.id, 0)
-        else
-            local randomValue = math.random(0, group.num)
-            ply:SetBodygroup(group.id, randomValue)
-        end
+        local randomValue = math.random(0, group.num)
+        ply:SetBodygroup(group.id, randomValue)
     end
 
     ply:SetPlayerColor(color:ToVector())

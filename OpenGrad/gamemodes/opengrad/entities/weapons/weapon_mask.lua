@@ -37,7 +37,6 @@ SWEP.CommandDroppable = false
 
 function SWEP:Initialize()
 	self:SetHoldType("normal")
-	self.SelectedDisguise = nil
 end
 
 function SWEP:Deploy()
@@ -48,7 +47,6 @@ end
 
 function SWEP:PrimaryAttack()
 	if self:GetOwner():KeyDown(IN_SPEED) and self:GetOwner():KeyDown(IN_FORWARD) then return end
-	if not self.SelectedDisguise then return end
 
 	self:GetOwner():SetAnimation(PLAYER_ATTACK1)
 	if SERVER then self:GetOwner():HideIdentity() end
