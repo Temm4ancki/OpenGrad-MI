@@ -18,7 +18,7 @@ tdm.red = {
 	Color(255, 165, 31),
 	weapons = {"weapon_binokle", "weapon_radio", "weapon_gurkha", "weapon_hands", "med_band_big", "med_band_small", "medkit", "painkiller"},
 	main_weapon = {"weapon_aks74u", "weapon_akm", "weapon_remington870", "weapon_galil", "weapon_rpk", "weapon_asval", "weapon_p90-2"},
-	secondary_weapon = {"weapon_cz75-2", "weapon_deagle", "weapon_glock"},
+	secondary_weapon = {"weapon_cz75", "weapon_deagle", "weapon_glock"},
 	models = models
 }
 

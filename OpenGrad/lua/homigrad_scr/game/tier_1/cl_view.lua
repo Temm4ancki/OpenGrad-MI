@@ -1,71 +1,3 @@
--- 					 ..................................................(///(%(//((##/*/((/**/#*,,,*/(((/((/*,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.                       
--- 					 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,/(,(//(////((((((((/*//((##/////((((((((((,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.                       
--- 					 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,//(/**//(((((((((((((((((((((((((((#((/*,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.                       
--- 					 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,*/***/,,,,,,,,,,,,,,,,,,,,,,,(/***/(((((((((((((((((((((//(#%#((*,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.                       
--- 					 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,/////*///,,,,///**,,,,,,,,,,,,,/***/((#####((#####((((((((#%##%%###(*,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.                       
--- 					 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,/////**//**,/*///*****,,,,,,,,,*/**/((#####((########(((((///((##%#(,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.                       
--- 					 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,*/////*//*/(/**/(///*****,,,,,,,/**/((####(((########(((((((##%#((###((#/,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.                       
--- 					 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,*/**///////******//*(///*/,,,,,*/*/((####(((#######(((((((((((####%#*,,**,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,                       
--- 					 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,///////*/*//////**/*//////*,,,**/((####(((########(((((((((((%####%##,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,                       
--- 					 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,/////(//////////////////(/(/*//*,**//((###(/(#########((((((((((/(%@&%(,##,,.*((/,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,                       
--- 					 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,****((///(////***///*/////////*///**/*/(((#(///#########&%((((((((((#%&&&#(#*,,((/(#*,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,                       
--- 					 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,/////*/(////*********/*(/*//////((*///((((((((#######%@&((((((((((((%&&&%%#(#((((((*,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,                       
--- 					 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,*//&%%%&&&&(***/*****/#//#/*////(/**//(((((((#####(((((((((#%%((((&&&%%%%%%%%%%%(/,,,,,,,***,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,                       
--- 					 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,/(/**/%&%((//***/(##(/***//*/*////#///(///((((((((((((((((##(((%&&%%%%%%%%%%%%%%%%&%#((((/(#,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,                       
--- 					 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,&&&&%%&#&%%%&(*/****//##**//*/*////*/((%&&%(//((((#(((###((/%&&%%%%%%%%%%%%%%%%%%%%%%%&%%/*,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,                       
--- 					 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,*/////(#%%&%%&&&/*/**////*/*/*/*/&&&&&&&&&#(##((#####(((((#&&&%%%%%%%%%%%%%%%%%%%%%%%%%#%&%%%%%#(.,,,,,,,,,,,,,,,,,,,,,,,,                       
--- 					 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,%%%%%%%%%%%&&&(//////**/////#%#(//@&&&&&#((####//(#(#%&&&&&&&%%%%%%&%&%%%%%%%%%%%%%%%####%%%%#((%*,,,,,,,,,,,,,,,,,,,,,,,                       
--- 					 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,*%%%%%%%%&&&(///****//**////**/*#@&&&&&&###(#***//(((&&&&&&&&&&&&&&%%%%%%%%%%%%%&&%%%%%%%&&&&&&&%%%#((,,,,,,,,,,,,,,,,,,,,                       
--- 					 .,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,(%%#(/((/*///////////**//*/*****/&&&&&&#(#%/**//(((#&&&&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&%((%%%&#,,,,,,,,,,,,,,,,,,,,,                       
--- 					 .,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#%&&/***///////***/**///#/**/**//&&&&%#((%*//((((#&&&&%(////#&%%%%%%%%%%%%%%%%%%&&%%%%%%%%%%%%%%%&&&#*,,,,,,,,,,,,,,,,,,                       
--- 					 .,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,*&&(//////*/***///**//(##//*******#&&(###%%#((((%&&&(*********(&%%%%%%%%%%%%%%%%%%%%%%%%#%&&&%%%%%&%&(,,,,,,,,,,,,,,,,,,                       
--- 					 .,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,(%#///////////**//**/(%#%(**///****,**((#####((&&&#***/&%&/*,**#&%%%%%%%%%%%%&%%%&&&&%%%%&%%%%%%%%%%&&%,,,,,,,,,,,,,,,,,                       
--- 					 .,,,,,,,,,,,,,,,,,,,,,,,,,,,,*//(*.,%%#///(///////***//**(/###/*,//,*###/***#####/%&&&/**/%%%%%%/**#&%%%%%%%%%%%%&&&&&&%&&%%%%%%%%&&%&&%%%%&&,,,,,,,,,,,,,,,,.                      
--- 					 .,,,,,,,,,,,,,,,,,,,,,//*********/(%%&(/*/(///*///*////****/********/##(#/**(###/(@&%/**/%%%%%%%%%%%%%%%%%%%%%%%%&&&&&&&&&&%&%%%%%%%%%%%%%%%%%*,,,,,,,,,,,,,,.                      
--- 					 .,,,,,,,,,,,,,,,,,,,,/*(#(&&%/**//*/#&(///(//***/******////////****(#####**//////#(****#%%%%%%%%%%%%%%%%%%%%%%%%&&&&&&&&&&&%%%%%%%%%%%%%%%%%%%%#,,,,,,,,,,,,,.                      
--- 					 .,,,,,,,,,,,,,,,,,,,,*//%(###*/(///****/(/(///*******/****/**////*%%%#***///(/*****/#&%%%%%%%%%%%%%%%%%%%%%%%%%%&&&&&&&&&&&&%%%%%%%%%%%%%%%%%%%%&*,,,,,,,,,,,.                      
--- 					 .,,,,,,,,,,,,,,,,,,,,,/(((%/(,,,,///*****/(/(////////*////**//*/*#&&&&&&&&&&&&&&&&&&%%%%%%%%%%%%%%%%%%%%%%%%%&%&&&&&&&&&&&&&&%%%%%%%%%%%%%%%%%%%%%,,,,,,,,,,,.                      
--- 					 .,,,,,,,,,,,,,,,,,,,,,.,,,,,,,,,,*#//*****/(/((////////////////****/(##((/////*******/(#%&%%%%%%%%%%%%%%%%%%&&&&&&&&&&&&&&&&&%%%%%%%%%%%%%%%%%%%%%#,,,,,,,,,,.                      
--- 					 .,,,,,,,,,,,,,,,,,,,,,/*.,,,,,,,./#(///***//(///*//**///***********/************////*/*****/(%%%%%&&&&&&&%%&&&&&&&&&&&&&&&&&&&&%%%%%%%%%%&&%%%%%%%&/,,,,,,,,,.                      
--- 					 .,,,,,,,,,,,,,,,,,,,,.//*.....,,,,,,.///((((((//*///*********////**/***//*/****/*****//*****/**(&%%&&&&&&&&&&&%&&&%&&&&&&@/,%&&&&%%%%%%%%&&&%%%%&%%(,,,,,,,,,.                      
--- 					 .,,,,,,,,,,,,,,,,..//*////,*//***///*,...*#(#(//**//(/********/((((((((/****************//*******/%&%&&&&%%%&&&&&&&&&&&&(,,,,,/&&&&&%%%%&&&&&%%%&%%%*,,,,,,,,.                      
--- 					 .,,,,,,,,,,,,,,..,**/(((((/((((((((#########(((//**//******//(((###(((((#/****************///******(&&&&&&&&&&&&&&&&&%*,,,,,,,,,(&&&&&&&&&&&&&&%%%%%%/,,,,,,,.                      
--- 					 .,,,,,,,,,,,,...*//(#(((((((((##//////*****///(((///**/****//(#######((((/*****/***********///*******%%&&&&&&&&&&&&/,,,,,,,,,,,,%&&&&&%%%%%%&&&%%%%%%%,,,,,,,.                      
--- 					 .,,,,,,,,,,..///(#(((((##(##((((//////*///**/((/**/**/*/////(########(###/*****//*********/*/(//////(/***(@&&&&&&%,.,,,,,,,,,,(&&&%%%%%%%%%%%%%%%%%%%%,,,,,,,.                      
--- 					 .,,,,,,,,,,.///((((/((/(######((((//////*****///********///(%#############//******///********/((//(/**/****/*(%@@#,.....,,,,,#&&%%%%%%%%%%%%%%%%%%%%%(,,,,,,,.                      
--- 					 .,,,,,,,,,.,//(((/%%%###########((((((/////***///**/*****/(###############/******************/(///***************/((///*..,,#&&%%%%%%%%%%%%%%%%%%%%%&##*,,,,,.                      
--- 					 .,,,,,,,,.///((((#%#(#############(((((((/**/**////***////(###############*******************/(//**/******///*******/((//,.%&%%%%%%%%%%%%%%%%%%%%%%%##*,,,,,,.                      
--- 					 .,,,,,,,///(#/#%#######################((((////**/////**//(##############//*********/***/****////********/////*********//%&%%%%%%%%%%%%%%%%%%%%%%%&/,,,,,,,,,.                      
--- 					 .,,,,,,,%%%%&#############################((((////*////(///#%###########((/********/***////////////////////#%%////********//#&%%%%%%%%%%%%%%%%%%%*,,,,,,,,,,,.                      
--- 					 .,,,,,/%%%%%&#############################(((((((/////(////(#%##########((/////////(((((((((((((((((((((///%%%&&(****(&&&&&&%%%%%%%%%%%%%%%%%%%##(%*,,,,,,,,,.                      
--- 					  ,,,.(%%%%%%&#####################################(///*/////*#%########%#(////(((((((((((((((#(###########%&&&%%&#***#%%%%%%%%%%%%%%%%%%&&#(#%((/*,,,,,,,,,,,.                      
--- 					  ,,*%%%%%%%%%&%######################################(###%%%##%&%%%%%%%%%###((#########################%&&@&&&&&%%%&&%%%%%%%%%%%%%%%&&(((((((((/*....,,......,..                    
--- 					  ,(%%%%%&&&&&&%%&#############################%%%##%&&&&&&&&&&&&&%%%%%%&&&%##########################@&&&&&&&&&&&&&&%%%%%%%%%%%%&&%###(((((((((((/(//*..**..*//.                    
--- 					  ,%%%%%%%%%%%%%&&&&##################################&&&&&&&&&&&&&&&&&&&&%##########################@@&&&@&&&&&&&&&&&&%%%%%%%%#((((((((((((((((((//((((////*///.                    
--- 					  ,#%%%%%%%%%%&&&&&&&&#(((############################%&&&&&&&&&&&&&&&&&&&###########################@&&%#&&&&&&&&&&&&&&&%%&%((((((((#(((((((((((((((((((((((//*,**.*.               
--- 					  ,*%%%%%%%%&&&&&&&&&&&&@%#((((##((((###################&&&&&&&&&&&&&&&&&%#######################%%####%&&&&&&&&&&&&&###&&&%((((((((((#(#((((((((((((((((((/(((((/(((*,.             
--- 					  ,%%%%%%%&&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@&##########&&&&&&&&&&&&&&&&###############%############%@&&&&&%&&&&&&&@#####%#((((((((((((((((((((((((((((((((((((((((((##(.   ..      
--- 					 /%%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&@@@@@@%##########%&&&&&&&&&&&&############################%@@&&&#%&&&&&&&&%######%#((/(((((((((((((((((((((((((((((((((((((((###(/*.      
--- 				   .(%%%%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&@@@@@@@@%#########%&&&&&&&&&&#############################@@&&#%&&&&&&&&&&#####(#(#(((((/((((((((((((((/((((((((((((((((((((######(.     
--- 				  %%%&&&&%%%%&&&&@@@&&&&&&&&&&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@%##########%&&&&&@&################################&&&&&&&&&&@%######(##%%#(#///////////(#/(/((##(#(((///////(#(((########(/*.
--- 				/%%%&&&&%&&%&&&&&&@@&&&&&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@&&&&&&&&&###########@@@@%###############################%@@&&&&&&&%#######(#%%%%%%%%########%%%##((####(((##////(##%%%%%#((#######/
--- 			,,/%%%%%%&&&&&&&&&&&&&&@@&&&&&&&&&&&&&&&&&&&&&&@@@@@@@@@@&&&&&&&&&&&&&&&&&&&&&&&&&@################################&@@&&&@&########(((%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%###
--- 		,#%%%%%%%%&&&&&&&&&&&&&&&&&&&@&&&&&&&&&&&&&&&&&&&&&&&@@@@@@@@&&&&&&&&&&&&&&&&&&&&&&&&&&&%##################################&@############%%%%%%%%%%%%%%%%%%%%%%&%%%%%%%&%%%%%%%%%%%%%&%%%&&&&&&&&
---  #&&&%%%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&@@@&&&&&&&&&&&&&&&&&&&&@@@@@@@&&&&&&&&&&&&&&&&&&&&&&&&&&&&@###############################################&%%%%%%%%%%%%%%%%%%%%%&%%%%%%%%%%%%%%%%%%%%%&&&&&&&&&&&&
---  %%%%%%%&%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&@@&&&&&&&&&&&&&&&&&@@@@@@@&&&&&&&&&&&&&&&&&&&&&&&&&&&@@&###########################################(%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&&&&&&&&&&&&
---  %%%&%%%%&&&&&&&%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&@&&&&&&&&&&&&&&@@@@@@@@&&&&&&&&&&&&&&&&&&&&&&&&&&@@@@@#########################################&%%%%%%%%%%%%%&&%%%%%%%%%%%%%%%&&%%%%%%%%%%%&&&&&&&&&&&&&&
---  %&&%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&@@&&&&&&&&&&&&@@@@@@@@&&&&&&&&&&&&&&&&&&&&&&&&&&@@@@@@@&##################################(#&%%%%%%%%%%%%%%&&&&%%%%%%%%%%%%%%%%%%%%%%%%&&&&&&&&&&&&&&&&&
---  %&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&@@@&&@@@@@&&&&&&&&&&&@@@@@@@@@@@@@&&&&&&&&&&&&&&&&&&&&&&&@@&&&&&&&@@@%############################%&&&&&&&&&&&&&&%%&%%%%%%%%%%%%%%%%%%%%%%%%%%&&&&&&&&&&&&&&&&&&&&
---  &&%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&@&&@@@@@&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@&&&&&&&&&&&&&&&&&&&&&&@&&&&&&&&&&&&&&@@@@&%#################&&%&&&&&&&&%%%&&%%&&%%%%%%%%%%%%%%%%%%%%%%%%%%%&&&&&&&&&&&&&&&&&&&&&&
---  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&@@@@@&&&&&&&&&&&&&&&&&&&&&&@@@@@@@@@@@&&&&&&&&&&&&&&&&&&&&&&&&&@&&&&&&&&&&&&&&&&&&&&&&&@@@@@@@&%&&&%&%%&%&&&&&&&%&&%%%%%%%%%%%%%&&%%%%%%%%%%%%%%%%%&&&&&&&&&&&&&&&&&&&%&%%%
---  &&&&&&&&&&@&&&&&&&&&&&@@@&&&&&&&&&&&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@&&&&@&&&&&&&&&&&&&&&&&&&&@@&&&&&&&&&&&&&&&&&&&&&&&&&&@@@&%%%%&&&&&%%%%&&&&%%%&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&&&&&&&&&&&&&&&&&&&&%%%%%%
---  &&&&&&&&&&&&&&&&&&&&@@@@@&&@@&&&&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@&&&&&&&&&&&&&&&&&&&&&&&&&&&&&@@&&&&&&&&&&&&&&&&&&&&&&&&&&&@&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&%%%%&&
---  &&&&&&&&&&&&&&&&&@@@@@@@@&&&&&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@&&&&&&&@&&&&&&&&&&&&&&&&&&&&&&&&@@@&&&&&&&&&&&@@@@@&&&&&&&&&&&&&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&@&
---  &&&&&&&&&&&&&&&&&&@@@@@@&&&&@@@&&&&&&&&@@&&&&&@@@@@@@@@@@&@&&&&&@@&&&&&&&&&&&&&&&&&&&&&&&&&&@@&&&&&&&&&&&@&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%%%%%%%%%%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%%%&&&&&&&&&&&&&&&&
---  &&&&&&&&&&&&&&&&@@@@@@@@@@@@&&&&&&&&&@&&&&&@@@@@@@@@&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&@@&&&&&&&&&&&&&&&&&@&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%%%&&&&&&&&&&&&&&&&&
---  &&&&&&&&&&&&&&&&&&@@@@@@@@@@@@&&&&@@&&&&&&@@@@@@@@@&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&@@&&&&&&&&&&&&&&&&&&&&&&@&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&(%((,#*/#,,(&&&&
---  &&&&&&&&&&&&&&&&&&&&&&&@@@@@@&&&@@@@@@@@@@@@@&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&@@&&&&&&&&&&&&&&&&&&@@@@&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&/../*#/%&&@&&&&&
-																						 
 if engine.ActiveGamemode() != "opengrad" then return end
 
 weaponClasses = {
@@ -241,13 +173,14 @@ end
 hg_cool_camera = CreateClientConVar("hg_cool_camera","1",true,false,"huy",0,1)
 
 local deathtrack = {
-	"https://cdn.discordapp.com/attachments/959407102525325363/1378083828677218544/death1.ogg?ex=683b5014&is=6839fe94&hm=e789fc5298394bccc9dc039421c54598a16ec60c7a4ab5b40cfb79549184ee05&",
-	"https://cdn.discordapp.com/attachments/959407102525325363/1378083901494394900/death2.ogg?ex=683b5025&is=6839fea5&hm=c8cb4d56c969864fb9b22a6abd874f4744184a5cca2c74c9673faae611068777&",
-	"https://cdn.discordapp.com/attachments/959407102525325363/1378083910260490251/death3.ogg?ex=683b5027&is=6839fea7&hm=229730026094800ab8470ed638e21f3ae64b195ad2fcb323ede3c495f027fb77&",
-	"https://cdn.discordapp.com/attachments/959407102525325363/1378083919056081007/death4.ogg?ex=683b5029&is=6839fea9&hm=f54b83ef80e844e4a50b4c4bc4cf262e596fcebe3e7926feac3f6a7adb037287&",
+	"https://cdn.discordapp.com/attachments/959407102525325363/1378463467060728039/death1.ogg?ex=683cb1a5&is=683b6025&hm=b86941652922c37148c7c0d722c96c67b347e6111af26eb1e9cc412c1f1eae4f&",
+	"https://cdn.discordapp.com/attachments/959407102525325363/1378463524317040660/death2.ogg?ex=683cb1b2&is=683b6032&hm=e4ccbf82873b860c5331ee78e53e02fc4aa47ae360378271c53b939edf54fc5c&",
+	"https://cdn.discordapp.com/attachments/959407102525325363/1378463523562066020/death3.ogg?ex=683cb1b2&is=683b6032&hm=fc62fea33a482afffdd51de7551a7d953d2137ba94d81671c8dfe4b32d0779eb&",
+	"https://cdn.discordapp.com/attachments/959407102525325363/1378463523939811398/death4.ogg?ex=683cb1b2&is=683b6032&hm=677be3b67b4fbcf6c682afadb2abdcc4be58909d528e7fae47bf304653dffa01&",
 }
 local g_station = nil
 local playing = false
+
 local deathtexts = {
 	"ТЫ МЁРТВ",
 	"ПОХОЖЕ, ТЫ СДОХ",
@@ -275,6 +208,7 @@ local deathtexts = {
 	"ЖИЛ-ЖИЛ УМЕР",
 	"ПРИЗЕМЛИЛСЯ В САНКТ-ПЕТЕРБУРГЕ"
 }
+
 net.Receive("pophead",function(len)
 	local rag = net.ReadEntity()
 	if GetConVar("hg_deathscreen"):GetBool() then
@@ -291,7 +225,7 @@ net.Receive("pophead",function(len)
 
 				-- Keep a reference to the audio object, so it doesn't get garbage collected which will stop the sound
 				g_station = station
-		
+
 			else end
 		end )
 	end
@@ -313,7 +247,7 @@ end)
 local weps = {}
 
 for _, weapon in ipairs(weapons.GetList()) do
-	if weapon.Category == "Оружие" then 
+	if weapon.Category == "Оружие" then
 		weps[weapon.ClassName] = true
 	end
 end
@@ -490,90 +424,75 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 		fov = fov - anim_pos * (scope and 2 or 1)
 		angRecoil[3] = anim_pos * (scope and 10 or 5)
 
-		if weaponClass == "weapon_p228" then
-			--Vector(3.85,10,1.45)
-			vecWep = hand.Pos + hand.Ang:Up() * 4.3 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 1.15
-			angWep = hand.Ang + Angle(5,10,0)
-		end
-		if weaponClass == "weapon_glock" then
-			--Vector(2.3,10,0)
-			vecWep = hand.Pos + hand.Ang:Up() * 2.3 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 0
-			angWep = hand.Ang + Angle(-15,5,0)
-		end
-		if weaponClass == "weapon_m134" then
-			--Vector(5.2,-2,1.1)
-			vecWep = hand.Pos + hand.Ang:Up() * 5.2 - hand.Ang:Forward() * -2 + hand.Ang:Right() * 1.1
-			angWep = hand.Ang + Angle(-5,5,-5)
-		end
-		if weaponClass == "weapon_xm1014" then
-			--Vector(3.55,4,0.95)
-			vecWep = hand.Pos + hand.Ang:Up() * 3.55 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 0.95
-			angWep = hand.Ang + Angle(-8,0,0)
-		end
-		if weaponClass == "weapon_remington870" then
-			--Vector(3.8,4,0.65)
-			vecWep = hand.Pos + hand.Ang:Up() * 4.4 - hand.Ang:Forward() * 4 + hand.Ang:Right() / 1.6
-			angWep = hand.Ang + Angle(-5,0,0)
-		end
-		if weaponClass == "weapon_ar15" then
-			--Vector(5.05,7,0.725)
-			vecWep = hand.Pos + hand.Ang:Up() * 5.01 - hand.Ang:Forward() * 7 + hand.Ang:Right() * 0.725
-			angWep = hand.Ang + Angle(-5,0,0)
-		end
-		if weaponClass == "weapon_mp7" then
-			--Vector(3.25,7,0.79)
-			vecWep = hand.Pos + hand.Ang:Up() * 2.9 - hand.Ang:Forward() * 9 + hand.Ang:Right() * 0.79
-			angWep = hand.Ang + Angle(-10,0,0)
-		end
-		if weaponClass == "weapon_beretta" then
-			--Vector(2.5,10,0.05)
-			vecWep = hand.Pos + hand.Ang:Up() * 2.5 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 0.05
-			angWep = hand.Ang + Angle(-10,2,0)
-		end
-		if weaponClass == "weapon_deagle" then
-			--Vector(2.7,10,0.4)
-			vecWep = hand.Pos + hand.Ang:Up() * 2.7 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 0.4
-			angWep = hand.Ang + Angle(-10,0,0)
-		end
-		if weaponClass == "weapon_p99" then
-			--Vector(2.5,10,0.1)
-			vecWep = hand.Pos + hand.Ang:Up() * 2.5 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 0.05
-			angWep = hand.Ang + Angle(-10,3,0)
-		end
-		if weaponClass == "weapon_mp5a3" then
-			--Vector(4.22,7,0.8)
-			vecWep = hand.Pos + hand.Ang:Up() * 4.17 - hand.Ang:Forward() * 7 + hand.Ang:Right() * 0.79	
-			angWep = hand.Ang + Angle(-5,0,0)
-		end
-		if weaponClass == "weapon_m4super-2" then
-			--Vector(3.66,5,0.65)
-			vecWep = hand.Pos + hand.Ang:Up() * 3.66 - hand.Ang:Forward() * 5 + hand.Ang:Right() * 0.65
-			angWep = hand.Ang + Angle(-5,0,0)
-		end
-		if weaponClass == "weapon_cz75-2" then
-			--Vector(2.7,10,0.12)
-			vecWep = hand.Pos + hand.Ang:Up() * 2.7 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 0.12
-			angWep = hand.Ang + Angle(-15,02,0)
-		end
-		if weaponClass == "weapon_hk_usp" then
-			--Vector(2.5,10,0.3)
-			vecWep = hand.Pos + hand.Ang:Up() * 2.43 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 0.3
-			angWep = hand.Ang + Angle(-15,5,0)
-		end
-		if weaponClass == "weapon_hk_usps" then
-			--Vector(3.9,10,1.09)
-			vecWep = hand.Pos + hand.Ang:Up() * 3.9 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 1.09
-			angWep = hand.Ang + Angle(0,10,0)
-		end
 		if weaponClass == "weapon_akm" then
 			--Vector(5.1,5,0.76)
-			vecWep = hand.Pos + hand.Ang:Up() * 5.0 - hand.Ang:Forward() * 5 + hand.Ang:Right() * 0.76
+			vecWep = hand.Pos + hand.Ang:Up() * 5.0 - hand.Ang:Forward() * 5 + hand.Ang:Right() * 0.55
 			angWep = hand.Ang + Angle(-8,5,0)
 		end
 		if weaponClass == "weapon_aks74u" then
 			--Vector(5.3,4,0.78)
-			vecWep = hand.Pos + hand.Ang:Up() * 5.2 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 0.78
+			vecWep = hand.Pos + hand.Ang:Up() * 5.2 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 0.96
 			angWep = hand.Ang + Angle(-8,0,0)
+		end
+		if weaponClass == "weapon_ar15" then
+			--Vector(5.05,7,0.725)
+			vecWep = hand.Pos + hand.Ang:Up() * 5.4 - hand.Ang:Forward() * 7 + hand.Ang:Right() * 0.745
+			angWep = hand.Ang + Angle(-5,0,0)
+		end
+		if weaponClass == "weapon_asval" then
+			--Vector(3.9,7,0.57)
+			vecWep = hand.Pos + hand.Ang:Up() * 3.75 - hand.Ang:Forward() * 7 + hand.Ang:Right() * 0.58
+			angWep = hand.Ang + Angle(-8,0,0)
+		end
+		if weaponClass == "weapon_beretta" then
+			--Vector(2.5,10,0.05)
+			vecWep = hand.Pos + hand.Ang:Up() * 2.8	 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 0.15
+			angWep = hand.Ang + Angle(-10,2,0)
+		end
+		if weaponClass == "weapon_civil_famas" then
+			--Vector(6,6,0.69)
+			vecWep = hand.Pos + hand.Ang:Up() * 6.1 - hand.Ang:Forward() * 6 + hand.Ang:Right() * 0.73
+			angWep = hand.Ang + Angle(-5,0,0)
+		end
+		if weaponClass == "weapon_cz75" then
+			--Vector(2.5,10,0.3)
+			vecWep = hand.Pos + hand.Ang:Up() * 2.7 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 0.34
+			angWep = hand.Ang + Angle(-15,5,0)
+		end
+		if weaponClass == "weapon_deagle" then
+			--Vector(2.7,10,0.4)
+			vecWep = hand.Pos + hand.Ang:Up() * 3 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 0.35
+			angWep = hand.Ang + Angle(-10,0,0)
+		end
+		if weaponClass == "weapon_deserteagle" then
+			--TODO Я РОТ ТЕБЯ ШАТАЛ
+			vecWep = hand.Pos + hand.Ang:Up() * 2.1 - hand.Ang:Forward() * 11 + hand.Ang:Right() * 0.3
+			angWep = hand.Ang + Angle(-15,5,0)
+		end
+		if weaponClass == "weapon_galil" then
+			--Vector(5.7,4,0.75)
+			vecWep = hand.Pos + hand.Ang:Up() * 5.7 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 0.76
+			angWep = hand.Ang + Angle(-5,0,0)
+		end
+		if weaponClass == "weapon_glock" then
+			--Vector(2.3,10,0)
+			vecWep = hand.Pos + hand.Ang:Up() * 2.7 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 0.05
+			angWep = hand.Ang + Angle(-15,5,0)
+		end
+		if weaponClass == "weapon_hk_usp" then
+			--Vector(2.5,10,0.3)
+			vecWep = hand.Pos + hand.Ang:Up() * 2.9 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 0.26
+			angWep = hand.Ang + Angle(-15,5,0)
+		end
+		if weaponClass == "weapon_hk_usps" then
+			--Vector(3.9,10,1.09)
+			vecWep = hand.Pos + hand.Ang:Up() * 4 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 1.12
+			angWep = hand.Ang + Angle(0,10,0)
+		end
+		if weaponClass == "weapon_hk416-2" then
+			--Vector(6.2,6,0.88)
+			vecWep = hand.Pos + hand.Ang:Up() * 6.33 - hand.Ang:Forward() * 6 + hand.Ang:Right() * 0.9
+			angWep = hand.Ang + Angle(-7,0,0)
 		end
 		if weaponClass == "weapon_l1a1" then
 			--Vector(5.7,4,1.1)
@@ -585,15 +504,10 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 			vecWep = hand.Pos + hand.Ang:Up() * 5.45 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 0.69
 			angWep = hand.Ang + Angle(-8,0,0)
 		end
-		if weaponClass == "weapon_galil" then
-			--Vector(5.7,4,0.75)
-			vecWep = hand.Pos + hand.Ang:Up() * 5.7 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 0.75
-			angWep = hand.Ang + Angle(-5,0,0)
-		end
-		if weaponClass == "weapon_asval" then
-			--Vector(3.9,7,0.57)
-			vecWep = hand.Pos + hand.Ang:Up() * 3.75 - hand.Ang:Forward() * 7 + hand.Ang:Right() * 0.58
-			angWep = hand.Ang + Angle(-8,0,0)
+		if weaponClass == "weapon_m134" then
+			--Vector(5.2,-2,1.1)
+			vecWep = hand.Pos + hand.Ang:Up() * 5.2 - hand.Ang:Forward() * -2 + hand.Ang:Right() * 1.1
+			angWep = hand.Ang + Angle(-5,5,-5)
 		end
 		if weaponClass == "weapon_m14" then
 			--Vector(6,4,0.95)
@@ -605,19 +519,19 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 			vecWep = hand.Pos + hand.Ang:Up() * 5.25 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 1.15
 			angWep = hand.Ang + Angle(25,35,15)
 		end
-		if weaponClass == "weapon_hk416-2" then
-			--Vector(6.2,6,0.88)
-			vecWep = hand.Pos + hand.Ang:Up() * 6.15 - hand.Ang:Forward() * 6 + hand.Ang:Right() * 0.88
-			angWep = hand.Ang + Angle(-7,0,0)
-		end
 		if weaponClass == "weapon_m249" then
 			--Vector(5.8,8,0.88)
-			vecWep = hand.Pos + hand.Ang:Up() * 5.8 - hand.Ang:Forward() * 8 + hand.Ang:Right() * .88
-			angWep = hand.Ang + Angle(-6,0,0)
+			vecWep = hand.Pos + hand.Ang:Up() * 5.85 - hand.Ang:Forward() * 8 + hand.Ang:Right() * .88
+			angWep = hand.Ang + Angle(0,0,0)
 		end
 		if weaponClass == "weapon_m4a1" then
 			--Vector(5.05,7,0.725)
-			vecWep = hand.Pos + hand.Ang:Up() * 5.05 - hand.Ang:Forward() * 7 + hand.Ang:Right() * 0.725
+			vecWep = hand.Pos + hand.Ang:Up() * 5.45 - hand.Ang:Forward() * 7 + hand.Ang:Right() * 0.755
+			angWep = hand.Ang + Angle(-5,0,0)
+		end
+		if weaponClass == "weapon_m4super-2" then
+			--Vector(3.66,5,0.65)
+			vecWep = hand.Pos + hand.Ang:Up() * 4.56 - hand.Ang:Forward() * 5 + hand.Ang:Right() * 0.65
 			angWep = hand.Ang + Angle(-5,0,0)
 		end
 		if weaponClass == "weapon_minu14" then
@@ -625,45 +539,75 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 			vecWep = hand.Pos + hand.Ang:Up() * 5 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 0.95
 			angWep = hand.Ang + Angle(15,35,15)
 		end
+		if weaponClass == "weapon_mp5a3" then
+			--Vector(4.22,7,0.8)
+			vecWep = hand.Pos + hand.Ang:Up() * 4.65 - hand.Ang:Forward() * 7 + hand.Ang:Right() * 0.85
+			angWep = hand.Ang + Angle(-15,0,0)
+		end
+		if weaponClass == "weapon_mp7" then
+			--Vector(3.25,7,0.79)
+			vecWep = hand.Pos + hand.Ang:Up() * 3.69 - hand.Ang:Forward() * 9 + hand.Ang:Right() * 0.84
+			angWep = hand.Ang + Angle(-10,0,0)
+		end
+		if weaponClass == "weapon_p228" then
+			--Vector(3.85,10,1.45)
+			vecWep = hand.Pos + hand.Ang:Up() * 4.1 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 1.17
+			angWep = hand.Ang + Angle(5,10,0)
+		end
 		if weaponClass == "weapon_p90-2" then
 			--Vector(6.5,4,0.67)
-			vecWep = hand.Pos + hand.Ang:Up() * 6.5 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 0.67
+			vecWep = hand.Pos + hand.Ang:Up() * 6.35 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 0.67
+			angWep = hand.Ang + Angle(-5,0,0)
+		end
+		if weaponClass == "weapon_p99" then
+			--Vector(2.5,10,0.1)
+			vecWep = hand.Pos + hand.Ang:Up() * 2.7 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 0.48
+			angWep = hand.Ang + Angle(-10,3,0)
+		end
+		if weaponClass == "weapon_remington870" then
+			--Vector(3.8,4,0.65)
+			vecWep = hand.Pos + hand.Ang:Up() * 4.4 - hand.Ang:Forward() * 4 + hand.Ang:Right() / 1.6
+			angWep = hand.Ang + Angle(-5,0,0)
+		end
+		if weaponClass == "weapon_remington870police" then
+			--Vector(4.41,4,0.41)
+			vecWep = hand.Pos + hand.Ang:Up() * 5.3 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 1.2
 			angWep = hand.Ang + Angle(-5,0,0)
 		end
 		if weaponClass == "weapon_rpk" then
 			--Vector(4.9,4,0.8)
-			vecWep = hand.Pos + hand.Ang:Up() * 4.75 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 0.8
+			vecWep = hand.Pos + hand.Ang:Up() * 4.76 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 0.85
 			angWep = hand.Ang + Angle(-7,0,0)
-		end
-		if weaponClass == "weapon_ump" then
-			--Vector(6.6,7,1.35)
-			vecWep = hand.Pos + hand.Ang:Up() * 6.6 - hand.Ang:Forward() * 7 + hand.Ang:Right() * 1
-			angWep = hand.Ang + Angle(0,5,15)
-		end
-		if weaponClass == "weapon_sar2" then
-			--Vector(6,5,1.42)
-			vecWep = hand.Pos + hand.Ang:Up() * 6.0 - hand.Ang:Forward() * 5 + hand.Ang:Right() * 0.93
-			angWep = hand.Ang + Angle(-10,0,0)
 		end
 		if weaponClass == "weapon_rpgg" then
 			--Vector(7,5,1)
 			vecWep = hand.Pos + hand.Ang:Up() * 10 - hand.Ang:Forward() * 5 + hand.Ang:Right() * -3
 			angWep = hand.Ang + Angle(-11,0,0)
 		end
-		if weaponClass == "weapon_remington870police" then
-			--Vector(4.41,4,0.41)
-			vecWep = hand.Pos + hand.Ang:Up() * 4.41 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 0.41
-			angWep = hand.Ang + Angle(-5,0,0)
-		end
-		if weaponClass == "weapon_civil_famas" then
-			--Vector(6,6,0.69)
-			vecWep = hand.Pos + hand.Ang:Up() * 6 - hand.Ang:Forward() * 6 + hand.Ang:Right() * 0.69
-			angWep = hand.Ang + Angle(-5,0,0)
+		if weaponClass == "weapon_sar2" then
+			--Vector(6,5,1.42)
+			vecWep = hand.Pos + hand.Ang:Up() * 6.0 - hand.Ang:Forward() * 5 + hand.Ang:Right() * 0.88
+			angWep = hand.Ang + Angle(-10,0,70)
 		end
 		if weaponClass == "weapon_spas12" then
 			--Vector(6,6,0.69)
-			vecWep = hand.Pos + hand.Ang:Up() * 3.1 - hand.Ang:Forward() * 6 + hand.Ang:Right() * 0.85
+			vecWep = hand.Pos + hand.Ang:Up() * 3.65 - hand.Ang:Forward() * 6 + hand.Ang:Right() * 1.1
 			angWep = hand.Ang + Angle(-7,0,0)
+		end
+		if weaponClass == "weapon_ump" then
+			--Vector(6.6,7,1.35)
+			vecWep = hand.Pos + hand.Ang:Up() * 5.8 - hand.Ang:Forward() * 7 + hand.Ang:Right() * 0.9
+			angWep = hand.Ang + Angle(0,5,15)
+		end
+		if weaponClass == "weapon_winchester" then
+			--Vector(3.55,4,0.95)
+			vecWep = hand.Pos + hand.Ang:Up() * 3.7 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 0.95
+			angWep = hand.Ang + Angle(-8,0,0)
+		end
+		if weaponClass == "weapon_xm1014" then
+			--Vector(3.55,4,0.95)
+			vecWep = hand.Pos + hand.Ang:Up() * 4.4 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 1
+			angWep = hand.Ang + Angle(-8,0,0)
 		end
 		if string.find(weaponClass,"fumo") then
 			vecWep = hand.Pos + hand.Ang:Up() * 3.1 - hand.Ang:Forward() * 6 + hand.Ang:Right() * 0.85

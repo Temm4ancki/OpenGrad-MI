@@ -7,9 +7,9 @@ function hl2dmreal.StartRoundCL()
     local startRound = roundTimeStart + 7 - CurTime()
 
     if lply:Team() == 1 then
-        logoAnimation = DrawAnimatedLogo("vgui/hl2dmreal/rlogo" .. math.random(1, 2), 1, -512, 40, ScrH() / 2 - 256, ScrH() / 2 - 270, startRound)
+        logoAnimation = DrawAnimatedLogo("vgui/tdm_hl2dmreal/rlogo" .. math.random(1, 2), 1, -512, 40, ScrH() / 2 - 256, ScrH() / 2 - 270, startRound)
     else
-        logoAnimation = DrawAnimatedLogo("vgui/hl2dmreal/logo" .. math.random(1, 2), 1, -512, 40, ScrH() / 2 - 256, ScrH() / 2 - 270, startRound)
+        logoAnimation = DrawAnimatedLogo("vgui/tdm_hl2dmreal/logo" .. math.random(1, 2), 1, -512, 40, ScrH() / 2 - 256, ScrH() / 2 - 270, startRound)
     end
 end
 
@@ -23,13 +23,13 @@ function hl2dmreal.HUDPaint_RoundLeft(white)
     if startRound > 0 and lply:Alive() then
         if playsound then
             playsound = false
-            surface.PlaySound("hg_rounds/start/HL2DM.ogg")
+            surface.PlaySound("z_rounds/start/HL2DM.ogg")
             timer.Simple(5, function()
-                surface.PlaySound("hl2dmreal/f_protectionresponse_" .. math.random(4, 5) .. "_spkr.ogg")
+                surface.PlaySound("tdm_hl2dmreal/f_protectionresponse_" .. math.random(4, 5) .. "_spkr.ogg")
             end)
             if lply:Team() == 2 then
                 timer.Simple(14, function()
-                    surface.PlaySound("hl2dmreal/report_" .. math.random(1, 5) .. ".ogg")
+                    surface.PlaySound("tdm_hl2dmreal/report_" .. math.random(1, 5) .. ".ogg")
                 end)
             end
         end

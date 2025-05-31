@@ -1,4 +1,3 @@
--- FIXME На смок жаловались
 SWEP.Base = "weapon_hg_granade_base"
 
 SWEP.PrintName = "Дымовая граната"

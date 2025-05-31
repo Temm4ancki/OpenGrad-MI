@@ -1,7 +1,7 @@
-hook.Add("Move","move.speed",function(ply,movedata)
-    if ply:Alive() then
+hook.Add("Move", "move.speed", function(ply, movedata)
+	if ply:Alive() then
 		ply.speeed = movedata:GetVelocity():Length()
-    end
+	end
 end)
 
 local CurTime = CurTime
@@ -62,10 +62,10 @@ hook.Add("Player Think","saystamina",function(ply,time)
 	if ply:WaterLevel() == 3 then
 		ply.stamina = ply.stamina - 4
 	end
-	
+
 	if ply.stamina < 20 and ent:WaterLevel() == 3 then
 		ply.o2 = math.max((ply.o2 or 1) - 0.2,-3)
-		
+
 		if not ply.Otrub then
 			ent:EmitSound( "Player.DrownContinue", 40,100, 0.6, CHAN_AUTO )
 		end

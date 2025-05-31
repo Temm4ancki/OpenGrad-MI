@@ -2,14 +2,14 @@ hook.Add("PlayerSpawn","Damage",function(ply)
     if PLYSPAWN_OVERRIDE then return end
 
 	ply.Organs = {
-		['brain']=5,
-		['lungs']=40,
-		['liver']=10,
-		['stomach']=30,
-		['intestines']=30,
-		['heart']=20,
-		['artery']=1,
-		['spine']=5
+		["brain"]=5,
+		["lungs"]=40,
+		["liver"]=10,
+		["stomach"]=30,
+		["intestines"]=30,
+		["heart"]=20,
+		["artery"]=1,
+		["spine"]=5
 	}
 
 	ply.InternalBleeding=nil
@@ -27,7 +27,7 @@ hook.Add("PlayerSpawn","Damage",function(ply)
 	ply.msgRightArm = 0
 	ply.msgLeftLeg = 0
 	ply.msgRightLeg = 0
-	
+
 	ply.LastDMGInfo = nil
 	ply.LastHitPhysicsBone = nil
 	ply.LastHitBoneName = nil
@@ -147,7 +147,7 @@ hook.Add("EntityTakeDamage","ragdamage",function(ent,dmginfo) --урон по р
 				slots.leftcalf or
 				slots.rightcalf
 			then
-				sound.Emit(ent,"utils/ricochet/snd_jack_hmcd_ricochet_"..math.random(1,2)..".ogg",90)
+				sound.Emit(ent,"utils/ricochet/snd_jack_hmcd_ricochet_" .. math.random(1,2) .. ".ogg",90)
 			else
 				--NOTE тут звуки говна
 				sound.Emit(ent,"player/kevlar" .. math.random(1,6) .. ".wav",90)
@@ -186,22 +186,22 @@ hook.Add("EntityTakeDamage","ragdamage",function(ent,dmginfo) --урон по р
 end)
 
 local bonenames = {
-    ['ValveBiped.Bip01_Head1']="голову",
-    ['ValveBiped.Bip01_Spine']="спину",
-    ['ValveBiped.Bip01_R_Hand']="правую руку",
-    ['ValveBiped.Bip01_R_Forearm']="правое предплечье",
-    ['ValveBiped.Bip01_R_Foot']="правую ногу",
-    ['ValveBiped.Bip01_R_Thigh']='правое бедро',
-    ['ValveBiped.Bip01_R_Calf']='правую голень',
-    ['ValveBiped.Bip01_R_Shoulder']='правое плечо',
-    ['ValveBiped.Bip01_R_Elbow']='правый локоть',
-	['ValveBiped.Bip01_L_Hand']='левую руку',
-    ['ValveBiped.Bip01_L_Forearm']='левое предплечье',
-    ['ValveBiped.Bip01_L_Foot']='левую ногу',
-    ['ValveBiped.Bip01_L_Thigh']='левое бедро',
-    ['ValveBiped.Bip01_L_Calf']='левую голень',
-    ['ValveBiped.Bip01_L_Shoulder']='левое плечо',
-    ['ValveBiped.Bip01_L_Elbow']='левый локоть'
+	["ValveBiped.Bip01_Head1"] = "голову",
+	["ValveBiped.Bip01_Spine"] = "спину",
+	["ValveBiped.Bip01_R_Hand"] = "правую руку",
+	["ValveBiped.Bip01_R_Forearm"] = "правое предплечье",
+	["ValveBiped.Bip01_R_Foot"] = "правую ногу",
+	["ValveBiped.Bip01_R_Thigh"] = "правое бедро",
+	["ValveBiped.Bip01_R_Calf"] = "правую голень",
+	["ValveBiped.Bip01_R_Shoulder"] = "правое плечо",
+	["ValveBiped.Bip01_R_Elbow"] = "правый локоть",
+	["ValveBiped.Bip01_L_Hand"] = "левую руку",
+	["ValveBiped.Bip01_L_Forearm"] = "левое предплечье",
+	["ValveBiped.Bip01_L_Foot"] = "левую ногу",
+	["ValveBiped.Bip01_L_Thigh"] = "левое бедро",
+	["ValveBiped.Bip01_L_Calf"] = "левую голень",
+	["ValveBiped.Bip01_L_Shoulder"] = "левое плечо",
+	["ValveBiped.Bip01_L_Elbow"] = "левый локоть"
 }
 
 local reasons = {
@@ -236,10 +236,10 @@ hook.Add("PlayerDeath","plymessage",function(ply,hitgroup,dmginfo)
 			dmgInfo:IsDamageType(DMG_SLASH) and "от ножевого ранения" or 
 			dmgInfo:IsDamageType(DMG_CLUB+DMG_GENERIC) and "от ранения тупым оружием" or 
 			dmgtype
-		
+
 		ply:ChatPrint("Вы умерли " .. dmgtype .. add)
 		ply:ChatPrint("Вас убил игрок " .. att:Name())
-	
+
 		player.EventPoint(att:GetPos(),"hitgroup killed",512,att,ply)
 	else
 		ply:ChatPrint("Вы умерли при загадочных обстоятельствах")

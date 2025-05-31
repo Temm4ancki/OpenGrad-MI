@@ -16,7 +16,7 @@ schoolshoot.red = {
     Color(255, 98, 98),
     weapons = {"weapon_radio", "weapon_gurkha", "weapon_hands", "med_band_big", "med_band_small", "medkit", "painkiller"},
     main_weapon = {"weapon_m4super-2", "weapon_remington870", "weapon_xm1014"},
-    secondary_weapon = {"weapon_cz75-2", "weapon_deagle", "weapon_glock"},
+    secondary_weapon = {"weapon_cz75", "weapon_deagle", "weapon_glock"},
     models = models
 }
 

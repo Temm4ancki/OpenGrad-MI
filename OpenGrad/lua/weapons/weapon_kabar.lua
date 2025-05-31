@@ -140,7 +140,7 @@ function SWEP:Deploy()
 	self:SetNextPrimaryFire(CurTime())
 	self:SetHoldType("knife")
 	if SERVER then
-		self:GetOwner():EmitSound("snd_jack_hmcd_knifedraw.wav",60)
+		self:GetOwner():EmitSound("weapons/salat/w_hg_kitknife/snd_jack_hmcd_knifedraw.ogg",60)
 	end
 	local ply = self:GetOwner()
 	if not IsValid(ply) then return end

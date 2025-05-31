@@ -20,7 +20,7 @@ local blackListedAmmo = {
 
 Gunshuy = {
 	"weapon_p228",
-	"weapon_cz75-2",
+	"weapon_cz75",
 	"weapon_mp5a3",
 	"weapon_ar15",
 	"weapon_m134",

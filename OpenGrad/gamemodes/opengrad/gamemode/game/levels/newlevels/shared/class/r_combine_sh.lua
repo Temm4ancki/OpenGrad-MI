@@ -22,7 +22,7 @@ local models_combine = {
     "models/player/combine_soldier.mdl",
     "models/player/combine_super_soldier.mdl",
     "models/player/combine_soldier_prisonguard.mdl",
-    "models/hl2dmreal/eng/combine_engineer_male.mdl",
+    "models/tdm_hl2dmreal/eng/combine_engineer_male.mdl",
 }
 
 function CLASS.Off(self)
@@ -59,7 +59,7 @@ end
 function CLASS.PlayerFootstep(self, pos, foot, name, volume, filter)
     if SERVER then return true end
     --sound.Play(Sound("npc/combine_soldier/gear" .. math.random(1,6) .. ".wav"), pos, 65, 100, 1)
-    sound.Play(Sound("hl2dmreal/gear_" .. math.random(1,6) .. ".ogg"), pos, 65, 100, 23)
+    sound.Play(Sound("tdm_hl2dmreal/gear_" .. math.random(1,6) .. ".ogg"), pos, 65, 100, 23)
     sound.Play(name, pos, 65, 100, volume)
 
     return true
@@ -91,17 +91,17 @@ end
 function CLASS.PlayerDeath(self)
     local playerList = getList(self)
     local rag = self:GetNWEntity("ragdoll")
-    sound.Play(Sound("hl2dmreal/die_" .. MewMath(1,6) .. ".ogg"), rag:GetPos())
+    sound.Play(Sound("tdm_hl2dmreal/die_" .. MewMath(1,6) .. ".ogg"), rag:GetPos())
 
     timer.Simple(1, function()
         if #playerList == 1 then
             local ply = playerList[1]
-            ply:EmitSound(Sound("hl2dmreal/squadmemberlost_lastman_" .. MewMath(1, 4) .. ".ogg"))
+            ply:EmitSound(Sound("tdm_hl2dmreal/squadmemberlost_lastman_" .. MewMath(1, 4) .. ".ogg"))
         elseif #playerList == 0 then
-            sound.Play(Sound("hl2dmreal/failuretotreatoutbreak.ogg"), rag:GetPos())
+            sound.Play(Sound("tdm_hl2dmreal/failuretotreatoutbreak.ogg"), rag:GetPos())
         else
             for i, ply in RandomPairs(playerList) do
-                ply:EmitSound(Sound("hl2dmreal/squadmemberlost_" .. MewMath(1, 7) .. ".ogg"))
+                ply:EmitSound(Sound("tdm_hl2dmreal/squadmemberlost_" .. MewMath(1, 7) .. ".ogg"))
                 break
             end
         end
@@ -169,24 +169,24 @@ function CLASS.HomigradDamage(self, hitGroup, dmgInfo, rag)
     if not otrub then
         if not IsValid(pos) then
             --print("StopSound")
-            pos:StopSound("hl2dmreal/critical_1.ogg")
-            pos:StopSound("hl2dmreal/critical_2.ogg")
-            pos:StopSound("hl2dmreal/critical_3.ogg")
-            pos:StopSound("hl2dmreal/notcritical_1.ogg")
-            pos:StopSound("hl2dmreal/notcritical_2.ogg")
-            pos:StopSound("hl2dmreal/notcritical_3.ogg")
+            pos:StopSound("tdm_hl2dmreal/critical_1.ogg")
+            pos:StopSound("tdm_hl2dmreal/critical_2.ogg")
+            pos:StopSound("tdm_hl2dmreal/critical_3.ogg")
+            pos:StopSound("tdm_hl2dmreal/notcritical_1.ogg")
+            pos:StopSound("tdm_hl2dmreal/notcritical_2.ogg")
+            pos:StopSound("tdm_hl2dmreal/notcritical_3.ogg")
             for i = 1, 10 do
-                pos:StopSound("hl2dmreal/pain_" .. i .. ".ogg")
+                pos:StopSound("tdm_hl2dmreal/pain_" .. i .. ".ogg")
             end
             return
         end
         --print("PlaySound")
         if health <= critical then
-            pos:EmitSound("hl2dmreal/critical_" .. math.random(1, 3) .. ".ogg")
+            pos:EmitSound("tdm_hl2dmreal/critical_" .. math.random(1, 3) .. ".ogg")
         elseif health <= notcritical then
-            pos:EmitSound("hl2dmreal/notcritical_" .. math.random(1, 3) .. ".ogg")
+            pos:EmitSound("tdm_hl2dmreal/notcritical_" .. math.random(1, 3) .. ".ogg")
         else
-            pos:EmitSound("hl2dmreal/pain_" .. math.random(1, 10) .. ".ogg")
+            pos:EmitSound("tdm_hl2dmreal/pain_" .. math.random(1, 10) .. ".ogg")
         end
     end
 end

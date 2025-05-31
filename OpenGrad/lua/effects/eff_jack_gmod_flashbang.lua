@@ -1,4 +1,5 @@
-﻿local Glow = Material("sprites/mat_jack_basicglow")
+﻿-- FIXME Флешка не работает. Наверное из-за отключения эффектов JMODа. Которое jmod cum incoming
+local Glow = Material("sprites/mat_jack_basicglow")
 
 function EFFECT:Init(data)
 	self.Position = data:GetOrigin()

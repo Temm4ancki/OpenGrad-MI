@@ -16,13 +16,12 @@ end]]--
 hook.Add("HomigradDamage","PlayerPainGrowth",function(ply,hitGroup,dmginfo,rag,armorMul)
 	if dmginfo:GetAttacker():IsRagdoll() then return end
 	if ply.isCombine then return end
-	
 
 	local dmg = dmginfo:GetDamage()
 
 	dmg = dmg * 1.3
 
-	if dmginfo:IsDamageType(DMG_BLAST+DMG_SLASH+DMG_BULLET) then
+	if dmginfo:IsDamageType(DMG_BLAST + DMG_SLASH + DMG_BULLET) then
 		if dmginfo:IsDamageType(DMG_SLASH) then
 			dmg = dmg * 4.5
 		end
@@ -32,11 +31,11 @@ hook.Add("HomigradDamage","PlayerPainGrowth",function(ply,hitGroup,dmginfo,rag,a
 		end
 
 		dmg = dmg * 2
-	elseif dmginfo:IsDamageType(DMG_VEHICLE+DMG_CRUSH+DMG_BUCKSHOT+DMG_GENERIC) then
+	elseif dmginfo:IsDamageType(DMG_VEHICLE + DMG_CRUSH + DMG_BUCKSHOT + DMG_GENERIC) then
 		dmg = dmg * 1.5
-	elseif dmginfo:IsDamageType(DMG_CLUB+DMG_BURN+DMG_DROWN+DMG_SHOCK) then
+	elseif dmginfo:IsDamageType(DMG_CLUB + DMG_BURN + DMG_DROWN + DMG_SHOCK) then
 		dmg = dmg * 6.5
-	elseif not dmginfo:IsDamageType(DMG_BLAST+DMG_NERVEGAS) then
+	elseif not dmginfo:IsDamageType(DMG_BLAST + DMG_NERVEGAS) then
 		dmg = dmg * 2
 	else
 		if dmginfo:GetAttacker():IsRagdoll() then dmg = dmg * 0 end
@@ -48,10 +47,10 @@ hook.Add("HomigradDamage","PlayerPainGrowth",function(ply,hitGroup,dmginfo,rag,a
 		end
 	end
 
-	if dmginfo:IsDamageType(DMG_CLUB+DMG_GENERIC) then
+	if dmginfo:IsDamageType(DMG_CLUB + DMG_GENERIC) then
 		dmginfo:ScaleDamage((IsValid(wep) and wep.GetBlocking and not wep:GetBlocking()) and 1 or 0.25)
 	end
-	
+
 	dmg = dmg / ply.painlosing
 	dmg = ply.nopain and 1 or dmg
 	ply.pain = ply.pain + dmg
@@ -62,7 +61,7 @@ util.AddNetworkString("info_pain")
 hook.Add("Player Think","homigrad-pain",function(ply,time)
 	if not ply:Alive() or (ply.painNext or time) > time or ply:HasGodMode() then return end
 	ply.painNext = time + 0.1
-	
+
 	if ply.painlosing > 5 then
 		ply.stamina = 30
 		ply.pain = ply.pain + 8
@@ -91,7 +90,7 @@ hook.Add("Player Think","homigrad-pain",function(ply,time)
 	--PrintMessage(3,tostring(ply.Otrub)..ply:Name())
 	ply.pain = math.max(ply.pain - ply.painlosing * 1 + ply.adrenalineNeed * k,0)
 	ply.painlosing = math.max(ply.painlosing - 0.01,1)
-	
+
 	if ply.painNextNet <= time then
 		ply.painNextNet = time + 0.25
 		net.Start("info_pain")
@@ -113,7 +112,7 @@ end)
 hook.Add("PostPlayerDeath","RefreshPain",function(ply)
 	ply.pain = 0
 	ply.painlosing = 1
-	
+
 	ply.otravlen = false
 	ply.otravlen2 = false
 
@@ -137,6 +136,7 @@ function IsUnconscious(ply)
 		painThreshold = painThreshold + 110
 		bloodThreshold = bloodThreshold - 350
 	end
+
 	if ply.painlosing > painlosingThreshold or ply.pain > painThreshold or ply.Blood < bloodThreshold or ply.heartstop then
 		ply.Otrub = true
 		ply:SetDSP(16)

@@ -72,7 +72,7 @@ hook.Add("Player Think","homigrad-blood",function(ply,time)
 	else
 		neck = ent:GetBoneMatrix(ent:LookupBone("ValveBiped.Bip01_Neck1")):GetTranslation()
 	end
-	
+
 	if ply.Organs["artery"] == 0 and (ply.arteriaThink or 0) < time and ply.Blood > 0 then
 		ply.arteriaThink = time + 0.1
 		if not ply.holdingartery then
@@ -94,10 +94,10 @@ hook.Add("Player Think","homigrad-blood",function(ply,time)
 	ply.pulseStart = time
 
 	ply:EmitSound("utils/health/snd_jack_hmcd_heartpound.ogg",45,100,0.05 / ply.nextPulse,CHAN_AUTO)
-	
+
 	if ply.Bloodlosing > 0 then
 		ply.Bloodlosing = ply.Bloodlosing - 0.5
-		
+
 		ply.Blood = math.max(ply.Blood - ply.Bloodlosing / 2,0)
 
 		BloodParticle(ent:GetPos() + ent:OBBCenter(),VectorRand(-15,15))
@@ -142,7 +142,7 @@ hook.Add("PlayerSpawn","homigrad-blood",function(ply)
 
 	ply.IsBleeding = false
 	ply.Blood = 5000
-	ply.Bloodlosing=0
+	ply.Bloodlosing = 0
 
 	ply.stamina = 100
 	ply.LeftLeg = 1
@@ -207,29 +207,29 @@ util.AddNetworkString("organism_info")
 
 concommand.Add("hg_organisminfo",function(ply,cmd,args)
 	if not ply:IsAdmin() then return end
-	
+
 	local huyply = args[1] and player.GetListByName(args[1])[1] or ply
 
 	net.Start("organism_info")
 	net.WriteTable(huyply.Organs)
 	net.WriteString(
-	"blood (мл): "..tostring(huyply.Blood).."\n"..
-	"bloodLoss (мл/удар): "..tostring(huyply.Bloodlosing).."\n"..
-	"CPR: "..tostring(huyply.CPR).."\n"..
-	"pain: "..tostring(huyply.pain).."\n"..
-	"painlosing: "..tostring(huyply.painlosing).."\n"..
-	"heartstop: "..tostring(huyply.heartstop).."\n"..
-	"o2 (1 = полный запас кислорода): "..tostring(huyply.o2).."\n"..
-	"pulse: "..tostring(huyply.heartstop and 0 or 1 / huyply.nextPulse * 60).."\n"..
-	"player: "..huyply:Name()
+	"blood (мл): "  ..  tostring(huyply.Blood)  ..  "\n"  .. 
+	"bloodLoss (мл/удар): " .. tostring(huyply.Bloodlosing) .. "\n"  .. 
+	"CPR: " .. tostring(huyply.CPR) .. "\n" .. 
+	"pain: " .. tostring(huyply.pain) .. "\n" .. 
+	"painlosing: " .. tostring(huyply.painlosing) .. "\n" .. 
+	"heartstop: " .. tostring(huyply.heartstop) .. "\n" .. 
+	"o2 (1 = полный запас кислорода): " .. tostring(huyply.o2) .. "\n" .. 
+	"pulse: " .. tostring(huyply.heartstop and 0 or 1 / huyply.nextPulse * 60) .. "\n" .. 
+	"player: " .. huyply:Name()
 	)
 	net.Send(ply)
 end)
 
 concommand.Add("hg_organism_setvalue",function(ply,cmd,args)
 	if not ply:IsAdmin() then return end
-	
+
 	local huyply = args[3] and player.GetListByName(args[3])[1] or ply
-	
+
 	huyply.Organs[args[1]] = args[2]
 end)

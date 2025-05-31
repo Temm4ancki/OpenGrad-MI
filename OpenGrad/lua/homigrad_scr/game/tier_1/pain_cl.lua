@@ -18,12 +18,12 @@ local time = 0
 
 hook.Add("HUDPaint","PainEffect",function()
     if not LocalPlayer():Alive() then return end
-    
+
     local w,h = ScrW(),ScrH()
     k = Lerp(0.1,k,math_Clamp(pain / 250,0,15))
-    
+
     local k2 = painlosing >= 5 and (painlosing / 5 - 1) or 0
-   
+
     DrawMotionBlur(0.2,k2 * 0.9,k2 * 0.06)
 
     surface.SetMaterial(grtodown)
