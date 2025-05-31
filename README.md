@@ -28,17 +28,20 @@ OpenGrad-MI is a community-driven project that aims to fix and expand upon the o
 | Improved TDM HL2DM | @Temm4ancki |
 | Returned PVE John Wick | @Temm4ancki |
 | Trap and tripwire from grenade (Alt+R) for traitor | @Temm4ancki |
+| Door jam, identity disguise for traitor | @Temm4ancki |
 | Gamemode selection menu on F4 (will be improved) | @Temm4ancki |
 | New weapon base | @unicode11 |
 | FUMO ??? | @unicode11 |
 | JMOD updated | @unicode11 @Temm4ancki |
+| Rebuild content (-4GB unnecessary files) |  @Temm4ancki |
 | New additions including stunbaton and other gameplay elements | @unicode11 @magmen3 |
+|---|---|
 | Continued support and development from the community | @unicode11 @magmen3 @Temm4ancki |
 
 ## Development Roadmap
 
 - [ ] Fix voice panel issues
-- [ ] Rebuild content to remove unnecessary files
+- [x] Rebuild content to remove unnecessary files
 - [x] Clean up Jmod files (keeping only explosions and armor)
 - [x] Remake weapons base
 - [ ] Implement toolgun points spawn system

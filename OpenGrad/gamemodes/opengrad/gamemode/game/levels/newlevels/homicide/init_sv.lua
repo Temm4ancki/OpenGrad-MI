@@ -352,29 +352,54 @@ function homicide.PlayerDeath(ply, inf, att)
 end
 
 local common = {
-    "food_lays",
     "weapon_pipe",
     "weapon_hg_bat",
+    "weapon_knife",
+
     "med_band_big",
     "med_band_small",
     "medkit",
+    "blood_bag",
+    "med_splint",
+
     "food_monster",
-    "food_fishcan",
-    "food_spongebob_home"
+    "food_lays",
+    "food_bleach",
+    "food_shaverma",
 }
 
 local uncommon = {
     "medkit",
+    "painkiller",
+    "adrenaline",
+    "morphine",
+
+    "weapon_hg_crowbar",
+    "weapon_hg_bat",
+    "weapon_hg_metalbat",
+    "weapon_hg_hatchet",
+
     "weapon_molotok",
-    "painkiller"
 }
 
 local rare = {
-    "weapon_p228",
+    "weapon_beretta",
+    "weapon_remington870police",
+    "weapon_glock",
+    "weapon_p99",
+    "weapon_hk_usp",
+    "weapon_cz75",
+    "weapon_deserteagle",
+
     "weapon_gurkha",
     "weapon_tomahawk-2",
+    "weapon_hg_sledge",
+    "weapon_hg_fireaxe",
+    "weapon_hg_fubar",
+
     "weapon_per4ik",
-    "*ammo*"
+
+    "*ammo*",
 }
 
 function homicide.ShouldSpawnLoot()
@@ -382,10 +407,10 @@ function homicide.ShouldSpawnLoot()
     if homicide.roundType ~= 1 then
         local chance = math.random(100)
         if chance < 3 then
-            return true, rare[math.random(#rare)], "legend"
+            return true, rare[math.random(#rare)], "rare"
         elseif chance < 20 then
-            return true, uncommon[math.random(#uncommon)], "veryrare"
-        elseif chance < 60 then
+            return true, uncommon[math.random(#uncommon)], "uncommon"
+        elseif chance < 70 then
             return true, common[math.random(#common)], "common"
         else
             return false

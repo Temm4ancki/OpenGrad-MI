@@ -48,6 +48,14 @@ end
 function SWEP:PrimaryAttack()
 	if self:GetOwner():KeyDown(IN_SPEED) and self:GetOwner():KeyDown(IN_FORWARD) then return end
 
+	-- Проверяем, выбрана ли маскировка
+	if SERVER and not self:GetOwner().SelectedDisguise then
+		self:GetOwner():ChatPrint("Сначала выберите маскировку! Нажмите R для выбора.")
+		self:SetNextPrimaryFire(CurTime() + 1)
+		self:SetNextSecondaryFire(CurTime() + 1)
+		return
+	end
+
 	self:GetOwner():SetAnimation(PLAYER_ATTACK1)
 	if SERVER then self:GetOwner():HideIdentity() end
 	self:SetNextPrimaryFire(CurTime() + 1)
@@ -84,7 +92,7 @@ ManiacModelChoices = {
 	["Трупак"] = {
 		name = "Трупак",
 		model = "models/player/corpse1.mdl",
-		color = Vector(0, 0, 0)
+		color = Vector(255, 0, 0)
 	},
 	["Джейсон Вурхиз"] = {
 		name = "Джейсон Вурхиз",
@@ -103,19 +111,22 @@ local PlayerMeta = FindMetaTable("Entity")
 function PlayerMeta:HideIdentity()
 	if self.IdentityHidden then return end
 
+	local disguise = self.SelectedDisguise
+	if not disguise then
+		self:ChatPrint("Маскировка не выбрана!")
+		return
+	end
+
 	self.TrueIdentity = {
 		plyName = self:GetNWString("FakeName"),
 		plyModel = self:GetModel(),
 		plyColor = self:GetPlayerColor()
 	}
 
-	local disguise = self.SelectedDisguise
-	if disguise then
-		self:SetNWString("FakeName", disguise.name)
-		self:SetModel(disguise.model)
-		self:SetPlayerColor(disguise.color)
-		sound.Play("weapons/mask/snd_jack_hmcd_disguise.ogg", self:GetPos(), 65, 110)
-	end
+	self:SetNWString("FakeName", disguise.name)
+	self:SetModel(disguise.model)
+	self:SetPlayerColor(disguise.color)
+	sound.Play("weapons/mask/snd_jack_hmcd_disguise.ogg", self:GetPos(), 65, 110)
 
 	self.IdentityHidden = true
 end
@@ -139,8 +150,7 @@ if SERVER then
 		if not chosen then return end
 		ply.SelectedDisguise = chosen
 
-		-- Просто выбираем модель, но НЕ меняем её сразу
-		-- Смена модели произойдет при ЛКМ (PrimaryAttack)
+		ply:ChatPrint("Выбрана маскировка: " .. chosen.name)
 
 		if not ply.TrueIdentity then
 			ply.TrueIdentity = {
@@ -242,7 +252,10 @@ if CLIENT then
 			btn:SetText(name)
 			btn:SetFont("HomigradSmall")
 			btn:SetTall(35)
-			btn:SetTextColor(Color(255, 255, 255))
+			local colorVec = data.color
+			local textColor = Color(colorVec.x, colorVec.y, colorVec.z, 255)
+			btn:SetTextColor(textColor)
+
 			btn.Paint = function(self, w, h)
 				draw.RoundedBox(8, 0, 0, w, h, Color(5, 5, 5, 155))
 			end

@@ -47,9 +47,12 @@ weaponscommon = {
 	"weapon_knife",
 	"weapon_pipe",
 
+	"*ammo*",
+
 	"med_band_small",
 	"med_band_big",
 	"blood_bag",
+	"med_splint",
 
 	"weapon_fumo_cirno"
 }
@@ -59,7 +62,6 @@ weaponsuncommon = {
 	"weapon_per4ik",
 
 	"weapon_hg_crowbar",
-	"weapon_hg_fubar",
 	"weapon_hg_bat",
 	"weapon_hg_metalbat",
 	"weapon_hg_hatchet",
@@ -69,13 +71,19 @@ weaponsuncommon = {
 	"ent_jack_gmod_ezarmor_respirator",
 	"ent_jack_gmod_ezarmor_lhead",
 
-	"medkit"
+	"medkit",
+	"adrenaline",
+	"morphine",
 }
 
 weaponsrare = {
 	"weapon_beretta",
 	"weapon_remington870police",
 	"weapon_glock",
+	"weapon_p99",
+	"weapon_hk_usp",
+	"weapon_cz75",
+
 	"weapon_tomahawk-2",
 	"weapon_hg_molotov",
 
@@ -83,22 +91,27 @@ weaponsrare = {
 
 	"weapon_hg_sledge",
 	"weapon_hg_fireaxe",
+	"weapon_hg_fubar",
 
 	"ent_jack_gmod_ezarmor_gasmask",
-	"ent_jack_gmod_ezarmor_mltorso"
+	"ent_jack_gmod_ezarmor_mltorso",
 }
 
 weaponsveryrare = {
 	"weapon_m4super-2",
+	"weapon_deserteagle",
+
 
 	"ent_jack_gmod_ezarmor_mtorso",
-	"ent_jack_gmod_ezarmor_mhead"
+	"ent_jack_gmod_ezarmor_mhead",
 }
 
 weaponslegendary = {
 	"weapon_xm1014",
-	"weapon_ar15",
-	"weapon_civil_famas"
+	"weapon_mp5a3",
+	"weapon_civil_famas",
+	"weapon_galil",
+	"weapon_ump",
 }
 
 local sndsDrop = {
@@ -168,20 +181,20 @@ hook.Add("PropBreak","homigrad",function(att,ent)
 			end
 
 			if entName == "*ammo*" then
+				local playerAmmoType = nil
 				if IsValid(att) then
-					for i,wep in RandomPairs(att:GetWeapons()) do
-						if wep:GetMaxClip1() > 0 then
-							entName = "item_ammo_" .. string.lower(game.GetAmmoName(wep:GetPrimaryAmmoType()))
+					playerAmmoType = getPlayerAmmoType(att)
+				end
 
-							break
-						end
-					end
-
-					huy = ents.Create(entName)
-					if not IsValid(huy) then
-						entName = table.Random(ammos)
-					end
+				-- Если не удалось получить патроны игрока или игрок не валиден, берем случайные
+				if playerAmmoType then
+					entName = playerAmmoType
 				else
+					entName = table.Random(ammos)
+				end
+
+				huy = ents.Create(entName)
+				if not IsValid(huy) then
 					entName = table.Random(ammos)
 					huy = ents.Create(entName)
 				end
@@ -189,7 +202,11 @@ hook.Add("PropBreak","homigrad",function(att,ent)
 				huy = ents.Create(entName)
 			end
 
-			if not IsValid(huy) then return end
+			-- Проверяем валидность созданной сущности
+			if not IsValid(huy) then
+				print("Failed to create entity: " .. tostring(entName))
+				return
+			end
 
 			huy:SetPos(posSpawn)
 			huy:Spawn()
@@ -218,7 +235,7 @@ end]]
 local x, y, z = math.random(0, 50), math.random(25, 50), math.random(5, 10)
 
 for i, v in pairs(navmesh.GetAllNavAreas()) do
-	local pos = v:GetCenter()+Vector(x, y, z)
+	local pos = v:GetCenter() + Vector(x, y, z)
 
 	table.insert(spawns,pos)
 end
@@ -232,13 +249,13 @@ hook.Add("PostCleanupMap","addboxs",function()
 
 	if timer.Exists("SpawnTheBoxes") then timer.Remove("SpawnTheBoxes") end
 
-	timer.Create("SpawnTheBoxes", 13, 0 ,function()
+	timer.Create("SpawnTheBoxes", 8, 0 ,function()
 		hook_Run("Boxes Think")
 	end)
 end)
 
 if timer.Exists("SpawnTheBoxes") then timer.Remove("SpawnTheBoxes") end
-timer.Create("SpawnTheBoxes", 13, 0 ,function()
+timer.Create("SpawnTheBoxes", 8, 0 ,function()
 	hook_Run("Boxes Think")
 end)
 
@@ -287,7 +304,9 @@ hook.Add("Boxes Think", "SpawnBoxes",function()
 		ent.Spawned = true
 	end
 
+	print(ent)
 	if IsValid(ent) then
+
 		ent:SetPos(spawns[math.random(#spawns)] + vec)
 		ent:Spawn()
 	end

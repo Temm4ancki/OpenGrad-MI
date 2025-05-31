@@ -24,78 +24,163 @@ concommand.Add("hg_level_next", function(ply, cmd, args)
     net.SendToServer()
 end, AutoCompleteHGLevelNext)
 
--- Функция открытия меню
-local function OpenLevelMenu()
-    local ply = LocalPlayer()
+surface.CreateFont("MenuLabel", {
+    font = "Roboto",
+    size = 32,
+    weight = 1000,
+    outline = false,
+    shadow = false
+})
 
-    -- Проверка: является ли игрок администратором
+surface.CreateFont("MenuBig", {
+    font = "Roboto",
+    size = 25,
+    weight = 1000,
+    outline = false,
+    shadow = false
+})
+
+surface.CreateFont("MenuSmall", {
+    font = "Roboto",
+    size = 15,
+    weight = 5000,
+    outline = true,
+    shadow = true
+})
+
+local blurMat = Material("pp/blurscreen")
+local blurStrength = 0
+
+local function BlurBackground(panel)
+    if not (IsValid(panel) and panel:IsVisible()) then return end
+
+    local x, y = panel:LocalToScreen(0, 0)
+    local w, h = ScrW(), ScrH()
+
+    surface.SetDrawColor(255, 255, 255, 120)
+    surface.SetMaterial(blurMat)
+
+    for i = 1, 5 do
+        blurMat:SetFloat("$blur", (i / 1) * 1 * blurStrength)
+        blurMat:Recompute()
+        render.UpdateScreenEffectTexture()
+        surface.DrawTexturedRect(-x, -y, w, h)
+    end
+
+    surface.SetDrawColor(0, 0, 0, 100 * blurStrength)
+    surface.DrawRect(0, 0, panel:GetWide(), panel:GetTall())
+
+    blurStrength = math.Clamp(blurStrength + FrameTime() * 6, 0, 1)
+end
+
+local function StyledButton(parent, text, color, font, onclick)
+    local btn = vgui.Create("DButton", parent)
+    btn:SetText(text)
+    btn:SetFont(font or "DermaDefaultBold")
+    btn:SetTextColor(color or color_white)
+    btn:SetTall(40)
+    btn:Dock(TOP)
+    btn:DockMargin(0, 0, 0, 10)
+
+    btn.Paint = function(self, w, h)
+        local hover = self:IsHovered()
+        local bg = hover and Color(40, 40, 40, 200) or Color(30, 30, 30, 180)
+        draw.RoundedBox(8, 0, 0, w, h, bg)
+    end
+
+    btn.DoClick = onclick
+    return btn
+end
+
+function OpenLevelMenu()
+    local ply = LocalPlayer()
     if not IsValid(ply) or not ply:IsAdmin() then
         notification.AddLegacy("У вас нет прав для открытия этого меню.", NOTIFY_ERROR, 5)
         surface.PlaySound("buttons/button10.wav")
         return
     end
 
-    -- Убиваем старое окно, если оно есть
-    if IsValid(LevelMenuFrame) then
-        LevelMenuFrame:Remove()
-    end
+    if IsValid(LevelMenuFrame) then LevelMenuFrame:Remove() end
 
-    -- Создаём основное окно
+    local padding = 20
+    local maxVisibleButtons = 10
+    local baseHeight = 60 + 40 + 10 + 10 + padding * 2 -- заголовок + завершить + отступы
+
+    local buttonCount = LevelList and #LevelList or 0
+    local dynamicHeight = baseHeight + math.min(buttonCount, maxVisibleButtons) * 50
+    local maxHeight = ScrH() * 0.8
+    local width = 360
+    local height = math.min(dynamicHeight, maxHeight)
+
     LevelMenuFrame = vgui.Create("DFrame")
-    LevelMenuFrame:SetSize(300, 450) -- увеличенная высота под новую кнопку
+    LevelMenuFrame:SetSize(width, height)
     LevelMenuFrame:Center()
     LevelMenuFrame:MakePopup()
-    LevelMenuFrame:SetTitle("Выбор режима")
+    LevelMenuFrame:SetTitle("")
+    LevelMenuFrame:ShowCloseButton(true)
+    LevelMenuFrame:SetDraggable(true)
 
-    -- Создаём прокручиваемую панель
-    local scroll = vgui.Create("DScrollPanel", LevelMenuFrame)
-    scroll:Dock(FILL)
-    scroll:DockMargin(5, 5, 5, 5)
+    LevelMenuFrame.Paint = function(self, w, h)
+        BlurBackground(self)
+        draw.RoundedBox(12, 0, 0, w, h, Color(10, 10, 10, 180))
+        draw.SimpleText("Управление раундом", "MenuLabel", w / 2, 20, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
+    end
 
-    -- Контейнер для кнопок
-    local layout = vgui.Create("DListLayout", scroll)
-    layout:Dock(FILL)
+    -- Верхняя панель с кнопкой вне скролла
+    local topPanel = vgui.Create("Panel", LevelMenuFrame)
+    topPanel:SetPos(padding, 60)
+    topPanel:SetSize(width - padding * 2, 50 + 10 + 2 + 10)
 
-    -- === КНОПКА ЗАВЕРШИТЬ РАУНД ===
-    local endRoundButton = vgui.Create("DButton")
-    endRoundButton:SetText("Завершить раунд")
-    endRoundButton:SetTall(35)
-    endRoundButton:SetTextColor(Color(200, 0, 0))
-    endRoundButton.DoClick = function()
+    StyledButton(topPanel, "Завершить раунд", Color(255, 80, 80), "MenuBig", function()
         net.Start("HGLEVEL_END_COMMAND")
         net.SendToServer()
         LevelMenuFrame:Close()
+    end)
+
+    local line = vgui.Create("DPanel", topPanel)
+    line:SetTall(2)
+    line:Dock(BOTTOM)
+    line:DockMargin(0, 10, 0, 10)
+    line.Paint = function(self, w, h)
+        surface.SetDrawColor(255, 255, 255, 25)
+        surface.DrawRect(0, 0, w, h)
     end
-    layout:Add(endRoundButton)
 
-    -- Разделитель
-    local separator = vgui.Create("DPanel")
-    separator:SetPaintBackground(false)
-    separator:SetHeight(10)
-    layout:Add(separator)
+    -- Скроллируемая область с уровнями
+    local scroll = vgui.Create("DScrollPanel", LevelMenuFrame)
+    scroll:SetPos(padding, topPanel:GetY() + topPanel:GetTall())
+    scroll:SetSize(width - padding * 2, height - scroll:GetY() - padding)
 
-    -- Если уровень нет
-    if #LevelList == 0 then
-        local label = vgui.Create("DLabel")
+    -- Кастомный скроллбар
+    local sbar = scroll:GetVBar()
+    function sbar:Paint(w, h) end
+    function sbar.btnUp:Paint(w, h) end
+    function sbar.btnDown:Paint(w, h) end
+    function sbar.btnGrip:Paint(w, h)
+        draw.RoundedBox(4, 0, 0, w, h, Color(80, 80, 80, 160))
+    end
+
+    local layout = vgui.Create("DListLayout", scroll)
+    layout:Dock(FILL)
+
+    if not LevelList or #LevelList == 0 then
+        local label = vgui.Create("DLabel", layout)
         label:SetText("Список уровней пуст.")
+        label:SetTextColor(color_white)
         label:SetContentAlignment(5)
+        label:Dock(TOP)
+        label:DockMargin(0, 0, 0, 10)
         label:SizeToContents()
-        layout:Add(label)
         return
     end
 
-    -- Добавляем кнопки для всех уровней
     for _, level in ipairs(LevelList) do
-        local button = vgui.Create("DButton")
-        button:SetText(level)
-        button:SetTall(30)
-        button.DoClick = function()
+        StyledButton(layout, string.upper(level), Color(220, 220, 220), "MenuSmall", function()
             net.Start("HGLEVEL_NEXT_COMMAND")
-                net.WriteString(level)
+            net.WriteString(level)
             net.SendToServer()
             LevelMenuFrame:Close()
-        end
-        layout:Add(button)
+        end)
     end
 end
 
