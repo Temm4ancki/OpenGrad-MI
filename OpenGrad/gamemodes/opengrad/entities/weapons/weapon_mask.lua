@@ -141,6 +141,17 @@ function PlayerMeta:ShowIdentity()
 	self.IdentityHidden = false
 end
 
+hook.Add("PostCleanupMap", "ResetManiacIdentities", function()
+	for _, ply in ipairs(player.GetAll()) do
+		if ply.IdentityHidden and ply.ShowIdentity then
+			ply:ShowIdentity()
+		end
+
+		ply.TrueIdentity = nil
+		ply.IdentityHidden = false
+	end
+end)
+
 if SERVER then
 	util.AddNetworkString("maniac_select_model")
 

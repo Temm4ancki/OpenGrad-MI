@@ -307,9 +307,9 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 
 	if !ply:Alive() and timer.Exists("DeathCam") and IsValid(deathrag) then
 		--deathrag:ManipulateBoneScale(6,vecZero)
-		
+
 		local att = deathrag:GetAttachment(deathrag:LookupAttachment("eyes"))
-		
+
 		LerpEyeRagdoll = LerpAngleFT(0.08,LerpEyeRagdoll,att.Ang)
 
 		LerpEyeRagdoll[3] = LerpEyeRagdoll[3] + ADDROLL
@@ -330,8 +330,8 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 	ADDROLL = 0
 
 
-	hook.Run("CalcAddFOV",ply)--megaggperkostil
-	
+	hook.Run("CalcAddFOV",ply) --megaggperkostil
+
 	local result = hook.Run("PreCalcView",ply,vec,ang,fov,znear,zfar)
 	if result ~= nil then
 		result.fov = fov + ADDFOV
@@ -358,9 +358,9 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 
 	if ply:Alive() and ply:GetNWBool("fake") and IsValid(ragdoll) then
 		ragdoll:ManipulateBoneScale(6,vecZero)
-		
+
 		local att = ragdoll:GetAttachment(ragdoll:LookupAttachment("eyes"))
-		
+
 		local eyeAngs = lply:EyeAngles()
 		local anghook = GetConVar("hg_fakecam_mode"):GetFloat()
 		LerpEyeRagdoll = LerpAngleFT(0.08,LerpEyeRagdoll,LerpAngle(anghook,eyeAngs,att.Ang))
@@ -400,7 +400,7 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 	fov = Lerp(ScopeLerp,fov,75)
 
 	angRecoil[3] = 0
-	
+
 	if wep and weps[wep:GetClass()] then
 		local weaponClass = wep:GetClass()
 		local muzzle = wep:GetAttachment(wep:LookupAttachment("muzzle"))
@@ -418,7 +418,7 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 			vecWep = hand.Pos + hand.Ang:Up()*10 - muzzle.Ang:Forward()*7 + hand.Ang:Right()*-4
 			angWep = hand.Ang + Angle(0,0,0)
 		end
-		
+
 		local anim_pos = max(startRecoil - CurTime(),0) * 5
 
 		fov = fov - anim_pos * (scope and 2 or 1)
@@ -658,7 +658,7 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 	vec = Vector(vec[1],vec[2],eye and eye.Pos[3] or vec[3])
 
 	vel = math.max(math.Round(Lerp(0.1,vel,lply:GetVelocity():Length())) - 1,0)
-	
+
 	sprinthuy = LerpFT(0.1,sprinthuy,-math.abs(math.sin(CurTime() * 10)) * vel / 400)
 	output_ang[1] = output_ang[1] + sprinthuy
 
@@ -668,9 +668,9 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 
 	local tick = 1 / engine.AbsoluteFrameTime()
 	playerFPS = math.Round(Lerp(0.1,playerFPS or tick,tick))
-	
+
 	local val = math.min(math.Round(playerFPS / 120,1),1)
-	
+
 	diffpos = LerpFT(0.1,diffpos,(output_pos - (oldview.origin or output_pos)) / 6)
 	diffang = LerpFT(0.1,diffang,(output_ang:Forward() - (oldview.angles or output_ang):Forward()) * 50 + output_ang:Up() * anim_pos)
 
@@ -678,7 +678,7 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 		if hg_cool_camera:GetBool() then
 			output_ang[3] = output_ang[3] + math.min(diffang:Dot(output_ang:Right()) * 3 * val,10)
 		end
-		
+
 		if hg_cool_camera:GetBool() then
 			output_ang[3] = output_ang[3] + math.min(diffpos:Dot(output_ang:Right()) * 25 * val,10)
 		end
@@ -711,7 +711,7 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 	if trZNear.Hit then view.znear = 0.1 else view.znear = 1 end--САСАТЬ!!11.. не работает ;c
 
 	output_ang[3] = output_ang[3] + ADDROLL
-	
+
 	view.origin = output_pos
 	view.angles = output_ang
 	view.drawviewer = true
