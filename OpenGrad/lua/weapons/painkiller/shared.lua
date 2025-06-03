@@ -4,7 +4,7 @@ SWEP.Base = "medkit"
 
 SWEP.PrintName = "Обезболивающее"
 SWEP.Author = "Homigrad"
-SWEP.Instructions = "Повышает скорость понижения боли"
+SWEP.Purpose = "Повышает скорость понижения боли"
 SWEP.IconOverride = "vgui/icon/painkillers.png"
 SWEP.Spawnable = true
 SWEP.Category = "Медицина"

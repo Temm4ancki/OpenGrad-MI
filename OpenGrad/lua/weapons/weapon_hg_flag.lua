@@ -2,7 +2,7 @@ SWEP.Base = "weapon_hg_melee_base"
 
 SWEP.PrintName = "Флаг"
 SWEP.Category = "Ближний Бой"
-SWEP.Instructions = "ЗА АФРИКАНИСТАН"
+SWEP.Purpose = "ЗА АФРИКАНИСТАН"
 SWEP.WepSelectIcon = "vgui/select/w/flag"
 SWEP.IconOverride = "vgui/icon/w/flag.png"
 

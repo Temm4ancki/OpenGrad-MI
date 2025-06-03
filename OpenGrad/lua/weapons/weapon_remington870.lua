@@ -2,7 +2,7 @@ SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "Remington 870"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Дробовик под калибр 12/70"
+SWEP.Purpose			= "Дробовик под калибр 12/70"
 SWEP.Category 				= "Оружие"
 SWEP.WepSelectIcon = "vgui/select/w/remington870"
 SWEP.IconOverride = "vgui/icon/w/remington870.png"

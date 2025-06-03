@@ -2,7 +2,7 @@ SWEP.Base = "weapon_hg_melee_base"
 
 SWEP.PrintName = "Монтировка"
 SWEP.Category = "Ближний Бой"
-SWEP.Instructions = "Ручной ударный и рычажный инструмент, один из наиболее древних видов инструмента, известных человечеству, наряду с молотком, зубилом, топором, лопатой."
+SWEP.Purpose = "Ручной ударный и рычажный инструмент, один из наиболее древних видов инструмента, известных человечеству, наряду с молотком, зубилом, топором, лопатой."
 SWEP.WepSelectIcon = "vgui/select/w/crowbar"
 SWEP.IconOverride = "vgui/icon/w/crowbar.png"
 

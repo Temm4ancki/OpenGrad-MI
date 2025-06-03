@@ -4,7 +4,7 @@ SWEP.Base = "medkit"
 
 SWEP.PrintName = "Наручники"
 SWEP.Author = "z"
-SWEP.Instructions = "Связать человека"
+SWEP.Purpose = "Связать человека"
 SWEP.Category = "Разное"
 SWEP.IconOverride = "vgui/icon/handcuffs.png"
 

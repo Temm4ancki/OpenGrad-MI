@@ -2,7 +2,7 @@ SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "Automatic Rifle 2"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Основное штурмовое оружие Альянса"
+SWEP.Purpose			= "Основное штурмовое оружие Альянса"
 SWEP.Category 				= "Оружие"
 SWEP.WepSelectIcon = "vgui/select/w/sar2"
 SWEP.IconOverride = "vgui/icon/w/sar2.png"

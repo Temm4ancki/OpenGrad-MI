@@ -2,7 +2,7 @@ SWEP.Base                   = "weapon_base"
 
 SWEP.PrintName 				= "Установка пулемета"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Установить пулемет"
+SWEP.Purpose			= "Установить пулемет"
 SWEP.Category 				= "Разное"
 
 SWEP.Spawnable 				= true

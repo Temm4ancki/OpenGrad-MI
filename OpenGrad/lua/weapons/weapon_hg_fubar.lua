@@ -2,7 +2,7 @@ SWEP.Base = "weapon_hg_melee_base"
 
 SWEP.PrintName = "Фубар"
 SWEP.Category = "Ближний Бой"
-SWEP.Instructions = "Ручное рычажно-клиновое приспособление для вытаскивания (выдирания) вбитых в материал (дерево, пластик и др.) гвоздей."
+SWEP.Purpose = "Ручное рычажно-клиновое приспособление для вытаскивания (выдирания) вбитых в материал (дерево, пластик и др.) гвоздей."
 SWEP.WepSelectIcon = "vgui/select/w/fubar"
 SWEP.IconOverride = "vgui/icon/w/fubar.png"
 

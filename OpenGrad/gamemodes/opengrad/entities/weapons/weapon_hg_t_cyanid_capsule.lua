@@ -1,7 +1,7 @@
 SWEP.Base = "medkit"
 
 SWEP.PrintName = "Капсула с цианидом"
-SWEP.Instructions = "\nИспользуй это на еде, чтобы отравить того, кто его съел"
+SWEP.Purpose = "\nИспользуй это на еде, чтобы отравить того, кто его съел"
 SWEP.Author			= ""
 SWEP.Contact		= ""
 SWEP.Purpose		= ""

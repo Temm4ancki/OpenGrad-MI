@@ -2,7 +2,7 @@ SWEP.Base = "weapon_hg_melee_base"
 
 SWEP.PrintName = "Кухонный ножик"
 SWEP.Category = "Ближний Бой"
-SWEP.Instructions = "Колющий, а также рубящий, режущий инструмент, рабочей частью которого является клинок — полоса, выполненная из твёрдого материала."
+SWEP.Purpose = "Колющий, а также рубящий, режущий инструмент, рабочей частью которого является клинок — полоса, выполненная из твёрдого материала."
 SWEP.WepSelectIcon = "vgui/select/w/kitknife"
 SWEP.IconOverride = "vgui/icon/w/kitknife.png"
 

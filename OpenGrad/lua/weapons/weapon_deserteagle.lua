@@ -2,7 +2,7 @@ SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "Desert Eagle"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Digle"
+SWEP.Purpose			= "Digle"
 SWEP.Category 				= "Оружие"
 SWEP.WepSelectIcon = "vgui/select/w/deserteagle"
 SWEP.IconOverride = "vgui/icon/w/deserteagle.png"

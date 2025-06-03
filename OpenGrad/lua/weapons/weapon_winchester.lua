@@ -2,7 +2,7 @@ SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "Winchester"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "kowboy pushka"
+SWEP.Purpose			= "kowboy pushka"
 SWEP.Category 				= "Оружие"
 SWEP.WepSelectIcon = "vgui/select/w/winchester"
 SWEP.IconOverride = "vgui/icon/w/winchester.png"

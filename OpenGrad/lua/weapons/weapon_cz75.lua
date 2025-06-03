@@ -2,7 +2,7 @@ SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "CZ75"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Пистолет под калибр 9х19"
+SWEP.Purpose			= "Пистолет под калибр 9х19"
 SWEP.Category 				= "Оружие"
 SWEP.WepSelectIcon = "vgui/select/w/cz75"
 SWEP.IconOverride = "vgui/icon/w/cz75.png"

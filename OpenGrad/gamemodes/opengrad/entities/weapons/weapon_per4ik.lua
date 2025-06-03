@@ -2,7 +2,7 @@ SWEP.Base = "weapon_base"
 
 SWEP.PrintName = "Перцовый баллончик"
 SWEP.Author = "Homigrad"
-SWEP.Instructions = "\nГражданское газовое оружие самообороны, снаряженное слезоточивыми веществами"
+SWEP.Purpose = "\nГражданское газовое оружие самообороны, снаряженное слезоточивыми веществами"
 SWEP.Category = "Разное"
 SWEP.IconOverride = "vgui/icon/per4ik.png"
 

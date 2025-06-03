@@ -2,7 +2,7 @@ SWEP.Base = "medkit"
 
 SWEP.PrintName = "Ампула VX"
 SWEP.Author = "Homigrad"
-SWEP.Instructions = "\nИспользуй это на предмете, чтобы отравить подбирающего"
+SWEP.Purpose = "\nИспользуй это на предмете, чтобы отравить подбирающего"
 SWEP.IconOverride = "vgui/icon/vxpoison.png"
 
 SWEP.Spawnable = true

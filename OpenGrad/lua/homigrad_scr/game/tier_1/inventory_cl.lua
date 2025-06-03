@@ -150,11 +150,13 @@ local function StyledItemButton(parent, text, icon, isAmmo, onclick, onrightclic
     btn.Paint = function(self, w, h)
         local hover = self:IsHovered()
         local bg = hover and Color(40, 40, 40, 200) or Color(30, 30, 30, 180)
-        draw.RoundedBox(8, 0, 0, w, h, bg)
+        draw.RoundedBox(0, 0, 0, w, h, bg)
 
-        -- Рамка
-        surface.SetDrawColor(255, 255, 255, hover and 200 or 100)
-        surface.DrawOutlinedRect(0, 0, w, h)
+        -- Обводка с контрастным цветом
+        surface.SetDrawColor(44, 110, 73, hover and 255 or 180)
+        for i = 0, 1 do
+            surface.DrawOutlinedRect(i, i, w - i*2, h - i*2)
+        end
 
         -- Иконка или текст
         if self.isAmmo and self.icon then
@@ -171,7 +173,6 @@ local function StyledItemButton(parent, text, icon, isAmmo, onclick, onrightclic
     end
 
     btn.DoClick = onclick
-    btn.DoRightClick = onrightclick or onclick
 
     return btn
 end
@@ -232,7 +233,6 @@ net.Receive("inventory", function()
         if blackListedWeps[i] then items[i] = nil end
     end
 
-    -- Подсчитываем количество предметов
     local itemCount = 0
     for _ in pairs(items) do itemCount = itemCount + 1 end
     for ammo, _ in pairs(items_ammo) do
@@ -249,16 +249,14 @@ net.Receive("inventory", function()
     local width, height
 
     if itemCount == 0 then
-        -- Если инвентарь пуст, делаем компактное окно
         width = 400
         height = 200
     else
-        -- Обычный ра��чет для непустого инвентаря
+        -- Расчет для непустого инвентаря
         local rows = math.ceil(itemCount / itemsPerRow)
         width = padding * 2 + itemsPerRow * itemSize + (itemsPerRow - 1) * itemSpacing
         height = 100 + padding * 2 + rows * itemSize + (rows - 1) * itemSpacing
 
-        -- Ограничиваем размер окна
         width = math.min(width, 600)
         height = math.min(height, ScrH() * 0.8)
     end
@@ -294,7 +292,13 @@ net.Receive("inventory", function()
         end
 
         BlurBackground(self)
-        draw.RoundedBox(12, 0, 0, w, h, Color(10, 10, 10, 180))
+        draw.RoundedBox(0, 0, 0, w, h, Color(10, 10, 10, 180))
+        
+        -- Обводка окна
+        surface.SetDrawColor(44, 110, 73, 255)
+        for i = 0, 2 do
+            surface.DrawOutlinedRect(i, i, w - i*2, h - i*2)
+        end
 
         local title = "Инвентарь " .. (nickname or "")
         draw.SimpleText(title, "InventoryTitle", w / 2, 30, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
@@ -305,22 +309,21 @@ net.Receive("inventory", function()
     scroll:SetPos(padding, 60)
     scroll:SetSize(width - padding * 2, height - 80)
 
-    -- Кастомный скроллбар
     local sbar = scroll:GetVBar()
     function sbar:Paint(w, h) end
     function sbar.btnUp:Paint(w, h) end
     function sbar.btnDown:Paint(w, h) end
     function sbar.btnGrip:Paint(w, h)
-        draw.RoundedBox(4, 0, 0, w, h, Color(80, 80, 80, 160))
+        draw.RoundedBox(0, 0, 0, w, h, Color(80, 80, 80, 160))
+        surface.SetDrawColor(44, 110, 73, 200)
+        surface.DrawOutlinedRect(0, 0, w, h)
     end
 
-    -- Создаем сетку для предметов
     local grid = vgui.Create("DIconLayout", scroll)
     grid:Dock(FILL)
     grid:SetSpaceX(itemSpacing)
     grid:SetSpaceY(itemSpacing)
 
-    -- Добавляем оружие
     for wep in pairs(items) do
         local wepTbl = weapons.Get(wep) or WeaponByModel[wep] or wep
         local text = type(wepTbl) == "table" and wepTbl.PrintName or wep
@@ -342,7 +345,6 @@ net.Receive("inventory", function()
         end
     end
 
-    -- Добавляем патроны
     for ammo, amt in pairs(items_ammo) do
         if blackListedAmmo[ammo] then continue end
 

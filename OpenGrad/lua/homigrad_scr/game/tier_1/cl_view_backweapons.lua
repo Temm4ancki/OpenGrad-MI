@@ -307,7 +307,7 @@ DrawWeaponSelectionEX = function(self,x,y,wide,tall,alpha)
         end
     end
 
-	if self.PrintWeaponInfo then PrintWeaponInfo(self,x + wide,y + tall,alpha) end
+	--if self.PrintWeaponInfo then PrintWeaponInfo(self,x + wide,y + tall,alpha) end
 end
 
 DrawWeaponSelection = function(self,x,y,w,h,alpha) DrawWeaponSelectionEX(self,x,y,w,h + 35,alpha) end

@@ -4,7 +4,7 @@ SWEP.Base = "weapon_base"
 
 SWEP.PrintName = "Аптечка"
 SWEP.Author = "Homigrad"
-SWEP.Instructions = "Имеет в себе бинты и обезболивающие"
+SWEP.Purpose = "Имеет в себе бинты и обезболивающие"
 SWEP.IconOverride = "vgui/icon/medkit.png"
 SWEP.Spawnable = true
 SWEP.Category = "Медицина"

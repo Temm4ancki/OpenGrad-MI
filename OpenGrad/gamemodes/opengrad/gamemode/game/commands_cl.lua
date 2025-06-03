@@ -85,7 +85,11 @@ local function StyledButton(parent, text, color, font, onclick)
     btn.Paint = function(self, w, h)
         local hover = self:IsHovered()
         local bg = hover and Color(40, 40, 40, 200) or Color(30, 30, 30, 180)
-        draw.RoundedBox(8, 0, 0, w, h, bg)
+        draw.RoundedBox(0, 0, 0, w, h, bg)
+        surface.SetDrawColor(44, 110, 73, hover and 255 or 180)
+        for i = 0, 1 do
+            surface.DrawOutlinedRect(i, i, w - i*2, h - i*2)
+        end
     end
 
     btn.DoClick = onclick
@@ -122,7 +126,11 @@ function OpenLevelMenu()
 
     LevelMenuFrame.Paint = function(self, w, h)
         BlurBackground(self)
-        draw.RoundedBox(12, 0, 0, w, h, Color(10, 10, 10, 180))
+        draw.RoundedBox(0, 0, 0, w, h, Color(10, 10, 10, 180))
+        surface.SetDrawColor(44, 110, 73, 255)
+        for i = 0, 2 do
+            surface.DrawOutlinedRect(i, i, w - i*2, h - i*2)
+        end
         draw.SimpleText("Управление раундом", "MenuLabel", w / 2, 20, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
     end
 
@@ -142,7 +150,7 @@ function OpenLevelMenu()
     line:Dock(BOTTOM)
     line:DockMargin(0, 10, 0, 10)
     line.Paint = function(self, w, h)
-        surface.SetDrawColor(255, 255, 255, 25)
+        surface.SetDrawColor(44, 110, 73, 100)
         surface.DrawRect(0, 0, w, h)
     end
 
@@ -157,7 +165,9 @@ function OpenLevelMenu()
     function sbar.btnUp:Paint(w, h) end
     function sbar.btnDown:Paint(w, h) end
     function sbar.btnGrip:Paint(w, h)
-        draw.RoundedBox(4, 0, 0, w, h, Color(80, 80, 80, 160))
+        draw.RoundedBox(0, 0, 0, w, h, Color(80, 80, 80, 160))
+        surface.SetDrawColor(44, 110, 73, 200)
+        surface.DrawOutlinedRect(0, 0, w, h)
     end
 
     local layout = vgui.Create("DListLayout", scroll)

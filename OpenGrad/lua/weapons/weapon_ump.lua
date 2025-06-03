@@ -1,7 +1,7 @@
 SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "UMP"
-SWEP.Instructions			= "Что может еще делать ПП? СТРЕЛЯТЬ В ЛИЦО!"
+SWEP.Purpose			= "Что может еще делать ПП? СТРЕЛЯТЬ В ЛИЦО!"
 SWEP.Category 				= "Оружие"
 SWEP.WepSelectIcon = "vgui/select/w/ump45"
 SWEP.IconOverride = "vgui/icon/w/ump45.png"

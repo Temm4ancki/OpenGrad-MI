@@ -2,7 +2,7 @@ SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "АС «Вал»"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Автоматическая винтовка со встроенным глушителем под калибр 9х39"
+SWEP.Purpose			= "Автоматическая винтовка со встроенным глушителем под калибр 9х39"
 SWEP.Category 				= "Оружие"
 SWEP.WepSelectIcon = "vgui/select/w/asval"
 SWEP.IconOverride = "vgui/icon/w/asval.png"

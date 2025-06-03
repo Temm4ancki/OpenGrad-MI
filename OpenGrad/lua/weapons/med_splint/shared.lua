@@ -4,7 +4,7 @@ SWEP.Base = "medkit"
 
 SWEP.PrintName = "Шина"
 SWEP.Author = "Homigrad"
-SWEP.Instructions = "Лечит ломанные ноги"
+SWEP.Purpose = "Лечит ломанные ноги"
 SWEP.IconOverride = "vgui/icon/split.png"
 SWEP.Spawnable = true
 SWEP.Category = "Медицина"

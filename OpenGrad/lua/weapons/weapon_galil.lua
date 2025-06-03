@@ -2,7 +2,7 @@ SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "GALIL-SAR"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Автоматическая винтовка под калибр 5,56х45"
+SWEP.Purpose			= "Автоматическая винтовка под калибр 5,56х45"
 SWEP.Category 				= "Оружие"
 SWEP.WepSelectIcon = "vgui/select/w/ace23"
 SWEP.IconOverride = "vgui/icon/w/ace23.png"

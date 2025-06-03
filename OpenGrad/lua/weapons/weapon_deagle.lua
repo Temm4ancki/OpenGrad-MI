@@ -2,7 +2,7 @@ SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "Mateba Autorevolver HP"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Револьвер под калибр .44 Remington Magnum"
+SWEP.Purpose			= "Револьвер под калибр .44 Remington Magnum"
 SWEP.Category 				= "Оружие"
 SWEP.WepSelectIcon = "vgui/select/w/deagle"
 SWEP.IconOverride = "vgui/icon/w/deagle.png"

@@ -1,7 +1,7 @@
 SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "FN P90"
-SWEP.Instructions			= "Пистолет-пулемёт под калибр 5,7×28"
+SWEP.Purpose			= "Пистолет-пулемёт под калибр 5,7×28"
 SWEP.Category 				= "Оружие"
 SWEP.WepSelectIcon = "vgui/select/w/p90"
 SWEP.IconOverride = "vgui/icon/w/p90.png"

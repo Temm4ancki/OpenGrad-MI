@@ -1,7 +1,7 @@
 
 
 SWEP.PrintName = "SOG M37 Seal pup"
-SWEP.Instructions = "Тот самый нож трейтора"
+SWEP.Purpose = "Тот самый нож трейтора"
 SWEP.Category = "Ближний Бой"
 SWEP.WepSelectIcon = "vgui/select/w/kabar"
 SWEP.IconOverride = "vgui/icon/w/kabar.png"

@@ -2,7 +2,7 @@ SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "SPAS-12"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Полуавтоматический дробовик под калибр 12/70"
+SWEP.Purpose			= "Полуавтоматический дробовик под калибр 12/70"
 SWEP.Category 				= "Оружие"
 SWEP.WepSelectIcon = "vgui/select/w/spas_12"
 SWEP.IconOverride = "vgui/icon/w/spas_12.png"

@@ -2,7 +2,7 @@ SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "MINIGUN"
 SWEP.Author 				= "ADMINI"
-SWEP.Instructions			= "MINIGUN АДМИНХУЙ! БАМ БАМ БАМ!"
+SWEP.Purpose			= "MINIGUN АДМИНХУЙ! БАМ БАМ БАМ!"
 SWEP.Category 				= "Оружие"
 SWEP.WepSelectIcon = "vgui/select/w/m134"
 SWEP.IconOverride = "vgui/icon/w/m134.png"

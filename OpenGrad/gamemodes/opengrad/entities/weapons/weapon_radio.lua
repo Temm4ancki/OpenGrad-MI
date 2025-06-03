@@ -2,7 +2,7 @@ SWEP.Base = "weapon_base"
 
 SWEP.PrintName = "Рация"
 SWEP.Author = "Homigrad"
-SWEP.Instructions = "Используется для того чтобы координироваться со своей командой"
+SWEP.Purpose = "Используется для того чтобы координироваться со своей командой"
 SWEP.Category = "Разное"
 SWEP.IconOverride = "vgui/icon/radio.png"
 

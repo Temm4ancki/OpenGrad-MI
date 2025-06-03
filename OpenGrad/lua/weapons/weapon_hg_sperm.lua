@@ -2,7 +2,7 @@ SWEP.Base = "weapon_hg_melee_base"
 
 SWEP.PrintName = "Копьё"
 SWEP.Category = "Ближний Бой"
-SWEP.Instructions = "Копьё кидац."
+SWEP.Purpose = "Копьё кидац."
 SWEP.WepSelectIcon = "vgui/select/w/sperm"
 SWEP.IconOverride = "vgui/icon/w/sperm.png"
 

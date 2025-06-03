@@ -4,7 +4,7 @@ SWEP.Base = "medkit"
 
 SWEP.PrintName = "Морфий"
 SWEP.Author = "Homigrad"
-SWEP.Instructions = "Агонистическое влияние морфина на опиатные рецепторы сопровождается снижением уровня сознания, ощущением тепла, сонливостью и эйфорией"
+SWEP.Purpose = "Агонистическое влияние морфина на опиатные рецепторы сопровождается снижением уровня сознания, ощущением тепла, сонливостью и эйфорией"
 SWEP.IconOverride = "vgui/icon/morphine.png"
 SWEP.Spawnable = true
 SWEP.Category = "Медицина"

@@ -2,7 +2,7 @@ SWEP.Base = "weapon_hg_melee_base"
 
 SWEP.PrintName = "Пожарный топор"
 SWEP.Category = "Ближний Бой"
-SWEP.Instructions = "Массивный топор для вскрытия и разборки конструкций при тушении пожара."
+SWEP.Purpose = "Массивный топор для вскрытия и разборки конструкций при тушении пожара."
 SWEP.WepSelectIcon = "vgui/select/w/fireaxe"
 SWEP.IconOverride = "vgui/icon/w/fireaxe.png"
 

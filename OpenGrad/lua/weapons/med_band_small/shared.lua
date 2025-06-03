@@ -4,7 +4,7 @@ SWEP.Base = "medkit"
 
 SWEP.PrintName = "Маленький бинт"
 SWEP.Author = "Homigrad"
-SWEP.Instructions = "Лечит мелкую кровопотерю"
+SWEP.Purpose = "Лечит мелкую кровопотерю"
 SWEP.IconOverride = "vgui/icon/bandages.png"
 SWEP.Spawnable = true
 SWEP.Category = "Медицина"

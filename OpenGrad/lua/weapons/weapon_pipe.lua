@@ -1,7 +1,7 @@
 
 
 SWEP.PrintName = "Труба"
-SWEP.Instructions = "Вырванная из чьей-то канализационной системы труба"
+SWEP.Purpose = "Вырванная из чьей-то канализационной системы труба"
 SWEP.Category = "Ближний Бой"
 SWEP.WepSelectIcon = "vgui/select/w/mattpipe"
 SWEP.IconOverride = "vgui/icon/w/mattpipe.png"

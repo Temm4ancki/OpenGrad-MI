@@ -5,7 +5,8 @@ SWEP.Category = "Примочки убийцы"
 SWEP.Spawnable = true
 SWEP.IconOverride = "vgui/icon/trap.png"
 
-SWEP.Instructions = ""
+SWEP.Purpose	= "Это капкан.  Видимо медвежий"
+SWEP.Instructions = "ЛКМ - Поставить капкан \nE - Поднять капкан"
 SWEP.ViewModel = "models/weapons/t_trap/trap.mdl"
 SWEP.WorldModel = "models/weapons/t_trap/trap.mdl"
 

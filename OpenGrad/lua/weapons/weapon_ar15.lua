@@ -2,7 +2,7 @@ SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "AR-15"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Полуавтоматическая винтовка под калибр 5,56х45"
+SWEP.Purpose			= "Полуавтоматическая винтовка под калибр 5,56х45"
 SWEP.Category 				= "Оружие"
 SWEP.WepSelectIcon = "vgui/select/w/m4a1"
 SWEP.IconOverride = "vgui/icon/w/m4a1.png"

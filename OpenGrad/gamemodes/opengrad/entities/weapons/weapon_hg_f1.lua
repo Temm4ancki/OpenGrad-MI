@@ -2,7 +2,7 @@ SWEP.Base = "weapon_hg_granade_base"
 
 SWEP.PrintName = "F1"
 SWEP.Author = "Homigrad"
-SWEP.Instructions = "Ручная граната дистанционного действия, предназначена для поражения живой силы противника в оборонительном бою.\nAlt+R сделать растяжку"
+SWEP.Purpose = "Ручная граната дистанционного действия, предназначена для поражения живой силы противника в оборонительном бою.\nAlt+R сделать растяжку"
 SWEP.Category = "Гранаты"
 SWEP.IconOverride = "vgui/icon/f1.png"
 

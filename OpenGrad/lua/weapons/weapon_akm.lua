@@ -2,7 +2,7 @@ SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "АКМ"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Автоматическая винтовка под калибр 7,62х39"
+SWEP.Purpose			= "Автоматическая винтовка под калибр 7,62х39"
 SWEP.Category 				= "Оружие"
 SWEP.WepSelectIcon = "vgui/select/w/akm"
 SWEP.IconOverride = "vgui/icon/w/akm.png"

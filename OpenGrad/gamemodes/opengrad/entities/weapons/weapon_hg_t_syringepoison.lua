@@ -2,7 +2,7 @@ SWEP.Base = "medkit"
 
 SWEP.PrintName = "Тетродотоксин"
 SWEP.Author = "Homigrad"
-SWEP.Instructions = "\nВколоть в позвоночник и ждать... \n\nЛКМ - Вколоть в спину"
+SWEP.Purpose = "\nВколоть в позвоночник и ждать... \n\nЛКМ - Вколоть в спину"
 SWEP.Spawnable = true
 SWEP.Category = "Примочки убийцы"
 SWEP.IconOverride = "vgui/icon/syringepoison.png"

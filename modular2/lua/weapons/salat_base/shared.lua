@@ -1,8 +1,7 @@
 SWEP.Base = "weapon_base" -- base
 SWEP.PrintName = "weapon_sib_base"
 SWEP.Author = "sadsalat"
-SWEP.Instructions = "Salatis Imersive Base"
-SWEP.Purpose = "Raise weapon - Hold RMB\nOn Rised: Rise sight - MWUP, Down sight - MWDOWN\nShoot - LMB"
+SWEP.Instructions = "Стрелять - ЛКМ \nПоднять оружие - Удержать ПКМ \nПоменять тип прицеливания - ALT"
 SWEP.Category = "[Homicbox]"
 SWEP.Spawnable = false
 SWEP.AdminOnly = false

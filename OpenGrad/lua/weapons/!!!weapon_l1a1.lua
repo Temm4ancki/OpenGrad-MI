@@ -1,7 +1,7 @@
 SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "l1a1"
-SWEP.Instructions			= "Пендоское оружие?"
+SWEP.Purpose			= "Пендоское оружие?"
 SWEP.Category 				= "Говно нерабочее"
 
 SWEP.Spawnable 				= true

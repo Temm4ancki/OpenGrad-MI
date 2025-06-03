@@ -1,7 +1,7 @@
 SWEP.Base = "salat_base" -- base 
 
 SWEP.PrintName 				= "РПК"
-SWEP.Instructions			= "Пулемёт под калибр 7,62х39"
+SWEP.Purpose			= "Пулемёт под калибр 7,62х39"
 SWEP.Category 				= "Оружие"
 SWEP.WepSelectIcon = "vgui/select/w/rpk"
 SWEP.IconOverride = "vgui/icon/w/rpk.png"

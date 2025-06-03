@@ -2,7 +2,7 @@ SWEP.Base                   = "weapon_base"
 
 SWEP.PrintName 				= "Установка боеприпасов"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Установить боеприпасы (для миномета) (шайгу)"
+SWEP.Purpose			= "Установить боеприпасы (для миномета) (шайгу)"
 SWEP.Category 				= "Разное"
 
 SWEP.Spawnable 				= true

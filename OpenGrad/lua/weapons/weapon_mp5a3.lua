@@ -2,7 +2,7 @@ SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "HK MP5a3"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Пистолет-пулемёт под калибр 9х19"
+SWEP.Purpose			= "Пистолет-пулемёт под калибр 9х19"
 SWEP.Category 				= "Оружие"
 SWEP.WepSelectIcon = "vgui/select/w/mp5a3"
 SWEP.IconOverride = "vgui/icon/w/mp5a3.png"

@@ -3,7 +3,7 @@ SWEP.Base = "weapon_base"
 
 SWEP.PrintName = "Бомба в пропе"
 SWEP.Author = "Homigrad"
-SWEP.Instructions = "\nСкрытая бомба \n\nЛКМ - Заложить в проп/поставить \nПКМ - Взорвать"
+SWEP.Purpose = "\nСкрытая бомба \n\nЛКМ - Заложить в проп/поставить \nПКМ - Взорвать"
 SWEP.Category = "Примочки убийцы"
 SWEP.IconOverride = "vgui/icon/hide_bomb.png"
 

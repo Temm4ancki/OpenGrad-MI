@@ -1,7 +1,7 @@
 
 
 SWEP.PrintName = "Полицейская Дубинка"
-SWEP.Instructions = "Дубинка, используемая полицейскими подразделениями"
+SWEP.Purpose = "Дубинка, используемая полицейскими подразделениями"
 SWEP.Category = "Ближний Бой"
 SWEP.WepSelectIcon = "vgui/select/w/police_bat"
 SWEP.IconOverride = "vgui/icon/w/police_bat.png"

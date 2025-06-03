@@ -57,10 +57,12 @@ local function StyledButton(parent, text, color, font, onclick)
 	btn.Paint = function(self, w, h)
 		local hover = self:IsHovered()
 		local bg = hover and Color(50, 50, 50, 200) or Color(30, 30, 30, 180)
-		draw.RoundedBox(8, 0, 0, w, h, bg)
+		draw.RoundedBox(0, 0, 0, w, h, bg)
 
-		if hover then
-			draw.RoundedBox(8, 1, 1, w-2, h-2, Color(80, 80, 80, 50))
+		-- Обводка кнопки
+		surface.SetDrawColor(44, 110, 73, hover and 255 or 180)
+		for i = 0, 1 do
+			surface.DrawOutlinedRect(i, i, w - i*2, h - i*2)
 		end
 	end
 
@@ -207,14 +209,22 @@ local function ToggleScoreboard(toggle)
 			-- Размытие фона
 			BlurBackground(self)
 
-			-- Основной фон с закругленными углами
-			draw.RoundedBox(12, 0, 0, w, h, Color(10, 10, 10, 180))
+			-- Основной фон без скруглений
+			draw.RoundedBox(0, 0, 0, w, h, Color(10, 10, 10, 180))
+			
+			-- Обводка основного окна
+			surface.SetDrawColor(44, 110, 73, 255)
+			for i = 0, 2 do
+				surface.DrawOutlinedRect(i, i, w - i*2, h - i*2)
+			end
 
 			-- Заголовок
 			draw.SimpleText(hostname, "ScoreboardTitle", w / 2, 25, Color(255, 255, 255, 200), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
-			-- Панель заголовков
-			draw.RoundedBox(8, 20, 70, w - 40, 40, Color(20, 20, 20, 150))
+			-- Пан��ль заголовков
+			draw.RoundedBox(0, 20, 70, w - 40, 40, Color(20, 20, 20, 150))
+			surface.SetDrawColor(44, 110, 73, 200)
+			surface.DrawOutlinedRect(20, 70, w - 40, 40)
 
 			-- Заголовки колонок
 			draw.SimpleText("Статус", "ScoreboardHeader", 120, 90, white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
@@ -224,7 +234,10 @@ local function ToggleScoreboard(toggle)
 			draw.SimpleText("Команда", "ScoreboardHeader", w - 120, 90, white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
 			-- Информационная панель внизу
-			draw.RoundedBox(8, 20, h - 60, w - 40, 40, Color(20, 20, 20, 150))
+			draw.RoundedBox(0, 20, h - 60, w - 40, 40, Color(20, 20, 20, 150))
+			surface.SetDrawColor(44, 110, 73, 200)
+			surface.DrawOutlinedRect(20, h - 60, w - 40, 40)
+			
 			draw.SimpleText("Игроков: " .. table.Count(player.GetAll()), "ScoreboardText", 40, h - 40, green, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 
 			local tick = math.Round(1 / engine.ServerFrameTime())
@@ -312,7 +325,11 @@ local function ToggleScoreboard(toggle)
 
 				-- Стилизация меню
 				playerMenu.Paint = function(self, w, h)
-					draw.RoundedBox(8, 0, 0, w, h, Color(20, 20, 20, 240))
+					draw.RoundedBox(0, 0, 0, w, h, Color(20, 20, 20, 240))
+					surface.SetDrawColor(44, 110, 73, 255)
+					for i = 0, 1 do
+						surface.DrawOutlinedRect(i, i, w - i*2, h - i*2)
+					end
 				end
 
 				local option1 = playerMenu:AddOption("Скопировать SteamID", function()
@@ -369,15 +386,18 @@ local function ToggleScoreboard(toggle)
 				local isLocalPlayer = ply == LocalPlayer()
 
 				if isLocalPlayer then
-					draw.RoundedBox(6, 25, 2, w - 50, h - 4, Color(60, 60, 60, 120))
-					draw.RoundedBox(6, 26, 3, w - 52, h - 6, Color(255, 255, 255, 15))
+					draw.RoundedBox(0, 25, 2, w - 50, h - 4, Color(60, 60, 60, 120))
+					surface.SetDrawColor(44, 110, 73, 200)
+					surface.DrawOutlinedRect(25, 2, w - 50, h - 4)
 				elseif isHovered then
-					draw.RoundedBox(6, 25, 2, w - 50, h - 4, Color(40, 40, 40, 100))
+					draw.RoundedBox(0, 25, 2, w - 50, h - 4, Color(40, 40, 40, 100))
+					surface.SetDrawColor(44, 110, 73, 150)
+					surface.DrawOutlinedRect(25, 2, w - 50, h - 4)
 				end
 
 				-- Цветовая полоска статуса
 				if colorAdd then
-					draw.RoundedBox(3, 30, h/2 - 15, 4, 30, colorAdd)
+					draw.RoundedBox(0, 30, h/2 - 15, 4, 30, colorAdd)
 				end
 
 				-- Номер в списке
@@ -429,7 +449,9 @@ local function ToggleScoreboard(toggle)
 				function button:Paint(w, h)
 					local isHovered = self:IsHovered()
 					if isHovered then
-						draw.RoundedBox(4, 0, 0, w, h, Color(50, 50, 50, 100))
+						draw.RoundedBox(0, 0, 0, w, h, Color(50, 50, 50, 100))
+						surface.SetDrawColor(44, 110, 73, 200)
+						surface.DrawOutlinedRect(0, 0, w, h)
 					end
 
 					surface.SetMaterial(ply:IsMuted() and mutedicon or unmutedicon)

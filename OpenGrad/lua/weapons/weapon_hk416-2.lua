@@ -1,7 +1,7 @@
 SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "HK416"
-SWEP.Instructions			= "Автоматическая винтовка под калибр 5,56х45"
+SWEP.Purpose			= "Автоматическая винтовка под калибр 5,56х45"
 SWEP.Category 				= "Оружие"
 SWEP.WepSelectIcon = "vgui/select/w/hk416"
 SWEP.IconOverride = "vgui/icon/w/hk416.png"

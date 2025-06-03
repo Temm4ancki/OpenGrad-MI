@@ -4,7 +4,7 @@ SWEP.Base = "medkit"
 
 SWEP.PrintName = "Большой бинт"
 SWEP.Author = "Homigrad"
-SWEP.Instructions = "Лечит большую кровопотерю"
+SWEP.Purpose = "Лечит большую кровопотерю"
 
 SWEP.Spawnable = true
 SWEP.Category = "Медицина"

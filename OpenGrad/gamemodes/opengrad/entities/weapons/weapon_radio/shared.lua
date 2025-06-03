@@ -3,7 +3,7 @@ SWEP.Base = "weapon_base"
 
 SWEP.PrintName = "Рация"
 SWEP.Author = "0oa"
-SWEP.Instructions = "Общение со своей командой"
+SWEP.Purpose = "Общение со своей командой"
 SWEP.Category = "Разное"
 SWEP.IconOverride = "vgui/icon/radio.png"
 

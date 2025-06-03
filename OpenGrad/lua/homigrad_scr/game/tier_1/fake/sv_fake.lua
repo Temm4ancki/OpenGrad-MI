@@ -370,6 +370,10 @@ function PlayerMeta:DropWeapon1(wep)
 	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(0, 0, 0), true)
 	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_Head1"), Angle(0, 0, 0), true)
 	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Forearm"), Angle(0, 0, 0), true)
+	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Hand"), Angle(0, 0, 0), true)
+	ply:ManipulateBonePosition(ply:LookupBone("ValveBiped.Bip01_L_Clavicle"), Vector(0, 0, 0), true)
+	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 0, 0), true)
+	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Forearm"), Angle(0, 0, 0), true)
 	ply:SelectWeapon("weapon_hands")
 end
 

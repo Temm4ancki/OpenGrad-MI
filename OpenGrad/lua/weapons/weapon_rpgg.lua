@@ -2,7 +2,7 @@ SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "РПГ"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Ручной противотанковый гранатомёт"
+SWEP.Purpose			= "Ручной противотанковый гранатомёт"
 SWEP.Category 				= "Оружие" -- Теперь работает!!
 SWEP.WepSelectIcon = "vgui/select/w/rpgg"
 SWEP.IconOverride = "vgui/icon/w/rpgg.png"

@@ -2,7 +2,7 @@ SWEP.Base = "salat_base" -- base
 
 SWEP.PrintName 				= "ИЖ-43"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Двухствольное охотничье ружье под калибр 12/70"
+SWEP.Purpose			= "Двухствольное охотничье ружье под калибр 12/70"
 SWEP.Category 				= "Оружие"
 SWEP.WepSelectIcon			= "pwb2/vgui/weapons/m4super90"
 

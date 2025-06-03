@@ -4,7 +4,8 @@ SWEP.Base = "weapon_base"
 
 SWEP.PrintName = "Костюм маньяка"
 SWEP.Category = "Примочки убийцы"
-SWEP.Instructions = "\nКейс с костюмом для скрытия личности \n\nR - Выбрать одежду маньяка \nЛКМ - Скрыть личность \nПКМ - Вернуть личность"
+SWEP.Purpose  = "Кейс с костюмом для скрытия личности"
+SWEP.Purpose = "R - Выбрать одежду маньяка \nЛКМ - Скрыть личность \nПКМ - Вернуть личность"
 SWEP.Author			= ""
 SWEP.Contact		= ""
 SWEP.Purpose		= ""
@@ -222,7 +223,13 @@ if CLIENT then
 
 		frame.Paint = function(self, w, h)
 			BlurBackground(self)
-			draw.RoundedBox(8, 0, 0, w, h, Color(10, 10, 10, 100))
+			draw.RoundedBox(0, 0, 0, w, h, Color(10, 10, 10, 100))
+
+			surface.SetDrawColor(155, 55, 55, 255)
+			for i = 0, 2 do
+				surface.DrawOutlinedRect(i, i, w - i*2, h - i*2)
+			end
+
 			draw.SimpleText("Выберите маскировку", "HomigradFontBig", w / 2, 15, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
 		end
 
@@ -236,7 +243,9 @@ if CLIENT then
 			local panel = buttonLayout:Add("DPanel")
 			panel:SetSize(itemWidth, itemHeight)
 			panel.Paint = function(self, w, h)
-				draw.RoundedBox(8, 0, 0, w, h, Color(20, 20, 20, 125))
+				draw.RoundedBox(0, 0, 0, w, h, Color(20, 20, 20, 125))
+				surface.SetDrawColor(155, 55, 55, 200)
+				surface.DrawOutlinedRect(0, 0, w, h)
 			end
 
 			local modelPreview = vgui.Create("DModelPanel", panel)
@@ -268,7 +277,9 @@ if CLIENT then
 			btn:SetTextColor(textColor)
 
 			btn.Paint = function(self, w, h)
-				draw.RoundedBox(8, 0, 0, w, h, Color(5, 5, 5, 155))
+				draw.RoundedBox(0, 0, 0, w, h, Color(5, 5, 5, 155))
+				surface.SetDrawColor(155, 55, 55, 180)
+				surface.DrawOutlinedRect(0, 0, w, h)
 			end
 			btn.DoClick = function()
 				net.Start("maniac_select_model")

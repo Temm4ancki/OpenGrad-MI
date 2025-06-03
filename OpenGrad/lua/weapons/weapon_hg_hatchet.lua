@@ -2,7 +2,7 @@ SWEP.Base = "weapon_hg_melee_base"
 
 SWEP.PrintName = "Топорик"
 SWEP.Category = "Ближний Бой"
-SWEP.Instructions = "Одноручный ударный инструмент с острым лезвием с одной стороны, используемым для рубки и колки дерева, и наконечником молота с другой стороны."
+SWEP.Purpose = "Одноручный ударный инструмент с острым лезвием с одной стороны, используемым для рубки и колки дерева, и наконечником молота с другой стороны."
 SWEP.WepSelectIcon = "vgui/select/w/hatchet"
 SWEP.IconOverride = "vgui/icon/w/hatchet.png"
 

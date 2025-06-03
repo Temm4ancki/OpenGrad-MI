@@ -2,7 +2,7 @@ SWEP.Base = "weapon_hg_granade_base"
 
 SWEP.PrintName = "Коктейль Молотова"
 SWEP.Author = "Homigrad"
-SWEP.Instructions = "\nСтеклянная бутылка, содержащая горючую жидкость и запал"
+SWEP.Purpose = "\nСтеклянная бутылка, содержащая горючую жидкость и запал"
 SWEP.Category = "Гранаты"
 SWEP.IconOverride = "vgui/icon/molotov.png"
 
