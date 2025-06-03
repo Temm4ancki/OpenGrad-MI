@@ -1,79 +1,94 @@
---
-
-SIB_SurfaceHardness={
-    [MAT_METAL]=.95,[MAT_COMPUTER]=.95,[MAT_VENT]=.95,[MAT_GRATE]=.95,[MAT_FLESH]=.5,[MAT_ALIENFLESH]=.3,
-    [MAT_SAND]=.1,[MAT_DIRT]=.3,[74]=.1,[85]=.2,[MAT_WOOD]=.5,[MAT_FOLIAGE]=.5,
-    [MAT_CONCRETE]=.9,[MAT_TILE]=.8,[MAT_SLOSH]=.05,[MAT_PLASTIC]=.3,[MAT_GLASS]=.6
+SIB_SurfaceHardness = {
+	[MAT_METAL] = .95,
+	[MAT_COMPUTER] = .95,
+	[MAT_VENT] = .95,
+	[MAT_GRATE] = .95,
+	[MAT_FLESH] = .5,
+	[MAT_ALIENFLESH] = .3,
+	[MAT_SAND] = .1,
+	[MAT_DIRT] = .3,
+	[74] = .1,
+	[85] = .2,
+	[MAT_WOOD] = .5,
+	[MAT_FOLIAGE] = .5,
+	[MAT_CONCRETE] = .9,
+	[MAT_TILE] = .8,
+	[MAT_SLOSH] = .05,
+	[MAT_PLASTIC] = .3,
+	[MAT_GLASS] = .6
 }
-
-function SWEP:BulletCallbackFunc(dmgAmt,ply,tr,dmg,tracer,hard,multi)
-	if(tr.MatType==MAT_FLESH)then
-		util.Decal("Impact.Flesh",tr.HitPos+tr.HitNormal,tr.HitPos-tr.HitNormal)
+function SWEP:BulletCallbackFunc(dmgAmt, ply, tr, dmg, tracer, hard, multi)
+	if tr.MatType == MAT_FLESH then
+		util.Decal("Impact.Flesh", tr.HitPos + tr.HitNormal, tr.HitPos - tr.HitNormal)
 		local vPoint = tr.HitPos
 		local effectdata = EffectData()
-		effectdata:SetOrigin( vPoint )
+		effectdata:SetOrigin(vPoint)
 		effectdata:SetRadius(0.1)
 	end
-	if(self.NumBullet or 1>1)then return end
-	if(tr.HitSky)then return end
-	if(hard)then self:RicochetOrPenetrate(tr) end
+
+	if self.NumBullet or 1 > 1 then return end
+	if tr.HitSky then return end
+	if hard then self:RicochetOrPenetrate(tr) end
 end
 
 function SWEP:RicochetOrPenetrate(initialTrace)
-	local AVec,IPos,TNorm,SMul=initialTrace.Normal,initialTrace.HitPos,initialTrace.HitNormal,SIB_SurfaceHardness[initialTrace.MatType]
-	if not(SMul)then SMul=.5 end
-	local ApproachAngle=-math.deg(math.asin(TNorm:DotProduct(AVec)))
-	local MaxRicAngle=60*SMul
-	if(ApproachAngle>(MaxRicAngle*1.25))then -- all the way through
-		local MaxDist,SearchPos,SearchDist,Penetrated=(self.Primary.Damage/SMul)*.25,IPos,5,false
-		while((not(Penetrated))and(SearchDist<MaxDist))do
-			SearchPos=IPos+AVec*SearchDist
-			local PeneTrace=util.QuickTrace(SearchPos,-AVec*SearchDist)
-			if((not(PeneTrace.StartSolid))and(PeneTrace.Hit))then
-				Penetrated=true
+	local AVec, IPos, TNorm, SMul = initialTrace.Normal, initialTrace.HitPos, initialTrace.HitNormal, SIB_SurfaceHardness[initialTrace.MatType]
+	if not SMul then SMul = .5 end
+	local ApproachAngle = -math.deg(math.asin(TNorm:DotProduct(AVec)))
+	local MaxRicAngle = 60 * SMul
+	if ApproachAngle > (MaxRicAngle * 1.25) then -- all the way through
+		local MaxDist, SearchPos, SearchDist, Penetrated = (self.Primary.Damage / SMul) * .25, IPos, 5, false
+		while (not Penetrated) and (SearchDist < MaxDist) do
+			SearchPos = IPos + AVec * SearchDist
+			local PeneTrace = util.QuickTrace(SearchPos, -AVec * SearchDist)
+			if (not PeneTrace.StartSolid) and PeneTrace.Hit then
+				Penetrated = true
 			else
-				SearchDist=SearchDist+5
+				SearchDist = SearchDist + 5
 			end
 		end
-		if(Penetrated)then
+
+		if Penetrated then
 			self:FireBullets({
-				Attacker=self.Owner,
-				Damage=1,
-				Force=1,
-				Num=1,
-				Tracer=0,
-				TracerName="",
-				Dir=-AVec,
-				Spread=Vector(0,0,0),
-				Src=SearchPos+AVec
+				Attacker = self.Owner,
+				Damage = 1,
+				Force = 1,
+				Num = 1,
+				Tracer = 0,
+				TracerName = "",
+				Dir = -AVec,
+				Spread = Vector(0, 0, 0),
+				Src = SearchPos + AVec
 			})
+
 			self:FireBullets({
-				Attacker=self.Owner,
-				Damage=self.Primary.Damage*.65,
-				Force=self.Primary.Damage/15,
-				Num=1,
-				Tracer=0,
-				TracerName="",
-				Dir=AVec,
-				Spread=Vector(0,0,0),
-				Src=SearchPos+AVec
+				Attacker = self.Owner,
+				Damage = self.Primary.Damage * .65,
+				Force = self.Primary.Damage / 15,
+				Num = 1,
+				Tracer = 0,
+				TracerName = "",
+				Dir = AVec,
+				Spread = Vector(0, 0, 0),
+				Src = SearchPos + AVec
 			})
 		end
-	elseif(ApproachAngle<(MaxRicAngle*.25))then -- ping whiiiizzzz
-		sound.Play("utils/ricochet/snd_jack_hmcd_ricochet_"..math.random(1,2)..".ogg",IPos,70,math.random(90,100))
-		local NewVec=AVec:Angle()
-		NewVec:RotateAroundAxis(TNorm,180)
-		NewVec=NewVec:Forward()
+	elseif ApproachAngle < (MaxRicAngle * .25) then
+		-- ping whiiiizzzz
+		sound.Play("utils/ricochet/snd_jack_hmcd_ricochet_" .. math.random(1, 2) .. ".ogg", IPos, 70, math.random(90, 100))
+		local NewVec = AVec:Angle()
+		NewVec:RotateAroundAxis(TNorm, 180)
+		NewVec = NewVec:Forward()
 		self:FireBullets({
-			Attacker=self.Owner,
-			Damage=self.Primary.Damage*.85,
-			Force=self.Primary.Damage/15,
-			Num=1,
-			Tracer=0,
-			TracerName="",
-			Dir=-NewVec,
-			Spread=Vector(0,0,0),
-			Src=IPos+TNorm
+			Attacker = self.Owner,
+			Damage = self.Primary.Damage * .85,
+			Force = self.Primary.Damage / 15,
+			Num = 1,
+			Tracer = 0,
+			TracerName = "",
+			Dir = -NewVec,
+			Spread = Vector(0, 0, 0),
+			Src = IPos + TNorm
 		})
 	end
 end
@@ -83,8 +98,8 @@ local vecZero = Vector(0,0,0)
 local angZero = Angle(0,0,0)
 
 function SWEP:FireBullet(dmg, numbul, spread)
-	if self:Clip1() <= 0 or timer.Exists("reload"..self:EntIndex())  then return end
-	
+	if self:Clip1() <= 0 or timer.Exists("reload" .. self:EntIndex())  then return end
+
 	local ply = self:GetOwner()
 
 	ply:LagCompensation(true)
@@ -130,7 +145,7 @@ function SWEP:FireBullet(dmg, numbul, spread)
 
 			dmgInfo:ScaleDamage(k)
 		end
-		
+
 		if SERVER then
 			net.Start("shoot_huy")
 				net.WriteTable(tr)
@@ -144,7 +159,6 @@ function SWEP:FireBullet(dmg, numbul, spread)
 	end
 
 	-- EFFECTS MANNN!!!
-	
 
 	if self.DoFlash then
 		local ef = EffectData()
@@ -217,7 +231,7 @@ end
 
 
 function SWEP:IsReloaded()
-	return timer.Exists("reload"..self:EntIndex())
+	return timer.Exists("reload" .. self:EntIndex())
 end
 
 

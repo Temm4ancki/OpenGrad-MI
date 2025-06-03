@@ -107,6 +107,20 @@ local WEAPON_3D_POSITIONS = {
         offset_x = 0,
         offset_y = -50
     },
+    ["weapon_deserteagle"] = {
+        pos = Vector(0, 0, 0),
+        ang = Angle(0, 90, 0),
+        scale = 0.5,
+        offset_x = 0,
+        offset_y = -10
+    },
+    ["weapon_p90-2"] = {
+        pos = Vector(0, 0, 0),
+        ang = Angle(0, 90, 0),
+        scale = 0.5,
+        offset_x = 0,
+        offset_y = -20
+    },
 }
 
 local WEAPON_ICONS = {

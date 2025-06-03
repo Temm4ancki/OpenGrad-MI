@@ -836,7 +836,7 @@ hook.Add("Player Collide", "homigrad-fake", function(ply, hitEnt, data)
 end)
 
 hook.Add("OnPlayerHitGround", "GovnoJopa", function(ply, a, b, speed)
-	if speed > 200 then
+	if speed > 250 then
 		if hook.Run("Should Fake Ground", ply) ~= nil then return end
 
 		local tr = {}

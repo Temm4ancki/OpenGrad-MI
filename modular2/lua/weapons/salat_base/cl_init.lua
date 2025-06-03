@@ -5,31 +5,31 @@ include( "shared.lua" )
 
 viewShootPunch = Angle(0,0,0)
 
-net.Receive("huysound",function(len)
-	local pos = net.ReadVector()
-	local sound = net.ReadString()
-	local farsound = net.ReadString()
-	local ent = net.ReadEntity()
+net.Receive("huysound", function(len)
+    local pos = net.ReadVector()
+    local sound = net.ReadString()
+    local farsound = net.ReadString()
+    local ent = net.ReadEntity()
 
-	if ent == LocalPlayer() then return end
+    if ent == LocalPlayer() then return end
 
-	local dist = LocalPlayer():EyePos():Distance(pos)
-	if ent:IsValid() and dist < 4000 then
-		ent:EmitSound(sound,100,math.random(90,110),1,CHAN_WEAPON,0,0)
-	elseif ent:IsValid() then
-		timer.Simple(dist/45000,function()
-			ent:EmitSound(farsound,120,math.random(90,110),1,CHAN_WEAPON,0,0)
-		end)
-	end
+    local dist = LocalPlayer():EyePos():Distance(pos)
+    if ent:IsValid() and dist < 4000 then
+        ent:EmitSound(sound, 100, math.random(90, 110), 1, CHAN_WEAPON, 0, 0)
+    elseif ent:IsValid() then
+        timer.Simple(dist / 45000, function()
+            ent:EmitSound(farsound, 120, math.random(90, 110), 1, CHAN_WEAPON, 0, 0)
+        end)
+    end
 end)
 
 function SWEP:ShootPunch(force)
-    force = force/50
-    viewShootPunch.x = math.Clamp(viewShootPunch.x - ((self.HoldType == "revolver" and force*5) or force),-force*5,0)
-    viewShootPunch.y = math.Clamp(viewShootPunch.y+math.random(-force,force)*0.5,-force,force)
-	self.setAng = self:GetOwner():EyeAngles()+viewShootPunch/2
-	self.setAng.z = 0
-	self.eyeSpray:Add(Angle(-force/1.5,viewShootPunch.y/5,0))
+    force = force / 50
+    viewShootPunch.x = math.Clamp(viewShootPunch.x - ((self.HoldType == "revolver" and force * 5) or force), -force * 5, 0)
+    viewShootPunch.y = math.Clamp(viewShootPunch.y + math.random(-force, force) * 0.5, -force, force)
+    self.setAng = self:GetOwner():EyeAngles() + viewShootPunch / 2
+    self.setAng.z = 0
+    self.eyeSpray:Add(Angle(-force / 1.5, viewShootPunch.y / 5, 0))
     return viewShootPunch
 end
 
@@ -48,24 +48,19 @@ function draw.Circle( x, y, radius, seg )
     surface.DrawPoly( cir )
 end
 
-
 local rtsize = 512
-
 
 local vecZero = Vector(0,0,0)
 local angZero = Angle(0,0,0)
 
+function surface.DrawTexturedRectRotatedPoint(x, y, w, h, rot, x0, y0)
+    local c = math.cos(math.rad(rot))
+    local s = math.sin(math.rad(rot))
 
-function surface.DrawTexturedRectRotatedPoint( x, y, w, h, rot, x0, y0 )
-	
-	local c = math.cos( math.rad( rot ) )
-	local s = math.sin( math.rad( rot ) )
-	
-	local newx = y0 * s - x0 * c
-	local newy = y0 * c + x0 * s
-	
-	surface.DrawTexturedRectRotated( x + newx, y + newy, w, h, rot )
-	
+    local newx = y0 * s - x0 * c
+    local newy = y0 * c + x0 * s
+
+    surface.DrawTexturedRectRotated(x + newx, y + newy, w, h, rot)
 end
 
 function SWEP:DrawHUD()
@@ -77,12 +72,12 @@ function SWEP:DrawHUD()
 
     local clip = wep:Clip1()
     local reserve = ply:GetAmmoCount(wep:GetPrimaryAmmoType())
-
-    draw.SimpleTextOutlined("" .. clip .. " / " .. reserve, 
-        "DermaLarge",              
-        ScrW() /2, ScrH() /1.1, 
-        Color(255, 255, 255, 255), 
-        TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM,
-        1, Color(0, 0, 0, 200)     
+    draw.SimpleTextOutlined("" .. clip .. " / " .. reserve,
+    "DermaLarge",
+    ScrW() / 2, ScrH() / 1.1,
+    Color(255, 255, 255, 255),
+    TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM,
+    1,
+    Color(0, 0, 0, 200)
     )
 end

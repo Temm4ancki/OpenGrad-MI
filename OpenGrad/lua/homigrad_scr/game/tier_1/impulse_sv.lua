@@ -39,13 +39,13 @@ hook.Add("HomigradDamage","ImpulseShock",function(ply,hitGroup,dmginfo)
 
 	if dmginfo:IsDamageType(DMG_BLAST) then
 		dmg = dmg * 4
-	elseif dmginfo:IsDamageType(DMG_VEHICLE+DMG_CRUSH) and dmg > 5 then
+	elseif dmginfo:IsDamageType(DMG_VEHICLE + DMG_CRUSH) and dmg > 5 then
 		dmg = dmg * 0.05
-	elseif dmginfo:IsDamageType(DMG_BURN+DMG_SHOCK+DMG_BUCKSHOT) then
+	elseif dmginfo:IsDamageType(DMG_BURN + DMG_SHOCK + DMG_BUCKSHOT) then
 		dmg = dmg * 6
-	elseif dmginfo:IsDamageType(DMG_BLAST+DMG_CLUB+DMG_GENERIC+DMG_SLASH) then
+	elseif dmginfo:IsDamageType(DMG_BLAST + DMG_CLUB + DMG_GENERIC + DMG_SLASH) then
 		dmg = dmg * 1
-	elseif dmginfo:IsDamageType(DMG_NERVEGAS+DMG_DROWN) then
+	elseif dmginfo:IsDamageType(DMG_NERVEGAS + DMG_DROWN) then
 		dmg = 0
 	else
 		dmg = dmg
@@ -59,7 +59,7 @@ hook.Add("HomigradDamage","ImpulseShock",function(ply,hitGroup,dmginfo)
 	net.Start("info_impulse")
 	net.WriteFloat(ply.dmgimpulse)
 	net.Send(ply)
-	
+
 	if hitGroup == HITGROUP_RIGHTLEG or hitGroup == HITGROUP_LEFTLEG then
 		if ply.dmgimpulse > 500 then 
 			timer.Simple(0,function() 

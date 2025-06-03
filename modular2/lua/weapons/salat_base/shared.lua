@@ -277,15 +277,6 @@ end
 -- Holster bone manipulate remover
 function SWEP:Holster()
 	local ply = self:GetOwner()
-	timer.Simple(0.1, function()
-		-- убираем наухй все манипуляции с костями
-		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Hand"), Angle(0, 0, 0), true)
-		ply:ManipulateBonePosition(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"), Vector(0, 0, 0), true)
-		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(0, 0, 0), true)
-		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_Head1"), Angle(0, 0, 0), true)
-		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Forearm"), Angle(0, 0, 0), true)
-		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Forearm"), Angle(0, 0, 0), true)
-	end)
 
 	self.Clavicle = Angle(0, 0, 0)
 	self.Head = Angle(0, 0, 0)
