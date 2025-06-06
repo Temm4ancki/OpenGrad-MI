@@ -202,91 +202,141 @@ timer.Simple(1, function()
 end)
 
 if CLIENT then
+    -- Используем общую библиотеку UI
+    include("homigrad_scr/game/tier_1/ui_library_cl.lua")
+
     function AmmoMenu(ply)
+        local selectedAmmoType = nil
+        local selectedAmmoCount = 0
         local ammodrop = 0
         if not ply:Alive() then return end
 
-        local Frame = vgui.Create("DFrame")
-        Frame:SetTitle("Амуниция")
-        Frame:SetSize(200, 300)
-        Frame:Center()
-        Frame:MakePopup()
-        Frame.Paint = function(self, w, h)
-            draw.RoundedBox(5, 0, 0, w, h, Color(115, 115, 115))
-            draw.RoundedBox(2, 0, 0, w, 25, Color(95, 95, 95))
-            draw.RoundedBox(2, 0, 268, w, h, Color(95, 95, 95))
+        local Frame = HG_UI.CreateStyledFrame("Управление амуницией", 400, 550, {
+            titleY = 35,
+            titleFont = HG_UI.FONTS.HEADER
+        })
+
+        local topPanel = vgui.Create("Panel", Frame)
+        topPanel:SetPos(20, 60)
+        topPanel:SetSize(Frame:GetWide() - 40, 40)
+
+        local selectedPanel = HG_UI.CreateInfoPanel(topPanel, 0, 0, topPanel:GetWide(), 40, {
+            font = HG_UI.FONTS.SMALL
+        })
+        
+        selectedPanel.Paint = function(self, w, h)
+            HG_UI.DrawPanel(0, 0, w, h)
+            local text = selectedAmmoType and ("Выбрано: " .. game.GetAmmoName(selectedAmmoType) .. " (" .. selectedAmmoCount .. ")") or "Выберите тип патронов"
+            draw.SimpleText(text, HG_UI.FONTS.SMALL, w / 2, h / 2, HG_UI.COLORS.TEXT_PRIMARY, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
         end
 
-        local DPanel = vgui.Create("DScrollPanel", Frame)
-        DPanel:SetPos(5, 30)
-        DPanel:SetSize(190, 215)
-        DPanel.Paint = function(self, w, h)
-            draw.RoundedBox(0, 0, 0, w, h, Color(175, 175, 175))
+        local scroll = vgui.Create("DScrollPanel", Frame)
+        scroll:SetPos(20, 110)
+        scroll:SetSize(Frame:GetWide() - 40, Frame:GetTall() - 240)
+
+        local bottomPanel = vgui.Create("Panel", Frame)
+        bottomPanel:SetPos(20, Frame:GetTall() - 120)
+        bottomPanel:SetSize(Frame:GetWide() - 40, 100)
+
+        local sliderPanel = vgui.Create("Panel", bottomPanel)
+        sliderPanel:SetPos(0, 0)
+        sliderPanel:SetSize(bottomPanel:GetWide(), 40)
+        sliderPanel.Paint = function(self, w, h)
+            local roleColors = HG_UI.GetRoleColors()
+            draw.RoundedBox(0, 0, 0, w, h, Color(20, 20, 20, 150))
+            surface.SetDrawColor(roleColors.PRIMARY.r, roleColors.PRIMARY.g, roleColors.PRIMARY.b, selectedAmmoType and 200 or 100)
+            surface.DrawOutlinedRect(0, 0, w, h)
         end
 
-        local sbar = DPanel:GetVBar()
-        function sbar:Paint(w, h)
-            draw.RoundedBox(0, 0, 0, w, h, Color(115, 115, 115))
-        end
-        function sbar.btnUp:Paint(w, h)
-            draw.RoundedBox(0, 0, 0, w, h, Color(145, 145, 145))
-        end
-        function sbar.btnDown:Paint(w, h)
-            draw.RoundedBox(0, 0, 0, w, h, Color(145, 145, 145))
-        end
-        function sbar.btnGrip:Paint(w, h)
-            draw.RoundedBox(0, 0, 0, w, h, Color(195, 195, 195))
-        end
-
-        local DermaNumSlider = vgui.Create("DNumSlider", Frame)
-        DermaNumSlider:SetPos(10, 245)
-        DermaNumSlider:SetSize(210, 25)
-        DermaNumSlider:SetText("Кол-во")
+        local DermaNumSlider = vgui.Create("DNumSlider", sliderPanel)
+        DermaNumSlider:SetPos(10, 5)
+        DermaNumSlider:SetSize(sliderPanel:GetWide() - 20, 30)
+        DermaNumSlider:SetText("Количество для сброса")
         DermaNumSlider:SetMin(0)
-        DermaNumSlider:SetMax(60)
+        DermaNumSlider:SetMax(1)
         DermaNumSlider:SetDecimals(0)
+        DermaNumSlider:SetEnabled(false)
         DermaNumSlider.OnValueChanged = function(self, value)
             ammodrop = math.Round(value)
         end
 
+        local buttonPanel = vgui.Create("Panel", bottomPanel)
+        buttonPanel:SetPos(0, 45)
+        buttonPanel:SetSize(bottomPanel:GetWide(), 35)
+
+        local dropButton = HG_UI.CreateStyledButton(buttonPanel, "Сбросить N патрон", {
+            textColor = HG_UI.COLORS.TEXT_SECONDARY,
+            font = HG_UI.FONTS.NORMAL,
+            onClick = function()
+                if selectedAmmoType and ammodrop > 0 then
+                    net.Start("drop_ammo")
+                    net.WriteFloat(selectedAmmoType)
+                    net.WriteFloat(ammodrop)
+                    net.SendToServer()
+                    Frame:Close()
+                end
+            end
+        })
+        dropButton:SetPos(0, 0)
+        dropButton:SetSize(buttonPanel:GetWide() / 2 - 5, 35)
+        dropButton:Dock(NODOCK)
+
+        local dropAllButton = HG_UI.CreateStyledButton(buttonPanel, "Сбросить все", {
+            textColor = Color(255, 120, 120),
+            font = HG_UI.FONTS.NORMAL,
+            onClick = function()
+                if selectedAmmoType then
+                    net.Start("drop_ammo")
+                    net.WriteFloat(selectedAmmoType)
+                    net.WriteFloat(selectedAmmoCount)
+                    net.SendToServer()
+                    Frame:Close()
+                end
+            end
+        })
+        dropAllButton:SetPos(buttonPanel:GetWide() / 2 + 5, 0)
+        dropAllButton:SetSize(buttonPanel:GetWide() / 2 - 5, 35)
+        dropAllButton:Dock(NODOCK)
+
+        HG_UI.StyleScrollPanel(scroll)
+
+        local layout = vgui.Create("DListLayout", scroll)
+        layout:Dock(FILL)
+
         local ammos = LocalPlayer():GetAmmo()
+        local hasAmmo = false
 
         for k, v in pairs(ammos) do
-            --print("CLIENT GetAmmoName", game.GetAmmoName(k))
-            --print("CLIENT ammotype", k)
-            --print("CLIENT count", v)
-            local DermaButton = vgui.Create("DButton", DPanel)
-            DermaButton:SetText(game.GetAmmoName(k) .. ": " .. v)
-            DermaButton:SetPos(0, 0)
-            DermaButton:Dock(TOP)
-            DermaButton:DockMargin(5, 5, 5, 0)
-            DermaButton:SetSize(120, 20)
-            DermaButton.Paint = function(self, w, h)
-                draw.RoundedBox(0, 0, 0, w, h, Color(225, 225, 225))
-            end
-            DermaButton.DoClick = function()
-                net.Start("drop_ammo")
-                net.WriteFloat(k)
-                --print("SENT ammotype", k)
-                net.WriteFloat(math.min(ammodrop, v))
-                net.SendToServer()
-                Frame:Close()
-            end
-            DermaButton.DoRightClick = function()
-                net.Start("drop_ammo")
-                net.WriteFloat(k)
-                net.WriteFloat(v)
-                --print("SENT ammotype", k)
-                --print("SENT count", v)
-                net.SendToServer()
-                Frame:Close()
+            if v > 0 then
+                hasAmmo = true
+                local ammoButton = HG_UI.CreateStyledButton(layout, game.GetAmmoName(k) .. ": " .. v, {
+                    textColor = HG_UI.COLORS.TEXT_SECONDARY,
+                    font = HG_UI.FONTS.NORMAL,
+                    dock = TOP,
+                    margin = {0, 0, 0, 5},
+                    selected = function() return selectedAmmoType == k end,
+                    onClick = function()
+                        selectedAmmoType = k
+                        selectedAmmoCount = v
+                        DermaNumSlider:SetMax(v)
+                        DermaNumSlider:SetValue(v)
+                        DermaNumSlider:SetEnabled(true)
+                        ammodrop = v
+                    end
+                })
             end
         end
 
-        local DLabel = vgui.Create("DLabel", Frame)
-        DLabel:SetPos(10, 270)
-        DLabel:SetText("ЛКМ - Скинуть Кол-во\nПКМ - Скинуть все")
-        DLabel:SizeToContents()
+        if not hasAmmo then
+            local noAmmoLabel = vgui.Create("DLabel", layout)
+            noAmmoLabel:SetText("У вас нет патронов для сброса")
+            noAmmoLabel:SetTextColor(HG_UI.COLORS.TEXT_MUTED)
+            noAmmoLabel:SetFont(HG_UI.FONTS.NORMAL)
+            noAmmoLabel:SetContentAlignment(5)
+            noAmmoLabel:Dock(TOP)
+            noAmmoLabel:DockMargin(0, 20, 0, 0)
+            noAmmoLabel:SizeToContents()
+        end
     end
 
     concommand.Add("hg_ammomenu", function(ply, cmd, args)

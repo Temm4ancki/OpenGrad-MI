@@ -175,26 +175,15 @@ if SERVER then
 end
 
 if CLIENT then
-	local blurMat = Material("pp/blurscreen")
+	-- Используем общую библиотеку UI
+	include("homigrad_scr/game/tier_1/ui_library_cl.lua")
+	
 	local Dynamic = 0
-
+	
 	local function BlurBackground(panel)
 		if not (IsValid(panel) and panel:IsVisible()) then return end
-		local layers, density, alpha = 1, 1, 105
-		local x, y = panel:LocalToScreen(0, 0)
-		surface.SetDrawColor(255, 255, 255, alpha)
-		surface.SetMaterial(blurMat)
-		local FrameRate, Num, Dark = 1 / FrameTime(), 5, 100
-		for i = 1, Num do
-			blurMat:SetFloat("$blur", (i / layers) * density * Dynamic)
-			blurMat:Recompute()
-			render.UpdateScreenEffectTexture()
-			surface.DrawTexturedRect(-x, -y, ScrW(), ScrH())
-		end
-
-		surface.SetDrawColor(0, 0, 0, Dark * Dynamic)
-		surface.DrawRect(0, 0, panel:GetWide(), panel:GetTall())
-		Dynamic = math.Clamp(Dynamic + (1 / FrameRate) * 7, 0, 1)
+		HG_UI.BlurBackground(panel, Dynamic)
+		Dynamic = math.Clamp(Dynamic + FrameTime() * 7, 0, 1)
 	end
 
 	function OpenModelSelectMenu(onClose)
@@ -223,14 +212,8 @@ if CLIENT then
 
 		frame.Paint = function(self, w, h)
 			BlurBackground(self)
-			draw.RoundedBox(0, 0, 0, w, h, Color(10, 10, 10, 100))
-
-			surface.SetDrawColor(155, 55, 55, 255)
-			for i = 0, 2 do
-				surface.DrawOutlinedRect(i, i, w - i*2, h - i*2)
-			end
-
-			draw.SimpleText("Выберите маскировку", "HomigradFontBig", w / 2, 15, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
+			HG_UI.DrawFrame(0, 0, w, h, Color(10, 10, 10, 100), Color(155, 55, 55, 255), 2)
+			draw.SimpleText("Выберите маскировку", HG_UI.FONTS.BIG, w / 2, 15, HG_UI.COLORS.TEXT_PRIMARY, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
 		end
 
 		local buttonLayout = vgui.Create("DIconLayout", frame)
@@ -243,9 +226,7 @@ if CLIENT then
 			local panel = buttonLayout:Add("DPanel")
 			panel:SetSize(itemWidth, itemHeight)
 			panel.Paint = function(self, w, h)
-				draw.RoundedBox(0, 0, 0, w, h, Color(20, 20, 20, 125))
-				surface.SetDrawColor(155, 55, 55, 200)
-				surface.DrawOutlinedRect(0, 0, w, h)
+				HG_UI.DrawPanel(0, 0, w, h, Color(20, 20, 20, 125), Color(155, 55, 55, 200))
 			end
 
 			local modelPreview = vgui.Create("DModelPanel", panel)
@@ -277,9 +258,7 @@ if CLIENT then
 			btn:SetTextColor(textColor)
 
 			btn.Paint = function(self, w, h)
-				draw.RoundedBox(0, 0, 0, w, h, Color(5, 5, 5, 155))
-				surface.SetDrawColor(155, 55, 55, 180)
-				surface.DrawOutlinedRect(0, 0, w, h)
+				HG_UI.DrawPanel(0, 0, w, h, Color(5, 5, 5, 155), Color(155, 55, 55, 180))
 			end
 			btn.DoClick = function()
 				net.Start("maniac_select_model")

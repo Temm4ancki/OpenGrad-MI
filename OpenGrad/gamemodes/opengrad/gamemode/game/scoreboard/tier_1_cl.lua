@@ -6,9 +6,9 @@ local unmutedicon = Material("icon32/unmuted.png", "noclamp smooth")
 local mutedicon = Material("icon32/muted.png", "noclamp smooth")
 local hostname = GetHostName()
 
--- Материал для размытия фона
-local blurMat = Material("pp/blurscreen")
-local blurStrength = 0
+-- Используем общую библиотеку UI
+include("homigrad_scr/game/tier_1/ui_library_cl.lua")
+
 
 -- Функции для работы с мутом
 local function ReadMuteStatusPlayers()
@@ -23,77 +23,6 @@ local function SaveMuteStatusPlayer(ply, value)
 	file.Write("homigrad_mute.txt", util.TableToJSON(MutePlayers))
 end
 
--- Функция размытия фона
-local function BlurBackground(panel)
-	if not (IsValid(panel) and panel:IsVisible()) then return end
-
-	local x, y = panel:LocalToScreen(0, 0)
-	local w, h = ScrW(), ScrH()
-
-	surface.SetDrawColor(255, 255, 255, 120)
-	surface.SetMaterial(blurMat)
-
-	for i = 1, 5 do
-		blurMat:SetFloat("$blur", (i / 1) * 1 * blurStrength)
-		blurMat:Recompute()
-		render.UpdateScreenEffectTexture()
-		surface.DrawTexturedRect(-x, -y, w, h)
-	end
-
-	surface.SetDrawColor(0, 0, 0, 100 * blurStrength)
-	surface.DrawRect(0, 0, panel:GetWide(), panel:GetTall())
-
-	blurStrength = math.Clamp(blurStrength + FrameTime() * 6, 0, 1)
-end
-
--- Создание стилизованной кнопки
-local function StyledButton(parent, text, color, font, onclick)
-	local btn = vgui.Create("DButton", parent)
-	btn:SetText(text)
-	btn:SetFont(font or "HomigradFont")
-	btn:SetTextColor(color or color_white)
-	btn:SetTall(35)
-
-	btn.Paint = function(self, w, h)
-		local hover = self:IsHovered()
-		local bg = hover and Color(50, 50, 50, 200) or Color(30, 30, 30, 180)
-		draw.RoundedBox(0, 0, 0, w, h, bg)
-
-		-- Обводка кнопки
-		surface.SetDrawColor(44, 110, 73, hover and 255 or 180)
-		for i = 0, 1 do
-			surface.DrawOutlinedRect(i, i, w - i*2, h - i*2)
-		end
-	end
-
-	btn.DoClick = onclick
-	return btn
-end
-
--- Создание шрифтов
-surface.CreateFont("ScoreboardTitle", {
-	font = "Roboto",
-	size = 28,
-	weight = 1000,
-	outline = false,
-	shadow = false
-})
-
-surface.CreateFont("ScoreboardHeader", {
-	font = "Roboto",
-	size = 20,
-	weight = 800,
-	outline = false,
-	shadow = false
-})
-
-surface.CreateFont("ScoreboardText", {
-	font = "Roboto",
-	size = 18,
-	weight = 600,
-	outline = false,
-	shadow = false
-})
 
 -- Градиенты для анимации
 local grtodown = Material("vgui/gradient-u")
@@ -126,7 +55,7 @@ local function ToggleScoreboard(toggle)
 		end
 
 		-- Сброс силы размытия при открытии
-		blurStrength = 0
+		HG_UI.ResetBlur()
 		showRoundInfo = CurTime() + 2.5
 
 		local scrw, scrh = ScrW(), ScrH()
@@ -207,42 +136,32 @@ local function ToggleScoreboard(toggle)
 		HomigradScoreboard.delaySort = 0
 		HomigradScoreboard.Paint = function(self, w, h)
 			-- Размытие фона
-			BlurBackground(self)
+			HG_UI.BlurBackground(self)
 
-			-- Основной фон без скруглений
-			draw.RoundedBox(0, 0, 0, w, h, Color(10, 10, 10, 180))
-			
-			-- Обводка основного окна
-			surface.SetDrawColor(44, 110, 73, 255)
-			for i = 0, 2 do
-				surface.DrawOutlinedRect(i, i, w - i*2, h - i*2)
-			end
+			-- Основной фон
+			HG_UI.DrawFrame(0, 0, w, h)
 
 			-- Заголовок
-			draw.SimpleText(hostname, "ScoreboardTitle", w / 2, 25, Color(255, 255, 255, 200), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+			draw.SimpleText(hostname, HG_UI.FONTS.HEADER, w / 2, 25, HG_UI.COLORS.TEXT_PRIMARY, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
-			-- Пан��ль заголовков
-			draw.RoundedBox(0, 20, 70, w - 40, 40, Color(20, 20, 20, 150))
-			surface.SetDrawColor(44, 110, 73, 200)
-			surface.DrawOutlinedRect(20, 70, w - 40, 40)
+			-- Панель заголовков
+			HG_UI.DrawPanel(20, 70, w - 40, 40)
 
 			-- Заголовки колонок
-			draw.SimpleText("Статус", "ScoreboardHeader", 120, 90, white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-			draw.SimpleText("Имя игрока", "ScoreboardHeader", w / 2, 90, white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-			draw.SimpleText("Время игры", "ScoreboardHeader", w - 320, 90, white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-			draw.SimpleText("Пинг", "ScoreboardHeader", w - 220, 90, white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-			draw.SimpleText("Команда", "ScoreboardHeader", w - 120, 90, white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+			draw.SimpleText("Статус", HG_UI.FONTS.NORMAL, 120, 90, white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+			draw.SimpleText("Имя игрока", HG_UI.FONTS.NORMAL, w / 2, 90, white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+			draw.SimpleText("Время игры", HG_UI.FONTS.NORMAL, w - 320, 90, white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+			draw.SimpleText("Пинг", HG_UI.FONTS.NORMAL, w - 220, 90, white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+			draw.SimpleText("Команда", HG_UI.FONTS.NORMAL, w - 120, 90, white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
 			-- Информационная панель внизу
-			draw.RoundedBox(0, 20, h - 60, w - 40, 40, Color(20, 20, 20, 150))
-			surface.SetDrawColor(44, 110, 73, 200)
-			surface.DrawOutlinedRect(20, h - 60, w - 40, 40)
+			HG_UI.DrawPanel(20, h - 60, w - 40, 40)
 			
-			draw.SimpleText("Игроков: " .. table.Count(player.GetAll()), "ScoreboardText", 40, h - 40, green, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+			draw.SimpleText("Игроков: " .. table.Count(player.GetAll()), HG_UI.FONTS.NORMAL, 40, h - 40, green, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 
 			local tick = math.Round(1 / engine.ServerFrameTime())
 			local tickColor = tick <= 35 and red or green
-			draw.SimpleText("TPS Сервера: " .. tick, "ScoreboardText", w - 40, h - 40, tickColor, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
+			draw.SimpleText("TPS Сервера: " .. tick, HG_UI.FONTS.NORMAL, w - 40, h - 40, tickColor, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
 
 			local players = self.players
 			for i, ply in pairs(player.GetAll()) do
@@ -325,25 +244,17 @@ local function ToggleScoreboard(toggle)
 
 				-- Стилизация меню
 				playerMenu.Paint = function(self, w, h)
-					draw.RoundedBox(0, 0, 0, w, h, Color(20, 20, 20, 240))
-					surface.SetDrawColor(44, 110, 73, 255)
-					for i = 0, 1 do
-						surface.DrawOutlinedRect(i, i, w - i*2, h - i*2)
-					end
+					HG_UI.DrawFrame(0, 0, w, h, Color(20, 20, 20, 240), nil, 1)
 				end
 
-				local option1 = playerMenu:AddOption("Скопировать SteamID", function()
+				local option1 = HG_UI.AddMenuOption(playerMenu, "Скопировать SteamID", function()
 					SetClipboardText(ply:SteamID())
 					LocalPlayer():ChatPrint("SteamID " .. ply:Name() .. " скопирован! (" .. ply:SteamID() .. ")")
 				end)
-				option1:SetFont("ScoreboardText")
-				option1:SetColor(Color(180, 180, 180))
 
-				local option2 = playerMenu:AddOption("Открыть профиль", function()
+				local option2 = HG_UI.AddMenuOption(playerMenu, "Открыть профиль", function()
 					ply:ShowProfile()
 				end)
-				option2:SetFont("ScoreboardText")
-				option2:SetColor(Color(180, 180, 180))
 
 				playerMenu:MakePopup()
 				ScoreboardList[playerMenu] = true
@@ -386,12 +297,14 @@ local function ToggleScoreboard(toggle)
 				local isLocalPlayer = ply == LocalPlayer()
 
 				if isLocalPlayer then
+					local roleColors = HG_UI.GetRoleColors()
 					draw.RoundedBox(0, 25, 2, w - 50, h - 4, Color(60, 60, 60, 120))
-					surface.SetDrawColor(44, 110, 73, 200)
+					surface.SetDrawColor(roleColors.PRIMARY.r, roleColors.PRIMARY.g, roleColors.PRIMARY.b, 200)
 					surface.DrawOutlinedRect(25, 2, w - 50, h - 4)
 				elseif isHovered then
+					local roleColors = HG_UI.GetRoleColors()
 					draw.RoundedBox(0, 25, 2, w - 50, h - 4, Color(40, 40, 40, 100))
-					surface.SetDrawColor(44, 110, 73, 150)
+					surface.SetDrawColor(roleColors.PRIMARY.r, roleColors.PRIMARY.g, roleColors.PRIMARY.b, 150)
 					surface.DrawOutlinedRect(25, 2, w - 50, h - 4)
 				end
 
@@ -402,18 +315,18 @@ local function ToggleScoreboard(toggle)
 
 				-- Номер в списке
 				if alive ~= "Неизвестно" and ply.last then
-					draw.SimpleText(ply.last, "ScoreboardText", 50, h / 2, Color(180, 180, 180), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+					draw.SimpleText(ply.last, HG_UI.FONTS.NORMAL, 50, h / 2, Color(180, 180, 180), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 				end
 
 				-- Статус
-				draw.SimpleText(alive, "ScoreboardText", 120, h / 2, alivecol, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+				draw.SimpleText(alive, HG_UI.FONTS.NORMAL, 120, h / 2, alivecol, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
 				-- Имя игрока
-				draw.SimpleText(name1, "ScoreboardText", w / 2, h / 2, white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+				draw.SimpleText(name1, HG_UI.FONTS.NORMAL, w / 2, h / 2, white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
 				-- Время игры
 				if not ply.TimeStart then
-					draw.SimpleText("Ожидание...", "ScoreboardText", w - 320, h / 2, Color(150, 150, 150), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+					draw.SimpleText("Ожидание...", HG_UI.FONTS.NORMAL, w - 320, h / 2, Color(150, 150, 150), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 				else
 					local time = math.floor(CurTime() - ply.TimeStart + (ply.Time or 0))
 					local dTime = math.floor(time / 60 / 60 / 24)
@@ -421,13 +334,13 @@ local function ToggleScoreboard(toggle)
 					local mTime = string.format("%02d", math.floor(time / 60) % 60)
 
 					local timeText = dTime > 0 and (dTime .. "д " .. hTime .. ":" .. mTime) or (hTime .. ":" .. mTime)
-					draw.SimpleText(timeText, "ScoreboardText", w - 320, h / 2, white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+					draw.SimpleText(timeText, HG_UI.FONTS.NORMAL, w - 320, h / 2, white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 				end
 
 				-- Пинг
 				local ping = ply:Ping()
 				local pingColor = ping > 100 and red or (ping > 50 and Color(255, 255, 0) or green)
-				draw.SimpleText(ping .. " мс", "ScoreboardText", w - 220, h / 2, pingColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+				draw.SimpleText(ping .. " мс", HG_UI.FONTS.NORMAL, w - 220, h / 2, pingColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
 				-- Команда
 				local teamName, teamColor = ply:PlayerClassEvent("TeamName")
@@ -436,7 +349,7 @@ local function ToggleScoreboard(toggle)
 					teamName = teamName or "Наблюдатель"
 					teamColor = teamColor or ScoreboardSpec
 				end
-				draw.SimpleText(teamName, "ScoreboardText", w - 120, h / 2, teamColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+				draw.SimpleText(teamName, HG_UI.FONTS.NORMAL, w - 120, h / 2, teamColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 			end
 
 			-- Кнопка мута
@@ -449,8 +362,9 @@ local function ToggleScoreboard(toggle)
 				function button:Paint(w, h)
 					local isHovered = self:IsHovered()
 					if isHovered then
+						local roleColors = HG_UI.GetRoleColors()
 						draw.RoundedBox(0, 0, 0, w, h, Color(50, 50, 50, 100))
-						surface.SetDrawColor(44, 110, 73, 200)
+						surface.SetDrawColor(roleColors.PRIMARY.r, roleColors.PRIMARY.g, roleColors.PRIMARY.b, 200)
 						surface.DrawOutlinedRect(0, 0, w, h)
 					end
 
@@ -472,19 +386,26 @@ local function ToggleScoreboard(toggle)
 		controlPanel:SetSize(HomigradScoreboard:GetWide() - 60, 50)
 
 		-- Кнопка меню
-		local menuButton = StyledButton(controlPanel, "Меню", Color(120, 120, 255), "ScoreboardText", function()
-			if OpenHomigradMenu then
-				OpenHomigradMenu()
+		local menuButton = HG_UI.CreateStyledButton(controlPanel, "Меню", {
+			textColor = Color(120, 120, 255),
+			font = HG_UI.FONTS.NORMAL,
+			onClick = function()
+				if OpenHomigradMenu then
+					OpenHomigradMenu()
+				end
+				HomigradScoreboard:Remove()
 			end
-			HomigradScoreboard:Remove()
-		end)
+		})
 		menuButton:SetPos(controlPanel:GetWide() / 2 - 50, 0)
 		menuButton:SetSize(100, 35)
 
 		-- Кнопка "Замутить всех"
-		local muteAll = StyledButton(controlPanel, "Замутить всех", nil, "ScoreboardText", function()
-			muteall = not muteall
-		end)
+		local muteAll = HG_UI.CreateStyledButton(controlPanel, "Замутить всех", {
+			font = HG_UI.FONTS.NORMAL,
+			onClick = function()
+				muteall = not muteall
+			end
+		})
 		muteAll:SetPos(20, 0)
 		muteAll:SetSize(150, 35)
 
@@ -495,9 +416,12 @@ local function ToggleScoreboard(toggle)
 		end
 
 		-- Кнопка "Замутить мертвых"
-		local muteAllDead = StyledButton(controlPanel, "Замутить мертвых", nil, "ScoreboardText", function()
-			muteAlldead = not muteAlldead
-		end)
+		local muteAllDead = HG_UI.CreateStyledButton(controlPanel, "Замутить мертвых", {
+			font = HG_UI.FONTS.NORMAL,
+			onClick = function()
+				muteAlldead = not muteAlldead
+			end
+		})
 		muteAllDead:SetPos(controlPanel:GetWide() - 170, 0)
 		muteAllDead:SetSize(150, 35)
 
@@ -511,7 +435,7 @@ local function ToggleScoreboard(toggle)
 		if func then func(HomigradScoreboard, ScoreboardList) end
 	else
 		ToggleScoreboard_Override = nil
-		blurStrength = 0 -- Сброс размытия при закрытии
+		HG_UI.ResetBlur() -- Сброс размытия при закрытии
 
 		if IsValid(HomigradScoreboard) then HomigradScoreboard:Close() end
 

@@ -1,6 +1,9 @@
 -- Weapon Selector Menu
 if SERVER then return end
 
+-- Используем общую библиотеку UI
+include("homigrad_scr/game/tier_1/ui_library_cl.lua")
+
 surface.CreateFont("WeaponSelectorTitle", {
     font = "Roboto",
     size = 24,
@@ -67,20 +70,12 @@ WeaponSelector.Alpha = 0
 WeaponSelector.Weapons = {}
 
 local function GetRoleColors()
-    local ply = LocalPlayer()
-    if IsValid(ply) and ply.roleT then
-        return {
-            SELECTED = Color(155, 55, 55, 255),
-            HOVER = Color(155, 55, 55, 180),
-            INFO_BORDER = Color(155, 55, 55, 200)
-        }
-    else
-        return {
-            SELECTED = Color(44, 110, 73, 255),
-            HOVER = Color(44, 110, 73, 180),
-            INFO_BORDER = Color(44, 110, 73, 200)
-        }
-    end
+    local roleColors = HG_UI.GetRoleColors()
+    return {
+        SELECTED = roleColors.PRIMARY,
+        HOVER = roleColors.HOVER,
+        INFO_BORDER = roleColors.BORDER
+    }
 end
 
 local COLOR_BACKGROUND = Color(0, 0, 0, 200)

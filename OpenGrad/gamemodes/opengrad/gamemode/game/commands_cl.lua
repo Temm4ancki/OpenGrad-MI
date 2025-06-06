@@ -24,77 +24,8 @@ concommand.Add("hg_level_next", function(ply, cmd, args)
     net.SendToServer()
 end, AutoCompleteHGLevelNext)
 
-surface.CreateFont("MenuLabel", {
-    font = "Roboto",
-    size = 32,
-    weight = 1000,
-    outline = false,
-    shadow = false
-})
-
-surface.CreateFont("MenuBig", {
-    font = "Roboto",
-    size = 25,
-    weight = 1000,
-    outline = false,
-    shadow = false
-})
-
-surface.CreateFont("MenuSmall", {
-    font = "Roboto",
-    size = 15,
-    weight = 5000,
-    outline = true,
-    shadow = true
-})
-
-local blurMat = Material("pp/blurscreen")
-local blurStrength = 0
-
-local function BlurBackground(panel)
-    if not (IsValid(panel) and panel:IsVisible()) then return end
-
-    local x, y = panel:LocalToScreen(0, 0)
-    local w, h = ScrW(), ScrH()
-
-    surface.SetDrawColor(255, 255, 255, 120)
-    surface.SetMaterial(blurMat)
-
-    for i = 1, 5 do
-        blurMat:SetFloat("$blur", (i / 1) * 1 * blurStrength)
-        blurMat:Recompute()
-        render.UpdateScreenEffectTexture()
-        surface.DrawTexturedRect(-x, -y, w, h)
-    end
-
-    surface.SetDrawColor(0, 0, 0, 100 * blurStrength)
-    surface.DrawRect(0, 0, panel:GetWide(), panel:GetTall())
-
-    blurStrength = math.Clamp(blurStrength + FrameTime() * 6, 0, 1)
-end
-
-local function StyledButton(parent, text, color, font, onclick)
-    local btn = vgui.Create("DButton", parent)
-    btn:SetText(text)
-    btn:SetFont(font or "DermaDefaultBold")
-    btn:SetTextColor(color or color_white)
-    btn:SetTall(40)
-    btn:Dock(TOP)
-    btn:DockMargin(0, 0, 0, 10)
-
-    btn.Paint = function(self, w, h)
-        local hover = self:IsHovered()
-        local bg = hover and Color(40, 40, 40, 200) or Color(30, 30, 30, 180)
-        draw.RoundedBox(0, 0, 0, w, h, bg)
-        surface.SetDrawColor(44, 110, 73, hover and 255 or 180)
-        for i = 0, 1 do
-            surface.DrawOutlinedRect(i, i, w - i*2, h - i*2)
-        end
-    end
-
-    btn.DoClick = onclick
-    return btn
-end
+-- Используем общую библиотеку UI
+include("homigrad_scr/game/tier_1/ui_library_cl.lua")
 
 function OpenLevelMenu()
     local ply = LocalPlayer()
@@ -116,41 +47,35 @@ function OpenLevelMenu()
     local width = 360
     local height = math.min(dynamicHeight, maxHeight)
 
-    LevelMenuFrame = vgui.Create("DFrame")
-    LevelMenuFrame:SetSize(width, height)
-    LevelMenuFrame:Center()
-    LevelMenuFrame:MakePopup()
-    LevelMenuFrame:SetTitle("")
-    LevelMenuFrame:ShowCloseButton(true)
-    LevelMenuFrame:SetDraggable(true)
-
-    LevelMenuFrame.Paint = function(self, w, h)
-        BlurBackground(self)
-        draw.RoundedBox(0, 0, 0, w, h, Color(10, 10, 10, 180))
-        surface.SetDrawColor(44, 110, 73, 255)
-        for i = 0, 2 do
-            surface.DrawOutlinedRect(i, i, w - i*2, h - i*2)
-        end
-        draw.SimpleText("Управление раундом", "MenuLabel", w / 2, 20, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
-    end
+    LevelMenuFrame = HG_UI.CreateStyledFrame("Управление раундом", width, height, {
+        titleY = 35,
+        titleFont = HG_UI.FONTS.TITLE
+    })
 
     -- Верхняя панель с кнопкой вне скролла
     local topPanel = vgui.Create("Panel", LevelMenuFrame)
     topPanel:SetPos(padding, 60)
     topPanel:SetSize(width - padding * 2, 50 + 10 + 2 + 10)
 
-    StyledButton(topPanel, "Завершить раунд", Color(255, 80, 80), "MenuBig", function()
-        net.Start("HGLEVEL_END_COMMAND")
-        net.SendToServer()
-        LevelMenuFrame:Close()
-    end)
+    HG_UI.CreateStyledButton(topPanel, "Завершить раунд", {
+        textColor = HG_UI.COLORS.ERROR,
+        font = HG_UI.FONTS.BIG,
+        dock = TOP,
+        margin = {0, 0, 0, 10},
+        onClick = function()
+            net.Start("HGLEVEL_END_COMMAND")
+            net.SendToServer()
+            LevelMenuFrame:Close()
+        end
+    })
 
     local line = vgui.Create("DPanel", topPanel)
     line:SetTall(2)
     line:Dock(BOTTOM)
     line:DockMargin(0, 10, 0, 10)
     line.Paint = function(self, w, h)
-        surface.SetDrawColor(44, 110, 73, 100)
+        local roleColors = HG_UI.GetRoleColors()
+        surface.SetDrawColor(roleColors.PRIMARY.r, roleColors.PRIMARY.g, roleColors.PRIMARY.b, 100)
         surface.DrawRect(0, 0, w, h)
     end
 
@@ -159,16 +84,8 @@ function OpenLevelMenu()
     scroll:SetPos(padding, topPanel:GetY() + topPanel:GetTall())
     scroll:SetSize(width - padding * 2, height - scroll:GetY() - padding)
 
-    -- Кастомный скроллбар
-    local sbar = scroll:GetVBar()
-    function sbar:Paint(w, h) end
-    function sbar.btnUp:Paint(w, h) end
-    function sbar.btnDown:Paint(w, h) end
-    function sbar.btnGrip:Paint(w, h)
-        draw.RoundedBox(0, 0, 0, w, h, Color(80, 80, 80, 160))
-        surface.SetDrawColor(44, 110, 73, 200)
-        surface.DrawOutlinedRect(0, 0, w, h)
-    end
+    -- Стилизация скроллбара
+    HG_UI.StyleScrollPanel(scroll)
 
     local layout = vgui.Create("DListLayout", scroll)
     layout:Dock(FILL)
@@ -185,12 +102,18 @@ function OpenLevelMenu()
     end
 
     for _, level in ipairs(LevelList) do
-        StyledButton(layout, string.upper(level), Color(220, 220, 220), "MenuSmall", function()
-            net.Start("HGLEVEL_NEXT_COMMAND")
-            net.WriteString(level)
-            net.SendToServer()
-            LevelMenuFrame:Close()
-        end)
+        HG_UI.CreateStyledButton(layout, string.upper(level), {
+            textColor = HG_UI.COLORS.TEXT_SECONDARY,
+            font = HG_UI.FONTS.SMALL,
+            dock = TOP,
+            margin = {0, 0, 0, 10},
+            onClick = function()
+                net.Start("HGLEVEL_NEXT_COMMAND")
+                net.WriteString(level)
+                net.SendToServer()
+                LevelMenuFrame:Close()
+            end
+        })
     end
 end
 
