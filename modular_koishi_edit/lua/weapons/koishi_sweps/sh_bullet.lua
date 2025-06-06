@@ -161,9 +161,6 @@ function SWEP:FireBullet(dmg, numbul, spread)
 
 	util.Effect( "sib_muzzleefect", ef )
 
-	if CLIENT then
-		SIB_suppress.Shoot = 0.01*(self.Primary.Force/40)
-	end
 	local obj = self:LookupAttachment("shell") or 2
 	local Attachment = self.Owner:GetActiveWeapon():GetAttachment(obj)
 	if Attachment then

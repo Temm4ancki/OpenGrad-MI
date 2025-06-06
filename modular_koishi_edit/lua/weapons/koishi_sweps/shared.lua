@@ -218,7 +218,7 @@ function SWEP:Step()
 		self.Clavicle = LerpAngle(0.1 - math.Clamp(self.Mobility / 70, 0, 0.035), self.Clavicle or zeroAng, (self.HoldType == "revolver" and Angle(0, 0, -38)) or Angle(5, 20, -35))
 		self.Head = LerpAngle(0.1, self.Head or zeroAng, zeroAng)
 	else
-		self.Clavicle = LerpAngle(0.1 - math.Clamp(self.Mobility / 70, 0, 0.035), self.Clavicle or zeroAng, (self.Osmotr and Angle(20, 0, 25)) or zeroAng)
+		self.Clavicle = LerpAngle(0.1 - math.Clamp(self.Mobility / 70, 0, 0.035), self.Clavicle or zeroAng, zeroAng)
 		self.Head = LerpAngle(0.05, self.Head or zeroAng, (self.HoldType == "revolver" and Angle(-15, -10, 15)) or Angle(-15, -5, 5))
 	end
 
@@ -242,7 +242,7 @@ function SWEP:Step()
 		self.Finger = Lerp(0.25, self.Finger or 0, (ply:KeyDown(IN_ATTACK) and -1) or 0)
 		ply:SetEyeAngles(ply:EyeAngles() + self.eyeSpray)
 		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Finger11"), Angle(0, self.Finger * 40, 0), false)
-		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Hand"), (self.Osmotr and (self.HoldType == "revolver" and Angle(15, 0, math.sin(CurTime() * 0.5) * 55) or Angle(15, -25, math.sin(CurTime() * 0.5) * 55))) or Angle(0, 0, 0), false)
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Hand"), (Angle(15, -25, math.sin(CurTime() * 0.5) * 55)) or Angle(0, 0, 0), false)
 		self.eyeSpray = LerpAngle(0.2, self.eyeSpray, Angle(0, 0, 0))
 	end
 

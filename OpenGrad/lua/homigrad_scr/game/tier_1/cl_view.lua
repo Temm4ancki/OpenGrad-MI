@@ -214,6 +214,39 @@ hook.Add("RenderScene","octoweapons",function(pos,angle,fov)
 	return true
 end)
 
+md3_weps = {}
+md3_melee = {}
+md3_fumo = {}
+
+local EntityMeta = FindMetaTable("Entity")
+
+for _, wep in ipairs(weapons.GetList()) do
+	if wep.Category == "md3" then
+		md3_weps[wep.ClassName] = true
+	elseif wep.Category == "md3melee" then
+		md3_melee[wep.ClassName] = true
+	elseif wep.Category == "md3fumo" then
+		md3_fumo[wep.ClassName] = true
+	end
+end
+
+-- da
+function EntityMeta:isMD3()
+	local ply = self:GetOwner()
+	if ply:GetActiveWeapon():IsValid() and 
+		(md3_weps[ply:GetActiveWeapon():GetClass()] or md3_melee[ply:GetActiveWeapon():GetClass()] or md3_fumo[ply:GetActiveWeapon():GetClass()]) then 
+			return true
+	end
+
+	return false
+end
+
+local md_debug = CreateClientConVar("md_debug","0",false,false)
+
+local minus_vector = Vector(-1,-1,-1)
+local plus_vector = Vector(-1,-1,-1)
+
+
 local whitelistweps = {
 	["weapon_physgun"] = true,
 	["gmod_tool"] = true,
@@ -237,7 +270,6 @@ local deathtrack = {
 	"https://cdn.discordapp.com/attachments/1144224221334097974/1144230250465734797/death3.mp3",
 	"https://cdn.discordapp.com/attachments/1144224221334097974/1144238942862979142/death4.mp3",
 }
-local g_station = nil
 local playing = false
 local deathtexts = {
 	"ТЫ МЁРТВ",
@@ -328,11 +360,6 @@ local angRecoil = Angle(0,0,0)
 local recoil = 0
 local sprinthuy = 0
 local oldview = {}
-
-local whitelistSimfphys = {}
-whitelistSimfphys.gred_simfphys_brdm2 = true
-whitelistSimfphys.gred_simfphys_brdm2_atgm = true
-whitelistSimfphys.gred_simfphys_brdm_hq = true
 
 local view = {}
 
@@ -457,11 +484,10 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 	fov = Lerp(ScopeLerp,fov,75)
 
 	angRecoil[3] = 0
-	
-	if wep and weps[wep:GetClass()] then
-		local weaponClass = wep:GetClass()
-		local muzzle = wep:GetAttachment(wep:LookupAttachment("muzzle"))
 
+	if wep and weps[wep:GetClass()] or (md3_weps or md3_fumo or md3_melee) then
+		local muzzle = wep:GetAttachment(wep:LookupAttachment("muzzle")) or hand -- эщкере руки 
+		
 		if not RENDERSCENE then
 			local lastShootTime = wep:LastShootTime()
 			if not oldShootTime then oldShootTime = lastShootTime else
@@ -472,199 +498,24 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 				end
 			end
 		else
-			vecWep = hand.Pos + hand.Ang:Up()*10 - muzzle.Ang:Forward()*7 + hand.Ang:Right()*-4
-			angWep = hand.Ang + Angle(0,0,0)
+			if wep.RightMod~=nil or wep.ForwardMod~=nil or wep.UpMod~=nil or wep.AngleMod then
+				vecWep = hand.Pos + hand.Ang:Up()*wep.UpMod - muzzle.Ang:Forward()*wep.ForwardMod + hand.Ang:Right()*-wep.RightMod
+				angWep = hand.Ang + wep.AngleMod
+			else
+				vecWep = hand.Pos + hand.Ang:Up()*10 - muzzle.Ang:Forward()*7 + hand.Ang:Right()*-4
+				angWep = hand.Ang + Angle(0,0,0)
+			end
 		end
-		
+
 		local anim_pos = max(startRecoil - CurTime(),0) * 5
 
 		fov = fov - anim_pos * (scope and 2 or 1)
 		angRecoil[3] = anim_pos * (scope and 10 or 5)
-
-		if weaponClass == "weapon_glock18" then
-			--Vector(3.85,10,1.45)
-			vecWep = hand.Pos + hand.Ang:Up() * 4.3 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 1.15
-			angWep = hand.Ang + Angle(5,10,0)
-		end
-		if weaponClass == "weapon_glock" then
-			--Vector(2.3,10,0)
-			vecWep = hand.Pos + hand.Ang:Up() * 2.3 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 0
-			angWep = hand.Ang + Angle(-15,5,0)
-		end
-		if weaponClass == "weapon_ak74" then
-			--Vector(5.2,-2,1.1)
-			vecWep = hand.Pos + hand.Ang:Up() * 5.2 - hand.Ang:Forward() * -2 + hand.Ang:Right() * 1.1
-			angWep = hand.Ang + Angle(-5,5,-5)
-		end
-		if weaponClass == "weapon_xm1014" then
-			--Vector(3.55,4,0.95)
-			vecWep = hand.Pos + hand.Ang:Up() * 3.55 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 0.95
-			angWep = hand.Ang + Angle(-8,0,0)
-		end
-		if weaponClass == "weapon_remington870" then
-			--Vector(3.8,4,0.65)
-			vecWep = hand.Pos + hand.Ang:Up() * 4.4 - hand.Ang:Forward() * 4 + hand.Ang:Right() / 1.6
-			angWep = hand.Ang + Angle(-5,0,0)
-		end
-		if weaponClass == "weapon_ar15" then
-			--Vector(5.05,7,0.725)
-			vecWep = hand.Pos + hand.Ang:Up() * 5.01 - hand.Ang:Forward() * 7 + hand.Ang:Right() * 0.725
-			angWep = hand.Ang + Angle(-5,0,0)
-		end
-		if weaponClass == "weapon_mp7" then
-			--Vector(3.25,7,0.79)
-			vecWep = hand.Pos + hand.Ang:Up() * 2.9 - hand.Ang:Forward() * 9 + hand.Ang:Right() * 0.79
-			angWep = hand.Ang + Angle(-10,0,0)
-		end
-		if weaponClass == "weapon_beretta" then
-			--Vector(2.5,10,0.05)
-			vecWep = hand.Pos + hand.Ang:Up() * 2.5 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 0.05
-			angWep = hand.Ang + Angle(-10,2,0)
-		end
-		if weaponClass == "weapon_deagle" then
-			--Vector(2.7,10,0.4)
-			vecWep = hand.Pos + hand.Ang:Up() * 2.7 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 0.4
-			angWep = hand.Ang + Angle(-10,0,0)
-		end
-		if weaponClass == "weapon_fiveseven" then
-			--Vector(2.5,10,0.1)
-			vecWep = hand.Pos + hand.Ang:Up() * 2.5 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 0.05
-			angWep = hand.Ang + Angle(-10,3,0)
-		end
-		if weaponClass == "weapon_mp5" then
-			--Vector(4.22,7,0.8)
-			vecWep = hand.Pos + hand.Ang:Up() * 4.17 - hand.Ang:Forward() * 7 + hand.Ang:Right() * 0.79	
-			angWep = hand.Ang + Angle(-5,0,0)
-		end
-		if weaponClass == "weapon_m3super" then
-			--Vector(3.66,5,0.65)
-			vecWep = hand.Pos + hand.Ang:Up() * 3.66 - hand.Ang:Forward() * 5 + hand.Ang:Right() * 0.65
-			angWep = hand.Ang + Angle(-5,0,0)
-		end
-		if weaponClass == "weapon_p220" then
-			--Vector(2.7,10,0.12)
-			vecWep = hand.Pos + hand.Ang:Up() * 2.7 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 0.12
-			angWep = hand.Ang + Angle(-15,02,0)
-		end
-		if weaponClass == "weapon_hk_usp" then
-			--Vector(2.5,10,0.3)
-			vecWep = hand.Pos + hand.Ang:Up() * 2.43 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 0.3
-			angWep = hand.Ang + Angle(-15,5,0)
-		end
-		if weaponClass == "weapon_hk_usps" then
-			--Vector(3.9,10,1.09)
-			vecWep = hand.Pos + hand.Ang:Up() * 3.9 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 1.09
-			angWep = hand.Ang + Angle(0,10,0)
-		end
-		if weaponClass == "weapon_akm" then
-			--Vector(5.1,5,0.76)
-			vecWep = hand.Pos + hand.Ang:Up() * 5.0 - hand.Ang:Forward() * 5 + hand.Ang:Right() * 0.76
-			angWep = hand.Ang + Angle(-8,5,0)
-		end
-		if weaponClass == "weapon_ak74u" then
-			--Vector(5.3,4,0.78)
-			vecWep = hand.Pos + hand.Ang:Up() * 5.2 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 0.78
-			angWep = hand.Ang + Angle(-8,0,0)
-		end
-		if weaponClass == "weapon_l1a1" then
-			--Vector(5.7,4,1.1)
-			vecWep = hand.Pos + hand.Ang:Up() * 5.7 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 1.1
-			angWep = hand.Ang + Angle(25,35,15)
-		end
-		if weaponClass == "weapon_fal" then
-			--Vector(5.45,10,0.69)
-			vecWep = hand.Pos + hand.Ang:Up() * 5.45 - hand.Ang:Forward() * 10 + hand.Ang:Right() * 0.69
-			angWep = hand.Ang + Angle(-8,0,0)
-		end
-		if weaponClass == "weapon_galil" then
-			--Vector(5.7,4,0.75)
-			vecWep = hand.Pos + hand.Ang:Up() * 5.7 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 0.75
-			angWep = hand.Ang + Angle(-5,0,0)
-		end
-		if weaponClass == "weapon_galilsar" then
-			--Vector(3.9,7,0.57)
-			vecWep = hand.Pos + hand.Ang:Up() * 3.75 - hand.Ang:Forward() * 7 + hand.Ang:Right() * 0.58
-			angWep = hand.Ang + Angle(-8,0,0)
-		end
-		if weaponClass == "weapon_m14" then
-			--Vector(6,4,0.95)
-			vecWep = hand.Pos + hand.Ang:Up() * 6 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 0.95
-			angWep = hand.Ang + Angle(25,35,15)
-		end
-		if weaponClass == "weapon_m1a1" then
-			--Vector(5.25,4,1.15)
-			vecWep = hand.Pos + hand.Ang:Up() * 5.25 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 1.15
-			angWep = hand.Ang + Angle(25,35,15)
-		end
-		if weaponClass == "weapon_mk18" then
-			--Vector(6.2,6,0.88)
-			vecWep = hand.Pos + hand.Ang:Up() * 6.15 - hand.Ang:Forward() * 6 + hand.Ang:Right() * 0.88
-			angWep = hand.Ang + Angle(-7,0,0)
-		end
-		if weaponClass == "weapon_m249" then
-			--Vector(5.8,8,0.88)
-			vecWep = hand.Pos + hand.Ang:Up() * 5.8 - hand.Ang:Forward() * 8 + hand.Ang:Right() * .88
-			angWep = hand.Ang + Angle(-6,0,0)
-		end
-		if weaponClass == "weapon_m4a1" then
-			--Vector(5.05,7,0.725)
-			vecWep = hand.Pos + hand.Ang:Up() * 5.05 - hand.Ang:Forward() * 7 + hand.Ang:Right() * 0.725
-			angWep = hand.Ang + Angle(-5,0,0)
-		end
-		if weaponClass == "weapon_minu14" then
-			--Vector(5,4,0.95)
-			vecWep = hand.Pos + hand.Ang:Up() * 5 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 0.95
-			angWep = hand.Ang + Angle(15,35,15)
-		end
-		if weaponClass == "weapon_mp40" then
-			--Vector(6.5,4,0.67)
-			vecWep = hand.Pos + hand.Ang:Up() * 6.5 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 0.67
-			angWep = hand.Ang + Angle(-5,0,0)
-		end
-		if weaponClass == "weapon_rpk" then
-			--Vector(4.9,4,0.8)
-			vecWep = hand.Pos + hand.Ang:Up() * 4.75 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 0.8
-			angWep = hand.Ang + Angle(-7,0,0)
-		end
-		if weaponClass == "weapon_ump" then
-			--Vector(6.6,7,1.35)
-			vecWep = hand.Pos + hand.Ang:Up() * 6.6 - hand.Ang:Forward() * 7 + hand.Ang:Right() * 1
-			angWep = hand.Ang + Angle(0,5,15)
-		end
-		if weaponClass == "weapon_sar2" then
-			--Vector(6,5,1.42)
-			vecWep = hand.Pos + hand.Ang:Up() * 6.0 - hand.Ang:Forward() * 5 + hand.Ang:Right() * 0.93
-			angWep = hand.Ang + Angle(-10,0,0)
-		end
-		if weaponClass == "weapon_rpgg" then
-			--Vector(7,5,1)
-			vecWep = hand.Pos + hand.Ang:Up() * 10 - hand.Ang:Forward() * 5 + hand.Ang:Right() * -3
-			angWep = hand.Ang + Angle(-11,0,0)
-		end
-		if weaponClass == "weapon_beanbag" then
-			--Vector(4.41,4,0.41)
-			vecWep = hand.Pos + hand.Ang:Up() * 4.41 - hand.Ang:Forward() * 4 + hand.Ang:Right() * 0.41
-			angWep = hand.Ang + Angle(-5,0,0)
-		end
-		if weaponClass == "weapon_civil_famas" then
-			--Vector(6,6,0.69)
-			vecWep = hand.Pos + hand.Ang:Up() * 6 - hand.Ang:Forward() * 6 + hand.Ang:Right() * 0.69
-			angWep = hand.Ang + Angle(-5,0,0)
-		end
-		if weaponClass == "weapon_spas12" then
-			--Vector(6,6,0.69)
-			vecWep = hand.Pos + hand.Ang:Up() * 3.1 - hand.Ang:Forward() * 6 + hand.Ang:Right() * 0.85
-			angWep = hand.Ang + Angle(-7,0,0)
-		end
-		if string.find(weaponClass,"fumo") then
-			vecWep = hand.Pos + hand.Ang:Up() * 3.1 - hand.Ang:Forward() * 6 + hand.Ang:Right() * 0.85
-			angWep = hand.Ang + Angle(-7,0,0)
-		end
 	end
 
 
 	if not RENDERSCENE then
-		LerpEye = LerpAngleFT(smooth_cam:GetBool() and 0.55 or 1,LerpEye,angEye)
+		LerpEye = LerpAngleFT(1,LerpEye,angEye)
 	else
 		angEye = LerpAngleFT(0.15,LerpEye,angEye) or LerpAngle(0.15,LerpEye,angEye)
 	end
@@ -678,7 +529,7 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 
 	-- if lply:InVehicle() or not firstPerson then return end
 
-	if not lply:Alive() or (IsValid(wep) and (whitelistweps[wep:GetClass()] or string.find(wep:GetClass(),"fumo"))) or lply:GetMoveType() == MOVETYPE_NOCLIP then
+	if not lply:Alive() or (IsValid(wep) and (whitelistweps[wep:GetClass()])) or lply:GetMoveType() == MOVETYPE_NOCLIP then
 		view.origin = ply:EyePos()
 		view.angles = ply:EyeAngles()
 		view.drawviewer = false
@@ -1099,14 +950,3 @@ hook.Add("PostPlayerDraw", "IKFoot_PostPlayerDraw", function(ply)
 		end
 	end
 end)
-
-local filename = "OpenGrad/lua/homigrad_scr/game/tier_1/cl_view.lua"
-
-local contents = file.Read(filename, "LUA")
-if not contents then
-	print("[Reload] Failed to read file:", filename)
-	return
-end
-
-RunString(contents, filename)
-print("[Reload] Reloaded:", filename)
