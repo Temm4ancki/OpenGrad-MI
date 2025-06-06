@@ -91,7 +91,6 @@ bullets = {
 	["weapon_sib_xm1014"] = 12,
 	["weapon_sib_remington870"] = 12
 }
-
 cir = {
 	["weapon_sib_m3super90"] = 0.02,
 	["weapon_sib_xm1014"] = 0.04,
@@ -814,7 +813,7 @@ function FireShot(wep)
 				})
 			end
 		elseif(ApproachAngle<(MaxRicAngle*.75))then -- ping whiiiizzzz
-			sound.Play("utils/ricochet/snd_jack_hmcd_ricochet_"..math.random(1,2)..".ogg",IPos,70,math.random(90,100))
+			sound.Play("snd_jack_hmcd_ricochet_"..math.random(1,2)..".wav",IPos,70,math.random(90,100))
 			local NewVec=AVec:Angle()
 			NewVec:RotateAroundAxis(TNorm,180)
 			NewVec=NewVec:Forward()
@@ -942,5 +941,5 @@ hook.Add("PlayerDeath", "chenahui", function(ply)
 	ply.wep_attach_sup9x19 = false
 	ply.wep_attach_supak = false
 	ply.wep_attach_supshotgun = false
-	ply.wep_sight_okp7 = false
+	ply.wep_sight_okp7 = true
 end)
