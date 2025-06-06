@@ -1,17 +1,9 @@
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_glock.lua
-SWEP.Base = "salat_base" -- base
-=======
 SWEP.Base = "koishi_sweps" -- base
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_glock.lua
 
 SWEP.PrintName 				= "Glock 17"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Пистолет под калибр 9х19"
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_glock.lua
-SWEP.Category 				= "Оружие"
-=======
 SWEP.Category 				= "md3"
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_glock.lua
 SWEP.WepSelectIcon = "vgui/select/w/glock17"
 SWEP.IconOverride = "vgui/icon/w/glock17.png"
 

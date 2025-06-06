@@ -2,7 +2,7 @@
 SWEP.Base = "salat_base" -- base
 ========
 SWEP.Base = "koishi_sweps" -- base
->>>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_asval.lua
+/weapon_s_asval.lua
 
 SWEP.PrintName 				= "АС «Вал»"
 SWEP.Author 				= "Homigrad"
@@ -11,7 +11,7 @@ SWEP.Purpose			= "Автоматическая винтовка со встро�
 SWEP.Category 				= "Оружие"
 ========
 SWEP.Category 				= "md3"
->>>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_asval.lua
+/weapon_s_asval.lua
 SWEP.WepSelectIcon = "vgui/select/w/asval"
 SWEP.IconOverride = "vgui/icon/w/asval.png"
 

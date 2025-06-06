@@ -1,16 +1,8 @@
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_m249.lua
-SWEP.Base = "salat_base" -- base 
-
-SWEP.PrintName 				= "M249"
-SWEP.Purpose			= "Пулемёт под калибр 5,56х45"
-SWEP.Category 				= "Оружие"
-=======
 SWEP.Base = "koishi_sweps" -- base 
 
 SWEP.PrintName 				= "M249"
 SWEP.Purpose			= "Пулемёт под калибр 5,56х45"
 SWEP.Category 				= "md3"
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_m249.lua
 SWEP.WepSelectIcon = "vgui/select/w/m249"
 SWEP.IconOverride = "vgui/icon/w/m249.png"
 

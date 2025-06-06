@@ -1,17 +1,9 @@
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_spas12.lua
-SWEP.Base = "salat_base" -- base
-=======
 SWEP.Base = "koishi_sweps" -- base
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_spas12.lua
 
 SWEP.PrintName 				= "SPAS-12"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Полуавтоматический дробовик под калибр 12/70"
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_spas12.lua
-SWEP.Category 				= "Оружие"
-=======
 SWEP.Category 				= "md3"
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_spas12.lua
 SWEP.WepSelectIcon = "vgui/select/w/spas_12"
 SWEP.IconOverride = "vgui/icon/w/spas_12.png"
 

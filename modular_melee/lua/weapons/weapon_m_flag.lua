@@ -1,13 +1,8 @@
 SWEP.Base = "koishi_melee"
 
 SWEP.PrintName = "Флаг"
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_hg_flag.lua
-SWEP.Category = "Ближний Бой"
-SWEP.Purpose = "ЗА АФРИКАНИСТАН"
-=======
 SWEP.Category = "md3melee"
 SWEP.Purpose = "ЗА РЕДИСТАН"
->>>>>>> modular3:modular_melee/lua/weapons/weapon_m_flag.lua
 SWEP.WepSelectIcon = "vgui/select/w/flag"
 SWEP.IconOverride = "vgui/icon/w/flag.png"
 

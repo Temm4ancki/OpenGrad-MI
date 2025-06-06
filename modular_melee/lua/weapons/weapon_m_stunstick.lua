@@ -1,15 +1,8 @@
 SWEP.Base = "koishi_melee"
 
 SWEP.PrintName = "Электро-дубинка"
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_hg_stunstick.lua
-SWEP.Category = "Ближний Бой"
-SWEP.Purpose = "Ручная электрическая дубинка, применяется отрядами ГО при правонарушениях граждан, или солдатами Альянса в боевых условиях."
-SWEP.WepSelectIcon = "vgui/select/w/stunbaton"
-SWEP.IconOverride = "vgui/icon/w/stunbaton.png"
-=======
 SWEP.Category = "md3melee"
 SWEP.Instructions = "Ручная электрическая дубинка, применяется отрядами ГО при правонарушениях граждан, или солдатами Альянса в боевых условиях."
->>>>>>> modular3:modular_melee/lua/weapons/weapon_m_stunstick.lua
 
 SWEP.WepSelectIcon = "vgui/select/w/stunbaton"
 SWEP.IconOverride = "vgui/icon/w/stunbaton.png"

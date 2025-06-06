@@ -1,13 +1,3 @@
-<<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_m134.lua
-SWEP.Base = "salat_base" -- base
-
-SWEP.PrintName 				= "MINIGUN"
-SWEP.Author 				= "ADMINI"
-SWEP.Purpose			= "MINIGUN АДМИНХУЙ! БАМ БАМ БАМ!"
-SWEP.Category 				= "Оружие"
-SWEP.WepSelectIcon = "vgui/select/w/m134"
-SWEP.IconOverride = "vgui/icon/w/m134.png"
-========
 SWEP.Base = 'koishi_sweps' -- base
 
 SWEP.PrintName 				= "MINIGUN"
@@ -15,7 +5,6 @@ SWEP.Author 				= "ADMINI"
 SWEP.Instructions			= "MINIGUN АДМИНХУЙ! БАМ БАМ БАМ!"
 SWEP.Category 				= "md3"
 SWEP.WepSelectIcon			= "pwb/sprites/m134"
->>>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_minigun.lua
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= true
@@ -57,13 +46,8 @@ SWEP.SlotPos				= 2
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-<<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_m134.lua
 SWEP.ViewModel				= "models/weapons/salat/w_m134/w_m134.mdl"
 SWEP.WorldModel				= "models/weapons/salat/w_m134/w_m134.mdl"
-========
-SWEP.ViewModel				= "models/weapons/salat/w_hk416/w_hk416.mdl"
-SWEP.WorldModel				= "models/weapons/salat/w_hk416/w_hk416.mdl"
->>>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_minigun.lua
 
 function SWEP:PrimaryAttack()
 	self.ShootNext=self.NextShot or NextShot

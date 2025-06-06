@@ -1,17 +1,9 @@
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_deagle.lua
-SWEP.Base = "salat_base" -- base
-=======
 SWEP.Base = "koishi_sweps" -- base
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_deagle.lua
 
 SWEP.PrintName 				= "Mateba Autorevolver HP"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Револьвер под калибр .44 Remington Magnum"
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_deagle.lua
-SWEP.Category 				= "Оружие"
-=======
 SWEP.Category 				= "md3"
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_deagle.lua
 SWEP.WepSelectIcon = "vgui/select/w/deagle"
 SWEP.IconOverride = "vgui/icon/w/deagle.png"
 

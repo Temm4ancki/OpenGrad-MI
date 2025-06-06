@@ -1,17 +1,9 @@
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_remington870.lua
-SWEP.Base = "salat_base" -- base
-=======
 SWEP.Base = "koishi_sweps" -- base
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_remington870.lua
 
 SWEP.PrintName 				= "Ремингтон"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Дробовик под калибр 12/70"
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_remington870.lua
-SWEP.Category 				= "Оружие"
-=======
 SWEP.Category 				= "md3"
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_remington870.lua
 SWEP.WepSelectIcon = "vgui/select/w/remington870"
 SWEP.IconOverride = "vgui/icon/w/remington870.png"
 

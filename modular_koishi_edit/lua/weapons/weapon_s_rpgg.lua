@@ -1,17 +1,9 @@
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_rpgg.lua
-SWEP.Base = "salat_base" -- base
-=======
 SWEP.Base = "koishi_sweps" -- base
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_rpgg.lua
 
 SWEP.PrintName 				= "РПГ"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Ручной противотанковый гранатомёт"
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_rpgg.lua
-SWEP.Category 				= "Оружие" -- Теперь работает!!
-=======
 SWEP.Category 				= "md3" -- Теперь работает!! -- ytn yt hf,jnftn
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_rpgg.lua
 SWEP.WepSelectIcon = "vgui/select/w/rpgg"
 SWEP.IconOverride = "vgui/icon/w/rpgg.png"
 

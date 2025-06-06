@@ -1,17 +1,9 @@
-<<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_asval.lua
-SWEP.Base = "salat_base" -- base
-========
 SWEP.Base = "koishi_sweps" -- base
->>>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_asval.lua
 
 SWEP.PrintName 				= "АС «Вал»"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Автоматическая винтовка со встроенным глушителем под калибр 9х39"
-<<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_asval.lua
-SWEP.Category 				= "Оружие"
-========
 SWEP.Category 				= "md3"
->>>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_asval.lua
 SWEP.WepSelectIcon = "vgui/select/w/asval"
 SWEP.IconOverride = "vgui/icon/w/asval.png"
 

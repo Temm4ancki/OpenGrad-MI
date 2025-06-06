@@ -1,17 +1,9 @@
-<<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_remington870police.lua
-SWEP.Base = "salat_base" -- base
-========
 SWEP.Base = "koishi_sweps" -- base
->>>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_remington870police.lua
 
 SWEP.PrintName 				= "Травматический дробовик"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Дробовик под калибр 12/70 beanbag (нелетальный)"
-<<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_remington870police.lua
-SWEP.Category 				= "Оружие"
-========
 SWEP.Category 				= "md3"
->>>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_remington870police.lua
 SWEP.WepSelectIcon = "vgui/select/w/remington870police"
 SWEP.IconOverride = "vgui/icon/w/remington870police.png"
 

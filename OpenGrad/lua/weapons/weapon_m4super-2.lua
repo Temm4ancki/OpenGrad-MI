@@ -2,7 +2,7 @@
 SWEP.Base = "salat_base" -- base
 ========
 SWEP.Base = "koishi_sweps" -- base
->>>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_m4super.lua
+/weapon_s_m4super.lua
 
 SWEP.PrintName 				= "M4 Super 90"
 SWEP.Author 				= "Homigrad"
@@ -11,7 +11,7 @@ SWEP.Purpose			= "Дробовик под калибр 12/70"
 SWEP.Category 				= "Оружие"
 ========
 SWEP.Category 				= "md3"
->>>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_m4super.lua
+/weapon_s_m4super.lua
 SWEP.WepSelectIcon = "vgui/select/w/m4super90"
 SWEP.IconOverride = "vgui/icon/w/m4super90.png"
 

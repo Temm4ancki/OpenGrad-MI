@@ -1,8 +1,4 @@
-<<<<<<< HEAD:modular2/lua/weapons/weapon_sib_10.lua
-SWEP.Base = "salat_base" -- base
-=======
 SWEP.Base = "koishi_sweps" -- base
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_doublebarell.lua
 
 SWEP.PrintName 				= "Beretta SV10 - SIB"
 SWEP.Author 				= "Remington"

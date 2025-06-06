@@ -1,17 +1,9 @@
-<<<<<<< HEAD:modular2/lua/weapons/salat_base/shared.lua
-SWEP.Base = "weapon_base" -- base
-SWEP.PrintName = "weapon_sib_base"
-SWEP.Author = "sadsalat"
-SWEP.Instructions = "Стрелять - ЛКМ \nПоднять оружие - Удержать ПКМ \nПоменять тип прицеливания - ALT"
-SWEP.Category = "[Homicbox]"
-=======
 SWEP.Base = "weapon_base"
 SWEP.PrintName = "watch_kkhta"
 SWEP.Author = "koishi"
 SWEP.Instructions = "shoot to kill."
 SWEP.Purpose = "Raise weapon - Hold RMB\nOn Rised: Rise sight - MWUP, Down sight - MWDOWN\nShoot - LMB"
 SWEP.Category = "md3"
->>>>>>> modular3:modular_koishi_edit/lua/weapons/koishi_sweps/shared.lua
 SWEP.Spawnable = false
 SWEP.AdminOnly = false
 SWEP.HoldType = "revolver"

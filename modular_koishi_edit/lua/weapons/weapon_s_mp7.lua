@@ -1,16 +1,8 @@
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_mp7.lua
-SWEP.Base = "salat_base" -- base 
-
-SWEP.PrintName 				= "MP7"
-SWEP.Purpose			= "Пистолет-пулемёт под калибр 4,6×30"
-SWEP.Category 				= "Оружие"
-=======
 SWEP.Base = "koishi_sweps" -- base 
 
 SWEP.PrintName 				= "MP7"
 SWEP.Purpose			= "Пистолет-пулемёт под калибр 4,6×30"
 SWEP.Category 				= "md3"
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_mp7.lua
 SWEP.WepSelectIcon = "vgui/select/w/mp7"
 SWEP.IconOverride = "vgui/icon/w/mp7.png"
 

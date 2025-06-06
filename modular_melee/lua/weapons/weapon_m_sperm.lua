@@ -1,11 +1,7 @@
 SWEP.Base = "koishi_melee"
 
 SWEP.PrintName = "Копьё"
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_hg_sperm.lua
-SWEP.Category = "Ближний Бой"
-=======
 SWEP.Category = "md3melee"
->>>>>>> modular3:modular_melee/lua/weapons/weapon_m_sperm.lua
 SWEP.Purpose = "Копьё кидац."
 SWEP.WepSelectIcon = "vgui/select/w/sperm"
 SWEP.IconOverride = "vgui/icon/w/sperm.png"

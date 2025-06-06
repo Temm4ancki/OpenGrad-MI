@@ -1,17 +1,9 @@
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_hk_usp.lua
-SWEP.Base = "salat_base" -- base
-=======
 SWEP.Base = "koishi_sweps" -- base
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_hk_usp.lua
 
 SWEP.PrintName 				= "HK USP"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Пистолет под калибр 9х19"
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_hk_usp.lua
-SWEP.Category 				= "Оружие"
-=======
 SWEP.Category 				= "md3"
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_hk_usp.lua
 SWEP.WepSelectIcon = "vgui/select/w/usp"
 SWEP.IconOverride = "vgui/icon/w/usp.png"
 

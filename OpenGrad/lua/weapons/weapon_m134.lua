@@ -15,7 +15,7 @@ SWEP.Author 				= "ADMINI"
 SWEP.Instructions			= "MINIGUN АДМИНХУЙ! БАМ БАМ БАМ!"
 SWEP.Category 				= "md3"
 SWEP.WepSelectIcon			= "pwb/sprites/m134"
->>>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_minigun.lua
+/weapon_s_minigun.lua
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= true
@@ -63,7 +63,7 @@ SWEP.WorldModel				= "models/weapons/salat/w_m134/w_m134.mdl"
 ========
 SWEP.ViewModel				= "models/weapons/salat/w_hk416/w_hk416.mdl"
 SWEP.WorldModel				= "models/weapons/salat/w_hk416/w_hk416.mdl"
->>>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_minigun.lua
+/weapon_s_minigun.lua
 
 function SWEP:PrimaryAttack()
 	self.ShootNext=self.NextShot or NextShot

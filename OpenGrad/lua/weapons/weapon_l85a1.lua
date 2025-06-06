@@ -14,7 +14,7 @@ SWEP.PrintName 				= "L85A1"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Автоматическая винтовка под калибр 5,56х45"
 SWEP.Category 				= "md3"
->>>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_l85a1.lua
+/weapon_s_l85a1.lua
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false

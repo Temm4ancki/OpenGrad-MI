@@ -1,17 +1,10 @@
-<<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_aks74u.lua
-SWEP.Base = "salat_base" -- base
-========
 SWEP.Base = "koishi_sweps" -- base
->>>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_ak74u.lua
 
 SWEP.PrintName 				= "АКС-74У"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Автоматическая винтовка под калибр 5,45х39"
-<<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_aks74u.lua
-SWEP.Category 				= "Оружие"
-========
+
 SWEP.Category 				= "md3"
->>>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_ak74u.lua
 SWEP.WepSelectIcon = "vgui/select/w/aks74u"
 SWEP.IconOverride = "vgui/icon/w/aks74u.png"
 

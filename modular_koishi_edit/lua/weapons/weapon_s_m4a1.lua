@@ -1,13 +1,3 @@
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_m4a1.lua
-SWEP.Base = "salat_base" -- base
-
-SWEP.PrintName 				= "M4A1"
-SWEP.Author 				= "Homigrad"
-SWEP.Purpose			= "Автоматическая винтовка под калибр 5,56х45"
-SWEP.Category 				= "Оружие"
-SWEP.WepSelectIcon = "vgui/select/w/m4a1"
-SWEP.IconOverride = "vgui/icon/w/m4a1.png"
-=======
 SWEP.Base = 'koishi_sweps' -- base
 
 SWEP.PrintName 				= "M4A1"
@@ -15,7 +5,6 @@ SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Автоматическая винтовка под калибр 5,56х45"
 SWEP.Category 				= "md3"
 
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_m4a1.lua
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false

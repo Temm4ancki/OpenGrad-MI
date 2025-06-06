@@ -1,11 +1,7 @@
 SWEP.Base = "koishi_melee"
 
 SWEP.PrintName = "Пожарный топор"
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_hg_fireaxe.lua
-SWEP.Category = "Ближний Бой"
-=======
 SWEP.Category = "md3melee"
->>>>>>> modular3:modular_melee/lua/weapons/weapon_m_fireaxe.lua
 SWEP.Purpose = "Массивный топор для вскрытия и разборки конструкций при тушении пожара."
 SWEP.WepSelectIcon = "vgui/select/w/fireaxe"
 SWEP.IconOverride = "vgui/icon/w/fireaxe.png"

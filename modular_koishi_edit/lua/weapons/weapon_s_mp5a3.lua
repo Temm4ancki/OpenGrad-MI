@@ -1,17 +1,9 @@
-<<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_mp5a3.lua
-SWEP.Base = "salat_base" -- base 
-========
 SWEP.Base = "koishi_sweps" -- base 
->>>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_mp5a3.lua
 
 SWEP.PrintName 				= "HK MP5a3"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Пистолет-пулемёт под калибр 9х19"
-<<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_mp5a3.lua
-SWEP.Category 				= "Оружие"
-========
 SWEP.Category 				= "md3"
->>>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_mp5a3.lua
 SWEP.WepSelectIcon = "vgui/select/w/mp5a3"
 SWEP.IconOverride = "vgui/icon/w/mp5a3.png"
 

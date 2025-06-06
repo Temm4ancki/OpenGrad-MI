@@ -15,7 +15,7 @@ SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Пистолет под калибр .45 Rubber"
 SWEP.Category 				= "md3"
 SWEP.WepSelectIcon			= "entities/weapon_insurgencymakarov.png"
->>>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_glock18.lua
+/weapon_s_glock18.lua
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false

@@ -1,18 +1,10 @@
 
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_civil_famas.lua
-SWEP.Base = "salat_base" -- base
-=======
 SWEP.Base = "koishi_sweps" -- base
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_civil_famas.lua
 
 SWEP.PrintName 				= "FAMAS-Civil"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Полуавтоматическа винтовка под калибр 5.56×45"
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_civil_famas.lua
-SWEP.Category 				= "Оружие"
-=======
 SWEP.Category 				= "md3"
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_civil_famas.lua
 SWEP.WepSelectIcon = "vgui/select/w/famasg2"
 SWEP.IconOverride = "vgui/icon/w/famasg2.png"
 

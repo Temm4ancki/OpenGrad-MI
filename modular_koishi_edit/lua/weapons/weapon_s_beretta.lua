@@ -1,17 +1,9 @@
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_beretta.lua
-SWEP.Base = "salat_base" -- base
-=======
 SWEP.Base = "koishi_sweps" -- base
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_beretta.lua
 
 SWEP.PrintName 				= "M9 Beretta"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Пистолет под калибр 9х19"
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_beretta.lua
-SWEP.Category 				= "Оружие"
-=======
 SWEP.Category 				= "md3"
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_beretta.lua
 SWEP.WepSelectIcon = "vgui/select/w/m9"
 SWEP.IconOverride = "vgui/icon/w/m9.png"
 

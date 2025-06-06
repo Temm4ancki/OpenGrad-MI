@@ -1,20 +1,9 @@
-<<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_l85a1.lua
-SWEP.Base = "salat_base" -- base
-
-SWEP.PrintName 				= "L85A1"
-SWEP.Author 				= "Homigrad"
-SWEP.Purpose			= "Автоматическая винтовка под калибр 5,56х45"
-SWEP.Category 				= "Оружие"
-SWEP.WepSelectIcon = "vgui/select/w/l85a1"
-SWEP.IconOverride = "vgui/icon/w/l85a1.png"
-========
 SWEP.Base = 'koishi_sweps' -- base
 
 SWEP.PrintName 				= "L85A1"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Автоматическая винтовка под калибр 5,56х45"
 SWEP.Category 				= "md3"
->>>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_l85a1.lua
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false

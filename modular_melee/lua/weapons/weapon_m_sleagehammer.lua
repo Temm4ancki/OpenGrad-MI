@@ -1,11 +1,7 @@
 SWEP.Base = "koishi_melee"
 
 SWEP.PrintName = "Кувалда"
-<<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_hg_sledge.lua
-SWEP.Category = "Ближний Бой"
-========
 SWEP.Category = "md3melee"
->>>>>>>> modular3:modular_melee/lua/weapons/weapon_m_sleagehammer.lua
 SWEP.Purpose = "Ручной ударный инструмент, предназначенный для боя камня, нанесения исключительно сильных ударов при обработке металла, на демонтаже и монтаже конструкций."
 SWEP.WepSelectIcon = "vgui/select/w/sledge"
 SWEP.IconOverride = "vgui/icon/w/sledge.png"

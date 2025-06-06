@@ -1,17 +1,9 @@
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_galil.lua
-SWEP.Base = "salat_base" -- base
-=======
 SWEP.Base = "koishi_sweps" -- base
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_galil.lua
 
 SWEP.PrintName 				= "GALIL-SAR"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Автоматическая винтовка под калибр 5,56х45"
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_galil.lua
-SWEP.Category 				= "Оружие"
-=======
 SWEP.Category 				= "md3"
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_galil.lua
 SWEP.WepSelectIcon = "vgui/select/w/ace23"
 SWEP.IconOverride = "vgui/icon/w/ace23.png"
 

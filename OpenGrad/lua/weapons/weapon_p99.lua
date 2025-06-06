@@ -2,7 +2,7 @@
 SWEP.Base = "salat_base" -- base
 ========
 SWEP.Base = "koishi_sweps" -- base
->>>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_p99.lua
+/weapon_s_p99.lua
 
 SWEP.PrintName 				= "P99"
 SWEP.Author 				= "Homigrad"
@@ -11,7 +11,7 @@ SWEP.Purpose			= "Пистолет под калибр 9х19"
 SWEP.Category 				= "Оружие"
 ========
 SWEP.Category 				= "md3"
->>>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_p99.lua
+/weapon_s_p99.lua
 SWEP.WepSelectIcon = "vgui/select/w/p99"
 SWEP.IconOverride = "vgui/icon/w/p99.png"
 

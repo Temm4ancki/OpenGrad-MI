@@ -1,16 +1,8 @@
-<<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_hk416-2.lua
-SWEP.Base = "salat_base" -- base
-
-SWEP.PrintName 				= "HK416"
-SWEP.Purpose			= "Автоматическая винтовка под калибр 5,56х45"
-SWEP.Category 				= "Оружие"
-========
 SWEP.Base = "koishi_sweps" -- base
 
 SWEP.PrintName 				= "HK416"
 SWEP.Purpose			= "Автоматическая винтовка под калибр 5,56х45"
 SWEP.Category 				= "md3"
->>>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_hk416.lua
 SWEP.WepSelectIcon = "vgui/select/w/hk416"
 SWEP.IconOverride = "vgui/icon/w/hk416.png"
 

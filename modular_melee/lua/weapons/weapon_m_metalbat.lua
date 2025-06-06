@@ -1,15 +1,8 @@
 SWEP.Base = "koishi_melee"
 
 SWEP.PrintName = "Металическая Бита"
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_hg_metalbat.lua
-SWEP.Category = "Ближний Бой"
-SWEP.Purpose = "Часть спортивного инвентаря, предназначенная для нанесения ударов по мячу, выполненная из металлического материала, благодаря чему урон от данной биты будет в разы сильнее, чем от её деревянного аналога. Особенности конструкции биты позволяют наносить ею тяжёлые и мощные удары, но отличается от деревянной битой тем."
-SWEP.WepSelectIcon = "vgui/select/w/metalbat"
-SWEP.IconOverride = "vgui/icon/w/metalbat.png"
-=======
 SWEP.Category = "md3melee"
 SWEP.Instructions = "Часть спортивного инвентаря, предназначенная для нанесения ударов по мячу, выполненная из металлического материала, благодаря чему урон от данной биты будет в разы сильнее, чем от её деревянного аналога. Особенности конструкции биты позволяют наносить ею тяжёлые и мощные удары, но отличается от деревянной битой тем."
->>>>>>> modular3:modular_melee/lua/weapons/weapon_m_metalbat.lua
 
 SWEP.WepSelectIcon = "vgui/select/w/metalbat"
 SWEP.IconOverride = "vgui/icon/w/metalbat.png"

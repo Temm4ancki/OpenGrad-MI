@@ -1,13 +1,3 @@
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_winchester.lua
-SWEP.Base = "salat_base" -- base
-
-SWEP.PrintName 				= "Winchester"
-SWEP.Author 				= "Homigrad"
-SWEP.Purpose			= "kowboy pushka"
-SWEP.Category 				= "Оружие"
-SWEP.WepSelectIcon = "vgui/select/w/winchester"
-SWEP.IconOverride = "vgui/icon/w/winchester.png"
-=======
 SWEP.Base = 'koishi_sweps' -- base
 
 SWEP.PrintName 				= "Winchester"
@@ -15,7 +5,6 @@ SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "kowboy pushka"
 SWEP.Category 				= "md3"
 SWEP.WepSelectIcon			= "pwb2/vgui/weapons/m4a1"
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_winchester.lua
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false

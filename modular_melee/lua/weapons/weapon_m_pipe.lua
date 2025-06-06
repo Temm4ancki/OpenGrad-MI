@@ -1,32 +1,19 @@
 SWEP.Base = "koishi_melee"
 
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_hg_fubar.lua
-SWEP.PrintName = "Фубар"
-SWEP.Category = "Ближний Бой"
-SWEP.Purpose = "Ручное рычажно-клиновое приспособление для вытаскивания (выдирания) вбитых в материал (дерево, пластик и др.) гвоздей."
-SWEP.WepSelectIcon = "vgui/select/w/fubar"
-SWEP.IconOverride = "vgui/icon/w/fubar.png"
-=======
 SWEP.PrintName = "Труба"
 SWEP.Category = "md3melee"
 SWEP.Instructions = "Тимофея убили."
 
 SWEP.WepSelectIcon = "vgui/select/w/mattpipe"
 SWEP.IconOverride = "vgui/icon/w/mattpipe.png"
->>>>>>> modular3:modular_melee/lua/weapons/weapon_m_pipe.lua
 
 SWEP.Spawnable= true
 SWEP.AdminSpawnable= true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_hg_fubar.lua
-SWEP.ViewModel = "models/weapons/salat/w_hg_fubar/w_me_fubar.mdl"
-SWEP.WorldModel = "models/weapons/salat/w_hg_fubar/w_me_fubar.mdl"
-=======
 SWEP.ViewModel = "models/props_canal/mattpipe.mdl"
 SWEP.WorldModel = "models/props_canal/mattpipe.mdl"
->>>>>>> modular3:modular_melee/lua/weapons/weapon_m_pipe.lua
 SWEP.ViewModelFlip = false
 
 SWEP.AutoSwitchTo = false
@@ -58,15 +45,9 @@ SWEP.Secondary.DefaultClip = 0
 SWEP.Secondary.Automatic = false
 SWEP.Secondary.Ammo = "none"
 
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_hg_fubar.lua
-SWEP.DrawSound = "weapons/salat/w_hg_fubar/holster_in_light.ogg"
-SWEP.HitSound = "physics/metal/metal_sheet_impact_hard7.wav"
-SWEP.FlashHitSound = "weapons/salat/w_hg_fubar/flesh_impact_blunt_03.ogg"
-=======
 SWEP.DrawSound = "weapons/melee/holster_in_light.wav"
 SWEP.HitSound = "physics/metal/metal_canister_impact_hard3.wav"
 SWEP.FlashHitSound = "weapons/melee/flesh_impact_blunt_04.wav"
->>>>>>> modular3:modular_melee/lua/weapons/weapon_m_pipe.lua
 SWEP.ShouldDecal = false
 SWEP.HoldTypeWep = "melee"
 SWEP.DamageType = DMG_CLUB

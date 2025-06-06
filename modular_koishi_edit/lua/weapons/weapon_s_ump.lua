@@ -1,16 +1,8 @@
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_ump.lua
-SWEP.Base = "salat_base" -- base
-
-SWEP.PrintName 				= "UMP"
-SWEP.Purpose			= "Что может еще делать ПП? СТРЕЛЯТЬ В ЛИЦО!"
-SWEP.Category 				= "Оружие"
-=======
 SWEP.Base = "koishi_sweps" -- base
 
 SWEP.PrintName 				= "UMP"
 SWEP.Purpose			= "Что может еще делать ПП? СТРЕЛЯТЬ В ЛИЦО!"
 SWEP.Category 				= "md3"
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_ump.lua
 SWEP.WepSelectIcon = "vgui/select/w/ump45"
 SWEP.IconOverride = "vgui/icon/w/ump45.png"
 

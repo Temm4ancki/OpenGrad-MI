@@ -1,17 +1,9 @@
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_sar2.lua
-SWEP.Base = "salat_base" -- base
-=======
 SWEP.Base = "koishi_sweps" -- base
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_sar2.lua
 
 SWEP.PrintName 				= "Automatic Rifle 2"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Основное штурмовое оружие Альянса"
-<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_sar2.lua
-SWEP.Category 				= "Оружие"
-=======
 SWEP.Category 				= "md3"
->>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_sar2.lua
 SWEP.WepSelectIcon = "vgui/select/w/sar2"
 SWEP.IconOverride = "vgui/icon/w/sar2.png"
 
