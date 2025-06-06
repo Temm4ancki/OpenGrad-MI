@@ -218,8 +218,6 @@ md3_weps = {}
 md3_melee = {}
 md3_fumo = {}
 
-local EntityMeta = FindMetaTable("Entity")
-
 for _, wep in ipairs(weapons.GetList()) do
 	if wep.Category == "md3" then
 		md3_weps[wep.ClassName] = true
@@ -229,22 +227,6 @@ for _, wep in ipairs(weapons.GetList()) do
 		md3_fumo[wep.ClassName] = true
 	end
 end
-
--- da
-function EntityMeta:isMD3()
-	local ply = self:GetOwner()
-	if ply:GetActiveWeapon():IsValid() and 
-		(md3_weps[ply:GetActiveWeapon():GetClass()] or md3_melee[ply:GetActiveWeapon():GetClass()] or md3_fumo[ply:GetActiveWeapon():GetClass()]) then 
-			return true
-	end
-
-	return false
-end
-
-local md_debug = CreateClientConVar("md_debug","0",false,false)
-
-local minus_vector = Vector(-1,-1,-1)
-local plus_vector = Vector(-1,-1,-1)
 
 
 local whitelistweps = {
@@ -336,7 +318,7 @@ end)
 local weps = {}
 
 for _, weapon in ipairs(weapons.GetList()) do
-	if weapon.Category == "Оружие" then 
+	if weapon.Category == "Оружие" or weapon.Category == "md3" or weapon.Category == "md3melee" or weapon.Category == "md3fumo" then 
 		weps[weapon.ClassName] = true
 	end
 end
@@ -472,7 +454,7 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 		scope = IsValid(wep) and wep.IsScope and wep:IsScope() and not wep.isClose
 		if scope then
 			if lply:KeyDown(IN_WALK) then
-				ScopeLerp = LerpFT(0.1,ScopeLerp,0.55)
+				ScopeLerp = LerpFT(0.5,ScopeLerp,0.55)
 			else
 				ScopeLerp = LerpFT(0.1,ScopeLerp,1)
 			end
@@ -485,7 +467,7 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 
 	angRecoil[3] = 0
 
-	if wep and weps[wep:GetClass()] or (md3_weps or md3_fumo or md3_melee) then
+	if wep and weps[wep:GetClass()] or (md3_weps or md3_melee or md3_fumo) then
 		local muzzle = wep:GetAttachment(wep:LookupAttachment("muzzle")) or hand -- эщкере руки 
 		
 		if not RENDERSCENE then

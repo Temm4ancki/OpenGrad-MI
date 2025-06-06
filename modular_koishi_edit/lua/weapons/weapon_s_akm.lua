@@ -23,7 +23,7 @@ SWEP.Primary.Sound = "weapons/salat/w_akm/ak74_fp.ogg"
 SWEP.Primary.SoundFar = "weapons/salat/w_akm/ak74_dist.ogg"
 SWEP.Primary.Force = 240 / 3
 SWEP.ReloadTime = 2
-SWEP.ShootWait = 0.1
+SWEP.ShootWait = 0.07
 SWEP.ReloadSound = "weapons/ar2/ar2_reload.wav"
 SWEP.TwoHands = true
 
