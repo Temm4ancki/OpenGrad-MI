@@ -1,0 +1,19 @@
+AddCSLuaFile()
+
+SWEP.Base = "koishi_fumo"
+SWEP.Category = "md3fumo"
+SWEP.Spawnable	= true
+
+SWEP.HoldType = "normal"
+SWEP.PrintName			= "Cirno Fumo"			
+SWEP.Purpose        = "cirno is beatiful"
+SWEP.Instructions   = "cirno!!!!!!!!!!!!"
+SWEP.ViewModel = "models/weapons/melee/cirno_v.mdl"
+SWEP.WorldModel = "models/props_junk/cirno_w.mdl"
+SWEP.FumoIcon = "entities/weapon_fumo_cirno.png"
+SWEP.ThemeMusic = "carryable_fumos/cirno_theme.mp3"
+
+SWEP.OffsetVec = Vector(-5, -2, -5)
+SWEP.OffsetAng = Angle(-50, 50, 80)
+
+

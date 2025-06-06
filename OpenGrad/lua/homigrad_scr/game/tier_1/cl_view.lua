@@ -155,6 +155,21 @@ hook.Add("RenderScene","octoweapons",function(pos,angle,fov)
 	return true
 end)
 
+md3_weps = {}
+md3_melee = {}
+md3_fumo = {}
+
+for _, wep in ipairs(weapons.GetList()) do
+	if wep.Category == "md3" then
+		md3_weps[wep.ClassName] = true
+	elseif wep.Category == "md3melee" then
+		md3_melee[wep.ClassName] = true
+	elseif wep.Category == "md3fumo" then
+		md3_fumo[wep.ClassName] = true
+	end
+end
+
+
 local whitelistweps = {
 	["weapon_physgun"] = true,
 	["gmod_tool"] = true,
@@ -178,7 +193,6 @@ local deathtrack = {
 	"https://cdn.discordapp.com/attachments/959407102525325363/1378463523562066020/death3.ogg?ex=683cb1b2&is=683b6032&hm=fc62fea33a482afffdd51de7551a7d953d2137ba94d81671c8dfe4b32d0779eb&",
 	"https://cdn.discordapp.com/attachments/959407102525325363/1378463523939811398/death4.ogg?ex=683cb1b2&is=683b6032&hm=677be3b67b4fbcf6c682afadb2abdcc4be58909d528e7fae47bf304653dffa01&",
 }
-local g_station = nil
 local playing = false
 
 local deathtexts = {
@@ -247,7 +261,11 @@ end)
 local weps = {}
 
 for _, weapon in ipairs(weapons.GetList()) do
+<<<<<<< HEAD
 	if weapon.Category == "Оружие" then
+=======
+	if weapon.Category == "Оружие" or weapon.Category == "md3" or weapon.Category == "md3melee" or weapon.Category == "md3fumo" then 
+>>>>>>> modular3
 		weps[weapon.ClassName] = true
 	end
 end
@@ -271,11 +289,6 @@ local angRecoil = Angle(0,0,0)
 local recoil = 0
 local sprinthuy = 0
 local oldview = {}
-
-local whitelistSimfphys = {}
-whitelistSimfphys.gred_simfphys_brdm2 = true
-whitelistSimfphys.gred_simfphys_brdm2_atgm = true
-whitelistSimfphys.gred_simfphys_brdm_hq = true
 
 local view = {}
 
@@ -388,7 +401,7 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 		scope = IsValid(wep) and wep.IsScope and wep:IsScope() and not wep.isClose
 		if scope then
 			if lply:KeyDown(IN_WALK) then
-				ScopeLerp = LerpFT(0.1,ScopeLerp,0.55)
+				ScopeLerp = LerpFT(0.5,ScopeLerp,0.55)
 			else
 				ScopeLerp = LerpFT(0.1,ScopeLerp,1)
 			end
@@ -400,11 +413,17 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 	fov = Lerp(ScopeLerp,fov,75)
 
 	angRecoil[3] = 0
+<<<<<<< HEAD
 
 	if wep and weps[wep:GetClass()] then
 		local weaponClass = wep:GetClass()
 		local muzzle = wep:GetAttachment(wep:LookupAttachment("muzzle"))
+=======
+>>>>>>> modular3
 
+	if wep and weps[wep:GetClass()] or (md3_weps or md3_melee or md3_fumo) then
+		local muzzle = wep:GetAttachment(wep:LookupAttachment("muzzle")) or hand -- эщкере руки 
+		
 		if not RENDERSCENE then
 			local lastShootTime = wep:LastShootTime()
 			if not oldShootTime then oldShootTime = lastShootTime else
@@ -415,14 +434,20 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 				end
 			end
 		else
-			vecWep = hand.Pos + hand.Ang:Up()*10 - muzzle.Ang:Forward()*7 + hand.Ang:Right()*-4
-			angWep = hand.Ang + Angle(0,0,0)
+			if wep.RightMod~=nil or wep.ForwardMod~=nil or wep.UpMod~=nil or wep.AngleMod then
+				vecWep = hand.Pos + hand.Ang:Up()*wep.UpMod - muzzle.Ang:Forward()*wep.ForwardMod + hand.Ang:Right()*-wep.RightMod
+				angWep = hand.Ang + wep.AngleMod
+			else
+				vecWep = hand.Pos + hand.Ang:Up()*10 - muzzle.Ang:Forward()*7 + hand.Ang:Right()*-4
+				angWep = hand.Ang + Angle(0,0,0)
+			end
 		end
 
 		local anim_pos = max(startRecoil - CurTime(),0) * 5
 
 		fov = fov - anim_pos * (scope and 2 or 1)
 		angRecoil[3] = anim_pos * (scope and 10 or 5)
+<<<<<<< HEAD
 
 		if weaponClass == "weapon_akm" then
 			--Vector(5.1,5,0.76)
@@ -613,11 +638,13 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 			vecWep = hand.Pos + hand.Ang:Up() * 3.1 - hand.Ang:Forward() * 6 + hand.Ang:Right() * 0.85
 			angWep = hand.Ang + Angle(-7,0,0)
 		end
+=======
+>>>>>>> modular3
 	end
 
 
 	if not RENDERSCENE then
-		LerpEye = LerpAngleFT(smooth_cam:GetBool() and 0.55 or 1,LerpEye,angEye)
+		LerpEye = LerpAngleFT(1,LerpEye,angEye)
 	else
 		angEye = LerpAngleFT(0.15,LerpEye,angEye) or LerpAngle(0.15,LerpEye,angEye)
 	end
@@ -631,7 +658,7 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 
 	-- if lply:InVehicle() or not firstPerson then return end
 
-	if not lply:Alive() or (IsValid(wep) and (whitelistweps[wep:GetClass()] or string.find(wep:GetClass(),"fumo"))) or lply:GetMoveType() == MOVETYPE_NOCLIP then
+	if not lply:Alive() or (IsValid(wep) and (whitelistweps[wep:GetClass()])) or lply:GetMoveType() == MOVETYPE_NOCLIP then
 		view.origin = ply:EyePos()
 		view.angles = ply:EyeAngles()
 		view.drawviewer = false
@@ -1052,14 +1079,3 @@ hook.Add("PostPlayerDraw", "IKFoot_PostPlayerDraw", function(ply)
 		end
 	end
 end)
-
-local filename = "OpenGrad/lua/homigrad_scr/game/tier_1/cl_view.lua"
-
-local contents = file.Read(filename, "LUA")
-if not contents then
-	print("[Reload] Failed to read file:", filename)
-	return
-end
-
-RunString(contents, filename)
-print("[Reload] Reloaded:", filename)

@@ -1,0 +1,64 @@
+<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_hk_usps.lua
+SWEP.Base = "salat_base" -- base
+=======
+SWEP.Base = "koishi_sweps" -- base
+>>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_hk_usps.lua
+
+SWEP.PrintName 				= "HK USP-S"
+SWEP.Author 				= "Homigrad"
+SWEP.Purpose			= "Пистолет под калибр 9х19"
+<<<<<<< HEAD:OpenGrad/lua/weapons/weapon_hk_usps.lua
+SWEP.Category 				= "Оружие"
+=======
+SWEP.Category 				= "md3"
+>>>>>>> modular3:modular_koishi_edit/lua/weapons/weapon_s_hk_usps.lua
+SWEP.WepSelectIcon = "vgui/select/w/usps"
+SWEP.IconOverride = "vgui/icon/w/usps.png"
+
+SWEP.Spawnable 				= true
+SWEP.AdminOnly 				= false
+
+------------------------------------------
+
+SWEP.Primary.ClipSize		= 12
+SWEP.Primary.DefaultClip	= 12
+SWEP.Primary.Automatic		= false
+SWEP.Primary.Ammo			= "9х19 mm Parabellum"
+SWEP.Primary.Cone = 0
+SWEP.Primary.Damage = 25
+SWEP.Primary.Spread = 0
+SWEP.Primary.Sound = "weapons/salat/w_hk_usps/shoot.ogg"
+SWEP.Primary.Force = 70 / 3
+SWEP.ReloadTime = 2
+SWEP.ShootWait = 0.14
+
+SWEP.Secondary.ClipSize		= -1
+SWEP.Secondary.DefaultClip	= -1
+SWEP.Secondary.Automatic	= false
+SWEP.Secondary.Ammo			= "none"
+
+------------------------------------------
+
+SWEP.Weight					= 5
+SWEP.AutoSwitchTo			= false
+SWEP.AutoSwitchFrom			= false
+
+SWEP.HoldType = "revolver"
+
+------------------------------------------
+
+SWEP.Slot					= 2
+SWEP.SlotPos				= 1
+SWEP.DrawAmmo				= true
+SWEP.DrawCrosshair			= false
+
+SWEP.ViewModel				= "models/weapons/w_pist_usp_silencer.mdl"
+SWEP.WorldModel				= "models/weapons/w_pist_usp_silencer.mdl"
+
+SWEP.vbwPos = Vector(7.5,0.1,-6)
+
+SWEP.Supressed = true
+SWEP.RightMod = -.2
+SWEP.ForwardMod = 10
+SWEP.UpMod = 4.5
+SWEP.AngleMod = Angle(0,16,0)
