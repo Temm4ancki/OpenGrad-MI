@@ -64,9 +64,9 @@ function kuhnya.PlayerSpawn(ply, teamID)
 		--JMod.EZ_Equip_Armor(ply,"Medium-Helmet",color)
 		local r = math.random(1, 2)
 		if r == 2 then
-			ply:Give("weapon_hg_crowbar")
+			ply:Give("weapon_m_crowbar")
 		else
-			ply:Give("weapon_pipe")
+			ply:Give("weapon_m_pipe")
 		end
 		--JMod.EZ_Equip_Armor(ply,"Light-Vest",Color(0,0,0,0))
 	end

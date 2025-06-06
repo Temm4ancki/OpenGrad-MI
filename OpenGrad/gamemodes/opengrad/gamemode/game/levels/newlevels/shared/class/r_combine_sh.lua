@@ -11,11 +11,11 @@ local function MewMath(first, second)
 end
 
 CLASS.main_weapons = {
-    "weapon_sar2", "weapon_spas12", "weapon_mp7"
+    "weapon_s_sar2", "weapon_s_spas12", "weapon_s_mp7"
 }
 
 CLASS.secondary_weapons = {
-    "weapon_hk_usp"
+    "weapon_s_hk_usp"
 }
 
 local models_combine = {

@@ -7,16 +7,16 @@ for i = 1, 9 do table.insert(models, "models/player/group01/male_0" .. i .. ".md
 for i = 1, 6 do table.insert(models, "models/player/group01/female_0" .. i .. ".mdl") end
 
 wick.red = {"John Wick", Color(255, 98, 98),
-    weapons = {"weapon_radio", "weapon_gurkha", "weapon_hands", "med_band_big", "med_band_small", "medkit", "painkiller"},
-    main_weapon = {"weapon_hk416-2", "weapon_m4a1"},
-    secondary_weapon = {"weapon_hk_usp", "weapon_cz75"},
+    weapons = {"weapon_radio", "weapon_m_gurkha", "weapon_hands", "med_band_big", "med_band_small", "medkit", "painkiller"},
+    main_weapon = {"weapon_s_hk416", "weapon_s_m4a1"},
+    secondary_weapon = {"weapon_s_hk_usp", "weapon_s_cz75"},
     models = models
 }
 
 wick.green = {"Наемник", Color(125, 125, 125),
-    weapons = {"weapon_radio", "weapon_hands", "weapon_gurkha"},
-    main_weapon = {"weapon_mp5a3", "weapon_mp7", "weapon_p90-2"},
-    secondary_weapon = {"weapon_hk_usp", "weapon_beretta"},
+    weapons = {"weapon_radio", "weapon_hands", "weapon_m_gurkha"},
+    main_weapon = {"weapon_s_mp5a3", "weapon_s_mp7", "weapon_s_p90"},
+    secondary_weapon = {"weapon_s_hk_usp", "weapon_s_beretta"},
     models = models
 }
 

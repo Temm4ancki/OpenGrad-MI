@@ -1300,8 +1300,7 @@ end
 			local phys = head
 			local angs = ply:EyeAngles()
 			if ply:GetActiveWeapon() == "weapon_hands" then
-				angs:RotateAroundAxis(angs:Forward(), 90)
-				angs:RotateAroundAxis(angs:Up(),20)
+				angs:RotateAroundAxis(angs:Up(),90)
 				local shadowparams = {
 					secondstoarrive=0.2,
 					pos=head:GetPos()+vector_up*(50),

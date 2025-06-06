@@ -3,7 +3,7 @@ local CLASS = player.RegClass("contr")
 
 CLASS.weapons = {
 	"weapon_radio",
-	"weapon_police_bat",
+	"weapon_m_police_bat",
 	"med_band_big",
 	"medkit",
 	"painkiller",
@@ -14,13 +14,13 @@ CLASS.weapons = {
 }
 
 CLASS.main_weapon = {
-	"weapon_ar15",
-	"weapon_m4super-2"
+	"weapon_s_ar15",
+	"weapon_s_m4super"
 }
 
 CLASS.secondary_weapon = {
-	"weapon_beretta",
-	"weapon_p99"
+	"weapon_s_beretta",
+	"weapon_s_p99"
 }
 
 CLASS.models = {

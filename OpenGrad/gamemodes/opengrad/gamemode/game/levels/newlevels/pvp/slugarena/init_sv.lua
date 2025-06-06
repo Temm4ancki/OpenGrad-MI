@@ -65,7 +65,7 @@ function slugarena.PlayerSpawn(ply, teamID)
     ply:SetPlayerColor(Vector(math.random(55, 255) / 255, math.random(55, 255) / 255, math.random(55, 255) / 255))
 
     ply:Give("weapon_hands")
-    ply:Give("weapon_hg_sperm")
+    ply:Give("weapon_m_sperm")
     ply:SetLadderClimbSpeed(100)
 end
 

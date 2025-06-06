@@ -23,7 +23,7 @@ ENT.RandomLoot = {
     [1] = {
         ["weapon_sib_mp5"] = {"weapon"},
         ["painkiller"] = {"weapon"},
-        ["weapon_hg_hatchet"] = {"weapon"},
+        ["weapon_m_hatchet"] = {"weapon"},
         ["ent_jack_gmod_ezarmor_piligrim"] = {"ent"}
     },
     [2] = {

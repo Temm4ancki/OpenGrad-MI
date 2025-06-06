@@ -7,16 +7,16 @@ for i = 1,9 do table.insert(models,"models/player/group03/male_0" .. i .. ".mdl"
 
 hl2dm.red = {"Повстанец",Color(125,95,60),
 	weapons = {"weapon_hands","med_band_big","med_band_small","weapon_radio"},
-	main_weapon = {"weapon_sar2","weapon_spas12","weapon_akm","weapon_mp7"},
-	secondary_weapon = {"weapon_hk_usp","weapon_cz75"},
+	main_weapon = {"weapon_s_sar2","weapon_s_spas12","weapon_s_akm","weapon_s_mp7"},
+	secondary_weapon = {"weapon_s_hk_usp","weapon_s_cz75"},
 	models = models
 }
 
 
 hl2dm.blue = {"Комбайн",Color(75,75,125),
 	weapons = {"weapon_hands"},
-	main_weapon = {"weapon_sar2","weapon_mp7"},
-	secondary_weapon = {"weapon_hk_usp"},
+	main_weapon = {"weapon_s_sar2","weapon_s_mp7"},
+	secondary_weapon = {"weapon_s_hk_usp"},
 	models = ""
 }
 

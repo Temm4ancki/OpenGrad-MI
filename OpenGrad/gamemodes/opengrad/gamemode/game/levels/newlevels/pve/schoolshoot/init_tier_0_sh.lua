@@ -14,9 +14,9 @@ end
 schoolshoot.red = {
     "Кибер-спортсмен",
     Color(255, 98, 98),
-    weapons = {"weapon_radio", "weapon_gurkha", "weapon_hands", "med_band_big", "med_band_small", "medkit", "painkiller"},
-    main_weapon = {"weapon_m4super-2", "weapon_remington870", "weapon_xm1014"},
-    secondary_weapon = {"weapon_cz75", "weapon_deagle", "weapon_glock"},
+    weapons = {"weapon_radio", "weapon_m_gurkha", "weapon_hands", "med_band_big", "med_band_small", "medkit", "painkiller"},
+    main_weapon = {"weapon_s_m4super", "weapon_s_remington870"},
+    secondary_weapon = {"weapon_s_cz75", "weapon_s_deagle", "weapon_s_glock"},
     models = models
 }
 
@@ -30,9 +30,9 @@ schoolshoot.green = {
 schoolshoot.blue = {
     "Спецназ",
     Color(55, 55, 255),
-    weapons = {"weapon_radio", "weapon_hands", "weapon_kabar", "med_band_big", "med_band_small", "medkit", "painkiller", "weapon_hg_f1", "weapon_handcuffs", "weapon_taser", "weapon_hg_flashbang"},
-    main_weapon = {"weapon_hk416-2", "weapon_m4a1", "weapon_m4super-2", "weapon_mp7", "weapon_xm1014", "weapon_l85a1", "weapon_asval", "weapon_m249", "weapon_mp5a3", "weapon_p90-2"},
-    secondary_weapon = {"weapon_beretta", "weapon_p99", "weapon_hk_usp"},
+    weapons = {"weapon_radio", "weapon_hands", "weapon_m_kabar", "med_band_big", "med_band_small", "medkit", "painkiller", "weapon_hg_f1", "weapon_handcuffs", "weapon_taser", "weapon_hg_flashbang"},
+    main_weapon = {"weapon_s_hk416", "weapon_s_m4a1", "weapon_s_m4super", "weapon_s_mp7", "weapon_s_m4super", "weapon_s_l85a1", "weapon_s_asval", "weapon_s_m249", "weapon_s_mp5a3", "weapon_s_p90"},
+    secondary_weapon = {"weapon_s_beretta", "weapon_s_p99", "weapon_s_hk_usp"},
     models = models
 }
 

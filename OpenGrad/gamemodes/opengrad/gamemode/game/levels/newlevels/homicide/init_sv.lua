@@ -30,8 +30,8 @@ local function makeT(ply)
     table.insert(homicide.t, ply)
     if homicide.roundType == 1 then
         SpawnEblan(ply, {
-            "weapon_kabar",
-            "weapon_hk_usps",
+            "weapon_m_kabar",
+            "weapon_s_hk_usps",
             "weapon_hidebomb",
             "weapon_hg_rgd5",
             "weapon_jahidka",
@@ -41,7 +41,7 @@ local function makeT(ply)
         })
     elseif homicide.roundType == 2 then
         SpawnEblan(ply, {
-            "weapon_kabar",
+            "weapon_m_kabar",
             "weapon_hg_t_syringepoison",
             "weapon_hg_t_vxpoison",
             "weapon_hidebomb",
@@ -53,7 +53,7 @@ local function makeT(ply)
         })
     elseif homicide.roundType == 3 then
         SpawnEblan(ply, {
-            "weapon_kabar",
+            "weapon_m_kabar",
             "weapon_hg_t_syringepoison",
             "weapon_hg_t_vxpoison",
             "weapon_trap",
@@ -62,7 +62,7 @@ local function makeT(ply)
         })
     elseif homicide.roundType == 4 then
         SpawnEblan(ply, {
-            "weapon_kabar",
+            "weapon_m_kabar",
             "weapon_hidebomb",
             "weapon_hg_rgd5",
             "weapon_jahidka",
@@ -73,9 +73,9 @@ local function makeT(ply)
         ply:GiveAmmo(12, 5)
     elseif homicide.roundType == 5 then
         SpawnEblan(ply, {
-            "weapon_kabar",
+            "weapon_m_kabar",
             "weapon_hidebomb",
-            "weapon_hg_usps",
+            "weapon_s_hk_usps",
             "weapon_trap",
             "weapon_jam",
             "weapon_mask",
@@ -92,24 +92,24 @@ local function makeCT(ply)
     table.insert(homicide.ct, ply)
     if homicide.roundType == 1 then
         SpawnEblan(ply, {
-            "weapon_remington870"
+            "weapon_s_remington870"
         })
     elseif homicide.roundType == 2 then
         SpawnEblan(ply, {
-            "weapon_beretta"
+            "weapon_s_beretta"
         })
     elseif homicide.roundType == 3 then
         SpawnEblan(ply, {
-            "weapon_police_bat",
+            "weapon_m_police_bat",
             "weapon_taser"
         })
     elseif homicide.roundType == 4 then
         SpawnEblan(ply, {
-            "weapon_remington870"
+            "weapon_s_remington870"
         })
     elseif homicide.roundType == 5 then
         SpawnEblan(ply, {
-            "weapon_beretta"
+            "weapon_s_beretta"
         })
     end
 end
@@ -119,7 +119,7 @@ COMMANDS.russian_roulette = {
         if not ply:IsAdmin() then return end
 
         for i, plya in pairs(player.GetListByName(args[1]) or {ply}) do
-            local wep = plya:Give("weapon_deagle", true)
+            local wep = plya:Give("weapon_s_deagle", true)
             wep:SetClip1(1)
             wep:RollDrum()
         end
@@ -182,7 +182,7 @@ function homicide.StartRoundSV()
         ply.roleCT = false
         if homicide.roundType == 4 then
             timer.Simple(0, function()
-                ply:Give("weapon_deagle")
+                ply:Give("weapon_s_deagle")
             end)
         end
 
@@ -352,9 +352,9 @@ function homicide.PlayerDeath(ply, inf, att)
 end
 
 local common = {
-    "weapon_pipe",
-    "weapon_hg_bat",
-    "weapon_knife",
+    "weapon_m_pipe",
+    "weapon_m_bat",
+    "weapon_m_knife",
 
     "med_band_big",
     "med_band_small",
@@ -374,28 +374,28 @@ local uncommon = {
     "adrenaline",
     "morphine",
 
-    "weapon_hg_crowbar",
-    "weapon_hg_bat",
-    "weapon_hg_metalbat",
-    "weapon_hg_hatchet",
+    "weapon_m_crowbar",
+    "weapon_m_bat",
+    "weapon_m_metalbat",
+    "weapon_m_hatchet",
 
     "weapon_molotok",
 }
 
 local rare = {
-    "weapon_beretta",
-    "weapon_remington870police",
-    "weapon_glock",
-    "weapon_p99",
-    "weapon_hk_usp",
-    "weapon_cz75",
-    "weapon_deserteagle",
+    "weapon_s_beretta",
+    "weapon_s_remington870police",
+    "weapon_s_glock",
+    "weapon_s_p99",
+    "weapon_s_hk_usp",
+    "weapon_s_cz75",
+    "weapon_s_deserteagle",
 
-    "weapon_gurkha",
-    "weapon_tomahawk-2",
-    "weapon_hg_sledge",
-    "weapon_hg_fireaxe",
-    "weapon_hg_fubar",
+    "weapon_m_gurkha",
+    "weapon_m_tomahawk",
+    "weapon_m_sleagehammer",
+    "weapon_m_fireaxe",
+    "weapon_m_fubar",
 
     "weapon_per4ik",
 

@@ -4,16 +4,16 @@ kuhnya.Name = "КУХНЯ"
 
 kuhnya.red = {"ОГУЗКИ",Color(255,255,255),
 	weapons = {"weapon_hands","med_band_big","med_band_small","weapon_radio"},
-	main_weapon = {"weapon_sar2","weapon_spas12","weapon_akm","weapon_mp7"},
-	secondary_weapon = {"weapon_hk_usp","weapon_cz75"},
+	main_weapon = {"weapon_s_sar2","weapon_s_spas12","weapon_s_akm","weapon_s_mp7"},
+	secondary_weapon = {"weapon_s_hk_usp","weapon_s_cz75"},
 	models = {"models/tdm_kuhnya/fedya/fedya.mdl","models/tdm_kuhnya/senya/senya.mdl","models/tdm_kuhnya/oguzok/oguzok.mdl"}
 }
 
 
 kuhnya.blue = {"ШЕФЫ",Color(255,0,0),
 	weapons = {"weapon_hands"},
-	main_weapon = {"weapon_sar2","weapon_mp7"},
-	secondary_weapon = {"weapon_hk_usp"},
+	main_weapon = {"weapon_s_sar2","weapon_s_mp7"},
+	secondary_weapon = {"weapon_s_hk_usp"},
 	models = {"models/tdm_kuhnya/barinov/barinov.mdl"}
 }
 

@@ -59,7 +59,7 @@ function slovopacana.PlayerCanJoinTeam(ply, teamID)
 	end
 end
 
-local common = {"food_lays", "weapon_pipe", "weapon_hg_bat", "medkit", "food_monster", "food_fishcan", "food_spongebob_home"}
+local common = {"food_lays", "weapon_m_pipe", "weapon_m_bat", "medkit", "food_monster", "food_fishcan", "food_spongebob_home"}
 local uncommon = {"weapon_molotok", "painkiller"}
 
 function slovopacana.ShouldSpawnLoot()

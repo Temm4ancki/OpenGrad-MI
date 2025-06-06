@@ -1,7 +1,7 @@
 local CLASS = player.RegClass("oguzok")
 
 CLASS.main_weapons = {
-    "weapon_spas12","weapon_mp7"
+    "weapon_s_spas12","weapon_s_mp7"
 }
 
 local models_oguzok = {

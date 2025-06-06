@@ -291,7 +291,7 @@ function SpawnWeapon(ply,clip1)
 			ply.wep.rag = rag
 			ply.wepClip = ply.Info.Weapons[ply.curweapon].Clip1
 			ply.wep.AmmoType = ply.Info.Weapons[ply.curweapon].AmmoType
-			if ply.wep.curweapon == "weapon_knife" or ply.wep.curweapon == "weapon_sogknife" or ply.wep.curweapon == "weapon_hg_hatchet" then 
+			if ply.wep.curweapon == "weapon_m_knife" or ply.wep.curweapon == "weapon_sogknife" or ply.wep.curweapon == "weapon_m_hatchet" then 
 				ply.wep.knife = true
 				ply.attacking_knife = false
 			end
@@ -467,7 +467,7 @@ function FireShot(wep)
 	local info = ply.Info
 	-- knife
 
-	if ply.wepmelee == true or string.find(wep.curweapon, "knife") or wep.curweapon == "weapon_kabar" then
+	if ply.wepmelee == true or string.find(wep.curweapon, "knife") or wep.curweapon == "weapon_m_kabar" then
 		if CurTime() < lastAttackTime + attackDelay then return end
 			local tr = util.TraceLine({
 				start = wep:GetPos(),
@@ -477,7 +477,7 @@ function FireShot(wep)
 			if RagdollOwner(tr.Entity) == ply then return end
 			if tr.Hit and IsValid(tr.Entity) and tr.Entity:IsPlayer() or tr.Entity:IsRagdoll() then
 			local dmginfo = DamageInfo()
-			if string.find(wep.curweapon, "knife") or wep.curweapon == "weapon_kabar" or wep.curweapon == "weapon_hg_hatchet" or wep.curweapon == "weapon_gurkha" then dmginfo:SetDamageType( DMG_SLASH ) else dmginfo:SetDamageType(DMG_CLUB) end
+			if string.find(wep.curweapon, "knife") or wep.curweapon == "weapon_m_kabar" or wep.curweapon == "weapon_m_hatchet" or wep.curweapon == "weapon_m_gurkha" then dmginfo:SetDamageType( DMG_SLASH ) else dmginfo:SetDamageType(DMG_CLUB) end
 			dmginfo:SetAttacker( ply )
 			dmginfo:SetDamagePosition( tr.HitPos )
 			dmginfo:SetDamageForce( ply:GetForward() * 40 )
@@ -487,7 +487,7 @@ function FireShot(wep)
 			print("Tr Entity RagdollOwner: ", RagdollOwner(tr.Entity))
 			print("Player: ", ply)
 			if tr.Entity:IsNPC() or tr.Entity:IsPlayer() or tr.Entity:IsRagdoll() then
-				if string.find(wep.curweapon, "knife") or wep.curweapon == "weapon_kabar" or wep.curweapon == "weapon_hg_hatchet" or wep.curweapon == "weapon_gurkha" then  sound.Play("snd_jack_hmcd_knifestab.wav", tr.HitPos, 75, 100) else sound.Play("Flesh.ImpactHard", tr.HitPos, 75, 100) end
+				if string.find(wep.curweapon, "knife") or wep.curweapon == "weapon_m_kabar" or wep.curweapon == "weapon_m_hatchet" or wep.curweapon == "weapon_m_gurkha" then  sound.Play("snd_jack_hmcd_knifestab.wav", tr.HitPos, 75, 100) else sound.Play("Flesh.ImpactHard", tr.HitPos, 75, 100) end
 				local rag = ply.fakeragdoll
 				local phys = rag:GetPhysicsObjectNum( rag:TranslateBoneToPhysBone(rag:LookupBone( "ValveBiped.Bip01_R_Hand" )) )
 				local head = rag:GetPhysicsObjectNum( rag:TranslateBoneToPhysBone(rag:LookupBone( "ValveBiped.Bip01_Head1" )) )
@@ -514,7 +514,7 @@ function FireShot(wep)
 		end
 	end
 
-	if wep.curweapon == "weapon_knife" then
+	if wep.curweapon == "weapon_m_knife" then
 		if CurTime() < lastAttackTime + attackDelay then return end
 		local rag = ply.fakeragdoll
 		local phys = rag:GetPhysicsObjectNum( rag:TranslateBoneToPhysBone(rag:LookupBone( "ValveBiped.Bip01_R_Hand" )) )
@@ -832,7 +832,7 @@ function FireShot(wep)
 	end
 
 	if !IsValid(wep) then return nil end
-	if wep.curweapon == "weapon_knife" or wep.curweapon == "weapon_sogknife" or wep.curweapon == "weapon_hg_hatchet" or wep.curweapon == "weapon_kabar" or wep.curweapon == "weapon_hg_f1" or wep.curweapon == "weapon_hg_type59" or ply.wepmelee == true or ply.wepgrenade == true then return end
+	if wep.curweapon == "weapon_m_knife" or wep.curweapon == "weapon_sogknife" or wep.curweapon == "weapon_m_hatchet" or wep.curweapon == "weapon_m_kabar" or wep.curweapon == "weapon_hg_f1" or wep.curweapon == "weapon_hg_type59" or ply.wepmelee == true or ply.wepgrenade == true then return end
 	if timer.Exists("reload"..wep:EntIndex()) then return nil end
 	local guninfo = wep.GunInfo
 	
@@ -929,17 +929,3 @@ function FireShot(wep)
 		util.Effect( weptable.Shell, ef )
 	end
 end
-
-hook.Add("PlayerSpawn", "chenahui", function(ply)
-	ply.wep_attach_sup9x19 = false
-	ply.wep_attach_supak = false
-	ply.wep_attach_supshotgun = false
-	ply.wep_sight_okp7 = false
-end)
-
-hook.Add("PlayerDeath", "chenahui", function(ply)
-	ply.wep_attach_sup9x19 = false
-	ply.wep_attach_supak = false
-	ply.wep_attach_supshotgun = false
-	ply.wep_sight_okp7 = true
-end)

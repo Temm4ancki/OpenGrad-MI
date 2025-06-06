@@ -102,14 +102,14 @@ local WEAPON_3D_POSITIONS = {
         offset_x = 0,
         offset_y = -50
     },
-    ["weapon_deserteagle"] = {
+    ["weapon_s_deserteagle"] = {
         pos = Vector(0, 0, 0),
         ang = Angle(0, 90, 0),
         scale = 0.5,
         offset_x = 0,
         offset_y = -10
     },
-    ["weapon_p90-2"] = {
+    ["weapon_s_p90"] = {
         pos = Vector(0, 0, 0),
         ang = Angle(0, 90, 0),
         scale = 0.5,
@@ -535,22 +535,29 @@ end
 
 -- Функция переключения слота
 local function SwitchSlot(slot)
-    WeaponSelector.SelectedSlot = slot
-    WeaponSelector.SelectedWeapon = 1
+    WeaponSelector.Weapons = GetWeaponsBySlots()
     WeaponSelector.LastActivity = CurTime()
 
-    -- Проверяем, есть ли оружие в слоте
     local weapons = WeaponSelector.Weapons[slot]
     if not weapons or #weapons == 0 then
-        -- Ищем следующий непустой слот
         for i = 1, 7 do
             local nextSlot = (slot + i) % 7
             weapons = WeaponSelector.Weapons[nextSlot]
             if weapons and #weapons > 0 then
-                WeaponSelector.SelectedSlot = nextSlot
+                slot = nextSlot
                 break
             end
         end
+    end
+
+    if WeaponSelector.SelectedSlot == slot then
+        WeaponSelector.SelectedWeapon = WeaponSelector.SelectedWeapon + 1
+        if WeaponSelector.SelectedWeapon > #weapons then
+            WeaponSelector.SelectedWeapon = 1
+        end
+    else
+        WeaponSelector.SelectedSlot = slot
+        WeaponSelector.SelectedWeapon = 1
     end
 end
 

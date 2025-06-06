@@ -165,22 +165,22 @@ end)
 hook.Add("HUDDrawTargetID", "no", function() return false end)
 
 local laserweps = {
-	["weapon_xm1014"] = true,
-	["weapon_p90-2"] = true,
-	["weapon_m249"] = true,
-	["weapon_p99"] = true,
-	["weapon_hk_usp"] = true,
-	["weapon_hk416-2"] = true,
-	["weapon_hk_usp"] = true,
-	["weapon_m4a1"] = true,
-	["weapon_ar15"] = true,
-	["weapon_m4super-2"] = true,
-	["weapon_mp7"] = true,
-	["weapon_cz75"] = true,
-	["weapon_galil"] = true,
-	["weapon_deagle"] = true,
-	["weapon_remington870police"] = true,
-	["weapon_glock"] = true
+	["weapon_s_m4super"] = true,
+	["weapon_s_p90"] = true,
+	["weapon_s_m249"] = true,
+	["weapon_s_p99"] = true,
+	["weapon_s_hk_usp"] = true,
+	["weapon_s_hk416"] = true,
+	["weapon_s_hk_usp"] = true,
+	["weapon_s_m4a1"] = true,
+	["weapon_s_ar15"] = true,
+	["weapon_s_m4super"] = true,
+	["weapon_s_mp7"] = true,
+	["weapon_s_cz75"] = true,
+	["weapon_s_galil"] = true,
+	["weapon_s_deagle"] = true,
+	["weapon_s_remington870police"] = true,
+	["weapon_s_glock"] = true
 }
 
 laserplayers = laserplayers or {}
@@ -321,7 +321,7 @@ local function ToggleMenu(toggle)
 			end)
 		end
 
-		if wep:GetClass() == "weapon_deagle" then
+		if wep:GetClass() == "weapon_s_deagle" then
 			wepMenu:AddOption("Крутануть барабан", function() LocalPlayer():ConCommand("hg_rolldrum")
 			end)
 		end

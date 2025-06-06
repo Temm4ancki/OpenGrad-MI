@@ -72,7 +72,7 @@ function basedefence.StartRoundSV()
         for i = 1, #botsspawns - count do
             local bot = table.Random(npcs)
             bot = ents.Create(bot)
-            local wep = ents.Create("weapon_sar2")
+            local wep = ents.Create("weapon_s_sar2")
             wep:Spawn()
 
             local point = ReadPoint(botsspawns[math.random(#botsspawns)])
@@ -139,8 +139,8 @@ function basedefence.EndRound(winner)
 end
 
 local wepeno = {
-    "weapon_mp7",
-    "weapon_sar2"
+    "weapon_s_mp7",
+    "weapon_s_sar2"
 }
 
 function basedefence.PlayerSpawn(ply, teamID)
@@ -150,9 +150,9 @@ function basedefence.PlayerSpawn(ply, teamID)
     ply:SetPlayerColor(Color(math.random(55, 165), math.random(55, 165), math.random(55, 165)):ToVector())
 
     ply:Give("weapon_hands")
-    ply:Give("weapon_kabar")
+    ply:Give("weapon_m_kabar")
 
-    local wep = ply:Give("weapon_hk_usp")
+    local wep = ply:Give("weapon_s_hk_usp")
     wep:SetClip1(wep:GetMaxClip1())
     ply:SetAmmo(wep:GetMaxClip1() * 3, wep:GetPrimaryAmmoType())
 
@@ -171,7 +171,7 @@ function basedefence.PlayerSpawn(ply, teamID)
     ply:Give(r == 1 and "food_fishcan" or r == 2 and "food_spongebob_home" or r == 3 and "food_lays")
 
     if math.random(1, 3) == 3 then ply:Give("food_monster") end
-    if math.random(1, 5) == 5 then ply:Give("weapon_hg_bat") end
+    if math.random(1, 5) == 5 then ply:Give("weapon_m_bat") end
 end
 
 function basedefence.PlayerInitialSpawn(ply)

@@ -21,7 +21,7 @@ SWEP.Primary.Spread = 0
 SWEP.Primary.Sound = "weapons/salat/w_m134/ak47-1.ogg"
 SWEP.Primary.Force = 110
 SWEP.ReloadTime = 5
-SWEP.ShootWait = 0.02
+SWEP.ShootWait = 0.001
 SWEP.ReloadSound = "weapons/ar2/ar2_reload.wav"
 SWEP.TwoHands = true
 

@@ -8,10 +8,10 @@ CLASS.weapons = {
 	"weapon_handcuffs",
 	"weapon_taser",
 	"weapon_hg_flashbang"
-	,"weapon_police_bat"
+	,"weapon_m_police_bat"
 }
 
-CLASS.secondary_weapon = {"weapon_glock"}
+CLASS.secondary_weapon = {"weapon_s_glock"}
 
 CLASS.models = {
 	"models/player/police.mdl",

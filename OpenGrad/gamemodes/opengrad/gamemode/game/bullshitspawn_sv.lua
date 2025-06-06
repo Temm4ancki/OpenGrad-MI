@@ -44,8 +44,8 @@ weaponscommon = {
 	"weapon_molotok",
 	"ent_drop_flashlight",
 
-	"weapon_knife",
-	"weapon_pipe",
+	"weapon_m_knife",
+	"weapon_m_pipe",
 
 	"*ammo*",
 
@@ -58,13 +58,13 @@ weaponscommon = {
 }
 
 weaponsuncommon = {
-	"weapon_p228",
+	"weapon_s_p99",
 	"weapon_per4ik",
 
-	"weapon_hg_crowbar",
-	"weapon_hg_bat",
-	"weapon_hg_metalbat",
-	"weapon_hg_hatchet",
+	"weapon_m_crowbar",
+	"weapon_m_bat",
+	"weapon_m_metalbat",
+	"weapon_m_hatchet",
 
 	"*ammo*",
 
@@ -77,29 +77,29 @@ weaponsuncommon = {
 }
 
 weaponsrare = {
-	"weapon_beretta",
-	"weapon_remington870police",
-	"weapon_glock",
-	"weapon_p99",
-	"weapon_hk_usp",
-	"weapon_cz75",
+	"weapon_s_beretta",
+	"weapon_s_remington870police",
+	"weapon_s_glock",
+	"weapon_s_p99",
+	"weapon_s_hk_usp",
+	"weapon_s_cz75",
 
 	"weapon_tomahawk-2",
 	"weapon_hg_molotov",
 
 	"*ammo*",
 
-	"weapon_hg_sledge",
-	"weapon_hg_fireaxe",
-	"weapon_hg_fubar",
+	"weapon_m_sleagehammer",
+	"weapon_m_fireaxe",
+	"weapon_m_fubar",
 
 	"ent_jack_gmod_ezarmor_gasmask",
 	"ent_jack_gmod_ezarmor_mltorso",
 }
 
 weaponsveryrare = {
-	"weapon_m4super-2",
-	"weapon_deserteagle",
+	"weapon_s_m4super",
+	"weapon_s_deserteagle",
 
 
 	"ent_jack_gmod_ezarmor_mtorso",
@@ -107,10 +107,10 @@ weaponsveryrare = {
 }
 
 weaponslegendary = {
-	"weapon_xm1014",
-	"weapon_mp5a3",
+	"weapon_s_m4super",
+	"weapon_s_mp5a3",
 	"weapon_civil_famas",
-	"weapon_galil",
+	"weapon_s_galil",
 	"weapon_ump",
 }
 
