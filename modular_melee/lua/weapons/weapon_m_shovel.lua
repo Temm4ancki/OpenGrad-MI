@@ -1,16 +1,18 @@
 SWEP.Base = "koishi_melee"
 
-SWEP.PrintName = "Монтировка"
+SWEP.PrintName = "Лопата"
 SWEP.Category = "md3melee"
-SWEP.Instructions = "Ручной ударный и рычажный инструмент, один из наиболее древних видов инструмента, известных человечеству, наряду с молотком, зубилом, топором, лопатой."
+SWEP.Purpose = "Ручной шанцевый инструмент, используемый преимущественно для работы (копание, расчистка, перенос и так далее) с грунтом."
+SWEP.WepSelectIcon = "vgui/select/w/spade"
+SWEP.IconOverride = "vgui/icon/w/spade.png"
 
 SWEP.Spawnable= true
 SWEP.AdminSpawnable= true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60
-SWEP.ViewModel = "models/weapons/me_crowbar/w_me_crowbar.mdl"
-SWEP.WorldModel = "models/weapons/me_crowbar/w_me_crowbar.mdl"
+SWEP.ViewModel = "models/weapons/salat/w_hg_spade/w_me_spade.mdl"
+SWEP.WorldModel = "models/weapons/salat/w_hg_spade/w_me_spade.mdl"
 SWEP.ViewModelFlip = false
 
 SWEP.AutoSwitchTo = false
@@ -29,22 +31,22 @@ SWEP.DrawCrosshair = false
 
 SWEP.DrawAmmo = true
 
-SWEP.Primary.Damage = 40
+SWEP.Primary.Damage = 25
 SWEP.Primary.Ammo = "none"
 SWEP.Primary.DefaultClip = -1
 SWEP.Primary.Automatic = true
 SWEP.Primary.Recoil = 0.5
-SWEP.Primary.Delay = 1.3
-SWEP.Primary.Force = 70
+SWEP.Primary.Delay = 1.1
+SWEP.Primary.Force = 180
 
 SWEP.Secondary.ClipSize = 0
 SWEP.Secondary.DefaultClip = 0
 SWEP.Secondary.Automatic = false
 SWEP.Secondary.Ammo = "none"
 
-SWEP.DrawSound = "weapons/melee/holster_in_light.wav"
-SWEP.HitSound = "snd_jack_hmcd_knifehit.wav"
-SWEP.FlashHitSound = "weapons/melee/flesh_impact_blunt_04.wav"
+SWEP.DrawSound = "weapons/salat/w_hg_spade/holster_in_light.ogg"
+SWEP.HitSound = "physics/metal/metal_sheet_impact_hard7.wav"
+SWEP.FlashHitSound = "weapons/salat/w_hg_spade/snd_jack_hmcd_axehit.ogg"
 SWEP.ShouldDecal = true
-SWEP.HoldTypeWep = "melee"
+SWEP.HoldTypeWep = "melee2"
 SWEP.DamageType = DMG_SLASH

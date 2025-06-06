@@ -46,8 +46,8 @@ SWEP.SlotPos				= 2
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/pwb/weapons/w_m134.mdl"
-SWEP.WorldModel				= "models/pwb/weapons/w_m134.mdl"
+SWEP.ViewModel				= "models/weapons/salat/w_hk416/w_hk416.mdl"
+SWEP.WorldModel				= "models/weapons/salat/w_hk416/w_hk416.mdl"
 
 function SWEP:PrimaryAttack()
 	self.ShootNext=self.NextShot or NextShot

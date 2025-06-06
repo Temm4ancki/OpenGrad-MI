@@ -1,6 +1,6 @@
 SWEP.Base = 'koishi_sweps' -- base
 
-SWEP.PrintName 				= "Remington 870 - SIB"
+SWEP.PrintName 				= "Дробовик"
 SWEP.Author 				= "Remington"
 SWEP.Instructions			= "Не хороший дробовик, вообще винтовка"
 SWEP.Category 				= "md3"
@@ -65,3 +65,8 @@ SWEP.SightPos = Vector(-5,1,4) -- Sight pos
 SWEP.SightAng = Angle(-6,0,0) -- Sight ang
 
 SWEP.Mobility = 1.5
+
+SWEP.RightMod = -1
+SWEP.ForwardMod = 5
+SWEP.UpMod = 4.8
+SWEP.AngleMod = Angle(0,5,0)

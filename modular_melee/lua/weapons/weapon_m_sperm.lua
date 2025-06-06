@@ -1,8 +1,10 @@
 SWEP.Base = "koishi_melee"
 
-SWEP.PrintName = "копье"
+SWEP.PrintName = "Копьё"
 SWEP.Category = "md3melee"
-SWEP.Instructions = "копе кидац."
+SWEP.Purpose = "Копьё кидац."
+SWEP.WepSelectIcon = "vgui/select/w/sperm"
+SWEP.IconOverride = "vgui/icon/w/sperm.png"
 
 SWEP.Spawnable= true
 SWEP.AdminSpawnable= true
@@ -42,9 +44,9 @@ SWEP.Secondary.DefaultClip = 0
 SWEP.Secondary.Automatic = false
 SWEP.Secondary.Ammo = "none"
 
-SWEP.DrawSound = "snd_jack_hmcd_knifedraw.wav"
+SWEP.DrawSound = "weapons/salat/w_hg_sperm/snd_jack_hmcd_knifedraw.ogg"
+SWEP.FlashHitSound = "weapons/salat/w_hg_sperm/snd_jack_hmcd_axehit.ogg"
 SWEP.HitSound = "physics/metal/metal_canister_impact_hard3.wav"
-SWEP.FlashHitSound = "snd_jack_hmcd_axehit.wav"
 SWEP.ShouldDecal = true
 SWEP.HoldTypeWep = "melee"
 SWEP.DamageType = DMG_SLASH

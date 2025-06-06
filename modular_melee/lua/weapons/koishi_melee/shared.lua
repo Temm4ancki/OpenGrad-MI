@@ -100,7 +100,6 @@ end
 
 function SWEP:Initialize()
 	self:SetHoldType(self.HoldTypeWep)
-	self.lerpClose = 0
 end
 
 
@@ -110,9 +109,6 @@ function SWEP:Deploy()
 	if SERVER then
 		self:GetOwner():EmitSound(self.DrawSound,60)
 	end
-	local ply = self:GetOwner()
-	if not IsValid(ply) then return end
-	if ply:GetNWBool("Suiciding") then ply:SetNWBool("Suiciding",false) end
 end
 
 function SWEP:Holster()
@@ -127,30 +123,8 @@ function SWEP:PrimaryAttack()
 		self:GetOwner():EmitSound( "weapons/slam/throw.wav",60 )
 		self:GetOwner().stamina = math.max(self:GetOwner().stamina - self.Primary.Damage / 5,0)
 	end
-
-	local ply = self:GetOwner()
-	if ply:GetNWBool("Suiciding") then
-		if SERVER then
-			ply.KillReason = "killyourself"
-
-			local dmgInfo = DamageInfo()
-			dmgInfo:SetAttacker(ply)
-			dmgInfo:SetInflictor(self)
-			dmgInfo:SetDamage(self.Primary.Damage * 3)
-			dmgInfo:SetDamageType(DMG_SLASH)
-			dmgInfo:SetDamageForce(self:GetOwner():GetForward() * self.Primary.Force)
-			--dmgInfo:SetDamagePosition(ply:GetBonePosition(ply:LookupBone("ValveBiped.Bip01_Head1")))
-			ply:TakeDamageInfo(dmgInfo)
-
-			ply.LastDMGInfo = dmgInfo
-			ply.LastHitBoneName = "ValveBiped.Bip01_Head1"
-			ply.Organs["artery"] = math.Clamp(ply.Organs["artery1"] - (self.Primary.Damage * 3), 0, 1)
-			self:GetOwner():EmitSound("snd_jack_hmcd_slash.wav", 50)
-		end
-		return
-	end
-
 	self:GetOwner():LagCompensation( true )
+	local ply = self:GetOwner()
 
 	local tra = {}
 	tra.start = ply:GetAttachment(ply:LookupAttachment("eyes")).Pos
@@ -189,9 +163,9 @@ function SWEP:PrimaryAttack()
 			if angle < -180 then angle = 360 + angle end
 
 			if angle <= 90 and angle >= -90 then
-				dmginfo:SetDamage( self.Primary.Damage * 1.5 )
+				dmginfo:SetDamage( self.Primary.Damage * 3 )
 			else
-				dmginfo:SetDamage( self.Primary.Damage / 1.5 )
+				dmginfo:SetDamage( self.Primary.Damage )
 			end
 
 			if tr.Entity:IsNPC() or tr.Entity:IsPlayer() then
@@ -220,7 +194,7 @@ function SWEP:PrimaryAttack()
 
 	if SERVER and Tr.Hit and self.ShouldDecal then
 		if IsValid(Tr.Entity) and Tr.Entity:GetClass()=="prop_ragdoll" then
-			util.Decal("Impact.Flesh",pos1,pos2)
+			util.Decal("Blood",tr.HitPos+tr.HitNormal,tr.HitPos-tr.HitNormal)
 		else
 			util.Decal("ManhackCut",pos1,pos2)
 		end
@@ -237,54 +211,34 @@ function SWEP:Reload()
 	return false
 end
 
-local closeAng = Angle(0,0,0)
-local angZero = Angle(0,0,0)
-local angSuicide = Angle(160,30,90)
-local angSuicide2 = Angle(160,30,90)
-local angSuicide3 = Angle(60,-30,90)
-local forearm,clavicle,hand = Angle(0,0,0),Angle(0,0,0),Angle(0,0,0)
 function SWEP:Think()
-	local ply = self:GetOwner()
-	if not IsValid(ply) or not ply:Alive() then return end
-	hand:Set(angZero)
-	if not self.isClose and not self:GetOwner():IsSprinting() then
-		if not ply:GetNWBool("Suiciding") then
-			self:SetWeaponHoldType(self.HoldTypeWep)
-			hand:Set(angZero)
-			forearm:Set(angZero)
-		elseif not self.TwoHands and ply:GetNWBool("Suiciding") then
-			self:SetWeaponHoldType("normal")
-			forearm:Set(angSuicide2)
-			hand:Set(angSuicide3)
-		elseif ply:GetNWBool("Suiciding") then
-			self:SetWeaponHoldType("normal")
-			hand:Set(angSuicide)
-		end
+	self.Anim = Lerp(0.2, self.Anim or 0, 1)
+	if self:GetHoldType() == "melee2" then
+		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(35, 30, 50) * self.Anim, true)
+		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 5, -35) * self.Anim, true)
+	else if self:GetHoldType() == "melee" then
+		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(60, -15, -10) * self.Anim, true)
+		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_UpperArm"), Angle(0, -30, -70) * self.Anim, true)
+		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Hand"), Angle(-40, 10, 0) * self.Anim, true)
+	else
+		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(35, 30, 50) * self.Anim, true)
+		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 5, -35) * self.Anim, true)
 	end
-
-	local eyeangles = (-ply:GetEyeTrace().HitPos + ply:EyePos()):Angle()
-	eyeangles:RotateAroundAxis(eyeangles:Up(),180)
-	
-	if ((CLIENT and isLocal) or SERVER) then
-		if not ply:GetNWBool("Suiciding") and not self:GetOwner():IsSprinting() then
-			local numbr = self.TwoHands and 50 or 80
-			if eyeangles[1] > numbr then
-				hand[1] = hand[1] - (eyeangles[1] - numbr)
-			end
-
-			if eyeangles[1] < -numbr then
-				hand[1] = hand[1] - (eyeangles[1] + numbr)
-			end
-		end
-	end
-
-	clavicle:Set(angZero)
-	closeAng[3] = -40 * self.lerpClose
-	clavicle:Add(closeAng)
-
-	if not ply:LookupBone("ValveBiped.Bip01_R_Forearm") then return end--;c
-
-	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Forearm"),forearm,false)
-	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"),clavicle,false)
-	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Hand"),hand,false)
 end
+end
+
+function SWEP:Holster()
+	local ply = self:GetOwner()
+	timer.Simple(0.2, function()
+		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(0, 0, 0), true)
+		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 0, 0), true)
+		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_UpperArm"), Angle(0, 0, 0), true)
+		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Hand"), Angle(0, 0, 0), true)
+	end)
+	return true
+end
+
+hook.Add("PlayerDeath", "Resetbone2s", function(ply)
+	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(0, 0, 0), true)
+	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 0, 0), true)
+end)

@@ -1,16 +1,18 @@
 SWEP.Base = "koishi_melee"
 
-SWEP.PrintName = "флаг"
+SWEP.PrintName = "Флаг"
 SWEP.Category = "md3melee"
-SWEP.Instructions = "ЗА АФРИКАНИСТАН"
+SWEP.Purpose = "ЗА РЕДИСТАН"
+SWEP.WepSelectIcon = "vgui/select/w/flag"
+SWEP.IconOverride = "vgui/icon/w/flag.png"
 
 SWEP.Spawnable= true
 SWEP.AdminSpawnable= true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60
-SWEP.ViewModel = "models/addons/flag_sib_resp.mdl"
-SWEP.WorldModel = "models/addons/flag_sib_resp.mdl"
+SWEP.ViewModel = "models/weapons/salat/w_hg_flag/flag_sib_resp.mdl"
+SWEP.WorldModel = "models/weapons/salat/w_hg_flag/flag_sib_resp.mdl"
 SWEP.ViewModelFlip = false
 
 SWEP.AutoSwitchTo = false
@@ -43,7 +45,7 @@ SWEP.Secondary.Automatic = false
 SWEP.Secondary.Ammo = "none"
 
 SWEP.DrawSound = "physics/metal/metal_box_impact_soft2.wav"
-SWEP.HitSound = "phx/epicmetal_hard.wav"
+SWEP.HitSound = "physics/metal/metal_sheet_impact_hard7.wav"
 SWEP.FlashHitSound = "physics/body/body_medium_impact_hard3.wav"
 SWEP.ShouldDecal = true
 SWEP.HoldTypeWep = "melee2"

@@ -2,15 +2,17 @@ SWEP.Base = "koishi_melee"
 
 SWEP.PrintName = "Фубар"
 SWEP.Category = "md3melee"
-SWEP.Instructions = "Ручное рычажно-клиновое приспособление для вытаскивания (выдирания) вбитых в материал (дерево, пластик и др.) гвоздей."
+SWEP.Purpose = "Ручное рычажно-клиновое приспособление для вытаскивания (выдирания) вбитых в материал (дерево, пластик и др.) гвоздей."
+SWEP.WepSelectIcon = "vgui/select/w/fubar"
+SWEP.IconOverride = "vgui/icon/w/fubar.png"
 
 SWEP.Spawnable= true
 SWEP.AdminSpawnable= true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60
-SWEP.ViewModel = "models/weapons/me_fubar/w_me_fubar.mdl"
-SWEP.WorldModel = "models/weapons/me_fubar/w_me_fubar.mdl"
+SWEP.ViewModel = "models/weapons/salat/w_hg_fubar/w_me_fubar.mdl"
+SWEP.WorldModel = "models/weapons/salat/w_hg_fubar/w_me_fubar.mdl"
 SWEP.ViewModelFlip = false
 
 SWEP.AutoSwitchTo = false
@@ -42,9 +44,9 @@ SWEP.Secondary.DefaultClip = 0
 SWEP.Secondary.Automatic = false
 SWEP.Secondary.Ammo = "none"
 
-SWEP.DrawSound = "weapons/melee/holster_in_light.wav"
-SWEP.HitSound = "phx/epicmetal_hard.wav"
-SWEP.FlashHitSound = "weapons/melee/flesh_impact_blunt_03.wav"
+SWEP.DrawSound = "weapons/salat/w_hg_fubar/holster_in_light.ogg"
+SWEP.HitSound = "physics/metal/metal_sheet_impact_hard7.wav"
+SWEP.FlashHitSound = "weapons/salat/w_hg_fubar/flesh_impact_blunt_03.ogg"
 SWEP.ShouldDecal = false
 SWEP.HoldTypeWep = "melee2"
 SWEP.DamageType = DMG_CLUB

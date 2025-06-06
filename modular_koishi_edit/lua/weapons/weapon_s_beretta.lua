@@ -1,10 +1,12 @@
-SWEP.Base = 'koishi_sweps' -- base
+SWEP.Base = "koishi_sweps" -- base
 
 SWEP.PrintName 				= "M9 Beretta"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Пистолет под калибр 9х19"
+SWEP.Purpose			= "Пистолет под калибр 9х19"
 SWEP.Category 				= "md3"
-SWEP.WepSelectIcon			= "pwb/sprites/m9"
+SWEP.WepSelectIcon = "vgui/select/w/m9"
+SWEP.IconOverride = "vgui/icon/w/m9.png"
+
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
@@ -18,9 +20,9 @@ SWEP.Primary.Ammo			= "9х19 mm Parabellum"
 SWEP.Primary.Cone = 0
 SWEP.Primary.Damage = 25
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "m45/m45_fp.wav"
-SWEP.Primary.SoundFar = "m45/m45_dist.wav"
-SWEP.Primary.Force = 65/3
+SWEP.Primary.Sound = "weapons/salat/w_m9/m45_fp.ogg"
+SWEP.Primary.SoundFar = "weapons/salat/w_m9/m45_dist.ogg"
+SWEP.Primary.Force = 65 / 3
 SWEP.ReloadTime = 2
 SWEP.ShootWait = 0.12
 
@@ -44,10 +46,15 @@ SWEP.SlotPos				= 1
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/pwb/weapons/w_m9.mdl"
-SWEP.WorldModel				= "models/pwb/weapons/w_m9.mdl"
+SWEP.ViewModel				= "models/weapons/salat/w_m9/w_m9.mdl"
+SWEP.WorldModel				= "models/weapons/salat/w_m9/w_m9.mdl"
 
 SWEP.vbwPos = Vector(8,-9,-8)
 
 SWEP.addPos = Vector(0,0,-0.9)
 SWEP.addAng = Angle(0.3,0,0)
+
+SWEP.RightMod = -.17
+SWEP.ForwardMod = 10
+SWEP.UpMod = 4.5
+SWEP.AngleMod = Angle(-10,5,0)

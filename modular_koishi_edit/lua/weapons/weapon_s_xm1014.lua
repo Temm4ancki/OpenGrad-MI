@@ -1,29 +1,30 @@
-SWEP.Base = 'koishi_sweps' -- base
+SWEP.Base = "koishi_sweps" -- base
 
-SWEP.PrintName 				= "XM1014"
+SWEP.PrintName 				= "Winchester"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Полуавтоматический дробовик под калибр 12/70"
+SWEP.Purpose			= "kowboy pushka"
 SWEP.Category 				= "md3"
+SWEP.WepSelectIcon = "vgui/select/w/winchester"
+SWEP.IconOverride = "vgui/icon/w/winchester.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
 
 ------------------------------------------
 
-SWEP.Primary.ClipSize		= 8
-SWEP.Primary.DefaultClip	= 8
-SWEP.Primary.Automatic		= true
-SWEP.Primary.Ammo			= "12/70 gauge"
-SWEP.Primary.Cone = 0.05
-SWEP.Primary.Damage = 35
+SWEP.Primary.ClipSize		= 6
+SWEP.Primary.DefaultClip	= 30
+SWEP.Primary.Automatic		= false
+SWEP.Primary.Ammo			= "5.56x45 mm"
+SWEP.Primary.Cone = 0
+SWEP.Primary.Damage = 40
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "rifle_win1892/win1892_fire_01.wav"
-SWEP.Primary.SoundFar = "snd_jack_hmcd_snp_far.wav"
-SWEP.Primary.Force = 35
+SWEP.Primary.Sound = "weapons/salat/w_winchester/m4a1_fp.ogg"
+SWEP.Primary.SoundFar = "weapons/salat/w_winchester/m4a1_dist.ogg"
+SWEP.Primary.Force = 160 / 3
 SWEP.ReloadTime = 2
-SWEP.ShootWait = 0.2
-SWEP.NumBullet = 8
-SWEP.Sight = true
+SWEP.ShootWait = .9
+SWEP.ReloadSound = "weapons/ar2/ar2_reload.wav"
 SWEP.TwoHands = true
 
 SWEP.Secondary.ClipSize		= -1
@@ -38,7 +39,6 @@ SWEP.AutoSwitchTo			= false
 SWEP.AutoSwitchFrom			= false
 
 SWEP.HoldType = "ar2"
-SWEP.shotgun = true
 
 ------------------------------------------
 
@@ -47,14 +47,10 @@ SWEP.SlotPos				= 0
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/pwb/weapons/w_xm1014.mdl"
-SWEP.WorldModel				= "models/pwb/weapons/w_xm1014.mdl"
+SWEP.ViewModel				= "models/weapons/salat/w_winchester/w_jmod_levergun.mdl"
+SWEP.WorldModel				= "models/weapons/salat/w_winchester/w_jmod_levergun.mdl"
 
-function SWEP:ApplyEyeSpray()
-    self.eyeSpray = self.eyeSpray - Angle(5,math.Rand(-2,2),0)
-end
-
-SWEP.vbwPos = Vector(-2,-4,-4)
-
-SWEP.CLR_Scope = 0.05
-SWEP.CLR = 0.025
+SWEP.RightMod = -.9
+SWEP.ForwardMod = 6
+SWEP.UpMod = 5.2
+SWEP.AngleMod = Angle(0,0,0)

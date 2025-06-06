@@ -1,10 +1,11 @@
-SWEP.Base = 'koishi_sweps' -- base
+SWEP.Base = "koishi_sweps" -- base
 
 SWEP.PrintName 				= "АКС-74У"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Автоматическая винтовка под калибр 5,45х39"
+SWEP.Purpose			= "Автоматическая винтовка под калибр 5,45х39"
 SWEP.Category 				= "md3"
-SWEP.WepSelectIcon			= "pwb/sprites/aks74u"
+SWEP.WepSelectIcon = "vgui/select/w/aks74u"
+SWEP.IconOverride = "vgui/icon/w/aks74u.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
@@ -18,9 +19,9 @@ SWEP.Primary.Ammo			= "5.45x39 mm"
 SWEP.Primary.Cone = 0
 SWEP.Primary.Damage = 40
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "ak74/ak74_fp.wav"
-SWEP.Primary.SoundFar = "ak74/ak74_dist.wav"
-SWEP.Primary.Force = 140/3
+SWEP.Primary.Sound = "weapons/salat/w_aks74u/ak74_fp.ogg"
+SWEP.Primary.SoundFar = "weapons/salat/w_aks74u/ak74_dist.ogg"
+SWEP.Primary.Force = 140 / 3
 SWEP.ReloadTime = 2
 SWEP.ShootWait = 0.075
 SWEP.ReloadSound = "weapons/ar2/ar2_reload.wav"
@@ -46,7 +47,12 @@ SWEP.SlotPos				= 0
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/pwb/weapons/w_aks74u.mdl"
-SWEP.WorldModel				= "models/pwb/weapons/w_aks74u.mdl"
+SWEP.ViewModel				= "models/weapons/salat/w_aks74u/w_aks74u.mdl"
+SWEP.WorldModel				= "models/weapons/salat/w_aks74u/w_aks74u.mdl"
 
 SWEP.vbwPos = Vector(5,-6,-6)
+
+SWEP.RightMod = -.9
+SWEP.ForwardMod = 5
+SWEP.UpMod = 5.5
+SWEP.AngleMod = Angle(-10,4,0)

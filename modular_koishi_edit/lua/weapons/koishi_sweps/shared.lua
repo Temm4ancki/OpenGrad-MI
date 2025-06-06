@@ -265,11 +265,11 @@ end
 function SWEP:SecondaryAttack()
 end
 
+
+
 -- concommand.Add("penis",function ()
 -- 	timer.Simple(.1,function ()
--- 		ply:ManipulateBoneAngles( ply:LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(0,30,0), true )
--- 		ply:ManipulateBoneAngles( ply:LookupBone("ValveBiped.Bip01_R_Upperarm"), Angle(30,0,0), true )
--- 		ply:ManipulateBoneAngles( ply:LookupBone("ValveBiped.Bip01_R_Forearm"), Angle(0,-140,0), true )
+
 -- 	end)
 -- 	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(0,0,0), true )
 -- 	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Upperarm"), Angle(0,0,0), true )

@@ -1,11 +1,11 @@
-SWEP.Base = 'koishi_sweps' -- base
+SWEP.Base = "koishi_sweps" -- base
 
 SWEP.PrintName 				= "Beretta SV10 - SIB"
 SWEP.Author 				= "Remington"
 SWEP.Instructions			= "Бакшот рулетка"
 SWEP.Category 				= "md3"
 
-SWEP.Spawnable 				= true
+SWEP.Spawnable 				= false
 SWEP.AdminOnly 				= false
 
 ------------------------------------------
@@ -65,3 +65,8 @@ SWEP.SightPos = Vector(-2,1.1,3.4) -- Sight pos
 SWEP.SightAng = Angle(-6,0,0) -- Sight ang
 
 SWEP.Mobility = 1.5
+
+SWEP.RightMod = -1.1
+SWEP.ForwardMod = 5
+SWEP.UpMod = 3.8
+SWEP.AngleMod = Angle(-10,0,20)

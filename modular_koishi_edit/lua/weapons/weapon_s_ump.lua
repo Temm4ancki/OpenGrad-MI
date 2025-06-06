@@ -1,8 +1,10 @@
-SWEP.Base = 'koishi_sweps' -- base
+SWEP.Base = "koishi_sweps" -- base
 
 SWEP.PrintName 				= "UMP"
-SWEP.Instructions			= "Что может еще делать ПП? СТРЕЛЯТЬ В ЛИЦО!"
+SWEP.Purpose			= "Что может еще делать ПП? СТРЕЛЯТЬ В ЛИЦО!"
 SWEP.Category 				= "md3"
+SWEP.WepSelectIcon = "vgui/select/w/ump45"
+SWEP.IconOverride = "vgui/icon/w/ump45.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
@@ -16,11 +18,11 @@ SWEP.Primary.Ammo			= "357"
 SWEP.Primary.Cone = 0
 SWEP.Primary.Damage = 30
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "mp5k/mp5k_fp.wav"
-SWEP.Primary.SoundFar = "mp5k/mp5k_dist.wav"
-SWEP.Primary.Force = 85/3
+SWEP.Primary.Sound = "weapons/salat/w_ump/mp5k_fp.ogg"
+SWEP.Primary.SoundFar = "weapons/salat/w_ump/mp5k_dist.ogg"
+SWEP.Primary.Force = 85 / 3
 SWEP.ReloadTime = 2
-SWEP.ShootWait = 0.10
+SWEP.ShootWait = 0.09
 SWEP.TwoHands = true
 
 SWEP.Secondary.ClipSize		= -1
@@ -48,3 +50,8 @@ SWEP.WorldModel				= "models/weapons/w_smg_ump45.mdl"
 
 SWEP.vbwPos = Vector(-2,-4,-4)
 SWEP.vbwRifle = true
+
+SWEP.RightMod = -.87
+SWEP.ForwardMod = 9
+SWEP.UpMod = 6.7
+SWEP.AngleMod = Angle(0,5,0)

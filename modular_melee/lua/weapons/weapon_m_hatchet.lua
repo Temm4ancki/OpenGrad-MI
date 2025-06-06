@@ -2,15 +2,17 @@ SWEP.Base = "koishi_melee"
 
 SWEP.PrintName = "Топорик"
 SWEP.Category = "md3melee"
-SWEP.Instructions = "Одноручный ударный инструмент с острым лезвием с одной стороны, используемым для рубки и колки дерева, и наконечником молота с другой стороны."
+SWEP.Purpose = "Одноручный ударный инструмент с острым лезвием с одной стороны, используемым для рубки и колки дерева, и наконечником молота с другой стороны."
+SWEP.WepSelectIcon = "vgui/select/w/hatchet"
+SWEP.IconOverride = "vgui/icon/w/hatchet.png"
 
 SWEP.Spawnable= true
 SWEP.AdminSpawnable= true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60
-SWEP.ViewModel = "models/weapons/me_hatchet/w_me_hatchet.mdl"
-SWEP.WorldModel = "models/weapons/me_hatchet/w_me_hatchet.mdl"
+SWEP.ViewModel = "models/weapons/salat/w_hg_hatchet/w_me_hatchet.mdl"
+SWEP.WorldModel = "models/weapons/salat/w_hg_hatchet/w_me_hatchet.mdl"
 SWEP.ViewModelFlip = false
 
 SWEP.AutoSwitchTo = false
@@ -42,9 +44,9 @@ SWEP.Secondary.DefaultClip = 0
 SWEP.Secondary.Automatic = false
 SWEP.Secondary.Ammo = "none"
 
-SWEP.DrawSound = "weapons/melee/holster_in_light.wav"
-SWEP.HitSound = "snd_jack_hmcd_knifehit.wav"
-SWEP.FlashHitSound = "snd_jack_hmcd_axehit.wav"
+SWEP.DrawSound = "weapons/salat/w_hg_hatchet/holster_in_light.ogg"
+SWEP.HitSound = "weapons/salat/w_hg_hatchet/snd_jack_hmcd_knifehit.ogg"
+SWEP.FlashHitSound = "weapons/salat/w_hg_hatchet/snd_jack_hmcd_axehit.ogg"
 SWEP.ShouldDecal = true
 SWEP.HoldTypeWep = "melee"
 SWEP.DamageType = DMG_SLASH

@@ -1,9 +1,11 @@
-SWEP.Base = 'koishi_sweps' -- base
+SWEP.Base = "koishi_sweps" -- base
 
 SWEP.PrintName 				= "SPAS-12"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Полуавтоматический дробовик под калибр 12/70"
+SWEP.Purpose			= "Полуавтоматический дробовик под калибр 12/70"
 SWEP.Category 				= "md3"
+SWEP.WepSelectIcon = "vgui/select/w/spas_12"
+SWEP.IconOverride = "vgui/icon/w/spas_12.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
@@ -17,11 +19,11 @@ SWEP.Primary.Ammo			= "12/70 gauge"
 SWEP.Primary.Cone = 0.05
 SWEP.Primary.Damage = 35
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "toz_shotgun/toz_fp.wav"
-SWEP.Primary.SoundFar = "toz_shotgun/toz_dist.wav"
+SWEP.Primary.Sound = "weapons/salat/w_spas_12/toz_fp.ogg"
+SWEP.Primary.SoundFar = "weapons/salat/w_spas_12/toz_dist.ogg"
 SWEP.Primary.Force = 35
 SWEP.ReloadTime = 2
-SWEP.ShootWait = 0.15
+SWEP.ShootWait = .9
 SWEP.NumBullet = 12
 SWEP.Sight = true
 SWEP.TwoHands = true
@@ -47,8 +49,8 @@ SWEP.SlotPos				= 0
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/pwb/weapons/w_spas_12.mdl"
-SWEP.WorldModel				= "models/pwb/weapons/w_spas_12.mdl"
+SWEP.ViewModel				= "models/weapons/salat/w_spas_12/w_spas_12.mdl"
+SWEP.WorldModel				= "models/weapons/salat/w_spas_12/w_spas_12.mdl"
 
 function SWEP:ApplyEyeSpray()
     self.eyeSpray = self.eyeSpray - Angle(5,math.Rand(-2,2),0)
@@ -60,3 +62,8 @@ SWEP.CLR_Scope = 0.05
 SWEP.CLR = 0.025
 
 SWEP.addAng = Angle(-0.2,-0.15,0)
+
+SWEP.RightMod = -1
+SWEP.ForwardMod = 5
+SWEP.UpMod = 4.5
+SWEP.AngleMod = Angle(0,5,0)

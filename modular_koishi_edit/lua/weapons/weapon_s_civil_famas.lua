@@ -1,11 +1,12 @@
 
-SWEP.Base = 'koishi_sweps' -- base
+SWEP.Base = "koishi_sweps" -- base
 
 SWEP.PrintName 				= "FAMAS-Civil"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Полуавтоматическа винтовка под калибр 5.56×45"
+SWEP.Purpose			= "Полуавтоматическа винтовка под калибр 5.56×45"
 SWEP.Category 				= "md3"
-SWEP.WepSelectIcon			= "pwb/sprites/aks74u"
+SWEP.WepSelectIcon = "vgui/select/w/famasg2"
+SWEP.IconOverride = "vgui/icon/w/famasg2.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
@@ -19,9 +20,9 @@ SWEP.Primary.Ammo			= "5.56x45 mm"
 SWEP.Primary.Cone = 0
 SWEP.Primary.Damage = 30
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "m16a4/m16a4_fp.wav"
-SWEP.Primary.SoundFar = "m16a4/m16a4_dist.wav"
-SWEP.Primary.Force = 110/3
+SWEP.Primary.Sound = "weapons/salat/w_famasg2/m16a4_fp.ogg"
+SWEP.Primary.SoundFar = "weapons/salat/w_famasg2/m16a4_dist.ogg"
+SWEP.Primary.Force = 110 / 3
 SWEP.ReloadTime = 2
 SWEP.ShootWait = 0.09
 SWEP.ReloadSound = "weapons/ar2/ar2_reload.wav"
@@ -47,7 +48,12 @@ SWEP.SlotPos				= 0
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/pwb2/weapons/w_famasg2.mdl"
-SWEP.WorldModel				= "models/pwb2/weapons/w_famasg2.mdl"
+SWEP.ViewModel				= "models/weapons/salat/w_famasg2/w_famasg2.mdl"
+SWEP.WorldModel				= "models/weapons/salat/w_famasg2/w_famasg2.mdl"
 
 SWEP.vbwPos = Vector(-6,-6,-4)
+
+SWEP.RightMod = -.73
+SWEP.ForwardMod = 7
+SWEP.UpMod = 7
+SWEP.AngleMod = Angle(0,5,0)

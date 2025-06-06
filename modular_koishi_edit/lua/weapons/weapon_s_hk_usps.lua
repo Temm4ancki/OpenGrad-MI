@@ -1,9 +1,11 @@
-SWEP.Base = 'koishi_sweps' -- base
+SWEP.Base = "koishi_sweps" -- base
 
 SWEP.PrintName 				= "HK USP-S"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Пистолет под калибр 9х19"
+SWEP.Purpose			= "Пистолет под калибр 9х19"
 SWEP.Category 				= "md3"
+SWEP.WepSelectIcon = "vgui/select/w/usps"
+SWEP.IconOverride = "vgui/icon/w/usps.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
@@ -17,8 +19,8 @@ SWEP.Primary.Ammo			= "9х19 mm Parabellum"
 SWEP.Primary.Cone = 0
 SWEP.Primary.Damage = 25
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "pwb/weapons/tmp/shoot.wav"
-SWEP.Primary.Force = 70/3
+SWEP.Primary.Sound = "weapons/salat/w_hk_usps/shoot.ogg"
+SWEP.Primary.Force = 70 / 3
 SWEP.ReloadTime = 2
 SWEP.ShootWait = 0.14
 
@@ -48,3 +50,7 @@ SWEP.WorldModel				= "models/weapons/w_pist_usp_silencer.mdl"
 SWEP.vbwPos = Vector(7.5,0.1,-6)
 
 SWEP.Supressed = true
+SWEP.RightMod = -.2
+SWEP.ForwardMod = 10
+SWEP.UpMod = 4.5
+SWEP.AngleMod = Angle(0,16,0)

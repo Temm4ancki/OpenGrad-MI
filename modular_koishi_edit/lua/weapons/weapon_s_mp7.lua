@@ -1,8 +1,10 @@
-SWEP.Base = 'koishi_sweps' -- base 
+SWEP.Base = "koishi_sweps" -- base 
 
 SWEP.PrintName 				= "MP7"
-SWEP.Instructions			= "Пистолет-пулемёт под калибр 4,6×30"
+SWEP.Purpose			= "Пистолет-пулемёт под калибр 4,6×30"
 SWEP.Category 				= "md3"
+SWEP.WepSelectIcon = "vgui/select/w/mp7"
+SWEP.IconOverride = "vgui/icon/w/mp7.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
@@ -16,15 +18,14 @@ SWEP.Primary.Ammo			= "4.6×30 mm"
 SWEP.Primary.Cone = 0
 SWEP.Primary.Damage = 30
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "mp5k/mp5k_fp.wav"
-SWEP.Primary.SoundFar = "mp5k/mp5k_dist.wav"
-SWEP.Primary.Force = 120/3
+SWEP.Primary.Sound = "weapons/salat/w_mp7/mp5k_fp.ogg"
+SWEP.Primary.SoundFar = "weapons/salat/w_mp7/mp5k_dist.ogg"
+SWEP.Primary.Force = 120 / 3
 SWEP.ReloadTime = 2
 SWEP.ShootWait = 0.06
 SWEP.ReloadSound = "weapons/ar2/ar2_reload.wav"
 SWEP.TwoHands = true
 
-							
 SWEP.Secondary.ClipSize		= -1
 SWEP.Secondary.DefaultClip	= -1
 SWEP.Secondary.Automatic	= false
@@ -45,8 +46,13 @@ SWEP.SlotPos				= 0
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/pwb2/weapons/w_mp7.mdl"
-SWEP.WorldModel				= "models/pwb2/weapons/w_mp7.mdl"
+SWEP.ViewModel				= "models/weapons/salat/w_mp7/w_mp7.mdl"
+SWEP.WorldModel				= "models/weapons/salat/w_mp7/w_mp7.mdl"
 
 SWEP.addPos = Vector(0,0,0)
 SWEP.addAng = Angle(-0.5,0,0)
+
+SWEP.RightMod = -.8
+SWEP.ForwardMod = 10
+SWEP.UpMod = 4.9
+SWEP.AngleMod = Angle(-5,5,0)

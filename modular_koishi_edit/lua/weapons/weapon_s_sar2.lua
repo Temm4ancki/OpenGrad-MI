@@ -1,10 +1,11 @@
-SWEP.Base = 'koishi_sweps' -- base
+SWEP.Base = "koishi_sweps" -- base
 
 SWEP.PrintName 				= "Automatic Rifle 2"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Основное штурмовое оружие Альянса"
+SWEP.Purpose			= "Основное штурмовое оружие Альянса"
 SWEP.Category 				= "md3"
-SWEP.WepSelectIcon          = "pwb/sprites/akm"
+SWEP.WepSelectIcon = "vgui/select/w/sar2"
+SWEP.IconOverride = "vgui/icon/w/sar2.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
@@ -18,11 +19,11 @@ SWEP.Primary.Ammo			= "ar2"
 SWEP.Primary.Cone = 0
 SWEP.Primary.Damage = 40
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "weapons/arccw/fire1.wav"
-SWEP.Primary.SoundFar = "snd_jack_hmcd_snp_far.wav"
-SWEP.Primary.Force = 270/3
+SWEP.Primary.Sound = "weapons/salat/w_sar2/fire1.ogg"
+SWEP.Primary.SoundFar = "weapons/salat/w_sar2/snd_jack_hmcd_snp_far.ogg"
+SWEP.Primary.Force = 120 / 3
 SWEP.ReloadTime = 2
-SWEP.ShootWait = 0.1
+SWEP.ShootWait = 0.075
 SWEP.ReloadSound = "weapons/arccw/npc_ar2_reload.wav"
 SWEP.TwoHands = true
 SWEP.Efect = "AR2Impact"
@@ -48,7 +49,12 @@ SWEP.SlotPos				= 0
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/weapons/arccw/w_irifle.mdl"
-SWEP.WorldModel				= "models/weapons/arccw/w_irifle.mdl"
+SWEP.ViewModel				= "models/weapons/salat/w_sar2/w_irifle.mdl"
+SWEP.WorldModel				= "models/weapons/salat/w_sar2/w_irifle.mdl"
 
 SWEP.addAng = Angle(0.5,0.9,0)
+
+SWEP.RightMod = -.9
+SWEP.ForwardMod = 7
+SWEP.UpMod = 7.2
+SWEP.AngleMod = Angle(-10,5,0)

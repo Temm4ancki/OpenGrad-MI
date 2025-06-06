@@ -1,9 +1,11 @@
-SWEP.Base = 'koishi_sweps' -- base
+SWEP.Base = "koishi_sweps" -- base
 
 SWEP.PrintName 				= "CZ75"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Пистолет под калибр 9х19"
+SWEP.Purpose			= "Пистолет под калибр 9х19"
 SWEP.Category 				= "md3"
+SWEP.WepSelectIcon = "vgui/select/w/cz75"
+SWEP.IconOverride = "vgui/icon/w/cz75.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
@@ -17,9 +19,9 @@ SWEP.Primary.Ammo			= "9х19 mm Parabellum"
 SWEP.Primary.Cone = 0
 SWEP.Primary.Damage = 25
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "m9/m9_fp.wav"
-SWEP.Primary.SoundFar = "m9/m9_dist.wav"
-SWEP.Primary.Force = 90/3
+SWEP.Primary.Sound = "weapons/salat/w_cz75/m9_fp.ogg"
+SWEP.Primary.SoundFar = "weapons/salat/w_cz75/m9_dist.ogg"
+SWEP.Primary.Force = 90 / 3
 SWEP.ReloadTime = 2
 SWEP.ShootWait = 0.08
 
@@ -43,7 +45,12 @@ SWEP.SlotPos				= 1
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/pwb/weapons/w_cz75.mdl"
-SWEP.WorldModel				= "models/pwb/weapons/w_cz75.mdl"
+SWEP.ViewModel				= "models/weapons/salat/w_cz75/w_cz75.mdl"
+SWEP.WorldModel				= "models/weapons/salat/w_cz75/w_cz75.mdl"
 
 SWEP.vbwPos = Vector(8.5,-10,-8)
+
+SWEP.RightMod = -.35
+SWEP.ForwardMod = 12
+SWEP.UpMod = 4.5
+SWEP.AngleMod = Angle(-10,5,0)

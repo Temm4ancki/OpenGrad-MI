@@ -2,14 +2,17 @@ SWEP.Base = "koishi_melee"
 
 SWEP.PrintName = "Кувалда"
 SWEP.Category = "md3melee"
-SWEP.Instructions = "Ручной ударный инструмент, предназначенный для боя камня, нанесения исключительно сильных ударов при обработке металла, на демонтаже и монтаже конструкций."
+SWEP.Purpose = "Ручной ударный инструмент, предназначенный для боя камня, нанесения исключительно сильных ударов при обработке металла, на демонтаже и монтаже конструкций."
+SWEP.WepSelectIcon = "vgui/select/w/sledge"
+SWEP.IconOverride = "vgui/icon/w/sledge.png"
+
 SWEP.Spawnable= true
 SWEP.AdminSpawnable= true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60
-SWEP.ViewModel = "models/weapons/me_sledge/w_me_sledge.mdl"
-SWEP.WorldModel = "models/weapons/me_sledge/w_me_sledge.mdl"
+SWEP.ViewModel = "models/weapons/salat/w_hg_sledge/w_me_sledge.mdl"
+SWEP.WorldModel = "models/weapons/salat/w_hg_sledge/w_me_sledge.mdl"
 SWEP.ViewModelFlip = false
 
 SWEP.AutoSwitchTo = false
@@ -41,9 +44,9 @@ SWEP.Secondary.DefaultClip = 0
 SWEP.Secondary.Automatic = false
 SWEP.Secondary.Ammo = "none"
 
-SWEP.DrawSound = "weapons/melee/holster_in_light.wav"
+SWEP.DrawSound = "weapons/salat/w_hg_sledge/holster_in_light.ogg"
 SWEP.HitSound = "physics/metal/metal_sheet_impact_hard2.wav"
-SWEP.FlashHitSound = "weapons/melee/flesh_impact_blunt_04.wav"
+SWEP.FlashHitSound = "weapons/salat/w_hg_sledge/flesh_impact_blunt_04.ogg"
 SWEP.ShouldDecal = false
 SWEP.HoldTypeWep = "melee2"
 SWEP.DamageType = DMG_CLUB

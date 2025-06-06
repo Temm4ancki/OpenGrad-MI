@@ -4,6 +4,9 @@ SWEP.PrintName = "Электро-дубинка"
 SWEP.Category = "md3melee"
 SWEP.Instructions = "Ручная электрическая дубинка, применяется отрядами ГО при правонарушениях граждан, или солдатами Альянса в боевых условиях."
 
+SWEP.WepSelectIcon = "vgui/select/w/stunbaton"
+SWEP.IconOverride = "vgui/icon/w/stunbaton.png"
+
 SWEP.Spawnable = true
 SWEP.AdminSpawnable = true
 SWEP.AdminOnly = false

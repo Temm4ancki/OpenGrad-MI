@@ -1,9 +1,11 @@
-SWEP.Base = 'koishi_sweps' -- base 
+SWEP.Base = "koishi_sweps" -- base 
 
 SWEP.PrintName 				= "HK MP5a3"
 SWEP.Author 				= "Homigrad"
-SWEP.Instructions			= "Пистолет-пулемёт под калибр 9х19"
+SWEP.Purpose			= "Пистолет-пулемёт под калибр 9х19"
 SWEP.Category 				= "md3"
+SWEP.WepSelectIcon = "vgui/select/w/mp5a3"
+SWEP.IconOverride = "vgui/icon/w/mp5a3.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
@@ -17,13 +19,13 @@ SWEP.Primary.Ammo			= "9х19 mm Parabellum"
 SWEP.Primary.Cone = 0
 SWEP.Primary.Damage = 25
 SWEP.Primary.Spread = 5
-SWEP.Primary.Sound = "mp5k/mp5k_fp.wav"
-SWEP.Primary.SoundFar = "mp5k/mp5k_dist.wav"
-SWEP.Primary.Force = 85/3
+SWEP.Primary.Sound = "weapons/salat/w_mp5a3/mp5k_fp.ogg"
+SWEP.Primary.SoundFar = "weapons/salat/w_mp5a3/mp5k_dist.ogg"
+SWEP.Primary.Force = 85 / 3
 SWEP.ReloadTime = 2
 SWEP.ShootWait = 0.06
 SWEP.TwoHands = true
-							
+
 SWEP.Secondary.ClipSize		= -1
 SWEP.Secondary.DefaultClip	= -1
 SWEP.Secondary.Automatic	= false
@@ -44,10 +46,15 @@ SWEP.SlotPos				= 0
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/pwb2/weapons/w_mp5a3.mdl"
-SWEP.WorldModel				= "models/pwb2/weapons/w_mp5a3.mdl"
+SWEP.ViewModel				= "models/weapons/salat/w_mp5a3/w_mp5a3.mdl"
+SWEP.WorldModel				= "models/weapons/salat/w_mp5a3/w_mp5a3.mdl"
 
 SWEP.dwsPos = Vector(20,20,5)
 SWEP.dwsItemPos = Vector(-7,0,1.5)
 
 SWEP.addAng = Angle(0,0,0)
+
+SWEP.RightMod = -.75
+SWEP.ForwardMod = 7
+SWEP.UpMod = 5
+SWEP.AngleMod = Angle(-10,5,0)
