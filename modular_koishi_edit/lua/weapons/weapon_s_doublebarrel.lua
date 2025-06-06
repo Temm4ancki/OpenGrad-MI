@@ -3,7 +3,7 @@ SWEP.Base = 'koishi_sweps' -- base
 SWEP.PrintName 				= "ИЖ-43"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Двухствольное охотничье ружье под калибр 12/70"
-SWEP.Category 				= "Оружие"
+SWEP.Category 				= "md3"
 SWEP.WepSelectIcon			= "pwb2/vgui/weapons/m4super90"
 
 SWEP.Spawnable 				= false

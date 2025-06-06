@@ -2,7 +2,7 @@ SWEP.Base = 'koishi_sweps' -- base
 
 SWEP.PrintName 				= "FN P90"
 SWEP.Instructions			= "Пистолет-пулемёт под калибр 5,7×28"
-SWEP.Category 				= "Оружие"
+SWEP.Category 				= "md3"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false

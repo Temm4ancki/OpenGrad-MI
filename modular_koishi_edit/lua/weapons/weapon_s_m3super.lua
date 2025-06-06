@@ -3,7 +3,7 @@ SWEP.Base = 'koishi_sweps' -- base
 SWEP.PrintName 				= "M4 Super 90"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Дробовик под калибр 12/70"
-SWEP.Category 				= "Оружие"
+SWEP.Category 				= "md3"
 SWEP.WepSelectIcon			= "pwb2/vgui/weapons/m4super90"
 
 SWEP.Spawnable 				= true

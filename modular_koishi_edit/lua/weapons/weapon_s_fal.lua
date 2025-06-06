@@ -3,7 +3,7 @@ SWEP.Base = 'koishi_sweps' -- base
 SWEP.PrintName 				= "L85A1"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Автоматическая винтовка под калибр 5,56х45"
-SWEP.Category 				= "Оружие"
+SWEP.Category 				= "md3"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false

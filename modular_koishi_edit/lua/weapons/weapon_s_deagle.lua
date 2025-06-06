@@ -3,7 +3,7 @@ SWEP.Base = 'koishi_sweps' -- base
 SWEP.PrintName 				= "Mateba Autorevolver HP"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Револьвер под калибр .44 Remington Magnum"
-SWEP.Category 				= "Оружие"
+SWEP.Category 				= "md3"
 SWEP.WepSelectIcon			= "pwb2/vgui/weapons/matebahomeprotection"
 
 SWEP.Spawnable 				= true

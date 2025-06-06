@@ -3,7 +3,7 @@ SWEP.Base = 'koishi_sweps' -- base
 SWEP.PrintName 				= "SPAS-12"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Полуавтоматический дробовик под калибр 12/70"
-SWEP.Category 				= "Оружие"
+SWEP.Category 				= "md3"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false

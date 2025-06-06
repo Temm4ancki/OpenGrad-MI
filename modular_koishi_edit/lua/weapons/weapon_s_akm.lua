@@ -3,7 +3,7 @@ SWEP.Base = 'koishi_sweps' -- base
 SWEP.PrintName 				= "АКМ"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Автоматическая винтовка под калибр 7,62х39"
-SWEP.Category 				= "Оружие"
+SWEP.Category 				= "md3"
 SWEP.WepSelectIcon          = "pwb/sprites/akm"
 
 SWEP.Spawnable 				= true

@@ -3,7 +3,7 @@ SWEP.Base = 'koishi_sweps' -- base
 SWEP.PrintName 				= "Remington870 Police"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Дробовик под калибр 12/70 beanbag (нелетальный)"
-SWEP.Category 				= "Оружие"
+SWEP.Category 				= "md3"
 SWEP.WepSelectIcon			= "entities/weapon_insurgencymakarov.png"
 
 SWEP.Spawnable 				= true

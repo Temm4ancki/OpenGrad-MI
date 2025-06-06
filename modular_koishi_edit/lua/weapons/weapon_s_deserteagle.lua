@@ -3,7 +3,7 @@ SWEP.Base = 'koishi_sweps' -- base
 SWEP.PrintName 				= "Desert Eagle"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Digle"
-SWEP.Category 				= "Оружие"
+SWEP.Category 				= "md3"
 SWEP.WepSelectIcon			= "pwb2/vgui/weapons/matebahomeprotection"
 
 SWEP.Spawnable 				= true

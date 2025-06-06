@@ -3,7 +3,7 @@ SWEP.Base = 'koishi_sweps' -- base
 SWEP.PrintName 				= "M9 Beretta"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Пистолет под калибр 9х19"
-SWEP.Category 				= "Оружие"
+SWEP.Category 				= "md3"
 SWEP.WepSelectIcon			= "pwb/sprites/m9"
 
 SWEP.Spawnable 				= true

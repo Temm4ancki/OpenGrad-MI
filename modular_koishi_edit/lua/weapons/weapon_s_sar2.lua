@@ -3,7 +3,7 @@ SWEP.Base = 'koishi_sweps' -- base
 SWEP.PrintName 				= "Automatic Rifle 2"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Основное штурмовое оружие Альянса"
-SWEP.Category 				= "Оружие"
+SWEP.Category 				= "md3"
 SWEP.WepSelectIcon          = "pwb/sprites/akm"
 
 SWEP.Spawnable 				= true

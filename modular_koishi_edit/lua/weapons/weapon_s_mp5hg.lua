@@ -3,7 +3,7 @@ SWEP.Base = 'koishi_sweps' -- base
 SWEP.PrintName 				= "HK MP5a3"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Пистолет-пулемёт под калибр 9х19"
-SWEP.Category 				= "Оружие"
+SWEP.Category 				= "md3"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false

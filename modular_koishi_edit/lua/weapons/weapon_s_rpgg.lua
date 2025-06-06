@@ -3,7 +3,7 @@ SWEP.Base = 'koishi_sweps' -- base
 SWEP.PrintName 				= "РПГ"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Ручной противотанковый гранатомёт"
-SWEP.Category 				= "Оружие" -- Теперь работает!!
+SWEP.Category 				= "md3" -- Теперь работает!!
 SWEP.WepSelectIcon			= "pwb/sprites/m134"
 
 SWEP.Spawnable 				= true

@@ -3,7 +3,7 @@ SWEP.Base = 'koishi_sweps' -- base
 SWEP.PrintName 				= "АКС-74У"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Автоматическая винтовка под калибр 5,45х39"
-SWEP.Category 				= "Оружие"
+SWEP.Category 				= "md3"
 SWEP.WepSelectIcon			= "pwb/sprites/aks74u"
 
 SWEP.Spawnable 				= true

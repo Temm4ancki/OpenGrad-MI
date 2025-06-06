@@ -2,7 +2,7 @@ SWEP.Base = 'koishi_sweps' -- base
 
 SWEP.PrintName 				= "MP7"
 SWEP.Instructions			= "Пистолет-пулемёт под калибр 4,6×30"
-SWEP.Category 				= "Оружие"
+SWEP.Category 				= "md3"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false

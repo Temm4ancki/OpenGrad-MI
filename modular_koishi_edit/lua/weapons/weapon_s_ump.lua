@@ -2,7 +2,7 @@ SWEP.Base = 'koishi_sweps' -- base
 
 SWEP.PrintName 				= "UMP"
 SWEP.Instructions			= "Что может еще делать ПП? СТРЕЛЯТЬ В ЛИЦО!"
-SWEP.Category 				= "Оружие"
+SWEP.Category 				= "md3"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false

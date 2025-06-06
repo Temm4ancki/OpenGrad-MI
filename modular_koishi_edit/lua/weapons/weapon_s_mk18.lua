@@ -2,7 +2,7 @@ SWEP.Base = 'koishi_sweps' -- base
 
 SWEP.PrintName 				= "HK416"
 SWEP.Instructions			= "Автоматическая винтовка под калибр 5,56х45"
-SWEP.Category 				= "Оружие"
+SWEP.Category 				= "md3"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false

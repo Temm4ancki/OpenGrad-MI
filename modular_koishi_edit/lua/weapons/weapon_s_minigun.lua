@@ -3,7 +3,7 @@ SWEP.Base = 'koishi_sweps' -- base
 SWEP.PrintName 				= "MINIGUN"
 SWEP.Author 				= "ADMINI"
 SWEP.Instructions			= "MINIGUN АДМИНХУЙ! БАМ БАМ БАМ!"
-SWEP.Category 				= "Оружие"
+SWEP.Category 				= "md3"
 SWEP.WepSelectIcon			= "pwb/sprites/m134"
 
 SWEP.Spawnable 				= true

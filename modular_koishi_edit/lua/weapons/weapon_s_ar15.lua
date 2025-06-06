@@ -3,7 +3,7 @@ SWEP.Base = 'koishi_sweps' -- base
 SWEP.PrintName 				= "AR-15"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Полуавтоматическая винтовка под калибр 5,56х45"
-SWEP.Category 				= "Оружие"
+SWEP.Category 				= "md3"
 SWEP.WepSelectIcon			= "pwb2/vgui/weapons/m4a1"
 
 SWEP.Spawnable 				= true
