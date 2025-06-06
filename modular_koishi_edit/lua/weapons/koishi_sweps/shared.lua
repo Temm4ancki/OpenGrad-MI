@@ -276,8 +276,11 @@ end
 -- 	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Forearm"), Angle(0,0,0), true )
 -- end)
 -- Holster bone manipulate remover
+
 function SWEP:Holster()
 	local ply = self:GetOwner()
+	ResetAllBones(ply)
+
 
 	self.Clavicle = Angle(0, 0, 0)
 	self.Head = Angle(0, 0, 0)

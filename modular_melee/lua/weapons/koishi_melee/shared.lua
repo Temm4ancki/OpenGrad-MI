@@ -213,23 +213,25 @@ end
 
 function SWEP:Think()
 	self.Anim = Lerp(0.2, self.Anim or 0, 1)
-	if self:GetHoldType() == "melee2" then
-		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(35, 30, 50) * self.Anim, true)
-		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 5, -35) * self.Anim, true)
-	else if self:GetHoldType() == "melee" then
-		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(60, -15, -10) * self.Anim, true)
-		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_UpperArm"), Angle(0, -30, -70) * self.Anim, true)
-		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Hand"), Angle(-40, 10, 0) * self.Anim, true)
-	else
-		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(35, 30, 50) * self.Anim, true)
-		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 5, -35) * self.Anim, true)
+	if CLIENT then
+		if self:GetHoldType() == "melee2" then
+			self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(35, 30, 50) * self.Anim, false)
+			self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 5, -35) * self.Anim, false)
+		else if self:GetHoldType() == "melee" then
+			self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(60, -15, -10) * self.Anim, false)
+			self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_UpperArm"), Angle(0, -30, -70) * self.Anim, false)
+			self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Hand"), Angle(-40, 10, 0) * self.Anim, false)
+		else
+			self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(35, 30, 50) * self.Anim, false)
+			self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 5, -35) * self.Anim, false)
+		end
 	end
 end
 end
 
 function SWEP:Holster()
 	local ply = self:GetOwner()
-	timer.Simple(0.2, function()
+	timer.Simple(1, function()
 		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(0, 0, 0), true)
 		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 0, 0), true)
 		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_UpperArm"), Angle(0, 0, 0), true)
