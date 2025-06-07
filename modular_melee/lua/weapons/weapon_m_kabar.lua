@@ -11,8 +11,8 @@ SWEP.AdminSpawnable= true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60
-SWEP.ViewModel = "models/weapons/salat/w_kabar/w_sog_knife.mdl"
-SWEP.WorldModel = "models/weapons/salat/w_kabar/w_sog_knife.mdl"
+SWEP.ViewModel = "models/weapons/w_knife_t.mdl"
+SWEP.WorldModel = "models/weapons/w_knife_t.mdl"
 SWEP.ViewModelFlip = false
 
 SWEP.AutoSwitchTo = false

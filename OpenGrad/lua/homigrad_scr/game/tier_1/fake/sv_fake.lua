@@ -884,7 +884,7 @@ function PlayerMeta:CreateRagdoll(attacker,dmginfo) --изменение фун�
 		end
 	end
 
-	rag:SetNWString("Nickname",self:GetNWString("CustomName",false) or self:Name())
+	rag:SetNWString("FakeName",self:GetNWString("CustomName",false) or self:GetNWString("FakeName", "Труп") or self:Name())
 
 	local armors = {}
 

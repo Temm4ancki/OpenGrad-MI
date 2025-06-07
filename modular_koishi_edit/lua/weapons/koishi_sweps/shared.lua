@@ -266,22 +266,18 @@ function SWEP:SecondaryAttack()
 end
 
 
-
--- concommand.Add("penis",function ()
--- 	timer.Simple(.1,function ()
-
--- 	end)
--- 	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(0,0,0), true )
--- 	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Upperarm"), Angle(0,0,0), true )
--- 	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Forearm"), Angle(0,0,0), true )
--- end)
 -- Holster bone manipulate remover
 
 function SWEP:Holster()
 	local ply = self:GetOwner()
-	ResetAllBones(ply)
 
+	local boneCount = ply:GetBoneCount()
 
+	for i = 0, boneCount - 1 do
+		ply:ManipulateBonePosition(i, Vector(0, 0, 0))
+		ply:ManipulateBoneAngles(i, Angle(0, 0, 0))
+		ply:ManipulateBoneScale(i, Vector(1, 1, 1))
+	end
 	self.Clavicle = Angle(0, 0, 0)
 	self.Head = Angle(0, 0, 0)
 	self:SetNWFloat("VisualRecoil", 0)

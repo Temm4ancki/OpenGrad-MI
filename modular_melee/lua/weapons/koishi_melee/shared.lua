@@ -231,11 +231,12 @@ end
 
 function SWEP:Holster()
 	local ply = self:GetOwner()
-	timer.Simple(1, function()
-		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(0, 0, 0), true)
-		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 0, 0), true)
-		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_UpperArm"), Angle(0, 0, 0), true)
-		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Hand"), Angle(0, 0, 0), true)
+	if not ply:IsValid() then return end
+	timer.Simple(.1, function()
+		ply:ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(0, 0, 0), true)
+		ply:ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 0, 0), true)
+		ply:ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_UpperArm"), Angle(0, 0, 0), true)
+		ply:ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Hand"), Angle(0, 0, 0), true)
 	end)
 	return true
 end

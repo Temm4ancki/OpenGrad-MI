@@ -36,6 +36,8 @@ net.Start("custom name")
 net.WriteString(hg_customname:GetString())
 net.SendToServer()
 
+local white = Color(255,255,255)
+
 hook.Add("HUDPaint","homigrad-huynyui",function()
 	local lply = LocalPlayer()
 
@@ -61,19 +63,6 @@ hook.Add("HUDPaint","homigrad-huynyui",function()
 		elseif ent.GetPlayerColor ~= nil then
 			col = ent.playerColor:ToColor()
 		else
-			return
-		end
-
-		if nodraw_players[Tr.Entity] then
-			if math.random(1,25) == 25 then
-				draw.DrawText(string.rep("?",math.random(1,4)) .. "you scared me" .. string.rep("?",math.random(1,4)),"DefaultFixedDropShadow",Tr.HitPos:ToScreen().x + math.random(-125,125),Tr.HitPos:ToScreen().y + math.random(-125,125), red, TEXT_ALIGN_CENTER )
-
-				local head = Tr.Entity:GetBonePosition(Tr.Entity:LookupBone("ValveBiped.Bip01_Head1"))
-				head = head:ToScreen()
-
-				draw.DrawText(string.rep("c",math.random(1,12)) .. ":","DefaultFixedDropShadow",head.x + math.random(-25,25),head.y + math.random(-25,25), red, TEXT_ALIGN_CENTER )
-			end
-
 			return
 		end
 

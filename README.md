@@ -18,7 +18,7 @@ OpenGrad-MI is a community-driven project that aims to fix and expand upon the o
 
 ## Features
 
-| Features | Autors |
+| Features | Authors |
 |---|---|
 | All gamemode-breaking bugs have been fixed (mostly!) | @unicode11 @magmen3 |
 | Fix Active Shooter | @unicode11 |

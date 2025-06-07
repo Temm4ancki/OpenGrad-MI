@@ -411,6 +411,7 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 	angRecoil[3] = 0
 
 	if wep and weps[wep:GetClass()] or (md3_weps or md3_melee or md3_fumo) then
+		if not wep then return end
 		local muzzle = wep:GetAttachment(wep:LookupAttachment("muzzle")) or hand -- эщкере руки 
 		
 		if not RENDERSCENE then
@@ -627,22 +628,6 @@ local tab2 = {
 
 local blurMat2, Dynamic2 = Material("pp/blurscreen"), 0
 
-local function BlurScreen(den,alp)
-	local layers, density, alpha = 1, den, alph
-	surface.SetDrawColor(255, 255, 255, alpha)
-	surface.SetMaterial(blurMat2)
-	local FrameRate, Num, Dark = 1 / FrameTime(), 3, 150
-
-	for i = 1, Num do
-		blurMat2:SetFloat("$blur", (i / layers) * density * Dynamic2)
-		blurMat2:Recompute()
-		render.UpdateScreenEffectTexture()
-		surface.DrawTexturedRect(0, 0, ScrW(), ScrH())
-	end
-
-	Dynamic2 = math.Clamp(Dynamic2 + (1 / FrameRate) * 7, 0, 1)
-end
-
 local addmat_r = Material("CA/add_r")
 local addmat_g = Material("CA/add_g")
 local addmat_b = Material("CA/add_b")
@@ -677,11 +662,9 @@ hook.Add("RenderScreenspaceEffects","BloomEffect-homigrad",function()
 		DrawMotionBlur(0.5,0.3,0.02)
 		DrawSharpen( 1, 0.2 )
 		local k3 = 2
-		DrawCA(4 * k3, 2 * k3, 0, 2 * k3, 1 * k3, 0)
 		tab2["$pp_colour_colour"] = 0.2
 		tab2[ "$pp_colour_mulb" ] = 0.5
 		DrawColorModify(tab2)
-		BlurScreen(1,155)
 		draw.Text( {
 			text = deathtext,
 			font = "BodyCamFont",
@@ -690,7 +673,7 @@ hook.Add("RenderScreenspaceEffects","BloomEffect-homigrad",function()
 			yalign = TEXT_ALIGN_CENTER,
 			color = Color(255,35,35,220)
 		} )
-		LocalPlayer():SetDSP(7)
+		LocalPlayer():SetDSP(1)
 	elseif not LocalPlayer():Alive() then
 		LocalPlayer():SetDSP(1)
 	end
