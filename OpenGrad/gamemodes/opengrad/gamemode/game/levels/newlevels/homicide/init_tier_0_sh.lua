@@ -133,6 +133,16 @@ net.Receive("homicide_roleget", function()
     for i, ply in pairs(role[2]) do
         ply.roleCT = true
     end
+
+    if CLIENT then
+        local startRound = roundTimeStart + 7 - CurTime()
+        local lply = LocalPlayer()
+        if lply.roleCT then
+            logoAnimation = DrawAnimatedLogo("vgui/hg_homicide/fool", 1, -512, 40, ScrH() / 2 - 512, ScrH() / 2 - 256, startRound)
+        else
+            logoAnimation = DrawAnimatedLogo("vgui/hg_homicide/death", 1, -512, 40, ScrH() / 2 - 512, ScrH() / 2 - 256, startRound)
+        end
+    end
 end)
 
 function homicide.HUDPaint_Spectate(spec)
@@ -187,6 +197,10 @@ function homicide.HUDPaint_RoundLeft(white2)
         drawRoundCosmetic(startRound)
         --draw.SimpleText("Внешность - "..homicide.GetPlayerModel(lply),"HomigradFont",ScrW()/2.05,ScrH()/1.9,white_gray,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
         --draw.SimpleText("Профессия - "..jobPool[math.random(#jobPool)],"HomigradFont",ScrW()/2.05,ScrH()/1.8,white_gray,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
+
+        if logoAnimation then
+            logoAnimation(startRound)
+        end
 
         if homicide.roundType == 1 then
             if lply.roleT then

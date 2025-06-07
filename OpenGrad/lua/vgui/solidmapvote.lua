@@ -28,6 +28,16 @@ function PANEL:Init()
         self.random:SetLabel( 'random' )
         self.random:SetImage( SolidMapVote[ 'Config' ][ 'Random Image' ] )
     end
+    local soundEmitter
+    soundEmitter = CreateSound(LocalPlayer(), 'utils/golosovanie_diskah.ogg')
+    soundEmitter:Play()
+    local timert = SolidMapVote['Config']['Length']
+    timer.Simple(timert, function()
+        if soundEmitter then
+            soundEmitter:Stop()
+        end
+        surface.PlaySound('utils/golosovanie_zaverheno_diskah.ogg')
+    end)
 
     hook.Add( 'SolidMapVote.WinningMaps', 'SolidMapVote.WinningMaps.main', function( winningMaps, realWinner, fixedWinner )
         self.finished = true
