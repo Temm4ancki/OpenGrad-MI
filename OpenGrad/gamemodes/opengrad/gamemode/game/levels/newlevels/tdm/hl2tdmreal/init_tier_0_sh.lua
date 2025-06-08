@@ -1,6 +1,7 @@
 table.insert(LevelList,"hl2dmreal")
 hl2dmreal = {}
 hl2dmreal.Name = "ABSOLUTE KINO Half-Life 2: Deathmatch"
+hl2dmreal.MusicPack = "tdm_hl2dmreal"
 
 local models = {}
 for i = 1,9 do table.insert(models,"models/player/group03/male_0" .. i .. ".mdl") end

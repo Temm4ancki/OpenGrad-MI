@@ -1,6 +1,7 @@
 table.insert(LevelList, "homicide")
 homicide = homicide or {}
 homicide.Name = "Homicide"
+homicide.MusicPack = "hg_homicide"
 
 models = {}
 local black_male_models = {

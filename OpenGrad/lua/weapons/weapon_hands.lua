@@ -342,6 +342,7 @@ function SWEP:ApplyForce() --!! Функция спизженная из джи�
 				if not ply then
 					self:GetOwner():ChatPrint("У него нет пульса.")
 					self:GetOwner():ChatPrint("ЗДОХ")
+					--self:GetOwner():ConCommand("nombat.client.has.hostiles")
 				else
 					if ply.heartstop then
 						self:GetOwner():ChatPrint("Нет пульса.")
