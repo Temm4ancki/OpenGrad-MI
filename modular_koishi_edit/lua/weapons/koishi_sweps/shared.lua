@@ -47,10 +47,8 @@ SWEP.DoFlash = true
 SWEP.Mobility = 0.2
 SWEP.setAng = Angle(0, 0, 0) -- dont change
 SWEP.Sightded = false --dont change
-sib_wep = sib_wep or {}
+if not SWEP.Base == "koishi_sweps" then return end -- костыли мои любимые
 function SWEP:Initialize()
-	sib_wep[self] = true
-	-- PrintTable(sib_wep)
 	self:SetHoldType(self.HoldType)
 end
 
