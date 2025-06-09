@@ -288,6 +288,18 @@ end
 function SWEP:ApplyForce()
 	local target = self:GetOwner():GetAimVector() * self.CarryDist + self:GetOwner():GetShootPos()
 	local phys = self.CarryEnt:GetPhysicsObjectNum(self.CarryBone)
+	local ply = RagdollOwner(self.CarryEnt)
+	local bone = self.CarryEnt:TranslatePhysBoneToBone(self.CarryBone)
+	local Lhand = self.CarryEnt:LookupBone("ValveBiped.Bip01_L_Hand")
+	local Rhand = self.CarryEnt:LookupBone("ValveBiped.Bip01_R_Hand")
+
+	local Lprhand = self.CarryEnt:LookupBone("ValveBiped.Bip01_L_Forearm")
+	local Rprhand = self.CarryEnt:LookupBone("ValveBiped.Bip01_R_Forearm")
+
+	local head = self.CarryEnt:LookupBone("ValveBiped.Bip01_Head1")
+
+	local TNeck = self.CarryEnt:LookupBone("ValveBiped.Bip01_Neck1")
+	local nickname = self.CarryEnt:GetNWString("FakeName","Неизвестный")  or ""
 
 	if IsValid(phys) then
 		local TargetPos = phys:GetPos()
@@ -307,20 +319,8 @@ function SWEP:ApplyForce()
 
 		if self.CarryEnt:GetClass() == "prop_ragdoll" then
 			mul = mul * 3
-			local ply = RagdollOwner(self.CarryEnt)
-			local bone = self.CarryEnt:TranslatePhysBoneToBone(self.CarryBone)
-			local Lhand = self.CarryEnt:LookupBone("ValveBiped.Bip01_L_Hand")
-			local Rhand = self.CarryEnt:LookupBone("ValveBiped.Bip01_R_Hand")
 
-			local Lprhand = self.CarryEnt:LookupBone("ValveBiped.Bip01_L_Forearm")
-			local Rprhand = self.CarryEnt:LookupBone("ValveBiped.Bip01_R_Forearm")
-
-			local head = self.CarryEnt:LookupBone("ValveBiped.Bip01_Head1")
-
-			local TNeck = self.CarryEnt:LookupBone("ValveBiped.Bip01_Neck1")
-			local nickname = self.CarryEnt:IsPlayer() and self.CarryEnt:Name() or self.CarryEnt:GetNWString("Nickname") or ""
-			mul = mul * 2
-			if self:GetOwner():KeyPressed( IN_WALK ) and (bone == head or bone == TNeck) then
+			if self:GetOwner():KeyPressed( IN_WALK ) then
 				if not ply then self:GetOwner():ChatPrint(nickname.." либо не дышит, либо он не жив.") return else
 					if ply.holdbreath then self:GetOwner():ChatPrint(nickname.." либо не дышит, либо он не жив.") return end
 					if self:GetOwner().messagedushit then self.Owner:ChatPrint("Вы душите "..nickname..", продолжайте нажимать ALT что бы душить...") end

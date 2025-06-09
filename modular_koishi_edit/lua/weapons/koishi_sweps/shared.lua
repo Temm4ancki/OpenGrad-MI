@@ -609,6 +609,7 @@ end
 
 -- Death bone manipulate remover
 hook.Add( "PlayerSpawn", "Resetbones", function( ply )
+	if not ply:IsValid() then return end
 	timer.Simple(0.1,function()
 		ply:ManipulateBonePosition(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"),zeroVec)
 		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"),zeroAng)

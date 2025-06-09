@@ -27,7 +27,6 @@ local function BoomBig(ent)
 			Flame:SetPos(SelfPos + Vector(0, 0, 80))
 			Flame:SetAngles(FireVec:Angle())
 			Flame:SetOwner(game.GetWorld())
-			JMod.SetOwner(Flame, game.GetWorld())
 			Flame.SpeedMul = 0.2
 			Flame.Creator = game.GetWorld()
 			Flame.HighVisuals = true
@@ -80,7 +79,6 @@ local function BoomSmall(ent)
 			Flame:SetPos(SelfPos + Vector(0, 0, 50))
 			Flame:SetAngles(FireVec:Angle())
 			Flame:SetOwner(game.GetWorld())
-			JMod.SetOwner(Flame, game.GetWorld())
 			Flame.SpeedMul = 0.25
 			Flame.Creator = game.GetWorld()
 			Flame.HighVisuals = true
@@ -115,40 +113,17 @@ hook.Add("PropBreak","PropVengeance",function(client,prop)
 	if modelssmall[model] then BoomSmall(prop) end
 end)
 
-local function send(ply)
-	if not ply then
-		for i,ply in player.Iterator() do
-			if not ply:Alive() then continue end
-
-			BoomBig(ply)
-		end
-	else
-		BoomBig(ply)
-	end
-end
-
-COMMANDS.trolled = {function(ply,args)
-	if args[1] == "*" then
-		send()
-	elseif args[1] == "^" then
-		send(ply)
-	else
-		for i,ply in player.Iterator() do
-			if string.find(ply:Nick(),args[1]) then send(ply) end
-		end
-	end
-end}
-
 local govnocd = 0
 hook.Add("PlayerSay","trolled",function(ply,text)
 	local time = CurTime()
 	if govnocd > time then return end
-    if ply:Alive() and string.find(text,"сервер") and string.find(text,"говно") then
+    if ply:Alive() and string.find(text,"сервфывер") and string.find(text,"говно") then
         local SelfPos = ply:GetPos()
 
         ParticleEffect("pcf_jack_groundsplode_small",SelfPos,vector_up:Angle())
         util.ScreenShake(SelfPos,99999,99999,1,3000)
         sound.Play("BaseExplosionEffect.Sound", SelfPos,120,math.random(130,160))
+        BoomSmall(ply)
 
         for i = 1,4 do
             sound.Play("utils/explosions/doi_ty_01_close.ogg",SelfPos,140,math.random(140,160))

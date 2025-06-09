@@ -150,7 +150,6 @@ local function ToggleScoreboard(toggle)
 			-- Заголовки колонок
 			draw.SimpleText("Статус", HG_UI.FONTS.NORMAL, 120, 90, white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 			draw.SimpleText("Имя игрока", HG_UI.FONTS.NORMAL, w / 2, 90, white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-			draw.SimpleText("Время игры", HG_UI.FONTS.NORMAL, w - 320, 90, white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 			draw.SimpleText("Пинг", HG_UI.FONTS.NORMAL, w - 220, 90, white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 			draw.SimpleText("Команда", HG_UI.FONTS.NORMAL, w - 120, 90, white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
@@ -323,19 +322,6 @@ local function ToggleScoreboard(toggle)
 
 				-- Имя игрока
 				draw.SimpleText(name1, HG_UI.FONTS.NORMAL, w / 2, h / 2, white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-
-				-- Время игры
-				if not ply.TimeStart then
-					draw.SimpleText("Ожидание...", HG_UI.FONTS.NORMAL, w - 320, h / 2, Color(150, 150, 150), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-				else
-					local time = math.floor(CurTime() - ply.TimeStart + (ply.Time or 0))
-					local dTime = math.floor(time / 60 / 60 / 24)
-					local hTime = string.format("%02d", math.floor(time / 60 / 60) % 24)
-					local mTime = string.format("%02d", math.floor(time / 60) % 60)
-
-					local timeText = dTime > 0 and (dTime .. "д " .. hTime .. ":" .. mTime) or (hTime .. ":" .. mTime)
-					draw.SimpleText(timeText, HG_UI.FONTS.NORMAL, w - 320, h / 2, white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-				end
 
 				-- Пинг
 				local ping = ply:Ping()

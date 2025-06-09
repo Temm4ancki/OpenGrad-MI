@@ -42,6 +42,7 @@ local function makeT(ply)
     elseif homicide.roundType == 2 then
         SpawnEblan(ply, {
             "weapon_m_kabar",
+            "weapon_s_hk_usps",
             "weapon_hg_t_syringepoison",
             "weapon_hg_t_vxpoison",
             "weapon_hidebomb",
@@ -293,7 +294,7 @@ end
 function homicide.EndRound(winner)
     PrintMessage(3, winner == 1 and "Победа предателей." or winner == 2 and "Победа невиновых." or "Ничья")
     if homicide.t and #homicide.t > 0 then
-        PrintMessage(3, #homicide.t > 1 and ("Трейторами были: " .. homicide.t[1]:Name() .. homicide.t[1]:GetNWString("FakeName") .. ", " .. GetFriends(homicide.t[1])) or ("Трейтором был: " .. homicide.t[1]:Name()))
+        PrintMessage(3, #homicide.t > 1 and ("Трейторами были: " .. homicide.t[1]:Name() .. homicide.t[1]:GetNWString("FakeName") .. ", " .. GetFriends(homicide.t[1])) or ("Трейтором был: " .. homicide.t[1]:GetNWString("FakeName").."("..homicide.t[1]:Name()..")"))
     end
 end
 
