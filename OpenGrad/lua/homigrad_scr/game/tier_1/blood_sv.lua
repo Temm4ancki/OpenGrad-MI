@@ -203,6 +203,7 @@ hook.Add("EntityTakeDamage","van",function(ent,dmginfo)
 	end
 end)
 
+util.AddNetworkString("limbs_info")
 util.AddNetworkString("organism_info")
 
 concommand.Add("hg_organisminfo",function(ply,cmd,args)
@@ -225,6 +226,7 @@ concommand.Add("hg_organisminfo",function(ply,cmd,args)
 	)
 	net.Send(ply)
 end)
+
 
 concommand.Add("hg_organism_setvalue",function(ply,cmd,args)
 	if not ply:IsAdmin() then return end

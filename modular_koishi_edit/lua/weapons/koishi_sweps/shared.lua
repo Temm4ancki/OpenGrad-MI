@@ -85,6 +85,7 @@ end
 
 function SWEP:Melee()
 	local ply = self.Owner
+	if ply:GetNWBool("Suiciding") then return end
 	local tr = util.TraceHull({
 		start = ply:GetShootPos(),
 		endpos = ply:GetShootPos() + ply:GetAimVector() * 75,
