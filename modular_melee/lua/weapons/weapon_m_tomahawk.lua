@@ -49,3 +49,5 @@ SWEP.FlashHitSound = "weapons/salat/w_hg_kitknife/snd_jack_hmcd_slash.ogg"
 SWEP.ShouldDecal = false
 SWEP.HoldTypeWep = "melee"
 SWEP.DamageType = DMG_SHOCK
+
+SWEP.CanBreakDoors = true

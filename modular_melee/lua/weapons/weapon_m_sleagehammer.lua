@@ -50,3 +50,5 @@ SWEP.FlashHitSound = "weapons/salat/w_hg_sledge/flesh_impact_blunt_04.ogg"
 SWEP.ShouldDecal = false
 SWEP.HoldTypeWep = "melee2"
 SWEP.DamageType = DMG_CLUB
+
+SWEP.CanBreakDoors = true

@@ -221,7 +221,6 @@ else
 		local dist,vec,dist2 = util.DistanceToLine(tr.StartPos,tr.HitPos,EyePos())
 		if dist < 128 and dist2 > 128 then
 			EmitSound("utils/bc/snd_jack_hmcd_bc_" .. tostring(math.random(1,7)) .. ".ogg", vec, 1, CHAN_AUTO, 1, 95, 0, 100,0)
-			Suppress(1.5)
 		end
 	end)
 end

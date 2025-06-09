@@ -1319,12 +1319,12 @@ end
 				angs:RotateAroundAxis(angs:Right(), 90)
 				local shadowparams = {
 					secondstoarrive=0.2,
-					pos=head:GetPos()+vector_up*(50),
+					pos=head:GetPos()+vector_up*50,
 					angle=angs,
 					maxangulardamp=10,
 					maxspeeddamp=10,
 					maxangular=370,
-					maxspeed=40,
+					maxspeed=30,
 					teleportdistance=0,
 					deltatime=deltatime,
 				}

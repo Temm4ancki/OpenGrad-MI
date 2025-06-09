@@ -1,18 +1,18 @@
 SWEP.Base = "koishi_melee"
 
-SWEP.PrintName = "Нож"
+SWEP.PrintName = "Кирка"
 SWEP.Category = "md3melee"
-SWEP.Purpose = "Нож в печень никто не вечень."
-SWEP.WepSelectIcon = "vgui/select/w/kabar"
-SWEP.IconOverride = "vgui/icon/w/kabar.png"
+SWEP.Purpose = "Кирка для добычи алмазов."
+-- SWEP.WepSelectIcon = "vgui/select/w/fireaxe"
+-- SWEP.IconOverride = "vgui/icon/w/fireaxe.png"
 
 SWEP.Spawnable= true
 SWEP.AdminSpawnable= true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60
-SWEP.ViewModel = "models/weapons/w_knife_t.mdl"
-SWEP.WorldModel = "models/weapons/w_knife_t.mdl"
+SWEP.ViewModel = "models/weapons/w_eq_pickaxe.mdl"
+SWEP.WorldModel = "models/weapons/w_eq_pickaxe.mdl"
 SWEP.ViewModelFlip = false
 
 SWEP.AutoSwitchTo = false
@@ -23,7 +23,7 @@ SWEP.SlotPos = 2
 
 SWEP.UseHands = true
 
-SWEP.HoldType = "knife"
+---SWEP.HoldType = "knife"
 
 SWEP.FiresUnderwater = false
 
@@ -31,24 +31,24 @@ SWEP.DrawCrosshair = false
 
 SWEP.DrawAmmo = true
 
-SWEP.Primary.Damage = 30
+SWEP.Primary.Damage = 40
 SWEP.Primary.Ammo = "none"
 SWEP.Primary.DefaultClip = -1
 SWEP.Primary.Automatic = true
 SWEP.Primary.Recoil = 0.5
-SWEP.Primary.Delay = 0.7
-SWEP.Primary.Force = 60
+SWEP.Primary.Delay = 1.2
+SWEP.Primary.Force = 190
 
 SWEP.Secondary.ClipSize = 0
 SWEP.Secondary.DefaultClip = 0
 SWEP.Secondary.Automatic = false
 SWEP.Secondary.Ammo = "none"
 
-SWEP.DrawSound = "weapons/salat/w_hg_kitknife/snd_jack_hmcd_knifedraw.ogg"
-SWEP.HitSound = "weapons/salat/w_hg_kitknife/snd_jack_hmcd_knifehit.ogg"
-SWEP.FlashHitSound = "weapons/salat/w_hg_kitknife/snd_jack_hmcd_slash.ogg"
+SWEP.DrawSound = "weapons/salat/w_hg_fireaxe/holster_in_light.ogg"
+SWEP.HitSound = "weapons/salat/w_hg_fireaxe/shove_hit.ogg"
+SWEP.FlashHitSound = "weapons/salat/w_hg_fireaxe/snd_jack_hmcd_axehit.ogg"
 SWEP.ShouldDecal = true
-SWEP.HoldTypeWep = "melee"
+SWEP.HoldTypeWep = "melee2"
 SWEP.DamageType = DMG_SLASH
 
 SWEP.CanBreakDoors = true

@@ -33,19 +33,6 @@ function SWEP:ShootPunch(force)
     return viewShootPunch
 end
 
-hook.Add("PlayerSpawn","resetter",function (ent)
-    if not IsValid(ent) then return end
-    if not ent:GetBoneCount() or ent:GetBoneCount() <= 0 then return end
-
-    local boneCount = ent:GetBoneCount()
-
-    for i = 0, boneCount - 1 do
-        ent:ManipulateBonePosition(i, Vector(0, 0, 0))
-        ent:ManipulateBoneAngles(i, Angle(0, 0, 0))
-        ent:ManipulateBoneScale(i, Vector(1, 1, 1))
-    end
-end)
-
 function SWEP:DrawHUD()
     local ply = LocalPlayer()
     if not IsValid(ply) then return end

@@ -149,8 +149,6 @@ function SWEP:PrimaryAttack()
 		self:EmitSound(self.Primary.Sound, 100, math.random(100, 120), 1, CHAN_WEAPON, 0, 0)
 	end
 
-	-- self.Forearm = self.Forearm + Angle(self.Primary.Force/10,-self.Primary.Force/10,0)--RotateAroundAxis(ply:EyeAngles():Right()*1,self.Primary.Force/5)
-	-- self.Forearm:RotateAroundAxis(ply:EyeAngles():Up()*-1,self.Primary.Force/10) --+ Angle(1,-0.5,-2)*self.Primary.Force/30
 	local dmg = self.Primary.Damage --self.TwoHands and self.Primary.Damage * 2 or self.Primary.Damage
 	self:FireBullet(dmg, 1, 5)
 	if CLIENT and ply == LocalPlayer() then
@@ -272,13 +270,12 @@ end
 function SWEP:Holster()
 	local ply = self:GetOwner()
 
-	local boneCount = ply:GetBoneCount()
-
-	for i = 0, boneCount - 1 do
-		ply:ManipulateBonePosition(i, Vector(0, 0, 0))
-		ply:ManipulateBoneAngles(i, Angle(0, 0, 0))
-		ply:ManipulateBoneScale(i, Vector(1, 1, 1))
-	end
+	timer.Simple(1,function ()
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Forearm"), Angle(0, 0, 0), true)
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Hand"), Angle(0, 0, 0), true)
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(0, 0, 0), true)
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 0, 0), true)
+	end)
 	self.Clavicle = Angle(0, 0, 0)
 	self.Head = Angle(0, 0, 0)
 	self:SetNWFloat("VisualRecoil", 0)
@@ -289,9 +286,10 @@ end
 
 -- Death bone manipulate remover
 hook.Add("PlayerDeath", "Resetbones", function(ply)
-	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Hand"), Angle(0, 0, 0), true)
-	ply:ManipulateBonePosition(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"), Vector(0, 0, 0), true)
-	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(0, 0, 0), true)
-	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_Head1"), Angle(0, 0, 0), true)
-	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Forearm"), Angle(0, 0, 0), true)
+	local boneCount = ply:GetBoneCount()
+	for i = 0, boneCount - 1 do
+		ply:ManipulateBonePosition(i, Vector(0, 0, 0))
+		ply:ManipulateBoneAngles(i, Angle(0, 0, 0))
+		ply:ManipulateBoneScale(i, Vector(1, 1, 1))
+	end
 end)

@@ -156,16 +156,10 @@ hook.Add("RenderScene","octoweapons",function(pos,angle,fov)
 end)
 
 md3_weps = {}
-md3_melee = {}
-md3_fumo = {}
 
 for _, wep in ipairs(weapons.GetList()) do
 	if wep.Category == "md3" then
 		md3_weps[wep.ClassName] = true
-	elseif wep.Category == "md3melee" then
-		md3_melee[wep.ClassName] = true
-	elseif wep.Category == "md3fumo" then
-		md3_fumo[wep.ClassName] = true
 	end
 end
 
@@ -410,7 +404,7 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 
 	angRecoil[3] = 0
 
-	if wep and weps[wep:GetClass()] or (md3_weps or md3_melee or md3_fumo) then
+	if wep and weps[wep:GetClass()] or md3_weps then
 		if not wep then return end
 		local muzzle = wep:GetAttachment(wep:LookupAttachment("muzzle")) or hand -- эщкере руки 
 		

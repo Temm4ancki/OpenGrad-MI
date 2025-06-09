@@ -198,7 +198,6 @@ SWEP.Secondary.DefaultClip = -1
 SWEP.Secondary.Automatic = false
 SWEP.Secondary.Ammo = "none"
 SWEP.ReachDistance = 100
-SWEP.HomicideSWEP = true
 
 function SWEP:SetupDataTables()
 	self:NetworkVar("Float", 0, "NextIdle")
@@ -352,10 +351,10 @@ function SWEP:ApplyForce() --!! Функция спизженная из джи�
 						self:GetOwner():ChatPrint(ply.Otrub and "В отрубе" or "Реакция присутствует")
 					end
 				end
-			elseif self:GetOwner():KeyPressed(IN_ATTACK) then
-				self:GetOwner():ChatPrint("ГРАБ ТИПО СИЛЬНО")
-				mul = mul * 20
 			end
+			-- elseif self:GetOwner():KeyPressed(IN_ATTACK) then
+
+			-- end
 
 			if PlayerIsCuffs(self.CarryEnt) then
 				local frac = traceResult.Fraction

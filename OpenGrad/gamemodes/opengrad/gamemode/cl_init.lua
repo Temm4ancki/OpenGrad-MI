@@ -200,6 +200,7 @@ hook.Add("HUDPaint","sostoyanie",function ()
 	-- white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
 end)
 
+
 laserplayers = laserplayers or {}
 local mat = Material("sprites/bluelaser1")
 local mat2 = Material("Sprites/light_glow02_add_noz")
