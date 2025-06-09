@@ -65,3 +65,6 @@ function SWEP:PrimaryAttack()
 end
 
 SWEP.vbwPos = Vector(-4,-4,4)
+
+SWEP.addPos = Vector(0,0,0)
+SWEP.addAng = Angle(0,0,0)

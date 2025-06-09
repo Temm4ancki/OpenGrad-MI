@@ -158,3 +158,4 @@ SWEP.RightMod = -.38
 SWEP.ForwardMod = 15
 SWEP.UpMod = 4.7
 SWEP.AngleMod = Angle(-15,5,0)
+

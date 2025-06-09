@@ -55,3 +55,7 @@ SWEP.RightMod = -.5
 SWEP.ForwardMod = 6
 SWEP.UpMod = 5.2
 SWEP.AngleMod = Angle(-10,2,0)
+
+SWEP.addPos = Vector(0,0,0)
+SWEP.addAng = Angle(0,0,0)
+

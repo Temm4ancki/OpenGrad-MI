@@ -53,6 +53,7 @@ SWEP.ViewModel				= "models/weapons/salat/w_sar2/w_irifle.mdl"
 SWEP.WorldModel				= "models/weapons/salat/w_sar2/w_irifle.mdl"
 
 SWEP.addAng = Angle(0.5,0.9,0)
+SWEP.addPos = Vector(0,0,0)
 
 SWEP.RightMod = -.9
 SWEP.ForwardMod = 7

@@ -53,6 +53,9 @@ SWEP.WorldModel				= "models/weapons/salat/w_aks74u/w_aks74u.mdl"
 
 SWEP.vbwPos = Vector(5,-6,-6)
 
+SWEP.addPos = Vector(0,0,0)
+SWEP.addAng = Angle(0,0,0)
+
 SWEP.RightMod = -.9
 SWEP.ForwardMod = 5
 SWEP.UpMod = 5.5

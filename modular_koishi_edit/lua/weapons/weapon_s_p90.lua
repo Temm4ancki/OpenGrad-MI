@@ -51,6 +51,9 @@ SWEP.WorldModel				= "models/weapons/salat/w_p90/w_p90.mdl"
 SWEP.dwsPos = Vector(20,20,5)
 SWEP.dwsItemPos = Vector(10,-1,-3)
 
+SWEP.addPos = Vector(0,0,0)
+SWEP.addAng = Angle(0,0,0)
+
 SWEP.vbwPos = Vector(12,-5,-4)
 
 SWEP.RightMod = -.6

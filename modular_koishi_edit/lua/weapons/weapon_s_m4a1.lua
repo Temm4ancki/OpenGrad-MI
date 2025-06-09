@@ -50,3 +50,6 @@ SWEP.ViewModel				= "models/weapons/salat/w_m4a1/w_m4a1.mdl"
 SWEP.WorldModel				= "models/weapons/salat/w_m4a1/w_m4a1.mdl"
 
 SWEP.OffsetVec = Vector(10,-2.6,2)
+
+SWEP.addPos = Vector(0,0,0)
+SWEP.addAng = Angle(0,0,0)
