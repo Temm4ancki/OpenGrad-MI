@@ -1,10 +1,10 @@
 SWEP.Base = 'weapon_base' -- base
 
-SWEP.PrintName 				= "weapon_sib_base"
-SWEP.Author 				= "sadsalat"
-SWEP.Instructions			= "Salatis Imersive Base"
+SWEP.PrintName 				= "koishi_sweps"
+SWEP.Author 				= "koishi"
+SWEP.Instructions			= "watch_kkhta"
 SWEP.Purpose 				= "Raise weapon - Hold RMB\nOn Rised: Rise sight - MWUP, Down sight - MWDOWN\nShoot - LMB"
-SWEP.Category 				= "SIB"
+SWEP.Category 				= "md3"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
@@ -489,6 +489,11 @@ if SERVER then
 	end)
 end
 
+hook.Add("PlayerDeath", "suciding", function(ply)
+	ply.suiciding = false
+	ply:SetNWBool("Suiciding", false)
+end)
+
 local angZero = Angle(0,0,0)
 local angSuicide = Angle(160,30,90)
 local angSuicide2 = Angle(160,30,90)
@@ -541,29 +546,7 @@ function SWEP:Step()
 		ply:ManipulateBonePosition(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"),Vector(0,self:GetNWFloat("VisualRecoil")*-0.5,0),false)
 		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Hand"),Angle(self:GetNWFloat("VisualRecoil")*1.5,0,0),false)		
 	end
-	
-	if CLIENT then
-		if ply:GetActiveWeapon().Category == "Chedara Box - Винтовки" then
-			if ply:GetActiveWeapon():GetClass() == "weapon_sib_hk416" then
-				ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Finger0"),Angle(30,30,0),false)
-			elseif ply:GetActiveWeapon():GetClass() == "weapon_sib_rpk" then
-				ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Finger0"),Angle(35,18,0),false)
-			elseif ply:GetActiveWeapon():GetClass() == "weapon_sib_aks74u" then
-				ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Finger0"),Angle(35,18,0),false)
-			else
-				ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Finger0"),Angle(35,10,0),false)
-			end
-		elseif ply:GetActiveWeapon().Category == "Chedara Box - Пистолеты" then
-			ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Finger0"),Angle(0,10,0),false)
-			ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Finger21"),Angle(0,30,0),false)
-		elseif ply:GetActiveWeapon().Category == "Chedara Box - Дробовики" then
-			ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Finger0"),Angle(0,-5,0),false)
-			ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Finger1"),Angle(10,-10,0),false)
-			ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Finger2"),Angle(10,-10,0),false)
-			ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Finger3"),Angle(10,-10,0),false)
-			ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Finger4"),Angle(10,-10,0),false)
-		end
-	end
+
 
 	if ply:KeyDown(IN_ZOOM) then
 		self:SetHoldType("slam")
@@ -584,6 +567,20 @@ function SWEP:Step()
 		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Hand"),(self.Osmotr and (self.HoldType == "revolver" and (Angle(15,0,math.sin(CurTime()*0.5)*55)) or (Angle(15,-25,math.sin(CurTime()*0.5)*55))) )or zeroAng,false)
 		
 		self.eyeSpray = LerpAngle(0.2,self.eyeSpray,zeroAng)
+	end
+
+	if ply:GetNWBool("Suiciding") then
+		if not self.TwoHands then
+			self:SetHoldType("normal")
+			ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Forearm"), Angle(0, -150, 0), false)
+		else
+			self:SetHoldType("revolver")
+			ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Hand"), Angle(0, 190, 0), false)
+		end
+	else
+		self:SetHoldType(self.HoldType)
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Forearm"), Angle(0, 0, 0), false)
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Hand"), Angle(0, 0, 0), false)
 	end
 
 end
