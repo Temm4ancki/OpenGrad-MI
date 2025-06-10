@@ -3,7 +3,7 @@ SWEP.Base = "koishi_sweps" -- base
 SWEP.PrintName 				= "Травматический дробовик"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Дробовик под калибр 12/70 beanbag (нелетальный)"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Shotguns"
 SWEP.WepSelectIcon = "vgui/select/w/remington870police"
 SWEP.IconOverride = "vgui/icon/w/remington870police.png"
 

@@ -5,46 +5,69 @@ include( "shared.lua" )
 
 viewShootPunch = Angle(0,0,0)
 
-net.Receive("huysound", function(len)
-    local pos = net.ReadVector()
-    local sound = net.ReadString()
-    local farsound = net.ReadString()
-    local ent = net.ReadEntity()
+net.Receive("huysound",function(len)
+	local pos = net.ReadVector()
+	local sound = net.ReadString()
+	local farsound = net.ReadString()
+	local ent = net.ReadEntity()
 
-    if ent == LocalPlayer() then return end
+	if ent == LocalPlayer() then return end
 
-    local dist = LocalPlayer():EyePos():Distance(pos)
-    if ent:IsValid() and dist < 4000 then
-        ent:EmitSound(sound, 100, math.random(90, 110), 1, CHAN_WEAPON, 0, 0)
-    elseif ent:IsValid() then
-        timer.Simple(dist / 45000, function()
-            ent:EmitSound(farsound, 120, math.random(90, 110), 1, CHAN_WEAPON, 0, 0)
+	local dist = LocalPlayer():EyePos():Distance(pos)
+	if ent:IsValid() and dist < 4000 then
+		ent:EmitSound(sound,100,math.random(90,110),1,CHAN_WEAPON,0,0)
+	elseif ent:IsValid() then
+        timer.Simple(dist/45000,function()
+		    ent:EmitSound(farsound,120,math.random(90,110),1,CHAN_WEAPON,0,0)
         end)
-    end
+	end
 end)
 
 function SWEP:ShootPunch(force)
     force = force/50
-    viewShootPunch.x = math.Clamp(viewShootPunch.x - ((self.HoldType == "revolver" and force*5) or force),-force*10,0)
-    viewShootPunch.y = math.Clamp(viewShootPunch.y+math.random(-force,force)*0.5,-force*10,force)
-	self.setAng = self:GetOwner():EyeAngles()+viewShootPunch/2
+    viewShootPunch.x = math.Clamp(viewShootPunch.x - ((self.HoldType == "revolver" and force*5) or force),-force*5,0)
+    viewShootPunch.y = math.Clamp(viewShootPunch.y+math.random(-force,force)*0.5,-force,force)
+	viewShootPunch.z = math.Clamp(viewShootPunch.z+math.random(-force,force)*15,-force,force)
+	self.setAng = self:GetOwner():EyeAngles()+viewShootPunch/3
 	self.setAng.z = 0
-	self.eyeSpray:Add(Angle(-force/4,viewShootPunch.y/10,0))
+	self.eyeSpray:Add(Angle(-force/1.5,viewShootPunch.y/5,0))
     return viewShootPunch
 end
 
-hook.Add("PlayerSpawn","resetter",function (ent)
-    if not IsValid(ent) then return end
-    if not ent:GetBoneCount() or ent:GetBoneCount() <= 0 then return end
+function draw.Circle( x, y, radius, seg )
+    local cir = {}
 
-    local boneCount = ent:GetBoneCount()
-
-    for i = 0, boneCount - 1 do
-        ent:ManipulateBonePosition(i, Vector(0, 0, 0))
-        ent:ManipulateBoneAngles(i, Angle(0, 0, 0))
-        ent:ManipulateBoneScale(i, Vector(1, 1, 1))
+    table.insert( cir, { x = x, y = y, u = 0.5, v = 0.5 } )
+    for i = 0, seg do
+        local a = math.rad( ( i / seg ) * -360 )
+        table.insert( cir, { x = x + math.sin( a ) * radius, y = y + math.cos( a ) * radius, u = math.sin( a ) / 2 + 0.5, v = math.cos( a ) / 2 + 0.5 } )
     end
-end)
+
+    local a = math.rad( 0 ) -- This is needed for non absolute segment counts
+    table.insert( cir, { x = x + math.sin( a ) * radius, y = y + math.cos( a ) * radius, u = math.sin( a ) / 2 + 0.5, v = math.cos( a ) / 2 + 0.5 } )
+
+    surface.DrawPoly( cir )
+end
+
+
+local rtsize = 512
+
+
+local vecZero = Vector(0,0,0)
+local angZero = Angle(0,0,0)
+
+
+function surface.DrawTexturedRectRotatedPoint( x, y, w, h, rot, x0, y0 )
+	
+	local c = math.cos( math.rad( rot ) )
+	local s = math.sin( math.rad( rot ) )
+	
+	local newx = y0 * s - x0 * c
+	local newy = y0 * c + x0 * s
+	
+	surface.DrawTexturedRectRotated( x + newx, y + newy, w, h, rot )
+	
+end
 
 function SWEP:DrawHUD()
     local ply = LocalPlayer()
@@ -64,3 +87,4 @@ function SWEP:DrawHUD()
     Color(0, 0, 0, 200)
     )
 end
+

@@ -4,7 +4,7 @@ SWEP.Base = "koishi_sweps" -- base
 SWEP.PrintName 				= "CZ75"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Пистолет под калибр 9х19"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Pistols"
 SWEP.WepSelectIcon = "vgui/select/w/cz75"
 SWEP.IconOverride = "vgui/icon/w/cz75.png"
 
@@ -55,3 +55,6 @@ SWEP.RightMod = -.35
 SWEP.ForwardMod = 12
 SWEP.UpMod = 4.5
 SWEP.AngleMod = Angle(-10,5,0)
+
+SWEP.addPos = Vector(0,0,0)
+SWEP.addAng = Angle(0,0,0)

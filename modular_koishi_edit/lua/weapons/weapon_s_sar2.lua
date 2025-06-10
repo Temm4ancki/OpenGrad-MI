@@ -3,7 +3,7 @@ SWEP.Base = "koishi_sweps" -- base
 SWEP.PrintName 				= "Automatic Rifle 2"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Основное штурмовое оружие Альянса"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Rifles"
 SWEP.WepSelectIcon = "vgui/select/w/sar2"
 SWEP.IconOverride = "vgui/icon/w/sar2.png"
 
@@ -53,6 +53,7 @@ SWEP.ViewModel				= "models/weapons/salat/w_sar2/w_irifle.mdl"
 SWEP.WorldModel				= "models/weapons/salat/w_sar2/w_irifle.mdl"
 
 SWEP.addAng = Angle(0.5,0.9,0)
+SWEP.addPos = Vector(0,0,0)
 
 SWEP.RightMod = -.9
 SWEP.ForwardMod = 7

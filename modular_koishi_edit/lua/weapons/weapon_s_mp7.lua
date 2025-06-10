@@ -2,7 +2,7 @@ SWEP.Base = "koishi_sweps" -- base
 
 SWEP.PrintName 				= "MP7"
 SWEP.Purpose			= "Пистолет-пулемёт под калибр 4,6×30"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Submachines"
 SWEP.WepSelectIcon = "vgui/select/w/mp7"
 SWEP.IconOverride = "vgui/icon/w/mp7.png"
 

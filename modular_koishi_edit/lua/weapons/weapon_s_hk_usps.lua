@@ -3,7 +3,7 @@ SWEP.Base = "koishi_sweps" -- base
 SWEP.PrintName 				= "HK USP-S"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Пистолет под калибр 9х19"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Pistols"
 SWEP.WepSelectIcon = "vgui/select/w/usps"
 SWEP.IconOverride = "vgui/icon/w/usps.png"
 
@@ -54,3 +54,6 @@ SWEP.RightMod = -.2
 SWEP.ForwardMod = 10
 SWEP.UpMod = 4.5
 SWEP.AngleMod = Angle(0,16,0)
+
+SWEP.addPos = Vector(0,0,0)
+SWEP.addAng = Angle(0,0,0)

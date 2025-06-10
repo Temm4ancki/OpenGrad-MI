@@ -3,7 +3,7 @@ SWEP.Base = "koishi_sweps" -- base
 SWEP.PrintName 				= "M4 Super 90"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Дробовик под калибр 12/70"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Shotguns"
 SWEP.WepSelectIcon = "vgui/select/w/m4super90"
 SWEP.IconOverride = "vgui/icon/w/m4super90.png"
 
@@ -60,3 +60,6 @@ SWEP.RightMod = -.65
 SWEP.ForwardMod = 5
 SWEP.UpMod = 4.8
 SWEP.AngleMod = Angle(-5,5,0)
+
+SWEP.addPos = Vector(0,0,0)
+SWEP.addAng = Angle(0,0,0)

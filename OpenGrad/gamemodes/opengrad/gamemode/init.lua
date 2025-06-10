@@ -332,6 +332,11 @@ hook.Add("Player Think", "HasGodMode Rep", function(ply) ply:SetNWBool("HasGodMo
 
 resource.AddWorkshop("864612139") --remove red death screen
 
+concommand.Add("hg_kirpich",function (ply)
+	local kirpich = ""
+	
+end)
+
 COMMANDS.roll = {
 	function(ply, args)
 		local r = math.random(1, tonumber(args[1]))

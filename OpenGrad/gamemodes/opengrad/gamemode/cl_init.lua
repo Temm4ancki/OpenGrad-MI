@@ -183,6 +183,24 @@ local laserweps = {
 	["weapon_s_remington870police"] = true,
 	["weapon_s_glock"] = true
 }
+local white = Color(255,255,255)
+hook.Add("HUDPaint","namefakehui",function ()
+	draw.SimpleText(LocalPlayer():GetNWString("FakeName","Неизвестный"),
+	"HomigradFontSmall",
+	ScrW()/2,ScrH()/1.05,
+	white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
+end)
+
+hook.Add("HUDPaint","sostoyanie",function ()
+	-- TODO
+	-- print(LocalPlayer().RightLeg)
+
+	-- draw.SimpleText("Моя..",
+	-- "HomigradSmall",
+	-- ScrW()/18,ScrH()/1.2,
+	-- white,TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER)
+end)
+
 
 laserplayers = laserplayers or {}
 local mat = Material("sprites/bluelaser1")

@@ -3,7 +3,7 @@ SWEP.Base = 'koishi_sweps' -- base
 SWEP.PrintName 				= "AR-15"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Полуавтоматическая винтовка под калибр 5,56х45"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Rifles"
 SWEP.WepSelectIcon = "vgui/select/w/m4a1"
 SWEP.IconOverride = "vgui/icon/w/m4a1.png"
 
@@ -50,4 +50,5 @@ SWEP.DrawCrosshair			= false
 SWEP.ViewModel				= "models/weapons/salat/w_m4a1/w_m4a1.mdl"
 SWEP.WorldModel				= "models/weapons/salat/w_m4a1/w_m4a1.mdl"
 
-
+SWEP.addPos = Vector(0,0,0)
+SWEP.addAng = Angle(0,0,0)

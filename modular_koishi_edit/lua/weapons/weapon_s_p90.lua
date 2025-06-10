@@ -2,7 +2,7 @@ SWEP.Base = "koishi_sweps" -- base
 
 SWEP.PrintName 				= "FN P90"
 SWEP.Purpose			= "Пистолет-пулемёт под калибр 5,7×28"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Submachines"
 SWEP.WepSelectIcon = "vgui/select/w/p90"
 SWEP.IconOverride = "vgui/icon/w/p90.png"
 
@@ -50,6 +50,9 @@ SWEP.WorldModel				= "models/weapons/salat/w_p90/w_p90.mdl"
 
 SWEP.dwsPos = Vector(20,20,5)
 SWEP.dwsItemPos = Vector(10,-1,-3)
+
+SWEP.addPos = Vector(0,0,0)
+SWEP.addAng = Angle(0,0,0)
 
 SWEP.vbwPos = Vector(12,-5,-4)
 

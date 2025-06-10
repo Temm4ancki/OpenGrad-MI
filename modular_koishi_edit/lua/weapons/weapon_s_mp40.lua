@@ -1,28 +1,30 @@
-SWEP.Base = "koishi_sweps" -- base 
+SWEP.Base = "koishi_sweps" -- base
 
-SWEP.PrintName 				= "РПК"
-SWEP.Purpose			= "Пулемёт под калибр 7,62х39"
+SWEP.PrintName 				= "MP-40"
+SWEP.Author 				= "Homigrad"
+SWEP.Purpose			= "Немецкая винтовка времён Второй Мировой Войны"
 SWEP.Category 				= "md3 - Rifles"
-SWEP.WepSelectIcon = "vgui/select/w/rpk"
-SWEP.IconOverride = "vgui/icon/w/rpk.png"
+
+-- SWEP.WepSelectIcon = "vgui/select/w/akm"
+-- SWEP.IconOverride = "vgui/icon/w/akm.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
 
 ------------------------------------------
 
-SWEP.Primary.ClipSize		= 45
-SWEP.Primary.DefaultClip	= 45
+SWEP.Primary.ClipSize		= 32
+SWEP.Primary.DefaultClip	= 32
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "7.62x39 mm"
 SWEP.Primary.Cone = 0
-SWEP.Primary.Damage = 45
+SWEP.Primary.Damage = 25
 SWEP.Primary.Spread = 0
-SWEP.Primary.Sound = "weapons/salat/w_rpk/rpk_fp.ogg"
-SWEP.Primary.SoundFar = "weapons/salat/w_rpk/rpk_dist.ogg"
+SWEP.Primary.Sound = "weapons/salat/w_akm/ak74_fp.ogg"
+SWEP.Primary.SoundFar = "weapons/salat/w_akm/ak74_dist.ogg"
 SWEP.Primary.Force = 240 / 3
 SWEP.ReloadTime = 2
-SWEP.ShootWait = 0.07
+SWEP.ShootWait = 0.1
 SWEP.ReloadSound = "weapons/ar2/ar2_reload.wav"
 SWEP.TwoHands = true
 
@@ -37,7 +39,7 @@ SWEP.Weight					= 5
 SWEP.AutoSwitchTo			= false
 SWEP.AutoSwitchFrom			= false
 
-SWEP.HoldType = "smg"
+SWEP.HoldType = "ar2"
 
 ------------------------------------------
 
@@ -46,13 +48,13 @@ SWEP.SlotPos				= 0
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/weapons/salat/w_rpk/w_rpk.mdl"
-SWEP.WorldModel				= "models/weapons/salat/w_rpk/w_rpk.mdl"
+SWEP.ViewModel				= "models/weapons/w_mp40.mdl"
+SWEP.WorldModel				= "models/weapons/w_mp40.mdl"
 
-SWEP.RightMod = -.8
-SWEP.ForwardMod = 5
-SWEP.UpMod = 5.6
-SWEP.AngleMod = Angle(0,5,0)
+SWEP.RightMod = -.5
+SWEP.ForwardMod = 6
+SWEP.UpMod = 5.2
+SWEP.AngleMod = Angle(-10,2,0)
 
 SWEP.addPos = Vector(0,0,0)
 SWEP.addAng = Angle(0,0,0)

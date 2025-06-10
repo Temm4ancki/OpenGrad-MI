@@ -168,6 +168,28 @@ function SWEP:PrimaryAttack()
 				dmginfo:SetDamage( self.Primary.Damage )
 			end
 
+			if  self.CanBreakDoors and
+				tr.Entity:GetClass()=="prop_door_rotating"or
+				tr.Entity:GetClass()=="func_door" 
+				then
+
+				local hits = tr.Entity:GetNWInt("BreakHealth",100)
+				tr.Entity:EmitSound("physics/wood/wood_box_impact_hard"..math.random(1,6)..".wav")
+			
+				hits = hits - 25
+				tr.Entity:SetNWInt("BreakHealth",hits)
+
+				if hits <= 0 then
+					tr.Entity:SetKeyValue("speed",500)
+					tr.Entity:EmitSound("physics/wood/wood_box_break"..math.random(1,4)..".wav")
+					tr.Entity:Fire("Unlock", "", 0)
+					tr.Entity:Fire("Open", "", 0)
+					timer.Simple(1,function ()
+						tr.Entity:SetKeyValue("speed",100)
+					end)
+				end
+			end
+
 			if tr.Entity:IsNPC() or tr.Entity:IsPlayer() then
 				self:GetOwner():EmitSound( self.FlashHitSound,60 )
 			else
@@ -212,19 +234,17 @@ function SWEP:Reload()
 end
 
 function SWEP:Think()
-	self.Anim = Lerp(0.2, self.Anim or 0, 1)
-	if CLIENT then
-		if self:GetHoldType() == "melee2" then
-			self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(35, 30, 50) * self.Anim, false)
-			self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 5, -35) * self.Anim, false)
-		else if self:GetHoldType() == "melee" then
-			self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(60, -15, -10) * self.Anim, false)
-			self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_UpperArm"), Angle(0, -30, -70) * self.Anim, false)
-			self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Hand"), Angle(-40, 10, 0) * self.Anim, false)
-		else
-			self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(35, 30, 50) * self.Anim, false)
-			self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 5, -35) * self.Anim, false)
-		end
+	self.Anim = Lerp(.1, self.Anim or 0, 1.1)
+	if self:GetHoldType() == "melee2" then
+		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(35, 30, 50) * self.Anim, true)
+		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 5, -35) * self.Anim, true)
+	else if self:GetHoldType() == "melee" then
+		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(60, -15, -10) * self.Anim, true)
+		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_UpperArm"), Angle(0, -30, -70) * self.Anim, true)
+		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Hand"), Angle(-40, 10, 0) * self.Anim, true)
+	else
+		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(35, 30, 50) * self.Anim, true)
+		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 5, -35) * self.Anim, true)
 	end
 end
 end
@@ -233,10 +253,10 @@ function SWEP:Holster()
 	local ply = self:GetOwner()
 	if not ply:IsValid() then return end
 	timer.Simple(.1, function()
-		ply:ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(0, 0, 0), true)
-		ply:ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 0, 0), true)
-		ply:ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_UpperArm"), Angle(0, 0, 0), true)
-		ply:ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Hand"), Angle(0, 0, 0), true)
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(0, 0, 0), true)
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 0, 0), true)
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_UpperArm"), Angle(0, 0, 0), true)
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Hand"), Angle(0, 0, 0), true)
 	end)
 	return true
 end

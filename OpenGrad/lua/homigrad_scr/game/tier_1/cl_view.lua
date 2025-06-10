@@ -159,16 +159,10 @@ hook.Add("RenderScene","octoweapons",function(pos,angle,fov)
 end)
 
 md3_weps = {}
-md3_melee = {}
-md3_fumo = {}
 
 for _, wep in ipairs(weapons.GetList()) do
 	if wep.Category == "md3" then
 		md3_weps[wep.ClassName] = true
-	elseif wep.Category == "md3melee" then
-		md3_melee[wep.ClassName] = true
-	elseif wep.Category == "md3fumo" then
-		md3_fumo[wep.ClassName] = true
 	end
 end
 
@@ -357,10 +351,10 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 	local bone = lply:LookupBone("ValveBiped.Bip01_Head1")
 	if bone then lply:ManipulateBoneScale(bone,firstPerson and vecZero or vecFull) end
 	if not firstPerson then DRAWMODEL = true return end
-	local hand = ply:GetAttachment(ply:LookupAttachment("anim_attachment_rh"))
+	local hand = ply:GetAttachment(ply:LookupAttachment("anim_attachment_rh")) or ply:GetBonePosition(ply:LookupBone("ValveBiped.Bip01_R_Hand"))
 	local eye = ply:GetAttachment(ply:LookupAttachment("eyes"))
 	local body = ply:LookupBone("ValveBiped.Bip01_Spine2")
-
+	
 	--print(bodypos)
 
 	angEye = lply:EyeAngles()
@@ -413,7 +407,7 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 
 	angRecoil[3] = 0
 
-	if wep and weps[wep:GetClass()] or (md3_weps or md3_melee or md3_fumo) then
+	if wep and weps[wep:GetClass()] or md3_weps then
 		if not wep then return end
 		local muzzle = wep:GetAttachment(wep:LookupAttachment("muzzle")) or hand -- эщкере руки 
 		
@@ -430,9 +424,12 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 			if wep.RightMod~=nil or wep.ForwardMod~=nil or wep.UpMod~=nil or wep.AngleMod then
 				vecWep = hand.Pos + hand.Ang:Up()*wep.UpMod - muzzle.Ang:Forward()*wep.ForwardMod + hand.Ang:Right()*-wep.RightMod
 				angWep = hand.Ang + wep.AngleMod
-			else
+			elseif hand.Pos and hand.Ang then
 				vecWep = hand.Pos + hand.Ang:Up()*10 - muzzle.Ang:Forward()*7 + hand.Ang:Right()*-4
 				angWep = hand.Ang + Angle(0,0,0)
+			else
+				vecWep = hand + hand:Angle():Up()*10 - hand:Angle():Forward()*7 + hand:Angle():Right()*-4
+				angWep = hand:Angle() + Angle(0,0,0)
 			end
 		end
 
@@ -471,7 +468,8 @@ CalcView = function(ply,vec,ang,fov,znear,zfar)
 
 	if wep and hand then
 		local posRecoil = Vector(recoil * 8,0,recoil * 1.5)
-		posRecoil:Rotate(hand.Ang)
+		posRecoil:Rotate(hand.Ang or hand:Angle())
+		
 		view.znear = Lerp(ScopeLerp,1,max(1 - recoil,0.2))
 		output_pos = output_pos + posRecoil
 

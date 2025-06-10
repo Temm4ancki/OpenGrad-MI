@@ -3,7 +3,7 @@ SWEP.Base = "koishi_sweps" -- base
 SWEP.PrintName 				= "Mateba Autorevolver HP"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Револьвер под калибр .44 Remington Magnum"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Pistols"
 SWEP.WepSelectIcon = "vgui/select/w/deagle"
 SWEP.IconOverride = "vgui/icon/w/deagle.png"
 
@@ -158,3 +158,4 @@ SWEP.RightMod = -.38
 SWEP.ForwardMod = 15
 SWEP.UpMod = 4.7
 SWEP.AngleMod = Angle(-15,5,0)
+

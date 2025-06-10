@@ -3,7 +3,7 @@ SWEP.Base = 'koishi_sweps' -- base
 SWEP.PrintName 				= "M4A1"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Автоматическая винтовка под калибр 5,56х45"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Rifles"
 
 
 SWEP.Spawnable 				= true
@@ -50,3 +50,6 @@ SWEP.ViewModel				= "models/weapons/salat/w_m4a1/w_m4a1.mdl"
 SWEP.WorldModel				= "models/weapons/salat/w_m4a1/w_m4a1.mdl"
 
 SWEP.OffsetVec = Vector(10,-2.6,2)
+
+SWEP.addPos = Vector(0,0,0)
+SWEP.addAng = Angle(0,0,0)

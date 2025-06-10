@@ -3,7 +3,7 @@ SWEP.Base = 'koishi_sweps' -- base
 SWEP.PrintName 				= "Дробовик"
 SWEP.Author 				= "Remington"
 SWEP.Instructions			= "Не хороший дробовик, вообще винтовка"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Shotguns"
 
 SWEP.Spawnable 				= false
 SWEP.AdminOnly 				= false
@@ -40,6 +40,8 @@ SWEP.Secondary.ClipSize		= -1
 SWEP.Secondary.DefaultClip	= -1
 SWEP.Secondary.Automatic	= false
 SWEP.Secondary.Ammo			= "none"
+
+SWEP.Shotgun = true
 
 ------------------------------------------
 

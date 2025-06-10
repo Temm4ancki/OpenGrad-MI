@@ -1,18 +1,18 @@
 SWEP.Base = "koishi_melee"
 
-SWEP.PrintName = "Пожарный топор"
+SWEP.PrintName = "Топор Лесника"
 SWEP.Category = "md3melee"
-SWEP.Purpose = "Массивный топор для вскрытия и разборки конструкций при тушении пожара."
-SWEP.WepSelectIcon = "vgui/select/w/fireaxe"
-SWEP.IconOverride = "vgui/icon/w/fireaxe.png"
+SWEP.Purpose = "Массивный топор для вскрытия черепушек."
+-- SWEP.WepSelectIcon = "vgui/select/w/fireaxe"
+-- SWEP.IconOverride = "vgui/icon/w/fireaxe.png"
 
 SWEP.Spawnable= true
 SWEP.AdminSpawnable= true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60
-SWEP.ViewModel = "models/weapons/salat/w_hg_fireaxe/w_me_axe_fire.mdl"
-SWEP.WorldModel = "models/weapons/salat/w_hg_fireaxe/w_me_axe_fire.mdl"
+SWEP.ViewModel = "models/weapons/w_eq_axe.mdl"
+SWEP.WorldModel = "models/weapons/w_eq_axe.mdl"
 SWEP.ViewModelFlip = false
 
 SWEP.AutoSwitchTo = false
@@ -31,7 +31,7 @@ SWEP.DrawCrosshair = false
 
 SWEP.DrawAmmo = true
 
-SWEP.Primary.Damage = 40
+SWEP.Primary.Damage = 200
 SWEP.Primary.Ammo = "none"
 SWEP.Primary.DefaultClip = -1
 SWEP.Primary.Automatic = true

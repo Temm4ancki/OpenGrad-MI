@@ -77,7 +77,7 @@ hook.Add("HomigradDamage","Organs",function(ply,hitgroup,dmginfo,rag,armorMul,ar
         local dmg = dmginfo:GetDamage() * armorMul
 
         if
-            hitgroup == HITGROUP_HEAD and
+            hitgroup == HITGROUP_HEAD or hitgroup == HITGROUP_LEFTLEG or hitgroup == HITGROUP_RIGHTLEG and
             math.random(1,math.max(math.floor(armorDur),1)) == 1 and dmginfo:IsDamageType(DMG_BULLET+DMG_SLASH+DMG_CLUB+DMG_GENERIC+DMG_BUCKSHOT)
         then
             timer.Simple(0.01,function()

@@ -3,7 +3,7 @@ SWEP.Base = "koishi_sweps" -- base
 SWEP.PrintName 				= "Beretta SV10 - SIB"
 SWEP.Author 				= "Remington"
 SWEP.Instructions			= "Бакшот рулетка"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Shotguns"
 
 SWEP.Spawnable 				= false
 SWEP.AdminOnly 				= false
