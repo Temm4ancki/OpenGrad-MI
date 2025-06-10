@@ -3,7 +3,7 @@ SWEP.Base = "koishi_sweps" -- base
 SWEP.PrintName 				= "Kar 98k"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Немецкая винтовка времён Второй Мировой Войны"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Rifles"
 
 -- SWEP.WepSelectIcon = "vgui/select/w/akm"
 -- SWEP.IconOverride = "vgui/icon/w/akm.png"
@@ -59,3 +59,6 @@ SWEP.RightMod = -.5
 SWEP.ForwardMod = 6
 SWEP.UpMod = 5.2
 SWEP.AngleMod = Angle(-10,2,0)
+
+SWEP.addPos = Vector(0,0,0)
+SWEP.addAng = Angle(0,0,0)

@@ -3,7 +3,7 @@ SWEP.Base = "koishi_sweps" -- base
 SWEP.PrintName 				= "MP-40"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Немецкая винтовка времён Второй Мировой Войны"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Rifles"
 
 -- SWEP.WepSelectIcon = "vgui/select/w/akm"
 -- SWEP.IconOverride = "vgui/icon/w/akm.png"

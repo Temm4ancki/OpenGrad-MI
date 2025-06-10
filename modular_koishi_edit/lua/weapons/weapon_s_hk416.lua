@@ -2,7 +2,7 @@ SWEP.Base = "koishi_sweps" -- base
 
 SWEP.PrintName 				= "HK416"
 SWEP.Purpose			= "Автоматическая винтовка под калибр 5,56х45"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Rifles"
 SWEP.WepSelectIcon = "vgui/select/w/hk416"
 SWEP.IconOverride = "vgui/icon/w/hk416.png"
 

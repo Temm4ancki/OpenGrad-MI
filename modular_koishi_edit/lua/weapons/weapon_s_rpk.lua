@@ -2,7 +2,7 @@ SWEP.Base = "koishi_sweps" -- base
 
 SWEP.PrintName 				= "РПК"
 SWEP.Purpose			= "Пулемёт под калибр 7,62х39"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Rifles"
 SWEP.WepSelectIcon = "vgui/select/w/rpk"
 SWEP.IconOverride = "vgui/icon/w/rpk.png"
 

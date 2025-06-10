@@ -3,7 +3,7 @@ SWEP.Base = "koishi_sweps" -- base
 SWEP.PrintName 				= "SPAS-12"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Полуавтоматический дробовик под калибр 12/70"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Shotguns"
 SWEP.WepSelectIcon = "vgui/select/w/spas_12"
 SWEP.IconOverride = "vgui/icon/w/spas_12.png"
 

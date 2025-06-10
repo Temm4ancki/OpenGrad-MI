@@ -7,22 +7,26 @@ OpenGrad-MI is a community-driven project that aims to fix and expand upon the o
 
 ## Installation
 
-1. Place this addon in your Garry's Mod Server `addons` folder
+1. Download or clone repository 
+1. Unpack contents in your Garry's Mod Server `steamapps\common\GarrysMod\garrysmod\addons` folder
 2. Subscribe to the required Workshop collection:
 \
 [Server OpenGrad Workshop Collection](https://steamcommunity.com/sharedfiles/filedetails/?id=3472198521)
 \
 [Client OpenGrad Workshop Collection](https://steamcommunity.com/sharedfiles/filedetails/?id=3394901751)
 
-3. Start lol
+3. Start Garry's Mod
+4. Start gamemode by pressing `Sandbox` in bottom-right corner and selecting `OpenGrad`
+5. Select map and choose Multiplayer (! must be equal or more than 2 players !)
+6. When loaded type in console `ulx bot` or in chat `!bot`
 
 ## Features
 
 | Features | Authors |
 |---|---|
-| All gamemode-breaking bugs have been fixed (mostly!) | @unicode11 @magmen3 |
+| All gamemode-breaking bugs have been fixed | @unicode11 @magmen3 |
 | Fix Active Shooter | @unicode11 |
-| New TDMs Kuhnya, Rebels vs Повстанцы, SVO, Слово Пацана, CSS | @unicode11 @magmen3 @Temm4ancki |
+| New TDMs gamemodes | @unicode11 @magmen3 @Temm4ancki |
 | New PVP SlugArena | @unicode11 @magmen3 |
 | Improved TDM HL2DM | @Temm4ancki |
 | Returned PVE John Wick | @Temm4ancki |
@@ -30,7 +34,7 @@ OpenGrad-MI is a community-driven project that aims to fix and expand upon the o
 | Door jam, identity disguise for traitor | @Temm4ancki |
 | Gamemode selection menu on F4 (will be improved) | @Temm4ancki |
 | New weapon base | @unicode11 |
-| FUMO ??? | @unicode11 |
+| FUMO  | @unicode11 |
 | JMOD updated | @unicode11 @Temm4ancki |
 | Rebuild content (-4GB unnecessary files) |  @Temm4ancki |
 | New additions including stunbaton and other gameplay elements | @unicode11 @magmen3 |
@@ -43,7 +47,7 @@ OpenGrad-MI is a community-driven project that aims to fix and expand upon the o
 - [x] Rebuild content to remove unnecessary files
 - [x] Clean up Jmod files (keeping only explosions and armor)
 - [x] Remake weapons base
-- [ ] Implement toolgun points spawn system
+- [x] Implement toolgun points spawn system
 - [ ] Add ability to use environmental objects as weapons (chairs, bottles, etc.)
 - [ ] Develop new melee system
 - [ ] Improve ragdoll control and add better HUD (50% complete)
@@ -53,7 +57,6 @@ OpenGrad-MI is a community-driven project that aims to fix and expand upon the o
 ## Credits
 
 - **Original Gamemode**: sadsalat, useless, and Mr. Point
-- **Initial Modifications**: 0oa
 - **First Fix Attempt**: Mannytko (added stunbaton and other features)
 - **Second Fix Attempt**: Hari (fixes and feature additions)
 - **MI-Fork Team**: Temm4ancki, Unicode11, and Mannytko for ongoing development

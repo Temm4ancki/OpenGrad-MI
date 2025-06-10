@@ -3,7 +3,7 @@ SWEP.Base = "koishi_sweps" -- base
 SWEP.PrintName 				= "GALIL-SAR"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Автоматическая винтовка под калибр 5,56х45"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Rifles"
 SWEP.WepSelectIcon = "vgui/select/w/ace23"
 SWEP.IconOverride = "vgui/icon/w/ace23.png"
 

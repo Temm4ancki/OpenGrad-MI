@@ -2,7 +2,7 @@ SWEP.Base = "koishi_sweps" -- base
 
 SWEP.PrintName 				= "FN P90"
 SWEP.Purpose			= "Пистолет-пулемёт под калибр 5,7×28"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Submachines"
 SWEP.WepSelectIcon = "vgui/select/w/p90"
 SWEP.IconOverride = "vgui/icon/w/p90.png"
 

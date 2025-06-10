@@ -4,7 +4,7 @@ SWEP.Base = "koishi_sweps" -- base
 SWEP.PrintName 				= "FAMAS-Civil"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Полуавтоматическа винтовка под калибр 5.56×45"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Rifles"
 SWEP.WepSelectIcon = "vgui/select/w/famasg2"
 SWEP.IconOverride = "vgui/icon/w/famasg2.png"
 

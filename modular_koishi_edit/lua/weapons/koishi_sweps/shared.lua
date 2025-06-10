@@ -381,8 +381,7 @@ function SWEP:PrimaryAttack()
 	if not IsFirstTimePredicted() then return end
 	if self.NextShot > CurTime() then return end
 	if timer.Exists("reload"..self:EntIndex()) then return end
-	if self.Owner:IsSprinting() then return end
-    if !self.Sightded then return end
+	if self:GetOwner():IsSprinting() then return end
 	if self:Clip1()<1 then 
 		if !self.emptyclicked_uzhe then 
 			self:EmitSound("snd_jack_hmcd_click.wav",55,100,1,CHAN_ITEM,0,0) 
@@ -397,17 +396,14 @@ function SWEP:PrimaryAttack()
 
 	local ply = self:GetOwner() 
 	self.NextShot = CurTime() + self.ShootWait*1.2
-	if self:GetClass() == "weapon_sib_mosin" then
+	if self.Boltovka then
 		timer.Simple(.1, function() ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Clavicle"),zeroAng,true) end)
-		self:EmitSound("snd_jack_hmcd_boltcycle.wav",55,100,1,CHAN_ITEM,0,0)
+		self:EmitSound("snd_jack_hmcd_boltcycle.wav",55,100,1,CHAN_ITEM,0,0)	
 		if self:GetHoldType() != "ar2" then self:SetHoldType("ar2") end
-		timer.Simple(.1, function()
-			ply:SetAnimation(PLAYER_RELOAD)
-		end)
 	end
-	if self.Category == "Chedara Box - Дробовики" and self:GetClass() != "weapon_sib_xm1014" then
-		self:EmitSound("weapons/tfa_ins2/nova/nova_pumpback.wav",55,100,1,CHAN_ITEM,0,0)
-		timer.Simple(.2, function() self:EmitSound("weapons/tfa_ins2/nova/nova_pumpforward.wav",55,100,1,CHAN_ITEM,0,0) end)
+	if self.Shotgun then
+		self:EmitSound("weapons/shotgun/shotgun_cock.wav",55,100,1,CHAN_ITEM,0,0)
+		timer.Simple(.2, function() self:EmitSound("weapons/shotgun/shotgun_cock.wav",55,100,1,CHAN_ITEM,0,0) end)
 	end
 	if ply:GetNWFloat("Skill") >= 0.1 and ply:GetNWFloat("Skill") <= 3 and math.random(1,10) == 6 then
 		sound.Play("snd_jack_hmcd_fart.wav", ply:GetPos(), 75, 100)
@@ -435,16 +431,12 @@ function SWEP:PrimaryAttack()
 end
 
 hook.Add("PlayerSwitchWeapon", "DrawSounds", function(ply, old, new)
-	print(new.Category)
-	if new.Category == "Chedara Box - Пистолеты" then
-		sound.Play("pwb/weapons/glock17/cloth.wav",  ply:GetPos(), 75, 100)
-	end
 	if string.find(new:GetClass(), "knife") or new:GetClass() == "weapon_kabar" or new:GetClass() == "weapon_hg_hatchet" or new:GetClass() == "weapon_gurkha" then
 		sound.Play("snd_jack_hmcd_knifedraw.wav",  ply:GetPos(), 75, 100)
 	end
-	if new.Category == "Chedara Box - Винтовки" then
-		sound.Play("weapons/tfa_inss/asval/draw.wav",  ply:GetPos(), 75, 100)
-	end
+	-- if new.Category == "Chedara Box - Винтовки" then
+	-- 	sound.Play("weapons/tfa_inss/asval/draw.wav",  ply:GetPos(), 75, 100)
+	-- end
 end)
 
 function easedLerpAng1(fraction, from, to)

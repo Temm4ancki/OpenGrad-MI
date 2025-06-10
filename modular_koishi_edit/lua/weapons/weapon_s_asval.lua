@@ -3,7 +3,7 @@ SWEP.Base = "koishi_sweps" -- base
 SWEP.PrintName 				= "АС «Вал»"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Автоматическая винтовка со встроенным глушителем под калибр 9х39"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Rifles"
 SWEP.WepSelectIcon = "vgui/select/w/asval"
 SWEP.IconOverride = "vgui/icon/w/asval.png"
 

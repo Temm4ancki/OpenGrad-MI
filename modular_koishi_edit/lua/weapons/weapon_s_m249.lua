@@ -2,7 +2,7 @@ SWEP.Base = "koishi_sweps" -- base
 
 SWEP.PrintName 				= "M249"
 SWEP.Purpose			= "Пулемёт под калибр 5,56х45"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Rifles"
 SWEP.WepSelectIcon = "vgui/select/w/m249"
 SWEP.IconOverride = "vgui/icon/w/m249.png"
 

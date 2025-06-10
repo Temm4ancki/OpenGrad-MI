@@ -3,7 +3,7 @@ SWEP.Base = "koishi_sweps" -- base
 SWEP.PrintName 				= "Glock 17"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Пистолет под калибр 9х19"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Pistols"
 SWEP.WepSelectIcon = "vgui/select/w/glock17"
 SWEP.IconOverride = "vgui/icon/w/glock17.png"
 

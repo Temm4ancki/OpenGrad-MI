@@ -4,7 +4,7 @@ SWEP.PrintName 				= "АКС-74У"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Автоматическая винтовка под калибр 5,45х39"
 
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Rifles"
 SWEP.WepSelectIcon = "vgui/select/w/aks74u"
 SWEP.IconOverride = "vgui/icon/w/aks74u.png"
 

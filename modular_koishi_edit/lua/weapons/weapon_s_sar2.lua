@@ -3,7 +3,7 @@ SWEP.Base = "koishi_sweps" -- base
 SWEP.PrintName 				= "Automatic Rifle 2"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Основное штурмовое оружие Альянса"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Rifles"
 SWEP.WepSelectIcon = "vgui/select/w/sar2"
 SWEP.IconOverride = "vgui/icon/w/sar2.png"
 

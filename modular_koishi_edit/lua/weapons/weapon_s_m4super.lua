@@ -3,7 +3,7 @@ SWEP.Base = "koishi_sweps" -- base
 SWEP.PrintName 				= "M4 Super 90"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Дробовик под калибр 12/70"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Shotguns"
 SWEP.WepSelectIcon = "vgui/select/w/m4super90"
 SWEP.IconOverride = "vgui/icon/w/m4super90.png"
 

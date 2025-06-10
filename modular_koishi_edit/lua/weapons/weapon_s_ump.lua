@@ -2,7 +2,7 @@ SWEP.Base = "koishi_sweps" -- base
 
 SWEP.PrintName 				= "UMP"
 SWEP.Purpose			= "Что может еще делать ПП? СТРЕЛЯТЬ В ЛИЦО!"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Submachines"
 SWEP.WepSelectIcon = "vgui/select/w/ump45"
 SWEP.IconOverride = "vgui/icon/w/ump45.png"
 

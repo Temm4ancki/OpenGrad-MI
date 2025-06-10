@@ -3,7 +3,7 @@ SWEP.Base = "koishi_sweps" -- base
 SWEP.PrintName 				= "M9 Beretta"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Пистолет под калибр 9х19"
-SWEP.Category 				= "md3"
+SWEP.Category 				= "md3 - Pistols"
 SWEP.WepSelectIcon = "vgui/select/w/m9"
 SWEP.IconOverride = "vgui/icon/w/m9.png"
 
