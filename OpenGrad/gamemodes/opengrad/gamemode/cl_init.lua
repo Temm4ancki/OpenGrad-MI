@@ -5,6 +5,7 @@ surface.CreateFont("HomigradFontLargeBig", {
 	size = 60,
 	weight = 1100,
 	outline = false,
+	extended = true,
 	shadow = true
 })
 

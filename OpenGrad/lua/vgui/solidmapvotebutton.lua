@@ -4,8 +4,8 @@ local PANEL = {}
 AccessorFunc( PANEL, 's_image', 'Image', FORCE_STRING )
 AccessorFunc( PANEL, 's_label', 'Label', FORCE_STRING )
 
-surface.CreateFont( 'SolidMapVote.ButtonText', { font = 'Roboto', size = ScreenScale( 6 ), weight = 1000 } )
-surface.CreateFont( 'SolidMapVote.ButtonPercent', { font = 'Roboto', size = ScreenScale( 10 ), weight = 1000 } )
+surface.CreateFont( 'SolidMapVote.ButtonText', { font = 'Roboto', size = ScreenScale( 6 ), weight = 1000, extended = true } )
+surface.CreateFont( 'SolidMapVote.ButtonPercent', { font = 'Roboto', size = ScreenScale( 10 ), weight = 1000, extended = true } )
 
 function PANEL:Init()
     self:SetText( '' )

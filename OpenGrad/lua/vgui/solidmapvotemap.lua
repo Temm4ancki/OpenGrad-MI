@@ -1,10 +1,10 @@
 
 local PANEL = {}
 
-surface.CreateFont( 'SolidMapVote.MapName', { font = 'Roboto', size = ScreenScale( 6 ), weight = 1000 } )
-surface.CreateFont( 'SolidMapVote.MapPercent', { font = 'Roboto', size = ScreenScale( 15 ), weight = 1000 } )
-surface.CreateFont( 'SolidMapVote.PlayCount', { font = 'Roboto', size = ScreenScale( 4 ), weight = 1 } )
-surface.CreateFont( 'SolidMapVote.NominationText', { font = 'Roboto', size = ScreenScale( 5 ), weight = 100 } )
+surface.CreateFont( 'SolidMapVote.MapName', { font = 'Roboto', size = ScreenScale( 6 ), weight = 1000, extended = true } )
+surface.CreateFont( 'SolidMapVote.MapPercent', { font = 'Roboto', size = ScreenScale( 15 ), weight = 1000, extended = true } )
+surface.CreateFont( 'SolidMapVote.PlayCount', { font = 'Roboto', size = ScreenScale( 4 ), weight = 1, extended = true } )
+surface.CreateFont( 'SolidMapVote.NominationText', { font = 'Roboto', size = ScreenScale( 5 ), weight = 100, extended = true } )
 
 function PANEL:Init()
     self:SetText( '' )

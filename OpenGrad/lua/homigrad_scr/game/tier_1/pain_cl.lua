@@ -16,7 +16,7 @@ local k = 0
 local k4 = 0
 local time = 0
 
-hook.Add("HUDPaint","PainEffect",function()
+--[[hook.Add("HUDPaint","PainEffect",function()
     if not LocalPlayer():Alive() then return end
 
     local w,h = ScrW(),ScrH()
@@ -43,7 +43,7 @@ hook.Add("HUDPaint","PainEffect",function()
     surface.DrawTexturedRect(w - w * k,0,w,h)
 
     DrawMotionBlur(0.2,k * 0.7,k * 0.03)
-end)
+end)]]
 
 local addmat_r = Material("CA/add_r")
 local addmat_g = Material("CA/add_g")

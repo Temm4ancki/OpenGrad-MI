@@ -36,6 +36,7 @@ surface.CreateFont("HomigradFontBig",{
 	size = 25,
 	weight = 1100,
 	outline = false,
+	extended = true,
 	shadow = true
 })
 
@@ -44,6 +45,7 @@ surface.CreateFont("HomigradSmall",{
 	size = 20,
 	weight = 1000,
 	outline = false,
+	extended = true,
 	shadow = true
 })
 
@@ -53,6 +55,7 @@ surface.CreateFont("BodyCamFont",{
 	size = 40,
 	weight = 1100,
 	outline = false,
+	extended = true,
 	shadow = true
 })
 

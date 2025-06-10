@@ -1,6 +1,7 @@
 table.insert(LevelList, "wick")
 wick = wick or {}
 wick.Name = "John Wick"
+wick.MusicPack = "pve_wick"
 
 local models = {}
 for i = 1, 9 do table.insert(models, "models/player/group01/male_0" .. i .. ".mdl") end

@@ -115,6 +115,5 @@ surface.CreateFont("Combine", {
     font = "Tahoma",
     size = 20,
     weight = 500,
-    antialias = true,
-    italic = false,
+    extended = true,
 })

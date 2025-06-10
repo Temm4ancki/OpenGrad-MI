@@ -42,6 +42,7 @@ surface.CreateFont(HG_UI.FONTS.TITLE, {
     size = 32,
     weight = 1000,
     outline = false,
+    extended = true,
     shadow = false
 })
 
@@ -50,6 +51,7 @@ surface.CreateFont(HG_UI.FONTS.HEADER, {
     size = 28,
     weight = 1000,
     outline = false,
+    extended = true,
     shadow = false
 })
 
@@ -58,6 +60,7 @@ surface.CreateFont(HG_UI.FONTS.BIG, {
     size = 25,
     weight = 1000,
     outline = false,
+    extended = true,
     shadow = false
 })
 
@@ -66,6 +69,7 @@ surface.CreateFont(HG_UI.FONTS.NORMAL, {
     size = 18,
     weight = 600,
     outline = false,
+    extended = true,
     shadow = false
 })
 
@@ -74,6 +78,7 @@ surface.CreateFont(HG_UI.FONTS.SMALL, {
     size = 15,
     weight = 500,
     outline = false,
+    extended = true,
     shadow = false
 })
 

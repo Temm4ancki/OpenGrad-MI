@@ -1,7 +1,7 @@
 
 local PANEL = {}
 
-surface.CreateFont( 'SolidMapVote.PlayerTag', { font = 'Roboto', size = ScreenScale( 4 ), weight = 1000 } )
+surface.CreateFont( 'SolidMapVote.PlayerTag', { font = 'Roboto', size = ScreenScale( 4 ), weight = 1000, extended = true } )
 
 function PANEL:Init()
     self.avatar = vgui.Create( 'AvatarImage', self )

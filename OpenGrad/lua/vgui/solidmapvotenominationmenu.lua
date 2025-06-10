@@ -1,11 +1,11 @@
 
 local PANEL = {}
 
-surface.CreateFont( 'SolidMapVote.NominationTitle', { font = 'Roboto', size = ScreenScale( 15 ), weight = 1000 } )
-surface.CreateFont( 'SolidMapVote.NominationMapName', { font = 'Roboto', size = ScreenScale( 6 ), weight = 1000 } )
-surface.CreateFont( 'SolidMapVote.NominationLoading', { font = 'Roboto', size = ScreenScale( 4 ), weight = 100 } )
-surface.CreateFont( 'SolidMapVote.NominationPlayerName', { font = 'Roboto', size = ScreenScale( 4 ), weight = 1 } )
-surface.CreateFont( 'SolidMapVote.NominationClose', { font = 'Roboto', size = ScreenScale( 5 ), weight = 1000 } )
+surface.CreateFont( 'SolidMapVote.NominationTitle', { font = 'Roboto', size = ScreenScale( 15 ), weight = 1000, extended = true } )
+surface.CreateFont( 'SolidMapVote.NominationMapName', { font = 'Roboto', size = ScreenScale( 6 ), weight = 1000, extended = true } )
+surface.CreateFont( 'SolidMapVote.NominationLoading', { font = 'Roboto', size = ScreenScale( 4 ), weight = 100, extended = true } )
+surface.CreateFont( 'SolidMapVote.NominationPlayerName', { font = 'Roboto', size = ScreenScale( 4 ), weight = 1, extended = true } )
+surface.CreateFont( 'SolidMapVote.NominationClose', { font = 'Roboto', size = ScreenScale( 5 ), weight = 1000, extended = true } )
 
 function PANEL:Init()
     self.borderSize = 2

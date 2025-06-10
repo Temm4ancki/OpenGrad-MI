@@ -4,6 +4,7 @@ surface.CreateFont("InventoryTitle", {
     size = 32,
     weight = 1000,
     outline = false,
+    extended = true,
     shadow = false
 })
 
@@ -12,6 +13,7 @@ surface.CreateFont("InventoryItem", {
     size = 18,
     weight = 500,
     outline = false,
+    extended = true,
     shadow = false
 })
 
@@ -19,7 +21,8 @@ surface.CreateFont("InventoryItemSmall", {
     font = "Roboto",
     size = 14,
     weight = 500,
-    outline = true,
+    outline = false,
+    extended = true,
     shadow = true
 })
 

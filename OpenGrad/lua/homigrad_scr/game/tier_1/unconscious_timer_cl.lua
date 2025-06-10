@@ -13,15 +13,17 @@ surface.CreateFont("UnconsciousTimerFont", {
     font = "Roboto",
     size = 32,
     weight = 800,
-    outline = true,
+    outline = false,
+    extended = true,
     shadow = true
 })
 
 surface.CreateFont("UnconsciousReasonFont", {
-    font = "Roboto", 
+    font = "Roboto",
     size = 24,
     weight = 600,
-    outline = true,
+    outline = false,
+    extended = true,
     shadow = true
 })
 

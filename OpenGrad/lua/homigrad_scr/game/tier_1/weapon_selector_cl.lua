@@ -8,7 +8,7 @@ surface.CreateFont("WeaponSelectorTitle", {
     font = "Roboto",
     size = 24,
     weight = 800,
-    outline = true,
+    extended = true,
     shadow = true
 })
 
@@ -16,7 +16,7 @@ surface.CreateFont("WeaponSelectorSlot", {
     font = "Roboto",
     size = 20,
     weight = 600,
-    outline = true,
+    extended = true,
     shadow = true
 })
 
@@ -24,7 +24,7 @@ surface.CreateFont("WeaponSelectorWeapon", {
     font = "Roboto",
     size = 18,
     weight = 500,
-    outline = true,
+    extended = true,
     shadow = true
 })
 
@@ -32,31 +32,31 @@ surface.CreateFont("WeaponSelectorAmmo", {
     font = "Roboto",
     size = 14,
     weight = 500,
-    outline = true,
+    extended = true,
     shadow = true
 })
 
 surface.CreateFont("WeaponInfoTitle", {
     font = "Roboto",
     size = 20,
-    weight = 700,
-    outline = true,
+    weight = 800,
+    extended = true,
     shadow = true
 })
 
 surface.CreateFont("WeaponInfoText", {
     font = "Roboto",
     size = 16,
-    weight = 500,
-    outline = true,
+    weight = 300,
+    extended = true,
     shadow = true
 })
 
 surface.CreateFont("WeaponInfoSmall", {
     font = "Roboto",
     size = 14,
-    weight = 400,
-    outline = true,
+    weight = 100,
+    extended = true,
     shadow = true
 })
 

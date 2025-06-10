@@ -1,9 +1,9 @@
 
 local PANEL = {}
 
-surface.CreateFont( 'SolidMapVote.Title', { font = 'Roboto', size = ScreenScale( 20 ), weight = 1000 } )
-surface.CreateFont( 'SolidMapVote.Time', { font = 'Roboto', size = ScreenScale( 7 ), weight = 1, italic = true } )
-surface.CreateFont( 'SolidMapVote.SubTitle', { font = 'Roboto', size = ScreenScale( 9 ), weight = 1000, italic = true } )
+surface.CreateFont( 'SolidMapVote.Title', { font = 'Roboto', size = ScreenScale( 20 ), weight = 1000, extended = true } )
+surface.CreateFont( 'SolidMapVote.Time', { font = 'Roboto', size = ScreenScale( 7 ), weight = 1, extended = true, italic = true } )
+surface.CreateFont( 'SolidMapVote.SubTitle', { font = 'Roboto', size = ScreenScale( 9 ), weight = 1000, extended = true, italic = true } )
 
 function PANEL:Init()
     self.maps = {}

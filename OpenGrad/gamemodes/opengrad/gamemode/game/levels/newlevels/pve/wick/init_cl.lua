@@ -45,7 +45,7 @@ function wick.HUDPaint_RoundLeft(white2, time)
     if startRound > 0 and lply:Alive() then
         if playsound then
             playsound = false
-            surface.PlaySound("pve_wick/start_" .. math.random(1, 4) .. ".ogg")
+            surface.PlaySound("pve_wick/start_" .. math.random(1, 3) .. ".ogg")
         end
 
         lply:ScreenFade(SCREENFADE.IN, Color(0, 0, 0, 255), 0.5, 0.5)

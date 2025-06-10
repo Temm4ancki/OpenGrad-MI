@@ -82,6 +82,7 @@ if SERVER then
 		timer.Create("nombat.find.hostiles.Timer", 1, 1, function() end)
 		Nombat_Sv_FindHostile()
 		CheckForOpposingPlayers()
+		WickOpposingPlayers()
 	end)
 
 	function Nombat_Sv_FindHostile()
@@ -107,6 +108,26 @@ if SERVER then
 						ply:ConCommand("nombat.client.has.hostiles")
 						break
 					end
+				end
+			end
+		end
+	end
+
+	function WickOpposingPlayers()
+		local round = TableRound and TableRound()
+		if not round or (round.Name ~= "wick" and round.Name ~= "John Wick") then return end
+		for _, ply in ipairs(player.GetAll()) do
+			if not ply:Alive() then continue end
+			local plyIsT = ply.roleT == true
+			local plyHasNoRole = ply.roleT ~= true and ply.roleCT ~= true
+			if not plyIsT and not plyHasNoRole then continue end
+			for _, other in ipairs(player.GetAll()) do
+				if ply == other or not other:Alive() then continue end
+				local otherIsT = other.roleT == true
+				local otherHasNoRole = other.roleT ~= true and other.roleCT ~= true
+				if ((plyIsT and otherHasNoRole) or (plyHasNoRole and otherIsT)) and ply:Visible(other) then
+					ply:ConCommand("nombat.client.has.hostiles")
+					break
 				end
 			end
 		end
@@ -637,7 +658,7 @@ if CLIENT then
 		-- print( t[pack][ambientOrCombat][song] )
 		if not t[pack][ambientOrCombat][song] then return end
 		local length = t[pack][ambientOrCombat][song]
-		local filepath = "nombat/" .. t[pack][1] .. AorC .. song .. ".mp3"
+		local filepath = "nombat/" .. t[pack][1] .. AorC .. song .. ".ogg"
 		-- print( filepath )
 		-- print( length )
 		NOMBAT:SetAmbientSong(filepath, length)
