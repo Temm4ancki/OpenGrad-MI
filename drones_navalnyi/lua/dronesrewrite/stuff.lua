@@ -83,21 +83,6 @@ else
 	end)
 end
 
-local nocollide = {
-	"dronesrewrite_bl_laser",
-	"dronesrewrite_rd_laser",
-	"dronesrewrite_rd_laser_sm",
-	"dronesrewrite_gr_laser_sm",
-	"dronesrewrite_missile",
-	"dronesrewrite_rocket",
-	"dronesrewrite_rocketbig"
-}
-
-hook.Add("ShouldCollide", "dronesrewrite_physhandler", function(ent1, ent2)
-	for k, v in pairs(nocollide) do
-		if ent1:GetClass() == v and ent2:GetClass() == v then return false end
-	end
-end)
 
 hook.Add("StartCommand", "dronesrewrite_locker", function(ply, cmd)
 	local drone = ply:GetNWEntity("DronesRewriteDrone")

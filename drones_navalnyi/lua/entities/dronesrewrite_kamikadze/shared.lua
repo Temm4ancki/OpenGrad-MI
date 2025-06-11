@@ -6,7 +6,7 @@ ENT.Spawnable = true
 ENT.AdminSpawnable = true
 ENT.Category = "Drones Rewrite"
 
-ENT.UNIT = "CAM"
+ENT.UNIT = "BMB"
 
 ENT.Model = "models/dronesrewrite/cameradr/cameradr.mdl"
 

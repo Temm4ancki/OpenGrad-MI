@@ -13,7 +13,7 @@ SWEP.NoSights = true
 
 SWEP.Spawnable	= false
 SWEP.AdminOnly	= false
-SWEP.HoldType = "slam"
+SWEP.HoldType = "pistol"
 SWEP.ViewModelFOV = 62
 SWEP.ViewModelFlip = false
 SWEP.UseHands = true
@@ -50,6 +50,8 @@ end
 
 -- Seems to be a fix for the weapon's staying static after playing the deploy animation.
 function SWEP:Think()
+	ply = self:GetOwner()
+
 	if self.Idle == 0 and self.IdleTimer <= CurTime() then
 		if SERVER then
 			local vm = self.Owner:GetViewModel()
@@ -57,9 +59,20 @@ function SWEP:Think()
 		end
 		self.Idle = 1
 	end
+
+	if CLIENT then
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Forearm"),Angle(10,6,0))
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Hand"),Angle(90,5,90))
+	end
+
 end
 
 function SWEP:Holster()
+	local ply = self:GetOwner()
+	timer.Simple(.1,function ()
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Forearm"),Angle(0,0,0))
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Hand"),Angle(0,0,0))
+	end)
 	if CLIENT and IsValid(self.WorldModelEnt) then
 		self.WorldModelEnt:Remove()
 	end
@@ -141,7 +154,7 @@ function SWEP:PrimaryAttack()
 end
 
 function SWEP:SecondaryAttack()
-    self.Owner:EmitSound("carryable_fumos/fumosquee.wav", 100, 100)
+    self:GetOwner():EmitSound("carryable_fumos/fumosquee.wav", 100, 100)
     if self:GetNextSecondaryFire() > CurTime() then return end
     self:SetNextSecondaryFire(CurTime() + 1)
 
@@ -167,6 +180,7 @@ function SWEP:DrawWeaponSelection(x,y,wide,tall,alpha)
     surface.SetMaterial(Material(self.FumoIcon))
     surface.DrawTexturedRect(x + wide/4, y + tall/7 + bounce, wide/2, tall/1.5)
 end
+
 
 function SWEP:DrawWorldModel()
 	local _Owner = self:GetOwner()

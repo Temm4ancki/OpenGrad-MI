@@ -195,6 +195,7 @@ function tdm.PlayerSpawn(ply, teamID)
 
 	tdm.GiveSwep(ply, teamTbl.main_weapon, 2)
 	tdm.GiveSwep(ply, teamTbl.secondary_weapon, 2)
+	if math.random(1,5)==5 then ply:Give("weapon_drr_koi_drone") end
 	if math.random(1, 4) == 4 then ply:Give("adrenaline") end
 	if math.random(1, 4) == 4 then ply:Give("morphine") end
 	if math.random(1, 3) == 3 then

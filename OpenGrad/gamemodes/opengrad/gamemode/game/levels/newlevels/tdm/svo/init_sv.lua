@@ -53,9 +53,8 @@ function svo.PlayerSpawn(ply, teamID)
 	for i, weapon in pairs(teamTbl.weapons) do
 		ply:Give(weapon)
 	end
-	if ply:Team() == 1 and math.random(0, 5) == 5 then
-		tdm.GiveSwep(ply, "weapon_hg_flag", 0)
-	end
+	if ply:Team() == 1 and math.random(0, 5) == 5 then ply:Give("weapon_hg_flag") end
+	if math.random(1,5)==5 then ply:Give("weapon_drr_koi_drone") end
 	tdm.GiveSwep(ply, teamTbl.main_weapon, 2)
 	tdm.GiveSwep(ply, teamTbl.secondary_weapon, 2)
 
