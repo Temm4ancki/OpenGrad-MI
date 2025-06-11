@@ -38,6 +38,7 @@ OpenGrad-MI is a community-driven project that aims to fix and expand upon the o
 | JMOD updated | @unicode11 @Temm4ancki |
 | Rebuild content (-4GB unnecessary files) |  @Temm4ancki |
 | New additions including stunbaton and other gameplay elements | @unicode11 @magmen3 |
+| drones | @unicode11 |
 |---|---|
 | Continued support and development from the community | @unicode11 @magmen3 @Temm4ancki |
 
