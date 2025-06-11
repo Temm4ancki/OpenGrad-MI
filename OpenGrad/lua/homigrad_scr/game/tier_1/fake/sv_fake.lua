@@ -143,6 +143,7 @@ end
 
 function Faking(ply) -- функция падения
 	if not ply:Alive() then return end
+	if ply.unfakeable then return end
 
 	if not ply.fake then
 		if hook.Run("Fake", ply) ~= nil then return end

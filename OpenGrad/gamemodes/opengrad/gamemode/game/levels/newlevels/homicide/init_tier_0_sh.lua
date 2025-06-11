@@ -3,48 +3,46 @@ homicide = homicide or {}
 homicide.Name = "Homicide"
 homicide.MusicPack = "hg_homicide"
 
-models = {}
-local black_male_models = {
+homicide_models = {}
+homicide_models_rebels = {}
+
+black_male_models = {
     ["models/other/ench/citizens/male_01.mdl"] = true,
     ["models/other/ench/citizens/male_03.mdl"] = true,
 }
 
-local black_female_models = {
+black_female_models = {
     ["models/other/ench/citizens/female_03.mdl"] = true,
     ["models/other/ench/citizens/female_07.mdl"] = true,
 }
 
-local asian_models = {
+asian_models = {
     ["models/other/ench/citizens/male_05.mdl"] = true,
     ["models/other/ench/citizens/female_04.mdl"] = true,
 }
 
-local ded_models = {
+ded_models = {
     ["models/other/ench/citizens/male_08.mdl"] = true,
     ["models/other/ench/citizens/male_10.mdl"] = true,
 }
 
-local jobPool = {"Лошара", "Бомжара", "Дебилоид"}
-
 for i = 1, 9 do
-    table.insert(models, "models/other/ench/citizens/male_0" .. i .. ".mdl")
+    table.insert(homicide_models, "models/other/ench/citizens/male_0" .. i .. ".mdl")
 end
 
 for i = 1, 4 do
-    table.insert(models, "models/other/ench/citizens/female_0" .. i .. ".mdl")
+    table.insert(homicide_models, "models/other/ench/citizens/female_0" .. i .. ".mdl")
 end
 
-models_rebels = {}
 for i = 1, 9 do
-    table.insert(models_rebels, "models/player/Group03/male_0" .. i .. ".mdl")
+    table.insert(homicide_models_rebels, "models/player/Group03/male_0" .. i .. ".mdl")
 end
 
---table.insert(models,"models/player/group01/male_07.mdl")
-homicide.models = models
+homicide.models = homicide_models
 homicide.red = {
     "Невиновный",
     Color(125, 125, 125),
-    models = models
+    models = homicide_models
 }
 
 homicide.teamEncoder = {

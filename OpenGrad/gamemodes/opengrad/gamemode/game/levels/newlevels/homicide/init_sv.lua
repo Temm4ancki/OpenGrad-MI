@@ -234,6 +234,7 @@ function homicide.StartRoundSV()
             homicide.SyncRole(ply, 2)
         end
     end)
+    homicide.SpawnRagdoll()
 
     tdm.CenterInit()
     return {
@@ -299,13 +300,13 @@ function homicide.EndRound(winner)
 end
 
 local empty = {}
+local gray = Color(205,205,205)
 function homicide.PlayerSpawn(ply, teamID)
     local teamTbl = homicide[homicide.teamEncoder[teamID]]
-    local color = teamID == 1 and Color(math.random(55, 165), math.random(55, 165), math.random(55, 165)) or teamTbl[2]
     if homicide.roundType ~= 1 then
         ply:SetModel(teamTbl.models[math.random(#teamTbl.models)] or "models/player/group01/male_03.mdl")
     else
-        ply:SetModel(models_rebels[math.random(#models_rebels)] or "models/player/group03/male_01.mdl")
+        ply:SetModel(homicide_rebels_models[math.random(#models_rebels)] or "models/player/group03/male_01.mdl")
     end
 
     local bodygroups = ply:GetBodyGroups()
@@ -314,7 +315,7 @@ function homicide.PlayerSpawn(ply, teamID)
         ply:SetBodygroup(group.id, randomValue)
     end
 
-    ply:SetPlayerColor(color:ToVector())
+    ply:SetPlayerColor(gray:ToVector())
     ply:Give("weapon_hands")
     timer.Simple(0, function() ply.allowFlashlights = true end)
 end
@@ -346,6 +347,17 @@ function homicide.SyncRole(ply, teamID)
     net.Start("homicide_roleget")
     net.WriteTable(role)
     net.Send(ply)
+end
+
+function homicide.SpawnRagdoll()
+    local ent = ents.Create("prop_ragdoll")
+    if not IsValid(ent) then return end
+    pos = spawns[math.random(#spawns)] + Vector(0,0,0)
+    ent:SetModel(homicide_models[math.random(#homicide_models)])
+    ent:SetPos(pos) -- spawn position
+    ent:Spawn()
+    ent:Activate()
+    ent.FakeRagdoll = true
 end
 
 function homicide.PlayerDeath(ply, inf, att)

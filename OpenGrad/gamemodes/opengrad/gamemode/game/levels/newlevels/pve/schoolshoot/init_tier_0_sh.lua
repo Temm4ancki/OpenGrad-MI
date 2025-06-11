@@ -2,29 +2,20 @@ table.insert(LevelList, "schoolshoot")
 schoolshoot = {}
 schoolshoot.Name = "School Shooter"
 
-local models = {}
-for i = 1, 9 do
-    table.insert(models, "models/player/group01/male_0" .. i .. ".mdl")
-end
-
-for i = 1, 6 do
-    table.insert(models, "models/player/group01/female_0" .. i .. ".mdl")
-end
-
 schoolshoot.red = {
     "Стрелок",
     Color(255, 98, 98),
     weapons = {"weapon_radio", "weapon_m_gurkha", "weapon_hands", "med_band_big", "med_band_small", "medkit", "painkiller"},
     main_weapon = {"weapon_s_m4super", "weapon_s_remington870"},
     secondary_weapon = {"weapon_s_cz75", "weapon_s_deagle", "weapon_s_glock"},
-    models = models
+    models = homicide_models
 }
 
 schoolshoot.green = {
     "Школьник",
     Color(55, 255, 55),
     weapons = {"weapon_hands"},
-    models = models
+    models = homicide_models
 }
 
 schoolshoot.blue = {

@@ -135,6 +135,7 @@ function schoolshoot.PlayerSpawn(ply, teamID)
 		else
 			JMod.EZ_Equip_Armor(ply, "GasMask", color)
 		end
+		ply.unfakeable = true
 	elseif teamID == 2 then
 		ply:SetPlayerColor(Color(math.random(160), math.random(160), math.random(160)):ToVector())
 	end
@@ -223,6 +224,7 @@ function schoolshoot.ShouldSpawnLoot()
 end
 
 function schoolshoot.PlayerDeath(ply, inf, att)
+	if ply.unfakeable then ply.unfakeable = false end
 	return false
 end
 
