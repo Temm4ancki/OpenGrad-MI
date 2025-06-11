@@ -3,9 +3,12 @@ table.insert(LevelList, "riot")
 riot = {}
 riot.Name = "RIOT"
 
-local poli = {
-	"models/tdm_riot/londoncop/londoncop_0" .. math.random(1, 9) .. ".mdl"
-}
+local poli = {}
+
+for i=1,9 do
+	table.insert(poli,"models/tdm_riot/londoncop/londoncop_0" ..i.. ".mdl") 
+end
+
 
 riot.red = {
 	"Полиция",
@@ -33,7 +36,7 @@ riot.blue = {
 	weapons = {"weapon_hands", "med_band_small"},
 	main_weapon = {"weapon_s_p99", "weapon_molotok", "med_band_big", "med_band_small", "weapon_hg_molotov", "weapon_per4ik", "weapon_molotok", "med_band_big", "med_band_small", "weapon_per4ik"},
 	secondary_weapon = {"weapon_m_metalbat", "weapon_m_bat", "weapon_m_pipe"},
-	models = bunt
+	models = homicide.models
 }
 
 riot.teamEncoder = {

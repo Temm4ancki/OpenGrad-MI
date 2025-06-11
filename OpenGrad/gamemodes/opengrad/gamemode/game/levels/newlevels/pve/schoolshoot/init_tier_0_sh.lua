@@ -12,7 +12,7 @@ for i = 1, 6 do
 end
 
 schoolshoot.red = {
-    "Кибер-спортсмен",
+    "Стрелок",
     Color(255, 98, 98),
     weapons = {"weapon_radio", "weapon_m_gurkha", "weapon_hands", "med_band_big", "med_band_small", "medkit", "painkiller"},
     main_weapon = {"weapon_s_m4super", "weapon_s_remington870"},

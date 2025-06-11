@@ -123,9 +123,18 @@ function schoolshoot.PlayerSpawn(ply, teamID)
 	ply:Give(r == 1 and "food_fishcan" or r == 2 and "food_spongebob_home" or r == 3 and "food_lays")
 	if math.random(1, 3) == 3 then ply:Give("food_monster") end
 	if math.random(1, 5) == 5 then ply:Give("weapon_m_bat") end
+	local mathrandom = math.random(1,3)
 	if teamID == 1 then
 		JMod.EZ_Equip_Armor(ply, "Medium-Helmet", color)
 		JMod.EZ_Equip_Armor(ply, "Light-Vest", color)
+		if mathrandom==1 then
+			JMod.EZ_Equip_Armor(ply, "BallisticMask", color)
+		elseif mathrandom==2 then
+			JMod.EZ_Equip_Armor(ply, "Respirator", color)
+			JMod.EZ_Equip_Armor(ply, "SunGlasses", color)
+		else
+			JMod.EZ_Equip_Armor(ply, "GasMask", color)
+		end
 	elseif teamID == 2 then
 		ply:SetPlayerColor(Color(math.random(160), math.random(160), math.random(160)):ToVector())
 	end

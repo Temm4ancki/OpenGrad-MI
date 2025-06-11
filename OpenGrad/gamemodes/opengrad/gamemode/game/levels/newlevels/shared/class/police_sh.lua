@@ -7,8 +7,8 @@ CLASS.weapons = {
 	"painkiller",
 	"weapon_handcuffs",
 	"weapon_taser",
-	"weapon_hg_flashbang"
-	,"weapon_m_police_bat"
+	"weapon_hg_flashbang",
+	"weapon_m_police_bat"
 }
 
 CLASS.secondary_weapon = {"weapon_s_glock"}
