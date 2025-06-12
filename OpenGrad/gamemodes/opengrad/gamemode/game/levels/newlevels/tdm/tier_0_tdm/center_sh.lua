@@ -1,9 +1,9 @@
 function tdm.KCenter(pos, point)
     local dis = 0
-
-    for i, point in pairs(point) do
-        --local dis2 = math.min(math.max(pos:Distance(point[1]) / point[3] - 0.95,0) / 0.05,1)
-        --if dis2 < dis then dis = dis2 end
+    
+    for _, point in pairs(point) do
+        local dis2 = pos:Distance(point[1]) / point[3] - 0.95
+        if dis2 < dis then dis = dis2 end
     end
     return dis
 end

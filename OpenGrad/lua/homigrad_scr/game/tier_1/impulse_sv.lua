@@ -27,8 +27,10 @@ local helmets = {
 	["Riot-Helmet"] = true
 }
 
-local function GetPlayerArmor(ply)
-	for i,v in pairs(ply.EZarmor.items) do
+local PlayerMeta = FindMetaTable("Entity")
+
+function PlayerMeta:GetPlayerArmor()
+	for i,v in pairs(self.EZarmor.items) do
 		if vests[v.name] then return "vest" end
 		if helmets[v.name] then return "helmet" end
 	end
@@ -42,9 +44,17 @@ hook.Add("HomigradDamage","ImpulseShock",function(ply,hitGroup,dmginfo)
 	elseif dmginfo:IsDamageType(DMG_VEHICLE + DMG_CRUSH) and dmg > 5 then
 		dmg = dmg * 0.05
 	elseif dmginfo:IsDamageType(DMG_BURN + DMG_SHOCK + DMG_BUCKSHOT) then
-		dmg = dmg * 6
+		if ply:GetPlayerArmor()=="vest" or ply:GetPlayerArmor()=="helmet" then
+			dmg = dmg
+		else
+			dmg = dmg * 6
+		end
 	elseif dmginfo:IsDamageType(DMG_BLAST + DMG_CLUB + DMG_GENERIC + DMG_SLASH) then
-		dmg = dmg * 1
+		if ply:GetPlayerArmor()=="vest" or ply:GetPlayerArmor()=="helmet" then
+			dmg = dmg / 2
+		else
+			dmg = dmg * 1
+		end
 	elseif dmginfo:IsDamageType(DMG_NERVEGAS + DMG_DROWN) then
 		dmg = 0
 	else
@@ -59,7 +69,7 @@ hook.Add("HomigradDamage","ImpulseShock",function(ply,hitGroup,dmginfo)
 	net.Start("info_impulse")
 	net.WriteFloat(ply.dmgimpulse)
 	net.Send(ply)
-
+	print(ply.dmgimpulse)
 	if hitGroup == HITGROUP_RIGHTLEG or hitGroup == HITGROUP_LEFTLEG then
 		if ply.dmgimpulse > 500 then 
 			timer.Simple(0,function() 
@@ -71,7 +81,7 @@ hook.Add("HomigradDamage","ImpulseShock",function(ply,hitGroup,dmginfo)
 	end
 
 	if hitGroup == HITGROUP_CHEST then
-		if ply.dmgimpulse > 200 or (GetPlayerArmor(ply)=="vest" and ply.dmgimpulse > 500) then 
+		if ply.dmgimpulse > 200 or (ply:GetPlayerArmor()=="vest" and ply.dmgimpulse > 1000) then 
 			timer.Simple(0,function() 
 				if not ply.fake then 
 					Faking(ply) 
@@ -81,7 +91,7 @@ hook.Add("HomigradDamage","ImpulseShock",function(ply,hitGroup,dmginfo)
 	end
 
 	if hitGroup == HITGROUP_STOMACH then
-		if ply.dmgimpulse > 200  or (GetPlayerArmor(ply)=="vest" and ply.dmgimpulse > 500)  then 
+		if ply.dmgimpulse > 200  or (ply:GetPlayerArmor()=="vest" and ply.dmgimpulse > 1000)  then 
 			timer.Simple(0,function() 
 				if not ply.fake then 
 					Faking(ply) 

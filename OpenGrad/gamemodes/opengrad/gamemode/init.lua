@@ -57,6 +57,7 @@ function GM:PlayerSpawn(ply)
 	local size = 9
 
 	ply.slots = {}
+	ply.unfakeable = false
 
 	ply:SetNWVector("HullMin", Vector(-size, -size, 0))
 	ply:SetNWVector("Hull", Vector(size, size, DEFAULT_VIEW_OFFSET[3]))

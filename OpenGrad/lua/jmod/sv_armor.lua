@@ -561,7 +561,7 @@ function JMod.SetPlayerModel(ply, mod)
 	end
 end
 
-function JMod.EZ_Equip_Armor(ply, nameOrEnt)
+function JMod.EZ_Equip_Armor(ply, nameOrEnt, color)
 	local NewArmorName = nameOrEnt
 	local NewArmorID, NewArmorDurability, NewArmorColor, NewArmorSpecs, NewArmorCharges
 
@@ -579,7 +579,7 @@ function JMod.EZ_Equip_Armor(ply, nameOrEnt)
 	else
 		NewArmorSpecs = JMod.ArmorTable[NewArmorName]
 		NewArmorID = JMod.GenerateGUID()
-		NewArmorColor = Color(128, 128, 128)
+		NewArmorColor = color or Color(128,128,128)
 		NewArmorDurability = NewArmorSpecs.dur
 
 		if NewArmorSpecs.chrg then

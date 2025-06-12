@@ -23,16 +23,28 @@ hook.Add("HomigradDamage","PlayerPainGrowth",function(ply,hitGroup,dmginfo,rag,a
 
 	if dmginfo:IsDamageType(DMG_BLAST + DMG_SLASH + DMG_BULLET) then
 		if dmginfo:IsDamageType(DMG_SLASH) then
-			dmg = dmg * 4.5
+			if ply:GetPlayerArmor()=="vest" or ply:GetPlayerArmor()=="helmet" then
+				dmg = dmg 
+			else
+				dmg = dmg * 4.5
+			end
 		end
 
 		if dmginfo:IsDamageType(DMG_BULLET) then
-			dmg = dmg
+			if ply:GetPlayerArmor()=="vest" or ply:GetPlayerArmor()=="helmet" then
+				dmg = dmg / 4
+			else
+				dmg = dmg
+			end
 		end
 
 		dmg = dmg * 2
 	elseif dmginfo:IsDamageType(DMG_VEHICLE + DMG_CRUSH + DMG_BUCKSHOT + DMG_GENERIC) then
-		dmg = dmg * 1.5
+		if ply:GetPlayerArmor()=="vest" or ply:GetPlayerArmor()=="helmet" then
+			dmg = dmg / 4
+		else 
+			dmg = dmg * 1.5
+		end
 	elseif dmginfo:IsDamageType(DMG_CLUB + DMG_BURN + DMG_DROWN + DMG_SHOCK) then
 		dmg = dmg * 6.5
 	elseif not dmginfo:IsDamageType(DMG_BLAST + DMG_NERVEGAS) then
@@ -54,6 +66,7 @@ hook.Add("HomigradDamage","PlayerPainGrowth",function(ply,hitGroup,dmginfo,rag,a
 	dmg = dmg / ply.painlosing
 	dmg = ply.nopain and 1 or dmg
 	ply.pain = ply.pain + dmg
+	print(ply.pain)
 end)
 
 util.AddNetworkString("info_pain")
@@ -139,7 +152,7 @@ function IsUnconscious(ply)
 
 	if ply.painlosing > painlosingThreshold or ply.pain > painThreshold or ply.Blood < bloodThreshold or ply.heartstop then
 		ply.Otrub = true
-		ply:SetDSP(16)
+		ply:SetDSP(1)
 	else
 		ply.Otrub = false
 

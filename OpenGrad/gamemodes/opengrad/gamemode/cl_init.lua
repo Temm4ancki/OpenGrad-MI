@@ -185,6 +185,7 @@ local laserweps = {
 }
 local white = Color(255,255,255)
 hook.Add("HUDPaint","namefakehui",function ()
+	if roundActiveName~="homicide" or not LocalPlayer():Alive() then return end
 	draw.SimpleText(LocalPlayer():GetNWString("FakeName","Неизвестный"),
 	"HomigradFontSmall",
 	ScrW()/2,ScrH()/1.05,
