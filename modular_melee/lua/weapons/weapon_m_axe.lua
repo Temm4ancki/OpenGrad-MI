@@ -3,11 +3,11 @@ SWEP.Base = "koishi_melee"
 SWEP.PrintName = "Топор Лесника"
 SWEP.Category = "md3melee"
 SWEP.Purpose = "Массивный топор для вскрытия черепушек."
--- SWEP.WepSelectIcon = "vgui/select/w/fireaxe"
--- SWEP.IconOverride = "vgui/icon/w/fireaxe.png"
+SWEP.WepSelectIcon = "vgui/select/w/axe"
+SWEP.IconOverride = "vgui/icon/w/axe.png"
 
-SWEP.Spawnable= true
-SWEP.AdminSpawnable= true
+SWEP.Spawnable = true
+SWEP.AdminSpawnable = true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60

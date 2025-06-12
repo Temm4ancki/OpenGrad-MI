@@ -3,11 +3,11 @@ SWEP.Base = "koishi_melee"
 SWEP.PrintName = "Кирка"
 SWEP.Category = "md3melee"
 SWEP.Purpose = "Кирка для добычи алмазов."
--- SWEP.WepSelectIcon = "vgui/select/w/fireaxe"
--- SWEP.IconOverride = "vgui/icon/w/fireaxe.png"
+SWEP.WepSelectIcon = "vgui/select/w/pickaxe"
+SWEP.IconOverride = "vgui/icon/w/pickaxe.png"
 
-SWEP.Spawnable= true
-SWEP.AdminSpawnable= true
+SWEP.Spawnable = true
+SWEP.AdminSpawnable = true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60

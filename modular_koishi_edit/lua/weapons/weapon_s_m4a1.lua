@@ -1,9 +1,11 @@
-SWEP.Base = 'koishi_sweps' -- base
+SWEP.Base = "koishi_sweps" -- base
 
 SWEP.PrintName 				= "M4A1"
 SWEP.Author 				= "Homigrad"
 SWEP.Instructions			= "Автоматическая винтовка под калибр 5,56х45"
 SWEP.Category 				= "md3 - Rifles"
+SWEP.WepSelectIcon			= "vgui/icon/w/m4a1"
+SWEP.IconOverride 			= "vgui/icon/w/m4a1.png"
 
 
 SWEP.Spawnable 				= true

@@ -4,9 +4,8 @@ SWEP.PrintName 				= "MP-40"
 SWEP.Author 				= "Homigrad"
 SWEP.Purpose			= "Немецкая винтовка времён Второй Мировой Войны"
 SWEP.Category 				= "md3 - Rifles"
-
--- SWEP.WepSelectIcon = "vgui/select/w/akm"
--- SWEP.IconOverride = "vgui/icon/w/akm.png"
+SWEP.WepSelectIcon = "vgui/select/w/mp40"
+SWEP.IconOverride = "vgui/icon/w/mp40.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
