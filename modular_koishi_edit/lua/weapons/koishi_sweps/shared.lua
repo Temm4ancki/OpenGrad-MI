@@ -382,6 +382,7 @@ function SWEP:PrimaryAttack()
 	if self.NextShot > CurTime() then return end
 	if timer.Exists("reload"..self:EntIndex()) then return end
 	if self:GetOwner():IsSprinting() then return end
+	if !self.Sightded then return end
 	if self:Clip1()<1 then 
 		if !self.emptyclicked_uzhe then 
 			self:EmitSound("snd_jack_hmcd_click.wav",55,100,1,CHAN_ITEM,0,0) 
