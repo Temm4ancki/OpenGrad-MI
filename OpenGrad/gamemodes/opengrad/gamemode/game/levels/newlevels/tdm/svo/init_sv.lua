@@ -55,6 +55,8 @@ function svo.PlayerSpawn(ply, teamID)
 	end
 	if ply:Team() == 1 and math.random(0, 5) == 5 then ply:Give("weapon_hg_flag") end
 	if math.random(1,5)==5 then ply:Give("weapon_drr_koi_drone") end
+	if math.random(1,30)==1 then ply:Give("weapon_s_rpgg") end
+	if math.random(1,100)==1 then ply:Give("weapon_s_rpggatomic") end
 	tdm.GiveSwep(ply, teamTbl.main_weapon, 2)
 	tdm.GiveSwep(ply, teamTbl.secondary_weapon, 2)
 

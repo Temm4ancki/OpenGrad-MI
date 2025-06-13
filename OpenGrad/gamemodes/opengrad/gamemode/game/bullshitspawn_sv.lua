@@ -112,6 +112,8 @@ weaponslegendary = {
 	"weapon_civil_famas",
 	"weapon_s_galil",
 	"weapon_ump",
+	"weapon_s_rpgg",
+	"weapon_s_rpggatomic",
 }
 
 local sndsDrop = {
