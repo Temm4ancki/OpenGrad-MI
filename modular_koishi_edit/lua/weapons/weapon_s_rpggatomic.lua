@@ -1,11 +1,11 @@
 SWEP.Base = "koishi_sweps" -- base
 
-SWEP.PrintName 				= "РПГ"
+SWEP.PrintName 				= "РЯГ"
 SWEP.Author 				= "Homigrad"
-SWEP.Purpose			= "Ручной противотанковый гранатомёт"
-SWEP.Category 				= "md3" -- Теперь работает!! -- ytn yt hf,jnftn -- ya pofixil
+SWEP.Purpose			= "Ручной ядерный гранатомёт"
+SWEP.Category 				= "md3" -- Теперь работает!! -- ytn yt hf,jnftn
 SWEP.WepSelectIcon = "vgui/select/w/rpgg"
-SWEP.IconOverride = "vgui/icon/w/rpgg.png"
+SWEP.IconOverride = "vgui/icon/w/rpggatomic.png"
 
 SWEP.Spawnable 				= true
 SWEP.AdminOnly 				= false
@@ -44,7 +44,7 @@ function SWEP:PrimaryAttack()
     ply:EmitSound("weapons/salat/w_rpgg/rocketfire1.ogg")
     local shotpos = ply:GetPos() + Vector(0, 0, 50) + ply:EyeAngles():Forward() * 100 + ply:EyeAngles():Right() * 30 + ply:EyeAngles():Up() * 50
     if SERVER then
-        local rocket = ents.Create("ent_jack_gmod_ezherocket")
+        local rocket = ents.Create("ent_jack_gmod_eznukerocket")
         local penis = ply:EyeAngles():Forward():Angle() -- ну правильно зачем пушкам стрелять ровно куда смотришь нам надо указывать куда им стрелять
         rocket:SetPos(shotpos)
         penis:RotateAroundAxis(penis:Up(),-90)
