@@ -18,12 +18,7 @@ cvars.AddChangeCallback("dronesrewrite_debugmode", function(cvar, old, new)
 	end
 end)
 
-DRONES_REWRITE.ServerCVars.FuelConsumptionCoef = CreateConVar("dronesrewrite_admin_fuelconscoef", "1", { FCVAR_ARCHIVE })
-DRONES_REWRITE.ServerCVars.SpeedCoef = CreateConVar("dronesrewrite_admin_speedcoef", "1", { FCVAR_ARCHIVE })
-DRONES_REWRITE.ServerCVars.RotSpeedCoef = CreateConVar("dronesrewrite_admin_rotspeedcoef", "1", { FCVAR_ARCHIVE })
-DRONES_REWRITE.ServerCVars.HealthCoef = CreateConVar("dronesrewrite_admin_hpcoef", "1", { FCVAR_ARCHIVE })
 DRONES_REWRITE.ServerCVars.SignalCoef = CreateConVar("dronesrewrite_admin_signalcoef", "1", { FCVAR_ARCHIVE })
-DRONES_REWRITE.ServerCVars.DmgCoef = CreateConVar("dronesrewrite_admin_dmgcoef", "1", { FCVAR_ARCHIVE })
 
 DRONES_REWRITE.ServerCVars.AllowAdmins = CreateConVar("dronesrewrite_admin_allowadmins", "1", { FCVAR_ARCHIVE })
 

@@ -3,7 +3,7 @@ DRONES_REWRITE.Weapons["Bomb"] = {
 		self:AddHook("DroneDestroyed", "bomb_destr", function()
 			ParticleEffect("splode_big_main", self:GetPos(), Angle(0, 0, 0))
 
-			util.BlastDamage(self, IsValid(self:GetDriver()) and self:GetDriver() or self, self:GetPos(), 300, 200 * DRONES_REWRITE.ServerCVars.DmgCoef:GetFloat())
+			util.BlastDamage(self, IsValid(self:GetDriver()) and self:GetDriver() or self, self:GetPos(), 300, 200 * .1)
 			self:Remove()
 		end)
 

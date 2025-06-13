@@ -232,7 +232,7 @@ function ENT:CalculateFlyConstant()
 end
 
 function ENT:IsDroneDestroyed() return self:GetHealth() <= 0 end
-function ENT:IsDroneImmortal() return self.Immortal or DRONES_REWRITE.ServerCVars.NoDamage:GetBool() end
+function ENT:IsDroneImmortal() return self.Immortal end
 function ENT:IsDroneEnabled() return SERVER and self.Enabled or self:GetNWBool("Enabled") end
 function ENT:IsDroneWorkable() return self:HasFuel() and not self:IsDroneDestroyed() and self:IsDroneEnabled() end
 
@@ -240,7 +240,7 @@ function ENT:GetHealth() return CLIENT and self:GetNWInt("Health") or self.Healt
 function ENT:GetDefaultHealth() return self:GetNWInt("DefHealth") end
 
 function ENT:GetFuel() return CLIENT and self:GetNWInt("Fuel") or self.Fuel  end
-function ENT:HasFuel() return self.Fuel > 0 or not self.ShouldConsumeFuel or DRONES_REWRITE.ServerCVars.NoFuel:GetBool() end
+function ENT:HasFuel() return self.Fuel > 0 or not self.ShouldConsumeFuel end
 
 function ENT:GetPrimaryAmmo()
 	return self:GetNWInt("Ammo1")

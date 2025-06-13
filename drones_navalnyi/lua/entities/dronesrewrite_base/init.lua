@@ -22,7 +22,7 @@ function ENT:ForceCoefficient()
 	local val = 1
 	if num1 < num2 then val = (1 - (1 / num1)) * 0.55 end
 
-	return (num1 / num2) * val * DRONES_REWRITE.ServerCVars.SpeedCoef:GetFloat()
+	return (num1 / num2) * val * .3
 end
 
 function ENT:IsEnemy(class)
@@ -379,7 +379,7 @@ function ENT:SetDriver(ply, maxDistance, transmitter)
 end
 
 function ENT:SetFuel(num)
-	if not self.ShouldConsumeFuel or DRONES_REWRITE.ServerCVars.NoFuel:GetBool() then
+	if not self.ShouldConsumeFuel then
 		num = self.MaxFuel
 	end
 
@@ -388,10 +388,10 @@ function ENT:SetFuel(num)
 end
 
 function ENT:ReduceFuel()
-	if not self.ShouldConsumeFuel or DRONES_REWRITE.ServerCVars.NoFuel:GetBool() then return end
+	if not self.ShouldConsumeFuel then return end
 
 	local velLen = self.EnginePower * self.MoveCoefficient * 80
-	self:SetFuel(self:GetFuel() - (velLen * self.FuelReduction * 0.00004 * DRONES_REWRITE.ServerCVars.FuelConsumptionCoef:GetFloat())) 
+	self:SetFuel(self:GetFuel() - (velLen * self.FuelReduction * 0.00004 * .4)) 
 end
 
 function ENT:SetDefaultHealth(num)
@@ -399,11 +399,11 @@ function ENT:SetDefaultHealth(num)
 end
 
 function ENT:SetHealthAmount(num) 
-	if self.Immortal or DRONES_REWRITE.ServerCVars.NoDamage:GetBool() then
-		num = self:GetDefaultHealth() * DRONES_REWRITE.ServerCVars.HealthCoef:GetFloat()
+	if self.Immortal then
+		num = self:GetDefaultHealth() * .1
 	end
 
-	self.HealthAmount = math.Clamp(num, 0, self:GetDefaultHealth() * DRONES_REWRITE.ServerCVars.HealthCoef:GetFloat())
+	self.HealthAmount = math.Clamp(num, 0, self:GetDefaultHealth() * .1)
 	self:SetNWInt("Health", math.floor(self.HealthAmount))
 end
 
@@ -1071,8 +1071,8 @@ function ENT:Initialize()
 		self:SetFuel(self.MaxFuel)
 	end
 	
-	self:SetDefaultHealth(self.DefaultHealth * DRONES_REWRITE.ServerCVars.HealthCoef:GetFloat())
-	self:SetHealthAmount(self.DefaultHealth * DRONES_REWRITE.ServerCVars.HealthCoef:GetFloat())
+	self:SetDefaultHealth(self.DefaultHealth * .1)
+	self:SetHealthAmount(self.DefaultHealth * .1)
 
 	self.EnginePower = self:IsDroneWorkable() and self:CalculateFlyConstant() or 0
 
@@ -1325,11 +1325,6 @@ function ENT:Think()
 
 	for k, v in pairs(self.ValidWeapons) do
 		if v.Tab.Think then v.Tab.Think(self, v) end
-
-		if DRONES_REWRITE.ServerCVars.NoWaiting:GetBool() then
-			v.NextShoot = 0
-			v.NextShoot2 = 0
-		end
 	end
 
 	if self:IsDroneWorkable() and not DRONES_REWRITE.ServerCVars.NoHitPropellers:GetBool() and not self.NoPropellers and self:GetCollisionGroup() != COLLISION_GROUP_WORLD then

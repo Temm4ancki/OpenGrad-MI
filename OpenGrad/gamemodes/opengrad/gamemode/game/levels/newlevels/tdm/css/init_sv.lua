@@ -49,7 +49,9 @@ function css.PlayerSpawn(ply, teamID)
 
 	tdm.GiveSwep(ply, teamTbl.main_weapon, 3)
 	tdm.GiveSwep(ply, teamTbl.secondary_weapon, 3)
-	if math.random(1,30)==1 then ply:Give("weapon_s_rpgg") end
+	local r = math.random(1,30)
+	print(r)
+	if r==1 then ply:Give("weapon_s_rpgg") end
 	if math.random(1,100)==1 then ply:Give("weapon_s_rpggatomic") end
 	JMod.EZ_Equip_Armor(ply, (math.random(1, 2) == 1 and "Medium-Light-Vest") or (math.random(1, 2) and "Light-Vest"))
 

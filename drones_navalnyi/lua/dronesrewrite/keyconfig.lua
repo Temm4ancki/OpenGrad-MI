@@ -312,7 +312,7 @@ DRONES_REWRITE.DefaultKeys = function()
 		local phys = self:GetPhysicsObject()
 		local vellen = math.Clamp(phys:GetVelocity():Length() * self.VelCoefficientOffset, 1, self.VelCoefficientMax) * self.AngOffsetVel
 
-		phys:AddAngleVelocity(Vector(0, 0, -1) * self.RotateSpeed * DRONES_REWRITE.ServerCVars.RotSpeedCoef:GetFloat() * self.DRONES_REWRITE_DELTA * 0.7)
+		phys:AddAngleVelocity(Vector(0, 0, -1) * self.RotateSpeed * .3 * self.DRONES_REWRITE_DELTA * 0.7)
 		phys:AddAngleVelocity(Vector(self.AngOffset * vellen * self.DRONES_REWRITE_DELTA * 0.5, 0, 0))
 
 		self.RotateDir = 1
@@ -323,7 +323,7 @@ DRONES_REWRITE.DefaultKeys = function()
 		local phys = self:GetPhysicsObject()
 		local vellen = math.Clamp(phys:GetVelocity():Length() * self.VelCoefficientOffset, 1, self.VelCoefficientMax) * self.AngOffsetVel
 
-		phys:AddAngleVelocity(Vector(0, 0, 1) * self.RotateSpeed * DRONES_REWRITE.ServerCVars.RotSpeedCoef:GetFloat() * self.DRONES_REWRITE_DELTA * 0.7)
+		phys:AddAngleVelocity(Vector(0, 0, 1) * self.RotateSpeed * .3 * self.DRONES_REWRITE_DELTA * 0.7)
 		phys:AddAngleVelocity(Vector(-self.AngOffset * vellen * self.DRONES_REWRITE_DELTA * 0.5, 0, 0))
 
 		self.RotateDir = -1
