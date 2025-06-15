@@ -315,7 +315,7 @@ function SWEP:Reload()
 	if ( self.NextShot > CurTime() ) then return end
 	timer.Simple(.1,function() ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"),zeroAng) ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Clavicle"),zeroAng) ply:ManipulateBonePosition(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"),zeroVec) end)
 	self:SetNWBool("Reloading",true)
-	if self.Category == "Chedara Box - Дробовики" then
+	if self.Category == "md3 - Shotguns" then
 		self:SetHoldType("shotgun")
 		timer.Simple(.8,function()
 			self:SetHoldType(self.HoldType)
@@ -336,9 +336,9 @@ function SWEP:Reload()
 	timer.Simple(.1,function()
 		ply:SetAnimation(PLAYER_RELOAD)
 	end)
-	if SERVER then
+	--[[if SERVER then
 		if self:Clip1()<1 then
-			if self:GetClass() == "weapon_sib_akm" or self:GetClass() == "weapon_sib_aks74u" then
+			if self:GetClass() == "weapon_s_akm" or self:GetClass() == "weapon_s_ak74u" then
         		local pos = ply:GetPos() + Vector(0, 0, 120)
         		local ent = ents.Create("prop_physics")
         		if IsValid(ent) then
@@ -348,7 +348,7 @@ function SWEP:Reload()
         	    	ent:Spawn()
 					ent:SetCollisionGroup(COLLISION_GROUP_WEAPON)
         		end
-			elseif self:GetClass() == "weapon_sib_glock" or self:GetClass() == "weapon_sib_usp" or self:GetClass() == "weapon_sib_usp-s" then
+			elseif self:GetClass() == "weapon_s_glock" or self:GetClass() == "weapon_s_hk_usp" or self:GetClass() == "weapon_s_hk_usps" then
         		local pos = ply:GetPos() + Vector(0, 0, 120)
         		local ent = ents.Create("prop_physics")
         		if IsValid(ent) then
@@ -360,7 +360,7 @@ function SWEP:Reload()
         		end
 			end
 		end
-	end
+	end]]
 	self.emptyclicked_uzhe = false
 	timer.Create( "reload"..self:EntIndex(), self.ReloadTime, 1, function()
 			if IsValid(self) and IsValid(ply) and ply:GetActiveWeapon()==self and self:GetNWBool("Reloading") then
