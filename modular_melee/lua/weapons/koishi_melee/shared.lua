@@ -294,6 +294,9 @@ function SWEP:Think()
 		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(60, -15, -10) * finalAnim, true)
 		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_UpperArm"), Angle(0, -30, -70) * finalAnim, true)
 		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Hand"), Angle(-40, 10, 0) * finalAnim, true)
+	elseif self:GetHoldType() == "physgun" then
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(45, 10, 50) * finalAnim, true)
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(15, 10, 10) * finalAnim, true)
 	else
 		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(35, 30, 50) * finalAnim, true)
 		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 5, -35) * finalAnim, true)
