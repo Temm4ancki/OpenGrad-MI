@@ -1,13 +1,13 @@
 SWEP.Base = "koishi_melee"
 
 SWEP.PrintName = "Копьё"
-SWEP.Category = "md3melee"
+SWEP.Category = "md3 - Melee "
 SWEP.Purpose = "Копьё кидац."
 SWEP.WepSelectIcon = "vgui/select/w/sperm"
 SWEP.IconOverride = "vgui/icon/w/sperm.png"
 
-SWEP.Spawnable= true
-SWEP.AdminSpawnable= true
+SWEP.Spawnable = true
+SWEP.AdminSpawnable = true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60

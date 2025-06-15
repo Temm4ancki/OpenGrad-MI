@@ -1,6 +1,7 @@
 NOMBAT = NOMBAT or {}
 NOMBAT.InCombat = false
-NOMBAT.InCombatResetDelay = 3
+NOMBAT.InCombatResetDelay = 7
+
 if SERVER then
 	SetGlobalBool("nombat.ambient.enabled", tobool(cookie.GetString("nombat.ambient.enabled", "true") or false))
 	SetGlobalBool("nombat.combat.enabled", tobool(cookie.GetString("nombat.combat.enabled", "true") or false))
@@ -83,7 +84,15 @@ if SERVER then
 		Nombat_Sv_FindHostile()
 		CheckForOpposingPlayers()
 		WickOpposingPlayers()
+		CheckForDangerousWeapons()
+		CheckForHiddenIdentity()
 	end)
+
+	local MAX_VISIBILITY_DISTANCE_SQR = 2000
+
+	local function IsInVisibilityRange(ply, other)
+		return ply:GetPos():DistToSqr(other:GetPos()) <= MAX_VISIBILITY_DISTANCE_SQR
+	end
 
 	function Nombat_Sv_FindHostile()
 		local RequireLOS = GetGlobalBool("nombat.require.los", false)
@@ -103,11 +112,9 @@ if SERVER then
 			if not ply:Alive() or ply:Team() == 3 then continue end
 			for _, other in ipairs(player.GetAll()) do
 				if ply == other or not other:Alive() or other:Team() == 3 then continue end
-				if ply:Team() ~= other:Team() then
-					if ply:Visible(other) then
-						ply:ConCommand("nombat.client.has.hostiles")
-						break
-					end
+				if ply:Team() ~= other:Team() and ply:Visible(other) and IsInVisibilityRange(ply, other) then
+					ply:ConCommand("nombat.client.has.hostiles")
+					break
 				end
 			end
 		end
@@ -116,17 +123,59 @@ if SERVER then
 	function WickOpposingPlayers()
 		local round = TableRound and TableRound()
 		if not round or (round.Name ~= "wick" and round.Name ~= "John Wick") then return end
+
 		for _, ply in ipairs(player.GetAll()) do
 			if not ply:Alive() then continue end
 			local plyIsT = ply.roleT == true
 			local plyHasNoRole = ply.roleT ~= true and ply.roleCT ~= true
 			if not plyIsT and not plyHasNoRole then continue end
+
 			for _, other in ipairs(player.GetAll()) do
 				if ply == other or not other:Alive() then continue end
 				local otherIsT = other.roleT == true
 				local otherHasNoRole = other.roleT ~= true and other.roleCT ~= true
-				if ((plyIsT and otherHasNoRole) or (plyHasNoRole and otherIsT)) and ply:Visible(other) then
+				if ((plyIsT and otherHasNoRole) or (plyHasNoRole and otherIsT)) and ply:Visible(other) and IsInVisibilityRange(ply, other) then
 					ply:ConCommand("nombat.client.has.hostiles")
+					break
+				end
+			end
+		end
+	end
+
+	function CheckForDangerousWeapons()
+		local dangerousWeapons = {
+			["weapon_s_hk_usps"] = true,
+			["weapon_m_kabar"] = true
+		}
+
+		for _, ply in ipairs(player.GetAll()) do
+			if not ply:Alive() or ply:Team() == 3 then continue end
+
+			for _, other in ipairs(player.GetAll()) do
+				if ply == other or not other:Alive() or other:Team() == 3 then continue end
+
+				if ply:Visible(other) and IsInVisibilityRange(ply, other) then
+					local activeWeapon = other:GetActiveWeapon()
+					if IsValid(activeWeapon) and dangerousWeapons[activeWeapon:GetClass()] then
+						ply:ConCommand("nombat.client.has.hostiles")
+						print("nombat.client.has.hostiles1")
+						break
+					end
+				end
+			end
+		end
+	end
+
+	function CheckForHiddenIdentity()
+		for _, ply in ipairs(player.GetAll()) do
+			if not ply:Alive() or ply:Team() == 3 then continue end
+
+			for _, other in ipairs(player.GetAll()) do
+				if ply == other or not other:Alive() or other:Team() == 3 then continue end
+
+				if ply:Visible(other) and IsInVisibilityRange(ply, other) and other.IdentityHidden then
+					ply:ConCommand("nombat.client.has.hostiles")
+					print("nombat.client.has.hostiles2")
 					break
 				end
 			end

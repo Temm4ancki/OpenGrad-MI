@@ -1,13 +1,13 @@
 SWEP.Base = "koishi_melee"
 
 SWEP.PrintName = "Флаг"
-SWEP.Category = "md3melee"
+SWEP.Category = "md3 - Melee "
 SWEP.Purpose = "ЗА РЕДИСТАН"
 SWEP.WepSelectIcon = "vgui/select/w/flag"
 SWEP.IconOverride = "vgui/icon/w/flag.png"
 
-SWEP.Spawnable= true
-SWEP.AdminSpawnable= true
+SWEP.Spawnable = true
+SWEP.AdminSpawnable = true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60

@@ -366,16 +366,87 @@ function PlayerMeta:DropWeapon1(wep)
 
 	ply:DropWeapon(wep)
 	wep.Spawned = true
-	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Hand"), Angle(0, 0, 0), true)
-	ply:ManipulateBonePosition(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"), Vector(0, 0, 0), true)
-	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(0, 0, 0), true)
-	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_Head1"), Angle(0, 0, 0), true)
-	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Forearm"), Angle(0, 0, 0), true)
-	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Hand"), Angle(0, 0, 0), true)
-	ply:ManipulateBonePosition(ply:LookupBone("ValveBiped.Bip01_L_Clavicle"), Vector(0, 0, 0), true)
-	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 0, 0), true)
-	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Forearm"), Angle(0, 0, 0), true)
+	ply:SmoothResetBoneManipulation()
 	ply:SelectWeapon("weapon_hands")
+end
+
+function PlayerMeta:SmoothResetBoneManipulation()
+	local ply = self
+	local resetTime = 0.3
+	local steps = 10
+	local stepTime = resetTime / steps
+
+	local bones = {
+		{name = "ValveBiped.Bip01_R_Hand", currentAng = nil},
+		{name = "ValveBiped.Bip01_R_Clavicle", currentAng = nil, currentPos = nil},
+		{name = "ValveBiped.Bip01_Head1", currentAng = nil},
+		{name = "ValveBiped.Bip01_R_Forearm", currentAng = nil},
+		{name = "ValveBiped.Bip01_L_Hand", currentAng = nil},
+		{name = "ValveBiped.Bip01_L_Clavicle", currentAng = nil, currentPos = nil},
+		{name = "ValveBiped.Bip01_L_Forearm", currentAng = nil},
+		{name = "ValveBiped.Bip01_R_UpperArm", currentAng = nil}
+	}
+
+	for _, bone in ipairs(bones) do
+		local boneId = ply:LookupBone(bone.name)
+		if boneId then
+			if bone.name == "ValveBiped.Bip01_R_Clavicle" then
+				bone.currentAng = Angle(35, 30, 50)
+				bone.currentPos = Vector(0, 0, 0)
+			elseif bone.name == "ValveBiped.Bip01_L_Clavicle" then
+				bone.currentAng = Angle(0, 5, -35)
+				bone.currentPos = Vector(0, 0, 0)
+			elseif bone.name == "ValveBiped.Bip01_R_UpperArm" then
+				bone.currentAng = Angle(0, -30, -70)
+			elseif bone.name == "ValveBiped.Bip01_R_Hand" then
+				bone.currentAng = Angle(-40, 10, 0)
+			else
+				bone.currentAng = Angle(0, 0, 0)
+			end
+		end
+	end
+
+	local currentStep = 0
+	local timerName = "BoneReset_" .. ply:EntIndex() .. "_" .. CurTime()
+
+	timer.Create(timerName, stepTime, steps, function()
+		if not IsValid(ply) then
+			timer.Remove(timerName)
+			return
+		end
+
+		currentStep = currentStep + 1
+		local progress = currentStep / steps
+
+		local easedProgress = 1 - math.pow(1 - progress, 3)
+
+		for _, bone in ipairs(bones) do
+			local boneId = ply:LookupBone(bone.name)
+			if boneId and bone.currentAng then
+
+				local lerpedAng = LerpAngle(easedProgress, bone.currentAng, Angle(0, 0, 0))
+				ply:ManipulateBoneAngles(boneId, lerpedAng, true)
+
+				if bone.currentPos then
+					local lerpedPos = LerpVector(easedProgress, bone.currentPos, Vector(0, 0, 0))
+					ply:ManipulateBonePosition(boneId, lerpedPos, true)
+				end
+			end
+		end
+
+		if currentStep >= steps then
+			for _, bone in ipairs(bones) do
+				local boneId = ply:LookupBone(bone.name)
+				if boneId then
+					ply:ManipulateBoneAngles(boneId, Angle(0, 0, 0), true)
+					if bone.currentPos then
+						ply:ManipulateBonePosition(boneId, Vector(0, 0, 0), true)
+					end
+				end
+			end
+			timer.Remove(timerName)
+		end
+	end)
 end
 
 util.AddNetworkString("pophead")

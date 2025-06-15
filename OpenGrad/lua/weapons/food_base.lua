@@ -107,6 +107,10 @@ function SWEP:PrimaryAttack()
 	owner:SetAnimation(PLAYER_ATTACK1)
 
 	if(SERVER)then
+		if self.EdaPoisoned then
+			EdaOtravlena(owner)
+		end
+		
 		owner.adrenaline = owner.adrenaline + self.AdrenalineAmt or 0
 		owner.stamina = owner.stamina + self.StaminaAmt or 10
 		owner.pain = math.max(owner.pain - ((self.StaminaAmt or 10) / 10),0)
@@ -123,6 +127,41 @@ function SWEP:CustomEat()
 	-- kodite
 end
 
+function SWEP:CustomFeed(target)
+end
+
 function SWEP:SecondaryAttack()
-	-- чет нехочу
+ 	local owner = self:GetOwner()
+	if not IsValid(owner) then return end
+
+	local ent = owner:GetEyeTrace().Entity
+	ent = (ent:IsPlayer() and ent) or (RagdollOwner(ent)) or (ent:GetClass() == "prop_ragdoll" and ent)
+	if not ent then return end
+
+	local targetPlayer = ent:IsPlayer() and ent or RagdollOwner(ent)
+	if not targetPlayer or targetPlayer == owner then return end
+
+	local targetPos = ent:IsPlayer() and ent:GetPos() or ent:GetPos()
+	if owner:GetPos():Distance(targetPos) > 100 then return end
+
+	owner:SetAnimation(PLAYER_ATTACK1)
+
+	if SERVER then
+		local canFeed = self:CustomFeed(targetPlayer)
+		if canFeed == false then return end
+
+		if self.EdaPoisoned then
+			EdaOtravlena(targetPlayer)
+		end
+
+		targetPlayer.adrenaline = targetPlayer.adrenaline + (self.AdrenalineAmt or 0)
+		targetPlayer.stamina = targetPlayer.stamina + (self.StaminaAmt or 10)
+		targetPlayer.pain = math.max(targetPlayer.pain - ((self.StaminaAmt or 10) / 10), 0)
+
+		local healsound = self.Drink and ("other/food/snd_jack_hmcd_drink" .. math.random(1,3) .. ".ogg") or ("other/food/snd_jack_hmcd_eat" .. math.random(1,4) .. ".ogg")
+		targetPlayer:EmitSound(healsound)
+
+		owner:SelectWeapon("weapon_hands")
+		self:Remove()
+	end
 end

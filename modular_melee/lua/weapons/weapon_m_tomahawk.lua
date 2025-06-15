@@ -1,7 +1,7 @@
 SWEP.Base = "koishi_melee"
 
 SWEP.PrintName = "Томагавк"
-SWEP.Category = "md3melee"
+SWEP.Category = "md3 - Melee "
 SWEP.Instructions = "Томагав к."
 
 SWEP.WepSelectIcon = "vgui/select/w/tomahawk"

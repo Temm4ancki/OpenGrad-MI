@@ -1,13 +1,13 @@
 SWEP.Base = "koishi_melee"
 
 SWEP.PrintName = "Пожарный топор"
-SWEP.Category = "md3melee"
+SWEP.Category = "md3 - Melee "
 SWEP.Purpose = "Массивный топор для вскрытия и разборки конструкций при тушении пожара."
 SWEP.WepSelectIcon = "vgui/select/w/fireaxe"
 SWEP.IconOverride = "vgui/icon/w/fireaxe.png"
 
-SWEP.Spawnable= true
-SWEP.AdminSpawnable= true
+SWEP.Spawnable = true
+SWEP.AdminSpawnable = true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60

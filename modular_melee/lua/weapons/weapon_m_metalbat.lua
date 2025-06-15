@@ -1,14 +1,14 @@
 SWEP.Base = "koishi_melee"
 
 SWEP.PrintName = "Металическая Бита"
-SWEP.Category = "md3melee"
+SWEP.Category = "md3 - Melee "
 SWEP.Instructions = "Часть спортивного инвентаря, предназначенная для нанесения ударов по мячу, выполненная из металлического материала, благодаря чему урон от данной биты будет в разы сильнее, чем от её деревянного аналога. Особенности конструкции биты позволяют наносить ею тяжёлые и мощные удары, но отличается от деревянной битой тем."
 
 SWEP.WepSelectIcon = "vgui/select/w/metalbat"
 SWEP.IconOverride = "vgui/icon/w/metalbat.png"
 
-SWEP.Spawnable= true
-SWEP.AdminSpawnable= true
+SWEP.Spawnable = true
+SWEP.AdminSpawnable = true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60

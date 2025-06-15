@@ -64,6 +64,21 @@ function SWEP:PrimaryAttack()
         Can:Spawn()
         Can:Activate()
         Can:GetPhysicsObject():SetVelocity(self:GetOwner():GetVelocity())
+
+        timer.Simple(0.1, function()
+            if IsValid(Can) then
+                local Tr = util.QuickTrace(Can:GetPos() + Vector(0, 0, 10), Vector(0, 0, -50), Can)
+                if Tr.Hit and JMod and JMod.HitMatColors then
+                    local Info = JMod.HitMatColors[Tr.MatType]
+                    if Info then
+                        Can:SetColor(Info[1])
+                        if Info[2] then
+                            Can:SetMaterial(Info[2])
+                        end
+                    end
+                end
+            end
+        end)
         sound.Play("physics/metal/soda_can_impact_hard2.wav", Can:GetPos(), 55, math.random(100, 110))
         self:Remove()
     end

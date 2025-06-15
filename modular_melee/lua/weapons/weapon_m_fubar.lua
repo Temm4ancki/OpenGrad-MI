@@ -1,13 +1,13 @@
 SWEP.Base = "koishi_melee"
 
 SWEP.PrintName = "Фубар"
-SWEP.Category = "md3melee"
+SWEP.Category = "md3 - Melee "
 SWEP.Purpose = "Ручное рычажно-клиновое приспособление для вытаскивания (выдирания) вбитых в материал (дерево, пластик и др.) гвоздей."
 SWEP.WepSelectIcon = "vgui/select/w/fubar"
 SWEP.IconOverride = "vgui/icon/w/fubar.png"
 
-SWEP.Spawnable= true
-SWEP.AdminSpawnable= true
+SWEP.Spawnable = true
+SWEP.AdminSpawnable = true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60

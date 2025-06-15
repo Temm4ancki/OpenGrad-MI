@@ -1,23 +1,3 @@
-
-
----------------------
--- FOR YOU TO READ --
----------------------
---
--- please follow the provided instructions in the readme
--- unless you have prior lua knowledge, in which case
--- just run quickly over the covered steps in the readme. 
---
--- please make sure you only
--- edit the sections flagged with
--- '--$ {extra information}' editing
--- anything else can cause problems with 
--- your extension and it will not be loaded!
---
--- IF YOU REQUIRE ANY HELP CONTACT ME (slaugh7er) ON STEAM
---
-----------------------
-
 if SERVER then
 	--resource.AddWorkshop("1684494045") --$ place you workshop addon number here ( I told you to copy it remember ;) )
 end
@@ -31,7 +11,7 @@ if CLIENT then
 				pl.NOMBAT_Level = 1 -- (DONT EDIT)
 				pl.NOMBAT_PostLevel = 1 -- (DONT EDIT)
 
-				local Ambient_Time = {52,67,60,47} --$ song time (in seconds)
+				local Ambient_Time = {53,68,61,48} --$ song time (in seconds)
 				pl.NOMBAT_Amb_Delay = CurTime() -- (DONT EDIT)
 
 				local Combat_Time = {52,67,60,47} --$ song time (in seconds)

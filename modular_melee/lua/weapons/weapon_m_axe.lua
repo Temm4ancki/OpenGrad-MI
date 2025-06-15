@@ -1,7 +1,7 @@
 SWEP.Base = "koishi_melee"
 
 SWEP.PrintName = "Топор Лесника"
-SWEP.Category = "md3melee"
+SWEP.Category = "md3 - Melee "
 SWEP.Purpose = "Массивный топор для вскрытия черепушек."
 SWEP.WepSelectIcon = "vgui/select/w/axe"
 SWEP.IconOverride = "vgui/icon/w/axe.png"

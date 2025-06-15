@@ -30,6 +30,22 @@ function SWEP:CustomEat()
 	end
 end
 
+function SWEP:CustomFeed(target)
+	if not target.Otrub then
+		local owner = self:GetOwner()
+		owner:ChatPrint("Не получится. Он в сознании...")
+		return false
+	end
+
+	target.Blood = target.Blood - 60
+	local snd = table.Random(blevotasfx)
+	target:EmitSound(snd)
+	for i = 1, 30 do
+		BloodParticle(target:EyePos(),target:EyeAngles():Forward()*150+Vector(math.random(-1,1),math.random(-1,1),math.random(-1,1))*30)
+		target.pain = math.max(target.pain + 9,0)
+	end
+end
+
 if(CLIENT)then
 	local WorldModel = ClientsideModel(SWEP.WorldModel)
 

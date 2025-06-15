@@ -1,14 +1,14 @@
 SWEP.Base = "koishi_melee"
 
 SWEP.PrintName = "Дубинка"
-SWEP.Category = "md3melee"
+SWEP.Category = "md3 - Melee "
 SWEP.Instructions = "Police brutality"
 
 SWEP.WepSelectIcon = "vgui/select/w/police_bat"
 SWEP.IconOverride = "vgui/icon/w/police_bat.png"
 
-SWEP.Spawnable= true
-SWEP.AdminSpawnable= true
+SWEP.Spawnable = true
+SWEP.AdminSpawnable = true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60

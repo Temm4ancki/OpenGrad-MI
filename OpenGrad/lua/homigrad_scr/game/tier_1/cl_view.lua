@@ -258,7 +258,7 @@ end)
 local weps = {}
 
 for _, weapon in ipairs(weapons.GetList()) do
-	if weapon.Category == "Оружие" or weapon.Category == "md3" or weapon.Category == "md3melee" or weapon.Category == "md3fumo" then 
+	if weapon.Category == "Оружие" or weapon.Category == "md3" or weapon.Category == "md3 - Melee " or weapon.Category == "md3fumo" then 
 		weps[weapon.ClassName] = true
 	end
 end

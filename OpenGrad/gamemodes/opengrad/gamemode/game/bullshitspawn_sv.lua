@@ -1,4 +1,3 @@
---FIXME У нас не работает спавн лута не из коробок. Почининть надо
 KOROBKA_HUYNYI={
 	"models/props_junk/cardboard_box001a.mdl",
 	"models/props_junk/cardboard_box001b.mdl",
@@ -22,18 +21,18 @@ KOROBKA_HUYNYI={
 	"models/props_junk/wood_crate002a_half.mdl",
 	"models/props_junk/wood_crate003a.mdl",
 	"models/props_c17/furnituredrawer001c.mdl",
-	"models/props_wasteland/controlroom_filecabinet002a.mdl",
-	"models/props_wasteland/controlroom_storagecloset001a.mdl",
+	--"models/props_wasteland/controlroom_filecabinet002a.mdl",
+	--"models/props_wasteland/controlroom_storagecloset001a.mdl",
 	"models/props_c17/oildrum001.mdl",
 	"models/props_interiors/Furniture_chair03a.mdl",
 	"models/props_wasteland/controlroom_chair001a.mdl",
 	"models/props_junk/gascan001a.mdl",
 	"models/props_junk/MetalBucket02a.mdl",
 	"models/props_c17/furnituredrawer002a.mdl",
-	"models/props_interiors/furniture_cabinetdrawer02a.mdl",
+	--"models/props_interiors/furniture_cabinetdrawer02a.mdl",
 	"models/props_c17/furniturecupboard001a.mdl",
 	"models/props_interiors/furniture_desk01a.mdl",
-	"models/props_interiors/furniture_vanity01a.mdl"
+	--"models/props_interiors/furniture_vanity01a.mdl"
 }
 
 local newTbl = {}
@@ -188,7 +187,6 @@ hook.Add("PropBreak","homigrad",function(att,ent)
 					playerAmmoType = getPlayerAmmoType(att)
 				end
 
-				-- Если не удалось получить патроны игрока или игрок не валиден, берем случайные
 				if playerAmmoType then
 					entName = playerAmmoType
 				else
@@ -204,7 +202,6 @@ hook.Add("PropBreak","homigrad",function(att,ent)
 				huy = ents.Create(entName)
 			end
 
-			-- Проверяем валидность созданной сущности
 			if not IsValid(huy) then
 				print("Failed to create entity: " .. tostring(entName))
 				return
@@ -234,12 +231,10 @@ spawns = {}
 	table.insert(spawns,ent:GetPos())
 end]]
 
-local x, y, z = math.random(0, 50), math.random(25, 50), math.random(5, 10)
+for _, area in ipairs(navmesh.GetAllNavAreas()) do
 
-for i, v in pairs(navmesh.GetAllNavAreas()) do
-	local pos = v:GetCenter() + Vector(x, y, z)
-
-	table.insert(spawns,pos)
+	local randomPos = area:GetRandomPoint()
+	table.insert(spawns, randomPos)
 end
 
 local hook_Run = hook.Run

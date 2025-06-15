@@ -1,7 +1,7 @@
 SWEP.Base = "koishi_melee"
 
 SWEP.PrintName = "Кирка"
-SWEP.Category = "md3melee"
+SWEP.Category = "md3 - Melee "
 SWEP.Purpose = "Кирка для добычи алмазов."
 SWEP.WepSelectIcon = "vgui/select/w/pickaxe"
 SWEP.IconOverride = "vgui/icon/w/pickaxe.png"

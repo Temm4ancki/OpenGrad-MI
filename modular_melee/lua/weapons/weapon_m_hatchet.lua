@@ -1,13 +1,13 @@
 SWEP.Base = "koishi_melee"
 
 SWEP.PrintName = "Топорик"
-SWEP.Category = "md3melee"
+SWEP.Category = "md3 - Melee "
 SWEP.Purpose = "Одноручный ударный инструмент с острым лезвием с одной стороны, используемым для рубки и колки дерева, и наконечником молота с другой стороны."
 SWEP.WepSelectIcon = "vgui/select/w/hatchet"
 SWEP.IconOverride = "vgui/icon/w/hatchet.png"
 
-SWEP.Spawnable= true
-SWEP.AdminSpawnable= true
+SWEP.Spawnable = true
+SWEP.AdminSpawnable = true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60

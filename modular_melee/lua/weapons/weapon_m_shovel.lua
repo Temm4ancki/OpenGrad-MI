@@ -1,7 +1,7 @@
 SWEP.Base = "koishi_melee"
 
 SWEP.PrintName = "Лопата"
-SWEP.Category = "md3melee"
+SWEP.Category = "md3 - Melee "
 SWEP.Purpose = "Ручной шанцевый инструмент, используемый преимущественно для работы (копание, расчистка, перенос и так далее) с грунтом."
 SWEP.WepSelectIcon = "vgui/select/w/spade"
 SWEP.IconOverride = "vgui/icon/w/spade.png"

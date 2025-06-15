@@ -259,6 +259,11 @@ function SWEP:SecondaryAttack()
 			local Dist = (self:GetOwner():GetShootPos() - tr.HitPos):Length()
 
 			if Dist < self.ReachDistance then
+				if tr.Entity.poisoned then
+					self:PoisonPlayer(ply, tr.Entity)
+					return
+				end
+
 				sound.Play("Flesh.ImpactSoft", self:GetOwner():GetShootPos(), 65, math.random(90, 110))
 				self:SetCarrying(tr.Entity, tr.PhysicsBone, tr.HitPos, Dist)
 				tr.Entity.Touched = true
@@ -741,6 +746,32 @@ end
 
 function SWEP:IsEntSoft(ent)
 	return ent:IsNPC() or ent:IsPlayer() or RagdollOwner(ent) or ent:IsRagdoll()
+end
+
+function SWEP:PoisonPlayer(ply, ent)
+	if ply.otravlen2 then return end
+
+	ply.otravlen2 = true
+	timer.Create("Cyanid" .. ply:EntIndex() .. "12", 30, 1, function()
+		if ply:Alive() and ply.otravlen2 then
+			ply:EmitSound("vo/npc/male01/moan0" .. math.random(1, 5) .. ".wav", 60)
+		end
+
+		timer.Create("Cyanid" .. ply:EntIndex() .. "22", 10, 1, function()
+			if ply:Alive() and ply.otravlen2 then
+				ply:EmitSound("vo/npc/male01/moan0" .. math.random(1, 5) .. ".wav", 60)
+			end
+		end)
+
+		timer.Create("Cyanid" .. ply:EntIndex() .. "32", 15, 1, function()
+			if ply:Alive() and ply.otravlen2 then
+				ply.KillReason = "poison"
+				ply:Kill()
+			end
+		end)
+	end)
+
+	ent.poisoned = false
 end
 
 if CLIENT then

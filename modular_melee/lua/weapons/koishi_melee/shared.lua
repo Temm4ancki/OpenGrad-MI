@@ -2,7 +2,7 @@
 
 SWEP.PrintName = "База ближнего боя"
 
-SWEP.Category = "md3melee"
+SWEP.Category = "md3 - Melee "
 
 SWEP.Spawnable = false
 SWEP.AdminSpawnable = false
@@ -168,25 +168,70 @@ function SWEP:PrimaryAttack()
 				dmginfo:SetDamage( self.Primary.Damage )
 			end
 
-			if  self.CanBreakDoors and
-				tr.Entity:GetClass()=="prop_door_rotating"or
-				tr.Entity:GetClass()=="func_door" 
-				then
-
-				local hits = tr.Entity:GetNWInt("BreakHealth",100)
+			if  self.CanBreakDoors and (
+				tr.Entity:GetClass() == "prop_door_rotating" or
+				tr.Entity:GetClass() == "func_door")
+			then
 				tr.Entity:EmitSound("physics/wood/wood_box_impact_hard"..math.random(1,6)..".wav")
-			
-				hits = hits - 25
-				tr.Entity:SetNWInt("BreakHealth",hits)
 
-				if hits <= 0 then
-					tr.Entity:SetKeyValue("speed",500)
-					tr.Entity:EmitSound("physics/wood/wood_box_break"..math.random(1,4)..".wav")
-					tr.Entity:Fire("Unlock", "", 0)
-					tr.Entity:Fire("Open", "", 0)
-					timer.Simple(1,function ()
-						tr.Entity:SetKeyValue("speed",100)
-					end)
+				local hitCount = tr.Entity:GetNWInt("DoorHitCount", 0)
+				hitCount = hitCount + 1
+				tr.Entity:SetNWInt("DoorHitCount", hitCount)
+
+				if hitCount >= 6 then
+					local currentChance = tr.Entity:GetNWInt("DoorBreakChance", 0)
+					if currentChance == 0 then
+						local baseDamage = math.max(self.Primary.Damage, 3)
+						currentChance = math.min(baseDamage, 10)
+					else
+						currentChance = currentChance + 2
+					end
+
+					tr.Entity:SetNWInt("DoorBreakChance", currentChance)
+
+					if math.random(1, 100) <= currentChance then
+						tr.Entity:EmitSound("physics/metal/metal_box_break"..math.random(1,2)..".wav")
+
+						local doorPos = tr.Entity:GetPos()
+						local doorAng = tr.Entity:GetAngles()
+						local doorModel = tr.Entity:GetModel()
+						local doorSkin = tr.Entity:GetSkin()
+						local doorColor = tr.Entity:GetColor()
+						local doorMaterial = tr.Entity:GetMaterial()
+
+						local prop = ents.Create("prop_physics")
+						if IsValid(prop) then
+							if doorModel and doorModel ~= "" then
+								prop:SetModel(doorModel)
+							else
+								prop:SetModel("models/props_c17/door01_left.mdl")
+							end
+							
+							prop:SetPos(doorPos)
+							prop:SetAngles(doorAng)
+							prop:SetSkin(doorSkin)
+							prop:SetColor(doorColor)
+
+							if doorMaterial and doorMaterial ~= "" then
+								prop:SetMaterial(doorMaterial)
+							end
+
+							prop:Spawn()
+							prop:Activate()
+
+							for i = 0, tr.Entity:GetNumBodyGroups() - 1 do
+								prop:SetBodygroup(i, tr.Entity:GetBodygroup(i))
+							end
+
+							local phys = prop:GetPhysicsObject()
+							if IsValid(phys) then
+								phys:SetVelocity(self:GetOwner():GetForward() * 200 + Vector(0, 0, 100))
+								phys:AddAngleVelocity(VectorRand() * 300)
+							end
+						end
+
+						tr.Entity:Remove()
+					end
 				end
 			end
 
@@ -216,7 +261,7 @@ function SWEP:PrimaryAttack()
 
 	if SERVER and Tr.Hit and self.ShouldDecal then
 		if IsValid(Tr.Entity) and Tr.Entity:GetClass()=="prop_ragdoll" then
-			util.Decal("Blood",tr.HitPos+tr.HitNormal,tr.HitPos-tr.HitNormal)
+			util.Decal("Blood",tr.HitPos + tr.HitNormal, tr.HitPos - tr.HitNormal)
 		else
 			util.Decal("ManhackCut",pos1,pos2)
 		end
@@ -234,34 +279,68 @@ function SWEP:Reload()
 end
 
 function SWEP:Think()
-	self.Anim = Lerp(.1, self.Anim or 0, 1.1)
+	self.Anim = Lerp(FrameTime() * 8, self.Anim or 0, 1.0)
+
+	local ply = self:GetOwner()
+	if not IsValid(ply) then return end
+
+	local breathingOffset = math.sin(CurTime() * 1.5) * 0.02
+	local finalAnim = self.Anim + breathingOffset
+
 	if self:GetHoldType() == "melee2" then
-		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(35, 30, 50) * self.Anim, true)
-		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 5, -35) * self.Anim, true)
-	else if self:GetHoldType() == "melee" then
-		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(60, -15, -10) * self.Anim, true)
-		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_UpperArm"), Angle(0, -30, -70) * self.Anim, true)
-		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Hand"), Angle(-40, 10, 0) * self.Anim, true)
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(35, 30, 50) * finalAnim, true)
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 5, -35) * finalAnim, true)
+	elseif self:GetHoldType() == "melee" then
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(60, -15, -10) * finalAnim, true)
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_UpperArm"), Angle(0, -30, -70) * finalAnim, true)
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Hand"), Angle(-40, 10, 0) * finalAnim, true)
 	else
-		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(35, 30, 50) * self.Anim, true)
-		self:GetOwner():ManipulateBoneAngles(self:GetOwner():LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 5, -35) * self.Anim, true)
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(35, 30, 50) * finalAnim, true)
+		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 5, -35) * finalAnim, true)
 	end
-end
 end
 
 function SWEP:Holster()
 	local ply = self:GetOwner()
 	if not ply:IsValid() then return end
-	timer.Simple(.1, function()
-		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(0, 0, 0), true)
-		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 0, 0), true)
-		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_UpperArm"), Angle(0, 0, 0), true)
-		ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Hand"), Angle(0, 0, 0), true)
-	end)
+
+	if ply.SmoothResetBoneManipulation then
+		ply:SmoothResetBoneManipulation()
+	else
+		timer.Simple(.1, function()
+			if IsValid(ply) then
+				ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(0, 0, 0), true)
+				ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 0, 0), true)
+				ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_UpperArm"), Angle(0, 0, 0), true)
+				ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Hand"), Angle(0, 0, 0), true)
+			end
+		end)
+	end
 	return true
 end
 
 hook.Add("PlayerDeath", "Resetbone2s", function(ply)
 	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_R_Clavicle"), Angle(0, 0, 0), true)
 	ply:ManipulateBoneAngles(ply:LookupBone("ValveBiped.Bip01_L_Clavicle"), Angle(0, 0, 0), true)
+end)
+
+hook.Add("WeaponEquip", "KoishiMeleeAutoSelect", function(weapon, ply)
+	if not IsValid(weapon) or not IsValid(ply) then return end
+	if weapon.Base ~= "koishi_melee" then return end
+
+	if SERVER and weapon.HoldTypeWep and weapon.HoldTypeWep ~= "" then
+		for _, existingWeapon in pairs(ply:GetWeapons()) do
+			if existingWeapon ~= weapon and existingWeapon.HoldTypeWep == weapon.HoldTypeWep and existingWeapon.Base == "koishi_melee" then
+
+				ply:DropWeapon1(existingWeapon)
+				break
+			end
+		end
+	end
+
+	timer.Simple(0, function()
+		if IsValid(weapon) and IsValid(ply) then
+			ply:SelectWeapon(weapon)
+		end
+	end)
 end)

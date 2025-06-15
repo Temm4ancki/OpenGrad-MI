@@ -9,3 +9,6 @@ ENT.Purpose = ""
 ENT.Instructions = ""
 ENT.Spawnable = true
 ENT.AdminSpawnable = false
+
+ENT.JModGUIcolorable = true
+ENT.EZscannerDanger = true

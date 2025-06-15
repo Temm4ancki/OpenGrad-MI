@@ -1,14 +1,14 @@
 SWEP.Base = "koishi_melee"
 
 SWEP.PrintName = "Кукри"
-SWEP.Category = "md3melee"
+SWEP.Category = "md3 - Melee "
 SWEP.Purpose = "Милишка снайпера из ТФ2."
 SWEP.WepSelectIcon = "vgui/select/w/gurkha"
 SWEP.IconOverride = "vgui/icon/w/gurkha.png"
 
 
-SWEP.Spawnable= true
-SWEP.AdminSpawnable= true
+SWEP.Spawnable = true
+SWEP.AdminSpawnable = true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60

@@ -35,7 +35,25 @@ function ENT:Use(ply)
 			end
 		end
 	else
-		self:PickUp(ply)
+		local Alt = false
+		if JMod and JMod.IsAltUsing then
+			Alt = JMod.IsAltUsing(ply)
+		else
+			Alt = ply:KeyDown(IN_WALK)
+		end
+
+		if Alt then
+			self.Owner = ply
+			if util.NetworkStringToID("JMod_ColorAndArm") ~= 0 then
+				net.Start("JMod_ColorAndArm")
+				net.WriteEntity(self)
+				net.Send(ply)
+			else
+				ply:ChatPrint("Система окрашивания недоступна")
+			end
+		else
+			self:PickUp(ply)
+		end
 	end
 end
 
@@ -47,6 +65,28 @@ function ENT:PickUp(ply)
 		ply:SelectWeapon(wep)
 		self:Remove()
 	end
+end
+
+-- Функция для автоматического взведения (аналогично мине)
+function ENT:Arm(armer, autoColor)
+	if autoColor then
+		local Tr = util.QuickTrace(self:GetPos() + Vector(0, 0, 10), Vector(0, 0, -50), self)
+
+		if Tr.Hit and JMod and JMod.HitMatColors then
+			local Info = JMod.HitMatColors[Tr.MatType]
+
+			if Info then
+				self:SetColor(Info[1])
+
+				if Info[2] then
+					self:SetMaterial(Info[2])
+				end
+			end
+		end
+	end
+	
+	-- Капкан уже взведен при создании, поэтому просто подтверждаем владельца
+	self.Owner = armer
 end
 
 function ENT:Touch(entity)

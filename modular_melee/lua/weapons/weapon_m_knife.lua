@@ -1,14 +1,14 @@
 SWEP.Base = "koishi_melee"
 
 SWEP.PrintName = "Перочинный ножик"
-SWEP.Category = "md3melee"
+SWEP.Category = "md3 - Melee "
 SWEP.Purpose = "Малюсенький."
 SWEP.WepSelectIcon = "vgui/select/w/knife"
 SWEP.IconOverride = "vgui/icon/w/knife.png"
 
 
-SWEP.Spawnable= true
-SWEP.AdminSpawnable= true
+SWEP.Spawnable = true
+SWEP.AdminSpawnable = true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60

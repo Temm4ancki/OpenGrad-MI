@@ -56,7 +56,9 @@ function SWEP:PrimaryAttack()
 
     local ent = eyeTrace(self:GetOwner()).Entity
 
-    if not IsValid(ent) or ent:IsWorld() or ent:IsPlayer() or not ent.Food then return end
+    if not IsValid(ent) or ent:IsWorld() or ent:IsPlayer() then return end
+
+    if not ent:IsWeapon() or not ent.Base or ent.Base ~= "food_base" then return end
 
     self:Poison(ent)
 end
@@ -107,7 +109,10 @@ else
         local traceResult = eyeTrace(owner)
         local ent = traceResult.Entity
 
-        if not traceResult.Hit or not IsValid(ent) or ent:IsWorld() or ent:IsPlayer() or not ent:GetNWBool("Food", false) then return end
+        if not traceResult.Hit or not IsValid(ent) or ent:IsWorld() or ent:IsPlayer() then return end
+
+        if not ent:IsWeapon() or not ent.Base or ent.Base ~= "food_base" then return end
+
         local frac = traceResult.Fraction
 
         surface.SetDrawColor(Color(255, 255, 255, 255))

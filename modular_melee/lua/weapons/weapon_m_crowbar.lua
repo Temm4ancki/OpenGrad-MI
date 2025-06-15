@@ -1,7 +1,7 @@
 SWEP.Base = "koishi_melee"
 
 SWEP.PrintName = "Монтировка"
-SWEP.Category = "md3melee"
+SWEP.Category = "md3 - Melee "
 SWEP.Purpose = "Ручной ударный и рычажный инструмент, один из наиболее древних видов инструмента, известных человечеству, наряду с молотком, зубилом, топором, лопатой."
 SWEP.WepSelectIcon = "vgui/select/w/crowbar"
 SWEP.IconOverride = "vgui/icon/w/crowbar.png"

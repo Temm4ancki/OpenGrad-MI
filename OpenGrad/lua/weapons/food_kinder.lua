@@ -36,6 +36,23 @@ function SWEP:CustomEat()
 	end
 end
 
+function SWEP:CustomFeed(target)
+	if math.random(1, 2) == 2 then
+		target.Blood = target.Blood - 25
+		local snd = table.Random(blevotasfx)
+		target:EmitSound(snd)
+		for i = 1, 10 do
+			BloodParticle(target:EyePos(),target:EyeAngles():Forward()*150+Vector(math.random(-1,1),math.random(-1,1),math.random(-1,1))*30)
+		end
+		target.pain = math.max(target.pain + 100,0)
+		target:ChatPrint("В киндере попалась игла... Ауч.")
+	else
+		target.Blood = target.Blood + 25
+		target.pain = math.max(target.pain - 100,0)
+		target:ChatPrint("В киндере ничего не было... Вкусненько :yum:")
+	end
+end
+
 if (CLIENT) then
 	local WorldModel = ClientsideModel(SWEP.WorldModel)
 

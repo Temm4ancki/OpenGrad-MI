@@ -119,10 +119,11 @@ function schoolshoot.PlayerSpawn(ply, teamID)
 	if math.random(1, 6) == 6 then ply:Give("medkit") end
 	if math.random(1, 5) == 5 then ply:Give("med_band_big") end
 	if math.random(1, 8) == 8 then ply:Give("morphine") end
-	local r = math.random(1, 3)
-	ply:Give(r == 1 and "food_fishcan" or r == 2 and "food_spongebob_home" or r == 3 and "food_lays")
 	if math.random(1, 3) == 3 then ply:Give("food_monster") end
 	if math.random(1, 5) == 5 then ply:Give("weapon_m_bat") end
+	local r = math.random(1, 3)
+	ply:Give(r == 1 and "food_fishcan" or r == 2 and "food_spongebob_home" or r == 3 and "food_lays")
+
 	local mathrandom = math.random(1,3)
 	if teamID == 1 then
 		JMod.EZ_Equip_Armor(ply, "Medium-Helmet", color)

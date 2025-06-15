@@ -38,6 +38,7 @@ local function makeT(ply)
             "weapon_trap",
             "weapon_jam",
             "weapon_mask",
+            "weapon_hg_t_cyanid_capsule",
         })
     elseif homicide.roundType == 2 then
         SpawnEblan(ply, {
@@ -51,6 +52,7 @@ local function makeT(ply)
             "weapon_trap",
             "weapon_jam",
             "weapon_mask",
+            "weapon_hg_t_cyanid_capsule",
         })
     elseif homicide.roundType == 3 then
         SpawnEblan(ply, {
@@ -60,6 +62,7 @@ local function makeT(ply)
             "weapon_trap",
             "weapon_jam",
             "weapon_mask",
+            "weapon_hg_t_cyanid_capsule",
         })
     elseif homicide.roundType == 4 then
         SpawnEblan(ply, {
@@ -70,6 +73,7 @@ local function makeT(ply)
             "weapon_trap",
             "weapon_jam",
             "weapon_mask",
+            "weapon_hg_t_cyanid_capsule",
         })
         ply:GiveAmmo(12, 5)
     elseif homicide.roundType == 5 then
@@ -80,6 +84,7 @@ local function makeT(ply)
             "weapon_trap",
             "weapon_jam",
             "weapon_mask",
+            "weapon_hg_t_cyanid_capsule",
         })
     end
 

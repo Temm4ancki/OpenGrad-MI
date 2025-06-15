@@ -1,23 +1,3 @@
-
-
----------------------
--- FOR YOU TO READ --
----------------------
---
--- please follow the provided instructions in the readme
--- unless you have prior lua knowledge, in which case
--- just run quickly over the covered steps in the readme. 
---
--- please make sure you only
--- edit the sections flagged with
--- '--$ {extra information}' editing
--- anything else can cause problems with 
--- your extension and it will not be loaded!
---
--- IF YOU REQUIRE ANY HELP CONTACT ME (slaugh7er) ON STEAM
---
-----------------------
-
 if SERVER then
 	--resource.AddWorkshop("1684494045") --$ place you workshop addon number here ( I told you to copy it remember ;) )
 end
