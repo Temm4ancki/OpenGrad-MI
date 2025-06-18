@@ -1,8 +1,8 @@
 SWEP.Base = "koishi_melee"
 
-SWEP.PrintName = "Бензопила"
+SWEP.PrintName = "Бензопила Сальвадора"
 SWEP.Category = "md3 - Melee "
-SWEP.Purpose = "Бензопила делает брррр бррр брррр брррррррррррр"
+SWEP.Purpose = "BASTA, HIJO DE PUTA! \nДАВАЙ МОТОР! \nУХАХАХАХАХАХ!"
 SWEP.Author = "Temm4ancki"
 
 SWEP.Spawnable = true
@@ -10,8 +10,8 @@ SWEP.AdminSpawnable = true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 60
-SWEP.ViewModel = "models/weapons/salat/w_hg_chainsaw/w_chainsaw_biped.mdl"
-SWEP.WorldModel = "models/weapons/salat/w_hg_chainsaw/w_chainsaw_biped.mdl"
+SWEP.ViewModel = "models/weapons/salat/w_hg_chainsawsal/chainsawsal.mdl"
+SWEP.WorldModel = "models/weapons/salat/w_hg_chainsawsal/chainsawsal.mdl"
 SWEP.ViewModelFlip = false
 
 SWEP.AutoSwitchTo = false
