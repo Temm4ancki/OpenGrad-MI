@@ -1,7 +1,7 @@
 HomicideAbilities = HomicideAbilities or {}
 
 if SERVER then
-    hook.Add("PlayerDeath", "HomicideAbilities_OnKill", function(victim, inflictor, attacker)
+    hook.Add("PlayerDeath", "HomicideAbilities_OnKill", function(victim, inflictor, attacker) // мне супер впадлу разбиратсья, но оно кажется не работает
         if IsValid(attacker) and attacker:IsPlayer() and attacker.roleT then
             for abilityId, ability in pairs(HomicideAbilities) do
                 if attacker.PurchasedAbilities and attacker.PurchasedAbilities[abilityId] and ability.onKill then

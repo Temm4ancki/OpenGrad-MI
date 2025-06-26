@@ -340,6 +340,9 @@ net.Receive("homicide_traitor_preset_select", function(len, ply)
     if HomicidePresets and HomicidePresets[presetId] then
         homicide.ApplyPresetToPlayer(ply, presetId)
         ply:ChatPrint("Выбран пресет: " .. HomicidePresets[presetId].name)
+        if HomicidePresets[presetId].name=="Szaleniec" then // мне похуй на костыли
+            homicide.maniac = true
+        end    
     else
         homicide.SpawnTraitorStandard(ply)
         ply:ChatPrint("Ошибка выбора пресета, применен стандартный набор")
@@ -351,10 +354,11 @@ function homicide.StartRoundSV()
     
     tdm.RemoveItems()
     tdm.DirectOtherTeam(2, 1, 1)
-
+    
+    homicide.maniac = false
     homicide.police = false
     roundTimeStart = CurTime()
-    roundTime = math.max(math.ceil(#player.GetAll() / 2), 1) * 75
+    roundTime = math.max(math.ceil(#player.GetAll() / 2), 1) * 150
 
     if homicide.roundType == 3 then roundTime = roundTime / 2 end
     roundTimeLoot = 5
@@ -443,13 +447,19 @@ COMMANDS.forcepolice = {
     end
 }
 
+concommand.Add("penis",function ()
+    for _,ply in player.Iterator() do
+       ply:EmitSound("hg_homicide/traitor/killer.ogg",45,100,1,CHAN_STATIC)
+    end
+end)
+
 function homicide.RoundEndCheck()
     tdm.Center()
     local TAlive = tdm.GetCountLive(homicide.t)
     local Alive = tdm.GetCountLive(team.GetPlayers(1), function(ply) if ply.roleT or ply.isContr then return false end end)
     if roundTimeStart + roundTime < CurTime() and not homicide.police then
         homicide.police = true
-        if homicide.roundType == 1 then
+        if homicide.roundType == 1 or homicide.penis then
             PrintMessage(3, "Приехал спецназ.")
         else
             PrintMessage(3, "Приехала полиция.")
@@ -461,7 +471,7 @@ function homicide.RoundEndCheck()
         local playsound = true
         tdm.SpawnCommand(ctPlayers, aviable, function(ply)
             timer.Simple(0, function()
-                if homicide.roundType == 1 then
+                if homicide.roundType == 1 or homicide.penis then
                     ply:SetPlayerClass("contr")
                 else
                     ply:SetPlayerClass("police")
@@ -473,6 +483,19 @@ function homicide.RoundEndCheck()
                 end
             end)
         end)
+    end
+
+    if homicide.maniac then
+        for _,ply in player.Iterator() do
+            if ply.roleT then
+                ply:ChatPrint("У меня есть всего 3 минуты до приезда полиции.")
+                ply:EmitSound("hg_homicide/traitor/killer.ogg",45,100,1,CHAN_STATIC)
+            else 
+                ply:ChatPrint("Маньяк потные яички вышел на охоту. Продержитесь до приезда полиции.")
+                ply:EmitSound("hg_homicide/traitor/survivors.ogg",45,100,1,CHAN_STATIC)
+            end
+        end
+        homicide.maniac = false
     end
 
     if TAlive == 0 and Alive == 0 then

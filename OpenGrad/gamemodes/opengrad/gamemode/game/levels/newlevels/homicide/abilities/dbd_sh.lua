@@ -1,7 +1,7 @@
 HomicideAbilities = HomicideAbilities or {}
 
-HomicideAbilities["ability_ultra_brutality"] = {
-    name = "Ультра Жестокость",
+HomicideAbilities["dbd"] = {
+    name = "потом придумаю",
     description = "Повышает скорость атаки и резист к отрубу за каждое убийство",
     icon = "vgui/icon/brutality.png",
     price = 5,
@@ -10,9 +10,12 @@ HomicideAbilities["ability_ultra_brutality"] = {
             ply.UltraBrutality = true
             ply.BrutalityKills = 0
             ply:ChatPrint("Способность 'Ультра Жестокость' активирована!")
+            ply:SetNWString("FakeName","Маньяк")
+            ply:SetModel("models/hg_homicide/traitor/salvador.mdl")
         end
     end,
     onKill = function(ply, victim)
+        print("я ем ананас")
         if SERVER and ply.UltraBrutality then
             ply.BrutalityKills = (ply.BrutalityKills or 0) + 1
             
@@ -26,6 +29,9 @@ HomicideAbilities["ability_ultra_brutality"] = {
             end
             
             ply:ChatPrint("Жестокость растет! Убийств: " .. ply.BrutalityKills)
+            if ply.BrutalityKills > 1 then
+                ply:SetModel("models/hg_homicide/traitor/supersalvador.mdl")
+            end
         end
     end
 }

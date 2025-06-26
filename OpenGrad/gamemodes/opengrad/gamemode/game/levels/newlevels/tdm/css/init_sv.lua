@@ -83,14 +83,7 @@ local common = {"food_lays", "weapon_m_pipe", "weapon_m_bat", "medkit", "food_mo
 local uncommon = {"weapon_molotok", "painkiller"}
 
 function css.ShouldSpawnLoot()
-	local chance = math.random(100)
-	if chance < 30 then
-		return true, uncommon[math.random(#uncommon)]
-	elseif chance < 70 then
-		return true, common[math.random(#common)]
-	else
-		return false
-	end
+	return false
 end
 
 function css.PlayerDeath(ply, inf, att)

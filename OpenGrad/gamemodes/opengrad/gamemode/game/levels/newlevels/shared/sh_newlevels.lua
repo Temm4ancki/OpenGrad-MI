@@ -52,8 +52,7 @@ function drawRoundCosmetic(time)
     local lply = LocalPlayer()
     local jobcolor = Color(255, 255, 255, alpha)
 
-    draw.DrawText("Внешность - " .. homicide.GetPlayerModel(lply), "HomigradFont", ScrW() / 2, ScrH() / 1.9, jobcolor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-    draw.DrawText("Имя - " .. lply:GetNWString("FakeName","Неизвестный"), "HomigradFont", ScrW() / 2, ScrH() / 1.85, jobcolor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.DrawText(homicide.GetPlayerModel(lply).." по имени "..lply:GetNWString("FakeName","Неизвестный"), "HomigradFont", ScrW() / 2, ScrH() / 1.85, jobcolor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 end
 
 -- TODO Плиз кто умеет кодить переделайте код на более умный.

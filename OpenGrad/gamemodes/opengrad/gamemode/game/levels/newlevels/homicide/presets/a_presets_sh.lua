@@ -1,1 +1,0 @@
-HomicidePresets = HomicidePresets or {}
