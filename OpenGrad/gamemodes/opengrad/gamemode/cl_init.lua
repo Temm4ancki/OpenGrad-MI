@@ -364,6 +364,13 @@ local function ToggleMenu(toggle)
 			LocalPlayer():ConCommand("fake")
 		end)
 
+		local SpawnType = GetGlobalString("homicide_spawn_type", "standard")
+		if LocalPlayer().roleT and TableRound and TableRound().Name == "Homicide" and SpawnType == "shop_spawn" then
+			plyMenu:AddOption("Магазин Трейтора", function()
+					LocalPlayer():ConCommand("traitor_shop")
+			end)
+		end
+
 		local EZarmor = LocalPlayer().EZarmor
 		if JMod.GetItemInSlot(EZarmor, "eyes") then
 			plyMenu:AddOption("Активировать Маску/Забрало", function()

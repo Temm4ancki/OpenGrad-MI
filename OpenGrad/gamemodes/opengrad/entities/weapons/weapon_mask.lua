@@ -4,8 +4,8 @@ SWEP.Base = "weapon_base"
 
 SWEP.PrintName = "Костюм маньяка"
 SWEP.Category = "Примочки убийцы"
-SWEP.Purpose  = "Кейс с костюмом для скрытия личности"
-SWEP.Purpose = "R - Выбрать одежду маньяка \nЛКМ - Скрыть личность \nПКМ - Вернуть личность"
+SWEP.Purpose = "Кейс с костюмом для скрытия личности"
+SWEP.Instructions = "R - Выбрать одежду маньяка \nЛКМ - Скрыть личность \nПКМ - Вернуть личность"
 SWEP.Author			= ""
 SWEP.Contact		= ""
 SWEP.Purpose		= ""
@@ -113,6 +113,26 @@ function PlayerMeta:HideIdentity()
 	if self.IdentityHidden then return end
 
 	local disguise = self.SelectedDisguise
+	
+	if TableRound and TableRound().Name == "Homicide" then
+		local spawnType = homicide.GetSpawnType()
+		if spawnType == "random_preset" or spawnType == "preset_selection" then
+			if self.SelectedPreset and HomicidePresets and HomicidePresets[self.SelectedPreset] then
+				local preset = HomicidePresets[self.SelectedPreset]
+				disguise = {
+					name = preset.name,
+					model = preset.model,
+					color = Vector(255, 255, 255)
+				}
+			end
+		elseif spawnType == "standard" or spawnType == "shop_spawn" then
+			if not disguise then
+				self:ChatPrint("Маскировка не выбрана!")
+				return
+			end
+		end
+	end
+	
 	if not disguise then
 		self:ChatPrint("Маскировка не выбрана!")
 		return

@@ -2,7 +2,7 @@ SWEP.Base = "koishi_melee"
 
 SWEP.PrintName = "Мачете"
 SWEP.Category = "md3 - Melee "
-SWEP.Purpose = "Любимое оружие мексиканского кортеля. К сожалению они не помилуют"
+SWEP.Purpose = "Любимое оружие мексиканского картеля. К сожалению они не помилуют"
 --SWEP.WepSelectIcon = "vgui/select/w/crowbar"
 --SWEP.IconOverride = "vgui/icon/w/crowbar.png"
 

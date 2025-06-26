@@ -28,65 +28,8 @@ local function makeT(ply)
     if not IsValid(ply) then return end
     ply.roleT = true
     table.insert(homicide.t, ply)
-    if homicide.roundType == 1 then
-        SpawnEblan(ply, {
-            "weapon_m_kabar",
-            "weapon_s_hk_usps",
-            "weapon_hidebomb",
-            "weapon_hg_rgd5",
-            "weapon_jahidka",
-            "weapon_trap",
-            "weapon_jam",
-            "weapon_mask",
-            "weapon_hg_t_cyanid_capsule",
-        })
-    elseif homicide.roundType == 2 then
-        SpawnEblan(ply, {
-            "weapon_m_kabar",
-            "weapon_s_hk_usps",
-            "weapon_hg_t_syringepoison",
-            "weapon_hg_t_vxpoison",
-            "weapon_hidebomb",
-            "weapon_hg_rgd5",
-            "weapon_jahidka",
-            "weapon_trap",
-            "weapon_jam",
-            "weapon_mask",
-            "weapon_hg_t_cyanid_capsule",
-        })
-    elseif homicide.roundType == 3 then
-        SpawnEblan(ply, {
-            "weapon_m_kabar",
-            "weapon_hg_t_syringepoison",
-            "weapon_hg_t_vxpoison",
-            "weapon_trap",
-            "weapon_jam",
-            "weapon_mask",
-            "weapon_hg_t_cyanid_capsule",
-        })
-    elseif homicide.roundType == 4 then
-        SpawnEblan(ply, {
-            "weapon_m_kabar",
-            "weapon_hidebomb",
-            "weapon_hg_rgd5",
-            "weapon_jahidka",
-            "weapon_trap",
-            "weapon_jam",
-            "weapon_mask",
-            "weapon_hg_t_cyanid_capsule",
-        })
-        ply:GiveAmmo(12, 5)
-    elseif homicide.roundType == 5 then
-        SpawnEblan(ply, {
-            "weapon_m_kabar",
-            "weapon_hidebomb",
-            "weapon_s_hk_usps",
-            "weapon_trap",
-            "weapon_jam",
-            "weapon_mask",
-            "weapon_hg_t_cyanid_capsule",
-        })
-    end
+    
+    homicide.SpawnTraitor(ply)
 
     timer.Simple(5, function() ply.allowFlashlights = true end)
     if #GetFriends(ply) >= 1 then timer.Simple(1, function() AddNotificate(ply, "Ваши товарищи " .. GetFriends(ply)) end) end
@@ -161,7 +104,251 @@ sound.Add({
     sound = "hg_homicide/police/snd_jack_hmcd_policesiren.ogg"
 })
 
+-- Система типов спавна
+homicide.SpawnType = homicide.SpawnType or "standard"
+homicide.SpawnSettings = homicide.SpawnSettings or {}
+
+SetGlobalString("homicide_spawn_type", homicide.SpawnType)
+
+local SPAWN_TYPES = {
+    ["random"] = "Случайный",
+    ["standard"] = "Стандартный спавн Хомисайда", 
+    ["random_preset"] = "Случайный пресет",
+    ["preset_selection"] = "Выбор пресетов",
+    ["shop_spawn"] = "Спавн с магазином"
+}
+
+function homicide.SetSpawnType(spawnType)
+    if SPAWN_TYPES[spawnType] then
+        homicide.SpawnType = spawnType
+        
+        if spawnType == "random" then
+            local types = {"standard", "random_preset", "shop_spawn"}
+            homicide.SpawnType = table.Random(types)
+        end
+
+        SetGlobalString("homicide_spawn_type", homicide.SpawnType)
+        
+        return true
+    end
+    return false
+end
+
+function homicide.GetSpawnType()
+    return homicide.SpawnType
+end
+
+function homicide.SpawnTraitor(ply)
+    if not IsValid(ply) then return end
+    
+    local spawnType = homicide.GetSpawnType()
+    
+    if spawnType == "random_preset" then
+        homicide.SpawnTraitorWithRandomPreset(ply)
+    elseif spawnType == "preset_selection" then
+        homicide.SpawnTraitorWithSelectedPreset(ply)
+    elseif spawnType == "shop_spawn" then
+        homicide.SpawnTraitorWithShop(ply)
+    else
+        homicide.SpawnTraitorStandard(ply)
+    end
+end
+
+function homicide.SpawnTraitorStandard(ply)
+    if homicide.roundType == 1 then
+        SpawnEblan(ply, {
+            "weapon_m_kabar",
+            "weapon_s_hk_usps",
+            "weapon_hidebomb",
+            "weapon_hg_rgd5",
+            "weapon_jahidka",
+            "weapon_trap",
+            "weapon_jam",
+            "weapon_mask",
+            "weapon_hg_t_cyanid_capsule",
+        })
+    elseif homicide.roundType == 2 then
+        SpawnEblan(ply, {
+            "weapon_m_kabar",
+            "weapon_s_hk_usps",
+            "weapon_hg_t_syringepoison",
+            "weapon_hg_t_vxpoison",
+            "weapon_hidebomb",
+            "weapon_hg_rgd5",
+            "weapon_jahidka",
+            "weapon_trap",
+            "weapon_jam",
+            "weapon_mask",
+            "weapon_hg_t_cyanid_capsule",
+        })
+    elseif homicide.roundType == 3 then
+        SpawnEblan(ply, {
+            "weapon_m_kabar",
+            "weapon_hg_t_syringepoison",
+            "weapon_hg_t_vxpoison",
+            "weapon_trap",
+            "weapon_jam",
+            "weapon_mask",
+            "weapon_hg_t_cyanid_capsule",
+        })
+    elseif homicide.roundType == 4 then
+        SpawnEblan(ply, {
+            "weapon_m_kabar",
+            "weapon_hidebomb",
+            "weapon_hg_rgd5",
+            "weapon_jahidka",
+            "weapon_trap",
+            "weapon_jam",
+            "weapon_mask",
+            "weapon_hg_t_cyanid_capsule",
+        })
+        ply:GiveAmmo(12, 5)
+    elseif homicide.roundType == 5 then
+        SpawnEblan(ply, {
+            "weapon_m_kabar",
+            "weapon_hidebomb",
+            "weapon_s_hk_usps",
+            "weapon_trap",
+            "weapon_jam",
+            "weapon_mask",
+            "weapon_hg_t_cyanid_capsule",
+        })
+    end
+    
+    if HomicideAbilities and HomicideAbilities["ability_classic_traitor"] and HomicideAbilities["ability_classic_traitor"].onPurchase then
+        HomicideAbilities["ability_classic_traitor"].onPurchase(ply)
+    end
+end
+
+function homicide.SpawnTraitorWithRandomPreset(ply)
+    if not HomicidePresets then return homicide.SpawnTraitorStandard(ply) end
+    
+    local presetIds = {}
+    for id, _ in pairs(HomicidePresets) do
+        table.insert(presetIds, id)
+    end
+    
+    if #presetIds > 0 then
+        local randomPreset = table.Random(presetIds)
+        homicide.ApplyPresetToPlayer(ply, randomPreset)
+    else
+        homicide.SpawnTraitorStandard(ply)
+    end
+end
+
+function homicide.SpawnTraitorWithSelectedPreset(ply)
+    homicide.OpenPresetSelectionForTraitor(ply)
+end
+
+function homicide.SpawnTraitorWithShop(ply)
+    SpawnEblan(ply, {"weapon_hands"})
+    ply.TraitorCredits = TRAITOR_SHOP_CONFIG.DEFAULT_CREDITS
+    
+    net.Start("traitor_shop_credits")
+    net.WriteInt(ply.TraitorCredits, 8)
+    net.Send(ply)
+end
+
+local function GiveWeaponsWithoutEquip(ply, weapons)
+    for _, weapon in ipairs(weapons) do
+        ply:Give(weapon)
+    end
+    timer.Simple(0, function()
+        if IsValid(ply) then
+            ply:SelectWeapon("weapon_hands")
+        end
+    end)
+end
+
+function homicide.ApplyPresetToPlayer(ply, presetId)
+    if not HomicidePresets or not HomicidePresets[presetId] then
+        return homicide.SpawnTraitorStandard(ply)
+    end
+    
+    local preset = HomicidePresets[presetId]
+    
+    if preset.weapons then
+        GiveWeaponsWithoutEquip(ply, preset.weapons)
+    end
+    
+    if preset.abilities then
+        for _, ability in ipairs(preset.abilities) do
+            if HomicideAbilities and HomicideAbilities[ability] and HomicideAbilities[ability].onPurchase then
+                HomicideAbilities[ability].onPurchase(ply)
+            end
+        end
+    end
+    
+    ply.SelectedPreset = presetId
+end
+
+util.AddNetworkString("homicide_spawn_type")
+util.AddNetworkString("homicide_traitor_preset_menu")
+util.AddNetworkString("homicide_traitor_preset_select")
+
+net.Receive("homicide_spawn_type", function(len, ply)
+    if not IsValid(ply) or not ply:IsAdmin() then return end
+    
+    local spawnType = net.ReadString()
+    homicide.SetSpawnType(spawnType)
+    
+    local spawnTypeNames = {
+        ["random"] = "Случайный",
+        ["standard"] = "Стандартный спавн", 
+        ["random_preset"] = "Случайный пресет",
+        ["preset_selection"] = "Выбор пресетов трейтором",
+        ["shop_spawn"] = "Спавн с магазином"
+    }
+    
+    ply:ChatPrint("Тип спавна Homicide установлен: " .. (spawnTypeNames[spawnType] or spawnType))
+end)
+
+function homicide.OpenPresetSelectionForTraitor(ply)
+    if not IsValid(ply) or not ply.roleT then return end
+    if not HomicidePresets then 
+        homicide.SpawnTraitorStandard(ply)
+        return 
+    end
+    
+    SpawnEblan(ply, {"weapon_hands"})
+
+    timer.Simple(5, function()
+        if not IsValid(ply) or not ply.roleT then return end
+        
+        net.Start("homicide_traitor_preset_menu")
+        local presetList = {}
+        for id, preset in pairs(HomicidePresets) do
+            table.insert(presetList, {
+                id = id, 
+                name = preset.name,
+                description = preset.description,
+                model = preset.model,
+                weapons = preset.weapons or {},
+                abilities = preset.abilities or {}
+            })
+        end
+        net.WriteTable(presetList)
+        net.Send(ply)
+    end)
+end
+
+net.Receive("homicide_traitor_preset_select", function(len, ply)
+    if not IsValid(ply) or not ply.roleT then return end
+    
+    local presetId = net.ReadString()
+    
+    if HomicidePresets and HomicidePresets[presetId] then
+        homicide.ApplyPresetToPlayer(ply, presetId)
+        ply:ChatPrint("Выбран пресет: " .. HomicidePresets[presetId].name)
+    else
+        homicide.SpawnTraitorStandard(ply)
+        ply:ChatPrint("Ошибка выбора пресета, применен стандартный набор")
+    end
+end)
+
 function homicide.StartRoundSV()
+    hook.Run("homicide.StartRound")
+    
     tdm.RemoveItems()
     tdm.DirectOtherTeam(2, 1, 1)
 

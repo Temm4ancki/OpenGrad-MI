@@ -30,7 +30,8 @@ HG_UI.FONTS = {
     HEADER = "HG_UI_Header", 
     BIG = "HG_UI_Big",
     NORMAL = "HG_UI_Normal",
-    SMALL = "HG_UI_Small"
+    SMALL = "HG_UI_Small",
+    TINY = "HG_UI_Tiny"
 }
 
 -- ========================================
@@ -77,6 +78,15 @@ surface.CreateFont(HG_UI.FONTS.SMALL, {
     font = "Roboto",
     size = 15,
     weight = 500,
+    outline = false,
+    extended = true,
+    shadow = false
+})
+
+surface.CreateFont(HG_UI.FONTS.TINY, {
+    font = "Roboto",
+    size = 12,
+    weight = 400,
     outline = false,
     extended = true,
     shadow = false
