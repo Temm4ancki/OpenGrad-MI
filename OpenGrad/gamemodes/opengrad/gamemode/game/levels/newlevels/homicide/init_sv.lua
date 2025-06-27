@@ -75,6 +75,14 @@ COMMANDS.russian_roulette = {
     end
 }
 
+function homicide.SpawnMan()
+    local available = {}
+    for i, ent in pairs(ents.FindByClass("info_player*")) do
+        table.insert(available, ent:GetPos())
+    end
+    return available
+end
+
 function homicide.Spawns()
     local aviable = {}
     for i, ent in pairs(ents.FindByClass("info_player*")) do
@@ -358,7 +366,7 @@ function homicide.StartRoundSV()
     homicide.maniac = false
     homicide.police = false
     roundTimeStart = CurTime()
-    roundTime = math.max(math.ceil(#player.GetAll() / 2), 1) * 150
+    roundTime = math.max(math.ceil(#player.GetAll() / 2), 1) * 70
 
     if homicide.roundType == 3 then roundTime = roundTime / 2 end
     roundTimeLoot = 5
@@ -447,7 +455,7 @@ COMMANDS.forcepolice = {
     end
 }
 
-concommand.Add("penis",function ()
+concommand.Add("maniac",function ()
     for _,ply in player.Iterator() do
        ply:EmitSound("hg_homicide/traitor/killer.ogg",45,100,1,CHAN_STATIC)
     end
@@ -459,7 +467,7 @@ function homicide.RoundEndCheck()
     local Alive = tdm.GetCountLive(team.GetPlayers(1), function(ply) if ply.roleT or ply.isContr then return false end end)
     if roundTimeStart + roundTime < CurTime() and not homicide.police then
         homicide.police = true
-        if homicide.roundType == 1 or homicide.penis then
+        if homicide.roundType == 1 or homicide.maniacTemp then
             PrintMessage(3, "Приехал спецназ.")
         else
             PrintMessage(3, "Приехала полиция.")
@@ -471,8 +479,9 @@ function homicide.RoundEndCheck()
         local playsound = true
         tdm.SpawnCommand(ctPlayers, aviable, function(ply)
             timer.Simple(0, function()
-                if homicide.roundType == 1 or homicide.penis then
+                if homicide.roundType == 1 or homicide.maniacTemp then
                     ply:SetPlayerClass("contr")
+                    homicide.maniacTemp = false
                 else
                     ply:SetPlayerClass("police")
                 end
@@ -488,14 +497,20 @@ function homicide.RoundEndCheck()
     if homicide.maniac then
         for _,ply in player.Iterator() do
             if ply.roleT then
-                ply:ChatPrint("У меня есть всего 3 минуты до приезда полиции.")
+                ply:ChatPrint("У меня немного времени до приезда полиции.")
                 ply:EmitSound("hg_homicide/traitor/killer.ogg",45,100,1,CHAN_STATIC)
+                ply:StripWeapon("weapon_s_deagle") // ковбоифембои
+                ply:ScreenFade(SCREENFADE.IN,Color(0,0,0),15,4)
+                ply:SetPos(homicide.SpawnMan()[math.random(#homicide.SpawnMan())])
             else 
-                ply:ChatPrint("Маньяк потные яички вышел на охоту. Продержитесь до приезда полиции.")
+                ply:ChatPrint("Маньяк потные яички вышел на охоту. \nПродержитесь до приезда полиции.")
                 ply:EmitSound("hg_homicide/traitor/survivors.ogg",45,100,1,CHAN_STATIC)
+                ply:StripWeapons()
             end
+            
         end
         homicide.maniac = false
+        homicide.maniacTemp = true
     end
 
     if TAlive == 0 and Alive == 0 then
@@ -506,6 +521,10 @@ function homicide.RoundEndCheck()
     if TAlive == 0 then EndRound(2) end
     if Alive == 0 then EndRound(1) end
 end
+
+concommand.Add("penmis",function ()
+    print()
+end)
 
 function homicide.EndRound(winner)
     PrintMessage(3, winner == 1 and "Победа предателей." or winner == 2 and "Победа невиновых." or "Ничья")
@@ -576,6 +595,7 @@ function homicide.SpawnRagdoll()
 end
 
 function homicide.PlayerDeath(ply, inf, att)
+    if ply.unfakeable then ply.unfakeable = false end
     return false
 end
 

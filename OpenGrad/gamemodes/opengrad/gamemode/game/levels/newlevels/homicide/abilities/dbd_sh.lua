@@ -9,13 +9,13 @@ HomicideAbilities["dbd"] = {
         if SERVER then
             ply.UltraBrutality = true
             ply.BrutalityKills = 0
+            ply.unfakeable = true
             ply:ChatPrint("Способность 'Ультра Жестокость' активирована!")
             ply:SetNWString("FakeName","Маньяк")
             ply:SetModel("models/hg_homicide/traitor/salvador.mdl")
         end
     end,
     onKill = function(ply, victim)
-        print("я ем ананас")
         if SERVER and ply.UltraBrutality then
             ply.BrutalityKills = (ply.BrutalityKills or 0) + 1
             
