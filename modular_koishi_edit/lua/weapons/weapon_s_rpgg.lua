@@ -31,8 +31,8 @@ SWEP.SlotPos				= 0
 SWEP.DrawAmmo				= true
 SWEP.DrawCrosshair			= false
 
-SWEP.ViewModel				= "models/weapons/w_rocket_launcher.mdl"
-SWEP.WorldModel				= "models/weapons/w_rocket_launcher.mdl"
+SWEP.ViewModel				= "models/weapons/w_bazooka.mdl"
+SWEP.WorldModel				= "models/weapons/w_bazooka.mdl"
 SWEP.ReloadSound			= "weapons/salat/w_rpgg/rpg_reload1.ogg"
 
 function SWEP:PrimaryAttack()

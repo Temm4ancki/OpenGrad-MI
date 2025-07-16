@@ -522,10 +522,6 @@ function homicide.RoundEndCheck()
     if Alive == 0 then EndRound(1) end
 end
 
-concommand.Add("penmis",function ()
-    print()
-end)
-
 function homicide.EndRound(winner)
     PrintMessage(3, winner == 1 and "Победа предателей." or winner == 2 and "Победа невиновых." or "Ничья")
     if homicide.t and #homicide.t > 0 then
@@ -533,9 +529,8 @@ function homicide.EndRound(winner)
     end
 end
 
-local empty = {}
-local gray = Color(205,205,205)
 function homicide.PlayerSpawn(ply, teamID)
+    local color = teamID == 1 and Color(math.random(55, 165), math.random(55, 165), math.random(55, 165)) or teamTbl[2]
     local teamTbl = homicide[homicide.teamEncoder[teamID]]
     if homicide.roundType ~= 1 then
         ply:SetModel(teamTbl.models[math.random(#teamTbl.models)] or "models/player/group01/male_03.mdl")
@@ -549,7 +544,7 @@ function homicide.PlayerSpawn(ply, teamID)
         ply:SetBodygroup(group.id, randomValue)
     end
 
-    ply:SetPlayerColor(gray:ToVector())
+    ply:SetPlayerColor(color:ToVector())
     ply:Give("weapon_hands")
     timer.Simple(0, function() ply.allowFlashlights = true end)
 end
